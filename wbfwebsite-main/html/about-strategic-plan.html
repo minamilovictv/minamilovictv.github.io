@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Plan 2024–2028 — Western Balkans Fund</title>
+<meta name="description" content="The Western Balkans Fund Strategic Plan 2024–2028 — vision, six strategic pillars, priorities and implementation timeline.">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/site-chrome.css">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .container-narrow { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============================================================
+     PAGE HERO
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: var(--gradient-hero);
+    overflow: hidden;
+    padding: 72px 0 64px;
+  }
+  .page-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px);
+    pointer-events: none;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700; color: #fff; line-height: 1.1;
+    letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch;
+  }
+  .page-hero p {
+    font-size: 16px; color: rgba(255,255,255,0.7);
+    line-height: 1.65; max-width: 62ch;
+  }
+  .hero-btns { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn-hero-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px;
+    background: #fff;
+    color: #1A3668;
+    font-weight: 600; font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn-hero-primary:hover { background: #e8eef8; }
+  .btn-hero-primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-hero-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    font-weight: 600; font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-hero-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+  .btn-hero-ghost svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     SECTION SHARED
+     ============================================================ */
+  .section { padding: 80px 0; }
+  .section-alt { background: #f8fafc; }
+
+  .sec-head { margin-bottom: 40px; }
+  .sec-head.center { text-align: center; }
+  .sec-head .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #1A3668; margin-bottom: 12px; }
+  .sec-head h2 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .sec-head p {
+    font-size: 16px; color: #64748b;
+    line-height: 1.65; max-width: 64ch;
+  }
+  .sec-head.center p { margin-left: auto; margin-right: auto; }
+
+  /* ============================================================
+     VISION
+     ============================================================ */
+  .vision-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .vision-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .vision-text p {
+    font-size: 16px;
+    color: #475569;
+    line-height: 1.7;
+  }
+  .vision-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .vision-stat {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 22px 14px;
+    text-align: center;
+  }
+  .vision-stat .num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: #1A3668;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .vision-stat .label {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .mission-card {
+    background: var(--gradient-hero);
+    border-radius: 16px;
+    padding: 44px 40px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .mission-card::before {
+    content: ""; position: absolute; top: -80px; right: -60px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,168,152,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .mission-card .overline {
+    position: relative; z-index: 1;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.16em; color: #5eead4; margin-bottom: 14px;
+  }
+  .mission-card blockquote {
+    position: relative; z-index: 1;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.55;
+    font-style: italic;
+    margin-bottom: 18px;
+    border: none;
+    padding: 0;
+  }
+  .mission-card cite {
+    position: relative; z-index: 1;
+    font-style: normal;
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ============================================================
+     STRATEGIC PILLARS
+     ============================================================ */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .pillar-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .pillar-card:hover {
+    box-shadow: 0 16px 32px rgba(15,32,68,0.08);
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+  }
+  .pillar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .pillar-icon {
+    width: 44px; height: 44px;
+    background: #0f2044;
+    color: #5eead4;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pillar-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .pillar-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    color: #e2e8f0;
+    line-height: 1;
+  }
+  .pillar-title {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .pillar-desc {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .pillar-targets {
+    list-style: none;
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pillar-targets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #334155;
+    line-height: 1.5;
+  }
+  .pillar-targets li::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #0d9488;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  /* ============================================================
+     TIMELINE
+     ============================================================ */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 100px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, #cbd5e1 0%, #cbd5e1 100%);
+  }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 40px;
+    align-items: flex-start;
+    padding: 14px 0;
+    position: relative;
+  }
+  .tl-year {
+    text-align: right;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: #1A3668;
+    padding-right: 14px;
+  }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: 95px;
+    top: 22px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #0d9488;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 1px #cbd5e1;
+    z-index: 1;
+  }
+  .tl-body {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 18px 22px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .tl-body:hover { border-color: #cbd5e1; box-shadow: 0 8px 20px rgba(15,32,68,0.06); }
+  .tl-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0d6e62;
+    margin-bottom: 8px;
+  }
+  .tl-title {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+  .tl-desc {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+     DOWNLOAD CTA
+     ============================================================ */
+  .download-section {
+    background: #f8fafc;
+    padding: 72px 0;
+  }
+  .download-card {
+    max-width: 920px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 44px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    box-shadow: 0 12px 32px rgba(15,32,68,0.04);
+  }
+  .download-icon {
+    width: 56px; height: 56px;
+    background: #eef2f8;
+    color: #1A3668;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 16px;
+  }
+  .download-icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .download-text h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+  }
+  .download-text p {
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.65;
+  }
+  .download-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    background: #1A3668;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+  .download-cta:hover { background: #0f2044; }
+  .download-cta svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .container-narrow, .page-hero-inner { padding-left: 24px; padding-right: 24px; }
+    .vision-grid { grid-template-columns: 1fr; gap: 40px; }
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    .download-card { grid-template-columns: 1fr; text-align: left; padding: 32px 28px; }
+  }
+  @media (max-width: 768px) {
+    .page-hero { padding: 56px 0 48px; }
+    .section { padding: 56px 0; }
+    .vision-stats { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .mission-card { padding: 32px 24px; }
+    .timeline { padding-left: 0; }
+    .timeline::before { left: 70px; }
+    .tl-item { grid-template-columns: 70px 1fr; gap: 24px; }
+    .tl-item::before { left: 65px; }
+    .tl-year { font-size: 18px; padding-right: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '../js/nav.js'; document.body.appendChild(s); });
+</script>
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>›</span><a href="about.html">About</a><span>›</span>Strategic Plan
+    </nav>
+    <div class="page-hero-overline">About · 2024–2028</div>
+    <h1>Strategic Plan 2024–2028</h1>
+    <p>A five-year roadmap for deepening regional cooperation, expanding opportunity, and strengthening democratic resilience across the Western Balkans.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-hero-primary">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Full Plan (PDF)
+      </a>
+      <a href="our-programs.html" class="btn-hero-ghost">
+        View Programs
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VISION
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="vision-grid">
+      <div class="vision-text">
+        <div class="sec-head" style="margin-bottom:0">
+          <div class="overline">Vision</div>
+        </div>
+        <h2>A Connected, Prosperous Western Balkans</h2>
+        <p>By 2028, the Western Balkans Fund will have contributed to a region where borders are bridges, opportunities are shared, and citizens identify with a common regional future anchored in European values.</p>
+
+        <div class="vision-stats">
+          <div class="vision-stat">
+            <div class="num">€50M+</div>
+            <div class="label">Total Budget</div>
+          </div>
+          <div class="vision-stat">
+            <div class="num">3,000+</div>
+            <div class="label">Projects</div>
+          </div>
+          <div class="vision-stat">
+            <div class="num">500K+</div>
+            <div class="label">Beneficiaries</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission-card">
+        <div class="overline">Strategic Mission</div>
+        <blockquote>“To strengthen regional bonds through funded cooperation, mobility and partnership — accelerating the Western Balkans' path to European integration.”</blockquote>
+        <cite>— WBF Strategic Plan 2024–2028</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STRATEGIC PILLARS
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="sec-head center">
+      <div class="overline">Priority Areas</div>
+      <h2>Six Strategic Pillars</h2>
+      <p>The six priority areas that shape every WBF programme, partnership and investment between 2024 and 2028.</p>
+    </div>
+
+    <div class="pillars-grid">
+
+      <div class="pillar-card">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <span class="pillar-num">01</span>
+        </div>
+        <h3 class="pillar-title">Regional Cooperation</h3>
+        <p class="pillar-desc">Deepening cross-border cooperation between WBF member states through joint projects, shared institutions, and people-to-people exchange programmes.</p>
+        <ul class="pillar-targets">
+          <li>500+ cross-border projects</li>
+          <li>6 regional networks strengthened</li>
+          <li>€15M in regional grants</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span class="pillar-num">02</span>
+        </div>
+        <h3 class="pillar-title">Youth &amp; Mobility</h3>
+        <p class="pillar-desc">Expanding opportunities for young people to study, work, and volunteer across the Western Balkans, building a generation of regional citizens.</p>
+        <ul class="pillar-targets">
+          <li>10,000+ youth mobilities</li>
+          <li>50+ university partnerships</li>
+          <li>Regional youth councils</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <span class="pillar-num">03</span>
+        </div>
+        <h3 class="pillar-title">Civil Society &amp; Democracy</h3>
+        <p class="pillar-desc">Supporting a vibrant civil society sector capable of holding governments accountable and driving democratic reforms across the region.</p>
+        <ul class="pillar-targets">
+          <li>300+ CSO grants</li>
+          <li>Regional CSO network</li>
+          <li>Advocacy capacity building</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+          </div>
+          <span class="pillar-num">04</span>
+        </div>
+        <h3 class="pillar-title">Environment &amp; Climate</h3>
+        <p class="pillar-desc">Advancing the green transition in the Western Balkans through environmental projects, climate education, and sustainable development initiatives.</p>
+        <ul class="pillar-targets">
+          <li>€8M in green grants</li>
+          <li>100+ environmental projects</li>
+          <li>Regional climate action plan</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="14" x2="22" y2="14"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="14" x2="4" y2="14"/></svg>
+          </div>
+          <span class="pillar-num">05</span>
+        </div>
+        <h3 class="pillar-title">Digital &amp; Innovation</h3>
+        <p class="pillar-desc">Bridging the digital divide and fostering innovation ecosystems that connect the Western Balkans to European digital markets and standards.</p>
+        <ul class="pillar-targets">
+          <li>Digital skills training</li>
+          <li>Tech startup support</li>
+          <li>E-governance cooperation</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <span class="pillar-num">06</span>
+        </div>
+        <h3 class="pillar-title">Institutional Effectiveness</h3>
+        <p class="pillar-desc">Strengthening WBF's own systems, governance, and delivery capacity to ensure maximum impact, accountability and transparency.</p>
+        <ul class="pillar-targets">
+          <li>ISO-certified processes</li>
+          <li>Digital grant management</li>
+          <li>Enhanced M&amp;E framework</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TIMELINE
+     ============================================================ -->
+<section class="section">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Roadmap</div>
+      <h2>Implementation Timeline</h2>
+      <p>A phased five-year plan moving from foundation to legacy, with a formal mid-term evaluation in 2026.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-body">
+          <div class="tl-label">Foundation</div>
+          <div class="tl-title">Launch new programmes &amp; partnerships</div>
+          <div class="tl-desc">Roll out the new strategic priorities, upgrade the OGMS platform, and onboard new bilateral donors.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div class="tl-body">
+          <div class="tl-label">Scale</div>
+          <div class="tl-title">Double youth mobility, launch Partnership Platform</div>
+          <div class="tl-desc">Expand Move Grants to twice the current call volume and launch the public WBF Partnership Platform.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2026</div>
+        <div class="tl-body">
+          <div class="tl-label">Deepen</div>
+          <div class="tl-title">Regional thematic networks &amp; mid-term evaluation</div>
+          <div class="tl-desc">Establish thematic networks under each pillar and conduct the independent mid-term evaluation of the plan.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2027</div>
+        <div class="tl-body">
+          <div class="tl-label">Expand</div>
+          <div class="tl-title">New donor partnerships &amp; increased budget envelope</div>
+          <div class="tl-desc">Secure additional multi-year donor commitments and expand the joint action portfolio with EU IPA III.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2028</div>
+        <div class="tl-body">
+          <div class="tl-label">Legacy</div>
+          <div class="tl-title">Final evaluation &amp; next strategy development</div>
+          <div class="tl-desc">Independent final evaluation, lessons-learned publication, and co-design of the 2029–2033 strategic framework with members and partners.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DOWNLOAD CTA
+     ============================================================ -->
+<section class="download-section">
+  <div class="download-card">
+    <div>
+      <div class="download-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="13" y2="18"/></svg>
+      </div>
+      <div class="download-text">
+        <h2>Read the full Strategic Plan</h2>
+        <p>The complete 2024–2028 Strategic Plan PDF covers the situation analysis, theory of change, results framework, monitoring &amp; evaluation approach, and detailed implementation milestones.</p>
+      </div>
+    </div>
+    <a class="download-cta" href="#">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grantee Stories — Western Balkans Fund</title>
+<meta name="description" content="In-depth stories from Western Balkans Fund grantees — projects that are changing the region.">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/site-chrome.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1e2e; background: #fff; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; } a { color: inherit; } button, input { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+  /* HERO */
+  .page-hero { position: relative; background: var(--gradient-hero); overflow: hidden; padding: 72px 0 64px; }
+  .page-hero::before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px); pointer-events: none; }
+  .page-hero::after { content: ""; position: absolute; top: -120px; right: -80px; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%); pointer-events: none; }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .page-hero h1 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: #fff; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch; }
+  .page-hero p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.65; max-width: 62ch; }
+
+  /* FILTERS */
+  .filters-wrap { background: #fff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 56px; z-index: 100; }
+  .filters-inner { max-width: 1400px; margin: 0 auto; padding: 20px 40px; display: flex; flex-direction: column; gap: 12px; }
+  .filter-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .filter-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #94a3b8; margin-right: 4px; flex-shrink: 0; width: 80px; }
+  .filter-chips { display: flex; gap: 6px; flex-wrap: wrap; flex: 1; }
+  .chip { background: #f1f5f9; border: 1px solid transparent; color: #475569; font-size: 12.5px; font-weight: 500; padding: 6px 14px; border-radius: 999px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .chip:hover { background: #e2e8f0; color: #1A3668; }
+  .chip.active { background: #1A3668; color: #fff; border-color: #1A3668; }
+  .chip-count { display: inline-block; margin-left: 6px; font-size: 10px; color: #94a3b8; font-weight: 600; }
+  .chip.active .chip-count { color: rgba(255,255,255,0.6); }
+
+  .results-meta { max-width: 1400px; margin: 0 auto; padding: 20px 40px 0; font-size: 13px; color: #64748b; }
+  .results-meta strong { color: #0f172a; font-weight: 600; }
+
+  /* GRID */
+  .stories-section { padding: 32px 0 88px; background: #fff; }
+  .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  .story-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s; text-align: left; font: inherit; color: inherit; padding: 0; }
+  .story-card:hover { box-shadow: 0 16px 32px rgba(15,32,68,0.10); transform: translateY(-3px); border-color: #d1d9e6; }
+  .story-card:focus-visible { outline: 2px solid #1A3668; outline-offset: 2px; }
+
+  .story-cover { position: relative; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-size: cover; background-position: center; }
+  .story-cover.brand { background: linear-gradient(135deg, #0a1830 0%, #1A3668 100%); }
+  .story-cover.teal { background: linear-gradient(135deg, #0f2044 0%, #0d6e62 100%); }
+  .story-cover.green { background: linear-gradient(135deg, #14532d 0%, #047857 100%); }
+  .story-cover.gold { background: linear-gradient(135deg, #1A3668 0%, #b45309 100%); }
+  .story-cover.purple { background: linear-gradient(135deg, #312e81 0%, #6d28d9 100%); }
+  .story-cover.crimson { background: linear-gradient(135deg, #1A3668 0%, #9f1239 100%); }
+  .story-cover img { width: 100%; height: 100%; object-fit: cover; }
+  .story-emoji { font-size: 56px; position: relative; z-index: 1; }
+  .story-cover .area-badge { position: absolute; top: 14px; left: 14px; background: rgba(255,255,255,0.95); color: #1A3668; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; }
+  .story-cover .call-badge { position: absolute; bottom: 14px; left: 14px; background: rgba(15,32,68,0.85); color: #fff; font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 999px; backdrop-filter: blur(4px); }
+
+  .story-body { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; }
+  .story-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #0f172a; line-height: 1.3; margin-bottom: 10px; }
+  .story-card:hover .story-title { color: #1A3668; }
+  .story-desc { font-size: 13.5px; color: #64748b; line-height: 1.65; margin-bottom: 14px; flex: 1; display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .story-meta { font-size: 11.5px; color: #94a3b8; padding-top: 14px; border-top: 1px solid #f1f5f9; display: flex; align-items: center; gap: 6px; }
+  .story-meta svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* STATES */
+  .state-msg { grid-column: 1 / -1; padding: 64px 24px; text-align: center; color: #64748b; font-size: 15px; background: #f8fafc; border-radius: 10px; }
+  .state-msg h3 { font-size: 17px; color: #0f172a; margin-bottom: 6px; font-weight: 600; }
+  .skeleton { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+  .sk { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 4px; }
+  .sk-cover { height: 200px; }
+  .sk-line { height: 12px; margin: 12px 24px; }
+  .sk-line.short { width: 50%; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.75); backdrop-filter: blur(4px); z-index: 2000; display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; opacity: 0; pointer-events: none; transition: opacity 0.2s; overflow-y: auto; }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  body.modal-open { overflow: hidden; }
+  .modal { background: #fff; border-radius: 12px; max-width: 920px; width: 100%; margin: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.4); transform: translateY(20px) scale(0.98); transition: transform 0.25s; position: relative; }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.95); border: 1px solid #e2e8f0; color: #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.15s; }
+  .modal-close:hover { background: #fff; color: #0f172a; }
+  .modal-header { height: 280px; display: flex; align-items: flex-end; padding: 28px 36px; position: relative; overflow: hidden; background-size: cover; background-position: center; border-radius: 12px 12px 0 0; }
+  .modal-header.brand { background: linear-gradient(135deg, #0a1830 0%, #1A3668 100%); }
+  .modal-header.teal { background: linear-gradient(135deg, #0f2044 0%, #0d6e62 100%); }
+  .modal-header.green { background: linear-gradient(135deg, #14532d 0%, #047857 100%); }
+  .modal-header.gold { background: linear-gradient(135deg, #1A3668 0%, #b45309 100%); }
+  .modal-header.purple { background: linear-gradient(135deg, #312e81 0%, #6d28d9 100%); }
+  .modal-header.crimson { background: linear-gradient(135deg, #1A3668 0%, #9f1239 100%); }
+  .modal-header img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .modal-header-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(15,32,68,0.85)); }
+  .modal-header-text { position: relative; z-index: 1; color: #fff; }
+  .modal-emoji { font-size: 52px; margin-bottom: 12px; }
+  .modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .modal-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.95); color: #1A3668; }
+  .modal-tag.dark { background: rgba(15,32,68,0.85); color: #fff; }
+  .modal-title { font-family: var(--font-display); font-size: clamp(22px, 3vw, 30px); font-weight: 700; line-height: 1.2; }
+  .modal-body { padding: 32px 44px 44px; }
+  .modal-meta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0; font-size: 13px; color: #64748b; }
+  .modal-meta-item { display: inline-flex; align-items: center; gap: 6px; }
+  .modal-meta-item svg { width: 14px; height: 14px; color: #94a3b8; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .modal-description { font-size: 15.5px; color: #334155; line-height: 1.75; }
+  .modal-description p { margin-bottom: 14px; }
+  .modal-description p:last-child { margin-bottom: 0; }
+  .modal-description h3 { font-size: 17px; font-weight: 600; color: #0f172a; margin: 22px 0 10px; }
+  .modal-description ul, .modal-description ol { padding-left: 22px; margin-bottom: 14px; }
+  .modal-description li { margin-bottom: 6px; }
+  .modal-description strong { color: #0f172a; font-weight: 600; }
+  .modal-description a { color: #1A3668; text-decoration: underline; }
+  .modal-description blockquote { border-left: 3px solid #1A3668; padding: 6px 0 6px 20px; margin: 20px 0; color: #475569; font-style: italic; }
+  .countries-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .country-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #334155; background: #f8fafc; border: 1px solid #e2e8f0; padding: 5px 12px; border-radius: 999px; }
+  .modal-actions { margin-top: 28px; padding-top: 24px; border-top: 1px solid #e2e8f0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .action-btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 6px; font-size: 13.5px; font-weight: 600; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+  .action-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .action-primary { background: #1A3668; color: #fff; }
+  .action-primary:hover { background: #0f2044; }
+  .action-secondary { background: #fff; color: #1A3668; border-color: #cbd5e1; }
+  .action-secondary:hover { border-color: #1A3668; }
+
+  /* page override */
+  .ft-social a { transition: all 0.15s; }
+
+  @media (max-width: 1024px) {
+    .container, .filters-inner, .page-hero-inner, .results-meta { padding-left: 24px; padding-right: 24px; }
+    .stories-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .modal-body { padding: 28px 28px 36px; }
+    .modal-header { height: 240px; padding: 24px 28px; }
+  }
+  @media (max-width: 768px) {
+    .page-hero { padding: 56px 0 48px; }
+    .filters-wrap { position: static; }
+    .filter-label { width: auto; }
+    .stories-grid { grid-template-columns: 1fr; }
+    .modal-overlay { padding: 0; }
+    .modal { border-radius: 0; min-height: 100vh; }
+    .modal-header { border-radius: 0; height: 200px; padding: 20px; }
+    .modal-body { padding: 24px 20px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '../js/nav.js'; document.body.appendChild(s); });
+</script>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span>›</span><a href="impact.html">Our Impact</a><span>›</span>Grantee Stories</nav>
+    <div class="page-hero-overline">Our Impact</div>
+    <h1>Grantee Stories</h1>
+    <p>Partnerships across borders, anchored in local communities. In-depth stories from previous calls — what worked, what changed, and what's next for the organisations and people behind each project.</p>
+  </div>
+</section>
+
+<div class="filters-wrap" role="region" aria-label="Filter stories">
+  <div class="filters-inner">
+    <div class="filter-row">
+      <div class="filter-label">Area</div>
+      <div class="filter-chips" id="area-filters">
+        <button class="chip active" data-area="all">All</button>
+      </div>
+    </div>
+    <div class="filter-row">
+      <div class="filter-label">Programme</div>
+      <div class="filter-chips" id="prog-filters">
+        <button class="chip active" data-prog="all">All Programmes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="results-meta" id="results-meta"></div>
+
+<section class="stories-section">
+  <div class="container">
+    <div class="stories-grid" id="stories-grid">
+      <div class="skeleton"><div class="sk sk-cover"></div><div class="sk sk-line"></div><div class="sk sk-line"></div><div class="sk sk-line short"></div></div>
+      <div class="skeleton"><div class="sk sk-cover"></div><div class="sk sk-line"></div><div class="sk sk-line"></div><div class="sk sk-line short"></div></div>
+      <div class="skeleton"><div class="sk sk-cover"></div><div class="sk sk-line"></div><div class="sk sk-line"></div><div class="sk sk-line short"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" hidden><div class="modal" id="modal-content"></div></div>
+
+
+
+<script>
+(function () {
+  'use strict';
+  /* CSV_URL — set to your Google Sheet CSV publish URL.
+     Columns: id, title, emoji, area, programme, call, gradient,
+              coverImage, summary, content, countries, meta,
+              year, projectUrl, externalUrl, status
+     gradient values: brand, teal, green, gold, purple, crimson
+     countries pipe-separated codes: AL|BA|XK|MK|ME|RS */
+  const CSV_URL = '';
+
+  const COUNTRY_LABELS = {
+    AL: { name: 'Albania', flag: '🇦🇱' }, BA: { name: 'Bosnia and Herzegovina', flag: '🇧🇦' },
+    XK: { name: 'Kosovo*', flag: '🇽🇰' }, MK: { name: 'North Macedonia', flag: '🇲🇰' },
+    ME: { name: 'Montenegro', flag: '🇲🇪' }, RS: { name: 'Serbia', flag: '🇷🇸' }
+  };
+
+  const SAMPLE_DATA = [
+    { id: 'museums-open-to-all', title: 'Museums Open to All', emoji: '🏛️', area: 'Cultural Cooperation', programme: 'GGI Grants', call: 'GGI Grants · Call 7', gradient: 'brand', coverImage: '', summary: 'Led by the Association of the Deaf and Hard of Hearing of Montenegro, nine museums across Montenegro, Serbia and Albania have been adapted with sign language training, audio guides and inclusive tools for visitors with sensory impairments.', content: '<p>The Association of the Deaf and Hard of Hearing of Montenegro led this 12-month project bringing together museum partners in three countries to make cultural heritage genuinely accessible.</p><h3>What changed</h3><ul><li>9 museums adapted with new accessibility features</li><li>40+ museum staff trained in sign language and inclusive communication</li><li>3 jointly produced audio guides in local sign languages</li><li>Regional museum accessibility charter published</li></ul><blockquote>"For the first time, our young deaf members felt at home in a museum. That changes everything."</blockquote>', countries: 'ME|RS|AL', meta: 'Montenegro, Serbia, Albania · 3 Countries · 9 Museums', year: '2025', projectUrl: 'projects.html', externalUrl: '', status: 'published' },
+    { id: 'from-earth-to-stars', title: 'From Earth to the Stars', emoji: '🔭', area: 'Education & Scientific Exchange', programme: 'GGI Grants', call: 'GGI Grants · Call 7', gradient: 'teal', coverImage: '', summary: 'The Astronomy Club of Kosovo brought together youth from all six countries in Kukaj village near Prishtina — connecting 400+ applicants through STEM, stargazing, and cultural exchange.', content: '<p>What started as a small star-gazing weekend grew into one of the most over-subscribed youth science exchanges WBF has supported.</p><h3>By the numbers</h3><ul><li>400+ applications from across the WB6</li><li>60 young people selected for the residential programme</li><li>5 nights of structured STEM and astronomy workshops</li><li>Follow-up regional alumni network now spans all 6 countries</li></ul>', countries: 'AL|BA|XK|MK|ME|RS', meta: 'All 6 Countries · 400+ applicants · Kosovo led', year: '2025', projectUrl: 'projects.html', externalUrl: '', status: 'published' },
+    { id: 'green-corridors', title: 'Green Corridors', emoji: '🌱', area: 'Sustainable Development', programme: 'GGI Grants', call: 'GGI Grants · Call 6', gradient: 'green', coverImage: '', summary: 'Cross-border environmental cooperation connecting communities across four Western Balkans countries through green infrastructure, biodiversity monitoring and local green champions.', content: '<p>Green Corridors built a four-country biodiversity-monitoring network along key migratory routes shared between Albania, North Macedonia, Bosnia and Herzegovina, and Serbia.</p><h3>Activities</h3><ul><li>Joint biodiversity census across 12 protected areas</li><li>120 local "Green Champions" trained</li><li>Open-data platform for citizen scientists</li></ul>', countries: 'AL|MK|BA|RS', meta: '4 Countries · GGI Grants', year: '2024', projectUrl: 'projects.html', externalUrl: '', status: 'published' },
+    { id: 'youth-bridges', title: 'Youth Bridges Across the Balkans', emoji: '🤝', area: 'Youth & Mobility', programme: 'GGI Grants', call: 'GGI Grants · Call 8', gradient: 'gold', coverImage: '', summary: 'A regional youth-led cooperation initiative connecting three Western Balkans cities through workshops, exchanges and a shared media platform.', content: '<p>Centre for Civic Initiatives — Tirana led a partnership with Youth Action Kosova and Skopje Youth Forum to set up cross-border working groups of young people aged 18–28.</p><h3>Outputs</h3><ul><li>3 exchange visits with peer mentoring</li><li>Regional youth media platform run by participants</li><li>Public showcase events in each city</li><li>Regional youth cooperation toolkit</li></ul>', countries: 'AL|XK|MK', meta: 'Albania, Kosovo, North Macedonia · 12 months', year: '2025', projectUrl: 'projects.html', externalUrl: '', status: 'published' },
+    { id: 'heritage-trails', title: 'Heritage Trails: Common Roots, Shared Futures', emoji: '🗺️', area: 'Cultural Heritage', programme: 'GGI Grants', call: 'GGI Grants · Call 6', gradient: 'crimson', coverImage: '', summary: 'Three-country project mapping shared cultural heritage along historic routes and publishing the first regional Heritage Trails guide.', content: '<p>Sarajevo Cultural Foundation, the Cetinje Heritage Trust and the Belgrade Museum Network spent a year documenting 12 cross-border heritage sites linking Sarajevo, Cetinje and Belgrade.</p><h3>Outputs</h3><ul><li>120-page printed guide in 4 languages</li><li>Interactive online map</li><li>30 trained local guides</li><li>3 documentary short films</li></ul>', countries: 'BA|ME|RS', meta: 'Bosnia, Montenegro, Serbia · Heritage', year: '2024', projectUrl: 'projects.html', externalUrl: '', status: 'published' },
+    { id: 'open-data-watch', title: 'Open Data Watch — Regional Transparency', emoji: '📊', area: 'Good Governance', programme: 'GGI Grants', call: 'GGI Grants · Call 5', gradient: 'purple', coverImage: '', summary: 'A six-country investigation of open-data publication by public institutions, with a public scorecard and joint advocacy.', content: '<p>Open Data Kosovo led the first Regional Open Data Scorecard covering all six Contracting Parties, in partnership with five sister organisations across the WB6.</p><blockquote>"The most comprehensive open-data benchmark ever produced for the Western Balkans."</blockquote><p>Findings were presented at the Regional Cooperation Council and informed two national open-data action plans.</p>', countries: 'AL|BA|XK|MK|ME|RS', meta: 'All 6 Countries · Transparency', year: '2024', projectUrl: 'projects.html', externalUrl: '', status: 'published' }
+  ];
+
+  const STATE = { items: [], area: 'all', prog: 'all' };
+
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.from((c || document).querySelectorAll(s)); }
+  function escapeHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+  function escapeAttr(s) { return escapeHtml(s); }
+  function pipeSplit(v) { return !v ? [] : String(v).split('|').map(s => s.trim()).filter(Boolean); }
+
+  function parseCSV(text) {
+    const rows = []; let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) { const c = text[i];
+      if (inQuotes) { if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else { inQuotes = false; } } else { field += c; } }
+      else { if (c === '"') inQuotes = true; else if (c === ',') { row.push(field); field = ''; } else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; } else if (c === '\r') {} else field += c; }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    if (!rows.length) return [];
+    const headers = rows[0].map(h => h.trim());
+    return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => { const obj = {}; headers.forEach((h, i) => obj[h] = (r[i] || '').trim()); return obj; });
+  }
+
+  async function loadData() {
+    if (!CSV_URL) { STATE.items = SAMPLE_DATA.slice(); return; }
+    try { const res = await fetch(CSV_URL, { cache: 'no-store' }); if (!res.ok) throw new Error(); STATE.items = parseCSV(await res.text()).filter(i => (i.status || 'published').toLowerCase() !== 'draft'); }
+    catch { STATE.items = SAMPLE_DATA.slice(); }
+  }
+
+  function buildFilters() {
+    const areaWrap = $('#area-filters');
+    const progWrap = $('#prog-filters');
+    $$('button[data-area]:not([data-area="all"])', areaWrap).forEach(b => b.remove());
+    $$('button[data-prog]:not([data-prog="all"])', progWrap).forEach(b => b.remove());
+
+    const areaCounts = {}, progCounts = {};
+    STATE.items.forEach(i => {
+      const a = (i.area || '').trim(); if (a) areaCounts[a] = (areaCounts[a] || 0) + 1;
+      const p = (i.programme || '').trim(); if (p) progCounts[p] = (progCounts[p] || 0) + 1;
+    });
+    Object.keys(areaCounts).sort().forEach(a => {
+      const btn = document.createElement('button'); btn.className = 'chip'; btn.dataset.area = a;
+      btn.innerHTML = escapeHtml(a) + ' <span class="chip-count">' + areaCounts[a] + '</span>';
+      areaWrap.appendChild(btn);
+    });
+    Object.keys(progCounts).sort().forEach(p => {
+      const btn = document.createElement('button'); btn.className = 'chip'; btn.dataset.prog = p;
+      btn.innerHTML = escapeHtml(p) + ' <span class="chip-count">' + progCounts[p] + '</span>';
+      progWrap.appendChild(btn);
+    });
+  }
+
+  function getFiltered() {
+    return STATE.items
+      .filter(i => STATE.area === 'all' ? true : (i.area || '').trim() === STATE.area)
+      .filter(i => STATE.prog === 'all' ? true : (i.programme || '').trim() === STATE.prog)
+      .sort((a, b) => (parseInt(b.year, 10) || 0) - (parseInt(a.year, 10) || 0));
+  }
+
+  function renderCard(s) {
+    const grad = s.gradient || 'brand';
+    const coverStyle = s.coverImage ? ' style="background-image:url(' + JSON.stringify(s.coverImage).slice(1,-1) + ')"' : '';
+    return '<button type="button" class="story-card" data-id="' + escapeAttr(s.id) + '">' +
+      '<div class="story-cover ' + escapeAttr(grad) + '"' + coverStyle + '>' +
+        (s.coverImage ? '' : '<span class="story-emoji">' + escapeHtml(s.emoji || '✨') + '</span>') +
+        (s.area ? '<span class="area-badge">' + escapeHtml(s.area) + '</span>' : '') +
+        (s.call ? '<span class="call-badge">' + escapeHtml(s.call) + '</span>' : '') +
+      '</div>' +
+      '<div class="story-body">' +
+        '<h3 class="story-title">' + escapeHtml(s.title) + '</h3>' +
+        '<p class="story-desc">' + escapeHtml(s.summary || '') + '</p>' +
+        (s.meta ? '<div class="story-meta"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' + escapeHtml(s.meta) + '</div>' : '') +
+      '</div>' +
+    '</button>';
+  }
+
+  function render() {
+    const list = getFiltered();
+    const grid = $('#stories-grid');
+    const meta = $('#results-meta');
+    const hasFilters = STATE.area !== 'all' || STATE.prog !== 'all';
+    meta.innerHTML = '<strong>' + list.length + '</strong> ' + (list.length === 1 ? 'story' : 'stories') + (hasFilters ? ' matching your filters' : '');
+    if (!list.length) { grid.innerHTML = '<div class="state-msg"><h3>No stories found</h3><p>Try a different combination of filters.</p></div>'; return; }
+    grid.innerHTML = list.map(renderCard).join('');
+  }
+
+  const Modal = (function () {
+    const overlay = $('#modal'); const content = $('#modal-content');
+    function open(s) {
+      const grad = s.gradient || 'brand';
+      const countries = pipeSplit(s.countries).map(c => c.toUpperCase());
+      const headerStyle = s.coverImage ? ' style="background-image:url(' + JSON.stringify(s.coverImage).slice(1,-1) + ')"' : '';
+
+      const countryChips = countries.length ? '<div class="countries-list">' + countries.map(c => { const info = COUNTRY_LABELS[c] || { flag: '', name: c }; return '<span class="country-chip"><span>' + info.flag + '</span>' + escapeHtml(info.name) + '</span>'; }).join('') + '</div>' : '';
+
+      const actions = (s.projectUrl || s.externalUrl) ? '<div class="modal-actions">' +
+        (s.projectUrl ? '<a class="action-btn action-primary" href="' + escapeAttr(s.projectUrl) + '"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>View project</a>' : '') +
+        (s.externalUrl ? '<a class="action-btn action-secondary" href="' + escapeAttr(s.externalUrl) + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>External link</a>' : '') +
+      '</div>' : '';
+
+      content.innerHTML = '<button type="button" class="modal-close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg></button>' +
+        '<div class="modal-header ' + escapeAttr(grad) + '"' + headerStyle + '>' +
+          (s.coverImage ? '<div class="modal-header-overlay"></div>' : '') +
+          '<div class="modal-header-text">' +
+            (s.coverImage ? '' : '<div class="modal-emoji">' + escapeHtml(s.emoji || '✨') + '</div>') +
+            '<div class="modal-tags">' +
+              (s.area ? '<span class="modal-tag">' + escapeHtml(s.area) + '</span>' : '') +
+              (s.call ? '<span class="modal-tag dark">' + escapeHtml(s.call) + '</span>' : '') +
+            '</div>' +
+            '<h2 class="modal-title">' + escapeHtml(s.title) + '</h2>' +
+          '</div>' +
+        '</div>' +
+        '<div class="modal-body">' +
+          '<div class="modal-meta">' +
+            (s.programme ? '<span class="modal-meta-item"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' + escapeHtml(s.programme) + '</span>' : '') +
+            (s.year ? '<span class="modal-meta-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' + escapeHtml(s.year) + '</span>' : '') +
+            (s.meta ? '<span class="modal-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' + escapeHtml(s.meta) + '</span>' : '') +
+          '</div>' +
+          '<div class="modal-description">' + (s.content || ('<p>' + escapeHtml(s.summary || '') + '</p>')) + '</div>' +
+          countryChips + actions +
+        '</div>';
+      overlay.hidden = false;
+      requestAnimationFrame(() => overlay.classList.add('open'));
+      document.body.classList.add('modal-open');
+      const url = new URL(window.location); url.searchParams.set('story', s.id); history.pushState({ story: s.id }, '', url);
+      content.querySelector('.modal-close').addEventListener('click', () => close(true));
+      content.querySelector('.modal-close').focus();
+    }
+    function close(updateHistory) {
+      overlay.classList.remove('open'); document.body.classList.remove('modal-open');
+      setTimeout(() => { overlay.hidden = true; content.innerHTML = ''; }, 200);
+      if (updateHistory !== false) { const url = new URL(window.location); if (url.searchParams.has('story')) { url.searchParams.delete('story'); history.pushState({}, '', url); } }
+    }
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(true); });
+    document.addEventListener('keydown', (e) => { if (overlay.hidden) return; if (e.key === 'Escape') close(true); });
+    return { open, close };
+  })();
+
+  function bindFilters() {
+    $('#area-filters').addEventListener('click', (e) => { const b = e.target.closest('button[data-area]'); if (!b) return; STATE.area = b.dataset.area; $$('#area-filters button').forEach(x => x.classList.toggle('active', x === b)); render(); });
+    $('#prog-filters').addEventListener('click', (e) => { const b = e.target.closest('button[data-prog]'); if (!b) return; STATE.prog = b.dataset.prog; $$('#prog-filters button').forEach(x => x.classList.toggle('active', x === b)); render(); });
+  }
+  function bindCards() {
+    $('#stories-grid').addEventListener('click', (e) => { const c = e.target.closest('.story-card'); if (!c) return; const s = STATE.items.find(x => String(x.id) === String(c.dataset.id)); if (s) Modal.open(s); });
+  }
+  function bindHistory() {
+    window.addEventListener('popstate', () => { const id = new URL(window.location).searchParams.get('story'); if (id) { const s = STATE.items.find(x => String(x.id) === String(id)); if (s) Modal.open(s); } else Modal.close(false); });
+  }
+  function maybeOpen() { const id = new URL(window.location).searchParams.get('story'); if (!id) return; const s = STATE.items.find(x => String(x.id) === String(id)); if (s) Modal.open(s); }
+
+  async function init() {
+    bindFilters(); bindCards(); bindHistory();
+    try { await loadData(); buildFilters(); render(); maybeOpen(); }
+    catch (err) { console.error(err); $('#stories-grid').innerHTML = '<div class="state-msg"><h3>Unable to load stories</h3></div>'; }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

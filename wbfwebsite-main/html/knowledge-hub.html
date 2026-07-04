@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge Hub — Western Balkans Fund</title>
+<meta name="description" content="Everything applicants and grantees need: step-by-step application guides, downloadable templates, FAQs, recorded webinars and a glossary of grant terminology.">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/site-chrome.css">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button, input { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============================================================
+     PAGE HERO
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: var(--gradient-hero);
+    overflow: hidden;
+    padding: 72px 0 80px;
+  }
+  .page-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px);
+    pointer-events: none;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 16px;
+  }
+  .page-hero-overline svg { width: 14px; height: 14px; color: #5eead4; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4.4vw, 52px);
+    font-weight: 700; color: #fff; line-height: 1.05;
+    letter-spacing: -0.01em; margin-bottom: 18px; max-width: 18ch;
+  }
+  .page-hero p {
+    font-size: 17px; color: rgba(255,255,255,0.75);
+    line-height: 1.65; max-width: 64ch;
+  }
+
+  /* Search bar */
+  .hub-search {
+    margin-top: 36px;
+    max-width: 640px;
+    position: relative;
+  }
+  .hub-search input {
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    border: none;
+    padding: 16px 22px 16px 52px;
+    font-size: 15px;
+    color: #0f172a;
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+    outline: none;
+  }
+  .hub-search input::placeholder { color: #94a3b8; }
+  .hub-search input:focus {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.22), 0 0 0 3px rgba(94,234,212,0.35);
+  }
+  .hub-search svg {
+    position: absolute;
+    left: 20px; top: 50%;
+    transform: translateY(-50%);
+    width: 18px; height: 18px;
+    color: #1A3668;
+    fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .search-hint {
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ============================================================
+     QUICK NAV (sticky)
+     ============================================================ */
+  .quick-nav {
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 56px;
+    z-index: 100;
+  }
+  .quick-nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 14px 40px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .quick-nav-inner::-webkit-scrollbar { display: none; }
+  .qn-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #f8fafc;
+    color: #475569;
+    border: 1px solid transparent;
+    font-size: 12.5px; font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .qn-link svg { width: 13px; height: 13px; opacity: 0.6; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .qn-link:hover { background: #eef2f8; color: #1A3668; border-color: #cbd5e1; }
+
+  /* ============================================================
+     FEATURED RESOURCES STRIP
+     ============================================================ */
+  .featured {
+    margin-top: -40px;
+    position: relative;
+    z-index: 5;
+  }
+  .featured-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .feat-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+    box-shadow: 0 8px 24px rgba(15,32,68,0.06);
+  }
+  .feat-card:hover {
+    box-shadow: 0 16px 32px rgba(15,32,68,0.12);
+    transform: translateY(-3px);
+    border-color: #cbd5e1;
+  }
+  .feat-icon {
+    width: 44px; height: 44px;
+    background: #1A3668;
+    color: #5eead4;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .feat-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .feat-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .feat-card:hover .feat-title { color: #1A3668; }
+  .feat-desc {
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    flex: 1;
+  }
+  .feat-link {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #1A3668;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .feat-link svg { width: 13px; height: 13px; transition: transform 0.15s; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .feat-card:hover .feat-link svg { transform: translateX(3px); }
+
+  /* ============================================================
+     SECTION SHARED
+     ============================================================ */
+  .section { padding: 72px 0; }
+  .section-alt { background: #f8fafc; }
+
+  .sec-head { margin-bottom: 36px; }
+  .sec-head .overline {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.16em;
+    color: #1A3668; margin-bottom: 12px;
+  }
+  .sec-head .overline svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sec-head h2 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.8vw, 32px);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .sec-head p {
+    font-size: 16px; color: #64748b;
+    line-height: 1.65; max-width: 64ch;
+  }
+
+  .scroll-target { scroll-margin-top: 120px; }
+
+  /* ============================================================
+     STEP-BY-STEP GUIDE
+     ============================================================ */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .step-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: #1A3668;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .step-num::before {
+    content: "STEP ";
+    color: #94a3b8;
+  }
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .step-desc {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.65;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .step-tasks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid #f1f5f9;
+  }
+  .step-tasks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #334155;
+    line-height: 1.5;
+  }
+  .step-tasks li svg {
+    width: 14px; height: 14px;
+    color: #0d9488;
+    flex-shrink: 0;
+    margin-top: 2px;
+    fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* ============================================================
+     TEMPLATES / DOWNLOADS
+     ============================================================ */
+  .tpl-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .tpl-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  .tpl-card[href]:hover {
+    box-shadow: 0 8px 20px rgba(15,32,68,0.06);
+    transform: translateY(-1px);
+    border-color: #cbd5e1;
+  }
+  .tpl-card.unavailable { opacity: 0.7; }
+  .tpl-icon {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+  }
+  .tpl-icon.pdf  { background: #b91c1c; }
+  .tpl-icon.docx { background: #1d4ed8; }
+  .tpl-icon.xlsx { background: #15803d; }
+  .tpl-icon.zip  { background: #6d28d9; }
+  .tpl-body { flex: 1; min-width: 0; }
+  .tpl-title { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 3px; line-height: 1.3; }
+  .tpl-card[href]:hover .tpl-title { color: #1A3668; }
+  .tpl-meta { font-size: 11.5px; color: #94a3b8; }
+  .tpl-action {
+    color: #1A3668;
+    flex-shrink: 0;
+  }
+  .tpl-action svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .tpl-soon {
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 4px 9px; border-radius: 999px;
+    background: #f1f5f9; color: #64748b;
+    flex-shrink: 0;
+  }
+
+  /* ============================================================
+     FAQ ACCORDION
+     ============================================================ */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .faq-item {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .faq-item[open] { border-color: #1A3668; }
+  .faq-item summary {
+    padding: 18px 22px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f172a;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    line-height: 1.45;
+    transition: background 0.15s;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover { background: #f8fafc; }
+  .faq-item summary::after {
+    content: "+";
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #eef2f8;
+    color: #1A3668;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 500;
+    transition: transform 0.15s, background 0.15s, color 0.15s;
+  }
+  .faq-item[open] summary::after {
+    content: "−";
+    background: #1A3668;
+    color: #fff;
+  }
+  .faq-body {
+    padding: 0 22px 22px;
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.7;
+  }
+  .faq-body p { margin-bottom: 10px; }
+  .faq-body p:last-child { margin-bottom: 0; }
+  .faq-body ul, .faq-body ol { padding-left: 20px; margin-bottom: 10px; }
+  .faq-body li { margin-bottom: 4px; }
+  .faq-body a { color: #1A3668; text-decoration: underline; }
+  .faq-body strong { color: #0f172a; font-weight: 600; }
+
+  .faq-cat {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    margin-bottom: 4px;
+  }
+
+  /* ============================================================
+     WEBINARS / VIDEOS
+     ============================================================ */
+  .web-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .web-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .web-card[href]:hover {
+    box-shadow: 0 12px 24px rgba(15,32,68,0.08);
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+  }
+  .web-card.unavailable { opacity: 0.7; cursor: default; }
+  .web-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #0f2044 0%, #1A3668 100%);
+    overflow: hidden;
+  }
+  .web-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(94,234,212,0.18) 0%, transparent 60%);
+  }
+  .web-play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px; height: 56px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #1A3668;
+    z-index: 1;
+  }
+  .web-play svg { width: 22px; height: 22px; fill: currentColor; margin-left: 3px; }
+  .web-duration {
+    position: absolute;
+    bottom: 10px; right: 10px;
+    background: rgba(15,32,68,0.85);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    z-index: 1;
+  }
+  .web-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
+  .web-meta {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .web-cat {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #eef2f8;
+    color: #1A3668;
+  }
+  .web-date { font-size: 11.5px; color: #94a3b8; }
+  .web-title {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .web-card[href]:hover .web-title { color: #1A3668; }
+  .web-desc {
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  /* ============================================================
+     GLOSSARY
+     ============================================================ */
+  .alpha-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 28px;
+  }
+  .alpha-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .alpha-nav a:hover { background: #1A3668; color: #fff; border-color: #1A3668; }
+  .alpha-nav a.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .glossary-groups {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .glossary-group {
+    scroll-margin-top: 120px;
+  }
+  .glossary-letter {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    color: #1A3668;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1A3668;
+    display: inline-block;
+    padding-right: 18px;
+  }
+  .glossary-terms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 32px;
+  }
+  .glossary-term {
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .glossary-term dt {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+  .glossary-term dt span {
+    font-weight: 500;
+    color: #94a3b8;
+    font-size: 12px;
+    margin-left: 6px;
+  }
+  .glossary-term dd {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+     HELP CTA
+     ============================================================ */
+  .help-cta {
+    background: var(--gradient-hero);
+    padding: 72px 0;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .help-cta::before {
+    content: ""; position: absolute; top: -100px; right: -60px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,168,152,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .help-cta-grid {
+    position: relative; z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .help-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 32px 28px;
+  }
+  .help-card .icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #5eead4;
+    margin-bottom: 16px;
+  }
+  .help-card .icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .help-card h3 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .help-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .help-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .help-link:hover { color: #5eead4; border-bottom-color: #5eead4; }
+  .help-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .container-narrow, .page-hero-inner, .featured-inner, .quick-nav-inner, .help-cta-grid { padding-left: 24px; padding-right: 24px; }
+    .featured-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: 1fr; }
+    .tpl-grid { grid-template-columns: 1fr; }
+    .web-grid { grid-template-columns: repeat(2, 1fr); }
+    .glossary-terms { grid-template-columns: 1fr; }
+    .help-cta-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .page-hero { padding: 56px 0 64px; }
+    .section { padding: 56px 0; }
+    .featured-grid { grid-template-columns: 1fr; }
+    .web-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '../js/nav.js'; document.body.appendChild(s); });
+</script>
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>›</span>Knowledge Hub
+    </nav>
+    <div class="page-hero-overline">
+      <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Resources for Applicants &amp; Grantees
+    </div>
+    <h1>Knowledge Hub</h1>
+    <p>Everything you need to prepare a strong application, understand WBF processes, and run a successful regional project — guides, templates, FAQs, recorded webinars and a glossary of grant terminology, all in one place.</p>
+
+    <div class="hub-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="hub-search" type="search" placeholder="Search guides, templates, FAQs and glossary…" aria-label="Search the knowledge hub">
+    </div>
+    <p class="search-hint">Tip: press <kbd style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);padding:2px 6px;border-radius:3px;font-size:11px;color:rgba(255,255,255,0.7)">/</kbd> any time to jump to search.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURED RESOURCES (overlapping)
+     ============================================================ -->
+<div class="featured">
+  <div class="featured-inner">
+    <div class="featured-grid">
+      <a class="feat-card" href="#how-to-apply">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        </div>
+        <h3 class="feat-title">How to Apply — Step by Step</h3>
+        <p class="feat-desc">A complete walkthrough of the WBF application process, from concept note to contract signature.</p>
+        <span class="feat-link">Read guide <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+      </a>
+
+      <a class="feat-card" href="#eligibility">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg>
+        </div>
+        <h3 class="feat-title">Eligibility Self-Check</h3>
+        <p class="feat-desc">A short interactive checklist to confirm whether your organisation and partnership qualify for WBF funding.</p>
+        <span class="feat-link">Check now <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+      </a>
+
+      <a class="feat-card" href="#templates">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+        </div>
+        <h3 class="feat-title">Application Templates</h3>
+        <p class="feat-desc">Download the latest application form, budget template, partnership declaration and supporting documents.</p>
+        <span class="feat-link">Browse templates <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+      </a>
+
+      <a class="feat-card" href="#faqs">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3 class="feat-title">Frequently Asked Questions</h3>
+        <p class="feat-desc">Answers to the questions applicants and grantees ask most often, grouped by topic.</p>
+        <span class="feat-link">Browse FAQs <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     QUICK-NAV
+     ============================================================ -->
+<div class="quick-nav">
+  <div class="quick-nav-inner">
+    <a class="qn-link" href="#how-to-apply"><svg viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>How to Apply</a>
+    <a class="qn-link" href="#eligibility"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Eligibility</a>
+    <a class="qn-link" href="#templates"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Templates</a>
+    <a class="qn-link" href="#faqs"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>FAQs</a>
+    <a class="qn-link" href="#webinars"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>Webinars</a>
+    <a class="qn-link" href="#glossary"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Glossary</a>
+    <a class="qn-link" href="#help"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Need help?</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     HOW TO APPLY
+     ============================================================ -->
+<section class="section scroll-target" id="how-to-apply">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">
+        <svg viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        Getting Started
+      </div>
+      <h2>How to apply, step by step</h2>
+      <p>Every WBF programme follows broadly the same six-step process. Specifics differ — read the call text for the programme you're applying to — but this is the journey from idea to funded project.</p>
+    </div>
+
+    <div class="steps">
+
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Confirm eligibility</h3>
+        <p class="step-desc">Check that your organisation type, country, partnership setup and project idea fit the call you want to apply for.</p>
+        <ul class="step-tasks">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Read the call guidelines fully</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Run the eligibility self-check below</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Verify partner countries</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Find partners</h3>
+        <p class="step-desc">Most calls require partners from at least 3 Contracting Parties. Find them through your network, past grantees, or the Partnership Platform.</p>
+        <ul class="step-tasks">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Use the WBF Partnership Platform</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Reach out at info sessions</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Agree roles &amp; budget shares</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Build your application</h3>
+        <p class="step-desc">Draft your concept, work plan, budget and partnership declarations using the templates from the call package.</p>
+        <ul class="step-tasks">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Download templates from the call</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Cost activities realistically</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Map outputs to evaluation criteria</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Submit via OGMS</h3>
+        <p class="step-desc">All applications go through the Online Grant Management System (OGMS). Create an account, upload the package, hit submit before the deadline.</p>
+        <ul class="step-tasks">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Register your organisation on OGMS</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Upload all required attachments</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Confirm submission email</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <h3 class="step-title">Evaluation</h3>
+        <p class="step-desc">Independent evaluators score proposals against published criteria. The process typically takes 4–6 months.</p>
+        <ul class="step-tasks">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Administrative compliance check</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Independent technical scoring</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>WBF approval &amp; ranking</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <h3 class="step-title">Contracting &amp; start</h3>
+        <p class="step-desc">Selected projects are notified, contracted, and begin implementation. Reporting follows the standard WBF schedule.</p>
+        <ul class="step-tasks">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Sign grant contract</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Receive first instalment</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Begin project implementation</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ELIGIBILITY SELF-CHECK (anchor target)
+     ============================================================ -->
+<section class="section section-alt scroll-target" id="eligibility">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg>
+        Eligibility
+      </div>
+      <h2>Eligibility self-check</h2>
+      <p>Tick each statement that applies to you. If you can tick them all, your application is very likely eligible — but always read the specific call text for the final word.</p>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:32px">
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:16px">
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:#334155;line-height:1.6">
+          <input type="checkbox" style="width:18px;height:18px;margin-top:2px;accent-color:#1A3668;flex-shrink:0">
+          <span><strong style="color:#0f172a">Registered non-profit entity</strong> — your organisation is legally registered as a CSO, foundation, cultural institution, public body, university or similar non-profit in one of the six Contracting Parties.</span>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:#334155;line-height:1.6">
+          <input type="checkbox" style="width:18px;height:18px;margin-top:2px;accent-color:#1A3668;flex-shrink:0">
+          <span><strong style="color:#0f172a">Based in the WB6</strong> — your headquarters are in Albania, Bosnia and Herzegovina, Kosovo*, Montenegro, North Macedonia, or Serbia.</span>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:#334155;line-height:1.6">
+          <input type="checkbox" style="width:18px;height:18px;margin-top:2px;accent-color:#1A3668;flex-shrink:0">
+          <span><strong style="color:#0f172a">Cross-border partnership</strong> — your project includes partners from at least three different Contracting Parties (for most calls).</span>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:#334155;line-height:1.6">
+          <input type="checkbox" style="width:18px;height:18px;margin-top:2px;accent-color:#1A3668;flex-shrink:0">
+          <span><strong style="color:#0f172a">Project duration 6–12 months</strong> — your work plan fits within the standard WBF implementation window.</span>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:#334155;line-height:1.6">
+          <input type="checkbox" style="width:18px;height:18px;margin-top:2px;accent-color:#1A3668;flex-shrink:0">
+          <span><strong style="color:#0f172a">Co-financing of at least 10%</strong> — you can provide co-financing in cash or in kind from your own or other sources.</span>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:#334155;line-height:1.6">
+          <input type="checkbox" style="width:18px;height:18px;margin-top:2px;accent-color:#1A3668;flex-shrink:0">
+          <span><strong style="color:#0f172a">Regional outputs</strong> — your project will deliver measurable benefits across the participating countries, not just in the lead country.</span>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:#334155;line-height:1.6">
+          <input type="checkbox" style="width:18px;height:18px;margin-top:2px;accent-color:#1A3668;flex-shrink:0">
+          <span><strong style="color:#0f172a">Compliance with EU funding rules</strong> — you can comply with EU IPA and WBF financial reporting requirements.</span>
+        </li>
+      </ul>
+      <p style="font-size:12px;color:#94a3b8;margin-top:24px;padding-top:20px;border-top:1px solid #f1f5f9">This self-check is indicative. The definitive eligibility criteria are those published in the call text for the specific programme you are applying to.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TEMPLATES
+     ============================================================ -->
+<section class="section scroll-target" id="templates">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        Application Templates
+      </div>
+      <h2>Templates &amp; supporting documents</h2>
+      <p>Use the latest version of each template — they're updated each call cycle. If a template is marked "Coming Soon", it will be published with the relevant call launch.</p>
+    </div>
+
+    <div class="tpl-grid">
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon docx">DOCX</div>
+        <div class="tpl-body">
+          <div class="tpl-title">Application Form Template</div>
+          <div class="tpl-meta">For GGI, GEFund and ERC calls</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon xlsx">XLSX</div>
+        <div class="tpl-body">
+          <div class="tpl-title">Project Budget Template</div>
+          <div class="tpl-meta">With co-financing calculator</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon docx">DOCX</div>
+        <div class="tpl-body">
+          <div class="tpl-title">Partnership Declaration</div>
+          <div class="tpl-meta">One per partner organisation</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon pdf">PDF</div>
+        <div class="tpl-body">
+          <div class="tpl-title">Logical Framework Guide</div>
+          <div class="tpl-meta">How to structure objectives, outputs and indicators</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon docx">DOCX</div>
+        <div class="tpl-body">
+          <div class="tpl-title">CV Template</div>
+          <div class="tpl-meta">For project team members</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon pdf">PDF</div>
+        <div class="tpl-body">
+          <div class="tpl-title">Eligibility Checklist</div>
+          <div class="tpl-meta">Pre-submission self-assessment</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon pdf">PDF</div>
+        <div class="tpl-body">
+          <div class="tpl-title">Visual Identity &amp; Logo Guidelines</div>
+          <div class="tpl-meta">For grantees publishing project materials</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon docx">DOCX</div>
+        <div class="tpl-body">
+          <div class="tpl-title">Narrative Reporting Template</div>
+          <div class="tpl-meta">For interim and final reports</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon xlsx">XLSX</div>
+        <div class="tpl-body">
+          <div class="tpl-title">Financial Reporting Template</div>
+          <div class="tpl-meta">Expenditure breakdown by budget line</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+      <div class="tpl-card unavailable">
+        <div class="tpl-icon zip">ZIP</div>
+        <div class="tpl-body">
+          <div class="tpl-title">Full Application Pack (all templates)</div>
+          <div class="tpl-meta">Everything bundled in one archive</div>
+        </div>
+        <span class="tpl-soon">Coming Soon</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section section-alt scroll-target" id="faqs">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Frequently Asked Questions
+      </div>
+      <h2>Answers to the questions we get most</h2>
+      <p>If your question isn't covered here, write to <a href="mailto:info@westernbalkansfund.org" style="color:#1A3668;font-weight:600">info@westernbalkansfund.org</a> and we'll respond within five working days.</p>
+    </div>
+
+    <div class="faq-cat">Eligibility &amp; Partnerships</div>
+    <div class="faq-list" style="margin-bottom:28px">
+
+      <details class="faq-item">
+        <summary>Who can apply for WBF grants?</summary>
+        <div class="faq-body">
+          <p>WBF grants are open to <strong>registered non-profit entities</strong> based in one of the six Contracting Parties — Albania, Bosnia and Herzegovina, Kosovo*, Montenegro, North Macedonia, and Serbia.</p>
+          <p>Eligible applicants include:</p>
+          <ul>
+            <li>Civil society organisations and foundations</li>
+            <li>Universities, schools, libraries and research centres</li>
+            <li>Cultural institutions, museums and galleries</li>
+            <li>Local and regional public authorities</li>
+            <li>Business associations and chambers (in some calls)</li>
+          </ul>
+          <p>For-profit companies and individuals are not eligible to lead applications under most WBF programmes (Move Grants and the Visegrad Fellowship are the exceptions).</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do I need partners from all six Contracting Parties?</summary>
+        <div class="faq-body">
+          <p>No — most WBF calls require partners from <strong>at least three</strong> of the six Contracting Parties, including the lead applicant's country. Projects with broader regional coverage often score higher in evaluation, but coverage of all six is not required.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I be lead applicant on multiple projects in the same call?</summary>
+        <div class="faq-body">
+          <p>An organisation may be lead applicant on <strong>one application per call</strong>, but may be a partner on additional applications submitted by other organisations. There is no limit on the number of partner roles.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can EU organisations be partners?</summary>
+        <div class="faq-body">
+          <p>WBF grants fund regional cooperation <em>within</em> the Western Balkans. EU-based organisations may participate as <strong>associate partners</strong> contributing expertise, but core project partnerships and budget shares must remain with WB6 entities. The Visegrad Fellowship is the exception — it explicitly funds WB6–V4 mobility.</p>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="faq-cat">Application Process</div>
+    <div class="faq-list" style="margin-bottom:28px">
+
+      <details class="faq-item">
+        <summary>How are applications submitted?</summary>
+        <div class="faq-body">
+          <p>All WBF applications are submitted through the <strong>Online Grant Management System (OGMS)</strong> at <a href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">ogms.westernbalkansfund.org</a>. Email or paper submissions are not accepted.</p>
+          <p>To submit, you'll need to register an organisational account, complete the online form, upload the required attachments, and click "Submit" before the deadline.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How long does the evaluation take?</summary>
+        <div class="faq-body">
+          <p>Typical end-to-end timeline from submission to results is <strong>4–6 months</strong>:</p>
+          <ol>
+            <li>Administrative compliance check (~2 weeks)</li>
+            <li>Independent technical scoring (8–12 weeks)</li>
+            <li>WBF ranking and selection (2–4 weeks)</li>
+            <li>Results announcement and contracting (4–6 weeks)</li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Are unsuccessful applicants given feedback?</summary>
+        <div class="faq-body">
+          <p>Yes. Every applicant — successful or not — receives a <strong>scoring summary and brief evaluation notes</strong> via OGMS within 2 weeks of the official results announcement. This includes the total score, score per criterion, and key strengths/weaknesses.</p>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="faq-cat">Budget &amp; Reporting</div>
+    <div class="faq-list" style="margin-bottom:28px">
+
+      <details class="faq-item">
+        <summary>What is the minimum co-financing requirement?</summary>
+        <div class="faq-body">
+          <p>For most WBF programmes the minimum co-financing is <strong>10% of total project costs</strong>. Co-financing can be:</p>
+          <ul>
+            <li><strong>In cash</strong> — from the applicant's own funds or another donor</li>
+            <li><strong>In kind</strong> — staff time, venue use, equipment, volunteer hours, etc.</li>
+          </ul>
+          <p>Higher co-financing improves the financial viability score.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What expenses are not eligible?</summary>
+        <div class="faq-body">
+          <p>Costs that <strong>cannot</strong> be charged to a WBF grant include:</p>
+          <ul>
+            <li>Recoverable VAT</li>
+            <li>Debts and provisions for losses</li>
+            <li>Exchange-rate losses</li>
+            <li>Currency exchange commissions</li>
+            <li>Purchase of land or buildings</li>
+            <li>Contributions in kind (counted as co-financing, not as eligible expense)</li>
+            <li>Activities or expenses incurred before the grant contract is signed</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>When are grant funds disbursed?</summary>
+        <div class="faq-body">
+          <p>Grants are typically disbursed in <strong>two instalments</strong>: 70% on contract signature and 30% on approval of the final report. For larger projects (ERC and above), a three-instalment schedule may apply (40% / 40% / 20%).</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What reporting is required during the project?</summary>
+        <div class="faq-body">
+          <p>Standard WBF reporting includes:</p>
+          <ul>
+            <li><strong>Interim narrative + financial report</strong> at the project mid-point</li>
+            <li><strong>Final narrative + financial report</strong> within 30 days of project end</li>
+            <li><strong>Visibility documentation</strong> — photos, publications, social media evidence</li>
+          </ul>
+          <p>All reports are submitted through OGMS using the standard templates.</p>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="faq-cat">OGMS &amp; Technical</div>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>I can't access OGMS — who do I contact?</summary>
+        <div class="faq-body">
+          <p>For OGMS account and technical issues, email <a href="mailto:ogms@westernbalkansfund.org">ogms@westernbalkansfund.org</a>. Include your registered email address, organisation name, and a description of the issue. We aim to respond within one working day.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Which file formats does OGMS accept?</summary>
+        <div class="faq-body">
+          <p>OGMS accepts <strong>PDF, DOCX, XLSX and ZIP</strong> files. Maximum file size per upload is 20 MB. The total application package should not exceed 50 MB.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I edit my application after submitting?</summary>
+        <div class="faq-body">
+          <p>Once you click "Submit" the application is locked. You can edit drafts freely up to the deadline, but submitted applications cannot be edited or replaced. If you spot a critical error before the deadline, you may withdraw the submission and resubmit a corrected version.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WEBINARS
+     ============================================================ -->
+<section class="section scroll-target" id="webinars">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">
+        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        Webinars &amp; Training
+      </div>
+      <h2>Recorded webinars and training</h2>
+      <p>Watch back our info sessions, application workshops and grantee training — recorded so you can learn at your own pace, in English and regional languages.</p>
+    </div>
+
+    <div class="web-grid">
+
+      <div class="web-card unavailable">
+        <div class="web-thumb">
+          <span class="web-play"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg></span>
+          <span class="web-duration">Coming soon</span>
+        </div>
+        <div class="web-body">
+          <div class="web-meta">
+            <span class="web-cat">Info Session</span>
+            <span class="web-date">2026</span>
+          </div>
+          <div class="web-title">GGI Call No. 9 — Application Webinar</div>
+          <div class="web-desc">Walkthrough of the new call text, what's changed, eligibility, and how to structure a competitive application.</div>
+        </div>
+      </div>
+
+      <div class="web-card unavailable">
+        <div class="web-thumb">
+          <span class="web-play"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg></span>
+          <span class="web-duration">Coming soon</span>
+        </div>
+        <div class="web-body">
+          <div class="web-meta">
+            <span class="web-cat">Training</span>
+            <span class="web-date">2026</span>
+          </div>
+          <div class="web-title">Building a strong budget in 60 minutes</div>
+          <div class="web-desc">How to cost activities realistically, structure co-financing, and avoid the common budget mistakes that lose marks.</div>
+        </div>
+      </div>
+
+      <div class="web-card unavailable">
+        <div class="web-thumb">
+          <span class="web-play"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg></span>
+          <span class="web-duration">Coming soon</span>
+        </div>
+        <div class="web-body">
+          <div class="web-meta">
+            <span class="web-cat">Workshop</span>
+            <span class="web-date">2026</span>
+          </div>
+          <div class="web-title">Logical Framework in practice</div>
+          <div class="web-desc">Hands-on session on objectives, outputs, outcomes, indicators and the assumptions you need to spell out.</div>
+        </div>
+      </div>
+
+      <div class="web-card unavailable">
+        <div class="web-thumb">
+          <span class="web-play"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg></span>
+          <span class="web-duration">Coming soon</span>
+        </div>
+        <div class="web-body">
+          <div class="web-meta">
+            <span class="web-cat">Grantee</span>
+            <span class="web-date">2026</span>
+          </div>
+          <div class="web-title">Reporting essentials for new grantees</div>
+          <div class="web-desc">Interim and final reports, financial supporting documents, visibility evidence and how to avoid common reporting pitfalls.</div>
+        </div>
+      </div>
+
+      <div class="web-card unavailable">
+        <div class="web-thumb">
+          <span class="web-play"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg></span>
+          <span class="web-duration">Coming soon</span>
+        </div>
+        <div class="web-body">
+          <div class="web-meta">
+            <span class="web-cat">Tutorial</span>
+            <span class="web-date">2026</span>
+          </div>
+          <div class="web-title">OGMS — full platform tour</div>
+          <div class="web-desc">Account setup, draft management, attachments, submission flow, and what to do when something goes wrong.</div>
+        </div>
+      </div>
+
+      <div class="web-card unavailable">
+        <div class="web-thumb">
+          <span class="web-play"><svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg></span>
+          <span class="web-duration">Coming soon</span>
+        </div>
+        <div class="web-body">
+          <div class="web-meta">
+            <span class="web-cat">Panel</span>
+            <span class="web-date">2026</span>
+          </div>
+          <div class="web-title">Lessons learned from successful grantees</div>
+          <div class="web-desc">A panel of past GGI grantees share what they would do differently — partnership building, time management, visibility.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section section-alt scroll-target" id="glossary">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Glossary
+      </div>
+      <h2>Grant terminology, decoded</h2>
+      <p>The vocabulary of grant-making and EU-funded projects can be opaque. Here's a plain-English guide to the terms you'll meet most often in WBF documents.</p>
+    </div>
+
+    <nav class="alpha-nav" aria-label="Jump to letter">
+      <a href="#g-a">A</a>
+      <a href="#g-b">B</a>
+      <a href="#g-c">C</a>
+      <a href="#g-d">D</a>
+      <a class="disabled">E</a>
+      <a href="#g-f">F</a>
+      <a href="#g-g">G</a>
+      <a class="disabled">H</a>
+      <a href="#g-i">I</a>
+      <a class="disabled">J</a>
+      <a class="disabled">K</a>
+      <a href="#g-l">L</a>
+      <a href="#g-m">M</a>
+      <a href="#g-n">N</a>
+      <a href="#g-o">O</a>
+      <a href="#g-p">P</a>
+      <a class="disabled">Q</a>
+      <a class="disabled">R</a>
+      <a href="#g-s">S</a>
+      <a href="#g-t">T</a>
+      <a class="disabled">U</a>
+      <a href="#g-v">V</a>
+      <a href="#g-w">W</a>
+      <a class="disabled">X</a>
+      <a class="disabled">Y</a>
+      <a class="disabled">Z</a>
+    </nav>
+
+    <div class="glossary-groups">
+
+      <div class="glossary-group" id="g-a">
+        <span class="glossary-letter">A</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Activity</dt><dd>A specific action your project undertakes (e.g. "deliver a 3-day workshop in Tirana"). Activities produce outputs.</dd></div>
+          <div class="glossary-term"><dt>Applicant</dt><dd>The lead organisation submitting an application. The applicant signs the grant contract and is legally responsible.</dd></div>
+          <div class="glossary-term"><dt>Associate partner</dt><dd>An organisation contributing expertise or networks to a project without a budget share — typically an EU body or external expert.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-b">
+        <span class="glossary-letter">B</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Budget line</dt><dd>A category of expenditure in the project budget (e.g. staff, travel, equipment, communication).</dd></div>
+          <div class="glossary-term"><dt>Beneficiary</dt><dd>The people, communities or organisations your project is designed to benefit. Distinct from "applicant".</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-c">
+        <span class="glossary-letter">C</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Call (for proposals)</dt><dd>A defined funding round with published guidelines, timeline and budget envelope. Applications outside an open call are not accepted (except for Matching Grants).</dd></div>
+          <div class="glossary-term"><dt>Co-financing</dt><dd>The share of project costs not covered by the WBF grant. Minimum 10%, provided in cash or in kind.</dd></div>
+          <div class="glossary-term"><dt>Contracting Parties</dt><dd>The six WB6 governments that founded and finance WBF: Albania, Bosnia and Herzegovina, Kosovo*, Montenegro, North Macedonia, Serbia.</dd></div>
+          <div class="glossary-term"><dt>Consortium</dt><dd>A grouping of partner organisations that jointly implement a project.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-d">
+        <span class="glossary-letter">D</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Disbursement</dt><dd>The transfer of grant funds from WBF to the grantee. Typically split across two or three instalments.</dd></div>
+          <div class="glossary-term"><dt>Deliverable</dt><dd>A concrete, tangible output your project commits to producing (a report, a workshop, a publication, etc.).</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-f">
+        <span class="glossary-letter">F</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Final report</dt><dd>The narrative and financial report submitted within 30 days of project end. Triggers the final grant instalment.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-g">
+        <span class="glossary-letter">G</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Grantee</dt><dd>An applicant whose project has been approved and contracted by WBF.</dd></div>
+          <div class="glossary-term"><dt>GGI <span>(Good Governance and Integration)</span></dt><dd>WBF's flagship grant scheme funding cross-border CSO cooperation projects across the WB6.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-i">
+        <span class="glossary-letter">I</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Indicator</dt><dd>A measurable signal that tells you whether an output, outcome or impact has been achieved (e.g. "number of trained youth").</dd></div>
+          <div class="glossary-term"><dt>IPA III</dt><dd>The Instrument for Pre-accession Assistance — the EU's framework for supporting accession-candidate countries. WBF is partly co-funded by IPA III.</dd></div>
+          <div class="glossary-term"><dt>In-kind contribution</dt><dd>Non-cash contributions to the project (volunteer time, donated equipment, free venue, etc.) used as co-financing.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-l">
+        <span class="glossary-letter">L</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Logical Framework <span>(LogFrame)</span></dt><dd>A standard table linking project objectives → outcomes → outputs → activities → assumptions and indicators.</dd></div>
+          <div class="glossary-term"><dt>Lead applicant</dt><dd>Same as "applicant" — the partner who submits the application and signs the contract.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-m">
+        <span class="glossary-letter">M</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Matching Grant</dt><dd>A WBF grant that matches funding already secured from another donor, amplifying its impact.</dd></div>
+          <div class="glossary-term"><dt>M&amp;E <span>(Monitoring &amp; Evaluation)</span></dt><dd>The systematic process of tracking project progress and assessing its results.</dd></div>
+          <div class="glossary-term"><dt>Move Grant</dt><dd>A WBF mobility grant for individuals creating new regional connections — built around purpose and output.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-n">
+        <span class="glossary-letter">N</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Narrative report</dt><dd>The descriptive part of an interim or final report — what you did, what changed, what you learned.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-o">
+        <span class="glossary-letter">O</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>OGMS</dt><dd>WBF's <strong>Online Grant Management System</strong> at ogms.westernbalkansfund.org. The only channel for submitting and managing WBF applications.</dd></div>
+          <div class="glossary-term"><dt>Outcome</dt><dd>The short- to medium-term changes that your outputs produce (e.g. "improved capacity of partner CSOs").</dd></div>
+          <div class="glossary-term"><dt>Output</dt><dd>The direct, tangible results of your activities (e.g. "1 regional toolkit published").</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-p">
+        <span class="glossary-letter">P</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Partner</dt><dd>An organisation participating in the project alongside the lead applicant, with a defined role and budget share.</dd></div>
+          <div class="glossary-term"><dt>Partnership Declaration</dt><dd>A signed document from each partner confirming their commitment, role and budget share. Required attachment.</dd></div>
+          <div class="glossary-term"><dt>Partnership Platform</dt><dd>WBF's online platform helping organisations across the region find project partners. At wbfpartnership.com.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-s">
+        <span class="glossary-letter">S</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Secretariat</dt><dd>The operational team of WBF based in Tirana, responsible for day-to-day grant management.</dd></div>
+          <div class="glossary-term"><dt>Statute</dt><dd>The founding legal document of the Western Balkans Fund, ratified by all six Contracting Parties.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-t">
+        <span class="glossary-letter">T</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Theory of Change</dt><dd>A narrative explanation of how and why your project's activities will lead to the desired changes — the logic behind the LogFrame.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-v">
+        <span class="glossary-letter">V</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>Visibility</dt><dd>The requirement to publicly credit WBF (and EU IPA III, where applicable) on all project communications, publications and media outputs.</dd></div>
+          <div class="glossary-term"><dt>Visegrad Fellowship</dt><dd>A WBF–International Visegrad Fund mobility fellowship for WB6 doctoral students and graduates to spend time at V4 host institutions.</dd></div>
+        </dl>
+      </div>
+
+      <div class="glossary-group" id="g-w">
+        <span class="glossary-letter">W</span>
+        <dl class="glossary-terms">
+          <div class="glossary-term"><dt>WB6</dt><dd>Shorthand for the six Western Balkans Contracting Parties of WBF.</dd></div>
+          <div class="glossary-term"><dt>Work plan</dt><dd>A time-phased schedule of project activities, milestones and deliverables. Usually a table or Gantt chart.</dd></div>
+        </dl>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HELP / CONTACT
+     ============================================================ -->
+<section class="help-cta scroll-target" id="help">
+  <div class="help-cta-grid">
+    <div class="help-card">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <h3>Contact the Secretariat</h3>
+      <p>Have a question that isn't covered here? The WBF Secretariat in Tirana responds to all programme questions within five working days.</p>
+      <a class="help-link" href="contact.html">Open contact form <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+    </div>
+    <div class="help-card">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+      <h3>OGMS technical support</h3>
+      <p>Trouble with your OGMS account, uploads or submissions? Email the platform team directly with your account details and we'll get back to you within one working day.</p>
+      <a class="help-link" href="mailto:ogms@westernbalkansfund.org">ogms@westernbalkansfund.org <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============================================================
+     SCRIPT — Search filtering + keyboard shortcut
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+  const input = document.getElementById('hub-search');
+  if (!input) return;
+
+  // "/" shortcut focuses search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== input && !e.target.matches('input,textarea')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+    if (e.key === 'Escape' && document.activeElement === input) {
+      input.blur();
+    }
+  });
+
+  // Live in-page filter for FAQs, templates, glossary terms and webinars
+  function normalize(s) { return (s || '').toLowerCase(); }
+
+  const targets = [];
+  document.querySelectorAll('.faq-item, .tpl-card, .glossary-term, .web-card, .step-card, .feat-card').forEach(el => {
+    targets.push({ el, text: normalize(el.textContent) });
+  });
+
+  let timer;
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const q = normalize(input.value).trim();
+      targets.forEach(({ el, text }) => {
+        const match = !q || text.includes(q);
+        el.style.display = match ? '' : 'none';
+      });
+
+      // Hide section headers / wrappers whose visible children are zero
+      ['.faq-list', '.tpl-grid', '.glossary-terms', '.web-grid', '.steps', '.featured-grid'].forEach(sel => {
+        document.querySelectorAll(sel).forEach(wrap => {
+          const visible = Array.from(wrap.children).some(c => c.style.display !== 'none');
+          wrap.style.opacity = visible ? '' : '0.4';
+        });
+      });
+
+      // Hide entire glossary groups whose terms are all hidden
+      document.querySelectorAll('.glossary-group').forEach(group => {
+        const visibleTerms = group.querySelectorAll('.glossary-term');
+        const anyVisible = Array.from(visibleTerms).some(t => t.style.display !== 'none');
+        group.style.display = (!q || anyVisible) ? '' : 'none';
+      });
+    }, 120);
+  });
+})();
+</script>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

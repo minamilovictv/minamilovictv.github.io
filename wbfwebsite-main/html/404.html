@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — Western Balkans Fund</title>
+<meta name="description" content="The page you were looking for could not be found on the Western Balkans Fund website.">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/site-chrome.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1e2e; background: #fff; line-height: 1.5; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+  img { max-width: 100%; display: block; } a { color: inherit; } button { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+  /* MAIN */
+  .err-main { flex: 1; position: relative; background: var(--gradient-hero); overflow: hidden; padding: 80px 0 96px; display: flex; align-items: center; justify-content: center; }
+  .err-main::before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px); pointer-events: none; }
+  .err-main::after { content: ""; position: absolute; top: -160px; right: -100px; width: 560px; height: 560px; border-radius: 50%; background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%); pointer-events: none; }
+  .err-blob { position: absolute; bottom: -100px; left: -80px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(0,168,152,0.18) 0%, transparent 70%); pointer-events: none; }
+
+  .err-inner { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; padding: 0 40px; text-align: center; color: #fff; }
+
+  .err-code { font-family: var(--font-display); font-size: clamp(120px, 18vw, 200px); font-weight: 700; line-height: 0.9; letter-spacing: -0.03em; color: rgba(255,255,255,0.95); margin-bottom: 16px; text-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+
+  .err-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #5eead4; margin-bottom: 16px; padding: 6px 14px; border-radius: 999px; background: rgba(94,234,212,0.1); border: 1px solid rgba(94,234,212,0.25); }
+  .err-eyebrow svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .err-main h1 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 42px); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 16px; max-width: 22ch; margin-left: auto; margin-right: auto; }
+  .err-main p { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.65; max-width: 56ch; margin: 0 auto 36px; }
+
+  .err-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; background: #fff; color: #1A3668; font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background 0.15s; }
+  .btn-primary:hover { background: #e8eef8; }
+  .btn-primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; color: #fff; border: 1px solid rgba(255,255,255,0.3); font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: all 0.15s; background: transparent; cursor: pointer; font-family: inherit; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+  .btn-ghost svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* SUGGESTIONS */
+  .suggestions { max-width: 920px; margin: 0 auto; }
+  .suggestions-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+  .suggestions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .suggestion-card { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13); border-radius: 8px; text-decoration: none; color: #fff; transition: all 0.15s; text-align: left; }
+  .suggestion-card:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+  .suggestion-icon { width: 30px; height: 30px; background: rgba(255,255,255,0.1); color: #5eead4; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .suggestion-icon svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .suggestion-text { font-size: 13px; font-weight: 500; line-height: 1.3; }
+
+  /* page override */
+  .ft-social a { transition: all 0.15s; }
+
+  @media (max-width: 1024px) {
+    .container, .err-inner { padding-left: 24px; padding-right: 24px; }
+    .suggestions-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .err-main { padding: 56px 0 72px; }
+    .suggestions-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '../js/nav.js'; document.body.appendChild(s); });
+</script>
+<main class="err-main">
+  <div class="err-blob"></div>
+  <div class="err-inner">
+    <div class="err-code">404</div>
+    <div class="err-eyebrow"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Page not found</div>
+    <h1>We can't find the page you were looking for</h1>
+    <p>The page may have been moved, renamed, or it may not exist any more. Try one of the popular destinations below, or head back home.</p>
+
+    <div class="err-btns">
+      <a class="btn-primary" href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        Back to home
+      </a>
+      <button class="btn-ghost" onclick="history.back()">
+        <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12,19 5,12 12,5"/></svg>
+        Go back
+      </button>
+      <a class="btn-ghost" href="contact.html">
+        Contact the Secretariat
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </a>
+    </div>
+
+    <div class="suggestions">
+      <div class="suggestions-title">Popular destinations</div>
+      <div class="suggestions-grid">
+        <a class="suggestion-card" href="our-programs.html">
+          <span class="suggestion-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+          <span class="suggestion-text">Our Programs</span>
+        </a>
+        <a class="suggestion-card" href="news.html">
+          <span class="suggestion-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/></svg></span>
+          <span class="suggestion-text">Latest News</span>
+        </a>
+        <a class="suggestion-card" href="events.html">
+          <span class="suggestion-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+          <span class="suggestion-text">Events</span>
+        </a>
+        <a class="suggestion-card" href="projects.html">
+          <span class="suggestion-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></span>
+          <span class="suggestion-text">Funded Projects</span>
+        </a>
+        <a class="suggestion-card" href="knowledge-hub.html">
+          <span class="suggestion-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+          <span class="suggestion-text">Knowledge Hub</span>
+        </a>
+        <a class="suggestion-card" href="impact.html">
+          <span class="suggestion-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></span>
+          <span class="suggestion-text">Our Impact</span>
+        </a>
+        <a class="suggestion-card" href="about.html">
+          <span class="suggestion-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+          <span class="suggestion-text">About WBF</span>
+        </a>
+        <a class="suggestion-card" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">
+          <span class="suggestion-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          <span class="suggestion-text">Apply via OGMS</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

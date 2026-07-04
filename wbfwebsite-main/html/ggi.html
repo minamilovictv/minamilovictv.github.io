@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GGI — Grants for Grassroots Initiatives | Western Balkans Fund</title>
+<meta name="description" content="Grants for Grassroots Initiatives (GGI) is the Western Balkans Fund's annual grant scheme for civil society regional cooperation projects in the WB6, funded by the EU under IPA III and the six Contracting Parties.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/site-chrome.css">
+<style>
+  /* ============================================================
+     DESIGN TOKENS  —  reusable across all WBF programme pages
+     ============================================================ */
+  :root {
+    /* Core brandkit palette — GGI programme identity.
+       --navy intentionally NOT redefined here: it falls through to the
+       global brand navy #1A3668 from tokens.css so the shared navbar
+       and footer render in standard brand colour. GGI page content uses
+       --ggi (blue) instead. */
+    --ggi:         #173D8F;
+    --ggi-deep:    #102554;
+    --ggi-700:     #2a52a8;
+    --blue:        #2567D8;
+    --accent:      #4AA3F0;
+    --light:       #DCEEFF;
+
+    /* Intervention-area aliases (kept so legacy classes still work) */
+    --amber:       var(--ggi);     /* IA1 — Cultural cooperation */
+    --amber-tint:  #E8EEFB;
+    --teal:        var(--blue);     /* IA2 — Education & scientific exchanges */
+    --teal-tint:   var(--light);
+    --green:       var(--accent);   /* IA3 — Sustainable development */
+    --green-tint:  #E9F4FF;
+
+    /* Neutral ink + surface */
+    --ink:         #1E2430;
+    --ink-soft:    #475569;
+    --muted:       #6B7280;
+    --faint:       #94a3b8;
+    --line:        #E5EAF2;
+    --line-soft:   #F1F5F9;
+    --surface:     #ffffff;
+    --surface-alt: #F8FAFD;
+
+    /* Typography */
+    --font:         'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Brandkit motion + radii + shadows */
+    --radius:      24px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --shadow:      0 10px 30px rgba(0,0,0,0.08);
+    --shadow-sm:   0 4px 14px rgba(23,61,143,0.06);
+
+    /* Gradients */
+    --grad-primary: linear-gradient(135deg, #173D8F 0%, #2567D8 60%, #4AA3F0 100%);
+    --grad-soft:    linear-gradient(180deg, #F8FAFD 0%, #DCEEFF 100%);
+    --grad-dark:    linear-gradient(135deg, #102554 0%, #173D8F 50%, #2567D8 100%);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+
+  h1, h2, h3, h4, .display { font-family: var(--font-display); letter-spacing: -0.015em; font-weight: 600; }
+
+  /* ============================================================
+     NAVBAR  (loaded from master)
+     ============================================================ */
+  .nb { background: var(--navy); width: 100%; position: sticky; top: 0; z-index: 1000; }
+
+  /* ============================================================
+     PROGRAM HERO
+     ============================================================ */
+  .prog-hero {
+    position: relative;
+    background: var(--grad-dark);
+    overflow: hidden;
+    padding: 64px 0 92px;
+  }
+  .prog-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px);
+    pointer-events: none;
+  }
+  .prog-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 460px; height: 460px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,163,240,0.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .prog-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 24px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+
+  .status-row { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(74,163,240,0.18); border: 1px solid rgba(74,163,240,0.45);
+  }
+  .status-pill.is-red {
+    background: rgba(220,38,38,0.18); border: 1px solid rgba(220,38,38,0.45);
+  }
+  .status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(74,163,240,0.25); flex-shrink: 0; }
+  .status-pill.is-red .status-pill-dot { background: #f87171; box-shadow: 0 0 0 3px rgba(248,113,113,0.25); }
+  .status-pill-text { font-family: var(--font-display); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #B6E0FF; }
+  .status-pill.is-red .status-pill-text { color: #fecaca; }
+
+  .prog-hero h1 {
+    font-size: clamp(32px, 4.4vw, 52px);
+    font-weight: 800; color: #fff; line-height: 1.06;
+    letter-spacing: -0.025em; margin-bottom: 20px; max-width: 20ch;
+  }
+  .tagline { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 64ch; margin-bottom: 12px; }
+  .footnote { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 32px; max-width: 64ch; }
+
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+    background: #fff; color: var(--ggi); font-family: var(--font-display); font-weight: 600; font-size: 14px;
+    border-radius: var(--radius-pill); text-decoration: none; transition: background 0.15s, box-shadow 0.15s; cursor: pointer; border: none;
+  }
+  .btn-primary:hover { background: var(--light); box-shadow: var(--shadow-sm); }
+  .btn-primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+    color: rgba(255,255,255,0.88); border: 1px solid rgba(255,255,255,0.30);
+    font-family: var(--font-display); font-weight: 600; font-size: 14px; border-radius: var(--radius-pill); text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); color: #fff; }
+  .btn-ghost svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .meta-facts { display: flex; flex-wrap: wrap; gap: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.16); }
+  .meta-fact-key { font-family: var(--font-display); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
+  .meta-fact-value { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #fff; }
+
+  /* ============================================================
+     SECTION SHARED
+     ============================================================ */
+  .section { padding: 72px 0; }
+  .section-alt { background: var(--surface-alt); }
+  .section-dark { background: var(--ggi-deep); color: #fff; }
+
+  .sec-head { margin-bottom: 40px; }
+  .sec-head.center { text-align: center; }
+  .sec-head .overline { font-family: var(--font-display); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--blue); margin-bottom: 12px; }
+  .sec-head h2 { font-size: clamp(24px, 2.8vw, 33px); font-weight: 700; color: var(--ink); line-height: 1.18; margin-bottom: 14px; }
+  .sec-head p { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 64ch; }
+  .sec-head.center p { margin-left: auto; margin-right: auto; }
+
+  /* ============================================================
+     QUICK FACTS  —  Eligibility · Core Requirements · Call Cycle
+     ============================================================ */
+  .quickfacts { margin-top: -64px; position: relative; z-index: 5; padding-bottom: 8px; }
+  .qf-grid {
+    max-width: 1400px; margin: 0 auto; padding: 0 40px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .qf-card {
+    --accent: var(--ggi);
+    --accent-tint: #E8EEFB;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .qf-card.is-amber { --accent: var(--amber); --accent-tint: var(--amber-tint); }
+  .qf-card.is-teal  { --accent: var(--teal);  --accent-tint: var(--teal-tint); }
+  .qf-card.is-green { --accent: var(--green); --accent-tint: var(--green-tint); }
+
+  .qf-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .qf-ico {
+    width: 40px; height: 40px; border-radius: 9px; flex-shrink: 0;
+    background: var(--accent-tint); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .qf-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .qf-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.2; letter-spacing: -0.01em; }
+  .qf-kicker { font-family: var(--font-display); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 2px; }
+
+  .qf-list { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+  .qf-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+  .qf-list li svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .qf-list li strong { color: var(--ink); font-weight: 600; }
+  .ogms-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; margin-left: 6px;
+    background: var(--blue); color: #fff;
+    border-radius: var(--radius-pill); font-family: var(--font-display); font-size: 10.5px; font-weight: 600;
+    letter-spacing: 0.06em; text-decoration: none;
+    vertical-align: middle; transition: background 0.15s;
+  }
+  .ogms-pill:hover { background: var(--ggi); }
+  .ogms-pill svg { width: 9px; height: 9px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* compact cycle inside the third box */
+  .qf-tl { list-style: none; display: flex; flex-direction: column; flex: 1; }
+  .qf-tl li { position: relative; padding: 0 0 14px 22px; }
+  .qf-tl li:last-child { padding-bottom: 0; }
+  .qf-tl li::before { content: ""; position: absolute; left: 3px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .qf-tl li::after  { content: ""; position: absolute; left: 7px; top: 13px; bottom: 0; width: 1.5px; background: var(--line); }
+  .qf-tl li:last-child::after { display: none; }
+  .qf-tl-date { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; }
+  .qf-tl-label { font-size: 13px; color: var(--ink-soft); line-height: 1.4; margin-top: 1px; }
+
+  .qf-foot { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .qf-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 600; color: var(--accent); text-decoration: none; }
+  .qf-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .qf-link:hover svg { transform: translateX(3px); }
+
+  /* ============================================================
+     ABOUT SECTION
+     ============================================================ */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: flex-start; }
+  .about-text p { font-size: 16px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--ink); font-weight: 600; }
+
+  .coverage-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-sm); }
+  .coverage-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); }
+  .coverage-head .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); }
+  .coverage-head .count { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--ggi); letter-spacing: -0.02em; }
+  .coverage-list { display: flex; flex-direction: column; gap: 6px; }
+  .coverage-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; font-size: 13.5px; color: #334155; background: var(--surface-alt); }
+  .coverage-row .flag { font-size: 18px; }
+  .coverage-row .name { font-weight: 500; }
+
+  /* ============================================================
+     INTERVENTION AREAS  (3 — per the guidelines)
+     ============================================================ */
+  .ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .ia-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s; }
+  .ia-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); border-color: rgba(37,103,216,0.25); }
+  .ia-icon { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .ia-card:nth-child(1) .ia-icon { background: var(--amber-tint); color: var(--amber); }
+  .ia-card:nth-child(2) .ia-icon { background: var(--teal-tint);  color: var(--teal); }
+  .ia-card:nth-child(3) .ia-icon { background: var(--green-tint); color: var(--green); }
+  .ia-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ia-title { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.015em; }
+  .ia-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+  .ia-examples { list-style: none; display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .ia-examples li { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .ia-examples li svg { width: 13px; height: 13px; flex-shrink: 0; margin-top: 3px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .ia-card:nth-child(1) .ia-examples li svg { color: var(--amber); }
+  .ia-card:nth-child(2) .ia-examples li svg { color: var(--teal); }
+  .ia-card:nth-child(3) .ia-examples li svg { color: var(--green); }
+
+  /* ============================================================
+     ELIGIBILITY  &  FUNDING split panel
+     ============================================================ */
+  .panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .panel {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 32px 32px 30px;
+    box-shadow: var(--shadow-sm);
+  }
+  .panel-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .panel-head .ico { width: 40px; height: 40px; border-radius: 9px; background: var(--accent-tint, #eef2f8); color: var(--accent, var(--ggi)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .panel-head .ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .panel-head h3 { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--ink); letter-spacing: -0.015em; }
+  .panel-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 18px; line-height: 1.6; }
+
+  .panel.is-teal { --accent: var(--teal); --accent-tint: var(--teal-tint); }
+  .panel.is-amber { --accent: var(--amber); --accent-tint: var(--amber-tint); }
+
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+  .check-list li svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .check-list li.yes svg { color: var(--green); }
+  .check-list li.no  svg { color: #dc2626; }
+  .check-list li strong { color: var(--ink); font-weight: 600; }
+
+  .panel-divider { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin: 6px 0 12px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+
+  /* Funding breakdown box */
+  .fund-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+  .fund-row:last-child { border-bottom: none; }
+  .fund-row .k { color: var(--ink-soft); }
+  .fund-row .v { font-weight: 700; color: var(--ink); font-size: 15px; }
+  .fund-row .v small { font-weight: 500; color: var(--muted); font-size: 12px; margin-left: 4px; }
+
+  .cofin-bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; margin: 10px 0 6px; border: 1px solid var(--line); }
+  .cofin-bar .wbf { background: var(--ggi); flex: 0 0 80%; }
+  .cofin-bar .cof { background: var(--accent); flex: 0 0 20%; }
+  .cofin-legend { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); }
+  .cofin-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .cofin-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ============================================================
+     HOW TO APPLY  —  steps
+     ============================================================ */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .step-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 26px; position: relative; box-shadow: var(--shadow-sm); }
+  .step-num {
+    position: absolute; top: -14px; left: 22px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--grad-primary); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 13px; font-weight: 600;
+    box-shadow: var(--shadow-sm);
+  }
+  .step-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--ink); margin: 10px 0 8px; letter-spacing: -0.01em; }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .step-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 12px; padding: 7px 12px;
+    background: var(--ggi); color: #fff;
+    font-size: 12px; font-weight: 600; text-decoration: none;
+    border-radius: 6px; transition: background 0.15s;
+  }
+  .step-link:hover { background: var(--ggi-700); }
+  .step-link svg { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     EVALUATION CRITERIA
+     ============================================================ */
+  .eval-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .eval-bars { display: flex; flex-direction: column; gap: 14px; }
+  .eval-row { display: grid; grid-template-columns: 1fr 60px; gap: 14px; align-items: center; }
+  .eval-row .lab { font-size: 14px; color: var(--ink); font-weight: 500; }
+  .eval-row .lab small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .eval-row .pts { font-size: 13px; font-weight: 700; color: var(--ggi); text-align: right; }
+  .eval-track { grid-column: 1 / -1; height: 8px; background: var(--line-soft); border-radius: 4px; overflow: hidden; }
+  .eval-fill { height: 100%; background: linear-gradient(90deg, var(--ggi) 0%, var(--teal) 100%); border-radius: 4px; }
+  .eval-threshold {
+    margin-top: 18px; padding: 14px 16px; background: var(--amber-tint);
+    border-left: 3px solid var(--amber); border-radius: 6px;
+    font-size: 13.5px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .eval-threshold strong { color: var(--amber); font-weight: 700; }
+
+  .cross-cutting { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+  .cc-head { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .cc-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 16px; line-height: 1.55; }
+  .cc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .cc-chip {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 11px; background: var(--surface-alt);
+    border: 1px solid var(--line); border-radius: 7px;
+    font-size: 12.5px; color: var(--ink-soft);
+    cursor: default;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+  .cc-chip:hover {
+    background: var(--ggi);
+    border-color: var(--ggi);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .cc-chip .n { font-size: 10.5px; font-weight: 700; color: var(--ggi); background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; flex-shrink: 0; transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease; }
+  .cc-chip:hover .n { background: var(--amber); color: #fff; border-color: var(--amber); }
+
+  /* ============================================================
+     CALL NO. 8 WINNERS — featured cards
+     ============================================================ */
+  .winners-banner {
+    background: linear-gradient(135deg, var(--green-tint), #fff);
+    border: 1px solid var(--green);
+    border-left-width: 4px;
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .winners-banner svg { width: 22px; height: 22px; color: var(--green); flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .winners-banner strong { color: var(--ink); font-weight: 700; }
+
+  .winners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .winner-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px; display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .winner-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); border-color: rgba(37,103,216,0.25); }
+  .winner-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .winner-pn { font-family: var(--font-display); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ggi); background: var(--light); padding: 3px 9px; border-radius: var(--radius-pill); }
+  .winner-area { font-size: 11px; color: var(--muted); }
+  .winner-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 8px; letter-spacing: -0.015em; }
+  .winner-card:hover .winner-title { color: var(--ggi); }
+  .winner-lead { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.5; }
+  .winner-lead .role { color: var(--faint); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; font-size: 10.5px; display: block; margin-bottom: 2px; }
+  .winner-flags { display: flex; gap: 6px; margin-bottom: 14px; }
+  .winner-flag { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--ink-soft); background: var(--surface-alt); border: 1px solid var(--line); padding: 4px 10px; border-radius: var(--radius-pill); }
+  .winner-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line-soft); display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; }
+  .winner-foot .grant { color: var(--ggi); font-weight: 700; }
+  .winner-foot .link { color: var(--ggi); display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
+  .winner-foot .link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .winner-card:hover .winner-foot .link svg { transform: translateX(3px); }
+
+  .see-all { text-align: center; margin-top: 36px; }
+  .see-all a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; color: var(--ggi); border: 1px solid var(--line); border-radius: var(--radius-pill); font-family: var(--font-display); font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+  .see-all a:hover { border-color: var(--ggi); background: var(--light); }
+  .see-all svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     DOCUMENTS
+     ============================================================ */
+  .docs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .doc-card { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); text-decoration: none; color: inherit; transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s; }
+  .doc-card[href]:hover { box-shadow: 0 8px 20px rgba(15,32,68,0.06); transform: translateY(-1px); border-color: #cbd5e1; }
+  .doc-card.unavailable { opacity: 0.7; }
+  .doc-icon { width: 44px; height: 44px; background: var(--light); color: var(--ggi); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .doc-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .doc-body { flex: 1; min-width: 0; }
+  .doc-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
+  .doc-card[href]:hover .doc-title { color: var(--ggi); }
+  .doc-meta { font-size: 11.5px; color: var(--faint); }
+  .doc-action { color: var(--ggi); flex-shrink: 0; }
+  .doc-action svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .doc-soon { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 9px; border-radius: 999px; background: var(--line-soft); color: var(--muted); flex-shrink: 0; }
+
+  /* ============================================================
+     SUBSCRIBE CTA
+     ============================================================ */
+  .subscribe { background: var(--grad-dark); padding: 80px 0; color: #fff; position: relative; overflow: hidden; }
+  .subscribe::before { content: ""; position: absolute; top: -100px; right: -60px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(74,163,240,0.30) 0%, transparent 70%); pointer-events: none; }
+  .subscribe-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; text-align: center; padding: 0 40px; }
+  .subscribe-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--accent); }
+  .subscribe-icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .subscribe .overline { font-family: var(--font-display); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 14px; }
+  .subscribe h2 { font-size: clamp(24px, 2.8vw, 30px); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
+  .subscribe p { font-size: 15.5px; color: rgba(255,255,255,0.75); line-height: 1.65; max-width: 60ch; margin: 0 auto 28px; }
+  .subscribe-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; background: #fff; color: var(--ggi); font-family: var(--font-display); font-weight: 600; font-size: 14px; border-radius: var(--radius-pill); text-decoration: none; transition: background 0.15s, box-shadow 0.15s; }
+  .btn-white:hover { background: var(--light); box-shadow: var(--shadow-sm); }
+  .btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-ghost-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; color: #fff; border: 1px solid rgba(255,255,255,0.4); font-family: var(--font-display); font-weight: 600; font-size: 14px; border-radius: var(--radius-pill); text-decoration: none; transition: background 0.15s, border-color 0.15s; }
+  .btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+
+  /* ============================================================
+     CP FILTER PILLS  (Call 8 winners filter)
+     ============================================================ */
+  .cp-filter {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 28px;
+    padding: 16px; border-radius: var(--radius);
+    background: var(--surface); border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+  }
+  .cp-filter-label {
+    width: 100%;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--faint); margin-bottom: 4px;
+  }
+  .cp-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--surface-alt); border: 1px solid var(--line);
+    font-size: 13px; font-weight: 600; color: var(--ink-soft);
+    cursor: pointer; transition: all 0.18s ease;
+  }
+  .cp-pill .flag { font-size: 15px; line-height: 1; }
+  .cp-pill:hover { border-color: var(--ggi); color: var(--ggi); }
+  .cp-pill.is-active {
+    background: var(--ggi); border-color: var(--ggi);
+    color: #fff;
+  }
+
+  /* ============================================================
+     WINNERS  (CSV-driven, with modal)
+     ============================================================ */
+  .winners-csv-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .winner-csv-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; padding: 20px;
+    display: flex; flex-direction: column;
+    cursor: pointer; text-align: left;
+    font-family: inherit; color: inherit;
+    transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+  }
+  .winner-csv-card:hover {
+    box-shadow: 0 12px 28px rgba(15,32,68,0.10);
+    transform: translateY(-3px); border-color: #cbd5e1;
+  }
+  .winner-csv-card.is-hidden { display: none; }
+  .winner-csv-pn {
+    display: inline-block; align-self: flex-start;
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--ggi); background: #eef2f8;
+    padding: 3px 9px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .winner-csv-area {
+    font-size: 11px; font-weight: 600; color: var(--amber);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .winner-csv-card[data-area="Education &amp; Scientific Exchanges"] .winner-csv-area,
+  .winner-csv-card[data-area="Education & Scientific Exchanges"] .winner-csv-area { color: var(--teal); }
+  .winner-csv-card[data-area="Sustainable Development"] .winner-csv-area { color: var(--green); }
+  .winner-csv-title {
+    font-size: 15px; font-weight: 700; color: var(--ink);
+    line-height: 1.35; letter-spacing: -0.01em;
+    margin-bottom: 10px; min-height: 40px;
+  }
+  .winner-csv-lead {
+    font-size: 12.5px; color: var(--ink-soft);
+    line-height: 1.5; margin-bottom: 12px;
+  }
+  .winner-csv-lead .role {
+    color: var(--faint); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    font-size: 10.5px; display: block; margin-bottom: 2px;
+  }
+  .winner-csv-flags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+  .winner-csv-flag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; color: var(--ink-soft);
+    background: var(--surface-alt); border: 1px solid var(--line);
+    padding: 3px 7px; border-radius: 999px;
+  }
+  .winner-csv-foot {
+    margin-top: auto; padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px;
+  }
+  .winner-csv-foot .grant { color: var(--ggi); font-weight: 700; }
+  .winner-csv-foot .more {
+    color: var(--ggi); font-weight: 600;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .winner-csv-foot .more svg {
+    width: 12px; height: 12px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+    transition: transform 0.15s;
+  }
+  .winner-csv-card:hover .winner-csv-foot .more svg { transform: translateX(3px); }
+
+  .winners-loading,
+  .winners-empty {
+    grid-column: 1 / -1;
+    padding: 40px; text-align: center;
+    font-size: 14px; color: var(--muted);
+  }
+
+  /* ============================================================
+     PROJECT MODAL  (shared — winners + stories)
+     ============================================================ */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(15,32,68,0.65);
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(3px);
+  }
+  .modal-overlay.is-open { display: flex; }
+  .modal-box {
+    background: #fff; border-radius: 14px;
+    max-width: 720px; width: 100%;
+    max-height: 88vh; overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    position: relative;
+    animation: modalIn 0.22s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--surface-alt); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .modal-close:hover { background: var(--line-soft); }
+  .modal-close svg { width: 16px; height: 16px; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .modal-head {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .modal-meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .modal-meta-tag {
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .modal-meta-tag.pn { color: var(--ggi); background: #eef2f8; }
+  .modal-meta-tag.area { color: var(--amber); background: var(--amber-tint); }
+  .modal-meta-tag.area.area-edu { color: var(--teal); background: var(--teal-tint); }
+  .modal-meta-tag.area.area-sd { color: var(--green); background: var(--green-tint); }
+  .modal-meta-tag.cp { color: var(--ink-soft); background: var(--surface-alt); border: 1px solid var(--line); }
+  .modal-title {
+    font-size: 22px; font-weight: 700; color: var(--ink);
+    line-height: 1.25; letter-spacing: -0.015em;
+    margin-bottom: 12px;
+  }
+  .modal-lead {
+    font-size: 13.5px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .modal-lead strong { color: var(--ink); }
+  .modal-body { padding: 24px 32px 32px; }
+  .modal-section { margin-bottom: 22px; }
+  .modal-section:last-child { margin-bottom: 0; }
+  .modal-section h4 {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--ggi); margin-bottom: 8px;
+  }
+  .modal-section p {
+    font-size: 14px; color: var(--ink-soft); line-height: 1.65;
+  }
+  .modal-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin-bottom: 22px;
+  }
+  .modal-stat {
+    padding: 12px 14px; background: var(--surface-alt);
+    border: 1px solid var(--line); border-radius: 8px;
+  }
+  .modal-stat-label {
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--faint); margin-bottom: 4px;
+  }
+  .modal-stat-value { font-size: 14px; font-weight: 700; color: var(--ink); }
+
+  /* ============================================================
+     GRANTEES STORIES
+     ============================================================ */
+  .stories-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .story-card {
+    position: relative; overflow: hidden;
+    border-radius: 14px; min-height: 260px;
+    padding: 24px; cursor: pointer;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    color: #fff; text-align: left;
+    font-family: inherit; border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .story-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(15,32,68,0.18); }
+  .story-card.is-culture { background: linear-gradient(160deg, var(--ggi) 0%, var(--ggi-deep) 100%); }
+  .story-card.is-edu     { background: linear-gradient(160deg, var(--blue) 0%, var(--ggi) 100%); }
+  .story-card.is-sd      { background: linear-gradient(160deg, var(--accent) 0%, var(--blue) 100%); }
+  .story-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 1px, transparent 1px, transparent 14px);
+    pointer-events: none;
+  }
+  .story-area-pill {
+    align-self: flex-start; padding: 5px 12px; border-radius: 999px;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.32);
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: auto; position: relative; z-index: 1;
+  }
+  .story-title {
+    font-size: 19px; font-weight: 700; line-height: 1.3;
+    letter-spacing: -0.015em; margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+  .story-meta {
+    font-size: 12.5px; color: rgba(255,255,255,0.85);
+    margin-bottom: 14px; position: relative; z-index: 1;
+  }
+  .story-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12.5px; font-weight: 600;
+    position: relative; z-index: 1;
+  }
+  .story-cta svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .story-card:hover .story-cta svg { transform: translateX(3px); }
+
+  /* ============================================================
+     NEWS CARDS  (top 6 GGI news, CSV-driven)
+     ============================================================ */
+  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .news-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; overflow: hidden;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+  }
+  .news-card:hover {
+    box-shadow: 0 14px 32px rgba(15,32,68,0.10);
+    transform: translateY(-3px); border-color: #cbd5e1;
+  }
+  .news-thumb {
+    aspect-ratio: 16 / 9; background: var(--ggi);
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .news-thumb::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.18) 100%);
+  }
+  .news-tag {
+    position: absolute; top: 12px; left: 12px; z-index: 1;
+    background: var(--amber); color: #fff;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 4px 9px; border-radius: 999px;
+  }
+  .news-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+  .news-date {
+    font-size: 11px; font-weight: 600; color: var(--faint);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+  }
+  .news-title {
+    font-size: 15.5px; font-weight: 700; color: var(--ink);
+    line-height: 1.35; letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .news-card:hover .news-title { color: var(--ggi); }
+  .news-excerpt {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.55; margin-bottom: 14px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-more {
+    margin-top: auto;
+    font-size: 12.5px; font-weight: 600; color: var(--ggi);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .news-more svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .news-card:hover .news-more svg { transform: translateX(3px); }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .container-narrow, .prog-hero-inner, .qf-grid { padding-left: 24px; padding-right: 24px; }
+    .quickfacts { margin-top: -56px; }
+    .qf-grid { grid-template-columns: 1fr; gap: 16px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .ia-grid { grid-template-columns: repeat(2, 1fr); }
+    .panel-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 18px; }
+    .eval-wrap { grid-template-columns: 1fr; gap: 28px; }
+    .winners-grid { grid-template-columns: repeat(2, 1fr); }
+    .winners-csv-grid { grid-template-columns: repeat(2, 1fr); }
+    .stories-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+    .docs-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .prog-hero { padding: 48px 0 76px; }
+    .section { padding: 56px 0; }
+    .meta-facts { gap: 24px; }
+    .ia-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .winners-grid { grid-template-columns: 1fr; }
+    .winners-csv-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .cc-grid { grid-template-columns: 1fr; }
+    .modal-grid { grid-template-columns: 1fr; }
+    .modal-head, .modal-body { padding-left: 22px; padding-right: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR (unchanged — loads from master) -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '../js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<!-- ============================================================
+     PROGRAM HERO
+     ============================================================ -->
+<section class="prog-hero">
+  <div class="prog-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>›</span><a href="our-programs.html">Our Programs</a><span>›</span>GGI
+    </nav>
+
+    <div class="status-row">
+      <div class="status-pill is-red">
+        <span class="status-pill-dot"></span>
+        <span class="status-pill-text">Call No. 8: Closed</span>
+      </div>
+      <div class="status-pill">
+        <span class="status-pill-dot"></span>
+        <span class="status-pill-text">Winners Announced</span>
+      </div>
+    </div>
+
+    <h1>Grants for Grassroots Initiatives (GGI)</h1>
+    <p class="tagline">The Western Balkans Fund's annual grant scheme supports young and emerging civil society organisations and grassroots groups to lead regional cooperation projects across the WB6, under the EU/WBF Joint Action (Phase III).</p>
+
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#call-8-winners">
+        Check the awarded grantees for Call No. 8
+        <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+      </a>
+      <a class="btn-ghost" href="#eligibility">
+        Check Eligibility
+        <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+      </a>
+      <a class="btn-ghost" href="#call-9-interest">
+        Get notified for Call No. 9
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+
+    <div class="meta-facts">
+      <div>
+        <div class="meta-fact-key">Maximum Grant</div>
+        <div class="meta-fact-value">€15,000</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Partnership</div>
+        <div class="meta-fact-value">Min. 3 Contracting Parties</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Duration</div>
+        <div class="meta-fact-value">3–6 months</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Co-financing</div>
+        <div class="meta-fact-value">Minimum 20%</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Funded by</div>
+        <div class="meta-fact-value">EU &amp; WBF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     QUICK FACTS — Eligibility · Core Requirements · Call Cycle
+     ============================================================ -->
+<section class="quickfacts" aria-label="At a glance">
+  <div class="qf-grid">
+
+    <!-- Box 1 — Who can apply -->
+    <div class="qf-card is-teal">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="qf-kicker">Who can apply</div>
+          <div class="qf-title">Eligibility</div>
+        </div>
+      </div>
+      <ul class="qf-list">
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Civil society organisations &amp; NGOs</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Local or regional public entities</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Educational, research &amp; cultural institutions</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Business, media &amp; sports associations</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Registered non-profits in one of the WB6</span></li>
+      </ul>
+      <div class="qf-foot">
+        <a class="qf-link" href="#eligibility">Full eligibility rules <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Box 2 — Core Requirements -->
+    <div class="qf-card is-amber">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div>
+          <div class="qf-kicker">What counts</div>
+          <div class="qf-title">Core Requirements</div>
+        </div>
+      </div>
+      <ul class="qf-list">
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Minimum 3 Contracting Parties</strong>: Lead Applicant plus at least 2 Project Partners from different CPs</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Duration 3–6 months</strong>, including the 30-day reporting period</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Co-financing ≥ 20%</strong>: the grant covers up to 80% of eligible costs</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>At least 3 cross-cutting issues</strong> mainstreamed</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Submission via OGMS</strong> only, in English <a class="ogms-pill" href="https://wbfportal.org/applicants/page/index.html?id_call=17" target="_blank" rel="noopener">OGMS <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></a></span></li>
+      </ul>
+      <div class="qf-foot">
+        <a class="qf-link" href="#funding">Funding details <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Box 3 — Annual Call Cycle (generic, not call-specific) -->
+    <div class="qf-card is-green">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/><polyline points="21 3 21 9 15 9"/></svg></div>
+        <div>
+          <div class="qf-kicker">How it works</div>
+          <div class="qf-title">Annual Call Cycle</div>
+        </div>
+      </div>
+      <ul class="qf-tl">
+        <li><div class="qf-tl-date">Call Launch</div><div class="qf-tl-label">Annual call opens on OGMS with full guidelines</div></li>
+        <li><div class="qf-tl-date">Info Sessions</div><div class="qf-tl-label">Online sessions for prospective applicants</div></li>
+        <li><div class="qf-tl-date">Submission</div><div class="qf-tl-label">Applications submitted online by the deadline</div></li>
+        <li><div class="qf-tl-date">Evaluation</div><div class="qf-tl-label">Eligibility checks and evaluation process</div></li>
+        <li><div class="qf-tl-date">Award</div><div class="qf-tl-label">Winners published; grant contracts signed</div></li>
+        <li><div class="qf-tl-date">Implementation</div><div class="qf-tl-label">3–6 months of project activities &amp; reporting</div></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT — what the programme is
+     ============================================================ -->
+<section class="section" id="about">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">About the Programme</div>
+      <h2>Grassroots cooperation, at a regional scale</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Grants for Grassroots Initiatives (GGI) is the Western Balkans Fund's <strong>annual grant scheme</strong> for regional cooperation projects led by civil society. It is implemented under <strong>Phase III of the EU/WBF Joint Action</strong>, with co-funding from the European Union and from the six Contracting Parties.</p>
+        <p>The scheme is designed to empower CSOs, with a particular focus on <strong>grassroots and young, emerging organisations</strong> rooted in their communities, to take part in regional initiatives that contribute to good neighbourly relations, reconciliation, democratic governance and EU integration.</p>
+        <p>Each project must bring together partners from at least <strong>three different Contracting Parties</strong>. This is a deliberate design choice: it turns funding into a tool for region-building, not just bilateral exchange.</p>
+        <p>GGI supports three areas of intervention: <strong>cultural cooperation, education and scientific exchanges, and sustainable development</strong>. It ensures balanced geographical distribution of funds across the WB6.</p>
+      </div>
+
+      <div class="coverage-card">
+        <div class="coverage-head">
+          <span class="label">Eligible Region</span>
+          <span class="count">6</span>
+        </div>
+        <div class="coverage-list">
+          <div class="coverage-row"><span class="name">Albania</span></div>
+          <div class="coverage-row"><span class="name">Bosnia and Herzegovina</span></div>
+          <div class="coverage-row"><span class="name">Kosovo*</span></div>
+          <div class="coverage-row"><span class="name">Montenegro</span></div>
+          <div class="coverage-row"><span class="name">North Macedonia</span></div>
+          <div class="coverage-row"><span class="name">Serbia</span></div>
+        </div>
+        <p style="font-size:11px;color:#94a3b8;line-height:1.5;margin-top:14px">*This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo Declaration of Independence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTERVENTION AREAS — three, per the guidelines
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Areas of Intervention</div>
+      <h2>What GGI funds</h2>
+      <p>GGI supports cross-border regional projects in three thematic areas.</p>
+    </div>
+
+    <div class="ia-grid">
+
+      <!-- 1. Cultural cooperation -->
+      <div class="ia-card">
+        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+        <div class="ia-title">Cultural Cooperation</div>
+        <div class="ia-desc">Regional projects that build people-to-people links and good neighbourly relations through shared cultural heritage, intercultural dialogue and creative cooperation.</div>
+        <ul class="ia-examples">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Awareness of regional cultural heritage: history, art, culinary, tourism</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Intercultural dialogue and protection of archaeological sites &amp; monuments</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Joint work among museums, galleries, artistic ensembles, film producers</span></li>
+        </ul>
+      </div>
+
+      <!-- 2. Education and Scientific exchanges -->
+      <div class="ia-card">
+        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="ia-title">Education &amp; Scientific Exchanges</div>
+        <div class="ia-desc">Cooperation among schools, universities, research institutions and teachers across the region, sharing best practices and creating joint regional initiatives in education and research.</div>
+        <ul class="ia-examples">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Joint educational &amp; research initiatives across borders</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Actions tackling brain drain and supporting Western Balkans researchers</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>STEM popularisation for women and youth; lifelong learning</span></li>
+        </ul>
+      </div>
+
+      <!-- 3. Sustainable Development -->
+      <div class="ia-card">
+        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
+        <div class="ia-title">Sustainable Development</div>
+        <div class="ia-desc">Inclusive economic growth, environmental protection and climate action at the regional level, including innovation, tourism and cross-border cooperation among local authorities.</div>
+        <ul class="ia-examples">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Inclusive &amp; sustainable economic growth; start-up and innovation forums</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Awareness on environmental protection and climate change</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Cross-border local-authority cooperation for economic &amp; social development</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ELIGIBILITY  &  PARTNERSHIP   (split panel)
+     ============================================================ -->
+<section class="section" id="eligibility">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Eligibility &amp; Partnership</div>
+      <h2>Who can apply, and with whom</h2>
+      <p>GGI is open to non-profit, legally registered organisations from one of the six Contracting Parties. Partnership across the region is the central design principle, not an optional extra.</p>
+    </div>
+
+    <div class="panel-grid">
+
+      <!-- Eligible organisations -->
+      <div class="panel is-teal">
+        <div class="panel-head">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Eligible organisations</h3>
+        </div>
+        <p class="panel-sub">The Lead Applicant must be a legal entity, non-profit, established in one of the six Contracting Parties, and fall into one of the following categories:</p>
+
+        <ul class="check-list">
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Civil society organisations</strong> (CSOs / NGOs), including grassroots groups</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Local or regional public entities</strong>, or associations of them</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Business associations</strong> — chambers of commerce, tourism, agriculture, etc.</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Educational institutions</strong> — universities, faculties, schools, libraries, research centres, academies</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Media associations</strong> — journalism and freedom of expression</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Cultural &amp; sports institutions</strong> — museums, galleries, theatres, libraries, associations</span></li>
+        </ul>
+      </div>
+
+      <!-- Partnership rules -->
+      <div class="panel is-amber">
+        <div class="panel-head">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="11" r="3"/><circle cx="7" cy="17" r="3"/><line x1="11" y1="7" x2="14" y2="11"/><line x1="15" y1="14" x2="9" y2="16"/></svg></div>
+          <h3>Partnership requirements</h3>
+        </div>
+        <p class="panel-sub">Partnership is mandatory. The structure tells the story of how a project is genuinely regional, and it is the first thing evaluators check.</p>
+
+        <ul class="check-list">
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Minimum of <strong>3 different Contracting Parties</strong> represented</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>One Lead Applicant</strong> + <strong>at least two Project Partners</strong>, each from a different CP</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Partnerships from more than 3 CPs are <strong>encouraged</strong> and may be prioritised in evaluation</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>The Lead Applicant signs the grant contract with WBF and is responsible for implementation and reporting</span></li>
+        </ul>
+
+        <div class="panel-divider">Applications per organisation</div>
+        <ul class="check-list">
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>An organisation may submit <strong>multiple applications</strong> (as Lead or Partner)</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>But may receive <strong>only one grant as Lead</strong> and one as Partner, with the highest-scoring application taken in each case</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FUNDING  &  DURATION
+     ============================================================ -->
+<section class="section section-alt" id="funding">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Funding &amp; Duration</div>
+      <h2>How much, how long, what counts as a cost</h2>
+      <p>GGI grants are designed for compact, well-focused regional actions: small enough to be delivered by grassroots teams, large enough to enable a real multi-country project.</p>
+    </div>
+
+    <div class="panel-grid">
+
+      <!-- Grant size + co-financing -->
+      <div class="panel">
+        <div class="panel-head">
+          <div class="ico" style="background:#eef2f8;color:var(--ggi)"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Grant size &amp; co-financing</h3>
+        </div>
+
+        <div class="fund-row"><span class="k">Maximum grant per project</span><span class="v">€15,000</span></div>
+        <div class="fund-row"><span class="k">WBF grant covers up to</span><span class="v">80%<small>of total eligible costs</small></span></div>
+        <div class="fund-row"><span class="k">Co-financing required</span><span class="v">≥ 20%<small>of total eligible costs</small></span></div>
+        <div class="fund-row"><span class="k">Duration</span><span class="v">3–6 months<small>incl. 30-day reporting</small></span></div>
+
+        <div class="cofin-bar" aria-hidden="true">
+          <div class="wbf"></div><div class="cof"></div>
+        </div>
+        <div class="cofin-legend">
+          <span><span class="dot" style="background:var(--ggi)"></span>WBF grant: up to 80%</span>
+          <span><span class="dot" style="background:var(--accent)"></span>Co-financing: minimum 20%</span>
+        </div>
+
+        <div class="panel-divider">Worked example</div>
+        <p style="font-size:13px;color:var(--ink-soft);line-height:1.6;background:var(--surface-alt);padding:12px 14px;border-radius:7px;border:1px solid var(--line)">
+          A project requesting the maximum <strong>€15,000</strong> grant needs at least <strong>€3,750</strong> in co-financing, for a total budget of <strong>€18,750</strong>.
+        </p>
+      </div>
+
+      <!-- Eligible costs -->
+      <div class="panel">
+        <div class="panel-head">
+          <div class="ico" style="background:#eef2f8;color:var(--ggi)"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>What counts as a cost</h3>
+        </div>
+        <p class="panel-sub">All costs must be necessary for the project, incurred during the implementation period, and properly justified in the budget.</p>
+
+        <ul class="check-list">
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Human resources</strong> — gross salaries, social charges. Capped at <strong>30% of the WBF grant</strong></span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Travel, accommodation and board</strong> — accommodation and board up to €100/night; personal vehicle at €0.30/km if justified</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Other direct costs</strong> — venue rental, equipment, services, supplies for the action</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Indirect costs</strong> — flat-rate, capped at <strong>7% of total direct eligible costs</strong></span></li>
+        </ul>
+
+        <div class="panel-divider">Not eligible</div>
+        <ul class="check-list">
+          <li class="no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>In-kind contributions; activities before contract signature</span></li>
+          <li class="no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Equipment, land or buildings; bonuses; alcohol &amp; tobacco</span></li>
+          <li class="no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Sub-granting / financial support to third parties</span></li>
+          <li class="no"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>VAT (unless non-recoverable under national law); fines; debts</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW TO APPLY  —  4 steps
+     ============================================================ -->
+<section class="section" id="apply">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">How to Apply</div>
+      <h2>The application process, step by step</h2>
+      <p>Applications are submitted through the WBF Online Grant Management System (OGMS), the only accepted channel. Applications sent by email, fax or post are automatically rejected.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">Find partners</div>
+        <div class="step-desc">Build a partnership across at least 3 Contracting Parties. The Lead Applicant and project partners must come from different Contracting Parties.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">Register on OGMS</div>
+        <div class="step-desc">The Lead Applicant creates a profile on the WBF Online Grant Management System and completes the experience cards (or selects "No Experience" for grassroots organisations).</div>
+        <a class="step-link" href="https://wbfportal.org/applicants/page/index.html?id_call=17" target="_blank" rel="noopener">
+          Register on OGMS
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg>
+        </a>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">Submit the application</div>
+        <div class="step-desc">Complete <strong>Annex A</strong> (Application Form), <strong>Annex B</strong> (Budget) and <strong>Annex C</strong> (Declaration by the Lead Applicant, signed and stamped). All in English.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-title">Supporting documents</div>
+        <div class="step-desc">If shortlisted, provide Partnership Agreement (WBF format), statute, registration certificate, bank proof, financial statements and financial-capacity form.</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:32px;font-size:13.5px;color:var(--muted)">
+      Inquiries should be sent to <a href="mailto:info@westernbalkansfund.org" style="color:var(--ggi);font-weight:600">info@westernbalkansfund.org</a> no later than 15 days before the deadline. Replies are summarised and published on the WBF website.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     EVALUATION  &  CROSS-CUTTING ISSUES
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Evaluation &amp; Selection</div>
+      <h2>How proposals are scored</h2>
+      <p>Applications first pass an administrative and eligibility check. Those that pass are scored against seven criteria for a total of 100 points by evaluators, then recommended for funding by the WBF Governing Bodies, ensuring balanced geographical distribution.</p>
+    </div>
+
+    <div class="eval-wrap">
+
+      <!-- Score breakdown bars -->
+      <div class="eval-bars">
+        <div class="eval-row">
+          <div class="lab">Partnership <small>Mix of CPs &amp; complementary expertise; clear roles</small></div>
+          <div class="pts">20 pts</div>
+          <div class="eval-track"><div class="eval-fill" style="width:100%"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Description &amp; Regional Relevance <small>Context, regional impact, innovation</small></div>
+          <div class="pts">20 pts</div>
+          <div class="eval-track"><div class="eval-fill" style="width:100%"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Objective, Activities &amp; Results <small>Coherent, timely, measurable</small></div>
+          <div class="pts">15 pts</div>
+          <div class="eval-track"><div class="eval-fill" style="width:75%"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Capacity, Risk &amp; Sustainability <small>Team, risk plan, continuation beyond the project</small></div>
+          <div class="pts">15 pts</div>
+          <div class="eval-track"><div class="eval-fill" style="width:75%"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Financial Envelope <small>Realistic, cost-aligned budget; co-financing</small></div>
+          <div class="pts">15 pts</div>
+          <div class="eval-track"><div class="eval-fill" style="width:75%"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Target Audience &amp; Cross-cutting Issues <small>Clear groups; value-added themes</small></div>
+          <div class="pts">10 pts</div>
+          <div class="eval-track"><div class="eval-fill" style="width:50%"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Visibility <small>Plan for visibility of the project and donors</small></div>
+          <div class="pts">5 pts</div>
+          <div class="eval-track"><div class="eval-fill" style="width:25%"></div></div>
+        </div>
+
+        <div class="eval-threshold">
+          <strong>Minimum threshold:</strong> Applications scoring below <strong>55 / 100</strong> are not considered further. Final selection also respects balanced distribution of funds across the six Contracting Parties.
+        </div>
+      </div>
+
+      <!-- Cross-cutting issues -->
+      <div class="cross-cutting">
+        <div class="cc-head">Cross-cutting issues</div>
+        <p class="cc-sub">Projects must mainstream at least <strong>three</strong> of the ten cross-cutting issues below. Choose the ones that genuinely fit your project. They should be visible in your activities, not bolted on.</p>
+        <div class="cc-grid">
+          <div class="cc-chip"><span class="n">1</span>Green Agenda</div>
+          <div class="cc-chip"><span class="n">2</span>Regional Outreach</div>
+          <div class="cc-chip"><span class="n">3</span>Gender Sensitive</div>
+          <div class="cc-chip"><span class="n">4</span>Conflict Sensitivity</div>
+          <div class="cc-chip"><span class="n">5</span>Knowledge Sharing</div>
+          <div class="cc-chip"><span class="n">6</span>Marginalised Groups</div>
+          <div class="cc-chip"><span class="n">7</span>Freedom of Expression</div>
+          <div class="cc-chip"><span class="n">8</span>EU Integration</div>
+          <div class="cc-chip"><span class="n">9</span>Reconciliation</div>
+          <div class="cc-chip"><span class="n">10</span>Innovation &amp; Digitalisation</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CALL NO. 8 — AWARDED PROJECTS  (CSV-driven, filterable)
+     ============================================================ -->
+<section class="section" id="call-8-winners">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Call No. 8 / Awarded Projects</div>
+      <h2>Meet the winning teams</h2>
+      <p><strong>24 projects awarded</strong> across the six Contracting Parties, four per Contracting Party. Use the filter below to see the winners from each.</p>
+    </div>
+
+    <!-- CP filter row -->
+    <div class="cp-filter" role="tablist" aria-label="Filter winners by Contracting Party">
+      <div class="cp-filter-label">Contracting Party</div>
+      <button class="cp-pill is-active" data-cp="Albania" role="tab" aria-selected="true">
+        <span class="flag">🇦🇱</span> Albania
+      </button>
+      <button class="cp-pill" data-cp="Bosnia and Herzegovina" role="tab" aria-selected="false">
+        <span class="flag">🇧🇦</span> Bosnia and Herzegovina
+      </button>
+      <button class="cp-pill" data-cp="Kosovo*" role="tab" aria-selected="false">
+        <span class="flag">🇽🇰</span> Kosovo*
+      </button>
+      <button class="cp-pill" data-cp="North Macedonia" role="tab" aria-selected="false">
+        <span class="flag">🇲🇰</span> North Macedonia
+      </button>
+      <button class="cp-pill" data-cp="Montenegro" role="tab" aria-selected="false">
+        <span class="flag">🇲🇪</span> Montenegro
+      </button>
+      <button class="cp-pill" data-cp="Serbia" role="tab" aria-selected="false">
+        <span class="flag">🇷🇸</span> Serbia
+      </button>
+    </div>
+
+    <!-- Winners grid (rendered from CSV) -->
+    <div class="winners-csv-grid" id="winners-grid">
+      <div class="winners-loading">Loading awarded projects…</div>
+    </div>
+
+    <div class="see-all">
+      <a href="projects.html?programme=GGI">All GGI-funded projects <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GRANTEES STORIES  (one per area of intervention)
+     ============================================================ -->
+<section class="section section-alt" id="grantees-stories">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Grantees Stories</div>
+      <h2>Voices from the field</h2>
+      <p>Three stories from past GGI grantees, one for each area of intervention. Click a story to read how grassroots teams turned a regional idea into impact on the ground.</p>
+    </div>
+
+    <div class="stories-grid">
+      <button class="story-card is-culture" data-story="culture" type="button">
+        <span class="story-area-pill">Cultural Cooperation</span>
+        <h3 class="story-title">[Story title placeholder, Cultural Cooperation]</h3>
+        <p class="story-meta">Lead Applicant, Contracting Party · Call No. X</p>
+        <span class="story-cta">Read the story <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+      </button>
+
+      <button class="story-card is-edu" data-story="edu" type="button">
+        <span class="story-area-pill">Education &amp; Scientific Exchanges</span>
+        <h3 class="story-title">[Story title placeholder, Education &amp; Scientific Exchanges]</h3>
+        <p class="story-meta">Lead Applicant, Contracting Party · Call No. X</p>
+        <span class="story-cta">Read the story <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+      </button>
+
+      <button class="story-card is-sd" data-story="sd" type="button">
+        <span class="story-area-pill">Sustainable Development</span>
+        <h3 class="story-title">[Story title placeholder, Sustainable Development]</h3>
+        <p class="story-meta">Lead Applicant, Contracting Party · Call No. X</p>
+        <span class="story-cta">Read the story <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LATEST GGI NEWS  (top 6, CSV-driven from news data layer)
+     ============================================================ -->
+<section class="section" id="ggi-news">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Latest News</div>
+      <h2>What's happening across GGI</h2>
+      <p>The most recent six news items from the GGI programme, pulled directly from the WBF news feed.</p>
+    </div>
+
+    <div class="news-grid" id="ggi-news-grid">
+      <div class="winners-loading" style="grid-column:1/-1;">Loading latest GGI news…</div>
+    </div>
+
+    <div class="see-all">
+      <a href="news.html?programme=GGI">All GGI news <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROGRAM DOCUMENTS
+     ============================================================ -->
+<section class="section section-alt" id="documents">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Programme Documents</div>
+      <h2>Application package &amp; guidelines</h2>
+      <p>The standard GGI application package. Templates for each call are published with the Call Text and the launch announcement.</p>
+    </div>
+
+    <div class="docs-grid">
+
+      <div class="doc-card unavailable">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+        <div class="doc-body">
+          <div class="doc-title">Guidelines for Applicants</div>
+          <div class="doc-meta">PDF · Published with each annual call</div>
+        </div>
+        <span class="doc-soon">Call No. 9</span>
+      </div>
+
+      <div class="doc-card unavailable">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+        <div class="doc-body">
+          <div class="doc-title">Annex A · Application Form</div>
+          <div class="doc-meta">Completed online via OGMS</div>
+        </div>
+        <span class="doc-soon">Call No. 9</span>
+      </div>
+
+      <div class="doc-card unavailable">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div>
+        <div class="doc-body">
+          <div class="doc-title">Annex B · Budget of the Action</div>
+          <div class="doc-meta">XLSX · With co-financing calculator</div>
+        </div>
+        <span class="doc-soon">Call No. 9</span>
+      </div>
+
+      <div class="doc-card unavailable">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+        <div class="doc-body">
+          <div class="doc-title">Annex C · Declaration by the Lead Applicant</div>
+          <div class="doc-meta">DOCX · Signed and stamped</div>
+        </div>
+        <span class="doc-soon">Call No. 9</span>
+      </div>
+
+      <div class="doc-card unavailable">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+        <div class="doc-body">
+          <div class="doc-title">Partnership Agreement (WBF Format)</div>
+          <div class="doc-meta">For shortlisted applicants</div>
+        </div>
+        <span class="doc-soon">Call No. 9</span>
+      </div>
+
+      <div class="doc-card unavailable">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+        <div class="doc-body">
+          <div class="doc-title">Financial Capacity Form</div>
+          <div class="doc-meta">For shortlisted Lead Applicants</div>
+        </div>
+        <span class="doc-soon">Call No. 9</span>
+      </div>
+
+      <div class="doc-card unavailable">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="doc-body">
+          <div class="doc-title">Frequently Asked Questions</div>
+          <div class="doc-meta">PDF · Updated during the call period</div>
+        </div>
+        <span class="doc-soon">Call No. 9</span>
+      </div>
+
+      <div class="doc-card unavailable">
+        <div class="doc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+        <div class="doc-body">
+          <div class="doc-title">Grant Contract Template</div>
+          <div class="doc-meta">Standard WBF grant agreement</div>
+        </div>
+        <span class="doc-soon">Call No. 9</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CALL NO. 9 INTEREST CTA  (kept for those interested in next call)
+     ============================================================ -->
+<section class="subscribe" id="call-9-interest">
+  <div class="subscribe-inner">
+    <div class="subscribe-icon">
+      <svg viewBox="0 0 24 24"><path d="M22 17h-3.8a2 2 0 0 0-1.7 1l-1 1.5a2 2 0 0 1-1.7 1H10.2a2 2 0 0 1-1.7-1L7.5 18a2 2 0 0 0-1.7-1H2"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+    </div>
+    <div class="overline">Notify Me</div>
+    <h2>Be the first to know when Call No. 9 opens</h2>
+    <div class="subscribe-btns">
+      <a class="btn-white" href="contact.html">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Subscribe to updates
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECT MODAL  (shared template)
+     ============================================================ -->
+<div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
+  <div class="modal-box">
+    <button class="modal-close" type="button" aria-label="Close" id="modal-close-btn">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-head">
+      <div class="modal-meta-row" id="modal-meta-row"></div>
+      <h3 class="modal-title" id="modal-title-el">Project title</h3>
+      <p class="modal-lead" id="modal-lead-el"></p>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid" id="modal-grid-el"></div>
+      <div class="modal-section" id="modal-summary-section">
+        <h4>Project summary</h4>
+        <p id="modal-summary-el"></p>
+      </div>
+      <div class="modal-section" id="modal-objectives-section">
+        <h4>Objectives</h4>
+        <p id="modal-objectives-el"></p>
+      </div>
+      <div class="modal-section" id="modal-activities-section">
+        <h4>Key activities</h4>
+        <p id="modal-activities-el"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     DATA LAYER  —  CSV-driven winners + news + stories
+     Update the URLs below to point to the published Google Sheets CSV.
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+     CONFIG  —  swap these URLs with the published Google Sheets CSVs
+     ============================================================ */
+  var CONFIG = {
+    // Sheet must have columns: pn, title, area, lead_cp, lead_org,
+    // partners, grant_amount, duration, start_date, end_date,
+    // summary, objectives, activities
+    winnersCsvUrl: 'data/ggi-call-8-winners.csv',
+    // Sheet must have columns: programme, date, title, excerpt, image, url
+    newsCsvUrl: 'data/news.csv',
+    // Programme tag to filter the news feed by
+    newsProgrammeTag: 'GGI'
+  };
+
+  /* ============================================================
+     STATIC STORY CONTENT  (3 grantees stories, one per area)
+     Replace placeholder text once stories are finalised.
+     ============================================================ */
+  var STORIES = {
+    culture: {
+      pn:    '[PN]',
+      area:  'Cultural Cooperation',
+      areaClass: 'area',
+      title: '[Story title placeholder, Cultural Cooperation]',
+      lead:  '<strong>Lead Applicant:</strong> [Organisation name], [Contracting Party]',
+      stats: [
+        { label: 'Grant', value: '€15,000' },
+        { label: 'Duration', value: '6 months' },
+        { label: 'Call', value: 'No. X' }
+      ],
+      summary:    '[Story summary placeholder. Describe the regional challenge the project addressed.]',
+      objectives: '[Objectives placeholder. What did the team set out to achieve?]',
+      activities: '[Activities placeholder. What did the team actually do, and what was the outcome on the ground?]'
+    },
+    edu: {
+      pn:    '[PN]',
+      area:  'Education & Scientific Exchanges',
+      areaClass: 'area area-edu',
+      title: '[Story title placeholder, Education & Scientific Exchanges]',
+      lead:  '<strong>Lead Applicant:</strong> [Organisation name], [Contracting Party]',
+      stats: [
+        { label: 'Grant', value: '€15,000' },
+        { label: 'Duration', value: '6 months' },
+        { label: 'Call', value: 'No. X' }
+      ],
+      summary:    '[Story summary placeholder.]',
+      objectives: '[Objectives placeholder.]',
+      activities: '[Activities placeholder.]'
+    },
+    sd: {
+      pn:    '[PN]',
+      area:  'Sustainable Development',
+      areaClass: 'area area-sd',
+      title: '[Story title placeholder, Sustainable Development]',
+      lead:  '<strong>Lead Applicant:</strong> [Organisation name], [Contracting Party]',
+      stats: [
+        { label: 'Grant', value: '€15,000' },
+        { label: 'Duration', value: '6 months' },
+        { label: 'Call', value: 'No. X' }
+      ],
+      summary:    '[Story summary placeholder.]',
+      objectives: '[Objectives placeholder.]',
+      activities: '[Activities placeholder.]'
+    }
+  };
+
+  /* ============================================================
+     CP → flag lookup
+     ============================================================ */
+  var CP_FLAGS = {
+    'Albania':                '🇦🇱',
+    'Bosnia and Herzegovina': '🇧🇦',
+    'Kosovo*':                '🇽🇰',
+    'Kosovo':                 '🇽🇰',
+    'North Macedonia':        '🇲🇰',
+    'Montenegro':             '🇲🇪',
+    'Serbia':                 '🇷🇸'
+  };
+
+  /* ============================================================
+     CSV parser  (handles quoted fields and embedded commas)
+     ============================================================ */
+  function parseCsv(text) {
+    var rows = [];
+    var row = [];
+    var cell = '';
+    var inQuotes = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (inQuotes) {
+        if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+        else if (c === '"') { inQuotes = false; }
+        else { cell += c; }
+      } else {
+        if (c === '"') { inQuotes = true; }
+        else if (c === ',') { row.push(cell); cell = ''; }
+        else if (c === '\n' || c === '\r') {
+          if (cell !== '' || row.length > 0) { row.push(cell); rows.push(row); row = []; cell = ''; }
+          if (c === '\r' && text[i + 1] === '\n') { i++; }
+        }
+        else { cell += c; }
+      }
+    }
+    if (cell !== '' || row.length > 0) { row.push(cell); rows.push(row); }
+    if (rows.length === 0) return [];
+    var header = rows.shift().map(function (h) { return h.trim().toLowerCase(); });
+    return rows.filter(function (r) { return r.some(function (x) { return x && x.trim() !== ''; }); })
+      .map(function (r) {
+        var obj = {};
+        header.forEach(function (h, idx) { obj[h] = (r[idx] || '').trim(); });
+        return obj;
+      });
+  }
+
+  /* ============================================================
+     Area class helper  (for color coding)
+     ============================================================ */
+  function areaClassFor(area) {
+    if (!area) return 'area';
+    var a = area.toLowerCase();
+    if (a.indexOf('education') > -1 || a.indexOf('scientific') > -1) return 'area area-edu';
+    if (a.indexOf('sustainable') > -1) return 'area area-sd';
+    return 'area';
+  }
+
+  function escapeHtml(s) {
+    if (s == null) return '';
+    return String(s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  /* ============================================================
+     WINNERS  —  load CSV, render cards, wire filter
+     ============================================================ */
+  var allWinners = [];
+  var activeCp = 'Albania';
+
+  function renderWinners() {
+    var grid = document.getElementById('winners-grid');
+    if (!grid) return;
+    var filtered = allWinners.filter(function (w) { return w.lead_cp === activeCp; });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="winners-empty">No projects to show yet for ' + escapeHtml(activeCp) + '. Project fact sheets will appear here as they are published.</div>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map(function (w, i) {
+      var flagsHtml = '';
+      var partners = (w.partners || '').split(';').map(function (p) { return p.trim(); }).filter(Boolean);
+      // include lead CP flag first
+      var allCps = [w.lead_cp].concat(partners);
+      flagsHtml = allCps.map(function (cp) {
+        var flag = CP_FLAGS[cp] || '';
+        return '<span class="winner-csv-flag">' + flag + ' ' + escapeHtml(cp) + '</span>';
+      }).join('');
+
+      return '<button type="button" class="winner-csv-card" data-index="' + i + '" data-area="' + escapeHtml(w.area || '') + '">' +
+        '<span class="winner-csv-pn">' + escapeHtml(w.pn || ('PN ' + (i + 1))) + '</span>' +
+        '<div class="winner-csv-area">' + escapeHtml(w.area || '') + '</div>' +
+        '<div class="winner-csv-title">' + escapeHtml(w.title || '[Project title]') + '</div>' +
+        '<div class="winner-csv-lead"><span class="role">Lead Applicant</span>' + escapeHtml(w.lead_org || '[Lead organisation]') + ', ' + escapeHtml(w.lead_cp || '') + '</div>' +
+        '<div class="winner-csv-flags">' + flagsHtml + '</div>' +
+        '<div class="winner-csv-foot">' +
+          '<span class="grant">€' + escapeHtml(w.grant_amount || '15,000') + '</span>' +
+          '<span class="more">View details <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>' +
+        '</div>' +
+        '</button>';
+    }).join('');
+
+    // attach click handlers
+    Array.prototype.forEach.call(grid.querySelectorAll('.winner-csv-card'), function (btn) {
+      btn.addEventListener('click', function () {
+        var idx = parseInt(btn.getAttribute('data-index'), 10);
+        openWinnerModal(filtered[idx]);
+      });
+    });
+  }
+
+  function loadWinners() {
+    fetch(CONFIG.winnersCsvUrl)
+      .then(function (r) {
+        if (!r.ok) throw new Error('CSV not available (HTTP ' + r.status + ')');
+        return r.text();
+      })
+      .then(function (text) {
+        allWinners = parseCsv(text);
+        renderWinners();
+      })
+      .catch(function (err) {
+        var grid = document.getElementById('winners-grid');
+        if (grid) {
+          grid.innerHTML = '<div class="winners-empty">Awarded projects will appear here once the data feed is connected. (Expected file: <code>' + CONFIG.winnersCsvUrl + '</code>)</div>';
+        }
+        console.warn('Winners CSV could not be loaded:', err);
+      });
+  }
+
+  /* ============================================================
+     CP filter pills
+     ============================================================ */
+  function wireCpFilter() {
+    var pills = document.querySelectorAll('.cp-pill');
+    Array.prototype.forEach.call(pills, function (pill) {
+      pill.addEventListener('click', function () {
+        activeCp = pill.getAttribute('data-cp');
+        Array.prototype.forEach.call(pills, function (p) {
+          p.classList.toggle('is-active', p === pill);
+          p.setAttribute('aria-selected', p === pill ? 'true' : 'false');
+        });
+        renderWinners();
+      });
+    });
+  }
+
+  /* ============================================================
+     MODAL  —  shared for winners and stories
+     ============================================================ */
+  function openModal() {
+    document.getElementById('project-modal').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('project-modal').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function openWinnerModal(w) {
+    if (!w) return;
+    var aCls = areaClassFor(w.area);
+    var partnersList = (w.partners || '').split(';').map(function (p) { return p.trim(); }).filter(Boolean);
+    var allCps = [w.lead_cp].concat(partnersList);
+
+    var metaHtml = '<span class="modal-meta-tag pn">' + escapeHtml(w.pn || '') + '</span>' +
+                   '<span class="modal-meta-tag ' + aCls + '">' + escapeHtml(w.area || '') + '</span>';
+    allCps.forEach(function (cp) {
+      var flag = CP_FLAGS[cp] || '';
+      metaHtml += '<span class="modal-meta-tag cp">' + flag + ' ' + escapeHtml(cp) + '</span>';
+    });
+    document.getElementById('modal-meta-row').innerHTML = metaHtml;
+
+    document.getElementById('modal-title-el').textContent = w.title || '[Project title]';
+    document.getElementById('modal-lead-el').innerHTML =
+      '<strong>Lead Applicant:</strong> ' + escapeHtml(w.lead_org || '[Lead organisation]') + ', ' + escapeHtml(w.lead_cp || '');
+
+    var stats = [
+      { label: 'Grant',    value: '€' + (w.grant_amount || '15,000') },
+      { label: 'Duration', value: w.duration || '—' },
+      { label: 'Period',   value: (w.start_date && w.end_date) ? (w.start_date + ' → ' + w.end_date) : '—' }
+    ];
+    document.getElementById('modal-grid-el').innerHTML = stats.map(function (s) {
+      return '<div class="modal-stat"><div class="modal-stat-label">' + escapeHtml(s.label) + '</div><div class="modal-stat-value">' + escapeHtml(s.value) + '</div></div>';
+    }).join('');
+
+    document.getElementById('modal-summary-el').textContent    = w.summary    || '[Summary to be added.]';
+    document.getElementById('modal-objectives-el').textContent = w.objectives || '[Objectives to be added.]';
+    document.getElementById('modal-activities-el').textContent = w.activities || '[Activities to be added.]';
+
+    openModal();
+  }
+
+  function openStoryModal(key) {
+    var s = STORIES[key];
+    if (!s) return;
+    var metaHtml = '<span class="modal-meta-tag pn">' + escapeHtml(s.pn) + '</span>' +
+                   '<span class="modal-meta-tag ' + s.areaClass + '">' + escapeHtml(s.area) + '</span>';
+    document.getElementById('modal-meta-row').innerHTML = metaHtml;
+    document.getElementById('modal-title-el').textContent = s.title;
+    document.getElementById('modal-lead-el').innerHTML = s.lead;
+    document.getElementById('modal-grid-el').innerHTML = s.stats.map(function (st) {
+      return '<div class="modal-stat"><div class="modal-stat-label">' + escapeHtml(st.label) + '</div><div class="modal-stat-value">' + escapeHtml(st.value) + '</div></div>';
+    }).join('');
+    document.getElementById('modal-summary-el').textContent    = s.summary;
+    document.getElementById('modal-objectives-el').textContent = s.objectives;
+    document.getElementById('modal-activities-el').textContent = s.activities;
+    openModal();
+  }
+
+  function wireStoriesAndModalClose() {
+    Array.prototype.forEach.call(document.querySelectorAll('.story-card'), function (card) {
+      card.addEventListener('click', function () {
+        openStoryModal(card.getAttribute('data-story'));
+      });
+    });
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    document.getElementById('project-modal').addEventListener('click', function (e) {
+      if (e.target === this) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  /* ============================================================
+     NEWS  —  load CSV, filter to GGI, take top 6
+     ============================================================ */
+  function loadNews() {
+    var grid = document.getElementById('ggi-news-grid');
+    if (!grid) return;
+    fetch(CONFIG.newsCsvUrl)
+      .then(function (r) {
+        if (!r.ok) throw new Error('News CSV not available');
+        return r.text();
+      })
+      .then(function (text) {
+        var rows = parseCsv(text);
+        var items = rows
+          .filter(function (n) {
+            return (n.programme || '').toUpperCase() === CONFIG.newsProgrammeTag.toUpperCase();
+          })
+          .sort(function (a, b) {
+            return (b.date || '').localeCompare(a.date || '');
+          })
+          .slice(0, 6);
+
+        if (items.length === 0) {
+          grid.innerHTML = '<div class="winners-empty" style="grid-column:1/-1;">No GGI news items yet.</div>';
+          return;
+        }
+
+        grid.innerHTML = items.map(function (n) {
+          var img = n.image ? 'style="background-image:url(' + escapeHtml(n.image) + ');"' : '';
+          return '<a class="news-card" href="' + escapeHtml(n.url || 'news.html') + '">' +
+            '<div class="news-thumb" ' + img + '>' +
+              '<span class="news-tag">GGI</span>' +
+            '</div>' +
+            '<div class="news-body">' +
+              '<div class="news-date">' + escapeHtml(n.date || '') + '</div>' +
+              '<div class="news-title">' + escapeHtml(n.title || '') + '</div>' +
+              '<div class="news-excerpt">' + escapeHtml(n.excerpt || '') + '</div>' +
+              '<span class="news-more">Read more <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>' +
+            '</div>' +
+          '</a>';
+        }).join('');
+      })
+      .catch(function (err) {
+        grid.innerHTML = '<div class="winners-empty" style="grid-column:1/-1;">Latest news will appear here once the data feed is connected. (Expected file: <code>' + CONFIG.newsCsvUrl + '</code>)</div>';
+        console.warn('News CSV could not be loaded:', err);
+      });
+  }
+
+  /* ============================================================
+     INIT
+     ============================================================ */
+  document.addEventListener('DOMContentLoaded', function () {
+    wireCpFilter();
+    wireStoriesAndModalClose();
+    loadWinners();
+    loadNews();
+  });
+})();
+</script>
+
+<!-- FOOTER (unchanged — loads from master) -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

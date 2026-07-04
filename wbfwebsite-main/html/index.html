@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Western Balkans Fund — Building Regional Cooperation</title>
+<meta name="description" content="The Western Balkans Fund supports civil society, institutions, and communities across all six Contracting Parties — funding projects that strengthen reconciliation, EU integration, and people-to-people ties.">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/site-chrome.css">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e;
+    background: #fff;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ============================================================
+     HERO SECTION
+     ============================================================ */
+  .hero {
+    position: relative;
+    background: var(--gradient-hero);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: -160px;
+    right: -100px;
+    width: 560px;
+    height: 560px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 56px 40px 0;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 56px;
+    align-items: end;
+  }
+
+  .hero-text {
+    padding-bottom: 48px;
+  }
+
+  .hero-text h1 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+
+  .hero-text h1 em {
+    font-style: normal;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .hero-text p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+    max-width: 50ch;
+    margin-bottom: 28px;
+  }
+
+  .hero-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #fff;
+    color: #0f2044;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .hero-btn-primary:hover { background: #e8eef8; }
+
+  .hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .hero-btn-secondary:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
+
+  .hero-aside {
+    padding-bottom: 48px;
+  }
+
+  .hero-aside-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+  }
+
+  .audience-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .audience-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .audience-card:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .audience-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+  }
+  .audience-icon svg { width: 20px; height: 20px; stroke-width: 1.8; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+
+  .audience-title { flex: 1; font-size: 14px; font-weight: 600; color: #fff; }
+  .audience-arrow { color: rgba(255,255,255,0.25); font-size: 16px; transition: color 0.15s; }
+  .audience-card:hover .audience-arrow { color: rgba(255,255,255,0.6); }
+
+  /* Stats bar */
+  .stats-bar {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    background: rgba(0,0,0,0.2);
+  }
+  .stats-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 22px 24px;
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.45); }
+
+  /* ============================================================
+     SECTION SHARED
+     ============================================================ */
+  .section { padding: 88px 0; }
+  .section-sm { padding: 64px 0; }
+
+  .overline {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #1A3668;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  /* ============================================================
+     ABOUT SECTION
+     ============================================================ */
+  .about {
+    background: #fff;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .about-text .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 11px 20px;
+    background: #0f2044;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .about-text .btn-dark:hover { background: #1A3668; }
+
+  .pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pillar {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .pillar:hover { background: #f8fafc; }
+
+  .pillar-num {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    color: #e2e8f0;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 40px;
+    text-align: right;
+    padding-top: 2px;
+  }
+
+  .pillar-title { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+  .pillar-desc  { font-size: 14px; color: #64748b; line-height: 1.6; }
+
+  /* ============================================================
+     PROGRAMS OVERVIEW
+     ============================================================ */
+  .programs {
+    position: relative;
+    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 50%, #4061a0 100%);
+    overflow: hidden;
+  }
+  .programs::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .programs-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 44px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .programs-header .overline { color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+  .programs-header h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .programs-link {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 3px;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .programs-link:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+
+  .program-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .program-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, background 0.15s, border-color 0.15s;
+  }
+  .program-card:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+  }
+
+  .program-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .status-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .status-badge.open    { background: rgba(74, 222, 128, 0.2); color: #6ee7b7; }
+  .status-badge.review  { background: rgba(251, 191, 36, 0.2); color: #fcd34d; }
+  .status-badge.upcoming{ background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.75); }
+
+  .program-grant       { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.9); text-align: right; }
+  .program-grant-sub   { font-size: 11px; color: rgba(255,255,255,0.6); text-align: right; }
+
+  .program-title { font-size: 16px; font-weight: 600; color: #fff; line-height: 1.35; margin-bottom: 8px; flex: 1; }
+  .program-desc  { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 16px; }
+
+  .program-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .program-date { font-size: 12px; color: rgba(255,255,255,0.55); }
+  .program-arrow {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .program-card:hover .program-arrow { background: rgba(255,255,255,0.22); color: #fff; }
+
+  /* ============================================================
+     IMPACT STATS
+     ============================================================ */
+  .impact { background: #fff; }
+
+  .impact-header { text-align: center; margin-bottom: 56px; }
+  .impact-header .overline { display: inline-block; }
+  .impact-header h2 { margin-bottom: 16px; }
+  .impact-header p { font-size: 16px; color: #64748b; max-width: 50ch; margin: 0 auto; line-height: 1.65; }
+
+  .impact-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .impact-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .impact-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+
+  .impact-num {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    color: #1A3668;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .impact-label { font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 4px; }
+  .impact-sub   { font-size: 12px; color: #94a3b8; }
+
+  .region-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 64px;
+    text-align: center;
+  }
+  .region-card h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 24px;
+  }
+  .region-card p {
+    font-size: 16px;
+    color: #475569;
+    line-height: 1.7;
+    max-width: 68ch;
+    margin: 0 auto 32px;
+  }
+  .region-card a {
+    color: #1A3668;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .region-card a:hover { color: #0f2044; }
+
+  /* ============================================================
+     PARTNERSHIP PLATFORM
+     ============================================================ */
+  .partnership {
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2f8 100%);
+  }
+
+  .partnership-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s;
+  }
+  .partnership-card:hover { box-shadow: 0 16px 40px rgba(15,32,68,0.12); }
+
+  .partnership-text { padding: 56px; }
+  .partnership-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .partnership-text p {
+    font-size: 16px;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .benefit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .benefit-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 3px;
+    background: #eef2f8;
+    color: #1A3668;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .benefit-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .benefit-label { font-size: 14px; font-weight: 500; color: #334155; }
+
+  .partnership-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #1A3668;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 3px;
+    transition: background 0.15s;
+  }
+  .partnership-card:hover .partnership-btn { background: #0f2044; }
+
+  .partnership-visual {
+    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 480px;
+  }
+
+  .browser-frame {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  }
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #1e293b;
+    padding: 10px 16px;
+  }
+  .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .browser-dot.r { background: #f87171; }
+  .browser-dot.y { background: #fbbf24; }
+  .browser-dot.g { background: #34d399; }
+  .browser-url {
+    flex: 1;
+    margin-left: 12px;
+    background: #334155;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: #cbd5e1;
+    border-radius: 3px;
+  }
+  .browser-body {
+    background: #fff;
+    padding: 24px;
+  }
+  .bb-title { height: 12px; width: 40%; background: #dbe5f1; border-radius: 999px; margin-bottom: 20px; }
+  .bb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .bb-card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; }
+  .bb-card-icon { width: 28px; height: 28px; background: #eef2f8; border-radius: 3px; margin-bottom: 10px; }
+  .bb-card-label { font-size: 11px; font-weight: 600; color: #334155; margin-bottom: 6px; }
+  .bb-card-line { height: 6px; background: #f1f5f9; border-radius: 999px; margin-bottom: 4px; }
+  .bb-card-line.short { width: 75%; }
+  .bb-people {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .bb-avatars { display: flex; }
+  .bb-avatar { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #fff; margin-left: -6px; }
+  .bb-avatar:first-child { margin-left: 0; }
+  .bb-avatar.a { background: #93c5fd; }
+  .bb-avatar.b { background: #5eead4; }
+  .bb-avatar.c { background: #fcd34d; }
+  .bb-people-text { font-size: 11px; color: #64748b; }
+
+  /* ============================================================
+     NEWS GRID
+     ============================================================ */
+  .news { background: #fff; }
+  .news-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .news-header .section-title { margin-bottom: 8px; }
+  .news-header p { color: #64748b; font-size: 15px; }
+
+  .ghost-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #1A3668;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .ghost-link:hover { border-bottom-color: #1A3668; }
+
+  .news-featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 20px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .news-featured:hover { box-shadow: 0 16px 32px rgba(15,32,68,0.08); transform: translateY(-2px); }
+
+  .news-featured-img {
+    min-height: 320px;
+    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
+    background-size: cover;
+    background-position: center;
+  }
+  .news-featured-body { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+
+  .news-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #eef2f8;
+    color: #1A3668;
+    margin-bottom: 16px;
+  }
+
+  .news-featured h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  .news-featured p { color: #64748b; line-height: 1.65; margin-bottom: 20px; }
+  .news-date { font-size: 12px; color: #94a3b8; display: flex; align-items: center; gap: 6px; }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .news-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .news-card:hover { box-shadow: 0 12px 24px rgba(15,32,68,0.08); transform: translateY(-2px); }
+
+  .news-card-img {
+    height: 180px;
+    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
+    background-size: cover;
+    background-position: center;
+  }
+  .news-card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+  .news-card-body .news-badge { font-size: 10px; padding: 3px 8px; margin-bottom: 12px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: #0f172a; line-height: 1.4; margin-bottom: 8px; flex: 1; }
+  .news-card p { font-size: 13px; color: #64748b; line-height: 1.55; margin-bottom: 16px; }
+  .news-card-foot { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #94a3b8; }
+  .news-card-read { color: #1A3668; font-weight: 600; }
+
+  /* ============================================================
+     EVENTS PREVIEW
+     ============================================================ */
+  .events { background: #f8fafc; }
+  .events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  .events-header .section-title { margin-bottom: 12px; }
+  .events-header p { color: #64748b; font-size: 15px; max-width: 40ch; }
+
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .event-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    align-items: flex-start;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .event-item:hover { box-shadow: 0 8px 20px rgba(15,32,68,0.06); transform: translateY(-1px); }
+
+  .event-date {
+    width: 64px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .event-date-month {
+    background: #0f2044;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .event-date-day {
+    border: 1px solid #e2e8f0;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 8px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1;
+  }
+
+  .event-body { flex: 1; min-width: 0; }
+  .event-badges { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+  .event-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+  .event-badge.neutral { background: #eef2f8; color: #475569; }
+  .event-badge.teal    { background: #d1faf3; color: #0d6e62; }
+
+  .event-title { font-size: 14px; font-weight: 600; color: #0f172a; line-height: 1.4; margin-bottom: 6px; }
+  .event-loc { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #64748b; }
+
+  /* ============================================================
+     PARTNERS STRIP
+     ============================================================ */
+  .partners {
+    padding: 56px 0;
+    background: #fff;
+    border-top: 1px solid #f1f5f9;
+  }
+  .partners-label {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #94a3b8;
+    margin-bottom: 32px;
+  }
+  .partners-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .partner-link {
+    padding: 12px 28px;
+    border-right: 1px solid #e2e8f0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .partner-link:last-child { border-right: none; }
+  .partner-link:hover { color: #1A3668; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container { padding: 0 24px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px 0; }
+    .stats-grid { padding: 0 24px; grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .program-cards { grid-template-columns: repeat(2, 1fr); }
+    .impact-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .region-card { padding: 40px 24px; }
+    .partnership-card { grid-template-columns: 1fr; }
+    .partnership-text { padding: 40px 24px; }
+    .partnership-visual { min-height: 320px; padding: 32px; }
+    .news-featured { grid-template-columns: 1fr; }
+    .news-featured-body { padding: 28px; }
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+    .events-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-items { display: none; }
+    .btn-partners { display: none; }
+    .section { padding: 56px 0; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .program-cards { grid-template-columns: 1fr; }
+    .impact-stats-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .partners-row { flex-direction: column; }
+    .partner-link { border-right: none; border-bottom: 1px solid #e2e8f0; width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '../js/nav.js'; document.body.appendChild(s); });
+</script>
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>
+        Building <em>lasting</em><br>
+        regional cooperation<br>
+        across the Western Balkans
+      </h1>
+      <p>The Western Balkans Fund supports civil society, institutions, and communities across all six Contracting Parties — funding projects that strengthen reconciliation, EU integration, and people-to-people ties.</p>
+      <div class="hero-btns">
+        <a href="our-programs.html" class="hero-btn-primary">
+          Explore Funding Programs
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+        </a>
+        <a href="about.html" class="hero-btn-secondary">About WBF</a>
+      </div>
+    </div>
+
+    <aside class="hero-aside">
+      <div class="hero-aside-label">I am looking to…</div>
+      <div class="audience-cards">
+        <a href="our-programs.html" class="audience-card">
+          <span class="audience-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+          </span>
+          <span class="audience-title">Apply for Funding</span>
+          <span class="audience-arrow">→</span>
+        </a>
+        <a href="https://wbfpartnership.com" target="_blank" rel="noopener" class="audience-card">
+          <span class="audience-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <span class="audience-title">Build a Partnership</span>
+          <span class="audience-arrow">→</span>
+        </a>
+        <a href="projects.html" class="audience-card">
+          <span class="audience-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+          </span>
+          <span class="audience-title">Explore Our Impact</span>
+          <span class="audience-arrow">→</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Projects funded across the region</div></div>
+      <div class="stat-item"><div class="stat-num">€8M+</div><div class="stat-label">Total funding disbursed</div></div>
+      <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Contracting Parties covered</div></div>
+      <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">Active funding programs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="overline">About the Western Balkans Fund</div>
+        <h2 class="section-title">An intergovernmental fund built on regional ownership</h2>
+        <p>The Western Balkans Fund is an intergovernmental organization established by all six Western Balkans governments to support regional cooperation from within — not imposed from outside.</p>
+        <p>Co-funded by the European Union through IPA III and supported by Switzerland, Japan, Germany, and the Visegrad Fund, WBF channels grants directly to civil society, institutions, and communities working across borders.</p>
+        <a href="about.html" class="btn-dark">
+          Learn About WBF
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+        </a>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div>
+            <div class="pillar-title">Regional Cooperation</div>
+            <div class="pillar-desc">Every project must cross at least three Contracting Parties, building genuine ties rather than bilateral arrangements.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div>
+            <div class="pillar-title">Civil Society Empowerment</div>
+            <div class="pillar-desc">From grassroots organizations to universities, WBF funds the actors closest to communities who anchor change where it matters.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div>
+            <div class="pillar-title">EU Integration Pathway</div>
+            <div class="pillar-desc">Every program supports the Western Balkans' path toward European integration through democratic governance and people-to-people links.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">04</div>
+          <div>
+            <div class="pillar-title">Reconciliation &amp; Dialogue</div>
+            <div class="pillar-desc">WBF supports projects that address shared history and build common futures across the region.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROGRAMS OVERVIEW
+     ============================================================ -->
+<section class="section programs" id="programs">
+  <div class="container">
+    <div class="programs-header">
+      <div>
+        <div class="overline" style="color:rgba(255,255,255,0.6)">Funding Opportunities</div>
+        <h2>Our Programs</h2>
+      </div>
+      <a href="our-programs.html" class="programs-link">View All Programs →</a>
+    </div>
+
+    <div class="program-cards">
+
+      <a href="ggi.html" class="program-card">
+        <div class="program-card-top">
+          <span class="status-badge review">Under Review</span>
+          <div>
+            <div class="program-grant">€15,000</div>
+            <div class="program-grant-sub">max grant</div>
+          </div>
+        </div>
+        <h3 class="program-title">GGI Grants — Grassroots &amp; Civil Society</h3>
+        <p class="program-desc">Funds regional cooperation projects led by CSOs, cultural institutions, education bodies, and grassroots organizations across WB6. Call No. 8 under evaluation.</p>
+        <div class="program-card-bottom">
+          <span class="program-date">Results: June 2026</span>
+          <span class="program-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="matching.html" class="program-card">
+        <div class="program-card-top">
+          <span class="status-badge open">Always Open</span>
+          <div>
+            <div class="program-grant">€10,000</div>
+            <div class="program-grant-sub">max grant</div>
+          </div>
+        </div>
+        <h3 class="program-title">Matching Grants</h3>
+        <p class="program-desc">Supports organizations that have secured co-funding from another source, amplifying their impact through matched WBF support. Rolling basis, no deadline.</p>
+        <div class="program-card-bottom">
+          <span class="program-date">No deadline — rolling basis</span>
+          <span class="program-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="visegrad.html" class="program-card">
+        <div class="program-card-top">
+          <span class="status-badge open">Open</span>
+          <div>
+            <div class="program-grant">Fellowship</div>
+            <div class="program-grant-sub">mobility grant</div>
+          </div>
+        </div>
+        <h3 class="program-title">Visegrad Fellowship — 3rd Edition</h3>
+        <p class="program-desc">Supports doctoral students and graduates from WB6 connecting with V4 countries — Czech Republic, Hungary, Poland, Slovakia. In partnership with the International Visegrad Fund.</p>
+        <div class="program-card-bottom">
+          <span class="program-date">Deadline: 30 June 2026</span>
+          <span class="program-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="erc.html" class="program-card">
+        <div class="program-card-top">
+          <span class="status-badge upcoming">Coming Soon</span>
+          <div>
+            <div class="program-grant">€30,000</div>
+            <div class="program-grant-sub">max grant</div>
+          </div>
+        </div>
+        <h3 class="program-title">ERC Grants — EU Co-funded</h3>
+        <p class="program-desc">Larger EU co-funded grants for established organizations. Autumn 2026 opening — register your organization to be notified.</p>
+        <div class="program-card-bottom">
+          <span class="program-date">Opening: Autumn 2026</span>
+          <span class="program-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="move.html" class="program-card">
+        <div class="program-card-top">
+          <span class="status-badge upcoming">Coming Soon</span>
+          <div>
+            <div class="program-grant">Travel grant</div>
+            <div class="program-grant-sub">for individuals</div>
+          </div>
+        </div>
+        <h3 class="program-title">Move Grants</h3>
+        <p class="program-desc">Supports individuals creating new regional connections — framed around purpose and output, not travel. Open to individuals. New call anticipated.</p>
+        <div class="program-card-bottom">
+          <span class="program-date">Next call: TBC</span>
+          <span class="program-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="our-programs.html" class="program-card">
+        <div class="program-card-top">
+          <span class="status-badge open">Open</span>
+          <div>
+            <div class="program-grant">7 events</div>
+            <div class="program-grant-sub">annual</div>
+          </div>
+        </div>
+        <h3 class="program-title">Advocacy &amp; Networking Events</h3>
+        <p class="program-desc">Seven annual events connecting CSOs, governmental instances, and LeadBalkans platform participants. Japan-funded, focused on regional advocacy.</p>
+        <div class="program-card-bottom">
+          <span class="program-date">LeadBalkans Platform →</span>
+          <span class="program-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     IMPACT STATS
+     ============================================================ -->
+<section class="section impact" id="impact">
+  <div class="container">
+    <div class="impact-header">
+      <div class="overline">Our Impact</div>
+      <h2 class="section-title">Regional change, measured</h2>
+      <p>Across all programs and eight calls, WBF has supported hundreds of organizations building a more connected Western Balkans.</p>
+    </div>
+
+    <div class="impact-stats-grid">
+      <div class="impact-card">
+        <div class="impact-num">500+</div>
+        <div class="impact-label">Projects funded</div>
+        <div class="impact-sub">Across all programs and calls</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">€8M+</div>
+        <div class="impact-label">Total funding disbursed</div>
+        <div class="impact-sub">EU co-funded and bilateral</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">2,000+</div>
+        <div class="impact-label">Organizations supported</div>
+        <div class="impact-sub">CSOs, institutions, universities</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">263</div>
+        <div class="impact-label">Applications — GGI Call 8</div>
+        <div class="impact-sub">Record for the GGI scheme</div>
+      </div>
+    </div>
+
+    <div class="region-card">
+      <h3>Six Contracting Parties, One Region</h3>
+      <p>The Western Balkans Fund supports regional cooperation and people-to-people connections across the entire Western Balkans region. Through grants, partnerships, and joint initiatives, we work to strengthen collaboration among civil society organizations, institutions, and communities throughout the region.</p>
+      <a href="projects.html">Browse all projects →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PARTNERSHIP PLATFORM
+     ============================================================ -->
+<section class="section partnership" id="partnership-platform">
+  <div class="container">
+    <a href="https://wbfpartnership.com/" target="_blank" rel="noopener" class="partnership-card" aria-label="Visit the WBF Partnership Platform">
+
+      <div class="partnership-text">
+        <div class="overline">WBF Partnership Platform</div>
+        <h2>Build Stronger Regional Partnerships</h2>
+        <p>The Western Balkans Fund Partnership Platform helps organizations across the region connect with potential partners, develop consortiums, and prepare stronger project applications. Whether you are looking for new collaborators or seeking expertise for a regional initiative, the platform provides a dedicated space to build meaningful partnerships.</p>
+
+        <div class="benefits-grid">
+          <div class="benefit">
+            <span class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span class="benefit-label">Find project partners</span>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="7" y1="6.5" x2="10" y2="10"/><line x1="17" y1="6.5" x2="14" y2="10"/><line x1="7" y1="17.5" x2="10" y2="14"/><line x1="17" y1="17.5" x2="14" y2="14"/></svg></span>
+            <span class="benefit-label">Build regional consortiums</span>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-7 7c0 3 2 5 3 6.5V18h8v-2.5c1-1.5 3-3.5 3-6.5a7 7 0 0 0-7-7z"/></svg></span>
+            <span class="benefit-label">Develop joint project ideas</span>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+            <span class="benefit-label">Strengthen cross-border cooperation</span>
+          </div>
+        </div>
+
+        <span class="partnership-btn">
+          Visit the Partnership Platform
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="11" x2="11" y2="3"/><polyline points="5,3 11,3 11,9"/></svg>
+        </span>
+      </div>
+
+      <div class="partnership-visual">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <span class="browser-dot r"></span>
+            <span class="browser-dot y"></span>
+            <span class="browser-dot g"></span>
+            <span class="browser-url">wbfpartnership.com</span>
+          </div>
+          <div class="browser-body">
+            <div class="bb-title"></div>
+            <div class="bb-grid">
+              <div class="bb-card">
+                <div class="bb-card-icon"></div>
+                <div class="bb-card-label">Partner Search</div>
+                <div class="bb-card-line"></div>
+                <div class="bb-card-line short"></div>
+              </div>
+              <div class="bb-card">
+                <div class="bb-card-icon"></div>
+                <div class="bb-card-label">Open Calls</div>
+                <div class="bb-card-line"></div>
+                <div class="bb-card-line short"></div>
+              </div>
+            </div>
+            <div class="bb-people">
+              <div class="bb-avatars">
+                <span class="bb-avatar a"></span>
+                <span class="bb-avatar b"></span>
+                <span class="bb-avatar c"></span>
+              </div>
+              <div class="bb-people-text">Organizations across the Western Balkans</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWS GRID
+     ============================================================ -->
+<section class="section news">
+  <div class="container">
+    <div class="news-header">
+      <div>
+        <div class="overline">Latest News</div>
+        <h2 class="section-title">News &amp; Announcements</h2>
+        <p>Stay informed on WBF's latest activities, grants, and regional cooperation initiatives.</p>
+      </div>
+      <a href="news.html" class="ghost-link">All News →</a>
+    </div>
+
+    <a href="news.html" class="news-featured">
+      <div class="news-featured-img"></div>
+      <div class="news-featured-body">
+        <span class="news-badge">Open Call</span>
+        <h3>GGI Call No. 9 opens for applications — €15,000 grants for regional cooperation</h3>
+        <p>The Western Balkans Fund announces the opening of the ninth call under the Good Governance and Integration scheme, supporting civil society, cultural and educational projects across WB6.</p>
+        <div class="news-date">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          14 June 2026
+        </div>
+      </div>
+    </a>
+
+    <div class="news-grid">
+      <a href="news.html" class="news-card">
+        <div class="news-card-img"></div>
+        <div class="news-card-body">
+          <span class="news-badge">Announcement</span>
+          <h3>Visegrad Fellowship — 3rd Edition opens to WB6 researchers</h3>
+          <p>Doctoral students and graduates invited to apply for mobility grants in partnership with the International Visegrad Fund.</p>
+          <div class="news-card-foot">
+            <span>10 June 2026</span>
+            <span class="news-card-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="news.html" class="news-card">
+        <div class="news-card-img"></div>
+        <div class="news-card-body">
+          <span class="news-badge">Story</span>
+          <h3>How a cross-border youth network reconnected three Balkan cities</h3>
+          <p>A grantee story from the GGI Call No. 7 — three CSOs share lessons from a year of regional cooperation.</p>
+          <div class="news-card-foot">
+            <span>5 June 2026</span>
+            <span class="news-card-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="news.html" class="news-card">
+        <div class="news-card-img"></div>
+        <div class="news-card-body">
+          <span class="news-badge">Event Recap</span>
+          <h3>LeadBalkans 2026: Highlights from the regional advocacy forum</h3>
+          <p>Photos, speakers and key takeaways from the third edition of the LeadBalkans platform in Tirana.</p>
+          <div class="news-card-foot">
+            <span>28 May 2026</span>
+            <span class="news-card-read">Read →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EVENTS PREVIEW
+     ============================================================ -->
+<section class="section-sm events">
+  <div class="container">
+    <div class="events-grid">
+      <div class="events-header">
+        <div class="overline">Events &amp; Activities</div>
+        <h2 class="section-title">Upcoming Events</h2>
+        <p>Join us at conferences, workshops, info sessions and networking events across the region.</p>
+      </div>
+
+      <div>
+        <div class="events-list">
+          <a href="events.html" class="event-item">
+            <div class="event-date">
+              <div class="event-date-month">Jul</div>
+              <div class="event-date-day">02</div>
+            </div>
+            <div class="event-body">
+              <div class="event-badges">
+                <span class="event-badge neutral">Info Session</span>
+                <span class="event-badge teal">Online</span>
+              </div>
+              <div class="event-title">GGI Call No. 9 — Application Information Webinar</div>
+              <div class="event-loc">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Online
+              </div>
+            </div>
+            <span class="audience-arrow" style="color:#cbd5e1">→</span>
+          </a>
+
+          <a href="events.html" class="event-item">
+            <div class="event-date">
+              <div class="event-date-month">Jul</div>
+              <div class="event-date-day">18</div>
+            </div>
+            <div class="event-body">
+              <div class="event-badges">
+                <span class="event-badge neutral">Networking</span>
+              </div>
+              <div class="event-title">Regional Cooperation Forum — Skopje</div>
+              <div class="event-loc">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Skopje, North Macedonia
+              </div>
+            </div>
+            <span class="audience-arrow" style="color:#cbd5e1">→</span>
+          </a>
+
+          <a href="events.html" class="event-item">
+            <div class="event-date">
+              <div class="event-date-month">Sep</div>
+              <div class="event-date-day">12</div>
+            </div>
+            <div class="event-body">
+              <div class="event-badges">
+                <span class="event-badge neutral">Conference</span>
+              </div>
+              <div class="event-title">LeadBalkans 2026 — Annual Advocacy Platform</div>
+              <div class="event-loc">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Tirana, Albania
+              </div>
+            </div>
+            <span class="audience-arrow" style="color:#cbd5e1">→</span>
+          </a>
+        </div>
+
+        <a href="events.html" class="ghost-link">All events →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PARTNERS STRIP
+     ============================================================ -->
+<section class="partners">
+  <div class="container">
+    <div class="partners-label">Supported By</div>
+    <div class="partners-row">
+      <a href="partners.html" class="partner-link">🇪🇺 European Union</a>
+      <a href="partners.html" class="partner-link">🇨🇭 Swiss Agency for Development and Cooperation</a>
+      <a href="partners.html" class="partner-link">🇯🇵 Government of Japan</a>
+      <a href="partners.html" class="partner-link">🇩🇪 Federal Foreign Office of Germany</a>
+      <a href="partners.html" class="partner-link">🔷 International Visegrad Fund</a>
+      <a href="partners.html" class="partner-link">◆ Open Society Foundations</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

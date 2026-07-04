@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News & Announcements — Western Balkans Fund</title>
+<meta name="description" content="Latest updates, opportunities, publications, stories, and announcements from the Western Balkans Fund.">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/site-chrome.css">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e;
+    background: #fff;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============================================================
+     PAGE HERO (news header)
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: var(--gradient-hero);
+    overflow: hidden;
+    padding: 72px 0 64px;
+  }
+  .page-hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px);
+    pointer-events: none;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+
+  .page-hero-overline {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 16px;
+  }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    max-width: 22ch;
+  }
+  .page-hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+
+  /* ============================================================
+     FILTERS
+     ============================================================ */
+  .filters-wrap {
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 56px;
+    z-index: 100;
+  }
+  .filters-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #94a3b8;
+    margin-right: 4px;
+    flex-shrink: 0;
+    width: 80px;
+  }
+  .filter-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .chip {
+    background: #f1f5f9;
+    border: 1px solid transparent;
+    color: #475569;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .chip:hover { background: #e2e8f0; color: #1A3668; }
+  .chip.active {
+    background: #1A3668;
+    color: #fff;
+    border-color: #1A3668;
+  }
+  .chip-count {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 10px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+  .chip.active .chip-count { color: rgba(255,255,255,0.6); }
+
+  .results-meta {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px 0;
+    font-size: 13px;
+    color: #64748b;
+  }
+  .results-meta strong { color: #0f172a; font-weight: 600; }
+
+  /* ============================================================
+     NEWS SECTION (grid container only — card styles live in
+     components/news-card.html)
+     ============================================================ */
+  .news-section { padding: 32px 0 88px; background: #fff; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .filters-inner, .page-hero-inner, .results-meta { padding-left: 24px; padding-right: 24px; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-items { display: none; }
+    .btn-partners { display: none; }
+    .page-hero { padding: 56px 0 48px; }
+    .filters-wrap { position: static; }
+    .filter-label { width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '../js/nav.js'; document.body.appendChild(s); });
+</script>
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>›</span>News &amp; Events<span>›</span>News
+    </nav>
+    <div class="page-hero-overline">News &amp; Events</div>
+    <h1>News &amp; Announcements</h1>
+    <p>Latest updates, opportunities, publications, stories, and announcements from the Western Balkans Fund.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FILTERS
+     ============================================================ -->
+<div class="filters-wrap" role="region" aria-label="Filter news">
+  <div class="filters-inner">
+    <div class="filter-row">
+      <div class="filter-label">Type</div>
+      <div class="filter-chips" id="type-filters" role="group" aria-label="Filter by content type">
+        <button class="chip active" data-type="all">All</button>
+        <button class="chip" data-type="announcement">Announcements</button>
+        <button class="chip" data-type="press-release">Press Releases</button>
+        <button class="chip" data-type="publication">Publications</button>
+        <button class="chip" data-type="story">Stories</button>
+        <button class="chip" data-type="open-call">Open Calls</button>
+        <button class="chip" data-type="event-recap">Event Recaps</button>
+      </div>
+    </div>
+    <div class="filter-row">
+      <div class="filter-label">Programme</div>
+      <div class="filter-chips" id="programme-filters" role="group" aria-label="Filter by programme">
+        <button class="chip active" data-programme="all">All Programmes</button>
+        <!-- Programme chips are injected dynamically by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     RESULTS META + GRID
+     The grid container is shared markup; the cards are rendered
+     by the reusable component (components/news-card.html).
+     ============================================================ -->
+<div class="results-meta" id="results-meta" aria-live="polite"></div>
+
+<section class="news-section">
+  <div class="container">
+    <div class="cards-grid" id="cards-grid" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODAL
+     Mount point + CSS are injected at runtime from
+     components/news-modal.html.
+     ============================================================ -->
+
+
+
+<!-- ============================================================
+     PAGE SCRIPT
+     Data comes from the shared data service (js/data-service.js,
+     loaded just above). The page only owns: hero, filter state,
+     grid container, and wiring components → modal.
+     ============================================================ -->
+<script src="../js/data-service.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ──────────────────────────────────────────────────────────
+     CONFIG
+     COMPONENTS_BASE — relative path to the components/ folder
+     from this page. The news data source itself lives in
+     js/data-service.js.
+     ────────────────────────────────────────────────────────── */
+  const COMPONENTS_BASE = "../components/";
+
+  const STATE = {
+    items: [],
+    activeType: 'all',
+    activeProgramme: 'all'
+  };
+
+  /* ──────────────────────────────────────────────────────────
+     UTILITIES
+     ────────────────────────────────────────────────────────── */
+  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+  function $$(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     COMPONENT LOADER
+     Fetches a component HTML fragment and injects its <style>,
+     markup, and <script> nodes into the host document so the
+     embedded scripts execute.
+     ────────────────────────────────────────────────────────── */
+  async function loadComponent(url) {
+    const res = await fetch(url, { cache: 'no-cache' });
+    if (!res.ok) throw new Error('Component load failed: ' + url + ' → HTTP ' + res.status);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+
+    doc.querySelectorAll('style[data-wbf-component]').forEach(s => {
+      document.head.appendChild(s.cloneNode(true));
+    });
+    Array.from(doc.body.childNodes).forEach(node => {
+      if (node.nodeType === 1 && (node.tagName === 'SCRIPT' || node.tagName === 'STYLE')) return;
+      document.body.appendChild(node.cloneNode(true));
+    });
+    doc.querySelectorAll('script[data-wbf-component]').forEach(orig => {
+      const s = document.createElement('script');
+      for (const attr of orig.attributes) s.setAttribute(attr.name, attr.value);
+      s.textContent = orig.textContent;
+      document.body.appendChild(s);
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     FILTERS
+     Items returned by WBFData.news.all() are already
+     normalized (type lower-kebab-cased, drafts dropped,
+     sorted by date desc).
+     ────────────────────────────────────────────────────────── */
+  function buildProgrammeFilters() {
+    const wrap = $('#programme-filters');
+    const programmes = Array.from(new Set(
+      STATE.items.map(i => (i.programme || '').trim()).filter(Boolean)
+    )).sort();
+
+    $$('button[data-programme]:not([data-programme="all"])', wrap).forEach(b => b.remove());
+    programmes.forEach(p => {
+      const count = STATE.items.filter(i => (i.programme || '').trim() === p).length;
+      const btn = document.createElement('button');
+      btn.className = 'chip';
+      btn.dataset.programme = p;
+      btn.innerHTML = escapeHtml(p) + ' <span class="chip-count">' + count + '</span>';
+      wrap.appendChild(btn);
+    });
+  }
+
+  function getFiltered() {
+    return STATE.items
+      .filter(i => STATE.activeType === 'all' ? true : i.type === STATE.activeType)
+      .filter(i => STATE.activeProgramme === 'all' ? true : (i.programme || '').trim() === STATE.activeProgramme);
+  }
+
+  function renderGrid() {
+    const grid = $('#cards-grid');
+    const meta = $('#results-meta');
+    const list = getFiltered();
+
+    meta.innerHTML = '<strong>' + list.length + '</strong> ' +
+      (list.length === 1 ? 'article' : 'articles') +
+      (STATE.activeType !== 'all' || STATE.activeProgramme !== 'all' ? ' matching your filters' : '');
+
+    if (!list.length) { window.WBFNewsCard.renderEmpty(grid); return; }
+    window.WBFNewsCard.renderGrid(list, grid);
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     EVENT WIRING
+     ────────────────────────────────────────────────────────── */
+  function bindFilterChips() {
+    $('#type-filters').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-type]');
+      if (!btn) return;
+      STATE.activeType = btn.dataset.type;
+      $$('button[data-type]').forEach(b => b.classList.toggle('active', b === btn));
+      renderGrid();
+    });
+
+    $('#programme-filters').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-programme]');
+      if (!btn) return;
+      STATE.activeProgramme = btn.dataset.programme;
+      $$('#programme-filters button[data-programme]').forEach(b => b.classList.toggle('active', b === btn));
+      renderGrid();
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     INIT
+     ────────────────────────────────────────────────────────── */
+  async function init() {
+    const grid = $('#cards-grid');
+
+    /* Inline skeleton until the card component CSS loads. */
+    grid.innerHTML =
+      '<div class="skeleton-card"><div class="sk sk-img" style="height:200px;background:#e2e8f0;border-radius:0"></div></div>'.repeat(3);
+
+    try {
+      await loadComponent(COMPONENTS_BASE + 'news-card.html');
+      await loadComponent(COMPONENTS_BASE + 'news-modal.html');
+    } catch (err) {
+      console.error('Component load failed:', err);
+      grid.innerHTML =
+        '<div style="grid-column:1/-1;padding:48px;text-align:center;color:#64748b;background:#f8fafc;border-radius:10px">' +
+          '<h3 style="color:#0f172a;font-size:17px;margin-bottom:6px">Components could not be loaded</h3>' +
+          '<p>Open this page through a local web server (e.g. <code>python -m http.server</code>) ' +
+          'rather than directly via <code>file://</code>.</p>' +
+        '</div>';
+      return;
+    }
+
+    if (!window.WBFNewsCard || !window.WBFNewsModal) {
+      console.error('Component API missing after load');
+      return;
+    }
+    if (!window.WBFData || !window.WBFData.news) {
+      console.error('WBFData.news unavailable — is js/data-service.js loaded?');
+      window.WBFNewsCard.renderError(grid);
+      return;
+    }
+
+    window.WBFNewsCard.renderSkeletons(grid, 6);
+    bindFilterChips();
+
+    try {
+      STATE.items = await window.WBFData.news.all();
+      buildProgrammeFilters();
+      renderGrid();
+
+      /* Cards → modal, plus ?article=ID deep links. */
+      window.WBFNewsCard.bindClicks(grid, STATE.items, item => window.WBFNewsModal.open(item));
+      window.WBFNewsModal.enableDeepLink(STATE.items, 'id');
+    } catch (err) {
+      console.error(err);
+      window.WBFNewsCard.renderError(grid);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('../components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>
