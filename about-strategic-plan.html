@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Plan 2026–2030 — Western Balkans Fund</title>
+<meta name="description" content="Supporting the Champions of Regional Cooperation — the Western Balkans Fund Strategic Plan 2026–2030: vision, theory of change, three strategic outcomes, a refreshed grants package and a phased implementation roadmap.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .container-narrow { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+  /* Page accent — brand blue, matching the other WBF pages */
+  :root {
+    --pa:      #3372e3;   /* bright brand blue */
+    --pa-deep: #1e4fa3;   /* deep blue for text on light surfaces */
+    --pa-tint: #e9f0fd;   /* pale blue wash */
+    --pa-soft: #93b8f7;   /* light blue for icons/highlights on dark surfaces */
+  }
+
+  /* Justified body copy */
+  .page-hero p, .sec-head p, .vision-text p,
+  .outcome-desc, .lesson-d, .grant-d, .rm-desc, .enabler .e-d {
+    text-align: justify; text-justify: inter-word;
+  }
+
+  /* ============================================================
+     SCROLL-REVEAL PRIMITIVE
+     ============================================================ */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(.16,.8,.3,1), transform 0.7s cubic-bezier(.16,.8,.3,1); transition-delay: var(--d, 0ms); will-change: opacity, transform; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* ============================================================
+     PAGE HERO
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: var(--gradient-hero);
+    overflow: hidden;
+    padding: 88px 0 80px;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* floating decorative orbs */
+  .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(2px); }
+  .hero-orb.a { width: 260px; height: 260px; left: -90px; bottom: -110px; background: radial-gradient(circle, rgba(51,114,227,0.22) 0%, transparent 70%); animation: floatY 11s ease-in-out infinite; }
+  .hero-orb.b { width: 150px; height: 150px; left: 42%; top: -60px; background: radial-gradient(circle, rgba(147,184,247,0.16) 0%, transparent 70%); animation: floatY 8s ease-in-out infinite reverse; }
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(26px); } }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: var(--text-sm); color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { display: inline-flex; align-items: center; gap: 8px; font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--pa-soft); margin-bottom: 18px; padding: 6px 12px; border: 1px solid rgba(147,184,247,0.35); border-radius: 999px; background: rgba(147,184,247,0.06); }
+  .page-hero-overline::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--pa-soft); box-shadow: 0 0 8px var(--pa-soft); animation: pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 700; color: #fff; line-height: 1.08;
+    letter-spacing: -0.01em; margin-bottom: 18px; max-width: 20ch;
+  }
+  .page-hero h1 .grad { background: linear-gradient(100deg, var(--pa-soft) 0%, #7dd3fc 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .page-hero p {
+    font-size: var(--text-lg); color: rgba(255,255,255,0.72);
+    line-height: 1.65; max-width: 60ch;
+  }
+  .hero-btns { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn-hero-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px;
+    background: #fff;
+    color: var(--navy);
+    font-weight: 600; font-size: var(--text-md);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-hero-primary:hover { background: #e8eef8; transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,0.25); }
+  .btn-hero-primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-hero-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    font-weight: 600; font-size: var(--text-md);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-hero-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+  .btn-hero-ghost svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .btn-hero-ghost:hover svg { transform: translateX(3px); }
+
+  /* hero quick-facts strip */
+  .hero-facts { position: relative; z-index: 2; margin-top: 44px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; background: rgba(255,255,255,0.03); overflow: hidden; }
+  .hero-fact { padding: 20px 24px; border-right: 1px solid rgba(255,255,255,0.1); }
+  .hero-fact:last-child { border-right: none; }
+  .hero-fact .n { font-family: var(--font-display); font-size: 30px; font-weight: 800; color: #fff; line-height: 1; }
+  .hero-fact .n small { font-size: 20px; color: var(--pa-soft); font-weight: 700; }
+  .hero-fact .l { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.55); margin-top: 8px; font-weight: 600; }
+
+  /* ============================================================
+     SECTION SHARED
+     ============================================================ */
+  .section { padding: 60px 0; }
+  .section-alt { background: var(--surface-alt); }
+  .section-navy { background: var(--gradient-hero); position: relative; overflow: hidden; }
+
+  .sec-head { margin-bottom: 34px; }
+  .sec-head.center { text-align: center; }
+  .sec-head .overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--pa); margin-bottom: 12px; }
+  .sec-head h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .sec-head p {
+    font-size: var(--text-base); color: var(--muted);
+    line-height: 1.65; max-width: 66ch;
+  }
+  .sec-head.center p { margin-left: auto; margin-right: auto; }
+
+  /* ============================================================
+     VISION + MISSION
+     ============================================================ */
+  .vision-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .vision-text h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .vision-text p {
+    font-size: var(--text-base);
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .vision-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .vision-stat {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px 14px;
+    text-align: center;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  }
+  .vision-stat:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: #cbd5e1; }
+  .vision-stat .num {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .vision-stat .num small { color: var(--pa); }
+  .vision-stat .label {
+    font-size: var(--text-xs);
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .mission-card {
+    background: var(--gradient-hero);
+    border-radius: 16px;
+    padding: 44px 40px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .mission-card::before {
+    content: ""; position: absolute; top: -80px; right: -60px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(51,114,227,0.20) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .mission-card .overline {
+    position: relative; z-index: 1;
+    font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.16em; color: var(--pa-soft); margin-bottom: 14px;
+  }
+  .mission-card blockquote {
+    position: relative; z-index: 1;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    border: none;
+    padding: 0;
+  }
+  .mission-card cite {
+    position: relative; z-index: 1;
+    font-style: normal;
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ============================================================
+     THEORY OF CHANGE — horizontal flow
+     ============================================================ */
+  .toc-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 8px; }
+  .toc-step {
+    position: relative; background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    padding: 28px 20px 24px; text-align: center; overflow: hidden;
+    transition: transform 0.35s cubic-bezier(.16,.8,.3,1), box-shadow 0.35s, border-color 0.35s;
+  }
+  /* navy gradient panel revealed on hover */
+  .toc-step::before { content: ""; position: absolute; inset: 0; z-index: 0; background: var(--gradient-hero); opacity: 0; transition: opacity 0.4s; }
+  /* diagonal sheen that sweeps across on hover */
+  .toc-step::after {
+    content: ""; position: absolute; top: 0; left: -75%; width: 45%; height: 100%; z-index: 3; pointer-events: none;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+    transform: skewX(-18deg); transition: left 0.7s ease;
+  }
+  .toc-step:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 26px 50px rgba(15,32,68,0.28); border-color: transparent; }
+  .toc-step:hover::before { opacity: 1; }
+  .toc-step:hover::after { left: 140%; }
+  .toc-step > * { position: relative; z-index: 2; }
+  .toc-num { position: absolute; top: 12px; right: 15px; font-family: var(--font-display); font-size: 13px; font-weight: 800; color: var(--line); transition: color 0.35s; }
+  .toc-step:hover .toc-num { color: rgba(255,255,255,0.4); }
+  .toc-step .toc-ico {
+    width: 52px; height: 52px; margin: 0 auto 16px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--navy-900); color: var(--pa-soft);
+    transition: transform 0.4s cubic-bezier(.16,.8,.3,1), background 0.4s, color 0.4s, box-shadow 0.4s;
+  }
+  .toc-step:hover .toc-ico { background: rgba(255,255,255,0.14); color: #fff; transform: translateY(-3px) rotate(-8deg) scale(1.12); box-shadow: 0 0 0 6px rgba(147,184,247,0.18); }
+  .toc-step .toc-ico svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .toc-step .toc-k { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--pa); margin-bottom: 8px; transition: color 0.35s; }
+  .toc-step:hover .toc-k { color: var(--pa-soft); }
+  .toc-step .toc-t { font-size: var(--text-sm); font-weight: 600; color: var(--ink); line-height: 1.45; transition: color 0.35s; }
+  .toc-step:hover .toc-t { color: rgba(255,255,255,0.94); }
+  .toc-note { margin-top: 28px; text-align: center; font-size: var(--text-sm); color: var(--muted); max-width: 70ch; margin-left: auto; margin-right: auto; }
+
+  /* ============================================================
+     LESSONS LEARNED
+     ============================================================ */
+  .lessons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .lesson-card {
+    position: relative; background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    padding: 28px 26px; overflow: hidden;
+    transition: transform 0.28s cubic-bezier(.16,.8,.3,1), box-shadow 0.28s, border-color 0.28s;
+  }
+  /* big ghosted number watermark */
+  .lesson-card::after {
+    content: attr(data-n); position: absolute; right: 12px; bottom: -26px; z-index: 0; pointer-events: none;
+    font-family: var(--font-display); font-size: 104px; font-weight: 800; line-height: 1;
+    color: var(--pa-tint); transition: color 0.3s, transform 0.3s;
+  }
+  /* gradient top bar that draws in on hover */
+  .lesson-card::before {
+    content: ""; position: absolute; left: 0; top: 0; height: 4px; width: 100%; z-index: 2;
+    background: linear-gradient(90deg, var(--pa), var(--navy)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+  }
+  .lesson-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(15,32,68,0.15); border-color: var(--pa); }
+  .lesson-card:hover::before { transform: scaleX(1); }
+  .lesson-card:hover::after { color: #dbe7fc; transform: translateY(-6px) rotate(-4deg); }
+  .lesson-card > * { position: relative; z-index: 1; }
+  .lesson-n {
+    display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px;
+    border-radius: 12px; background: var(--pa-tint); color: var(--pa-deep);
+    font-family: var(--font-display); font-size: 15px; font-weight: 800; margin-bottom: 14px;
+    transition: background 0.35s, color 0.35s, transform 0.35s, box-shadow 0.35s;
+  }
+  .lesson-card:hover .lesson-n { background: var(--gradient-hero); color: #fff; transform: rotate(-6deg) scale(1.08); box-shadow: 0 10px 20px rgba(15,32,68,0.22); }
+  .lesson-t { font-family: var(--font-display); font-size: var(--text-md); font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 8px; }
+  .lesson-d { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; }
+
+  /* ============================================================
+     THREE OUTCOMES (the three-pronged approach)
+     ============================================================ */
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .outcome-card {
+    position: relative; background: #fff; border: 1px solid var(--line); border-radius: 14px;
+    padding: 30px 28px; display: flex; flex-direction: column; overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  }
+  .outcome-card::after { content: ""; position: absolute; top: -60px; right: -60px; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(51,114,227,0.10) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s; }
+  .outcome-card:hover { box-shadow: 0 18px 40px rgba(15,32,68,0.10); transform: translateY(-3px); border-color: var(--pa); }
+  .outcome-card:hover::after { opacity: 1; }
+  .outcome-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; position: relative; z-index: 1; }
+  .outcome-icon { width: 48px; height: 48px; background: var(--navy-900); color: var(--pa-soft); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+  .outcome-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .outcome-tag { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; background: var(--pa); padding: 5px 11px; border-radius: 999px; }
+  .outcome-title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--ink); line-height: 1.25; margin-bottom: 10px; position: relative; z-index: 1; }
+  .outcome-desc { font-size: var(--text-sm); color: var(--muted); line-height: 1.65; margin-bottom: 18px; flex: 1; position: relative; z-index: 1; }
+  .outcome-targets { list-style: none; padding-top: 16px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 9px; position: relative; z-index: 1; }
+  .outcome-targets li { display: flex; align-items: flex-start; gap: 10px; font-size: var(--text-sm); color: #334155; line-height: 1.5; }
+  .outcome-targets li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--pa); margin-top: 7px; flex-shrink: 0; }
+
+  /* ============================================================
+     GRANTS PACKAGE
+     ============================================================ */
+  /* interactive tabbed showcase */
+  .gp { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 22px; align-items: stretch; }
+  .gp-tabs { display: flex; flex-direction: column; gap: 10px; }
+  .gp-tab {
+    display: flex; align-items: center; gap: 14px; text-align: left; cursor: pointer; width: 100%;
+    background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 15px 18px; font: inherit;
+    color: var(--ink); transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s, background 0.2s;
+  }
+  .gp-tab:hover { border-color: var(--pa); transform: translateX(3px); }
+  .gp-tab .gp-num {
+    flex-shrink: 0; width: 34px; height: 34px; border-radius: 9px; background: var(--pa-tint); color: var(--pa-deep);
+    display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 14px;
+    transition: background 0.25s, color 0.25s;
+  }
+  .gp-tab .gp-name { font-family: var(--font-display); font-weight: 700; font-size: var(--text-md); line-height: 1.3; }
+  .gp-tab .gp-arrow { margin-left: auto; width: 16px; height: 16px; color: var(--faint); opacity: 0; transform: translateX(-5px); transition: opacity 0.25s, transform 0.25s; }
+  .gp-tab.is-active { background: var(--gradient-hero); border-color: transparent; box-shadow: var(--shadow-3); transform: none; }
+  .gp-tab.is-active .gp-name { color: #fff; }
+  .gp-tab.is-active .gp-num { background: rgba(255,255,255,0.16); color: #fff; }
+  .gp-tab.is-active .gp-arrow { color: #fff; opacity: 1; transform: none; }
+
+  .gp-panels { position: relative; }
+  .gp-detail { display: none; height: 100%; }
+  .gp-detail.is-active { display: block; }
+  .gp-card {
+    position: relative; height: 100%; overflow: hidden;
+    background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 36px 34px;
+    animation: gpIn 0.45s cubic-bezier(.16,.8,.3,1);
+  }
+  .gp-card::before { content: ""; position: absolute; top: -70px; right: -70px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(51,114,227,0.12) 0%, transparent 70%); pointer-events: none; }
+  @keyframes gpIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .gp-card > * { position: relative; z-index: 1; }
+  .gp-ico { width: 60px; height: 60px; border-radius: 16px; background: linear-gradient(140deg, var(--pa) 0%, var(--navy) 100%); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; box-shadow: 0 12px 24px rgba(51,114,227,0.30); }
+  .gp-ico svg { width: 27px; height: 27px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .gp-eyebrow { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--pa); margin-bottom: 10px; }
+  .gp-title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--ink); line-height: 1.25; margin-bottom: 14px; }
+  .gp-desc { font-size: var(--text-base); color: var(--ink-soft); line-height: 1.75; text-align: justify; }
+  .gp-tiers { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .gp-tiers span { font-size: var(--text-xs); font-weight: 600; color: var(--pa-deep); background: var(--pa-tint); padding: 5px 12px; border-radius: 999px; }
+  /* SOP callout — deliberately tied to the section in blue */
+  .gp-note { position: relative; display: flex; align-items: center; gap: 16px; margin-top: 18px; background: linear-gradient(120deg, var(--pa-tint) 0%, #f4f8ff 100%); border: 1px solid #d5e3fb; border-radius: 14px; padding: 20px 24px 20px 28px; overflow: hidden; }
+  .gp-note::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, var(--pa), var(--navy)); }
+  .gp-note-ico { flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; background: linear-gradient(140deg, var(--pa) 0%, var(--navy) 100%); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px rgba(51,114,227,0.28); }
+  .gp-note-ico svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .gp-note-body { display: flex; flex-direction: column; gap: 3px; }
+  .gp-note-eyebrow { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--pa); }
+  .gp-note p { font-size: var(--text-sm); color: var(--ink-soft); line-height: 1.6; }
+  .gp-note b { font-family: var(--font-display); color: var(--pa-deep); font-weight: 700; }
+
+  /* ============================================================
+     ROADMAP — horizontal phased timeline
+     ============================================================ */
+  .roadmap { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 12px; }
+  /* the connecting rail runs through the year nodes */
+  .roadmap::before {
+    content: ""; position: absolute; top: 28px; left: 10%; right: 10%;
+    height: 3px; border-radius: 3px;
+    background: linear-gradient(90deg, var(--pa) 0%, var(--navy) 100%);
+    z-index: 0;
+  }
+  .rm-step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+  .rm-node {
+    flex-shrink: 0; width: 60px; height: 60px; aspect-ratio: 1 / 1; border-radius: 50%;
+    background: linear-gradient(140deg, var(--pa) 0%, var(--navy) 100%); border: 3px solid #fff; color: #fff;
+    font-family: var(--font-display); font-weight: 800; font-size: 15px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 18px rgba(51,114,227,0.30); margin-bottom: 22px;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .rm-step:hover .rm-node,
+  .rm-step:focus-within .rm-node {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 0 0 6px rgba(51,114,227,0.16), 0 12px 24px rgba(51,114,227,0.40);
+  }
+  .rm-card {
+    position: relative; width: 100%; background: #fff;
+    border: 1px solid var(--line); border-radius: 12px; padding: 22px 20px;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display: flex; flex-direction: column; height: 100%;
+  }
+  /* little pointer connecting the card up to its node */
+  .rm-card::before {
+    content: ""; position: absolute; top: -8px; left: 50%; transform: translateX(-50%) rotate(45deg);
+    width: 15px; height: 15px; background: #fff;
+    border-left: 1px solid var(--line); border-top: 1px solid var(--line);
+    transition: border-color 0.2s;
+  }
+  .rm-step:hover .rm-card { transform: translateY(-4px); box-shadow: var(--shadow-3); border-color: var(--pa); }
+  .rm-step:hover .rm-card::before { border-color: var(--pa); }
+  .rm-label {
+    align-self: flex-start; font-size: var(--text-xs); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--pa-deep);
+    background: var(--pa-tint); padding: 4px 11px; border-radius: 999px; margin-bottom: 12px;
+  }
+  .rm-title { font-family: var(--font-display); font-size: var(--text-md); font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 8px; }
+  .rm-desc { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; }
+
+  /* ============================================================
+     ORGANISATION / ENABLERS (navy band)
+     ============================================================ */
+  .section-navy .sec-head .overline { color: var(--pa-soft); }
+  .section-navy .sec-head h2 { color: #fff; }
+  .section-navy .sec-head p { color: rgba(255,255,255,0.72); }
+  .section-navy::after { content: ""; position: absolute; bottom: -140px; left: -100px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(51,114,227,0.14) 0%, transparent 70%); pointer-events: none; }
+  .enablers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; position: relative; z-index: 1; }
+  .enabler { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 26px 22px; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .enabler:hover { background: rgba(255,255,255,0.07); border-color: rgba(147,184,247,0.4); transform: translateY(-3px); }
+  .enabler .e-ico { width: 44px; height: 44px; border-radius: 10px; background: rgba(147,184,247,0.12); color: var(--pa-soft); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .enabler .e-ico svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .enabler .e-when { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pa-soft); margin-bottom: 8px; }
+  .enabler .e-t { font-family: var(--font-display); font-size: var(--text-md); font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: 8px; }
+  .enabler .e-d { font-size: var(--text-sm); color: rgba(255,255,255,0.62); line-height: 1.6; }
+
+  /* ============================================================
+     DOWNLOAD CTA
+     ============================================================ */
+  .download-section { background: var(--surface-alt); padding: 56px 0; }
+  .download-card {
+    max-width: 920px; margin: 0 auto; background: #fff; border: 1px solid var(--line);
+    border-radius: 12px; padding: 44px; display: grid; grid-template-columns: 1fr auto;
+    gap: 32px; align-items: center; box-shadow: 0 12px 32px rgba(15,32,68,0.04);
+  }
+  .download-icon { width: 56px; height: 56px; background: #eef2f8; color: var(--navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-bottom: 16px; }
+  .download-icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .download-text h2 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+  .download-text p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.65; }
+  .download-cta { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; background: var(--navy); color: #fff; font-weight: 600; font-size: var(--text-md); border-radius: 6px; text-decoration: none; transition: background 0.15s, transform 0.15s; flex-shrink: 0; }
+  .download-cta:hover { background: var(--navy-900); transform: translateY(-2px); }
+  .download-cta svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .container-narrow, .page-hero-inner { padding-left: 24px; padding-right: 24px; }
+    .vision-grid { grid-template-columns: 1fr; gap: 40px; }
+    .outcomes-grid, .lessons-grid { grid-template-columns: repeat(2, 1fr); }
+    .gp { grid-template-columns: 1fr; }
+    .enablers-grid { grid-template-columns: repeat(2, 1fr); }
+    .toc-flow { grid-template-columns: repeat(2, 1fr); }
+    .toc-step:not(:last-child)::after { display: none; }
+    /* roadmap: horizontal scroll rail on narrower screens */
+    .roadmap { grid-template-columns: repeat(5, minmax(230px, 1fr)); overflow-x: auto; scroll-snap-type: x proximity; padding: 4px 4px 14px; -webkit-overflow-scrolling: touch; }
+    .roadmap::before { left: 40px; right: 40px; }
+    .rm-step { scroll-snap-align: start; }
+    .hero-facts { grid-template-columns: repeat(2, 1fr); }
+    .hero-fact:nth-child(2) { border-right: none; }
+    .hero-fact:nth-child(1), .hero-fact:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .download-card { grid-template-columns: 1fr; text-align: left; padding: 32px 28px; }
+  }
+  @media (max-width: 768px) {
+    .page-hero { padding: 60px 0 52px; }
+    .section { padding: 46px 0; }
+    .vision-stats { grid-template-columns: 1fr; }
+    .outcomes-grid, .lessons-grid, .toc-flow, .enablers-grid { grid-template-columns: 1fr; }
+    .hero-facts { grid-template-columns: 1fr; }
+    .hero-fact { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .hero-fact:last-child { border-bottom: none; }
+    .mission-card { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <span class="hero-orb a"></span>
+  <span class="hero-orb b"></span>
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/index.html">Home</a><span>›</span><a href="/about.html">About</a><span>›</span>Strategic Plan
+    </nav>
+    <div class="page-hero-overline">Adopted Strategy · 2026–2030</div>
+    <h1>Supporting the <span class="grad">Champions of Regional Cooperation</span></h1>
+    <p>The Western Balkans Fund's second Strategic Plan — a refreshed, five-year roadmap that moves beyond grant-making alone to a more comprehensive, integrated and inclusive way of backing the people who make regional cooperation happen.</p>
+    <div class="hero-btns">
+      <a href="#outcomes" class="btn-hero-primary">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+        Explore the Strategy
+      </a>
+      <a href="/our-programs.html" class="btn-hero-ghost">
+        View Programmes
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-facts">
+      <div class="hero-fact"><div class="n">6</div><div class="l">Contracting Parties</div></div>
+      <div class="hero-fact"><div class="n">3</div><div class="l">Strategic Outcomes</div></div>
+      <div class="hero-fact"><div class="n">30<small>+</small></div><div class="l">Stakeholders Consulted</div></div>
+      <div class="hero-fact"><div class="n"><small>×</small>3</div><div class="l">Income Target · 3 yrs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VISION + MISSION
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="vision-grid">
+      <div class="vision-text reveal">
+        <div class="sec-head" style="margin-bottom:0">
+          <div class="overline">The Vision</div>
+        </div>
+        <h2>A region at peace with itself, integrated into its European home</h2>
+        <p>The Western Balkans Fund envisions a region where exchange and mutually beneficial cooperation between people — at all levels and from all walks of life — is the norm rather than the exception. Built with WBF leadership and the Secretariat, and shaped by the Council of Senior Officials of the six Contracting Parties, this plan is ambitious yet grounded, rolling out through a carefully phased programme of investment.</p>
+
+        <div class="vision-stats">
+          <div class="vision-stat"><div class="num" data-count="6">6</div><div class="label">Contracting Parties</div></div>
+          <div class="vision-stat"><div class="num" data-count="3">3</div><div class="label">Strategic Outcomes</div></div>
+          <div class="vision-stat"><div class="num"><small>×</small><span data-count="3">3</span></div><div class="label">Income Target</div></div>
+        </div>
+      </div>
+
+      <div class="mission-card reveal" style="--d:120ms">
+        <div class="overline">Programme Mission</div>
+        <blockquote>“The WBF promotes ever closer cooperation and stronger ties between the Contracting Parties, their integration into the European Union, and a common presentation within and beyond the region — supporting the champions of regional cooperation through a diversified programme of grants, dialogue and technical assistance.”</blockquote>
+        <cite>— WBF Strategic Plan 2026–2030</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     THEORY OF CHANGE
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <div class="overline">Theory of Change</div>
+      <h2>From direct support to lasting regional change</h2>
+      <p>By investing directly in regional initiatives and the champions who drive them, the Fund improves neighbourly relations that transcend geographical and cultural boundaries — and normalises cooperation as an essential part of a stable, prosperous, European future.</p>
+    </div>
+
+    <div class="toc-flow">
+      <div class="toc-step reveal">
+        <span class="toc-num">01</span>
+        <div class="toc-ico"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="toc-k">Invest</div>
+        <div class="toc-t">Targeted grants &amp; support to champions of cooperation</div>
+      </div>
+      <div class="toc-step reveal" style="--d:80ms">
+        <span class="toc-num">02</span>
+        <div class="toc-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="toc-k">Connect</div>
+        <div class="toc-t">Stronger, more resilient cross-border initiatives</div>
+      </div>
+      <div class="toc-step reveal" style="--d:160ms">
+        <span class="toc-num">03</span>
+        <div class="toc-ico"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div class="toc-k">Normalise</div>
+        <div class="toc-t">Cooperation made visible &amp; understood by the public</div>
+      </div>
+      <div class="toc-step reveal" style="--d:240ms">
+        <span class="toc-num">04</span>
+        <div class="toc-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="toc-k">Reconcile</div>
+        <div class="toc-t">Confidence, trust &amp; cohesion across the region</div>
+      </div>
+      <div class="toc-step reveal" style="--d:320ms">
+        <span class="toc-num">05</span>
+        <div class="toc-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+        <div class="toc-k">Prosper</div>
+        <div class="toc-t">Stability, development &amp; EU integration for all</div>
+      </div>
+    </div>
+    <p class="toc-note reveal">Grant-making now sits within a stronger framework — reinforced by a convening role and by making information more accessible to the Fund's many stakeholders.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSONS LEARNED
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="overline">What Five Years Taught Us</div>
+      <h2>Lessons that shaped the refreshed strategy</h2>
+      <p>Insights from the Fund's first strategic period point to a more integrated, partnership-driven way of supporting champions of regional cooperation.</p>
+    </div>
+
+    <div class="lessons-grid">
+      <div class="lesson-card reveal" data-n="01">
+        <div class="lesson-n">01</div>
+        <div class="lesson-t">Integration delivers better value</div>
+        <div class="lesson-d">Grants achieve far more when paired with tailored technical support, mentoring and coaching — strengthening both projects and the organisations behind them.</div>
+      </div>
+      <div class="lesson-card reveal" style="--d:70ms" data-n="02">
+        <div class="lesson-n">02</div>
+        <div class="lesson-t">Partnership is a continuous win-win</div>
+        <div class="lesson-d">Working with complementary agencies lets the Fund offer a more holistic package of support and raises visibility for grantees and the WBF alike.</div>
+      </div>
+      <div class="lesson-card reveal" style="--d:140ms" data-n="03">
+        <div class="lesson-n">03</div>
+        <div class="lesson-t">Convening multiplies impact</div>
+        <div class="lesson-d">Bringing grantees together to celebrate, learn and network sustains the value of the Fund's investment well beyond a single project's lifecycle.</div>
+      </div>
+      <div class="lesson-card reveal" style="--d:70ms" data-n="04">
+        <div class="lesson-n">04</div>
+        <div class="lesson-t">Longer-term funding drives real change</div>
+        <div class="lesson-d">Measurable impact is best achieved through extended relationships where impact is designed into both the project and the ongoing technical support.</div>
+      </div>
+      <div class="lesson-card reveal" style="--d:140ms" data-n="05">
+        <div class="lesson-n">05</div>
+        <div class="lesson-t">Champions are everywhere</div>
+        <div class="lesson-d">Small, grassroots and rural organisations can be as committed as large city groups. The Fund keeps its promise to these "hard-to-fund" champions.</div>
+      </div>
+      <div class="lesson-card reveal" style="--d:210ms;background:var(--pa-tint);border-color:#c7dbfb">
+        <div class="lesson-n">→</div>
+        <div class="lesson-t">A three-pronged response</div>
+        <div class="lesson-d">These lessons converge into a broader offer: flexible grants, a strengthened convening role, and an open hub for information and learning.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     THREE OUTCOMES
+     ============================================================ -->
+<section class="section section-alt" id="outcomes">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <div class="overline">The Plan in a Nutshell</div>
+      <h2>Three strategic outcomes</h2>
+      <p>Funding for civil society remains central — now complemented by two upgraded components that make the Fund a more dynamic, effective and visible catalyst for cooperation across the region.</p>
+    </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal">
+        <div class="outcome-head">
+          <div class="outcome-icon"><svg viewBox="0 0 24 24"><path d="M4 10h12"/><path d="M4 14h9"/><path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2"/></svg></div>
+          <span class="outcome-tag">Outcome 1</span>
+        </div>
+        <h3 class="outcome-title">Grant-making &amp; Technical Support</h3>
+        <p class="outcome-desc">Flexible grants and targeted technical assistance packages focused on measurable value — more agile, less bureaucratic, and adapted to an evolving regional context.</p>
+        <ul class="outcome-targets">
+          <li>Strategic partnerships for complementary skills</li>
+          <li>A wider range of grants for a wider range of grantees</li>
+          <li>Support based on organisational needs assessments</li>
+        </ul>
+      </div>
+
+      <div class="outcome-card reveal" style="--d:100ms">
+        <div class="outcome-head">
+          <div class="outcome-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <span class="outcome-tag">Outcome 2</span>
+        </div>
+        <h3 class="outcome-title">Convening &amp; Advocacy</h3>
+        <p class="outcome-desc">Regular, frequent opportunities for civil society champions across the region to meet, dialogue, share, advocate and learn — with interactive, skilfully facilitated events in the Contracting Parties.</p>
+        <ul class="outcome-targets">
+          <li>Recognised as a go-to convener by 2028</li>
+          <li>A dedicated Convening, Communications &amp; Advocacy section</li>
+          <li>Learning workshops on critical cooperation issues</li>
+        </ul>
+      </div>
+
+      <div class="outcome-card reveal" style="--d:200ms">
+        <div class="outcome-head">
+          <div class="outcome-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <span class="outcome-tag">Outcome 3</span>
+        </div>
+        <h3 class="outcome-title">Information Exchange Hub</h3>
+        <p class="outcome-desc">A Knowledge Exchange Platform — evolving from today's Partnership Platform — as an accessible home for information and learning about funding, partnership opportunities and networking.</p>
+        <ul class="outcome-targets">
+          <li>Platform launched &amp; publicly accessible</li>
+          <li>A curated space for blogs, insights &amp; resources</li>
+          <li>Actively maintained and integrated into WBF services</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REFRESHED GRANTS PACKAGE
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="overline">A Refreshed Grants Package</div>
+      <h2>A more flexible way to fund cooperation</h2>
+      <p>Five granting instruments, all aligned with the Theory of Change and all prioritising multi-Contracting-Party cooperation as a core principle.</p>
+    </div>
+
+    <div class="gp reveal">
+      <div class="gp-tabs" role="tablist" aria-label="Grant instruments">
+        <button type="button" class="gp-tab is-active" role="tab" aria-selected="true">
+          <span class="gp-num">01</span>
+          <span class="gp-name">Project &amp; Thematic Grants</span>
+          <svg class="gp-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button type="button" class="gp-tab" role="tab" aria-selected="false">
+          <span class="gp-num">02</span>
+          <span class="gp-name">Capacity Development &amp; TA</span>
+          <svg class="gp-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button type="button" class="gp-tab" role="tab" aria-selected="false">
+          <span class="gp-num">03</span>
+          <span class="gp-name">Responsive Grants for Emerging Needs</span>
+          <svg class="gp-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button type="button" class="gp-tab" role="tab" aria-selected="false">
+          <span class="gp-num">04</span>
+          <span class="gp-name">Scholarships &amp; Fellowships</span>
+          <svg class="gp-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button type="button" class="gp-tab" role="tab" aria-selected="false">
+          <span class="gp-num">05</span>
+          <span class="gp-name">Framework &amp; Partnership Grants</span>
+          <svg class="gp-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="gp-panels">
+        <div class="gp-detail is-active" role="tabpanel">
+          <div class="gp-card">
+            <div class="gp-ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg></div>
+            <div class="gp-eyebrow">Tiered core funding</div>
+            <div class="gp-title">Project &amp; Thematic Grants</div>
+            <div class="gp-desc">Grants for localised projects with regional impact and broader multilateral cooperation. Small, medium and large tiers give flexibility across project scopes, while matching and co-financing mechanisms jointly support impactful regional initiatives.</div>
+            <div class="gp-tiers"><span>Small</span><span>Medium</span><span>Large</span><span>Matching &amp; co-financing</span></div>
+          </div>
+        </div>
+        <div class="gp-detail" role="tabpanel">
+          <div class="gp-card">
+            <div class="gp-ico"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+            <div class="gp-eyebrow">Institutional strengthening</div>
+            <div class="gp-title">Capacity Development &amp; Technical Assistance</div>
+            <div class="gp-desc">Tailored support that builds the operational capacity CSOs need to engage in effective regional cooperation. It addresses the complexities of multi-Contracting-Party projects and the organisational resilience required to lead and sustain regional initiatives over the long term.</div>
+          </div>
+        </div>
+        <div class="gp-detail" role="tabpanel">
+          <div class="gp-card">
+            <div class="gp-ico"><svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div class="gp-eyebrow">Rapid response</div>
+            <div class="gp-title">Responsive Grants for Emerging Regional Needs</div>
+            <div class="gp-desc">Nimble, flexible funding that enables swift responses to evolving regional challenges. Adaptable to emerging sectoral priorities and specific circumstances, these grants facilitate regional teamwork within tight timeframes and foster timely solutions across the Western Balkans.</div>
+          </div>
+        </div>
+        <div class="gp-detail" role="tabpanel">
+          <div class="gp-card">
+            <div class="gp-ico"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+            <div class="gp-eyebrow">Learning &amp; exchange</div>
+            <div class="gp-title">Scholarships &amp; Fellowships</div>
+            <div class="gp-desc">Academic and research scholarships for students and researchers focused on Western Balkans topics, plus leadership fellowships for civil society professionals. Together they scale up learning and experience-sharing — a core part of normalising cooperation through frequent exchange.</div>
+            <div class="gp-tiers"><span>Academic &amp; research</span><span>Civil society leaders</span></div>
+          </div>
+        </div>
+        <div class="gp-detail" role="tabpanel">
+          <div class="gp-card">
+            <div class="gp-ico"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.5 0 2.91.37 4.15 1.02"/></svg></div>
+            <div class="gp-eyebrow">Long-term partnership</div>
+            <div class="gp-title">Framework &amp; Partnership Grants</div>
+            <div class="gp-desc">Multi-year grants for larger organisations and consortia working towards long-term strategic goals such as gender equality, EU integration or regional stability — sustaining momentum, enhancing visibility and ensuring the scalability of successful regional initiatives.</div>
+            <div class="gp-tiers"><span>Multi-year</span><span>Consortia</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gp-note reveal">
+      <div class="gp-note-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+      <div class="gp-note-body">
+        <span class="gp-note-eyebrow">Underpinning all five instruments</span>
+        <p><b>One consistent rulebook.</b> A comprehensive Standard Operating Procedures manual will define every grant mechanism — giving grantees clarity and the Fund consistency across all instruments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     IMPLEMENTATION TIMELINE
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <div class="overline">Phased Roadmap</div>
+      <h2>Implementation timeline</h2>
+      <p>A measured, sustainable trajectory — consolidating the current portfolio first, then progressively diversifying, with a mid-term review in 2028.</p>
+    </div>
+
+    <div class="roadmap">
+      <div class="rm-step reveal" tabindex="0">
+        <div class="rm-node">2026</div>
+        <div class="rm-card">
+          <div class="rm-label">Foundation</div>
+          <div class="rm-title">Action Plan &amp; Partnership Platform</div>
+          <div class="rm-desc">Secure strategic partnerships, launch the Partnership Platform, endorse the fundraising framework, roll out new staff ToRs with a Management by Objectives system, and recruit a Deputy Executive Director.</div>
+        </div>
+      </div>
+      <div class="rm-step reveal" style="--d:80ms" tabindex="0">
+        <div class="rm-node">2027</div>
+        <div class="rm-card">
+          <div class="rm-label">Restructure</div>
+          <div class="rm-title">Decentralised management</div>
+          <div class="rm-desc">Reorganise the Secretariat around the programme portfolio, establish a Resource &amp; Partnership Development Unit, strengthen the MEL Unit, and integrate grant ceremonies into convening events.</div>
+        </div>
+      </div>
+      <div class="rm-step reveal" style="--d:160ms" tabindex="0">
+        <div class="rm-node">2028</div>
+        <div class="rm-card">
+          <div class="rm-label">Evaluate</div>
+          <div class="rm-title">Convening section &amp; mid-term review</div>
+          <div class="rm-desc">Stand up the Convening, Communications &amp; Advocacy section, diversify the funding portfolio, and commission an external evaluation alongside a mid-term strategy review.</div>
+        </div>
+      </div>
+      <div class="rm-step reveal" style="--d:240ms" tabindex="0">
+        <div class="rm-node">2029</div>
+        <div class="rm-card">
+          <div class="rm-label">Deepen</div>
+          <div class="rm-title">A wider grant portfolio</div>
+          <div class="rm-desc">Offer a broader range of grants to more grantees, deliver technical assistance packages built on organisational needs assessments, and expand the MEL Unit's mandate.</div>
+        </div>
+      </div>
+      <div class="rm-step reveal" style="--d:320ms" tabindex="0">
+        <div class="rm-node">2030</div>
+        <div class="rm-card">
+          <div class="rm-label">Renew</div>
+          <div class="rm-title">Next strategic cycle</div>
+          <div class="rm-desc">Conduct a full context analysis and stakeholder needs review, ensuring the next strategic cycle is built on the most current and relevant evidence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ORGANISATIONAL DEVELOPMENT (navy band)
+     ============================================================ -->
+<section class="section section-navy">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="overline">Organisational Development</div>
+      <h2>A stronger organisation for a stronger portfolio</h2>
+      <p>The refreshed programme is matched by a refreshed structure — decentralised, accountable, and built to deliver.</p>
+    </div>
+
+    <div class="enablers-grid">
+      <div class="enabler reveal">
+        <div class="e-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+        <div class="e-when">By 2027</div>
+        <div class="e-t">Decentralised management</div>
+        <div class="e-d">A dynamic Secretariat structure that distributes decision-making and empowers staff.</div>
+      </div>
+      <div class="enabler reveal" style="--d:80ms">
+        <div class="e-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="e-when">By 2026</div>
+        <div class="e-t">New ToRs + MbO</div>
+        <div class="e-d">Standardised Terms of Reference and a Management by Objectives system for real accountability.</div>
+      </div>
+      <div class="enabler reveal" style="--d:160ms">
+        <div class="e-ico"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="e-when">Mid-2026</div>
+        <div class="e-t">Deputy Executive Director</div>
+        <div class="e-d">A senior appointment to support leadership continuity and drive change management.</div>
+      </div>
+      <div class="enabler reveal" style="--d:240ms">
+        <div class="e-ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg></div>
+        <div class="e-when">Cross-cutting</div>
+        <div class="e-t">A dedicated MEL Unit</div>
+        <div class="e-d">Monitoring, Evaluation &amp; Learning institutionalised — measuring impact up to two years after projects end.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DOWNLOAD CTA
+     ============================================================ -->
+<section class="download-section">
+  <div class="download-card reveal">
+    <div>
+      <div class="download-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="13" y2="18"/></svg>
+      </div>
+      <div class="download-text">
+        <h2>Read the full Strategic Plan</h2>
+        <p>The complete 2026–2030 Strategic Plan sets out the theory of change, results framework with outcomes and indicators, the refreshed grants package, the organisational development strategy, and the phased 2026 Action Plan.</p>
+      </div>
+    </div>
+    <a class="download-cta" href="/assets/documents/strategic-plan-2026-2030.pdf" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+<!-- ============================================================
+     PAGE EFFECTS · scroll-reveal + count-up
+     ============================================================ -->
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* staggered scroll-reveal — IO drives the effect, a timed fallback
+     guarantees content is never left invisible if IO doesn't fire. */
+  var reveals = document.querySelectorAll('.reveal');
+  function revealAll() { Array.prototype.forEach.call(reveals, function (el) { el.classList.add('in'); }); }
+  if (reduce || !('IntersectionObserver' in window)) {
+    revealAll();
+  } else {
+    var ro = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+    Array.prototype.forEach.call(reveals, function (el) { ro.observe(el); });
+    /* safety net: reveal anything still hidden after 2.4s */
+    setTimeout(revealAll, 2400);
+  }
+
+  /* count-up on any element carrying data-count */
+  function countUp(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    if (isNaN(target)) return;
+    if (reduce) { el.textContent = target; return; }
+    var start = null, dur = 1300;
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  function countAll() { Array.prototype.forEach.call(counters, countUp); }
+  if (!('IntersectionObserver' in window)) {
+    countAll();
+  } else {
+    var co = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); obs.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    Array.prototype.forEach.call(counters, function (el) { co.observe(el); });
+    setTimeout(countAll, 2400);
+  }
+
+  /* grants package — tabbed showcase (activate on hover + click) */
+  var gpTabs = document.querySelectorAll('.gp-tab');
+  var gpPanels = document.querySelectorAll('.gp-detail');
+  if (gpTabs.length && gpPanels.length) {
+    var activate = function (i) {
+      Array.prototype.forEach.call(gpTabs, function (t, k) {
+        var on = k === i;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      Array.prototype.forEach.call(gpPanels, function (p, k) { p.classList.toggle('is-active', k === i); });
+    };
+    Array.prototype.forEach.call(gpTabs, function (t, i) {
+      t.addEventListener('click', function () { activate(i); });
+      t.addEventListener('mouseenter', function () { activate(i); });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

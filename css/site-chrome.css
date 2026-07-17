@@ -1,0 +1,117 @@
+/* ============================================================
+   site-chrome.css · Shared navbar + footer styles
+   ============================================================
+   Extracted from the per-page style blocks (Phase 2 of the
+   architecture plan). Loaded by every page BEFORE its own
+   <style>, so page CSS can still override.
+
+   The navbar/footer MARKUP comes from components/_MASTER_*.html;
+   this file is their styling. Mobile drawer CSS is injected by
+   js/nav.js and does not live here.
+   ============================================================ */
+/* ============================================================
+     GLOBAL SAFETY — overflow + media containment
+     ============================================================
+     `overflow-x: clip` prevents accidental horizontal scroll on any
+     page without establishing a scroll container (so it does NOT
+     break the sticky navbar the way `overflow: hidden` would).
+     Inner elements that intentionally scroll horizontally (e.g.
+     `overflow-x: auto` chip rows) are unaffected. */
+  html { overflow-x: clip; }
+  img, video, svg, iframe, table { max-width: 100%; }
+
+/* ============================================================
+     NAVBAR (identical to other pages)
+     ============================================================ */
+  /* Light institutional header: white surface, navy text, navy-fill hover.
+     A hairline border + soft shadow separate it from the navy hero below. */
+  .nb { background: var(--surface); width: 100%; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--line); box-shadow: var(--shadow-1); }
+  .nb-inner { position: relative; display: flex; align-items: center; height: 72px; padding: 0 24px; max-width: 1400px; margin: 0 auto; gap: 4px; }
+  /* Logo flush to the far left; text label removed in Phase 2. */
+  .logo { display: flex; align-items: center; gap: 9px; margin-right: 16px; flex-shrink: 0; text-decoration: none; }
+  .logo-icon { width: 40px; height: 40px; background: var(--navy); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: #fff; }
+  /* Primary nav is centered on the page independently of the logo/CTA widths. */
+  .nav-items { display: flex; align-items: center; gap: 4px; position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav-btn { background: none; border: none; color: var(--navy); font-size: 16px; font-weight: 600; padding: 11px 16px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; white-space: nowrap; font-family: inherit; text-decoration: none; transition: background 0.25s ease, color 0.25s ease; }
+  .nav-btn:hover, .nav-btn:focus-visible, .dropdown-wrap:hover > .nav-btn, .nav-btn[aria-current="page"] { background: var(--navy); color: #fff; outline: none; }
+  .chevron { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; transition: transform 0.2s; }
+  .dropdown-wrap:hover .chevron { transform: rotate(180deg); }
+  .dropdown-wrap { position: relative; }
+  .dropdown, .mega { display: none; position: absolute; top: calc(100% + 2px); left: 0; background: #fff; border: 0.5px solid #d1d9e6; border-radius: 8px; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.13); animation: fadeIn 0.12s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .dropdown-wrap:hover .dropdown, .dropdown-wrap:hover .mega { display: block; }
+  .dropdown { min-width: 260px; padding: 8px 0; }
+  .dd-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 18px; cursor: pointer; text-decoration: none; color: inherit; transition: background 0.1s; }
+  .dd-item:hover { background: #f4f7fb; }
+  .dd-title { font-family: var(--font-display); font-size: 15px; color: #1a1e2e; font-weight: 600; line-height: 1.3; }
+  .dd-sub   { font-size: 12.5px; color: #6b7280; line-height: 1.35; margin-top: 2px; }
+  .mega { left: -140px; width: 520px; padding: 22px; }
+  .dropdown-wrap:hover .mega { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .mega-col { padding: 0 20px; }
+  .mega-col:first-child { padding-left: 0; }
+  .mega-col:last-child { padding-right: 0; }
+  .mega-head { font-size: 11px; font-weight: 600; color: #9ca3af; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 12px; }
+  .mega-item { display: block; padding: 0; cursor: pointer; text-decoration: none; color: inherit; }
+  .mega-item:hover .m-title { color: var(--navy); text-decoration: underline; }
+  /* Programme titles match the top-level nav items (16px / 600) for a
+     consistent typographic hierarchy across the whole navigation. */
+  .m-title { font-size: 16px; font-weight: 600; color: #1a1e2e; line-height: 1.35; padding: 6px 0; display: block; }
+  .nav-right { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
+  .btn-partners { background: none; border: 1px solid var(--navy); color: var(--navy); font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-family: inherit; text-decoration: none; transition: color 0.25s ease, background 0.25s ease; }
+  .btn-partners:hover, .btn-partners:focus-visible { background: var(--navy); color: #fff; outline: none; }
+  .btn-apply { background: var(--navy); border: none; color: #fff; font-size: 14px; font-weight: 600; padding: 9px 16px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: inherit; text-decoration: none; transition: background 0.25s ease; }
+  .btn-apply:hover, .btn-apply:focus-visible { background: var(--navy-900); outline: none; }
+  .btn-apply svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* ============================================================
+     FOOTER (identical)
+     ============================================================ */
+  .footer { background: var(--navy-900); color: rgba(255,255,255,0.75); padding: 56px 40px 0; }
+  .footer-inner { max-width: 1400px; margin: 0 auto; }
+  .footer-top { display: flex; justify-content: space-between; gap: 0; padding-bottom: 48px; border-bottom: 0.5px solid rgba(255,255,255,0.12); }
+  .ft-brand { max-width: 260px; flex-shrink: 0; }
+  .ft-cols-right { display: flex; gap: 40px; justify-content: flex-end; }
+  .ft-logo { display: block; margin-bottom: 16px; text-decoration: none; }
+  .ft-logo img { height: 36px; width: auto; display: block; filter: brightness(0) invert(1); }
+  .ft-logo-fallback { display: inline-flex; align-items: center; gap: 8px; }
+  .ft-logo-icon { width: 34px; height: 34px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: var(--navy); flex-shrink: 0; }
+  .ft-logo-name { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.2; }
+  .ft-logo-sub  { font-size: 10px; color: rgba(255,255,255,0.55); }
+  .ft-tagline { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+  .ft-social { display: flex; gap: 10px; }
+  .ft-social a { width: 34px; height: 34px; border-radius: 6px; border: 0.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); text-decoration: none; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+  .ft-social a:hover { border-color: rgba(255,255,255,0.6); color: #fff; background: rgba(255,255,255,0.08); }
+  .ft-social svg { width: 16px; height: 16px; fill: currentColor; }
+  .ft-col-head { font-size: 11px; font-weight: 600; color: #fff; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 14px; }
+  .ft-section-head { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 0.07em; text-transform: uppercase; margin-top: 18px; margin-bottom: 8px; }
+  .ft-link { display: block; padding: 4px 0; font-size: 12.5px; color: rgba(255,255,255,0.65); text-decoration: none; line-height: 1.4; transition: color 0.12s; }
+  .ft-link:hover { color: #fff; }
+  .ft-contact-item { display: flex; align-items: flex-start; gap: 9px; padding: 5px 0; font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+  .ft-contact-item a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.12s; }
+  .ft-contact-item a:hover { color: #fff; }
+  .ft-contact-icon { margin-top: 2px; flex-shrink: 0; opacity: 0.5; }
+  .ft-contact-icon svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .footer-bottom-wrap { border-top: 0.5px solid rgba(255,255,255,0.1); }
+  .footer-bottom { max-width: 1400px; margin: 0 auto; padding: 18px 0; display: flex; align-items: center; justify-content: space-between; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .footer-copy span { margin: 0 6px; opacity: 0.4; }
+  .footer-legal { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; }
+  .footer-legal a { font-size: 12px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.12s; }
+  .footer-legal a:hover { color: #fff; }
+
+@media (max-width: 1024px) {
+.footer { padding: 48px 24px 0; }
+.footer-top { flex-direction: column; gap: 40px; }
+.ft-cols-right { justify-content: flex-start; flex-wrap: wrap; }
+}
+
+/* Collapse the primary nav to the hamburger (js/nav.js) once the full
+   desktop menu can no longer fit — otherwise it overflows the viewport
+   in the ~769–1189px range (very common on Windows displays at 125%
+   scaling). The hamburger breakpoint in js/nav.js must match this. */
+@media (max-width: 1200px) {
+.nav-items, .btn-partners { display: none; }
+}
+@media (max-width: 768px) {
+.footer-bottom { flex-direction: column; gap: 8px; align-items: flex-start; }
+}

@@ -1,0 +1,662 @@
+<!--
+  ============================================================
+  news-modal.html  ·  Reusable news detail modal component
+  ============================================================
+
+  Self-contained fragment that provides:
+
+    • CSS for the modal, image/video carousel, article body,
+      attachments list, and action buttons.
+    • The modal mount markup (#wbf-news-modal) that gets
+      inserted once into the host page.
+    • A small JS API exposed on `window.WBFNewsModal`.
+
+  This component is GENERIC and DATA-DRIVEN — given a normalized
+  news item it can render any combination of:
+
+      title · date · type · programme · featured image
+      image gallery · video gallery · YouTube embeds
+      attachments · download link · external link
+      full article HTML content
+
+  It depends on `window.WBFNewsCard._utils` for shared helpers
+  (escapeHtml, formatDate, etc.) and on `WBFNewsCard.buildMediaList`.
+  Load news-card.html BEFORE news-modal.html.
+
+  Public JS API
+  -------------
+    WBFNewsModal.open(item)                 → opens modal with item
+    WBFNewsModal.close()                    → closes modal
+    WBFNewsModal.attach()                   → idempotent: ensures
+                                              mount + listeners ready
+    WBFNewsModal.enableDeepLink(items, key) → wires ?article=ID
+                                              URL deep-linking
+                                              (default key = 'id')
+
+  ============================================================
+-->
+<style data-wbf-component="news-modal">
+  body.wbf-modal-open { overflow: hidden; }
+
+  .wbf-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,23,42,0.75);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    overflow-y: auto;
+  }
+  .wbf-modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .wbf-modal {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.25s;
+    position: relative;
+  }
+  .wbf-modal-overlay.open .wbf-modal { transform: translateY(0) scale(1); }
+
+  .wbf-modal .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.15s, color 0.15s;
+  }
+  .wbf-modal .modal-close:hover { background: #fff; color: #0f172a; }
+
+  .wbf-modal .modal-header-img {
+    height: 320px;
+    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .wbf-modal .modal-header-img img,
+  .wbf-modal .modal-header-img video { width: 100%; height: 100%; object-fit: cover; }
+
+  .wbf-modal .modal-body { padding: 36px 44px 44px; }
+
+  .wbf-modal .modal-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; font-size: 11px; }
+  .wbf-modal .modal-meta .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .wbf-modal .modal-meta .badge-prog { background: #eef2f8; color: #1A3668; }
+  .wbf-modal .modal-meta .badge-type { background: #1A3668; color: #fff; }
+  .wbf-modal .modal-date { font-size: 12.5px; color: #64748b; margin-left: 6px; }
+
+  .wbf-modal .modal-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  /* ---------- Carousel ---------- */
+  .wbf-modal .carousel {
+    position: relative;
+    background: #0f172a;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .wbf-modal .carousel-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .wbf-modal .carousel-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: #0f172a;
+  }
+  .wbf-modal .carousel-slide.active { opacity: 1; z-index: 2; }
+  .wbf-modal .carousel-slide img { width: 100%; height: 100%; object-fit: contain; }
+  .wbf-modal .carousel-slide video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+  .wbf-modal .carousel-slide iframe { width: 100%; height: 100%; border: 0; }
+
+  .wbf-modal .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15,23,42,0.7);
+    border: none;
+    color: #fff;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .wbf-modal .carousel-btn:hover { background: rgba(15,23,42,0.95); }
+  .wbf-modal .carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .wbf-modal .carousel-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .wbf-modal .carousel-prev { left: 12px; }
+  .wbf-modal .carousel-next { right: 12px; }
+
+  .wbf-modal .carousel-counter {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: rgba(15,23,42,0.7);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    z-index: 5;
+  }
+
+  .wbf-modal .carousel-thumbs {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    background: #1e293b;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .wbf-modal .thumb {
+    width: 72px; height: 44px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    background: #0f172a;
+    position: relative;
+    opacity: 0.55;
+    transition: opacity 0.15s, border-color 0.15s;
+    padding: 0;
+  }
+  .wbf-modal .thumb:hover { opacity: 0.9; }
+  .wbf-modal .thumb.active { opacity: 1; border-color: #fff; }
+  .wbf-modal .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .wbf-modal .thumb-video-marker {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+  }
+  .wbf-modal .thumb-video-marker svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* ---------- Article body ---------- */
+  .wbf-modal .article-body {
+    font-size: 15.5px;
+    color: #334155;
+    line-height: 1.75;
+  }
+  .wbf-modal .article-body p { margin-bottom: 16px; }
+  .wbf-modal .article-body h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    color: #0f172a;
+    margin: 28px 0 12px;
+  }
+  .wbf-modal .article-body h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 24px 0 10px;
+  }
+  .wbf-modal .article-body a { color: #1A3668; text-decoration: underline; text-underline-offset: 2px; }
+  .wbf-modal .article-body a:hover { color: #0f2044; }
+  .wbf-modal .article-body ul,
+  .wbf-modal .article-body ol { padding-left: 22px; margin-bottom: 16px; }
+  .wbf-modal .article-body li { margin-bottom: 6px; }
+  .wbf-modal .article-body strong { color: #0f172a; font-weight: 600; }
+  .wbf-modal .article-body blockquote {
+    border-left: 3px solid #1A3668;
+    padding: 6px 0 6px 20px;
+    margin: 20px 0;
+    color: #475569;
+    font-style: italic;
+  }
+
+  /* ---------- Actions ---------- */
+  .wbf-modal .modal-actions {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .wbf-modal .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    font-family: inherit;
+  }
+  .wbf-modal .action-btn svg { width: 14px; height: 14px; }
+  .wbf-modal .action-primary { background: #1A3668; color: #fff; }
+  .wbf-modal .action-primary:hover { background: #0f2044; }
+  .wbf-modal .action-secondary { background: #fff; color: #1A3668; border-color: #cbd5e1; }
+  .wbf-modal .action-secondary:hover { border-color: #1A3668; }
+  .wbf-modal .action-ghost { background: transparent; color: #64748b; margin-left: auto; }
+  .wbf-modal .action-ghost:hover { color: #1A3668; }
+
+  /* ---------- Attachments ---------- */
+  .wbf-modal .attachments-list { margin-top: 16px; }
+  .wbf-modal .attachment {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #334155;
+    font-size: 13.5px;
+    margin-bottom: 6px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .wbf-modal .attachment:hover { background: #eef2f8; border-color: #1A3668; color: #0f2044; }
+  .wbf-modal .attachment svg { width: 16px; height: 16px; color: #1A3668; flex-shrink: 0; }
+  .wbf-modal .attachment-name { flex: 1; font-weight: 500; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1024px) {
+    .wbf-modal .modal-body { padding: 28px 28px 36px; }
+    .wbf-modal .modal-header-img { height: 260px; }
+  }
+  @media (max-width: 768px) {
+    .wbf-modal-overlay { padding: 0; }
+    .wbf-modal { border-radius: 0; min-height: 100vh; }
+    .wbf-modal .modal-header-img { border-radius: 0; height: 220px; }
+    .wbf-modal .modal-body { padding: 24px 20px 32px; }
+    .wbf-modal .carousel-btn { width: 36px; height: 36px; }
+  }
+</style>
+
+<!-- Modal mount point. The bootstrap script below moves this to <body>
+     on first attach() so it sits as a top-level overlay. -->
+<div class="wbf-modal-overlay" id="wbf-news-modal" role="dialog" aria-modal="true" aria-labelledby="wbf-news-modal-title" hidden>
+  <div class="wbf-modal" id="wbf-news-modal-content"></div>
+</div>
+
+<script data-wbf-component="news-modal">
+(function () {
+  'use strict';
+  if (window.WBFNewsModal) return;
+
+  /* ---------- Resolve shared helpers (provided by news-card.html) ---------- */
+  const u = (window.WBFNewsCard && window.WBFNewsCard._utils) || {};
+  const escapeHtml    = u.escapeHtml    || (s => String(s == null ? '' : s));
+  const escapeAttr    = u.escapeAttr    || escapeHtml;
+  const formatDate    = u.formatDate    || (s => s || '');
+  const pipeSplit     = u.pipeSplit     || (v => !v ? [] : String(v).split('|').map(x => x.trim()).filter(Boolean));
+  const normalizeType = u.normalizeType || (t => (t || '').toString().trim().toLowerCase().replace(/\s+/g, '-'));
+  const coverOf       = u.coverOf       || (i => i.featuredImage || i.coverImage || '');
+  const TYPE_LABELS   = (window.WBFNewsCard && window.WBFNewsCard.TYPE_LABELS) || {};
+  const buildMediaList = (window.WBFNewsCard && window.WBFNewsCard.buildMediaList) || (() => []);
+
+  function fileNameFromUrl(url) {
+    if (!url) return '';
+    try {
+      const x = new URL(url, window.location.href);
+      const parts = x.pathname.split('/').filter(Boolean);
+      return decodeURIComponent(parts[parts.length - 1] || url);
+    } catch (e) {
+      return url.split('/').pop() || url;
+    }
+  }
+
+  /* ---------- DOM refs / state ---------- */
+  let overlay  = null;
+  let content  = null;
+  let attached = false;
+  let currentMedia = [];
+  let currentIndex = 0;
+  let touchStartX = 0;
+  let deepLink = null;        // { items, key }
+  let lastFocusedEl = null;
+
+  function $$(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
+  function $(sel, ctx)  { return (ctx || document).querySelector(sel); }
+
+  /* ---------- Carousel rendering ---------- */
+  function renderSlide(m, i, active) {
+    if (m.type === 'image') {
+      return '<div class="carousel-slide' + (active ? ' active' : '') + '" data-i="' + i + '">' +
+        '<img src="' + escapeAttr(m.url) + '" alt="" loading="lazy">' +
+      '</div>';
+    }
+    if (m.type === 'video') {
+      return '<div class="carousel-slide' + (active ? ' active' : '') + '" data-i="' + i + '" data-video-src="' + escapeAttr(m.url) + '">' +
+        (active ? '<video controls preload="metadata" src="' + escapeAttr(m.url) + '"></video>' : '') +
+      '</div>';
+    }
+    if (m.type === 'youtube') {
+      return '<div class="carousel-slide' + (active ? ' active' : '') + '" data-i="' + i + '" data-yt="' + escapeAttr(m.id) + '">' +
+        (active ? '<iframe src="https://www.youtube.com/embed/' + encodeURIComponent(m.id) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' : '') +
+      '</div>';
+    }
+    return '';
+  }
+
+  function renderThumb(m, i) {
+    const isVideo = m.type !== 'image';
+    const src = m.type === 'youtube'
+      ? 'https://img.youtube.com/vi/' + encodeURIComponent(m.id) + '/mqdefault.jpg'
+      : (m.type === 'image' ? m.url : '');
+    return '<button type="button" class="thumb' + (i === 0 ? ' active' : '') + '" data-i="' + i + '" aria-label="Show item ' + (i + 1) + '">' +
+      (src ? '<img src="' + escapeAttr(src) + '" alt="" loading="lazy">' : '<div style="width:100%;height:100%;background:#0f172a"></div>') +
+      (isVideo ? '<span class="thumb-video-marker"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></span>' : '') +
+    '</button>';
+  }
+
+  function renderCarousel(media) {
+    if (!media.length) return '';
+    const slides = media.map((m, i) => renderSlide(m, i, i === 0)).join('');
+    const thumbs = media.length > 1 ? '<div class="carousel-thumbs">' + media.map(renderThumb).join('') + '</div>' : '';
+    const controls = media.length > 1 ? (
+      '<button type="button" class="carousel-btn carousel-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15,6 9,12 15,18"/></svg></button>' +
+      '<button type="button" class="carousel-btn carousel-next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></button>' +
+      '<span class="carousel-counter">1 / ' + media.length + '</span>'
+    ) : '';
+    return '<div class="carousel" aria-roledescription="carousel">' +
+      '<div class="carousel-viewport">' + slides + controls + '</div>' +
+      thumbs +
+    '</div>';
+  }
+
+  function renderAttachments(att) {
+    if (!att.length) return '';
+    return '<div class="attachments-list">' + att.map(url => {
+      return '<a class="attachment" href="' + escapeAttr(url) + '" target="_blank" rel="noopener">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>' +
+        '<span class="attachment-name">' + escapeHtml(fileNameFromUrl(url)) + '</span>' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:#94a3b8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' +
+      '</a>';
+    }).join('') + '</div>';
+  }
+
+  /* ---------- Slide activation (lazy-loads videos/iframes) ---------- */
+  function activateSlide(i) {
+    if (i < 0 || i >= currentMedia.length) return;
+    currentIndex = i;
+    $$('.carousel-slide', content).forEach(s => {
+      const idx = parseInt(s.dataset.i, 10);
+      const wasActive = s.classList.contains('active');
+      const willBeActive = idx === i;
+      s.classList.toggle('active', willBeActive);
+      if (willBeActive && !wasActive) {
+        if (s.dataset.videoSrc && !$('video', s)) {
+          const v = document.createElement('video');
+          v.src = s.dataset.videoSrc; v.controls = true; v.preload = 'metadata';
+          s.appendChild(v);
+        }
+        if (s.dataset.yt && !$('iframe', s)) {
+          const f = document.createElement('iframe');
+          f.src = 'https://www.youtube.com/embed/' + encodeURIComponent(s.dataset.yt);
+          f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          f.allowFullscreen = true;
+          s.appendChild(f);
+        }
+      }
+      if (wasActive && !willBeActive) {
+        const v = $('video', s); if (v) { try { v.pause(); } catch (_) {} }
+        const f = $('iframe', s); if (f) f.remove();
+      }
+    });
+    $$('.thumb', content).forEach(t => t.classList.toggle('active', parseInt(t.dataset.i, 10) === i));
+    const counter = $('.carousel-counter', content);
+    if (counter) counter.textContent = (i + 1) + ' / ' + currentMedia.length;
+    const prev = $('.carousel-prev', content);
+    const next = $('.carousel-next', content);
+    if (prev) prev.disabled = (i === 0);
+    if (next) next.disabled = (i === currentMedia.length - 1);
+  }
+
+  /* ---------- Open / close ---------- */
+  function open(item) {
+    if (!attached) attach();
+    if (!item) return;
+
+    lastFocusedEl = document.activeElement;
+    currentMedia = buildMediaList(item);
+    currentIndex = 0;
+
+    const typeKey    = normalizeType(item.type);
+    const typeLabel  = TYPE_LABELS[typeKey] || (item.type || '');
+    const attachments = pipeSplit(item.attachments);
+    const cover      = coverOf(item);
+
+    content.innerHTML =
+      '<button type="button" class="modal-close" aria-label="Close">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>' +
+      '</button>' +
+      (cover ? '<div class="modal-header-img" style="background-image:url(' + JSON.stringify(cover).slice(1, -1) + ')"></div>' : '') +
+      '<div class="modal-body">' +
+        '<div class="modal-meta">' +
+          (typeLabel  ? '<span class="badge badge-type">' + escapeHtml(typeLabel)  + '</span>' : '') +
+          (item.programme ? '<span class="badge badge-prog">' + escapeHtml(item.programme) + '</span>' : '') +
+          '<span class="modal-date">' + escapeHtml(formatDate(item.date)) + '</span>' +
+        '</div>' +
+        '<h2 id="wbf-news-modal-title" class="modal-title">' + escapeHtml(item.title || '') + '</h2>' +
+        renderCarousel(currentMedia) +
+        '<div class="article-body">' + (item.content || ('<p>' + escapeHtml(item.excerpt || '') + '</p>')) + '</div>' +
+        renderAttachments(attachments) +
+        ((item.downloadUrl || item.externalUrl) ?
+          '<div class="modal-actions">' +
+            (item.downloadUrl ?
+              '<a class="action-btn action-primary" href="' + escapeAttr(item.downloadUrl) + '" target="_blank" rel="noopener">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' +
+                'Download' +
+              '</a>' : ''
+            ) +
+            (item.externalUrl ?
+              '<a class="action-btn action-secondary" href="' + escapeAttr(item.externalUrl) + '" target="_blank" rel="noopener">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
+                'Open external link' +
+              '</a>' : ''
+            ) +
+            '<button type="button" class="action-btn action-ghost" data-share>' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>' +
+              'Share' +
+            '</button>' +
+          '</div>' : ''
+        ) +
+      '</div>';
+
+    overlay.hidden = false;
+    requestAnimationFrame(() => overlay.classList.add('open'));
+    document.body.classList.add('wbf-modal-open');
+    activateSlide(0);
+
+    /* Deep link */
+    if (deepLink) {
+      const url = new URL(window.location);
+      const id = item[deepLink.key] || item.id || item.slug;
+      if (id && url.searchParams.get('article') !== String(id)) {
+        url.searchParams.set('article', String(id));
+        history.pushState({ article: String(id) }, '', url);
+      }
+    }
+
+    bindInstance();
+    const closeBtn = content.querySelector('.modal-close');
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function close(updateHistory) {
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.classList.remove('wbf-modal-open');
+    setTimeout(() => {
+      overlay.hidden = true;
+      if (content) content.innerHTML = '';
+      currentMedia = [];
+      if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+        try { lastFocusedEl.focus(); } catch (_) {}
+      }
+    }, 200);
+    if (updateHistory !== false && deepLink) {
+      const url = new URL(window.location);
+      if (url.searchParams.has('article')) {
+        url.searchParams.delete('article');
+        history.pushState({}, '', url);
+      }
+    }
+  }
+
+  /* ---------- Event wiring ---------- */
+  function bindInstance() {
+    content.querySelector('.modal-close').addEventListener('click', () => close(true));
+
+    const prev = $('.carousel-prev', content);
+    const next = $('.carousel-next', content);
+    if (prev) prev.addEventListener('click', () => activateSlide(currentIndex - 1));
+    if (next) next.addEventListener('click', () => activateSlide(currentIndex + 1));
+
+    $$('.thumb', content).forEach(t => {
+      t.addEventListener('click', () => activateSlide(parseInt(t.dataset.i, 10)));
+    });
+
+    const viewport = $('.carousel-viewport', content);
+    if (viewport) {
+      viewport.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      viewport.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) {
+          if (dx < 0) activateSlide(currentIndex + 1);
+          else        activateSlide(currentIndex - 1);
+        }
+      });
+    }
+
+    const shareBtn = content.querySelector('[data-share]');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', async () => {
+        const url = window.location.href;
+        const title = content.querySelector('.modal-title')?.textContent || document.title;
+        if (navigator.share) {
+          try { await navigator.share({ title, url }); } catch (_) {}
+        } else if (navigator.clipboard) {
+          try {
+            await navigator.clipboard.writeText(url);
+            shareBtn.lastChild && (shareBtn.lastChild.textContent = ' Link copied!');
+            setTimeout(() => { shareBtn.lastChild && (shareBtn.lastChild.textContent = ' Share'); }, 1800);
+          } catch (_) {}
+        }
+      });
+    }
+  }
+
+  /* ---------- One-time attach: mount + global listeners ---------- */
+  function attach() {
+    if (attached) return;
+    overlay = document.getElementById('wbf-news-modal');
+    if (!overlay) {
+      /* Component HTML may not yet be in the DOM if the host page
+         hasn't injected it. Create the mount on the fly. */
+      overlay = document.createElement('div');
+      overlay.className = 'wbf-modal-overlay';
+      overlay.id = 'wbf-news-modal';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-labelledby', 'wbf-news-modal-title');
+      overlay.hidden = true;
+      overlay.innerHTML = '<div class="wbf-modal" id="wbf-news-modal-content"></div>';
+      document.body.appendChild(overlay);
+    } else if (overlay.parentNode !== document.body) {
+      document.body.appendChild(overlay);
+    }
+    content = document.getElementById('wbf-news-modal-content');
+
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(true); });
+
+    document.addEventListener('keydown', (e) => {
+      if (overlay.hidden) return;
+      if (e.key === 'Escape') close(true);
+      else if (e.key === 'ArrowLeft'  && currentMedia.length > 1) activateSlide(currentIndex - 1);
+      else if (e.key === 'ArrowRight' && currentMedia.length > 1) activateSlide(currentIndex + 1);
+    });
+
+    attached = true;
+  }
+
+  /* ---------- ?article=ID deep-link wiring ---------- */
+  function enableDeepLink(items, key) {
+    if (!attached) attach();
+    deepLink = { items: items || [], key: key || 'id' };
+
+    window.addEventListener('popstate', () => {
+      const id = new URL(window.location).searchParams.get('article');
+      if (id) {
+        const item = deepLink.items.find(i => String(i[deepLink.key] || i.id || i.slug) === String(id));
+        if (item) open(item);
+      } else {
+        close(false);
+      }
+    });
+
+    /* If the URL already names an article, open it now */
+    const id = new URL(window.location).searchParams.get('article');
+    if (id) {
+      const item = deepLink.items.find(i => String(i[deepLink.key] || i.id || i.slug) === String(id));
+      if (item) open(item);
+    }
+  }
+
+  /* Auto-attach as soon as the DOM is ready so callers don't have to. */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attach, { once: true });
+  } else {
+    attach();
+  }
+
+  window.WBFNewsModal = { open, close, attach, enableDeepLink };
+})();
+</script>

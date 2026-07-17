@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WBF Important Documents — Western Balkans Fund</title>
+<meta name="description" content="The central repository of Western Balkans Fund documents — founding agreements, statutes, strategic plans, annual reports, financial statements, audit reports and policies. All publicly available and downloadable.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button, input { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .container-narrow { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============================================================
+     PAGE HERO
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: var(--gradient-hero);
+    overflow: hidden;
+    padding: 72px 0 64px;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 700; color: #fff; line-height: 1.1;
+    letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch;
+  }
+  .page-hero p {
+    font-size: var(--text-base); color: rgba(255,255,255,0.7);
+    line-height: 1.65; max-width: 62ch;
+  }
+
+  /* ============================================================
+     COMMITMENT STRIP (4 promise cards)
+     ============================================================ */
+  .commitment {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 40px 0;
+  }
+  .commitment-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .commit-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .commit-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: #eef2f8;
+    color: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .commit-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .commit-title { font-size: var(--text-md); font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .commit-desc { font-size: var(--text-sm); color: var(--muted); line-height: 1.55; }
+
+  /* ============================================================
+     FILTER BAR
+     ============================================================ */
+  .filters-wrap {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .filters-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .filter-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--faint);
+    flex-shrink: 0;
+  }
+  .chip {
+    background: var(--line-soft);
+    border: 1px solid transparent;
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .chip:hover { background: var(--line); color: var(--navy); }
+  .chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .chip-count {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 10px;
+    color: var(--faint);
+    font-weight: 600;
+  }
+  .chip.active .chip-count { color: rgba(255,255,255,0.6); }
+
+  .filter-search {
+    margin-left: auto;
+    min-width: 220px;
+    position: relative;
+    flex: 1;
+    max-width: 320px;
+  }
+  .filter-search input {
+    width: 100%;
+    padding: 8px 14px 8px 36px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: var(--text-sm);
+    color: var(--ink);
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .filter-search input:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(26,54,104,0.12);
+  }
+  .filter-search svg {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    width: 14px; height: 14px;
+    color: var(--faint);
+    fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .results-meta {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px 0;
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .results-meta strong { color: var(--ink); font-weight: 600; }
+
+  /* ============================================================
+     REPORTS LIST
+     ============================================================ */
+  .reports-section { padding: 32px 0 88px; background: #fff; }
+
+  .reports-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: stretch;
+  }
+  /* Empty / error / loading states span the full grid width */
+  .reports-list > .state-msg { grid-column: 1 / -1; }
+
+  .report-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: 1fr auto;
+    column-gap: 16px;
+    row-gap: 16px;
+    align-items: start;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .report-card:not(.unavailable):hover {
+    box-shadow: 0 8px 24px rgba(15,32,68,0.08);
+    transform: translateY(-1px);
+    border-color: #cbd5e1;
+  }
+  .report-card.unavailable { opacity: 0.7; }
+
+  .report-icon {
+    width: 56px; height: 56px;
+    background: #eef2f8;
+    color: var(--navy);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .report-icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .report-icon.external { background: #d1faf3; color: #0d6e62; }
+
+  /* Live first-page PDF preview thumbnail (rendered by PDF.js) */
+  .report-thumb {
+    width: 56px; height: 74px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #f8fafc;
+    position: relative;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(15,32,68,0.08);
+  }
+  .report-thumb img,
+  .report-thumb canvas { width: 100%; height: auto; display: block; }
+  /* skeleton shimmer while page 1 renders */
+  .report-thumb .thumb-skel {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--line-soft) 25%, var(--line) 50%, var(--line-soft) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+  }
+  /* if rendering fails, fall back to a centered document icon */
+  .report-thumb.thumb-failed {
+    display: flex; align-items: center; justify-content: center;
+    background: #eef2f8; color: var(--navy);
+  }
+  .report-thumb.thumb-failed svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  .report-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: var(--text-xs);
+  }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #eef2f8;
+    color: var(--navy);
+  }
+  .badge.green { background: #d1faf3; color: #0d6e62; }
+  .badge.amber { background: #fef3c7; color: #92400e; }
+  .badge.slate { background: var(--line); color: #334155; }
+  .badge.violet { background: #ede9fe; color: #5b21b6; }
+  .badge.rose { background: #ffe4e6; color: #9f1239; }
+
+  .report-year {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .report-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .report-card:not(.unavailable):hover .report-title { color: var(--navy); }
+
+  .report-summary {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .report-file-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--text-xs);
+    color: var(--faint);
+    margin-top: 6px;
+  }
+  .report-file-meta span { display: inline-flex; align-items: center; gap: 4px; }
+  .report-file-meta svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .report-file-meta .sep { width: 3px; height: 3px; border-radius: 50%; background: #cbd5e1; }
+
+  .report-action {
+    grid-column: 1 / -1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+  /* Card is a <div> (nested <a> is invalid HTML); the single action link
+     stretches to cover the whole card so clicking anywhere downloads. */
+  .report-action::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    z-index: 1;
+  }
+  .report-action:hover { background: var(--navy-900); }
+  .report-action svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .report-action.secondary { background: #fff; color: var(--navy); border: 1px solid #cbd5e1; }
+  .report-action.secondary:hover { border-color: var(--navy); background: var(--surface-alt); }
+  .report-soon {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background: var(--line-soft);
+    color: var(--muted);
+  }
+
+  /* States */
+  .state-msg {
+    padding: 64px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: var(--text-md);
+    background: var(--surface-alt);
+    border-radius: 10px;
+  }
+  .state-msg svg { width: 40px; height: 40px; color: #cbd5e1; margin: 0 auto 16px; display: block; }
+  .state-msg h3 { font-size: var(--text-lg); color: var(--ink); margin-bottom: 6px; font-weight: 600; }
+
+  .skeleton {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    column-gap: 16px;
+    row-gap: 16px;
+    align-items: start;
+  }
+  .skeleton .sk-btn { grid-column: 1 / -1; }
+  .sk { background: linear-gradient(90deg, var(--line-soft) 25%, var(--line) 50%, var(--line-soft) 75%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 4px; }
+  .sk-icon { width: 56px; height: 56px; border-radius: 10px; }
+  .sk-line { height: 10px; margin-bottom: 8px; }
+  .sk-line.title { height: 14px; width: 60%; }
+  .sk-line.short { width: 40%; }
+  .sk-btn { height: 38px; border-radius: 6px; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* ============================================================
+     CONTACT SECTION
+     ============================================================ */
+  .contact-section {
+    background: linear-gradient(135deg, var(--surface-alt) 0%, #eef2f8 100%);
+    padding: 72px 0;
+  }
+  .contact-card {
+    max-width: 920px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 44px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    box-shadow: 0 12px 32px rgba(15,32,68,0.04);
+  }
+  .contact-text .overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--navy); margin-bottom: 10px; }
+  .contact-text h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .contact-text p {
+    font-size: var(--text-md);
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .contact-text a.mail {
+    color: var(--navy);
+    font-size: var(--text-md);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .contact-text a.mail:hover { border-bottom-color: var(--navy); }
+  .contact-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    background: var(--navy);
+    color: #fff;
+    font-weight: 600;
+    font-size: var(--text-md);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+  .contact-cta:hover { background: var(--navy-900); }
+  .contact-cta svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .container-narrow, .filters-inner, .page-hero-inner, .results-meta { padding-left: 24px; padding-right: 24px; }
+    .commitment-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-card { grid-template-columns: 1fr; text-align: left; }
+    .contact-cta { justify-self: flex-start; }
+  }
+  @media (max-width: 768px) {
+    .page-hero { padding: 56px 0 48px; }
+    .commitment-grid { grid-template-columns: 1fr; }
+    .filters-wrap { position: static; }
+    .filter-search { margin-left: 0; width: 100%; max-width: 100%; }
+    .report-card {
+      grid-template-columns: 48px 1fr;
+      row-gap: 12px;
+      padding: 20px;
+    }
+    .report-action, .report-soon { grid-column: 1 / -1; justify-self: stretch; justify-content: center; }
+    .report-icon { width: 48px; height: 48px; }
+    .report-icon svg { width: 22px; height: 22px; }
+    .report-thumb { width: 48px; height: 64px; }
+    .contact-card { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/index.html">Home</a><span>›</span><a href="/about.html">About</a><span>›</span>WBF Important Documents
+    </nav>
+    <div class="page-hero-overline">About</div>
+    <h1>WBF Important Documents</h1>
+    <p>This repository provides public access to the Western Balkans Fund's key institutional documents. In line with the Fund's commitment to transparency and accountability, all documents below are available for download.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FILTER BAR
+     ============================================================ -->
+<div class="filters-wrap" role="region" aria-label="Filter documents">
+  <div class="filters-inner">
+    <div class="filter-label">Type</div>
+    <div id="cat-filters" role="group" style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="chip active" data-cat="all">All</button>
+      <!-- Category chips injected dynamically -->
+    </div>
+    <div class="filter-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search-input" type="search" placeholder="Search documents…" aria-label="Search documents">
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     RESULTS META + REPORTS LIST
+     ============================================================ -->
+<div class="results-meta" id="results-meta" aria-live="polite"></div>
+
+<section class="reports-section">
+  <div class="container">
+    <div class="reports-list" id="reports-list" aria-live="polite">
+      <div class="skeleton"><div class="sk sk-icon"></div><div><div class="sk sk-line short"></div><div class="sk sk-line title"></div><div class="sk sk-line"></div></div><div class="sk sk-btn"></div></div>
+      <div class="skeleton"><div class="sk sk-icon"></div><div><div class="sk sk-line short"></div><div class="sk sk-line title"></div><div class="sk sk-line"></div></div><div class="sk sk-btn"></div></div>
+      <div class="skeleton"><div class="sk sk-icon"></div><div><div class="sk sk-line short"></div><div class="sk sk-line title"></div><div class="sk sk-line"></div></div><div class="sk sk-btn"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PDF.js — renders each document's first page as a live preview thumbnail -->
+<script src="/assets/js/pdfjs/pdf.min.js"></script>
+
+<!-- ============================================================
+     SCRIPT — CSV CMS, FILTERS
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  // Point PDF.js at its bundled worker (kept local so it works offline too).
+  if (typeof pdfjsLib !== 'undefined' && pdfjsLib.GlobalWorkerOptions) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/js/pdfjs/pdf.worker.min.js';
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     CONFIG
+     Set CSV_URL to your published Google Sheet CSV.
+     Columns: id, title, category, year, fileType, fileSize,
+              fileUrl, externalUrl, summary, status
+     Category values: annual-report, financial-statement,
+                      audit-report, joint-action, governance, other
+     Leave fileUrl AND externalUrl empty to show "Coming Soon".
+     ────────────────────────────────────────────────────────── */
+  /* Where the document files live. All PDFs go in this folder.
+     The manifest (documents.csv) lives in the same folder and lists
+     every document. To add a document: drop the PDF into the folder,
+     then add one row to documents.csv. See the README in that folder. */
+  const DOC_BASE = "/assets/documents/";
+  const CSV_URL  = DOC_BASE + "documents.csv";
+
+  /* Turn a bare filename in the CSV (e.g. "statute.pdf") into a full
+     link to the depository folder. Full URLs and paths are left as-is. */
+  function resolveDocUrl(u) {
+    u = String(u || '').trim();
+    if (!u) return '';
+    if (/^https?:\/\//i.test(u) || u.startsWith('/') || u.startsWith('/') || u.startsWith('./')) return u;
+    return DOC_BASE + u;
+  }
+
+  const CATEGORY_META = {
+    'founding':            { label: 'Founding & Legal',     badge: 'badge slate' },
+    'governance':          { label: 'Governance',           badge: 'badge' },
+    'strategy':            { label: 'Strategy & Planning',  badge: 'badge rose' },
+    'annual-report':       { label: 'Annual Report',        badge: 'badge' },
+    'financial-statement': { label: 'Financial Statement',  badge: 'badge green' },
+    'audit-report':        { label: 'Audit Report',         badge: 'badge violet' },
+    'joint-action':        { label: 'Joint Action Report',  badge: 'badge amber' },
+    'policy':              { label: 'Policy',               badge: 'badge amber' },
+    'guidelines':          { label: 'Guidelines & Forms',   badge: 'badge slate' },
+    'other':               { label: 'Document',             badge: 'badge slate' }
+  };
+
+  const CATEGORY_ORDER = [
+    'founding',
+    'governance',
+    'strategy',
+    'annual-report',
+    'financial-statement',
+    'audit-report',
+    'joint-action',
+    'policy',
+    'guidelines',
+    'other'
+  ];
+
+  /* Fallback list shown only if documents.csv cannot be read.
+     Keep it roughly in sync with documents.csv. Empty fileUrl = "Coming Soon". */
+  const SAMPLE_DATA = [
+    { id: 'founding-agreement', title: 'Agreement on the Establishment of the Western Balkans Fund', category: 'founding', year: '2015', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'The founding international agreement establishing the WBF, signed by the six Contracting Parties.', status: 'published' },
+    { id: 'statute', title: 'WBF Statute', category: 'governance', year: '2017', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'The statute of the Western Balkans Fund as ratified by all six Contracting Parties.', status: 'published' },
+    { id: 'rules-procedure', title: 'Rules of Procedure', category: 'governance', year: '2018', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Rules of procedure governing WBF bodies and decision-making processes.', status: 'published' },
+    { id: 'fin-regulations', title: 'Financial Regulations', category: 'governance', year: '2018', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Financial regulations governing budgeting, disbursement and reporting.', status: 'published' },
+    { id: 'strategic-plan-2020', title: 'Strategic Development Plan 2020–2024', category: 'strategy', year: '2020', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'The Fund\'s first multi-year strategic framework, approved December 2020.', status: 'published' },
+    { id: 'work-programme', title: 'Annual Work Programme', category: 'strategy', year: '2025', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'The Fund\'s planned activities, calls and priorities for the current year.', status: 'published' },
+    { id: 'annual-2024', title: 'Annual Report 2024', category: 'annual-report', year: '2024', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Complete account of WBF activities, programmes, grants disbursed and impact during 2024.', status: 'published' },
+    { id: 'annual-2023', title: 'Annual Report 2023', category: 'annual-report', year: '2023', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'WBF activities, partnerships and grantee outcomes during 2023.', status: 'published' },
+    { id: 'annual-2022', title: 'Annual Report 2022', category: 'annual-report', year: '2022', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Highlights and results across all programmes and calls during 2022.', status: 'published' },
+    { id: 'fin-2024', title: 'Financial Statements 2024', category: 'financial-statement', year: '2024', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Audited financial statements for the financial year 2024.', status: 'published' },
+    { id: 'fin-2023', title: 'Financial Statements 2023', category: 'financial-statement', year: '2023', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Audited financial statements for the financial year 2023.', status: 'published' },
+    { id: 'audit-2023', title: 'External Audit Report 2023', category: 'audit-report', year: '2023', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Independent external audit covering WBF accounts and financial controls for 2023.', status: 'published' },
+    { id: 'audit-2022', title: 'External Audit Report 2022', category: 'audit-report', year: '2022', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Independent external audit covering WBF accounts and financial controls for 2022.', status: 'published' },
+    { id: 'joint-action', title: 'EU / WBF Joint Action Report', category: 'joint-action', year: '2024', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Report on the EU and WBF joint action supporting regional cooperation across the WB6.', status: 'published' },
+    { id: 'anti-fraud-policy', title: 'Anti-Fraud & Anti-Corruption Policy', category: 'policy', year: '', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'The Fund\'s policy on preventing, detecting and responding to fraud and corruption.', status: 'published' },
+    { id: 'code-of-conduct', title: 'Code of Conduct', category: 'policy', year: '', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Ethical standards and conduct expected of WBF staff, bodies and partners.', status: 'published' },
+    { id: 'data-protection-policy', title: 'Data Protection & Privacy Policy', category: 'policy', year: '', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'How the Fund collects, processes and protects personal data.', status: 'published' },
+    { id: 'procurement-policy', title: 'Procurement Policy', category: 'policy', year: '', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Rules governing procurement of goods and services by the Fund.', status: 'published' },
+    { id: 'call-guidelines', title: 'Call for Proposals — Guidelines for Applicants', category: 'guidelines', year: '', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Eligibility, criteria and instructions for applying to WBF calls for proposals.', status: 'published' },
+    { id: 'application-form', title: 'Grant Application Form', category: 'guidelines', year: '', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'The standard application form and annexes for WBF grants.', status: 'published' },
+    { id: 'reporting-template', title: 'Grantee Reporting Template', category: 'guidelines', year: '', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Narrative and financial reporting template for funded projects.', status: 'published' },
+    { id: 'visibility-guidelines', title: 'Visibility & Communication Guidelines', category: 'guidelines', year: '', fileType: 'PDF', fileSize: '', fileUrl: '', externalUrl: '', summary: 'Logo use and visibility requirements for grantees and partners.', status: 'published' }
+  ];
+
+  const STATE = { items: [], cat: 'all', search: '' };
+
+  /* ──────────────────────────────────────────────────────────
+     UTILITIES
+     ────────────────────────────────────────────────────────── */
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.from((c || document).querySelectorAll(s)); }
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function escapeAttr(s) { return escapeHtml(s); }
+
+  /* ──────────────────────────────────────────────────────────
+     CSV PARSER
+     ────────────────────────────────────────────────────────── */
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQuotes) {
+        if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else { inQuotes = false; } }
+        else { field += c; }
+      } else {
+        if (c === '"') inQuotes = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c === '\r') {/*skip*/}
+        else field += c;
+      }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    if (!rows.length) return [];
+    const headers = rows[0].map(h => h.trim());
+    return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = (r[i] || '').trim());
+      return obj;
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     DATA
+     ────────────────────────────────────────────────────────── */
+  async function loadData() {
+    if (!CSV_URL) { STATE.items = SAMPLE_DATA.slice(); return; }
+    try {
+      const res = await fetch(CSV_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      STATE.items = parseCSV(await res.text());
+    } catch (err) {
+      console.warn('CSV load failed, using sample data:', err);
+      STATE.items = SAMPLE_DATA.slice();
+    }
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     FILTERS
+     ────────────────────────────────────────────────────────── */
+  function normalizeCat(c) {
+    const k = String(c || 'other').trim().toLowerCase().replace(/\s+/g, '-');
+    return CATEGORY_META[k] ? k : 'other';
+  }
+
+  function buildCategoryFilters() {
+    const wrap = $('#cat-filters');
+    $$('button[data-cat]:not([data-cat="all"])', wrap).forEach(b => b.remove());
+    const counts = {};
+    STATE.items.forEach(i => {
+      if ((i.status || 'published').toLowerCase() === 'draft') return;
+      const cat = normalizeCat(i.category);
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+    CATEGORY_ORDER.forEach(cat => {
+      if (!counts[cat]) return;
+      const meta = CATEGORY_META[cat];
+      const btn = document.createElement('button');
+      btn.className = 'chip';
+      btn.dataset.cat = cat;
+      btn.innerHTML = escapeHtml(meta.label) + ' <span class="chip-count">' + counts[cat] + '</span>';
+      wrap.appendChild(btn);
+    });
+  }
+
+  function getFiltered() {
+    return STATE.items
+      .filter(i => (i.status || 'published').toLowerCase() !== 'draft')
+      .filter(i => STATE.cat === 'all' ? true : normalizeCat(i.category) === STATE.cat)
+      .filter(i => {
+        if (!STATE.search) return true;
+        const q = STATE.search.toLowerCase();
+        return (i.title || '').toLowerCase().includes(q) ||
+               (i.summary || '').toLowerCase().includes(q) ||
+               (i.year || '').toLowerCase().includes(q);
+      })
+      .sort((a, b) => {
+        const ya = parseInt(a.year, 10) || 0;
+        const yb = parseInt(b.year, 10) || 0;
+        if (yb !== ya) return yb - ya;
+        return CATEGORY_ORDER.indexOf(normalizeCat(a.category)) - CATEGORY_ORDER.indexOf(normalizeCat(b.category));
+      });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     RENDER
+     ────────────────────────────────────────────────────────── */
+  /* ──────────────────────────────────────────────────────────
+     LIVE PDF FIRST-PAGE THUMBNAILS (PDF.js)
+     Each internal PDF's first page is rendered to an image in the
+     browser, lazily (only when the card scrolls into view) and cached
+     in localStorage so it is instant on later visits. Falls back to a
+     document icon if PDF.js is unavailable or a file can't be read.
+     ────────────────────────────────────────────────────────── */
+  const FILE_ICON_SVG = '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="13" y2="18"/></svg>';
+  const THUMB_CACHE_PREFIX = 'wbfthumb:v1:';
+
+  function parseSizeMB(s) {
+    if (!s) return null;
+    const m = String(s).match(/([\d.]+)\s*(KB|MB|GB)/i);
+    if (!m) return null;
+    const n = parseFloat(m[1]);
+    const unit = m[2].toUpperCase();
+    if (unit === 'KB') return n / 1024;
+    if (unit === 'GB') return n * 1024;
+    return n;
+  }
+
+  function showThumbFallback(el) {
+    el.classList.add('thumb-failed');
+    el.innerHTML = FILE_ICON_SVG;
+  }
+
+  async function renderThumb(el) {
+    const url = el.dataset.pdf;
+    if (!url) return;
+    const cacheKey = THUMB_CACHE_PREFIX + url;
+    // 1) Instant from cache
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) { el.innerHTML = '<img alt="" src="' + cached + '">'; return; }
+    } catch (e) {}
+    // 2) Render page 1 with PDF.js
+    if (typeof pdfjsLib === 'undefined') { showThumbFallback(el); return; }
+    try {
+      const pdf = await pdfjsLib.getDocument({ url: url }).promise;
+      const page = await pdf.getPage(1);
+      const base = page.getViewport({ scale: 1 });
+      const scale = 132 / base.width;            // ~2x of the 56px box for sharpness
+      const viewport = page.getViewport({ scale: scale });
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(viewport.width);
+      canvas.height = Math.round(viewport.height);
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+      let dataUrl = '';
+      try { dataUrl = canvas.toDataURL('image/jpeg', 0.72); } catch (e) {}
+      if (dataUrl) {
+        el.innerHTML = '<img alt="" src="' + dataUrl + '">';
+        try { localStorage.setItem(cacheKey, dataUrl); } catch (e) {}
+      } else {
+        el.innerHTML = '';
+        el.appendChild(canvas);
+      }
+      if (pdf.cleanup) pdf.cleanup();
+    } catch (err) {
+      showThumbFallback(el);
+    }
+  }
+
+  let thumbObserver = null;
+  function initThumbs() {
+    const els = $$('.report-thumb[data-pdf]:not([data-thumb-init])');
+    if (!els.length) return;
+    // No IntersectionObserver? Render all directly.
+    if (typeof IntersectionObserver === 'undefined') {
+      els.forEach(el => { el.setAttribute('data-thumb-init', '1'); renderThumb(el); });
+      return;
+    }
+    if (!thumbObserver) {
+      thumbObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { obs.unobserve(entry.target); renderThumb(entry.target); }
+        });
+      }, { rootMargin: '300px 0px' });
+    }
+    els.forEach(el => { el.setAttribute('data-thumb-init', '1'); thumbObserver.observe(el); });
+  }
+
+  function renderCard(r) {
+    const cat = normalizeCat(r.category);
+    const meta = CATEGORY_META[cat];
+    const fileHref = resolveDocUrl(r.fileUrl);
+    const href = fileHref || r.externalUrl;
+    const isExternal = !fileHref && r.externalUrl;
+    const fileMeta = [r.fileType, r.fileSize].filter(Boolean).join(' · ');
+
+    const iconSvg = isExternal
+      ? '<svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'
+      : '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="14" x2="15" y2="14"/><line x1="9" y1="18" x2="13" y2="18"/></svg>';
+
+    // Live first-page preview for internal PDFs (rendered by PDF.js on scroll).
+    // Falls back to the icon for external links, "Coming Soon" items, non-PDFs,
+    // or very large files. FILE_ICON_SVG is used if rendering fails.
+    const isPdf = /\.pdf($|[?#])/i.test(fileHref) || /pdf/i.test(r.fileType || '');
+    const mb = parseSizeMB(r.fileSize);
+    const canThumb = fileHref && !isExternal && isPdf && (mb === null || mb <= 40);
+    const visual = canThumb
+      ? '<div class="report-thumb" data-pdf="' + escapeAttr(fileHref) + '"><div class="thumb-skel"></div></div>'
+      : '<div class="report-icon' + (isExternal ? ' external' : '') + '">' + iconSvg + '</div>';
+
+    const action = href
+      ? '<a class="report-action" href="' + escapeAttr(href) + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' +
+          (isExternal
+            ? '<svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open'
+            : '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download') +
+        '</a>'
+      : '<span class="report-soon">Coming Soon</span>';
+
+    const wrapperOpen = '<div class="report-card' + (href ? '' : ' unavailable') + '">';
+    const wrapperClose = '</div>';
+
+    return wrapperOpen +
+      visual +
+      '<div>' +
+        '<div class="report-meta">' +
+          '<span class="' + meta.badge + '">' + escapeHtml(meta.label) + '</span>' +
+          (r.year ? '<span class="report-year">' + escapeHtml(r.year) + '</span>' : '') +
+        '</div>' +
+        '<div class="report-title">' + escapeHtml(r.title) + '</div>' +
+        (r.summary ? '<div class="report-summary">' + escapeHtml(r.summary) + '</div>' : '') +
+        (fileMeta
+          ? '<div class="report-file-meta">' +
+              '<span>' +
+                '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>' +
+                escapeHtml(fileMeta) +
+              '</span>' +
+            '</div>'
+          : '') +
+      '</div>' +
+      action +
+    wrapperClose;
+  }
+
+  function render() {
+    const list = getFiltered();
+    const root = $('#reports-list');
+    const meta = $('#results-meta');
+    const hasFilters = STATE.cat !== 'all' || STATE.search;
+
+    meta.innerHTML = '<strong>' + list.length + '</strong> ' +
+      (list.length === 1 ? 'document' : 'documents') +
+      (hasFilters ? ' matching your filters' : '');
+
+    if (!list.length) {
+      root.innerHTML =
+        '<div class="state-msg">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+          '<h3>No documents found</h3>' +
+          '<p>Try a different combination of filters.</p>' +
+        '</div>';
+      return;
+    }
+    root.innerHTML = list.map(renderCard).join('');
+    initThumbs();
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     EVENTS
+     ────────────────────────────────────────────────────────── */
+  function bindFilters() {
+    $('#cat-filters').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-cat]'); if (!btn) return;
+      STATE.cat = btn.dataset.cat;
+      $$('#cat-filters button').forEach(b => b.classList.toggle('active', b === btn));
+      render();
+    });
+    let timer;
+    $('#search-input').addEventListener('input', (e) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { STATE.search = e.target.value.trim(); render(); }, 150);
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     INIT
+     ────────────────────────────────────────────────────────── */
+  async function init() {
+    bindFilters();
+    try {
+      await loadData();
+      buildCategoryFilters();
+      render();
+    } catch (err) {
+      console.error(err);
+      $('#reports-list').innerHTML =
+        '<div class="state-msg"><h3>Unable to load documents</h3><p>Please try again in a few moments.</p></div>';
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

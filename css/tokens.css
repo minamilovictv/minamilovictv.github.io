@@ -1,0 +1,71 @@
+/* ============================================================
+   tokens.css · WBF design system tokens
+   ============================================================
+   Single source of truth for the WBF visual language.
+   Loaded on every page BEFORE site-chrome.css and any page CSS,
+   so all downstream styles can consume these variables.
+
+   Programme pages may override the three --accent tokens locally
+   (see "Page accent" below) to establish sub-brand identity
+   without touching anything else.
+   ============================================================ */
+
+:root {
+  /* Brand */
+  --navy:        #1A3668;
+  --navy-900:    #0f2044;
+  --navy-700:    #2a4a85;
+  --teal:        #0E8C84;  --teal-tint:  #e6f4f3;
+  --teal-deep:   #0f5a5e;
+  --amber:       #C2841C;  --amber-tint: #fbf2e2;
+  --green:       #3372e3;  --green-tint: #e9f0fd;
+
+  /* Neutrals (Slate) */
+  --ink: #0f172a; --ink-soft: #475569; --muted: #64748b; --faint: #94a3b8;
+  --line: #e2e8f0; --line-soft: #f1f5f9;
+  --surface: #ffffff; --surface-alt: #f8fafc;
+
+  /* Page accent — program pages override these three */
+  --accent: var(--navy); --accent-deep: var(--navy-900); --accent-tint: #e8eef8;
+
+  /* Typography — WBF brand system
+     Body text + display/headings both use Inter (with system-font
+     fallbacks). Inter must be loaded from Google Fonts in the page
+     <head>. --font-display is kept as a distinct token so a display
+     face can be introduced later in ONE place without touching pages;
+     pages must NOT override it locally. */
+  --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Type scale — derived from the reference pages (regional-academy / move / ggi).
+     Body steps are fixed px; heading steps are fluid clamp() and pair with
+     --font-display. */
+  --text-xs:   11px;                       /* overlines, tags, fine print, small labels */
+  --text-sm:   13px;                       /* captions, meta, small body */
+  --text-md:   15px;                       /* default body */
+  --text-base: 16px;                       /* lead body / section intro paragraphs */
+  --text-lg:   17px;                       /* large body, hero deck */
+  --text-xl:   clamp(19px, 1.8vw, 24px);   /* h3 · card & panel titles */
+  --text-2xl:  clamp(24px, 3vw, 34px);     /* h2 · section headings */
+  --text-3xl:  clamp(28px, 3.6vw, 44px);   /* large / feature h2 */
+  --text-hero: clamp(32px, 4.4vw, 52px);   /* h1 · hero display */
+
+  /* Spacing (4px base) */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+
+  /* Radius */
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px; --radius-pill: 999px;
+
+  /* Elevation — navy-tinted, this is a brand signature */
+  --shadow-1: 0 4px 12px  rgba(15,32,68,0.05);
+  --shadow-2: 0 8px 20px  rgba(15,32,68,0.08);
+  --shadow-3: 0 12px 28px rgba(15,32,68,0.10);
+  --shadow-4: 0 24px 64px rgba(15,32,68,0.22);
+
+  /* Signatures */
+  --gradient-hero: linear-gradient(160deg, var(--navy-900) 0%, var(--navy) 55%, var(--navy-900) 100%);
+
+  /* Layout */
+  --container: 1400px; --container-text: 920px;
+}

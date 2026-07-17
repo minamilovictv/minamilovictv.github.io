@@ -1,0 +1,23 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local env / secrets
+.env
+.env.local
+
+# Tooling
+.claude/
+
+# Backups / archives (keep out of the repo)
+*.zip
+
+# Large PDFs — reports handled separately (compress or host externally).
+# Exceed GitHub's 100 MB per-file limit; documents.csv still tracked.
+assets/documents/*.pdf

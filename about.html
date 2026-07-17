@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About the Western Balkans Fund</title>
+<meta name="description" content="The Western Balkans Fund is an international organization based in Tirana, founded by the six Western Balkans governments to promote regional cooperation, reconciliation, and people-to-people ties.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============================================================
+     PAGE HERO
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: var(--gradient-hero);
+    overflow: hidden;
+    padding: 64px 0 56px;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: var(--text-sm); color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 700; color: #fff; line-height: 1.1;
+    letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch;
+  }
+  .page-hero p {
+    font-size: var(--text-base); color: rgba(255,255,255,0.7);
+    line-height: 1.65; max-width: 62ch;
+  }
+
+  /* ============================================================
+     SECTION SHARED
+     ============================================================ */
+  .section { padding: 58px 0; }
+  .section-alt { background: var(--surface-alt); }
+
+  .sec-head { margin-bottom: 32px; }
+  .sec-head.center { text-align: center; }
+  .sec-head .overline {
+    font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.16em; color: var(--navy); margin-bottom: 12px;
+  }
+  .sec-head h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl); font-weight: 700;
+    color: var(--ink); line-height: 1.15; margin-bottom: 14px;
+  }
+  .sec-head p {
+    font-size: var(--text-base); color: var(--muted);
+    line-height: 1.65; max-width: 64ch;
+  }
+  .sec-head.center p { margin-left: auto; margin-right: auto; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px; background: var(--navy); color: #fff;
+    font-weight: 600; font-size: var(--text-md); border-radius: 3px;
+    text-decoration: none; border: none; cursor: pointer;
+    font-family: inherit; transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--navy-900); }
+  .btn-primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px; background: #fff; color: var(--navy);
+    border: 1px solid #cbd5e1; font-weight: 600; font-size: var(--text-md);
+    border-radius: 3px; text-decoration: none;
+    font-family: inherit; transition: border-color 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--navy); }
+
+  /* ============================================================
+     MANDATE SECTION (2 rows of split-grid)
+     ============================================================ */
+  .mandate-section .container { max-width: 1180px; }
+
+  /* Shared 2-column grid, used by mandate rows AND partners */
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .mandate-row { margin-bottom: 44px; }
+  .mandate-row:last-child { margin-bottom: 0; }
+  .split-col { min-width: 0; } /* prevents grid overflow */
+
+  .mandate-section .overline {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #0f2044;
+    color: var(--navy, #0f2044);
+    margin-bottom: 12px;
+  }
+
+  .mandate-heading {
+    font-family: 'Inter', sans-serif;
+    font-family: var(--font-display, 'Inter', sans-serif);
+    font-size: clamp(1.5rem, 2.1vw, 1.9rem);
+    font-weight: 700;
+    color: #1a1e2e;
+    color: var(--ink, #1a1e2e);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  .mandate-heading::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 44px;
+    height: 3px;
+    background: #7dd3fc;
+    border-radius: 2px;
+  }
+
+  .mandate-section .split-col p {
+    font-size: var(--text-md);
+    color: #334155;
+    color: var(--ink-soft, #334155);
+    line-height: 1.8;
+    margin-bottom: 14px;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+
+  .mandate-footnote {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #e2e8f0;
+    font-size: var(--text-sm) !important;
+    color: #64748b !important;
+    color: var(--faint, #64748b) !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+    hyphens: none !important;
+  }
+
+  .mandate-ctas {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Right column: facts-grid becomes 3 in a row within its half of the layout.
+     Room is tight, so keep them compact. */
+  .mandate-section .facts-grid {
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 14px;
+  }
+  .mandate-section .quick-grid {
+    grid-template-columns: repeat(3, 1fr); /* now 3 cards (Member States removed) */
+    margin-top: 14px;
+  }
+
+  /* ---- 6-image gallery ---- */
+  .wbf-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 10px;
+    height: 100%;
+    min-height: 380px;
+  }
+  .wbf-gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #e6ecf3 0%, #cfd9e6 100%);
+    aspect-ratio: 4 / 3;
+    cursor: default;
+  }
+  .wbf-gallery-item::before {
+    content: attr(data-num);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: rgba(15,32,68,0.32);
+    letter-spacing: 0.08em;
+    pointer-events: none;
+  }
+  .wbf-gallery-item img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .wbf-gallery-item:hover img { transform: scale(1.05); }
+
+  @media (max-width: 900px) {
+    .split-grid { grid-template-columns: 1fr; gap: 40px; }
+    .mandate-row { margin-bottom: 40px; }
+    .wbf-gallery { grid-template-columns: repeat(3, 1fr); min-height: 260px; }
+    .mandate-section .facts-grid { grid-template-columns: repeat(3, 1fr); }
+    .mandate-section .quick-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .wbf-gallery { grid-template-columns: repeat(2, 1fr); }
+    .mandate-section .facts-grid { grid-template-columns: 1fr; }
+    .mandate-section .quick-grid { grid-template-columns: 1fr; }
+  }
+
+  .facts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .fact-card {
+    background: #0f2044;
+    background: var(--navy, #0f2044);
+    border: 1px solid #0f2044;
+    border: 1px solid var(--navy, #0f2044);
+    border-radius: 10px;
+    padding: 18px;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .fact-card:hover {
+    background: #fff;
+    border-color: #0f2044;
+    border-color: var(--navy, #0f2044);
+    box-shadow: 0 8px 20px rgba(15,32,68,0.10);
+  }
+  .fact-card .icon {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .fact-card:hover .icon {
+    background: #eef2f8;
+    color: #0f2044;
+    color: var(--navy, #0f2044);
+  }
+  .fact-card .icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .fact-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 4px;
+    transition: color 0.25s ease;
+  }
+  .fact-card:hover .fact-label {
+    color: #64748b;
+    color: var(--faint, #64748b);
+  }
+  .fact-value {
+    font-size: var(--text-md);
+    font-weight: 600;
+    color: #fff;
+    transition: color 0.25s ease;
+  }
+  .fact-card:hover .fact-value {
+    color: #0f2044;
+    color: var(--navy, #0f2044);
+  }
+
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .quick-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .quick-card:hover {
+    box-shadow: 0 8px 20px rgba(15,32,68,0.08);
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+  }
+  .quick-card .icon {
+    width: 36px; height: 36px;
+    background: #eef2f8;
+    color: var(--navy);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .quick-card .icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .quick-card .label { font-size: var(--text-sm); font-weight: 600; color: var(--ink); flex: 1; }
+  .quick-card .arrow { color: #cbd5e1; transition: color 0.15s, transform 0.15s; }
+  .quick-card:hover .arrow { color: var(--navy); transform: translateX(2px); }
+  .quick-card .arrow svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     VALUES
+     ============================================================ */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .value-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px 22px;
+    text-align: center;
+  }
+  .value-icon {
+    width: 56px; height: 56px;
+    background: var(--navy-900);
+    color: #7dd3fc;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 18px;
+  }
+  .value-icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .value-title { font-size: var(--text-md); font-weight: 600; color: var(--ink); margin-bottom: 0; }
+  .value-desc { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; }
+
+  /* ============================================================
+     MILESTONES — horizontal gallery
+     A wide, exhibition-style row of solid-navy milestone cards.
+     Scrolls horizontally (native wheel+shift, trackpad, touch and
+     the arrow controls) and snaps gently. Swap the placeholder
+     images by dropping files into assets/images/milestones/.
+     ============================================================ */
+  .milestones-section { position: relative; }
+
+  /* Full-bleed scroller. --ms-gutter aligns the first and last
+     cards with the container content edge on wide screens, while
+     the row itself extends to (and past) the viewport edges. */
+  .ms-gallery {
+    --ms-gutter: max(24px, calc((100% - var(--container)) / 2 + 40px));
+    margin-top: 4px;
+    padding: 12px 0 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
+    scroll-padding-inline-start: var(--ms-gutter);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26,54,104,0.22) transparent;
+  }
+  .ms-gallery:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; }
+  .ms-gallery::-webkit-scrollbar { height: 6px; }
+  .ms-gallery::-webkit-scrollbar-track { background: transparent; }
+  .ms-gallery::-webkit-scrollbar-thumb { background: rgba(26,54,104,0.20); border-radius: 999px; }
+  .ms-gallery::-webkit-scrollbar-thumb:hover { background: rgba(26,54,104,0.34); }
+
+  .ms-track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    margin: 0;
+    padding: 0 var(--ms-gutter);
+    list-style: none;
+  }
+
+  .ms-card {
+    flex: 0 0 340px;
+    width: 340px;
+    scroll-snap-align: start;
+  }
+  .ms-card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 520px;
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(15,32,68,0.12);
+    transition: transform 0.3s cubic-bezier(0.22,0.61,0.36,1),
+                box-shadow 0.3s cubic-bezier(0.22,0.61,0.36,1);
+  }
+  .ms-card-inner:hover,
+  .ms-card-inner:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 46px rgba(15,32,68,0.24);
+  }
+
+  .ms-card-media {
+    position: relative;
+    height: 168px;                /* ~one-third of the card */
+    flex-shrink: 0;
+    background: var(--navy-700);  /* refined placeholder until a photo is added */
+    overflow: hidden;
+  }
+  .ms-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* If a photo is missing/broken, onerror sets [hidden] — hide it so the
+     clean navy placeholder shows instead of a broken-image / alt-text panel. */
+  .ms-card-media img[hidden] { display: none; }
+
+  .ms-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 26px 28px 28px;
+  }
+  .ms-card-date {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.60);
+    margin-bottom: 12px;
+  }
+  .ms-card-title {
+    font-family: var(--font-display);
+    font-size: 1.16rem;
+    font-weight: 700;
+    line-height: 1.32;
+    color: #fff;
+    margin: 0 0 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.64em;           /* reserve 2 lines so every body aligns */
+  }
+  .ms-card-desc {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.74);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ms-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .ms-controls button {
+    width: 46px; height: 46px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  .ms-controls button:hover:not(:disabled) {
+    background: var(--navy); color: #fff; border-color: var(--navy);
+    transform: translateY(-1px);
+  }
+  .ms-controls button:disabled { opacity: 0.35; cursor: default; }
+  .ms-controls svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  @media (max-width: 768px) {
+    .ms-card { flex-basis: 300px; width: 300px; }
+    .ms-card-inner { height: 540px; }
+    .ms-controls { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ms-gallery { scroll-behavior: auto; }
+    .ms-card-inner, .ms-controls button { transition: none; }
+    .ms-card-inner:hover, .ms-card-inner:focus-within { transform: none; }
+  }
+  /* (obsolete arc-fan / modal styles removed — replaced by .ms-* gallery above) */
+
+  /* ============================================================
+     BENEFICIARIES (Who We Support)
+     ============================================================ */
+  .ben-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    counter-reset: ben;
+  }
+  .ben-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 24px 24px;
+    overflow: hidden;
+    counter-increment: ben;
+    transition: transform 0.32s cubic-bezier(0.22,0.61,0.36,1),
+                box-shadow 0.32s ease, border-color 0.32s ease;
+  }
+  /* Gradient accent bar wipes across the top on hover */
+  .ben-card::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--navy), #7dd3fc);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.22,0.61,0.36,1);
+  }
+  .ben-card:hover::before { transform: scaleX(1); }
+  /* Big numbered watermark */
+  .ben-card::after {
+    content: counter(ben, decimal-leading-zero);
+    position: absolute; top: 14px; right: 20px;
+    font-family: var(--font-display, 'Inter', sans-serif);
+    font-size: 3.4rem; font-weight: 800; line-height: 1;
+    color: rgba(15,32,68,0.05);
+    pointer-events: none;
+    transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22,0.61,0.36,1);
+  }
+  .ben-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 22px 44px rgba(15,32,68,0.14);
+    border-color: transparent;
+  }
+  .ben-card:hover::after {
+    color: rgba(125,211,252,0.22);
+    transform: scale(1.12) translateY(-2px);
+  }
+  .ben-head {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+  }
+  .ben-icon {
+    width: 50px; height: 50px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-900) 100%);
+    color: #7dd3fc;
+    border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 8px 18px rgba(15,32,68,0.20);
+    transition: transform 0.45s cubic-bezier(0.22,0.61,0.36,1),
+                box-shadow 0.32s ease;
+  }
+  .ben-card:hover .ben-icon {
+    transform: scale(1.1) rotate(-6deg);
+    box-shadow: 0 12px 24px rgba(15,32,68,0.28);
+  }
+  .ben-icon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ben-title { font-size: var(--text-md); font-weight: 700; color: var(--ink); line-height: 1.25; }
+  .ben-tags { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; }
+  .ben-tag {
+    background: #f1f5f9;
+    color: var(--ink-soft);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    padding: 6px 13px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: default;
+    transition: background 0.2s ease, color 0.2s ease,
+                border-color 0.2s ease, transform 0.2s ease;
+  }
+  .ben-tag:hover {
+    background: #fff;
+    color: var(--navy);
+    border-color: #7dd3fc;
+    transform: translateY(-2px);
+  }
+
+  /* ============================================================
+     MISSION & VALUES STATEMENTS
+     ============================================================ */
+  .mv {
+    background: var(--gradient-hero);
+    color: #fff;
+  }
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .mv-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 36px;
+  }
+  .mv-card .overline {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #7dd3fc;
+    margin-bottom: 12px;
+  }
+  .mv-divider {
+    width: 40px; height: 3px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+  .mv-card p {
+    font-size: var(--text-base);
+    color: rgba(255,255,255,0.85);
+    line-height: 1.75;
+  }
+
+  /* ============================================================
+     PROSE BLOCK (Objectives, Partners text)
+     ============================================================ */
+  .prose-block {
+    max-width: 78ch;
+    margin: 0 auto;
+  }
+  .prose-block p {
+    font-size: var(--text-md);
+    color: var(--ink-soft);
+    line-height: 1.8;
+    margin-bottom: 18px;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+  .prose-block p:last-child { margin-bottom: 0; }
+  .prose-cta {
+    text-align: center;
+    margin-top: 36px;
+  }
+
+  /* ============================================================
+     PARTNERS (2-col split: text left, event photos right; logo band below)
+     ============================================================ */
+  .partners-split {
+    align-items: start;
+  }
+  .partners-text .prose-block { max-width: none; margin: 0; }
+  .partners-cta { text-align: left; margin-top: 28px; }
+
+  .partners-photos { align-self: stretch; }
+
+  /* ---- Event photo carousel (right column, beside prose) ---- */
+  .pc-carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e6ecf3 0%, #cfd9e6 100%);
+    box-shadow: 0 12px 30px rgba(15,32,68,0.10);
+  }
+  .pc-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform;
+  }
+  .pc-slide {
+    flex: 0 0 100%;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .pc-slide::before {
+    content: "Photo " attr(data-num);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    font-weight: 300;
+    color: rgba(15,32,68,0.32);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  .pc-slide img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .pc-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.92);
+    border: none;
+    border-radius: 50%;
+    color: #0f2044;
+    color: var(--navy, #0f2044);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    box-shadow: 0 4px 12px rgba(15,32,68,0.18);
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .pc-btn:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.06);
+  }
+  .pc-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .pc-prev { left: 12px; }
+  .pc-next { right: 12px; }
+  .pc-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+    background: rgba(255,255,255,0.55);
+    padding: 6px 10px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .pc-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(15,32,68,0.35);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .pc-dot:hover { background: rgba(15,32,68,0.6); }
+  .pc-dot.active {
+    background: #0f2044;
+    background: var(--navy, #0f2044);
+    transform: scale(1.3);
+  }
+
+  /* ---- Full-width partner logo carousel band (below split) ---- */
+  .partner-logos-band {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid #e2e8f0;
+  }
+  .lc-carousel {
+    position: relative;
+    width: 100%;
+    height: 360px; /* fixed height so slide changes don't shift page; accommodates 2 wrapped rows */
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(15,32,68,0.06);
+  }
+  .lc-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform;
+  }
+  .lc-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    padding: 26px 72px 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .lc-slide-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #7dd3fc;
+    margin-bottom: 22px;
+    align-self: center;
+  }
+  .lc-logos {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 22px 40px;
+    width: 100%;
+  }
+  .lc-logo {
+    flex: 0 0 auto;
+    width: 240px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .lc-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+  .lc-logo:hover img { transform: scale(1.06); }
+  /* Placeholder — visible ONLY when the img hasn't successfully loaded */
+  .lc-logo::before {
+    content: attr(data-name);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    color: rgba(15,32,68,0.42);
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.03em;
+    border: 1px dashed rgba(15,32,68,0.18);
+    border-radius: 6px;
+    pointer-events: none;
+  }
+  .lc-logo.has-logo::before { display: none; }
+
+  .lc-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    color: #0f2044;
+    color: var(--navy, #0f2044);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    box-shadow: 0 4px 12px rgba(15,32,68,0.10);
+    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .lc-btn:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.06);
+    box-shadow: 0 6px 16px rgba(15,32,68,0.15);
+  }
+  .lc-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .lc-prev { left: 14px; }
+  .lc-next { right: 14px; }
+
+  .lc-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+  }
+  .lc-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(15,32,68,0.25);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .lc-dot:hover { background: rgba(15,32,68,0.5); }
+  .lc-dot.active {
+    background: #0f2044;
+    background: var(--navy, #0f2044);
+    transform: scale(1.3);
+  }
+
+  /* Responsive: shrink logos + grow band as rows wrap */
+  @media (max-width: 900px) {
+    .lc-carousel { height: 380px; }
+    .lc-slide { padding: 24px 58px 42px; }
+    .lc-logo { width: 200px; height: 96px; }
+    .lc-logos { gap: 20px 32px; }
+  }
+  @media (max-width: 600px) {
+    .lc-carousel { height: 440px; }
+    .lc-slide { padding: 22px 46px 44px; }
+    .lc-logo { width: 150px; height: 74px; }
+    .lc-logos { gap: 18px 22px; }
+    .lc-btn { width: 34px; height: 34px; }
+    .lc-btn svg { width: 14px; height: 14px; }
+    .lc-prev { left: 8px; }
+    .lc-next { right: 8px; }
+  }
+
+  @media (max-width: 900px) {
+    .partners-split { gap: 32px; }
+    .partners-cta { text-align: center; }
+  }
+
+  /* ============================================================
+     OBJECTIVES
+     ============================================================ */
+  .obj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .obj-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+  .obj-card:hover { box-shadow: 0 8px 20px rgba(15,32,68,0.07); border-color: #cbd5e1; }
+  .obj-icon {
+    width: 44px; height: 44px;
+    background: var(--navy-900);
+    color: #7dd3fc;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .obj-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .obj-title { font-size: var(--text-md); font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .obj-desc { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; }
+
+  /* ============================================================
+     GRANT PROGRAMMES
+     ============================================================ */
+  .gp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .gp-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .gp-card:hover { box-shadow: 0 12px 24px rgba(15,32,68,0.08); transform: translateY(-2px); border-color: #cbd5e1; }
+  .gp-name {
+    font-size: var(--text-md);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .gp-card:hover .gp-name { color: var(--navy); }
+  .gp-desc {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+  .gp-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .gp-more svg { width: 14px; height: 14px; transition: transform 0.15s; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .gp-card:hover .gp-more svg { transform: translateX(3px); }
+
+  .gp-cta { text-align: center; margin-top: 36px; }
+
+  /* ============================================================
+     BEYOND GRANTS
+     ============================================================ */
+  .beyond {
+    position: relative;
+    background: var(--navy-900);
+    overflow: hidden;
+    color: #fff;
+  }
+  .beyond::before {
+    content: ""; position: absolute; top: 0; right: 0;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(125,211,252,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .beyond .sec-head { position: relative; z-index: 1; max-width: 56ch; margin-left: auto; margin-right: auto; }
+  .beyond .overline { color: rgba(255,255,255,0.55); }
+  .beyond h2 { color: #fff; }
+  .beyond .sec-head p { color: rgba(255,255,255,0.7); }
+
+  .pills {
+    position: relative; z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 72ch;
+    margin: 0 auto;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 999px;
+    padding: 9px 18px;
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.88);
+    font-weight: 500;
+  }
+  .pill svg { width: 14px; height: 14px; color: #7dd3fc; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .page-hero-inner { padding-left: 24px; padding-right: 24px; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .ben-grid { grid-template-columns: repeat(2, 1fr); }
+    .mv-grid { grid-template-columns: 1fr; }
+    .obj-grid { grid-template-columns: repeat(2, 1fr); }
+    .gp-grid { grid-template-columns: repeat(2, 1fr); }
+    .quick-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .page-hero { padding: 48px 0 40px; }
+    .section { padding: 44px 0; }
+    .facts-grid, .quick-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .ben-grid { grid-template-columns: 1fr; }
+    .obj-grid { grid-template-columns: 1fr; }
+    .gp-grid { grid-template-columns: 1fr; }
+    .mv-card { padding: 28px 22px; }
+    .mandate-section .split-col p { text-align: left; hyphens: none; }
+    .prose-block p { text-align: left; hyphens: none; }
+    .mandate-heading { font-size: 1.35rem; }
+  }
+
+  /* ============================================================
+     MOTION & EFFECTS
+     ============================================================ */
+
+  /* --- Scroll-reveal (added progressively via JS) --- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.22,0.61,0.36,1),
+                transform 0.7s cubic-bezier(0.22,0.61,0.36,1);
+    will-change: opacity, transform;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal[data-delay="1"] { transition-delay: 0.08s; }
+  .reveal[data-delay="2"] { transition-delay: 0.16s; }
+  .reveal[data-delay="3"] { transition-delay: 0.24s; }
+  .reveal[data-delay="4"] { transition-delay: 0.32s; }
+  .reveal[data-delay="5"] { transition-delay: 0.40s; }
+
+  /* --- Hero: animated gradient, drifting orbs, staggered entrance --- */
+  .page-hero {
+    background-size: 220% 220%;
+    animation: heroGradient 20s ease infinite;
+  }
+  @keyframes heroGradient {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .page-hero::after { animation: floatOrbA 16s ease-in-out infinite; }
+  .page-hero::before {
+    content: ""; position: absolute; bottom: -150px; left: -110px;
+    width: 440px; height: 440px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(125,211,252,0.16) 0%, transparent 70%);
+    pointer-events: none; z-index: 1;
+    animation: floatOrbB 19s ease-in-out infinite;
+  }
+  @keyframes floatOrbA {
+    0%,100% { transform: translate(0,0); }
+    50%     { transform: translate(34px,26px); }
+  }
+  @keyframes floatOrbB {
+    0%,100% { transform: translate(0,0); }
+    50%     { transform: translate(-30px,-24px); }
+  }
+  .page-hero-inner > * { animation: heroFadeUp 0.85s cubic-bezier(0.22,0.61,0.36,1) both; }
+  .page-hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+  .page-hero-inner > *:nth-child(2) { animation-delay: 0.16s; }
+  .page-hero-inner > *:nth-child(3) { animation-delay: 0.27s; }
+  .page-hero-inner > *:nth-child(4) { animation-delay: 0.38s; }
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* --- Animated underline beneath section headings --- */
+  .sec-head h2 { position: relative; }
+  .sec-head h2::after {
+    content: ""; display: block; height: 3px; width: 48px; margin-top: 16px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--navy), #7dd3fc);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.65s cubic-bezier(0.22,0.61,0.36,1) 0.15s;
+  }
+  .sec-head.center h2::after { margin-left: auto; margin-right: auto; transform-origin: center; }
+  .sec-head.in h2::after { transform: scaleX(1); }
+  .mv .sec-head h2::after,
+  .beyond .sec-head h2::after { background: linear-gradient(90deg, var(--navy), #7dd3fc); }
+
+  /* --- Value cards: lift + spinning icon --- */
+  .value-card { transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease; }
+  .value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(15,32,68,0.12);
+    border-color: #cbd5e1;
+  }
+  .value-icon { transition: transform 0.45s cubic-bezier(0.22,0.61,0.36,1), background 0.28s ease, color 0.28s ease; }
+  .value-card:hover .value-icon { transform: rotate(-10deg) scale(1.1); background: var(--navy); color: #7dd3fc; }
+
+  /* (Beneficiary "Who We Support" card effects live in the BENEFICIARIES block) */
+
+  /* --- Mission/Values panel: animated gradient + card lift + sliding sheen --- */
+  .mv {
+    background-size: 220% 220%;
+    animation: heroGradient 24s ease infinite;
+  }
+  .mv-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.32s ease, background 0.32s ease, border-color 0.32s ease;
+  }
+  .mv-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.11);
+    border-color: rgba(255,255,255,0.30);
+  }
+  .mv-card::before {
+    content: ""; position: absolute; top: 0; left: -120%;
+    width: 60%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.10), transparent);
+    transform: skewX(-18deg); pointer-events: none;
+    transition: left 0.7s ease;
+  }
+  .mv-card:hover::before { left: 130%; }
+  .mv-divider { transition: width 0.4s cubic-bezier(0.22,0.61,0.36,1); }
+  .mv-card:hover .mv-divider { width: 64px; }
+
+  /* --- Prose links get a soft pointer polish on the mandate CTA arrow --- */
+  .btn-primary svg { transition: transform 0.2s ease; }
+  .btn-primary:hover svg { transform: translateX(3px); }
+
+  /* --- Respect reduced-motion: disable all of the above --- */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .page-hero, .mv { animation: none; }
+    .page-hero::after, .page-hero::before { animation: none; }
+    .page-hero-inner > * { animation: none; }
+    .sec-head h2::after { transform: scaleX(1); transition: none; }
+    .value-card, .value-icon, .ben-card, .ben-icon, .ben-tag,
+    .mv-card, .mv-card::before, .mv-divider, .btn-primary svg { transition: none; }
+    .mv-card:hover::before { left: -120%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/index.html">Home</a><span>›</span>About
+    </nav>
+    <div class="page-hero-overline">About</div>
+    <h1>Western Balkans Fund</h1>
+    <p>An international organisation dedicated to regional cooperation, people-to-people connectivity, and the European integration of the Western Balkans.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     MANDATE (two rows: Who we are + At a glance, Gallery + Establishment)
+     ============================================================ -->
+<section class="section mandate-section">
+  <div class="container">
+
+    <!-- Row 1: Who we are (left) | Our Mandate at a glance (right) -->
+    <div class="split-grid mandate-row">
+      <!-- LEFT: Who we are -->
+      <div class="split-col">
+        <div class="overline">The Fund</div>
+        <h2 class="mandate-heading">Who we are</h2>
+        <p>The Western Balkans Fund (WBF) is an intergovernmental organisation based in Tirana, Albania, established by the governments of Albania, Bosnia and Herzegovina, Kosovo*, Montenegro, North Macedonia and Serbia. Conceived as a fully regionally owned and all-inclusive initiative, the Fund stands as a tangible expression of a renewed spirit of cooperation in the Western Balkans, a mechanism created by the region, for the region, to bring its people, institutions and communities closer together.</p>
+        <p>WBF is the first home-grown regional mechanism that boost cooperation through grants for civil society organisations and other stakeholders in the Western Balkans Six. Its founding reflects a shared conviction that lasting reconciliation and a common European future are built not only between governments, but between citizens, civil-society organisations and communities working side by side on concrete, cross-border projects.</p>
+        <p class="mandate-footnote">*This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo Declaration of Independence.</p>
+      </div>
+
+      <!-- RIGHT: Our Mandate at a glance -->
+      <div class="split-col">
+        <div class="overline">Key Facts</div>
+        <h2 class="mandate-heading">At a glance</h2>
+
+        <div class="facts-grid">
+          <div class="fact-card">
+            <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div class="fact-label">Founded</div>
+            <div class="fact-value">November 2015</div>
+          </div>
+          <div class="fact-card">
+            <div class="icon"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+            <div class="fact-label">Operational since</div>
+            <div class="fact-value">October 2017</div>
+          </div>
+          <div class="fact-card">
+            <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="fact-label">Headquarters</div>
+            <div class="fact-value">Tirana, Albania</div>
+          </div>
+        </div>
+
+        <div class="quick-grid">
+          <a class="quick-card" href="/about-governance.html">
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span class="label">Governance</span>
+            <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></span>
+          </a>
+          <a class="quick-card" href="/about-team.html">
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span class="label">Team</span>
+            <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></span>
+          </a>
+          <a class="quick-card" href="/about-strategic-plan.html">
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+            <span class="label">Strategic Plan</span>
+            <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></span>
+          </a>
+        </div>
+
+        <div class="mandate-ctas">
+          <a href="/our-programs.html" class="btn-primary">
+            Our Programs
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Gallery (left) | WBF Establishment (right) -->
+    <div class="split-grid mandate-row mandate-row-2">
+      <!-- LEFT: 6-image gallery -->
+      <!-- To use your images: save them as /assets/images/gallery/wbf-01.jpg through wbf-06.jpg,
+           or just edit the src="" of each <img> below. Cards show numbered placeholders until images load. -->
+      <div class="split-col">
+        <div class="wbf-gallery">
+          <div class="wbf-gallery-item" data-num="01">
+            <img src="/assets/images/gallery/wbf-01.jpg" alt="WBF establishment — image 1" onerror="this.style.display='none'">
+          </div>
+          <div class="wbf-gallery-item" data-num="02">
+            <img src="/assets/images/gallery/wbf-02.jpg" alt="WBF establishment — image 2" onerror="this.style.display='none'">
+          </div>
+          <div class="wbf-gallery-item" data-num="03">
+            <img src="/assets/images/gallery/wbf-03.jpg" alt="WBF establishment — image 3" onerror="this.style.display='none'">
+          </div>
+          <div class="wbf-gallery-item" data-num="04">
+            <img src="/assets/images/gallery/wbf-04.jpg" alt="WBF establishment — image 4" onerror="this.style.display='none'">
+          </div>
+          <div class="wbf-gallery-item" data-num="05">
+            <img src="/assets/images/gallery/wbf-05.jpg" alt="WBF establishment — image 5" onerror="this.style.display='none'">
+          </div>
+          <div class="wbf-gallery-item" data-num="06">
+            <img src="/assets/images/gallery/wbf-06.jpg" alt="WBF establishment — image 6" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: WBF Establishment text -->
+      <div class="split-col">
+        <div class="overline">History</div>
+        <h2 class="mandate-heading">WBF establishment</h2>
+        <p>The Agreement for the creation of the Western Balkans Fund was signed by the Ministers of Foreign Affairs of the Western Balkans Six in November 2015. Following the completion of ratification procedures in all six national parliaments, the Fund became operational on 1 October 2017.</p>
+        <p>The Fund is financed by its six Contracting Parties in equal quotas, ensuring balanced ownership and shared responsibility across the region. Its founding Executive Director, elected by the WBF Conference of Ministers of Foreign Affairs, is Mr Gjergj Murra, a career diplomat from Albania, who continues to lead the organisation. The Secretariat, seated in Tirana, brings together experts from across the Western Balkans, reflecting the regional character of the institution at every level.</p>
+        <p>Governance is exercised through the Conference of Ministers of Foreign Affairs as the Fund's highest body, supported by the Council of Senior Officials and the Secretariat. The presidency of the Fund rotates annually among the Contracting Parties; in 2026 it is held by Montenegro.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     VALUES
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="sec-head center">
+      <div class="overline">Our Values</div>
+      <h2>What Guides Us</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="value-title">Transparency</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="value-title">Impact</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="value-title">Regionalism</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="value-title">Inclusivity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     KEY MILESTONES — horizontal gallery
+     ============================================================ -->
+<section class="section milestones-section" id="milestones-section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="overline">History</div>
+      <h2>Key Milestones</h2>
+      <p>From the founding agreement in 2015 to a new generation of programmes — a decade of building regional cooperation across the Western Balkans.</p>
+    </div>
+  </div>
+
+  <!-- Horizontal milestone gallery. Scroll sideways to explore.
+       To add a photo, drop a matching file into
+       assets/images/milestones/ (see the README there). -->
+  <div class="ms-gallery" id="ms-gallery" tabindex="0" role="region"
+       aria-label="WBF milestones — scroll horizontally to explore the timeline">
+    <ol class="ms-track" id="ms-track">
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-01.jpg" alt="Signing of the Agreement establishing the Western Balkans Fund"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">November 2015</p>
+            <h3 class="ms-card-title">Establishment of the Western Balkans Fund</h3>
+            <p class="ms-card-desc">The Foreign Ministers of the Western Balkans Six signed the Agreement establishing the Western Balkans Fund, creating the region&rsquo;s first regionally owned international organization dedicated to fostering regional cooperation, trust, and reconciliation.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-02.jpg" alt="Opening of the WBF Secretariat in Tirana, Albania"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">October 2017</p>
+            <h3 class="ms-card-title">WBF Becomes Operational</h3>
+            <p class="ms-card-desc">Following ratification by all six Contracting Parties, the WBF Secretariat officially opened in Tirana, Albania, marking the beginning of the Fund&rsquo;s operational activities.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-03.jpg" alt="Launch of the first WBF Call for Proposals"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">November 2017</p>
+            <h3 class="ms-card-title">First Regional Grant Programme Launched</h3>
+            <p class="ms-card-desc">WBF launched its first Call for Proposals, providing financial support to regional civil society initiatives and laying the foundation for a growing portfolio of projects connecting people and institutions across the Western Balkans.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-04.jpg" alt="Adoption of the first WBF Strategic Development Plan"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">December 2020</p>
+            <h3 class="ms-card-title">First Strategic Development Plan (2020&ndash;2024) Adopted</h3>
+            <p class="ms-card-desc">The Fund adopted its first multi-year Strategic Development Plan, establishing a long-term vision for institutional development, programme growth, and regional impact.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-05.jpg" alt="European Union and WBF launch their first Joint Action"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">2021</p>
+            <h3 class="ms-card-title">European Union Becomes a Strategic Partner</h3>
+            <p class="ms-card-desc">The European Union and WBF launched their first Joint Action under the IPA programme, significantly expanding the Fund&rsquo;s grant-making capacity and enabling greater support for regional cooperation initiatives.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-06.jpg" alt="Swiss Agency for Development and Cooperation partners with WBF"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">2021</p>
+            <h3 class="ms-card-title">Switzerland Becomes a Strategic Partner</h3>
+            <p class="ms-card-desc">The Swiss Agency for Development and Cooperation partnered with WBF, strengthening the institution and supporting the development of innovative programmes focused on mobility, dialogue, and regional exchange.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-07.jpg" alt="Launch of the WBF MOVE Grants mobility programme"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">March 2023</p>
+            <h3 class="ms-card-title">WBF MOVE Grants Programme Launched</h3>
+            <p class="ms-card-desc">WBF introduced its first individual mobility programme, creating new opportunities for citizens across the Western Balkans to exchange knowledge, develop professionally, and strengthen regional cooperation.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-08.jpg" alt="Launch of the Empowering Regional Cooperation grant programme"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">May 2024</p>
+            <h3 class="ms-card-title">Empowering Regional Cooperation (ERC) Programme Launched</h3>
+            <p class="ms-card-desc">WBF launched its largest grant programme to date, increasing the maximum grant size and expanding support for ambitious regional cooperation initiatives with greater long-term impact.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-09.jpg" alt="Launch of the Western Balkans&ndash;Visegrad Fellowship"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">June 2024</p>
+            <h3 class="ms-card-title">Western Balkans&ndash;Visegrad Fellowship Launched</h3>
+            <p class="ms-card-desc">In partnership with the International Visegrad Fund, WBF established its first international fellowship programme, opening new opportunities for academic exchange and cooperation between the Western Balkans and the Visegrad region.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-10.jpg" alt="Adoption of the second WBF Strategic Development Plan"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">January 2026</p>
+            <h3 class="ms-card-title">Second Strategic Development Plan (2026&ndash;2030) Adopted</h3>
+            <p class="ms-card-desc">Building on the achievements of its first decade, WBF adopted its second Strategic Development Plan (2026&ndash;2030), setting the Fund&rsquo;s vision for the next phase of institutional growth, programme innovation, strategic partnerships, and regional impact.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-11.jpg" alt="Launch of the WBF Gender Equality Fund"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">May 2026</p>
+            <h3 class="ms-card-title">Gender Equality Fund Launched</h3>
+            <p class="ms-card-desc">Co-funded by the European Union and Switzerland, WBF launched the Gender Equality Fund, its first dedicated thematic grant programme and the largest funding scheme in its history, providing grants of up to &euro;40,000 to advance gender equality across the Western Balkans.</p>
+          </div>
+        </article>
+      </li>
+
+      <li class="ms-card">
+        <article class="ms-card-inner">
+          <div class="ms-card-media">
+            <img src="/assets/images/milestones/milestone-12.jpg" alt="Launch of the WBF Regional Academy"
+                 width="340" height="168" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+          <div class="ms-card-body">
+            <p class="ms-card-date">September 2026</p>
+            <h3 class="ms-card-title">WBF Regional Academy Launched</h3>
+            <p class="ms-card-desc">WBF launched the WBF Regional Academy, a flagship leadership programme &mdash; this year on Dialogue and Culture of Cooperation &mdash; bringing together emerging leaders from across the region to strengthen dialogue, cooperation, and a culture of regional collaboration. Supported by the Open Society Foundations &ndash; Western Balkans.</p>
+          </div>
+        </article>
+      </li>
+
+    </ol>
+  </div>
+
+  <div class="container">
+    <div class="ms-controls">
+      <button type="button" id="ms-prev" aria-label="Scroll to earlier milestones" aria-controls="ms-gallery">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15,6 9,12 15,18"/></svg>
+      </button>
+      <button type="button" id="ms-next" aria-label="Scroll to later milestones" aria-controls="ms-gallery">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9,6 15,12 9,18"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHO WE SUPPORT
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="sec-head center">
+      <div class="overline">Who We Support</div>
+      <h2>Open to the whole region</h2>
+      <p>WBF funding is open to a wide range of organisations and institutions working across borders in the Western Balkans.</p>
+    </div>
+    <div class="ben-grid">
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="ben-title">Civil Society &amp; Non-Profit</div>
+        </div>
+        <div class="ben-tags">
+          <span class="ben-tag">Civil Society Organizations</span>
+          <span class="ben-tag">Associations</span>
+          <span class="ben-tag">Foundations</span>
+          <span class="ben-tag">Non-Profit Organizations</span>
+          <span class="ben-tag">Regional Networks</span>
+        </div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-icon"><svg viewBox="0 0 24 24"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div>
+          <div class="ben-title">Public &amp; Local Government</div>
+        </div>
+        <div class="ben-tags">
+          <span class="ben-tag">Local and Regional Public Entities</span>
+          <span class="ben-tag">Associations of Local and Regional Public Entities</span>
+        </div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <div class="ben-title">Business &amp; Economy</div>
+        </div>
+        <div class="ben-tags">
+          <span class="ben-tag">Business Associations</span>
+          <span class="ben-tag">Business Clusters</span>
+          <span class="ben-tag">Chambers of Commerce</span>
+          <span class="ben-tag">Tourism Associations</span>
+        </div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <div class="ben-title">Education &amp; Research</div>
+        </div>
+        <div class="ben-tags">
+          <span class="ben-tag">Universities</span>
+          <span class="ben-tag">Schools</span>
+          <span class="ben-tag">Libraries</span>
+          <span class="ben-tag">Research Centres</span>
+          <span class="ben-tag">Academies of Science, Music, and Arts</span>
+        </div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-icon"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
+          <div class="ben-title">Culture &amp; Arts</div>
+        </div>
+        <div class="ben-tags">
+          <span class="ben-tag">Museums</span>
+          <span class="ben-tag">Art Galleries</span>
+          <span class="ben-tag">Theatres</span>
+        </div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-icon"><svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+          <div class="ben-title">Sports &amp; Community</div>
+        </div>
+        <div class="ben-tags">
+          <span class="ben-tag">Sports Associations</span>
+          <span class="ben-tag">Other Eligible Institutions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MISSION & VALUES STATEMENTS
+     ============================================================ -->
+<section class="section mv">
+  <div class="container">
+    <div class="mv-grid">
+      <div class="mv-card">
+        <div class="overline">Our Mission</div>
+        <div class="mv-divider"></div>
+        <p>The Western Balkans Fund (WBF) is dedicated to promoting reconciliation, strengthening regional cooperation, and fostering closer ties among the Contracting Parties of the Western Balkans. Through its initiatives, the Fund contributes to building trust, dialogue, and sustainable partnerships across the region.</p>
+      </div>
+      <div class="mv-card">
+        <div class="overline">Values</div>
+        <div class="mv-divider"></div>
+        <p>The Western Balkans Fund operates in full alignment with the vision of its founding members, supporting the principles of reconciliation, regional solidarity, and the shared European future of all Contracting Parties. Our work is guided by cooperation, inclusiveness, transparency, and mutual respect.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OBJECTIVES
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head center">
+      <div class="overline">Objectives</div>
+      <h2>What we work toward</h2>
+    </div>
+    <div class="prose-block">
+      <p>WBF promotes cooperation and common values among citizens, civil society and institutions by funding small and medium-sized regional projects and by enabling people-to-people contacts across borders. Its support is concentrated in three core areas of intervention: cultural cooperation, education and scientific exchange, and sustainable development, with youth engagement, gender equality, media development, environmental protection and European integration mainstreamed as cross-cutting priorities.</p>
+      <p>Over the years, the Fund has grown from a single annual grant scheme into a diversified portfolio that today serves organisations, grassroots actors and individuals alike. This portfolio includes the Grant for Grassroots Initiatives (the Fund's flagship annual call), the Empowering Regional Cooperation Grants, the Gender Equality Fund, the WBF Move Grants for individual mobility, the Western Balkans–Visegrad Fellowship, the WBF Matching Grants, and the WBF Regional Academy on dialogue and a culture of cooperation. Alongside its grant-making, WBF convenes major regional conferences and dialogue initiatives that address shared challenges, from countering hate speech and disinformation to advancing women's leadership and gender equality.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PARTNERS
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="sec-head center">
+      <div class="overline">Partners</div>
+      <h2>Working alongside the region's key institutions</h2>
+    </div>
+
+    <div class="split-grid partners-split">
+      <!-- LEFT: prose (justified) + CTA -->
+      <div class="split-col partners-text">
+        <div class="prose-block">
+          <p>The Fund's growth has been made possible by a widening circle of trusted partners and donors who share its commitment to a stable, connected and prosperous Western Balkans.</p>
+          <p>The European Union is the Fund's principal partner, co-funding its flagship grant schemes since 2021 through the Instrument for Pre-Accession Assistance (IPA) under a dedicated EU–WBF Joint Action.</p>
+          <p>The Swiss Agency for Development and Cooperation has supported the Fund's institutional strengthening and portfolio diversification since 2021, with the partnership renewed for the period 2026–2029.</p>
+          <p>The Government of Japan, through its Ministry of Foreign Affairs, has been a key partner in the Fund's advocacy agenda, enabling its flagship regional conferences on issues such as hate speech, women's leadership and disinformation. The International Visegrad Fund supports the Fund's Western Balkans–Visegrad Fellowship and contributes to its broader institutional work, including the internship programme. In 2026 the Federal Republic of Germany signed its first Cooperation Agreement with the Fund. The Open Society Foundations – Western Balkans (OSF-WB) supported the WBF Regional Academy.</p>
+          <p>Beyond its donors, the Fund works closely with regional and international institutions, including the Regional Cooperation Council, the Regional Youth Cooperation Office and others, to enhance the visibility, effectiveness and impact of regional cooperation. These partnerships are built on the principles of complementarity, transparency, responsiveness and mutual respect.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: event-photo carousel (visual context beside the text)
+           Drop photos into /assets/images/partners/event-01.jpg through event-06.jpg
+           (or change the src="" of each <img>). Numbered placeholders show until images load. -->
+      <div class="split-col partners-photos">
+        <div class="pc-carousel" id="pc-carousel" role="region" aria-roledescription="carousel" aria-label="Partner event photos">
+          <div class="pc-track" id="pc-track">
+            <div class="pc-slide" data-num="01">
+              <img src="/assets/images/partners/event-01.jpg" alt="Partner event — 1" onerror="this.style.display='none'">
+            </div>
+            <div class="pc-slide" data-num="02">
+              <img src="/assets/images/partners/event-02.jpg" alt="Partner event — 2" onerror="this.style.display='none'">
+            </div>
+            <div class="pc-slide" data-num="03">
+              <img src="/assets/images/partners/event-03.jpg" alt="Partner event — 3" onerror="this.style.display='none'">
+            </div>
+            <div class="pc-slide" data-num="04">
+              <img src="/assets/images/partners/event-04.jpg" alt="Partner event — 4" onerror="this.style.display='none'">
+            </div>
+            <div class="pc-slide" data-num="05">
+              <img src="/assets/images/partners/event-05.jpg" alt="Partner event — 5" onerror="this.style.display='none'">
+            </div>
+            <div class="pc-slide" data-num="06">
+              <img src="/assets/images/partners/event-06.jpg" alt="Partner event — 6" onerror="this.style.display='none'">
+            </div>
+          </div>
+
+          <button type="button" class="pc-btn pc-prev" id="pc-prev" aria-label="Previous photo">
+            <svg viewBox="0 0 24 24"><polyline points="15,6 9,12 15,18"/></svg>
+          </button>
+          <button type="button" class="pc-btn pc-next" id="pc-next" aria-label="Next photo">
+            <svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg>
+          </button>
+
+          <div class="pc-dots" id="pc-dots" role="tablist" aria-label="Choose photo"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BELOW BOTH COLUMNS: full-width partner logo carousel
+         Save SVG logos in /assets/images/partners/ with these filenames:
+           Slide 1 — Strategic Partners: partner-eu.svg, partner-sdc.svg, partner-japan.svg, partner-germany.svg
+           Slide 2 — Other Partners:   partner-visegrad.svg, partner-osf.svg, partner-rcc.svg, partner-ryco.svg, partner-aics.svg, partner-cei.svg, partner-respa.svg
+         Different filenames are fine — just edit the src="" values. -->
+    <div class="partner-logos-band">
+      <div class="lc-carousel lc-carousel-wide" id="lc-carousel" role="region" aria-roledescription="carousel" aria-label="Partner logos">
+
+        <div class="lc-track" id="lc-track">
+          <!-- Slide 1: Strategic Partners -->
+          <div class="lc-slide" role="group" aria-roledescription="slide" aria-label="Strategic Partners">
+            <div class="lc-slide-label">Strategic Partners</div>
+            <div class="lc-logos">
+              <div class="lc-logo" data-name="European Union">
+                <img src="/assets/images/partners/partner-eu.svg" alt="European Union" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+              <div class="lc-logo" data-name="Swiss Agency for Development and Cooperation">
+                <img src="/assets/images/partners/partner-sdc.svg" alt="Swiss Agency for Development and Cooperation" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+              <div class="lc-logo" data-name="Government of Japan">
+                <img src="/assets/images/partners/partner-japan.svg" alt="Government of Japan" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+              <div class="lc-logo" data-name="Government of Germany">
+                <img src="/assets/images/partners/partner-germany.svg" alt="Government of Germany" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Other Partners -->
+          <div class="lc-slide" role="group" aria-roledescription="slide" aria-label="Other Partners">
+            <div class="lc-slide-label">Other Partners</div>
+            <div class="lc-logos">
+              <div class="lc-logo" data-name="International Visegrad Fund">
+                <img src="/assets/images/partners/partner-visegrad.svg" alt="International Visegrad Fund" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+              <div class="lc-logo" data-name="Open Society Foundations">
+                <img src="/assets/images/partners/partner-osf.svg" alt="Open Society Foundations" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+              <div class="lc-logo" data-name="Regional Cooperation Council">
+                <img src="/assets/images/partners/partner-rcc.svg" alt="Regional Cooperation Council" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+              <div class="lc-logo" data-name="Regional Youth Cooperation Office">
+                <img src="/assets/images/partners/partner-ryco.svg" alt="Regional Youth Cooperation Office" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+              <div class="lc-logo" data-name="Italian Agency for Development Cooperation">
+                <img src="/assets/images/partners/partner-aics.svg" alt="Italian Agency for Development Cooperation" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+              <div class="lc-logo" data-name="Central European Initiative">
+                <img src="/assets/images/partners/partner-cei.svg" alt="Central European Initiative" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+              <div class="lc-logo" data-name="Regional School of Public Administration">
+                <img src="/assets/images/partners/partner-respa.svg" alt="Regional School of Public Administration" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="lc-btn lc-prev" id="lc-prev" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24"><polyline points="15,6 9,12 15,18"/></svg>
+        </button>
+        <button type="button" class="lc-btn lc-next" id="lc-next" aria-label="Next slide">
+          <svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg>
+        </button>
+
+        <div class="lc-dots" id="lc-dots" role="tablist" aria-label="Choose slide"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============================================================
+     SCRIPT — Key Milestones gallery (horizontal scroll controls)
+     ============================================================ -->
+<script>
+(function () {
+  const gallery = document.getElementById('ms-gallery');
+  const track   = document.getElementById('ms-track');
+  const prev    = document.getElementById('ms-prev');
+  const next    = document.getElementById('ms-next');
+  if (!gallery || !track) return;
+
+  // Distance of one card (card width + flex gap) for the arrow controls.
+  function stepSize() {
+    const card = track.querySelector('.ms-card');
+    if (!card) return gallery.clientWidth * 0.8;
+    const styles = getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap || styles.gap) || 24;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function scrollByStep(dir) {
+    gallery.scrollBy({ left: dir * stepSize(), behavior: 'smooth' });
+  }
+
+  // Reflect scroll position on the arrow buttons (disable at the ends).
+  function updateButtons() {
+    const max = gallery.scrollWidth - gallery.clientWidth - 1;
+    if (prev) prev.disabled = gallery.scrollLeft <= 0;
+    if (next) next.disabled = gallery.scrollLeft >= max;
+  }
+
+  if (prev) prev.addEventListener('click', () => scrollByStep(-1));
+  if (next) next.addEventListener('click', () => scrollByStep(1));
+
+  let ticking = false;
+  gallery.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { updateButtons(); ticking = false; });
+  }, { passive: true });
+
+  // Keyboard: when the gallery region has focus, arrows scroll it.
+  gallery.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); scrollByStep(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); scrollByStep(-1); }
+  });
+
+  window.addEventListener('resize', updateButtons);
+  updateButtons();
+})();
+</script>
+
+<!-- ============================================================
+     SCRIPT — Partners logo carousel
+     ============================================================ -->
+<script>
+(function () {
+  const wrap    = document.getElementById('lc-carousel');
+  const track   = document.getElementById('lc-track');
+  const prev    = document.getElementById('lc-prev');
+  const next    = document.getElementById('lc-next');
+  const dotsBox = document.getElementById('lc-dots');
+  if (!wrap || !track || !prev || !next || !dotsBox) return;
+
+  const slides = Array.from(track.querySelectorAll('.lc-slide'));
+  if (slides.length === 0) return;
+
+  const AUTO_MS = 10000;
+  let idx      = 0;
+  let autoId   = null;
+  let isPaused = false;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'lc-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('role', 'tab');
+    d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    d.addEventListener('click', () => { go(i); restartAuto(); });
+    dotsBox.appendChild(d);
+  });
+  const dots = Array.from(dotsBox.querySelectorAll('.lc-dot'));
+
+  function go(i) {
+    // Infinite loop: wrap around at either end
+    idx = ((i % slides.length) + slides.length) % slides.length;
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+    dots.forEach((d, j) => d.classList.toggle('active', j === idx));
+  }
+
+  function startAuto() {
+    stopAuto();
+    if (isPaused) return;
+    autoId = setInterval(() => go(idx + 1), AUTO_MS);
+  }
+  function stopAuto() {
+    if (autoId) { clearInterval(autoId); autoId = null; }
+  }
+  function restartAuto() { startAuto(); }
+
+  prev.addEventListener('click', () => { go(idx - 1); restartAuto(); });
+  next.addEventListener('click', () => { go(idx + 1); restartAuto(); });
+
+  // Pause while user interacts, resume after
+  wrap.addEventListener('mouseenter', () => { isPaused = true;  stopAuto(); });
+  wrap.addEventListener('mouseleave', () => { isPaused = false; startAuto(); });
+  wrap.addEventListener('focusin',    () => { isPaused = true;  stopAuto(); });
+  wrap.addEventListener('focusout',   () => { isPaused = false; startAuto(); });
+
+  // Basic swipe support
+  let touchStartX = 0;
+  wrap.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    stopAuto();
+  }, { passive: true });
+  wrap.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+    startAuto();
+  });
+
+  startAuto();
+})();
+</script>
+
+<!-- ============================================================
+     SCRIPT — Partners event-photo carousel (right column)
+     ============================================================ -->
+<script>
+(function () {
+  const wrap    = document.getElementById('pc-carousel');
+  const track   = document.getElementById('pc-track');
+  const prev    = document.getElementById('pc-prev');
+  const next    = document.getElementById('pc-next');
+  const dotsBox = document.getElementById('pc-dots');
+  if (!wrap || !track || !prev || !next || !dotsBox) return;
+
+  const slides = Array.from(track.querySelectorAll('.pc-slide'));
+  if (slides.length === 0) return;
+
+  const AUTO_MS = 5000;
+  let idx      = 0;
+  let autoId   = null;
+  let isPaused = false;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'pc-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('role', 'tab');
+    d.setAttribute('aria-label', 'Photo ' + (i + 1));
+    d.addEventListener('click', () => { go(i); restartAuto(); });
+    dotsBox.appendChild(d);
+  });
+  const dots = Array.from(dotsBox.querySelectorAll('.pc-dot'));
+
+  function go(i) {
+    idx = ((i % slides.length) + slides.length) % slides.length;
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+    dots.forEach((d, j) => d.classList.toggle('active', j === idx));
+  }
+  function startAuto() {
+    stopAuto();
+    if (isPaused) return;
+    autoId = setInterval(() => go(idx + 1), AUTO_MS);
+  }
+  function stopAuto() {
+    if (autoId) { clearInterval(autoId); autoId = null; }
+  }
+  function restartAuto() { startAuto(); }
+
+  prev.addEventListener('click', () => { go(idx - 1); restartAuto(); });
+  next.addEventListener('click', () => { go(idx + 1); restartAuto(); });
+
+  wrap.addEventListener('mouseenter', () => { isPaused = true;  stopAuto(); });
+  wrap.addEventListener('mouseleave', () => { isPaused = false; startAuto(); });
+  wrap.addEventListener('focusin',    () => { isPaused = true;  stopAuto(); });
+  wrap.addEventListener('focusout',   () => { isPaused = false; startAuto(); });
+
+  let touchStartX = 0;
+  wrap.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    stopAuto();
+  }, { passive: true });
+  wrap.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+    startAuto();
+  });
+
+  startAuto();
+})();
+</script>
+
+<!-- ============================================================
+     SCRIPT — Scroll-reveal (progressive enhancement)
+     Adds fade/slide-in as elements enter the viewport. If JS is
+     off or reduced-motion is preferred, everything stays visible.
+     ============================================================ -->
+<script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var selectors = [
+    '.mandate-row .split-col',
+    '.sec-head',
+    '.values-grid > *',
+    '.ben-grid > *',
+    '.mv-grid > *',
+    '.prose-block',
+    '.partners-split > *',
+    '.partner-logos-band',
+    '.ms-gallery'
+  ];
+
+  // Stagger children within grids for a cascading reveal.
+  document.querySelectorAll('.values-grid, .ben-grid, .mv-grid').forEach(function (grid) {
+    Array.prototype.forEach.call(grid.children, function (child, i) {
+      child.setAttribute('data-delay', String((i % 5) + 1));
+    });
+  });
+
+  var targets = [];
+  selectors.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.classList.add('reveal');
+      targets.push(el);
+    });
+  });
+
+  // Scroll-based reveal — reveals each element once its top crosses ~92%
+  // of the viewport. This does not depend on IntersectionObserver delivery,
+  // so it behaves consistently across browsers and embedded webviews.
+  function revealInView() {
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    for (var i = targets.length - 1; i >= 0; i--) {
+      var r = targets[i].getBoundingClientRect();
+      if (r.top < vh * 0.92 && r.bottom > 0) {
+        targets[i].classList.add('in');
+        targets.splice(i, 1);
+      }
+    }
+    if (targets.length === 0) teardown();
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { revealInView(); ticking = false; });
+  }
+  function teardown() {
+    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', onScroll);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  revealInView(); // reveal whatever is already on screen at load
+
+  // Safety net: never leave content hidden if scroll events are throttled
+  // or unavailable in some environment.
+  window.setTimeout(function () {
+    targets.slice().forEach(function (el) { el.classList.add('in'); });
+    targets.length = 0;
+    teardown();
+  }, 3000);
+})();
+</script>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

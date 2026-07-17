@@ -1,0 +1,405 @@
+<!--
+  ============================================================
+  news-card.html  ·  Reusable news card component
+  ============================================================
+
+  Self-contained fragment that provides:
+
+    • CSS for the news card, skeleton loader, grid container,
+      and the "no results" / "error" empty states.
+    • A small JS API exposed on `window.WBFNewsCard` that any
+      page can call to render cards from a data source.
+
+  Usage
+  -----
+  This component is intended to be loaded into a host page via
+  the runtime component loader (see news.html for an example),
+  but it can also be pasted directly into a page's <body>.
+
+  Once loaded, the page only needs to:
+
+      const items = await fetch(JSON_URL).then(r => r.json());
+      WBFNewsCard.renderGrid(items, document.getElementById('mygrid'));
+      WBFNewsCard.bindClicks(document.getElementById('mygrid'), items, item => {
+        WBFNewsModal.open(item);
+      });
+
+  Public JS API
+  -------------
+    WBFNewsCard.render(item)               → HTML string for one card
+    WBFNewsCard.renderGrid(items, host)    → fills `host` with the cards
+    WBFNewsCard.renderEmpty(host)          → "no results" state
+    WBFNewsCard.renderError(host)          → "failed to load" state
+    WBFNewsCard.renderSkeletons(host, n)   → loading skeletons
+    WBFNewsCard.buildMediaList(item)       → normalized [{type,url,…}]
+    WBFNewsCard.bindClicks(host, items, fn)→ wires click → fn(item)
+
+  Recommended news-item shape (all string-typed for CSV friendliness;
+  arrays are pipe-separated strings, e.g. "a.jpg|b.jpg"):
+
+      {
+        id, title, slug, type, programme, date,
+        excerpt, content,
+        featuredImage  (alias: coverImage),
+        galleryImages, galleryVideos,
+        attachments, downloadUrl, externalUrl,
+        status
+      }
+
+  ============================================================
+-->
+<style data-wbf-component="news-card">
+  /* ---------- Grid container ---------- */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 1024px) { .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+  @media (max-width: 768px)  { .cards-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Card ---------- */
+  .news-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+  }
+  .news-card:hover {
+    box-shadow: 0 16px 32px rgba(15,32,68,0.10);
+    transform: translateY(-3px);
+    border-color: #d1d9e6;
+  }
+  .news-card:focus-visible {
+    outline: 2px solid #1A3668;
+    outline-offset: 2px;
+  }
+
+  .news-card .card-img {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+  .news-card .card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .news-card:hover .card-img img { transform: scale(1.04); }
+
+  .news-card .card-img-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: rgba(15,32,68,0.85);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+  .news-card .card-img-media-count {
+    position: absolute;
+    bottom: 12px; right: 12px;
+    background: rgba(15,32,68,0.85);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    backdrop-filter: blur(4px);
+  }
+  .news-card .card-img-media-count svg { width: 12px; height: 12px; }
+
+  .news-card .card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+  .news-card .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 11px;
+  }
+  .news-card .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .news-card .badge-prog { background: #eef2f8; color: #1A3668; }
+  .news-card .card-date {
+    font-size: 11.5px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+  }
+  .news-card .card-date svg { width: 12px; height: 12px; opacity: 0.7; }
+
+  .news-card .card-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .news-card:hover .card-title { color: #1A3668; }
+
+  .news-card .card-excerpt {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-card .card-read {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1A3668;
+    margin-top: auto;
+  }
+  .news-card:hover .card-read { color: #0f2044; }
+  .news-card .card-read svg { width: 14px; height: 14px; transition: transform 0.15s; }
+  .news-card:hover .card-read svg { transform: translateX(3px); }
+
+  /* ---------- Empty / error state ---------- */
+  .cards-grid .state-msg {
+    grid-column: 1 / -1;
+    padding: 64px 24px;
+    text-align: center;
+    color: #64748b;
+    font-size: 15px;
+    background: #f8fafc;
+    border-radius: 10px;
+  }
+  .cards-grid .state-msg svg { width: 40px; height: 40px; color: #cbd5e1; margin: 0 auto 16px; display: block; }
+  .cards-grid .state-msg h3 { font-size: 17px; color: #0f172a; margin-bottom: 6px; font-weight: 600; }
+
+  /* ---------- Skeleton loader ---------- */
+  .skeleton-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .skeleton-card .sk {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: wbf-shimmer 1.4s linear infinite;
+    border-radius: 4px;
+  }
+  .skeleton-card .sk-img { height: 200px; border-radius: 0; }
+  .skeleton-card .sk-line { height: 12px; margin: 12px 22px; }
+  .skeleton-card .sk-line.short { width: 40%; }
+  @keyframes wbf-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+</style>
+
+<script data-wbf-component="news-card">
+(function () {
+  'use strict';
+  if (window.WBFNewsCard) return;
+
+  /* ---------- Type label dictionary (extend as needed) ---------- */
+  const TYPE_LABELS = {
+    'announcement':         'Announcement',
+    'press-release':        'Press Release',
+    'publication':          'Publication',
+    'story':                'Story',
+    'open-call':            'Open Call',
+    'call-for-applications':'Open Call',
+    'event-recap':          'Event Recap'
+  };
+
+  /* ---------- Tiny utilities (kept local so component is self-contained) ---------- */
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function escapeAttr(s) { return escapeHtml(s); }
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function pipeSplit(value) {
+    if (!value) return [];
+    if (Array.isArray(value)) return value.map(String).map(s => s.trim()).filter(Boolean);
+    return String(value).split('|').map(s => s.trim()).filter(Boolean);
+  }
+
+  function normalizeType(t) {
+    if (!t) return '';
+    const k = String(t).trim().toLowerCase().replace(/\s+/g, '-');
+    if (k === 'call-for-applications' || k === 'opencall' || k === 'call') return 'open-call';
+    return k;
+  }
+
+  function getYouTubeId(url) {
+    if (!url) return null;
+    const m = String(url).match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+    return m ? m[1] : null;
+  }
+
+  /* Cover image — accepts either `featuredImage` (recommended schema)
+     or legacy `coverImage` (existing Google Sheet schema). */
+  function coverOf(item) {
+    return item.featuredImage || item.coverImage || '';
+  }
+
+  /* Returns the normalized media list used by BOTH card preview
+     and the modal carousel. Cover image is always slide 0. */
+  function buildMediaList(item) {
+    const cover  = coverOf(item);
+    const images = pipeSplit(item.galleryImages);
+    const videos = pipeSplit(item.galleryVideos);
+    const list = [];
+    if (cover) list.push({ type: 'image', url: cover, isCover: true });
+    images.forEach(url => {
+      if (cover && url === cover) return;
+      list.push({ type: 'image', url });
+    });
+    videos.forEach(url => {
+      const yt = getYouTubeId(url);
+      if (yt) list.push({ type: 'youtube', id: yt, url });
+      else list.push({ type: 'video', url });
+    });
+    return list;
+  }
+
+  /* ---------- Card render ---------- */
+  function render(item) {
+    const media = buildMediaList(item);
+    const cover = media.find(m => m.type === 'image');
+    const coverStyle = cover
+      ? 'background-image:url(' + JSON.stringify(cover.url).slice(1, -1) + ')'
+      : '';
+
+    const typeKey   = normalizeType(item.type);
+    const typeLabel = TYPE_LABELS[typeKey] || (item.type || '');
+    const cardId    = item.id || item.slug || '';
+
+    return (
+      '<button type="button" class="news-card" data-id="' + escapeAttr(cardId) + '">' +
+        '<div class="card-img" style="' + coverStyle + '">' +
+          (typeLabel ? '<span class="card-img-badge">' + escapeHtml(typeLabel) + '</span>' : '') +
+          (media.length > 1 ?
+            '<span class="card-img-media-count" aria-label="' + media.length + ' media items">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>' +
+              media.length +
+            '</span>'
+          : '') +
+        '</div>' +
+        '<div class="card-body">' +
+          '<div class="card-meta">' +
+            (item.programme ? '<span class="badge badge-prog">' + escapeHtml(item.programme) + '</span>' : '') +
+            '<span class="card-date">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' +
+              escapeHtml(formatDate(item.date)) +
+            '</span>' +
+          '</div>' +
+          '<h3 class="card-title">' + escapeHtml(item.title || '') + '</h3>' +
+          '<p class="card-excerpt">' + escapeHtml(item.excerpt || '') + '</p>' +
+          '<span class="card-read">Read more ' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>' +
+          '</span>' +
+        '</div>' +
+      '</button>'
+    );
+  }
+
+  function renderGrid(items, host) {
+    if (!host) return;
+    if (!items || !items.length) { renderEmpty(host); return; }
+    host.innerHTML = items.map(render).join('');
+  }
+
+  function renderEmpty(host) {
+    if (!host) return;
+    host.innerHTML =
+      '<div class="state-msg">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+        '<h3>No articles found</h3>' +
+        '<p>Try a different combination of filters.</p>' +
+      '</div>';
+  }
+
+  function renderError(host) {
+    if (!host) return;
+    host.innerHTML =
+      '<div class="state-msg">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
+        '<h3>Unable to load news</h3>' +
+        '<p>Please try again in a few moments.</p>' +
+      '</div>';
+  }
+
+  function renderSkeletons(host, n) {
+    if (!host) return;
+    const count = Math.max(1, n || 3);
+    const one =
+      '<div class="skeleton-card">' +
+        '<div class="sk sk-img"></div>' +
+        '<div class="sk sk-line short"></div>' +
+        '<div class="sk sk-line"></div>' +
+        '<div class="sk sk-line"></div>' +
+      '</div>';
+    host.innerHTML = new Array(count).fill(one).join('');
+  }
+
+  function bindClicks(host, items, onClick) {
+    if (!host || typeof onClick !== 'function') return;
+    host.addEventListener('click', (e) => {
+      const card = e.target.closest('.news-card');
+      if (!card || !host.contains(card)) return;
+      const id = String(card.dataset.id);
+      const item = (items || []).find(i => String(i.id || i.slug || '') === id);
+      if (item) onClick(item);
+    });
+  }
+
+  window.WBFNewsCard = {
+    TYPE_LABELS,
+    render,
+    renderGrid,
+    renderEmpty,
+    renderError,
+    renderSkeletons,
+    bindClicks,
+    buildMediaList,
+    /* Re-exported for the modal component / host pages */
+    _utils: { escapeHtml, escapeAttr, formatDate, pipeSplit, normalizeType, getYouTubeId, coverOf }
+  };
+})();
+</script>

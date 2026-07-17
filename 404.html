@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — Western Balkans Fund</title>
+<meta name="description" content="The page you were looking for could not be found on the Western Balkans Fund website.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); color: var(--ink); background: var(--surface); line-height: 1.5; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+  a { color: inherit; } button { font-family: inherit; }
+
+  .err-main { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; padding: 96px 24px; }
+  .err-code { font-family: var(--font-display); font-size: clamp(96px, 16vw, 160px); font-weight: 800; line-height: 0.9; letter-spacing: -0.04em; color: var(--accent-tint); }
+  .err-main h1 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--ink); margin: 8px 0 12px; }
+  .err-main p { font-size: var(--text-base); color: var(--muted); max-width: 46ch; margin: 0 auto 32px; }
+
+  .err-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; padding: 13px 26px; background: var(--navy); color: #fff; font-weight: 600; font-size: var(--text-md); border-radius: var(--radius-sm); text-decoration: none; transition: background 0.15s; }
+  .btn-primary:hover { background: var(--navy-900); }
+  .btn-ghost { display: inline-flex; align-items: center; padding: 13px 26px; color: var(--ink); border: 1px solid var(--line); font-weight: 600; font-size: var(--text-md); border-radius: var(--radius-sm); text-decoration: none; transition: all 0.15s; background: transparent; cursor: pointer; font-family: inherit; }
+  .btn-ghost:hover { background: var(--surface-alt); border-color: var(--faint); }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<main class="err-main" id="main">
+  <div>
+    <div class="err-code">404</div>
+    <h1>Page not found</h1>
+    <p>The page may have been moved, renamed, or it may no longer exist.</p>
+    <div class="err-btns">
+      <a class="btn-primary" href="/index.html">Back to home</a>
+      <button class="btn-ghost" onclick="history.back()">Go back</button>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

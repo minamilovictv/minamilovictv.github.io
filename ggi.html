@@ -1,0 +1,2603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GGI — Grants for Grassroots Initiatives | Western Balkans Fund</title>
+<meta name="description" content="Grants for Grassroots Initiatives (GGI) is the Western Balkans Fund's annual grant scheme for civil society regional cooperation projects in the WB6, funded by the EU under IPA III and the six Contracting Parties.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+  /* ============================================================
+     DESIGN TOKENS  —  reusable across all WBF programme pages
+     ============================================================ */
+  :root {
+    /* Core brandkit palette — GGI programme identity.
+       --navy intentionally NOT redefined here: it falls through to the
+       global brand navy var(--navy) from tokens.css so the shared navbar
+       and footer render in standard brand colour. GGI page content uses
+       --ggi (blue) instead. */
+    --ggi:         #173D8F;
+    --ggi-deep:    #102554;
+    --ggi-700:     #2a52a8;
+    --blue:        #2567D8;
+    --accent:      #4AA3F0;
+    --light:       #DCEEFF;
+
+    /* Intervention-area aliases (kept so legacy classes still work) */
+    --amber:       var(--ggi);     /* IA1 — Cultural cooperation */
+    --amber-tint:  #E8EEFB;
+    --teal:        var(--blue);     /* IA2 — Education & scientific exchanges */
+    --teal-tint:   var(--light);
+    --green:       var(--accent);   /* IA3 — Sustainable development */
+    --green-tint:  #E9F4FF;
+
+    /* Neutral ink + surface */
+    --ink:         #1E2430;
+    --muted:       #6B7280;
+    --line:        #E5EAF2;
+    --surface:     #ffffff;
+    --surface-alt: #F8FAFD;
+
+    /* Typography */
+    --font:         'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Brandkit motion + radii + shadows */
+    --radius:      24px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --shadow:      0 10px 30px rgba(0,0,0,0.08);
+    --shadow-sm:   0 4px 14px rgba(23,61,143,0.06);
+
+    /* Gradients */
+    --grad-primary: linear-gradient(135deg, #173D8F 0%, #2567D8 60%, #4AA3F0 100%);
+    --grad-soft:    linear-gradient(180deg, #F8FAFD 0%, #DCEEFF 100%);
+    --grad-dark:    linear-gradient(135deg, #102554 0%, #173D8F 50%, #2567D8 100%);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+
+  h1, h2, h3, h4, .display { font-family: var(--font-display); letter-spacing: -0.015em; font-weight: 600; }
+
+  /* ============================================================
+     PROGRAM HERO
+     ============================================================ */
+  .prog-hero {
+    position: relative;
+    background: var(--grad-dark);
+    overflow: hidden;
+    padding: 64px 0 92px;
+  }
+  .prog-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 460px; height: 460px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,163,240,0.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .prog-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 24px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+
+  .status-row { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(74,163,240,0.18); border: 1px solid rgba(74,163,240,0.45);
+  }
+  .status-pill.is-red {
+    background: rgba(220,38,38,0.18); border: 1px solid rgba(220,38,38,0.45);
+  }
+  .status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(74,163,240,0.25); flex-shrink: 0; }
+  .status-pill.is-red .status-pill-dot { background: #f87171; box-shadow: 0 0 0 3px rgba(248,113,113,0.25); }
+  .status-pill-text { font-family: var(--font-display); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #B6E0FF; }
+  .status-pill.is-red .status-pill-text { color: #fecaca; }
+
+  .prog-hero h1 {
+    font-size: clamp(32px, 4.4vw, 52px);
+    font-weight: 800; color: #fff; line-height: 1.06;
+    letter-spacing: -0.025em; margin-bottom: 20px; max-width: 20ch;
+  }
+  .tagline { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 64ch; margin-bottom: 12px; }
+  .footnote { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 32px; max-width: 64ch; }
+
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+    background: #fff; color: var(--ggi); font-family: var(--font-display); font-weight: 600; font-size: 14px;
+    border-radius: var(--radius-pill); text-decoration: none; transition: background 0.15s, box-shadow 0.15s; cursor: pointer; border: none;
+  }
+  .btn-primary:hover { background: var(--light); box-shadow: var(--shadow-sm); }
+  .btn-primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+    color: rgba(255,255,255,0.88); border: 1px solid rgba(255,255,255,0.30);
+    font-family: var(--font-display); font-weight: 600; font-size: 14px; border-radius: var(--radius-pill); text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); color: #fff; }
+  .btn-ghost svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .meta-facts { display: flex; flex-wrap: wrap; gap: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.16); }
+  .meta-fact-key { font-family: var(--font-display); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
+  .meta-fact-value { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: #fff; }
+
+  /* ============================================================
+     SECTION SHARED
+     ============================================================ */
+  .section { padding: 54px 0; }
+  .section-alt { background: var(--surface-alt); }
+  .section-dark { background: var(--ggi-deep); color: #fff; }
+
+  .sec-head { margin-bottom: 30px; }
+  .sec-head.center { text-align: center; }
+  .sec-head .overline { font-family: var(--font-display); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--blue); margin-bottom: 12px; }
+  .sec-head h2 { font-size: clamp(24px, 2.8vw, 33px); font-weight: 700; color: var(--ink); line-height: 1.18; margin-bottom: 14px; }
+  .sec-head p { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 64ch; }
+  .sec-head.center p { margin-left: auto; margin-right: auto; }
+
+  /* ============================================================
+     QUICK FACTS  —  Eligibility · Core Requirements · Call Cycle
+     ============================================================ */
+  .quickfacts { margin-top: -64px; position: relative; z-index: 5; padding-bottom: 8px; }
+  .qf-grid {
+    max-width: 1400px; margin: 0 auto; padding: 0 40px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .qf-card {
+    --accent: var(--ggi);
+    --accent-tint: #E8EEFB;
+    position: relative; isolation: isolate; overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .qf-card.is-amber { --accent: var(--amber); --accent-tint: var(--amber-tint); }
+  .qf-card.is-teal  { --accent: var(--teal);  --accent-tint: var(--teal-tint); }
+  .qf-card.is-green { --accent: var(--green); --accent-tint: var(--green-tint); }
+  /* corner glow + shimmer sweep */
+  .qf-card::before {
+    content: ""; position: absolute; z-index: -1; top: -70px; right: -70px;
+    width: 170px; height: 170px; border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+    opacity: 0; transition: opacity 0.35s ease;
+  }
+  .qf-card::after {
+    content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    background: linear-gradient(115deg, transparent 34%, rgba(255,255,255,0.5) 48%, transparent 62%);
+    transform: translateX(-120%); transition: transform 0.75s ease;
+  }
+  .qf-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 56px rgba(15,32,68,0.18);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+  .qf-card:hover::before { opacity: 1; }
+  .qf-card:hover::after { transform: translateX(120%); }
+
+  .qf-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .qf-ico {
+    width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+    color: #fff; background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #4AA3F0));
+    box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 38%, transparent);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.32s cubic-bezier(.2,.8,.2,1);
+  }
+  .qf-card:hover .qf-ico { transform: translateY(-2px) rotate(-7deg) scale(1.08); }
+  .qf-ico svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .qf-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.2; letter-spacing: -0.01em; }
+  .qf-kicker { font-family: var(--font-display); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 2px; }
+
+  .qf-list { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+  .qf-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+  .qf-list li svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .qf-list li strong { color: var(--ink); font-weight: 600; }
+  .ogms-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; margin-left: 6px;
+    background: var(--blue); color: #fff;
+    border-radius: var(--radius-pill); font-family: var(--font-display); font-size: 10.5px; font-weight: 600;
+    letter-spacing: 0.06em; text-decoration: none;
+    vertical-align: middle; transition: background 0.15s;
+  }
+  .ogms-pill:hover { background: var(--ggi); }
+  .ogms-pill svg { width: 9px; height: 9px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* compact cycle inside the third box */
+  .qf-tl { list-style: none; display: flex; flex-direction: column; flex: 1; }
+  .qf-tl li { position: relative; padding: 0 0 14px 22px; }
+  .qf-tl li:last-child { padding-bottom: 0; }
+  .qf-tl li::before { content: ""; position: absolute; left: 3px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .qf-tl li::after  { content: ""; position: absolute; left: 7px; top: 13px; bottom: 0; width: 1.5px; background: var(--line); }
+  .qf-tl li:last-child::after { display: none; }
+  .qf-tl-date { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; }
+  .qf-tl-label { font-size: 13px; color: var(--ink-soft); line-height: 1.4; margin-top: 1px; }
+
+  .qf-foot { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .qf-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 600; color: var(--accent); text-decoration: none; }
+  .qf-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .qf-link:hover svg { transform: translateX(3px); }
+
+  /* ============================================================
+     ABOUT SECTION
+     ============================================================ */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: flex-start; }
+  .about-text p { font-size: 16px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--ink); font-weight: 600; }
+
+  /* About — two pictures replacing the region card */
+  .about-media { display: flex; flex-direction: column; gap: 16px; }
+  .about-photo {
+    position: relative; margin: 0; border-radius: 16px; overflow: hidden;
+    aspect-ratio: 3 / 2; border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    background: linear-gradient(135deg, var(--ggi-deep) 0%, var(--ggi) 55%, var(--accent) 100%);
+    transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(.2,.8,.2,1);
+  }
+  .about-photo img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.55s ease; }
+  .about-photo img.is-missing { display: none; }
+  .about-photo::after {
+    content: attr(data-ph); position: absolute; inset: 0; z-index: 0;
+    display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px;
+    color: rgba(255,255,255,0.92); font-family: var(--font-display); font-weight: 600;
+    font-size: 13px; letter-spacing: 0.03em;
+  }
+  .about-photo:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(15,32,68,0.18); }
+  .about-photo:hover img { transform: scale(1.06); }
+
+  .coverage-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-sm); }
+  .coverage-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); }
+  .coverage-head .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); }
+  .coverage-head .count { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--ggi); letter-spacing: -0.02em; }
+  .coverage-list { display: flex; flex-direction: column; gap: 6px; }
+  .coverage-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; font-size: 13.5px; color: #334155; background: var(--surface-alt); }
+  .coverage-row .flag { font-size: 18px; }
+  .coverage-row .name { font-weight: 500; }
+
+  /* ============================================================
+     INTERVENTION AREAS  (3 — per the guidelines)
+     ============================================================ */
+  .ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ia-card {
+    --ic: var(--ggi); --ic2: var(--blue);
+    position: relative; isolation: isolate; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    padding: 30px 28px 28px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(.2,.8,.2,1), border-color 0.3s ease;
+  }
+  .ia-card:nth-child(1) { --ic: #173D8F; --ic2: #2567D8; }
+  .ia-card:nth-child(2) { --ic: #2567D8; --ic2: #4AA3F0; }
+  .ia-card:nth-child(3) { --ic: #1B78C7; --ic2: #4AA3F0; }
+  /* gradient top bar that widens on hover */
+  .ia-card::before {
+    content: ""; position: absolute; top: 0; left: 0; height: 4px; width: 46px;
+    background: linear-gradient(90deg, var(--ic), var(--ic2));
+    border-radius: 0 4px 4px 0; transition: width 0.35s ease;
+  }
+  /* soft corner glow */
+  .ia-card::after {
+    content: ""; position: absolute; z-index: -1; top: -60px; right: -60px;
+    width: 150px; height: 150px; border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--ic) 22%, transparent), transparent 70%);
+    opacity: 0; transition: opacity 0.35s ease;
+  }
+  .ia-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 46px rgba(15,32,68,0.16);
+    border-color: color-mix(in srgb, var(--ic) 40%, var(--line));
+  }
+  .ia-card:hover::before { width: 100%; }
+  .ia-card:hover::after { opacity: 1; }
+
+  .ia-icon {
+    width: 54px; height: 54px; border-radius: 15px;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+    color: #fff; background: linear-gradient(135deg, var(--ic), var(--ic2));
+    box-shadow: 0 10px 22px color-mix(in srgb, var(--ic) 40%, transparent);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+  }
+  .ia-card:hover .ia-icon { transform: translateY(-2px) rotate(-6deg) scale(1.06); }
+  .ia-icon svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ia-title { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.015em; transition: color 0.25s ease; }
+  .ia-card:hover .ia-title { color: var(--ic); }
+  .ia-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+  .ia-examples { list-style: none; display: flex; flex-direction: column; gap: 7px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .ia-examples li { display: flex; align-items: flex-start; gap: 9px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .ia-examples li svg {
+    width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; padding: 2px; border-radius: 5px;
+    color: #fff; background: linear-gradient(135deg, var(--ic), var(--ic2));
+    fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* ============================================================
+     ELIGIBILITY  &  FUNDING split panel
+     ============================================================ */
+  .panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .panel {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 32px 32px 30px;
+    box-shadow: var(--shadow-sm);
+  }
+  .panel-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .panel-head .ico { width: 40px; height: 40px; border-radius: 9px; background: var(--accent-tint, #eef2f8); color: var(--accent, var(--ggi)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .panel-head .ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .panel-head h3 { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--ink); letter-spacing: -0.015em; }
+  .panel-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 18px; line-height: 1.6; }
+
+  .panel.is-teal { --accent: var(--teal); --accent-tint: var(--teal-tint); }
+  .panel.is-amber { --accent: var(--amber); --accent-tint: var(--amber-tint); }
+
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+  .check-list li svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .check-list li.yes svg { color: var(--green); }
+  .check-list li.no  svg { color: #dc2626; }
+  .check-list li strong { color: var(--ink); font-weight: 600; }
+
+  .panel-divider { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin: 6px 0 12px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+
+  /* ---- Eligible organisations: entity boxes ---- */
+  .elig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .elig-box {
+    position: relative; overflow: hidden;
+    background: var(--surface-alt); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 15px; transition: transform 0.28s cubic-bezier(.2,.8,.2,1), box-shadow 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+  }
+  .elig-box::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; opacity: 0;
+    background: linear-gradient(135deg, var(--ggi), var(--blue)); transition: opacity 0.28s ease;
+  }
+  .elig-box > * { position: relative; z-index: 1; }
+  .elig-ico {
+    width: 38px; height: 38px; border-radius: 10px; margin-bottom: 11px;
+    display: flex; align-items: center; justify-content: center; color: #fff;
+    background: linear-gradient(135deg, var(--ggi), var(--blue));
+    box-shadow: 0 6px 14px rgba(23,61,143,0.28); transition: transform 0.28s ease;
+  }
+  .elig-ico svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .elig-name { font-family: var(--font-display); font-size: 13.5px; font-weight: 700; color: var(--ink); line-height: 1.25; margin-bottom: 4px; }
+  .elig-sub { font-size: 11.5px; color: var(--muted); line-height: 1.45; }
+  .elig-box:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(23,61,143,0.18); border-color: transparent; }
+  .elig-box:hover::before { opacity: 1; }
+  .elig-box:hover .elig-ico { transform: scale(1.08) rotate(-6deg); background: #fff; color: var(--ggi); }
+  .elig-box:hover .elig-name { color: #fff; }
+  .elig-box:hover .elig-sub { color: rgba(255,255,255,0.85); }
+
+  /* ---- Partnership requirements: diagram + numbered rules ---- */
+  .partner-diagram { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 8px 0 4px; }
+  .pd-node {
+    flex: 0 0 auto; width: 78px; height: 78px; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+    background: var(--surface); border: 2px solid color-mix(in srgb, var(--ggi) 25%, var(--line));
+    box-shadow: var(--shadow-sm); text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .pd-node.is-lead { background: var(--grad-primary); border-color: transparent; box-shadow: 0 10px 22px rgba(23,61,143,0.32); }
+  .pd-node.is-lead .pd-role { color: #fff; }
+  .pd-node.is-lead .pd-cp { color: rgba(255,255,255,0.8); }
+  .pd-role { font-family: var(--font-display); font-size: 12.5px; font-weight: 700; color: var(--ggi); line-height: 1; }
+  .pd-cp { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .pd-line { flex: 1 1 auto; height: 2px; max-width: 34px; background: linear-gradient(90deg, var(--ggi), var(--accent)); border-radius: 2px; }
+  .partner-panel:hover .pd-node { transform: translateY(-3px); }
+  .pd-node:hover { transform: translateY(-6px) scale(1.06); box-shadow: 0 16px 30px rgba(23,61,143,0.28); border-color: var(--ggi); z-index: 1; }
+  .pd-node.is-lead:hover { box-shadow: 0 18px 34px rgba(23,61,143,0.42); }
+  .partner-caption { text-align: center; font-size: 12.5px; color: var(--ink-soft); margin: 10px 0 20px; }
+  .partner-caption strong { color: var(--ggi); font-weight: 700; }
+
+  .req-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+  .req-list li {
+    position: relative; display: flex; align-items: flex-start; gap: 13px;
+    background: var(--surface-alt); border: 1px solid var(--line); border-left: 3px solid var(--ggi);
+    border-radius: 0 12px 12px 0; padding: 13px 15px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .req-list li:hover { transform: translateX(4px); box-shadow: 0 10px 22px rgba(15,32,68,0.08); }
+  .req-n {
+    flex: none; width: 26px; height: 26px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 13px; font-weight: 800; color: #fff;
+    background: var(--grad-primary); box-shadow: 0 4px 10px rgba(23,61,143,0.3);
+  }
+  .req-t { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+  .req-t strong { color: var(--ink); font-weight: 700; }
+  .req-callout {
+    background: linear-gradient(120deg, var(--amber-tint), #fff 75%);
+    border: 1px solid color-mix(in srgb, var(--ggi) 18%, var(--line));
+    border-radius: 14px; padding: 15px 17px;
+  }
+  .req-callout-head { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ggi); margin-bottom: 7px; }
+  .req-callout-head svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .req-callout p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; margin: 0; }
+  .req-callout strong { color: var(--ink); font-weight: 700; }
+
+  /* Funding breakdown box */
+  .fund-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+  .fund-row:last-child { border-bottom: none; }
+  .fund-row .k { color: var(--ink-soft); }
+  .fund-row .v { font-weight: 700; color: var(--ink); font-size: 15px; }
+  .fund-row .v small { font-weight: 500; color: var(--muted); font-size: 12px; margin-left: 4px; }
+
+  .cofin-bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; margin: 10px 0 6px; border: 1px solid var(--line); }
+  .cofin-bar .wbf { background: var(--ggi); flex: 0 0 80%; }
+  .cofin-bar .cof { background: var(--accent); flex: 0 0 20%; }
+  .cofin-legend { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); }
+  .cofin-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .cofin-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ============================================================
+     FUNDING & DURATION — elevated cards + donut
+     ============================================================ */
+  #funding .panel {
+    position: relative; isolation: isolate; overflow: hidden;
+    border: 1px solid var(--line); border-radius: 22px;
+    padding: 30px 30px 28px;
+    background:
+      radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--blue) 8%, transparent), transparent 60%),
+      var(--surface);
+    box-shadow: 0 10px 30px rgba(15,32,68,0.06);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  /* distinctive, mirrored silhouettes for the two cards */
+  #funding .panel:nth-child(1) { border-top-left-radius: 6px; }
+  #funding .panel:nth-child(2) { border-top-right-radius: 6px; }
+  /* gradient accent stripe across the top */
+  #funding .panel::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--grad-primary); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.6s ease;
+  }
+  #funding .panel:nth-child(2)::before { transform-origin: right; }
+  #funding .panel.in::before { transform: scaleX(1); }
+  /* decorative floating blob */
+  #funding .panel::after {
+    content: ""; position: absolute; z-index: -1; bottom: -70px; right: -60px;
+    width: 190px; height: 190px; border-radius: 46% 54% 60% 40%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+    animation: fundBlob 12s ease-in-out infinite alternate;
+  }
+  #funding .panel:nth-child(2)::after { right: auto; left: -60px; animation-direction: alternate-reverse; }
+  @keyframes fundBlob { from { transform: translate(0,0) rotate(0); } to { transform: translate(-18px,-16px) rotate(20deg); } }
+  #funding .panel:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 54px rgba(15,32,68,0.16);
+    border-color: color-mix(in srgb, var(--ggi) 32%, var(--line));
+  }
+  #funding .panel-head .ico {
+    background: var(--grad-primary) !important; color: #fff !important;
+    width: 46px; height: 46px; border-radius: 13px;
+    box-shadow: 0 8px 18px rgba(23,61,143,0.3);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+  }
+  #funding .panel:hover .panel-head .ico { transform: rotate(-6deg) scale(1.07); }
+
+  /* co-financing split meter (replaces the donut) */
+  .cofin-split { margin: 12px 0 4px; }
+  .cofin-meter { display: flex; gap: 6px; height: 66px; margin-bottom: 12px; }
+  .cofin-meter .seg {
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; border-radius: 12px; overflow: hidden; white-space: nowrap;
+    flex: 0 1 0%; min-width: 0;
+    transition: flex-grow 1.1s cubic-bezier(.3,.7,.3,1);
+  }
+  .cofin-meter .wbf { background: var(--grad-primary); box-shadow: 0 8px 20px rgba(23,61,143,0.25); }
+  .cofin-meter .cof { background: linear-gradient(135deg, #4AA3F0, #7fc1f5); box-shadow: 0 8px 20px rgba(74,163,240,0.28); }
+  .cofin-split.in .wbf { flex-grow: 80; }
+  .cofin-split.in .cof { flex-grow: 20; }
+  .seg-pct { font-family: var(--font-display); font-size: 21px; font-weight: 800; letter-spacing: -0.01em; opacity: 0; transition: opacity 0.4s ease 0.5s; }
+  .cofin-split.in .seg-pct { opacity: 1; }
+  #funding .fund-row .v { font-family: var(--font-display); }
+  #funding .fund-row:first-child .v { color: var(--ggi); font-size: 20px; }
+
+  /* ============================================================
+     HOW TO APPLY  —  steps
+     ============================================================ */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .step-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 26px; position: relative; box-shadow: var(--shadow-sm); }
+  .step-num {
+    position: absolute; top: -14px; left: 22px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--grad-primary); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 13px; font-weight: 600;
+    box-shadow: var(--shadow-sm);
+  }
+  .step-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--ink); margin: 10px 0 8px; letter-spacing: -0.01em; }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .step-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 12px; padding: 7px 12px;
+    background: var(--ggi); color: #fff;
+    font-size: 12px; font-weight: 600; text-decoration: none;
+    border-radius: 6px; transition: background 0.15s;
+  }
+  .step-link:hover { background: var(--ggi-700); }
+  .step-link svg { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---- How to apply: interactive connected flow ---- */
+  .apply-flow { position: relative; padding-top: 4px; }
+  .flow-line { position: absolute; top: 36px; left: 12.5%; right: 12.5%; height: 4px; border-radius: 4px; background: var(--line); z-index: 0; }
+  .flow-line-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 4px; background: var(--grad-primary); transition: width 1.5s cubic-bezier(.3,.7,.3,1); }
+  .apply-flow.in .flow-line-fill { width: 100%; }
+  .flow-dot {
+    position: absolute; top: 50%; left: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px;
+    border-radius: 50%; background: #fff; border: 3px solid var(--blue);
+    box-shadow: 0 0 0 5px rgba(37,103,216,0.20); opacity: 0;
+  }
+  .apply-flow.in .flow-dot { opacity: 1; animation: flowDot 3.6s ease-in-out 1.2s infinite; }
+  @keyframes flowDot { 0%, 100% { left: 0; } 50% { left: 100%; } }
+
+  .flow-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; position: relative; z-index: 1; }
+  .flow-step {
+    text-align: center; opacity: 0; transform: translateY(22px);
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(.2,.8,.2,1);
+  }
+  .apply-flow.in .flow-step { opacity: 1; transform: none; }
+  .apply-flow.in .flow-step:nth-child(1) { transition-delay: 0.15s; }
+  .apply-flow.in .flow-step:nth-child(2) { transition-delay: 0.35s; }
+  .apply-flow.in .flow-step:nth-child(3) { transition-delay: 0.55s; }
+  .apply-flow.in .flow-step:nth-child(4) { transition-delay: 0.75s; }
+
+  .flow-node {
+    position: relative; z-index: 1; width: 66px; height: 66px; margin: 0 auto 16px;
+    border-radius: 50%; background: var(--grad-primary); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 24px rgba(23,61,143,0.32);
+    border: 4px solid var(--surface);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease;
+  }
+  .flow-node::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--blue); opacity: 0; }
+  .flow-step:hover .flow-node { transform: translateY(-5px) scale(1.09); box-shadow: 0 18px 34px rgba(37,103,216,0.45); }
+  .flow-step:hover .flow-node::after { animation: flowPulse 1.2s ease-out infinite; }
+  @keyframes flowPulse { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.55); opacity: 0; } }
+  /* number swaps to a themed icon on hover (the unexpected bit) */
+  .flow-num { font-family: var(--font-display); font-size: 23px; font-weight: 700; transition: opacity 0.3s ease, transform 0.3s ease; }
+  .flow-ico { position: absolute; width: 27px; height: 27px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transform: scale(0.5) rotate(-25deg); transition: opacity 0.32s ease, transform 0.32s cubic-bezier(.2,.8,.2,1); }
+  .flow-step:hover .flow-num { opacity: 0; transform: scale(0.5); }
+  .flow-step:hover .flow-ico { opacity: 1; transform: scale(1) rotate(0); }
+
+  .flow-body {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 16px 18px; box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .flow-step:hover .flow-body {
+    transform: translateY(-3px); box-shadow: 0 16px 30px rgba(15,32,68,0.12);
+    border-color: color-mix(in srgb, var(--ggi) 30%, var(--line));
+  }
+  .flow-step-title { font-family: var(--font-display); font-size: 15.5px; font-weight: 600; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.01em; }
+  .flow-hint { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .flow-body .step-link { margin-top: 12px; }
+
+  /* ============================================================
+     EVALUATION CRITERIA
+     ============================================================ */
+  .eval-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .eval-bars { display: flex; flex-direction: column; gap: 14px; }
+  .eval-row { display: grid; grid-template-columns: 1fr 60px; gap: 14px; align-items: center; }
+  .eval-row .lab { font-size: 14px; color: var(--ink); font-weight: 500; }
+  .eval-row .lab small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .eval-row .pts { font-size: 13px; font-weight: 700; color: var(--ggi); text-align: right; }
+  .eval-track { grid-column: 1 / -1; height: 8px; background: var(--line-soft); border-radius: 4px; overflow: hidden; }
+  .eval-fill {
+    height: 100%; width: 0; border-radius: 4px; position: relative; overflow: hidden;
+    background: linear-gradient(90deg, var(--ggi) 0%, var(--blue) 60%, var(--accent) 100%);
+    box-shadow: 0 0 8px rgba(37,103,216,0.35);
+    transition: width 1.15s cubic-bezier(.2,.8,.2,1);
+  }
+  .eval-fill::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: translateX(-100%);
+  }
+  .eval-bars.in .eval-fill::after { animation: barShine 1.5s ease 0.35s; }
+  @keyframes barShine { to { transform: translateX(200%); } }
+
+  /* score rows reveal (staggered) */
+  .eval-row { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.2,.8,.2,1); }
+  .eval-bars.in .eval-row { opacity: 1; transform: none; }
+  .eval-bars.in .eval-row:nth-child(1) { transition-delay: 0.04s; }
+  .eval-bars.in .eval-row:nth-child(2) { transition-delay: 0.10s; }
+  .eval-bars.in .eval-row:nth-child(3) { transition-delay: 0.16s; }
+  .eval-bars.in .eval-row:nth-child(4) { transition-delay: 0.22s; }
+  .eval-bars.in .eval-row:nth-child(5) { transition-delay: 0.28s; }
+  .eval-bars.in .eval-row:nth-child(6) { transition-delay: 0.34s; }
+  .eval-bars.in .eval-row:nth-child(7) { transition-delay: 0.40s; }
+  .eval-row .pts { transition: transform 0.25s ease, color 0.25s ease; }
+  .eval-bars.in .eval-row:hover .pts { transform: scale(1.18); color: var(--blue); }
+
+  /* Right column stack: cross-cutting card + threshold beneath it */
+  .eval-side { display: flex; flex-direction: column; gap: 16px; }
+
+  /* Minimum threshold — animated callout below cross-cutting */
+  .eval-threshold {
+    display: flex; align-items: flex-start; gap: 15px;
+    padding: 18px 22px; border-radius: 14px;
+    background: linear-gradient(120deg, var(--amber-tint) 0%, #ffffff 70%);
+    border: 1px solid color-mix(in srgb, var(--ggi) 20%, var(--line));
+    border-left: 4px solid var(--ggi);
+    position: relative; overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease;
+  }
+  .eval-threshold.in { opacity: 1; transform: none; }
+  .eval-threshold:hover { box-shadow: 0 18px 38px rgba(23,61,143,0.15); transform: translateY(-2px); }
+  .eval-threshold::before {
+    content: ""; position: absolute; top: -60%; left: -30%;
+    width: 55%; height: 220%; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(37,103,216,0.12), transparent);
+    animation: thrDrift 9s ease-in-out infinite alternate;
+  }
+  @keyframes thrDrift { from { transform: translateX(0); } to { transform: translateX(260%); } }
+  .thr-icon {
+    flex: none; width: 42px; height: 42px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--grad-primary); color: #fff;
+    box-shadow: 0 8px 18px rgba(23,61,143,0.32);
+    animation: thrPulse 2.6s ease-in-out infinite;
+  }
+  .thr-icon svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  @keyframes thrPulse {
+    0%, 100% { box-shadow: 0 8px 18px rgba(23,61,143,0.32); transform: scale(1); }
+    50%      { box-shadow: 0 10px 28px rgba(37,103,216,0.55); transform: scale(1.06); }
+  }
+  .thr-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; text-align: justify; }
+  .thr-title { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ggi); margin-bottom: 3px; }
+  .eval-threshold strong { color: var(--ggi); font-weight: 700; }
+
+  .cross-cutting { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+  /* cross-cutting chips reveal (staggered pop) */
+  .cross-cutting .cc-chip { opacity: 0; transform: translateY(10px) scale(0.95); }
+  .cross-cutting.in .cc-chip { opacity: 1; transform: none; transition: opacity 0.45s ease, transform 0.45s cubic-bezier(.2,.8,.2,1), background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease; }
+  .cross-cutting.in .cc-chip:nth-child(1) { transition-delay: 0.03s; }
+  .cross-cutting.in .cc-chip:nth-child(2) { transition-delay: 0.07s; }
+  .cross-cutting.in .cc-chip:nth-child(3) { transition-delay: 0.11s; }
+  .cross-cutting.in .cc-chip:nth-child(4) { transition-delay: 0.15s; }
+  .cross-cutting.in .cc-chip:nth-child(5) { transition-delay: 0.19s; }
+  .cross-cutting.in .cc-chip:nth-child(6) { transition-delay: 0.23s; }
+  .cross-cutting.in .cc-chip:nth-child(7) { transition-delay: 0.27s; }
+  .cross-cutting.in .cc-chip:nth-child(8) { transition-delay: 0.31s; }
+  .cross-cutting.in .cc-chip:nth-child(9) { transition-delay: 0.35s; }
+  .cross-cutting.in .cc-chip:nth-child(10) { transition-delay: 0.39s; }
+  .cc-head { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .cc-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 16px; line-height: 1.55; }
+  .cc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .cc-chip {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 11px; background: var(--surface-alt);
+    border: 1px solid var(--line); border-radius: 7px;
+    font-size: 12.5px; color: var(--ink-soft);
+    cursor: default;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+  .cc-chip:hover {
+    background: var(--grad-primary);
+    border-color: var(--ggi);
+    color: #fff;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(23,61,143,0.24);
+  }
+  .cc-chip .n { font-size: 10.5px; font-weight: 700; color: var(--ggi); background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; flex-shrink: 0; transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease, transform 0.18s ease; }
+  .cc-chip:hover .n { background: #fff; color: var(--ggi); border-color: #fff; transform: rotate(-8deg) scale(1.1); }
+
+  /* ============================================================
+     CALL NO. 8 WINNERS — featured cards
+     ============================================================ */
+  .winners-banner {
+    background: linear-gradient(135deg, var(--green-tint), #fff);
+    border: 1px solid var(--green);
+    border-left-width: 4px;
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .winners-banner svg { width: 22px; height: 22px; color: var(--green); flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .winners-banner strong { color: var(--ink); font-weight: 700; }
+
+  .winners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .winner-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px; display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .winner-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); border-color: rgba(37,103,216,0.25); }
+  .winner-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .winner-pn { font-family: var(--font-display); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ggi); background: var(--light); padding: 3px 9px; border-radius: var(--radius-pill); }
+  .winner-area { font-size: 11px; color: var(--muted); }
+  .winner-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 8px; letter-spacing: -0.015em; }
+  .winner-card:hover .winner-title { color: var(--ggi); }
+  .winner-lead { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.5; }
+  .winner-lead .role { color: var(--faint); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; font-size: 10.5px; display: block; margin-bottom: 2px; }
+  .winner-flags { display: flex; gap: 6px; margin-bottom: 14px; }
+  .winner-flag { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--ink-soft); background: var(--surface-alt); border: 1px solid var(--line); padding: 4px 10px; border-radius: var(--radius-pill); }
+  .winner-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line-soft); display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; }
+  .winner-foot .grant { color: var(--ggi); font-weight: 700; }
+  .winner-foot .link { color: var(--ggi); display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
+  .winner-foot .link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .winner-card:hover .winner-foot .link svg { transform: translateX(3px); }
+
+  .see-all { text-align: center; margin-top: 36px; }
+  .see-all a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; color: var(--ggi); border: 1px solid var(--line); border-radius: var(--radius-pill); font-family: var(--font-display); font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+  .see-all a:hover { border-color: var(--ggi); background: var(--light); }
+  .see-all svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ============================================================
+     DOCUMENTS
+     ============================================================ */
+  .docs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .doc-card { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); text-decoration: none; color: inherit; transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s; }
+  .doc-card[href]:hover { box-shadow: 0 8px 20px rgba(15,32,68,0.06); transform: translateY(-1px); border-color: #cbd5e1; }
+  .doc-card.unavailable { opacity: 0.7; }
+  .doc-icon { width: 44px; height: 44px; background: var(--light); color: var(--ggi); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .doc-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .doc-body { flex: 1; min-width: 0; }
+  .doc-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
+  .doc-card[href]:hover .doc-title { color: var(--ggi); }
+  .doc-meta { font-size: 11.5px; color: var(--faint); }
+  .doc-action { color: var(--ggi); flex-shrink: 0; }
+  .doc-action svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .doc-soon { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 9px; border-radius: 999px; background: var(--line-soft); color: var(--muted); flex-shrink: 0; }
+
+  /* ============================================================
+     SUBSCRIBE CTA
+     ============================================================ */
+  .subscribe { background: var(--grad-dark); padding: 80px 0; color: #fff; position: relative; overflow: hidden; }
+  .subscribe::before { content: ""; position: absolute; top: -100px; right: -60px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(74,163,240,0.30) 0%, transparent 70%); pointer-events: none; }
+  .subscribe-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; text-align: center; padding: 0 40px; }
+  .subscribe-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--accent); }
+  .subscribe-icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .subscribe .overline { font-family: var(--font-display); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 14px; }
+  .subscribe h2 { font-size: clamp(24px, 2.8vw, 30px); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
+  .subscribe p { font-size: 15.5px; color: rgba(255,255,255,0.75); line-height: 1.65; max-width: 60ch; margin: 0 auto 28px; }
+  .subscribe-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; background: #fff; color: var(--ggi); font-family: var(--font-display); font-weight: 600; font-size: 14px; border-radius: var(--radius-pill); text-decoration: none; transition: background 0.15s, box-shadow 0.15s; }
+  .btn-white:hover { background: var(--light); box-shadow: var(--shadow-sm); }
+  .btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-ghost-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; color: #fff; border: 1px solid rgba(255,255,255,0.4); font-family: var(--font-display); font-weight: 600; font-size: 14px; border-radius: var(--radius-pill); text-decoration: none; transition: background 0.15s, border-color 0.15s; }
+  .btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+
+  /* ============================================================
+     CP FILTER PILLS  (Call 8 winners filter)
+     ============================================================ */
+  .cp-filter {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 28px;
+    padding: 16px; border-radius: var(--radius);
+    background: var(--surface); border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+  }
+  .cp-filter-label {
+    width: 100%;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--faint); margin-bottom: 4px;
+  }
+  .cp-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--surface-alt); border: 1px solid var(--line);
+    font-size: 13px; font-weight: 600; color: var(--ink-soft);
+    cursor: pointer; transition: all 0.18s ease;
+  }
+  .cp-pill .flag { font-size: 15px; line-height: 1; }
+  .cp-pill:hover { border-color: var(--ggi); color: var(--ggi); }
+  .cp-pill.is-active {
+    background: var(--ggi); border-color: var(--ggi);
+    color: #fff;
+  }
+
+  /* ============================================================
+     WINNERS  (CSV-driven, with modal)
+     ============================================================ */
+  .winners-csv-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .winner-csv-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; padding: 20px;
+    display: flex; flex-direction: column;
+    cursor: pointer; text-align: left;
+    font-family: inherit; color: inherit;
+    transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+  }
+  .winner-csv-card:hover {
+    box-shadow: 0 12px 28px rgba(15,32,68,0.10);
+    transform: translateY(-3px); border-color: #cbd5e1;
+  }
+  .winner-csv-card.is-hidden { display: none; }
+  .winner-csv-pn {
+    display: inline-block; align-self: flex-start;
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--ggi); background: #eef2f8;
+    padding: 3px 9px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .winner-csv-area {
+    font-size: 11px; font-weight: 600; color: var(--amber);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .winner-csv-card[data-area="Education &amp; Scientific Exchanges"] .winner-csv-area,
+  .winner-csv-card[data-area="Education & Scientific Exchanges"] .winner-csv-area { color: var(--teal); }
+  .winner-csv-card[data-area="Sustainable Development"] .winner-csv-area { color: var(--green); }
+  .winner-csv-title {
+    font-size: 15px; font-weight: 700; color: var(--ink);
+    line-height: 1.35; letter-spacing: -0.01em;
+    margin-bottom: 10px; min-height: 40px;
+  }
+  .winner-csv-lead {
+    font-size: 12.5px; color: var(--ink-soft);
+    line-height: 1.5; margin-bottom: 12px;
+  }
+  .winner-csv-lead .role {
+    color: var(--faint); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    font-size: 10.5px; display: block; margin-bottom: 2px;
+  }
+  .winner-csv-flags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+  .winner-csv-flag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; color: var(--ink-soft);
+    background: var(--surface-alt); border: 1px solid var(--line);
+    padding: 3px 7px; border-radius: 999px;
+  }
+  .winner-csv-foot {
+    margin-top: auto; padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px;
+  }
+  .winner-csv-foot .grant { color: var(--ggi); font-weight: 700; }
+  .winner-csv-foot .more {
+    color: var(--ggi); font-weight: 600;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .winner-csv-foot .more svg {
+    width: 12px; height: 12px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+    transition: transform 0.15s;
+  }
+  .winner-csv-card:hover .winner-csv-foot .more svg { transform: translateX(3px); }
+
+  .winners-loading,
+  .winners-empty {
+    grid-column: 1 / -1;
+    padding: 40px; text-align: center;
+    font-size: 14px; color: var(--muted);
+  }
+
+  /* ============================================================
+     AWARDS 2026  —  interactive winners showcase
+     ============================================================ */
+  #call-8-winners {
+    position: relative; overflow: hidden;
+  }
+  /* soft animated aura behind the section */
+  #call-8-winners::before {
+    content: ""; position: absolute; z-index: 0;
+    top: -160px; right: -140px;
+    width: 460px; height: 460px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,163,240,0.18), transparent 68%);
+    filter: blur(6px);
+    animation: awardsAura 14s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  #call-8-winners::after {
+    content: ""; position: absolute; z-index: 0;
+    bottom: -180px; left: -120px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,103,216,0.13), transparent 70%);
+    filter: blur(6px);
+    animation: awardsAura 18s ease-in-out infinite alternate-reverse;
+    pointer-events: none;
+  }
+  @keyframes awardsAura {
+    from { transform: translate3d(0,0,0) scale(1); }
+    to   { transform: translate3d(-30px,26px,0) scale(1.12); }
+  }
+  #call-8-winners .container-narrow { position: relative; z-index: 1; }
+
+  /* area accent palette — GGI blue family only */
+  #call-8-winners {
+    --a-culture: #173D8F;
+    --a-edu:     #2567D8;
+    --a-sd:      #1B78C7;
+  }
+
+  /* ---- headline stats strip ---- */
+  .awards-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin: 4px 0 30px;
+  }
+  .awards-stat {
+    position: relative; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 20px 18px; text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s;
+  }
+  .awards-stat::before {
+    content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%;
+    background: var(--grad-primary);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.6s ease;
+  }
+  .awards-stat.in::before { transform: scaleX(1); }
+  .awards-stat:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(15,32,68,0.12); }
+  .awards-stat-num {
+    font-size: 34px; font-weight: 800; letter-spacing: -0.02em;
+    line-height: 1; color: var(--ggi);
+    background: var(--grad-primary); -webkit-background-clip: text;
+    background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .awards-stat-num .suffix { -webkit-text-fill-color: initial; color: var(--accent); }
+  .awards-stat-label {
+    margin-top: 8px; font-size: 11.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
+  }
+
+  /* ---- filter bar upgrade ---- */
+  .cp-pill .count {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 18px; height: 18px; padding: 0 5px; margin-left: 2px;
+    font-size: 10.5px; font-weight: 700; border-radius: 999px;
+    background: rgba(23,61,143,0.10); color: var(--ggi);
+    transition: all 0.18s ease;
+  }
+  .cp-pill.is-active .count { background: rgba(255,255,255,0.24); color: #fff; }
+  .cp-pill { transition: transform 0.18s ease, all 0.18s ease; }
+  .cp-pill.is-active { box-shadow: 0 8px 20px rgba(23,61,143,0.28); transform: translateY(-1px); }
+
+  /* ---- awards grid ---- */
+  .awards-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    grid-auto-rows: 1fr;
+  }
+  .award-card {
+    position: relative; isolation: isolate; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 0;
+    display: flex; flex-direction: column;
+    cursor: pointer; text-align: left;
+    font-family: inherit; color: inherit;
+    --acc: var(--ggi);
+    perspective: 900px;
+    opacity: 0; transform: translateY(26px) scale(0.98);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.2,.8,.2,1),
+                box-shadow 0.28s ease, border-color 0.28s ease;
+  }
+  .award-card.in { opacity: 1; transform: none; }
+  /* left accent bar */
+  .award-card::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: var(--acc); opacity: 0.85;
+    transition: width 0.28s ease;
+  }
+  /* shimmer sweep on hover */
+  .award-card::after {
+    content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.55) 48%, transparent 66%);
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+  }
+  .award-card:hover {
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: 0 26px 50px rgba(15,32,68,0.18);
+    border-color: color-mix(in srgb, var(--acc) 45%, var(--line));
+  }
+  .award-card:hover::before { width: 6px; }
+  .award-card:hover::after { transform: translateX(120%); }
+  .award-card:focus-visible {
+    outline: none; border-color: var(--acc);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--acc) 30%, transparent);
+  }
+
+  .award-inner {
+    padding: 20px 20px 18px 22px; display: flex; flex-direction: column; height: 100%;
+    transform-style: preserve-3d; transition: transform 0.12s ease-out;
+  }
+
+  .award-areas { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+  .award-area {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px;
+    color: var(--tagc, var(--ggi));
+    background: color-mix(in srgb, var(--tagc, var(--ggi)) 12%, #fff);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .award-area.t-culture { --tagc: var(--a-culture); }
+  .award-area.t-edu     { --tagc: var(--a-edu); }
+  .award-area.t-sd      { --tagc: var(--a-sd); }
+  .award-card:hover .award-area { background: color-mix(in srgb, var(--tagc, var(--ggi)) 20%, #fff); }
+
+  .award-title {
+    font-size: 16px; font-weight: 700; color: var(--ink);
+    line-height: 1.36; letter-spacing: -0.01em; margin-bottom: 14px;
+    transition: color 0.22s ease;
+  }
+  .award-card:hover .award-title { color: var(--ggi); }
+  .award-lead { font-size: 12.5px; color: var(--ink); line-height: 1.5; margin-bottom: 12px; }
+  .award-lead .role {
+    display: block; color: var(--faint, var(--muted)); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; font-size: 10px; margin-bottom: 2px;
+  }
+  .award-lead .lead-org { font-weight: 700; }
+
+  .award-collab {
+    margin-top: auto; display: flex; align-items: center;
+    padding-top: 12px; border-top: 1px solid var(--line);
+  }
+  .award-more {
+    margin-left: auto; font-size: 12px; font-weight: 700; color: var(--ggi);
+    display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+  }
+  .award-more svg {
+    width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.2;
+    stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s ease;
+  }
+  .award-card:hover .award-more svg { transform: translateX(4px); }
+
+  /* modal: partner list + area tag colours */
+  .modal-partners { display: grid; gap: 8px; margin-top: 4px; }
+  .modal-partners .mp-item {
+    display: flex; align-items: center; gap: 9px;
+    font-size: 13.5px; color: var(--ink);
+    padding: 9px 12px; border-radius: 10px;
+    background: var(--surface-alt); border: 1px solid var(--line);
+  }
+  .modal-partners .mp-item .pflag { font-size: 16px; line-height: 1; flex: none; }
+  .modal-partners .mp-item .pcp { margin-left: auto; font-size: 11px; color: var(--muted); font-weight: 600; }
+  .modal-meta-tag.t-culture { background: color-mix(in srgb, var(--a-culture) 14%, #fff); color: var(--a-culture); }
+  .modal-meta-tag.t-edu     { background: color-mix(in srgb, var(--a-edu) 14%, #fff); color: var(--a-edu); }
+  .modal-meta-tag.t-sd      { background: color-mix(in srgb, var(--a-sd) 14%, #fff); color: var(--a-sd); }
+
+  @media (max-width: 960px) {
+    .awards-grid { grid-template-columns: repeat(2, 1fr); }
+    .awards-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .awards-grid { grid-template-columns: 1fr; }
+    .awards-stat-num { font-size: 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .award-card { opacity: 1; transform: none; transition: box-shadow 0.2s ease, border-color 0.2s ease; }
+    .award-inner { transform: none !important; }
+    #call-8-winners::before, #call-8-winners::after { animation: none; }
+    .award-card::after { display: none; }
+    .eval-row, .cross-cutting .cc-chip, .eval-threshold { opacity: 1 !important; transform: none !important; transition: none; }
+    .thr-icon, .eval-threshold::before, .eval-fill::after { animation: none !important; }
+  }
+
+  /* ============================================================
+     Justified body copy across content sections
+     ============================================================ */
+  .section p, .container-narrow p, .container p, .modal-body p, .modal-lead {
+    text-align: justify;
+    text-align-last: left;
+  }
+  .sec-head.center p, .subscribe-inner p, .center p {
+    text-align: center;
+    text-align-last: center;
+  }
+
+  /* ============================================================
+     PROJECT MODAL  (shared — winners + stories)
+     ============================================================ */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(15,32,68,0.65);
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(3px);
+  }
+  .modal-overlay.is-open { display: flex; }
+  .modal-box {
+    background: #fff; border-radius: 14px;
+    max-width: 720px; width: 100%;
+    max-height: 88vh; overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    position: relative;
+    animation: modalIn 0.22s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--surface-alt); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .modal-close:hover { background: var(--line-soft); }
+  .modal-close svg { width: 16px; height: 16px; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .modal-head {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .modal-meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .modal-meta-tag {
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .modal-meta-tag.pn { color: var(--ggi); background: #eef2f8; }
+  .modal-meta-tag.area { color: var(--amber); background: var(--amber-tint); }
+  .modal-meta-tag.area.area-edu { color: var(--teal); background: var(--teal-tint); }
+  .modal-meta-tag.area.area-sd { color: var(--green); background: var(--green-tint); }
+  .modal-meta-tag.cp { color: var(--ink-soft); background: var(--surface-alt); border: 1px solid var(--line); }
+  .modal-title {
+    font-size: 22px; font-weight: 700; color: var(--ink);
+    line-height: 1.25; letter-spacing: -0.015em;
+    margin-bottom: 12px;
+  }
+  .modal-lead {
+    font-size: 13.5px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .modal-lead strong { color: var(--ink); }
+  .modal-body { padding: 24px 32px 32px; }
+  .modal-section { margin-bottom: 22px; }
+  .modal-section:last-child { margin-bottom: 0; }
+  .modal-section h4 {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--ggi); margin-bottom: 8px;
+  }
+  .modal-section p {
+    font-size: 14px; color: var(--ink-soft); line-height: 1.65;
+  }
+  .modal-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin-bottom: 22px;
+  }
+  .modal-stat {
+    padding: 12px 14px; background: var(--surface-alt);
+    border: 1px solid var(--line); border-radius: 8px;
+  }
+  .modal-stat-label {
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--faint); margin-bottom: 4px;
+  }
+  .modal-stat-value { font-size: 14px; font-weight: 700; color: var(--ink); }
+
+  /* ============================================================
+     GRANTEES STORIES
+     ============================================================ */
+  .stories-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .story-card {
+    position: relative; overflow: hidden;
+    border-radius: 14px; min-height: 260px;
+    padding: 24px; cursor: pointer;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    color: #fff; text-align: left;
+    font-family: inherit; border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .story-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(15,32,68,0.18); }
+  .story-card.is-culture { background: linear-gradient(160deg, var(--ggi) 0%, var(--ggi-deep) 100%); }
+  .story-card.is-edu     { background: linear-gradient(160deg, var(--blue) 0%, var(--ggi) 100%); }
+  .story-card.is-sd      { background: linear-gradient(160deg, var(--accent) 0%, var(--blue) 100%); }
+  .story-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 1px, transparent 1px, transparent 14px);
+    pointer-events: none;
+  }
+  .story-area-pill {
+    align-self: flex-start; padding: 5px 12px; border-radius: 999px;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.32);
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: auto; position: relative; z-index: 1;
+  }
+  .story-title {
+    font-size: 19px; font-weight: 700; line-height: 1.3;
+    letter-spacing: -0.015em; margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+  .story-meta {
+    font-size: 12.5px; color: rgba(255,255,255,0.85);
+    margin-bottom: 14px; position: relative; z-index: 1;
+  }
+  .story-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12.5px; font-weight: 600;
+    position: relative; z-index: 1;
+  }
+  .story-cta svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .story-card:hover .story-cta svg { transform: translateX(3px); }
+
+  /* ============================================================
+     NEWS CARDS  (top 6 GGI news, CSV-driven)
+     ============================================================ */
+  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .news-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; overflow: hidden;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+  }
+  .news-card:hover {
+    box-shadow: 0 14px 32px rgba(15,32,68,0.10);
+    transform: translateY(-3px); border-color: #cbd5e1;
+  }
+  .news-thumb {
+    aspect-ratio: 16 / 9; background: var(--ggi);
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .news-thumb::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.18) 100%);
+  }
+  .news-tag {
+    position: absolute; top: 12px; left: 12px; z-index: 1;
+    background: var(--amber); color: #fff;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 4px 9px; border-radius: 999px;
+  }
+  .news-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+  .news-date {
+    font-size: 11px; font-weight: 600; color: var(--faint);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+  }
+  .news-title {
+    font-size: 15.5px; font-weight: 700; color: var(--ink);
+    line-height: 1.35; letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .news-card:hover .news-title { color: var(--ggi); }
+  .news-excerpt {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.55; margin-bottom: 14px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-more {
+    margin-top: auto;
+    font-size: 12.5px; font-weight: 600; color: var(--ggi);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .news-more svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .news-card:hover .news-more svg { transform: translateX(3px); }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .container-narrow, .prog-hero-inner, .qf-grid { padding-left: 24px; padding-right: 24px; }
+    .quickfacts { margin-top: -56px; }
+    .qf-grid { grid-template-columns: 1fr; gap: 16px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .ia-grid { grid-template-columns: repeat(2, 1fr); }
+    .panel-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 18px; }
+    .flow-steps { grid-template-columns: repeat(2, 1fr); gap: 30px 18px; }
+    .flow-line { display: none; }
+    .eval-wrap { grid-template-columns: 1fr; gap: 28px; }
+    .winners-grid { grid-template-columns: repeat(2, 1fr); }
+    .winners-csv-grid { grid-template-columns: repeat(2, 1fr); }
+    .stories-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+    .docs-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .prog-hero { padding: 48px 0 76px; }
+    .section { padding: 56px 0; }
+    .meta-facts { gap: 24px; }
+    .ia-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .flow-steps { grid-template-columns: 1fr; }
+    .winners-grid { grid-template-columns: 1fr; }
+    .winners-csv-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .cc-grid { grid-template-columns: 1fr; }
+    .modal-grid { grid-template-columns: 1fr; }
+    .modal-head, .modal-body { padding-left: 22px; padding-right: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR (unchanged — loads from master) -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<!-- ============================================================
+     PROGRAM HERO
+     ============================================================ -->
+<section class="prog-hero">
+  <div class="prog-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/index.html">Home</a><span>›</span><a href="/our-programs.html">Our Programs</a><span>›</span>GGI
+    </nav>
+
+    <div class="status-row">
+      <div class="status-pill is-red">
+        <span class="status-pill-dot"></span>
+        <span class="status-pill-text">Call No. 8: Closed</span>
+      </div>
+      <div class="status-pill">
+        <span class="status-pill-dot"></span>
+        <span class="status-pill-text">Winners Announced</span>
+      </div>
+    </div>
+
+    <h1>Grants for Grassroots Initiatives (GGI)</h1>
+    <p class="tagline">The Western Balkans Fund's annual grant scheme supports young, emerging CSOs and Grassroots organizations to participate and contribute to regional cooperation, peacebuilding, good neighborly relations, reconciliation, democratic governance and EU integration across the WB6, under the EU/WBF Joint Action (Phase III).</p>
+
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#call-8-winners">
+        Check the awarded grantees for Call No. 8
+        <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+      </a>
+      <a class="btn-ghost" href="#eligibility">
+        Check Eligibility
+        <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+      </a>
+      <a class="btn-ghost" href="#call-9-interest">
+        Get notified for Call No. 9
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+
+    <div class="meta-facts">
+      <div>
+        <div class="meta-fact-key">Maximum Grant</div>
+        <div class="meta-fact-value">€15,000</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Partnership</div>
+        <div class="meta-fact-value">Min 3 Org. from 3 CPs</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Duration</div>
+        <div class="meta-fact-value">3–6 months</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Co-financing</div>
+        <div class="meta-fact-value">Minimum 20%</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Funded by</div>
+        <div class="meta-fact-value">EU &amp; WBF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     QUICK FACTS — Eligibility · Core Requirements · Call Cycle
+     ============================================================ -->
+<section class="quickfacts" aria-label="At a glance">
+  <div class="qf-grid">
+
+    <!-- Box 1 — Who can apply -->
+    <div class="qf-card is-teal">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="qf-kicker">Who can apply</div>
+          <div class="qf-title">Eligibility</div>
+        </div>
+      </div>
+      <ul class="qf-list">
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span> a legal entity, (individuals and/or not registered entities are not eligible) amp;</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>established in one WBF Contracting Parties</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>non-profitmaking</span></li>
+              </ul>
+      <div class="qf-foot">
+        <a class="qf-link" href="#eligibility">Full eligibility rules <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Box 2 — Core Requirements -->
+    <div class="qf-card is-amber">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div>
+          <div class="qf-kicker">What counts</div>
+          <div class="qf-title">Core Requirements</div>
+        </div>
+      </div>
+      <ul class="qf-list">
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Minimum 3 Contracting Parties</strong>: Lead Applicant plus at least 2 Project Partners from different CPs</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Duration 3–6 months</strong>, including the 30-day reporting period</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Co-financing ≥ 20%</strong>: the grant covers up to 80% of eligible costs</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>At least 3 cross-cutting issues</strong> mainstreamed</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Submission via OGMS</strong> only, in English <a class="ogms-pill" href="https://wbfportal.org/applicants/page/index.html?id_call=17" target="_blank" rel="noopener">OGMS <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></a></span></li>
+      </ul>
+      <div class="qf-foot">
+        <a class="qf-link" href="#funding">Funding details <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Box 3 — Annual Call Cycle (generic, not call-specific) -->
+    <div class="qf-card is-green">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/><polyline points="21 3 21 9 15 9"/></svg></div>
+        <div>
+          <div class="qf-kicker">How it works</div>
+          <div class="qf-title">Annual Call Cycle</div>
+        </div>
+      </div>
+      <ul class="qf-tl">
+        <li><div class="qf-tl-date">Call Launch</div><div class="qf-tl-label">Annual call opens on OGMS with full guidelines</div></li>
+        <li><div class="qf-tl-date">Info Sessions</div><div class="qf-tl-label">Online sessions for prospective applicants</div></li>
+        <li><div class="qf-tl-date">Submission</div><div class="qf-tl-label">Applications submitted online by the deadline</div></li>
+        <li><div class="qf-tl-date">Evaluation</div><div class="qf-tl-label">Eligibility checks and evaluation process</div></li>
+        <li><div class="qf-tl-date">Award</div><div class="qf-tl-label">Winners published; grant contracts signed</div></li>
+        <li><div class="qf-tl-date">Implementation</div><div class="qf-tl-label">3–6 months of project activities &amp; reporting</div></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT — what the programme is
+     ============================================================ -->
+<section class="section" id="about">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">About the Programme</div>
+      <h2>Grassroots cooperation, at a regional scale</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Grants for Grassroots Initiatives (GGI) is the Western Balkans Fund's <strong>annual grant scheme</strong> for regional cooperation projects led by civil society. It is implemented under <strong>Phase III of the EU/WBF Joint Action</strong>, with co-funding from the European Union and from the six Contracting Parties.</p>
+        <p>The scheme is designed to empower CSOs, with a particular focus on <strong>grassroots, young and emerging organisations</strong> rooted in their communities, to take part in regional initiatives that contribute to good neighbourly relations, reconciliation, democratic governance and EU integration.</p>
+        <p>Each project must bring together partners from at least <strong>three different Contracting Parties</strong>. GGI supports three areas of intervention: <strong>Cultural Cooperation, Education and Scientific Exchanges, and Sustainable Development</strong>. This scheme ensures balanced geographical distribution of funds across the WB6.</p>
+      </div>
+
+      <div class="about-media">
+        <figure class="about-photo" data-ph="Add ggi-about-1.jpg">
+          <img src="/assets/images/ggi/ggi-about-1.jpg" alt="Grantees from across the Western Balkans collaborating on a regional GGI project" loading="lazy" onerror="this.classList.add('is-missing')">
+        </figure>
+        <figure class="about-photo" data-ph="Add ggi-about-2.jpg">
+          <img src="/assets/images/ggi/ggi-about-2.jpg" alt="People-to-people cooperation on the ground in a GGI-funded initiative" loading="lazy" onerror="this.classList.add('is-missing')">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTERVENTION AREAS — three, per the guidelines
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Areas of Intervention</div>
+      <h2>What GGI funds</h2>
+      <p>GGI supports cross-border regional projects in three thematic areas. Please see below, a non exhaustive list of examples.</p>
+    </div>
+
+    <div class="ia-grid">
+
+      <!-- 1. Cultural cooperation -->
+      <div class="ia-card">
+        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+        <div class="ia-title">Cultural Cooperation</div>
+        <div class="ia-desc">Regional projects that build people-to-people links and good neighbourly relations through shared cultural heritage, intercultural dialogue and creative cooperation.</div>
+        <ul class="ia-examples">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Awareness of regional cultural heritage: history, art, culinary, tourism</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Intercultural dialogue and protection of archaeological sites &amp; monuments</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Joint work among museums, galleries, artistic ensembles, film producers</span></li>
+        </ul>
+      </div>
+
+      <!-- 2. Education and Scientific exchanges -->
+      <div class="ia-card">
+        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="ia-title">Education &amp; Scientific Exchanges</div>
+        <div class="ia-desc">Cooperation among schools, universities, research institutions and teachers across the region, sharing best practices and creating joint regional initiatives in education and research.</div>
+        <ul class="ia-examples">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Joint educational &amp; research initiatives across borders</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Actions tackling brain drain and supporting Western Balkans researchers</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>STEM popularisation for women and youth; lifelong learning</span></li>
+        </ul>
+      </div>
+
+      <!-- 3. Sustainable Development -->
+      <div class="ia-card">
+        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
+        <div class="ia-title">Sustainable Development</div>
+        <div class="ia-desc">Inclusive economic growth, environmental protection and climate action at the regional level, including innovation, tourism and cross-border cooperation among local authorities.</div>
+        <ul class="ia-examples">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Inclusive &amp; sustainable economic growth; start-up and innovation forums</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Awareness on environmental protection and climate change</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Cross-border local-authority cooperation for economic &amp; social development</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ELIGIBILITY  &  PARTNERSHIP   (split panel)
+     ============================================================ -->
+<section class="section" id="eligibility">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Eligibility &amp; Partnership</div>
+      <h2>Who can apply, and with whom</h2>
+      <p>GGI is open to non-profit, legally registered organisations from one of the six Contracting Parties. Partnership across the region is the central design principle of this call.</p>
+    </div>
+
+    <div class="panel-grid">
+
+      <!-- Eligible organisations — entity boxes -->
+      <div class="panel is-teal elig-panel">
+        <div class="panel-head">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Eligible organisations</h3>
+        </div>
+        <p class="panel-sub">The Lead Applicant and Project Partners must be legal, non-profit entities established in one of the six Contracting Parties, and fall into one of these categories:</p>
+
+        <div class="elig-grid">
+          <div class="elig-box">
+            <div class="elig-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="elig-name">Civil society organisations</div>
+            <div class="elig-sub">CSOs / NGOs, including grassroots groups</div>
+          </div>
+          <div class="elig-box">
+            <div class="elig-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg></div>
+            <div class="elig-name">Public entities</div>
+            <div class="elig-sub">Local or regional bodies, or associations of them</div>
+          </div>
+          <div class="elig-box">
+            <div class="elig-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M4 21V10l8-5 8 5v11"/><rect x="9" y="13" width="6" height="8"/></svg></div>
+            <div class="elig-name">Business associations</div>
+            <div class="elig-sub">Chambers of commerce, tourism, agriculture</div>
+          </div>
+          <div class="elig-box">
+            <div class="elig-ico"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+            <div class="elig-name">Educational institutions</div>
+            <div class="elig-sub">Universities, schools, libraries, research centres</div>
+          </div>
+          <div class="elig-box">
+            <div class="elig-ico"><svg viewBox="0 0 24 24"><path d="M3 11a9 9 0 0 1 9 9M3 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5"/></svg></div>
+            <div class="elig-name">Media associations</div>
+            <div class="elig-sub">Journalism and freedom of expression</div>
+          </div>
+          <div class="elig-box">
+            <div class="elig-ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg></div>
+            <div class="elig-name">Culture &amp; sports</div>
+            <div class="elig-sub">Museums, galleries, theatres, associations</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partnership requirements — diagram + numbered rules -->
+      <div class="panel is-amber partner-panel">
+        <div class="panel-head">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="11" r="3"/><circle cx="7" cy="17" r="3"/><line x1="11" y1="7" x2="14" y2="11"/><line x1="15" y1="14" x2="9" y2="16"/></svg></div>
+          <h3>Partnership requirements</h3>
+        </div>
+        <p class="panel-sub">Partnership is mandatory — its structure is what makes a project genuinely regional.</p>
+
+        <!-- structure diagram -->
+        <div class="partner-diagram" aria-hidden="true">
+          <div class="pd-node is-lead"><span class="pd-role">Lead</span><span class="pd-cp">CP 1</span></div>
+          <div class="pd-line"></div>
+          <div class="pd-node"><span class="pd-role">Partner</span><span class="pd-cp">CP 2</span></div>
+          <div class="pd-line"></div>
+          <div class="pd-node"><span class="pd-role">Partner</span><span class="pd-cp">CP 3</span></div>
+        </div>
+        <div class="partner-caption">Minimum <strong>3 organisations</strong> from <strong>3 different Contracting Parties</strong></div>
+
+        <ol class="req-list">
+          <li><span class="req-n">1</span><span class="req-t">One <strong>Lead Applicant</strong> plus <strong>at least two Project Partners</strong>, each from a different Contracting Party.</span></li>
+          <li><span class="req-n">2</span><span class="req-t">Partnerships spanning <strong>more than 3 Contracting Parties</strong> are strongly encouraged.</span></li>
+          <li><span class="req-n">3</span><span class="req-t">The Lead Applicant signs the grant contract with WBF and is <strong>responsible for implementation and reporting</strong>.</span></li>
+        </ol>
+
+        <div class="req-callout">
+          <div class="req-callout-head"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Applications per organisation</div>
+          <p>An organisation may submit <strong>multiple applications</strong> (as Lead or Partner), but may receive <strong>only one grant as Lead and one as Partner</strong> — the highest-scoring application is taken in each case.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FUNDING  &  DURATION
+     ============================================================ -->
+<section class="section section-alt" id="funding">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Funding &amp; Duration</div>
+      <h2>How much, how long, what counts as a cost</h2>
+      <p>GGI grants are designed for compact, well-focused regional actions.</p>
+    </div>
+
+    <div class="panel-grid">
+
+      <!-- Grant size + co-financing -->
+      <div class="panel">
+        <div class="panel-head">
+          <div class="ico" style="background:#eef2f8;color:var(--ggi)"><svg viewBox="0 0 24 24"><path d="M18 6.5A7.5 7.5 0 1 0 18 17.5"/><line x1="4" y1="10" x2="15" y2="10"/><line x1="4" y1="14" x2="15" y2="14"/></svg></div>
+          <h3>Grant size &amp; co-financing</h3>
+        </div>
+
+        <div class="fund-row"><span class="k">Maximum grant per project</span><span class="v">€15,000</span></div>
+        <div class="fund-row"><span class="k">WBF grant covers up to</span><span class="v">80%<small>of total eligible costs</small></span></div>
+        <div class="fund-row"><span class="k">Co-financing required</span><span class="v">≥ 20%<small>of total eligible costs</small></span></div>
+        <div class="fund-row"><span class="k">Duration</span><span class="v">3–6 months<small>incl. 30-day reporting</small></span></div>
+
+        <div class="cofin-split" id="cofin-split" aria-hidden="true">
+          <div class="cofin-meter">
+            <div class="seg wbf"><span class="seg-pct">80%</span></div>
+            <div class="seg cof"><span class="seg-pct">20%</span></div>
+          </div>
+          <div class="cofin-legend">
+            <span><span class="dot" style="background:var(--ggi)"></span>WBF grant — up to 80%</span>
+            <span><span class="dot" style="background:var(--accent)"></span>Co-financing — min. 20%</span>
+          </div>
+        </div>
+
+        <div class="panel-divider">Worked example</div>
+        <p style="font-size:13px;color:var(--ink-soft);line-height:1.6;background:var(--surface-alt);padding:12px 14px;border-radius:7px;border:1px solid var(--line)">
+          A project requesting the maximum <strong>€15,000</strong> grant needs at least <strong>€3,750</strong> in co-financing, for a total budget of <strong>€18,750</strong>.
+        </p>
+      </div>
+
+      <!-- Eligible costs -->
+      <div class="panel">
+        <div class="panel-head">
+          <div class="ico" style="background:#eef2f8;color:var(--ggi)"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>What counts as a cost</h3>
+        </div>
+        <p class="panel-sub">All costs must be necessary for the project, incurred during the implementation period, and properly justified in the budget.</p>
+
+        <ul class="check-list">
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>The Total Costs for Human resources</strong>(WBF + Co-financing) — gross salaries, social charges. Capped at <strong>30% of Amount Granted by WBF</strong></span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Travel, accommodation and board</strong> — accommodation and board up to €100/night; personal vehicle at €0.30/km if justified</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Other direct costs</strong> — venue rental, equipment, services, supplies for the action</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Indirect costs</strong> — flat-rate, capped at <strong>7% of total direct eligible costs</strong></span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW TO APPLY  —  4 steps
+     ============================================================ -->
+<section class="section" id="apply">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">How to Apply</div>
+      <h2>The application process, step by step</h2>
+      <p>Applications are submitted through the WBF Online Grant Management System (OGMS), the only accepted channel.</p>
+    </div>
+
+    <div class="apply-flow" id="apply-flow">
+      <div class="flow-line" aria-hidden="true">
+        <div class="flow-line-fill"></div>
+        <span class="flow-dot"></span>
+      </div>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-node"><span class="flow-num">1</span>
+            <svg class="flow-ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="flow-body">
+            <div class="flow-step-title">Find partners</div>
+            <div class="flow-hint">Build a regional consortium from at least 3 Contracting Parties</div>
+            <a class="step-link" href="https://wbfpartnership.com/" target="_blank" rel="noopener">
+              Partnership Platform
+              <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-node"><span class="flow-num">2</span>
+            <svg class="flow-ico" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="flow-body">
+            <div class="flow-step-title">Register on OGMS</div>
+            <div class="flow-hint">Create your applicant account on the WBF portal</div>
+            <a class="step-link" href="https://wbfportal.org/applicants/page/index.html?id_call=17" target="_blank" rel="noopener">
+              Register on OGMS
+              <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-node"><span class="flow-num">3</span>
+            <svg class="flow-ico" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          </div>
+          <div class="flow-body">
+            <div class="flow-step-title">Fill in the application form</div>
+            <div class="flow-hint">Complete the form and all required annexes online</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-node"><span class="flow-num">4</span>
+            <svg class="flow-ico" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </div>
+          <div class="flow-body">
+            <div class="flow-step-title">Submit the application</div>
+            <div class="flow-hint">Send it through OGMS before the call deadline</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EVALUATION  &  CROSS-CUTTING ISSUES
+     ============================================================ -->
+<section class="section section-alt">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Evaluation &amp; Selection</div>
+      <h2>How proposals are scored</h2>
+      <p>Applications first pass an automated administrative and eligibility check. The project applications that pass the administrative and eligibility check will be evaluated on the relevance and design of the proposed action. . </p>
+    </div>
+
+    <div class="eval-wrap">
+
+      <!-- Score breakdown bars -->
+      <div class="eval-bars" id="eval-bars">
+        <div class="eval-row">
+          <div class="lab">Partnership <small>Mix of CPs &amp; complementary expertise; clear roles</small></div>
+          <div class="pts" data-pts="20">20 pts</div>
+          <div class="eval-track"><div class="eval-fill" data-fill="100"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Description &amp; Regional Relevance <small>Context, regional impact, innovation</small></div>
+          <div class="pts" data-pts="20">20 pts</div>
+          <div class="eval-track"><div class="eval-fill" data-fill="100"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Objective, Activities &amp; Results <small>Coherent, timely, measurable</small></div>
+          <div class="pts" data-pts="15">15 pts</div>
+          <div class="eval-track"><div class="eval-fill" data-fill="75"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Capacity, Risk &amp; Sustainability <small>Team, risk plan, continuation beyond the project</small></div>
+          <div class="pts" data-pts="15">15 pts</div>
+          <div class="eval-track"><div class="eval-fill" data-fill="75"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Financial Envelope <small>Realistic, cost-aligned budget; co-financing</small></div>
+          <div class="pts" data-pts="15">15 pts</div>
+          <div class="eval-track"><div class="eval-fill" data-fill="75"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Target Audience &amp; Cross-cutting Issues <small>Clear groups; value-added themes</small></div>
+          <div class="pts" data-pts="10">10 pts</div>
+          <div class="eval-track"><div class="eval-fill" data-fill="50"></div></div>
+        </div>
+        <div class="eval-row">
+          <div class="lab">Visibility <small>Plan for visibility of the project and donors</small></div>
+          <div class="pts" data-pts="5">5 pts</div>
+          <div class="eval-track"><div class="eval-fill" data-fill="25"></div></div>
+        </div>
+      </div>
+
+      <!-- Right column: cross-cutting issues + minimum threshold beneath it -->
+      <div class="eval-side">
+        <div class="cross-cutting" id="cross-cutting">
+          <div class="cc-head">Cross-cutting issues</div>
+          <p class="cc-sub">Projects must mainstream at least <strong>three</strong> of the ten cross-cutting issues below. Choose the ones that genuinely fit your project. They should be visible in your activities, not bolted on.</p>
+          <div class="cc-grid">
+            <div class="cc-chip"><span class="n">1</span>Green Agenda</div>
+            <div class="cc-chip"><span class="n">2</span>Regional Outreach</div>
+            <div class="cc-chip"><span class="n">3</span>Gender Sensitive</div>
+            <div class="cc-chip"><span class="n">4</span>Conflict Sensitivity</div>
+            <div class="cc-chip"><span class="n">5</span>Knowledge Sharing</div>
+            <div class="cc-chip"><span class="n">6</span>Marginalised Groups</div>
+            <div class="cc-chip"><span class="n">7</span>Freedom of Expression</div>
+            <div class="cc-chip"><span class="n">8</span>EU Integration</div>
+            <div class="cc-chip"><span class="n">9</span>Reconciliation</div>
+            <div class="cc-chip"><span class="n">10</span>Innovation &amp; Digitalisation</div>
+          </div>
+        </div>
+
+        <!-- Minimum threshold & balanced distribution (below cross-cutting, beside the points) -->
+        <div class="eval-threshold" id="eval-threshold">
+          <span class="thr-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.6" fill="currentColor" stroke="none"/></svg></span>
+          <div class="thr-body">
+            <span class="thr-title">Minimum threshold</span>
+            Applications scoring below <strong>55 / 100</strong> are not considered further. Final selection also respects a <strong>balanced distribution of funds</strong> across the six Contracting Parties.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CALL NO. 8 — AWARDED PROJECTS  (CSV-driven, filterable)
+     ============================================================ -->
+<section class="section" id="call-8-winners">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Call No. 8 / Awarded Projects</div>
+      <h2>Meet the winning teams</h2>
+      <p>The 24 regional projects selected under the 8th Call for Proposals are presented below. We invite you to explore the awardees, follow their work, attend their public events where available, and connect with them through their social media channels to stay updated on the progress and impact of their project implementation.</p>
+    </div>
+
+    <!-- Animated headline stats -->
+    <div class="awards-stats" id="awards-stats">
+      <div class="awards-stat"><div class="awards-stat-num" data-count="24">0</div><div class="awards-stat-label">Projects awarded</div></div>
+      <div class="awards-stat"><div class="awards-stat-num" data-count="6">0</div><div class="awards-stat-label">Contracting Parties</div></div>
+      <div class="awards-stat"><div class="awards-stat-num" data-count="264">0</div><div class="awards-stat-label">Applications received</div></div>
+    </div>
+
+    <!-- CP filter row -->
+    <div class="cp-filter" role="tablist" aria-label="Filter winners by Contracting Party">
+      <div class="cp-filter-label">Filter by Contracting Party</div>
+      <button class="cp-pill is-active" data-cp="Albania" role="tab" aria-selected="true">
+        Albania <span class="count">4</span>
+      </button>
+      <button class="cp-pill" data-cp="Bosnia and Herzegovina" role="tab" aria-selected="false">
+        Bosnia and Herzegovina <span class="count">4</span>
+      </button>
+      <button class="cp-pill" data-cp="Kosovo*" role="tab" aria-selected="false">
+        Kosovo* <span class="count">4</span>
+      </button>
+      <button class="cp-pill" data-cp="Montenegro" role="tab" aria-selected="false">
+        Montenegro <span class="count">4</span>
+      </button>
+      <button class="cp-pill" data-cp="North Macedonia" role="tab" aria-selected="false">
+        North Macedonia <span class="count">4</span>
+      </button>
+      <button class="cp-pill" data-cp="Serbia" role="tab" aria-selected="false">
+        Serbia <span class="count">4</span>
+      </button>
+    </div>
+
+    <!-- Winners grid (rendered from embedded data) -->
+    <div class="awards-grid" id="winners-grid" aria-live="polite">
+      <div class="winners-loading">Loading awarded projects…</div>
+    </div>
+
+    <div class="see-all">
+      <a href="/projects.html?programme=GGI">All GGI-funded projects <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CALL NO. 9 INTEREST CTA  (kept for those interested in next call)
+     ============================================================ -->
+<section class="subscribe" id="call-9-interest">
+  <div class="subscribe-inner">
+    <div class="subscribe-icon">
+      <svg viewBox="0 0 24 24"><path d="M22 17h-3.8a2 2 0 0 0-1.7 1l-1 1.5a2 2 0 0 1-1.7 1H10.2a2 2 0 0 1-1.7-1L7.5 18a2 2 0 0 0-1.7-1H2"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+    </div>
+    <div class="overline">Notify Me</div>
+    <h2>Be the first to know when Call No. 9 opens</h2>
+    <div class="subscribe-btns">
+      <a class="btn-white" href="/contact.html">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Subscribe to updates
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECT MODAL  (shared template)
+     ============================================================ -->
+<div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
+  <div class="modal-box">
+    <button class="modal-close" type="button" aria-label="Close" id="modal-close-btn">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-head">
+      <div class="modal-meta-row" id="modal-meta-row"></div>
+      <h3 class="modal-title" id="modal-title-el">Project title</h3>
+      <p class="modal-lead" id="modal-lead-el"></p>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid" id="modal-grid-el"></div>
+      <div class="modal-section" id="modal-summary-section">
+        <h4>Project summary</h4>
+        <p id="modal-summary-el"></p>
+      </div>
+      <div class="modal-section" id="modal-objectives-section">
+        <h4>Objectives</h4>
+        <p id="modal-objectives-el"></p>
+      </div>
+      <div class="modal-section" id="modal-activities-section">
+        <h4>Key activities</h4>
+        <p id="modal-activities-el"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     DATA LAYER  —  CSV-driven winners + news + stories
+     Update the URLs below to point to the published Google Sheets CSV.
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+     CONFIG  —  swap these URLs with the published Google Sheets CSVs
+     ============================================================ */
+  var CONFIG = {
+    // Sheet must have columns: pn, title, area, lead_cp, lead_org,
+    // partners, grant_amount, duration, start_date, end_date,
+    // summary, objectives, activities
+    winnersCsvUrl: 'data/ggi-call-8-winners.csv',
+    // Sheet must have columns: programme, date, title, excerpt, image, url
+    newsCsvUrl: 'data/news.csv',
+    // Programme tag to filter the news feed by
+    newsProgrammeTag: 'GGI'
+  };
+
+  /* ============================================================
+     STATIC STORY CONTENT  (3 grantees stories, one per area)
+     Replace placeholder text once stories are finalised.
+     ============================================================ */
+  var STORIES = {
+    culture: {
+      pn:    '[PN]',
+      area:  'Cultural Cooperation',
+      areaClass: 'area',
+      title: '[Story title placeholder, Cultural Cooperation]',
+      lead:  '<strong>Lead Applicant:</strong> [Organisation name], [Contracting Party]',
+      stats: [
+        { label: 'Grant', value: '€15,000' },
+        { label: 'Duration', value: '6 months' },
+        { label: 'Call', value: 'No. X' }
+      ],
+      summary:    '[Story summary placeholder. Describe the regional challenge the project addressed.]',
+      objectives: '[Objectives placeholder. What did the team set out to achieve?]',
+      activities: '[Activities placeholder. What did the team actually do, and what was the outcome on the ground?]'
+    },
+    edu: {
+      pn:    '[PN]',
+      area:  'Education & Scientific Exchanges',
+      areaClass: 'area area-edu',
+      title: '[Story title placeholder, Education & Scientific Exchanges]',
+      lead:  '<strong>Lead Applicant:</strong> [Organisation name], [Contracting Party]',
+      stats: [
+        { label: 'Grant', value: '€15,000' },
+        { label: 'Duration', value: '6 months' },
+        { label: 'Call', value: 'No. X' }
+      ],
+      summary:    '[Story summary placeholder.]',
+      objectives: '[Objectives placeholder.]',
+      activities: '[Activities placeholder.]'
+    },
+    sd: {
+      pn:    '[PN]',
+      area:  'Sustainable Development',
+      areaClass: 'area area-sd',
+      title: '[Story title placeholder, Sustainable Development]',
+      lead:  '<strong>Lead Applicant:</strong> [Organisation name], [Contracting Party]',
+      stats: [
+        { label: 'Grant', value: '€15,000' },
+        { label: 'Duration', value: '6 months' },
+        { label: 'Call', value: 'No. X' }
+      ],
+      summary:    '[Story summary placeholder.]',
+      objectives: '[Objectives placeholder.]',
+      activities: '[Activities placeholder.]'
+    }
+  };
+
+  /* ============================================================
+     CP → flag lookup
+     ============================================================ */
+  var CP_FLAGS = {
+    'Albania':                '🇦🇱',
+    'Bosnia and Herzegovina': '🇧🇦',
+    'Kosovo*':                '🇽🇰',
+    'Kosovo':                 '🇽🇰',
+    'North Macedonia':        '🇲🇰',
+    'Montenegro':             '🇲🇪',
+    'Serbia':                 '🇷🇸'
+  };
+
+  /* ============================================================
+     CSV parser  (handles quoted fields and embedded commas)
+     ============================================================ */
+  function parseCsv(text) {
+    var rows = [];
+    var row = [];
+    var cell = '';
+    var inQuotes = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (inQuotes) {
+        if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+        else if (c === '"') { inQuotes = false; }
+        else { cell += c; }
+      } else {
+        if (c === '"') { inQuotes = true; }
+        else if (c === ',') { row.push(cell); cell = ''; }
+        else if (c === '\n' || c === '\r') {
+          if (cell !== '' || row.length > 0) { row.push(cell); rows.push(row); row = []; cell = ''; }
+          if (c === '\r' && text[i + 1] === '\n') { i++; }
+        }
+        else { cell += c; }
+      }
+    }
+    if (cell !== '' || row.length > 0) { row.push(cell); rows.push(row); }
+    if (rows.length === 0) return [];
+    var header = rows.shift().map(function (h) { return h.trim().toLowerCase(); });
+    return rows.filter(function (r) { return r.some(function (x) { return x && x.trim() !== ''; }); })
+      .map(function (r) {
+        var obj = {};
+        header.forEach(function (h, idx) { obj[h] = (r[idx] || '').trim(); });
+        return obj;
+      });
+  }
+
+  /* ============================================================
+     Area class helper  (for color coding)
+     ============================================================ */
+  function areaClassFor(area) {
+    if (!area) return 'area';
+    var a = area.toLowerCase();
+    if (a.indexOf('education') > -1 || a.indexOf('scientific') > -1) return 'area area-edu';
+    if (a.indexOf('sustainable') > -1) return 'area area-sd';
+    return 'area';
+  }
+
+  function escapeHtml(s) {
+    if (s == null) return '';
+    return String(s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  /* ============================================================
+     WINNERS  —  Call No. 8 awarded projects (First Call, 2026)
+     Data embedded directly. To add a logo later, set `logo` on a
+     project to an image path (e.g. 'assets/logos/eco-infinity.png').
+     ============================================================ */
+  var AREA = {
+    culture: { t: 'culture', l: 'Cultural Cooperation' },
+    edux:    { t: 'edu',     l: 'Education & Scientific Exchange' },
+    edur:    { t: 'edu',     l: 'Education & Scientific Research' },
+    sd:      { t: 'sd',      l: 'Sustainable Development' }
+  };
+  function P(name, cp) { return { name: name, cp: cp }; }
+
+  var WINNERS_2026 = [
+    { n: '01', cp: 'Serbia', areas: [AREA.sd],
+      title: 'Empowering Future Environmental Lawyers for EU Integration and the Green Agenda',
+      lead: 'Aarhus Centre (Novi Sad)',
+      partners: [P('Environmental movement Ozon (Nikšić)', 'Montenegro'), P('Association DINARICA (Mostar)', 'Bosnia and Herzegovina')],
+      objective: 'To strengthen environmental rule of law in the Western Balkans by building the capacity of future legal professionals to support implementation of the EU environmental acquis and defend citizens’ environmental rights.' },
+    { n: '02', cp: 'Serbia', areas: [AREA.edux],
+      title: 'Regional Alliances for Innovation, STEM and Education in the Western Balkans (RAISE-WB)',
+      lead: 'Dečiji Inovacioni Centar (Belgrade)',
+      partners: [P('SOUUD “Dimitar Vlahov” (Strumica)', 'North Macedonia'), P('Association for STEAM Education “STEAM ACADEMY” (Tuzla)', 'Bosnia and Herzegovina'), P('STEM Hub Center (Tirana)', 'Albania'), P('Crnogorsko Udruženje za Znanje i Nauku MAKS (Bijela)', 'Montenegro')],
+      objective: 'To strengthen regional cooperation and people-to-people links among grassroots CSOs, educators and youth by advancing inclusive, practice-based STEM education and innovation across the Western Balkans.' },
+    { n: '03', cp: 'Serbia', areas: [AREA.culture, AREA.edur],
+      title: 'DocuConnect Balkans – Regional Documentary Co-production Lab',
+      lead: 'Independent Film Centre Filmart (Požega)',
+      partners: [P('FusionACT Centre (Tirana)', 'Albania'), P('Asocijacija za vizuelnu kulturu VIZART (Banja Luka)', 'Bosnia and Herzegovina'), P('KINEMATIKA (Skopje)', 'North Macedonia'), P('NGO Montenegro Film Festival (Podgorica)', 'Montenegro')],
+      objective: 'To strengthen regional cooperation, intercultural dialogue and professional exchange in the Western Balkans through documentary film development, collaboration and mobility for young and emerging directors and producers.' },
+    { n: '04', cp: 'Serbia', areas: [AREA.culture, AREA.sd],
+      title: 'Small Communities, Big Voices – International Youth Infinity Lab',
+      lead: 'Eco Infinity (Sjenica)',
+      partners: [P('YOUTH ON BOARD (Štip)', 'North Macedonia'), P('ToPeeR (Doboj)', 'Bosnia and Herzegovina'), P('Balkan Youth Activism (Korçë)', 'Albania')],
+      objective: 'To strengthen regional cooperation, reconciliation and social inclusion in the Western Balkans by empowering young people from small and rural communities to engage in intercultural dialogue, creative expression and cross-border exchange.' },
+
+    { n: '05', cp: 'Montenegro', areas: [AREA.culture, AREA.sd],
+      title: 'Regional Empowerment of Deaf Communities and Sign Language Equality in the Western Balkans',
+      lead: 'Association of the Deaf and Hard of Hearing of Montenegro (Podgorica)',
+      partners: [P('Cultural Center Homer (Podgorica)', 'Montenegro'), P('Deaf and Hard of Hearing Association of Serbia – SGNS (Belgrade)', 'Serbia'), P('Association of the organisations of Deaf and Hard of Hearing of Republika Srpska (Banja Luka)', 'Bosnia and Herzegovina')],
+      objective: 'To strengthen regional cooperation and promote the rights and equality of deaf communities in the Western Balkans through joint initiatives, knowledge exchange and the advancement of sign language recognition.' },
+    { n: '06', cp: 'Montenegro', areas: [AREA.culture],
+      title: 'Western Balkans Girls Basketball Camp – Next Step',
+      lead: 'BC Olymp (Nikšić)',
+      partners: [P('Basketball Club “10th August” (Vlasenica)', 'Bosnia and Herzegovina'), P('Akademia 109 Tirona (Tirana)', 'Albania'), P('Women’s Basketball Club Trebjesa (Nikšić)', 'Montenegro'), P('University Women’s Basketball Club Student (Niš)', 'Serbia')],
+      objective: 'To contribute to regional cooperation, reconciliation and EU integration by empowering young girls and grassroots sports organisations across the Western Balkans.' },
+    { n: '07', cp: 'Montenegro', areas: [AREA.culture, AREA.sd],
+      title: 'Environmental Peacebuilding Festival',
+      lead: 'Youth Initiative for Human Rights Montenegro (Podgorica)',
+      partners: [P('Centar za mlade “Kvart” (Prijedor)', 'Bosnia and Herzegovina'), P('Fondacija Jelena Šantić (Belgrade)', 'Serbia')],
+      objective: 'To contribute to strengthening regional cooperation and reconciliation in the Western Balkans by creating a platform that connects environmental engagement, peacebuilding and creative expression.' },
+    { n: '08', cp: 'Montenegro', areas: [AREA.edux],
+      title: 'See What You Think: Youth Decision-Making and Media Literacy in the Western Balkans',
+      lead: 'Epeka Montenegro (Berane)',
+      partners: [P('Epeka Srbija (Niš)', 'Serbia'), P('Institute for Project Management and Development (Skopje)', 'North Macedonia')],
+      objective: 'To strengthen critical thinking, media literacy and decision-making skills among young people in the Western Balkans, while encouraging regional cooperation and dialogue.' },
+
+    { n: '09', cp: 'Kosovo*', areas: [AREA.edux],
+      title: 'Under One Sky 2.0: Building Trust through Astronomy and Youth Cooperation in the Western Balkans',
+      lead: 'Astronomy Club of Kosovo* – ACK (Prishtina)',
+      partners: [P('EDU Act Albania (Tirana)', 'Albania'), P('Orion Astronomical Society (Sarajevo)', 'Bosnia and Herzegovina'), P('Montenegro Space Research (Podgorica)', 'Montenegro'), P('Skopje Astronomical Society (Skopje)', 'North Macedonia'), P('ALEPH (Novi Pazar)', 'Serbia')],
+      objective: 'To strengthen trust, youth cooperation and good neighbourly relations in the Western Balkans through astronomy-based learning, exchange and outreach.' },
+    { n: '10', cp: 'Kosovo*', areas: [AREA.sd],
+      title: 'Let’s Clean the Western Balkans: A Regional Initiative for Environmental Action and Cooperation',
+      lead: 'Let’s Clean Kosovo (Prishtina)',
+      partners: [P('Association for Sustainable Development Go Green (Skopje)', 'North Macedonia'), P('Green Line (Tirana)', 'Albania')],
+      objective: 'To strengthen regional cooperation and joint action in environmental protection across the Western Balkans.' },
+    { n: '11', cp: 'Kosovo*', areas: [AREA.edux],
+      title: 'Youth Makers Exchange: Advancing STEAM Skills and Regional Cooperation in the Western Balkans',
+      lead: 'Kosovo Makers League (Prishtina)',
+      partners: [P('Fondacioni BONEVET (Prishtina)', 'Kosovo*'), P('Center for Balkan Cooperation LOJA (Tetovo)', 'North Macedonia'), P('Albict (Tirana)', 'Albania')],
+      objective: 'To strengthen regional cooperation and mutual understanding among youth in the Western Balkans through collaborative STEAM education and scientific exchange.' },
+    { n: '12', cp: 'Kosovo*', areas: [AREA.culture, AREA.sd],
+      title: 'Writers’ Room: First Feature Lab',
+      lead: 'Filmik Institute (Prishtina)',
+      partners: [P('First Step Association (Tirana)', 'Albania'), P('Planet-M (Skopje)', 'North Macedonia'), P('PriFilm Fest (Prishtina)', 'Kosovo*')],
+      objective: 'To strengthen regional cooperation and intercultural dialogue in the Western Balkans by empowering emerging filmmakers through collaborative script development, knowledge exchange and access to regional and European film networks.' },
+
+    { n: '13', cp: 'Bosnia and Herzegovina', areas: [AREA.edux],
+      title: 'Connected Voices: Youth with Disabilities Shaping Change',
+      lead: 'Information Center for Persons with Disabilities (Tuzla)',
+      partners: [P('Youth with Disabilities Forum – YDF (Belgrade)', 'Serbia'), P('Association of Paraplegics (Cetinje)', 'Montenegro')],
+      objective: 'To improve the position and active participation of youth with disabilities in decision-making processes in the Western Balkans by strengthening regional connectivity, enhancing their capacities and fostering joint advocacy.' },
+    { n: '14', cp: 'Bosnia and Herzegovina', areas: [AREA.edux],
+      title: 'WB Maker Bridge: Regional Makerspace Initiative for Youth, Women and Digital Innovation',
+      lead: 'Faculty of Electrical Engineering, University of East Sarajevo (East Sarajevo)',
+      partners: [P('Balkan Distance Education Network – BADEN (Čačak)', 'Serbia'), P('Institute of Modern Technologies Montenegro – IMTM (Podgorica)', 'Montenegro')],
+      objective: 'To strengthen regional cooperation among youth-oriented educational and innovation actors in Bosnia and Herzegovina, Serbia and Montenegro through a makerspace-based programme for practical learning, digital skills and inclusive innovation.' },
+    { n: '15', cp: 'Bosnia and Herzegovina', areas: [AREA.culture],
+      title: 'First Draft — A Regional Laboratory for Emerging Artists in the Western Balkans',
+      lead: 'Udruženje Magični teatar (Sarajevo)',
+      partners: [P('Civil Association for Arts and Culture Atrium Hub (Skopje)', 'North Macedonia'), P('Center E8 (Belgrade)', 'Serbia'), P('Association Realstage (Sarajevo)', 'Bosnia and Herzegovina'), P('Association Prazan Prostor (Podgorica)', 'Montenegro')],
+      objective: 'To enable emerging performing artists in the Western Balkans to access regional professional networks, develop portable artistic work and build cross-border professional relationships through experimental cultural cooperation, contributing to good neighbourly relations and reconciliation.' },
+    { n: '16', cp: 'Bosnia and Herzegovina', areas: [AREA.edux, AREA.sd],
+      title: 'Youth VA Western Balkans: Digital Skills for Staying and Thriving',
+      lead: 'Balkan Association for Sustainable Energy – BASE (Sarajevo)',
+      partners: [P('Crnogorsko stručno udruženje za energetiku, ekologiju, ekonomiju i efikasnost (Podgorica)', 'Montenegro'), P('ACT for Society Centre (Tirana)', 'Albania'), P('SIT – Center for Counseling, Social Services and Research (Prishtina)', 'Kosovo*')],
+      objective: 'To strengthen regional cooperation and youth employability by expanding a proven digital career programme to Bosnia and Herzegovina and Montenegro.' },
+
+    { n: '17', cp: 'North Macedonia', areas: [AREA.edur],
+      title: 'Regional Youth Forum: “EUth Negotiators of the Future”',
+      lead: 'Strategers Institute (Skopje)',
+      partners: [P('NVO Centar za omladinsku edukaciju (Podgorica)', 'Montenegro'), P('Partners Albania for Change and Development (Tirana)', 'Albania'), P('Regional School of Public Administration – ReSPA (Podgorica)', 'Montenegro')],
+      objective: 'To enhance youth participation in regional cooperation and EU integration processes in the Western Balkans through an interactive, simulation-based learning approach.' },
+    { n: '18', cp: 'North Macedonia', areas: [AREA.culture, AREA.edur],
+      title: 'Prespa Connects Cultures',
+      lead: 'EUROTHINK – Center for European Strategies (Resen)',
+      partners: [P('Destination Management Organization (Korçë)', 'Albania'), P('REC – Reconciliation Empowering Communities (Mitrovica)', 'Kosovo*')],
+      objective: 'To strengthen regional cooperation and mutual understanding in the Western Balkans through cultural exchange and participatory dialogue among communities.' },
+    { n: '19', cp: 'North Macedonia', areas: [AREA.culture, AREA.edur],
+      title: '“Our Stories, Our Voices: Roma Youth for Regional Change”',
+      lead: 'Roma Cultural and Educational Center TERNIPE MK (Delchevo)',
+      partners: [P('NVO Ternipe (Pirot)', 'Serbia'), P('Institute of Romani Culture in Albania – IRCA (Tirana)', 'Albania')],
+      objective: 'To empower Roma youth from North Macedonia, Serbia and Albania by promoting their active participation in regional dialogue, cultural exchange and social inclusion.' },
+    { n: '20', cp: 'North Macedonia', areas: [AREA.sd],
+      title: 'Persons with Disabilities Growing Organic Aromatic Herbs',
+      lead: 'Združenie na lica so cerebralna paraliza i drugi poprečenosti (Veles)',
+      partners: [P('Association “Oaza” (Sarajevo)', 'Bosnia and Herzegovina'), P('“The Will to Live” (Velika Plana)', 'Serbia')],
+      objective: 'To enhance social inclusion and economic empowerment of persons with disabilities in the Western Balkans through inclusive, sustainable employment.' },
+
+    { n: '21', cp: 'Albania', areas: [AREA.sd],
+      title: 'Mountain Connect: Balkan Mountain Forum',
+      lead: 'Albanian Local Capacity Development Foundation – ALCDF (Tirana)',
+      partners: [P('CSCD – Center for Sustainability Community Development (Debar)', 'North Macedonia'), P('Kosova Development Center – KDC (Gjakova)', 'Kosovo*'), P('Regional Development Agency – RDA (Berane)', 'Montenegro')],
+      objective: 'To establish and operationalise a Transboundary Balkan Mountain Forum that connects at least 80 grassroots stakeholders through structured engagement, including four thematic workshops and a regional forum event.' },
+    { n: '22', cp: 'Albania', areas: [AREA.edur],
+      title: 'Regional Diaspora Observatory',
+      lead: 'Center for Economic and Social Studies – CESS (Tirana)',
+      partners: [P('GERMIN (Prishtina)', 'Kosovo*'), P('Naša Perspektiva (Sarajevo)', 'Bosnia and Herzegovina'), P('Tačka povratka (Belgrade)', 'Serbia'), P('Macedonia2025 (Skopje)', 'North Macedonia'), P('Akademska dijaspora Crne Gore (Podgorica)', 'Montenegro')],
+      objective: 'To strengthen regional cooperation in the Western Balkans by establishing a structured, sustainable and inclusive mechanism for diaspora engagement that mobilises knowledge, networks and resources for regional development, social cohesion and European integration.' },
+    { n: '23', cp: 'Albania', areas: [AREA.culture, AREA.sd],
+      title: 'Balkan Creative Bridge',
+      lead: 'Tulla Culture Center (Tirana)',
+      partners: [P('Femina (Prishtina)', 'Kosovo*'), P('Uzor (Podgorica)', 'Montenegro')],
+      objective: 'To empower young artists from the Western Balkans to access and compete in international markets through strengthened skills, visibility and regional cooperation in the cultural and creative industries.' },
+    { n: '24', cp: 'Albania', areas: [AREA.culture],
+      title: 'Common Ground WB: Youth Cultural Pacts for Local Change',
+      lead: 'New Bridges NGO (Tirana)',
+      partners: [P('Education for Change (Tirana)', 'Albania'), P('Alfacentar (Nikšić)', 'Montenegro'), P('Community Development Institute – CDI (Tetovo)', 'North Macedonia')],
+      objective: 'To strengthen regional cooperation and good neighbourly relations among youth in the Western Balkans through intercultural dialogue and culture-based community engagement.' }
+  ];
+
+  var activeCp = 'Albania';
+
+  // unique contracting parties for a project (lead first)
+  function projectCps(w) {
+    var seen = {}; var out = [];
+    [w.cp].concat(w.partners.map(function (p) { return p.cp; })).forEach(function (cp) {
+      if (cp && !seen[cp]) { seen[cp] = 1; out.push(cp); }
+    });
+    return out;
+  }
+
+  function renderWinners() {
+    var grid = document.getElementById('winners-grid');
+    if (!grid) return;
+    var filtered = WINNERS_2026.filter(function (w) { return activeCp === 'all' || w.cp === activeCp; });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="winners-empty">No projects to show for ' + escapeHtml(activeCp) + '.</div>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map(function (w, i) {
+      var areasHtml = w.areas.map(function (a) {
+        return '<span class="award-area t-' + a.t + '">' + escapeHtml(a.l) + '</span>';
+      }).join('');
+
+      return '<button type="button" class="award-card" data-index="' + i + '" style="transition-delay:' + Math.min(i * 45, 520) + 'ms">' +
+        '<span class="award-inner">' +
+          '<span class="award-areas">' + areasHtml + '</span>' +
+          '<span class="award-title">' + escapeHtml(w.title) + '</span>' +
+          '<span class="award-lead"><span class="role">Lead Applicant</span><span class="lead-org">' + escapeHtml(w.lead) + '</span></span>' +
+          '<span class="award-collab">' +
+            '<span class="award-more">View details <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>' +
+          '</span>' +
+        '</span>' +
+        '</button>';
+    }).join('');
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // click → modal  +  interactive 3D tilt
+    Array.prototype.forEach.call(grid.querySelectorAll('.award-card'), function (btn) {
+      btn.addEventListener('click', function () {
+        openWinnerModal(filtered[parseInt(btn.getAttribute('data-index'), 10)]);
+      });
+      if (!reduce) {
+        var inner = btn.querySelector('.award-inner');
+        btn.addEventListener('mousemove', function (e) {
+          var r = btn.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - 0.5;
+          var py = (e.clientY - r.top) / r.height - 0.5;
+          inner.style.transform = 'rotateX(' + (-py * 5).toFixed(2) + 'deg) rotateY(' + (px * 6).toFixed(2) + 'deg)';
+        });
+        btn.addEventListener('mouseleave', function () { inner.style.transform = ''; });
+      }
+    });
+
+    // staggered reveal
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        Array.prototype.forEach.call(grid.querySelectorAll('.award-card'), function (c) { c.classList.add('in'); });
+      });
+    });
+  }
+
+  function loadWinners() { renderWinners(); }
+
+  /* count-up on the headline stats */
+  function animateStats() {
+    var wrap = document.getElementById('awards-stats');
+    if (!wrap) return;
+    var nums = wrap.querySelectorAll('.awards-stat-num');
+    var stats = wrap.querySelectorAll('.awards-stat');
+    var started = false;
+    function run() {
+      if (started) return;
+      started = true;
+      Array.prototype.forEach.call(stats, function (s) { s.classList.add('in'); });
+      Array.prototype.forEach.call(nums, function (el) {
+        var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+        var span = el.querySelector('span') || el;
+        var start = null, dur = 1400;
+        function step(ts) {
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          span.textContent = Math.round(target * eased);
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) { if (e.isIntersecting) { run(); obs.disconnect(); } });
+      }, { threshold: 0.4 });
+      io.observe(wrap);
+      // fallback: if the observer never fires (e.g. zero-height viewport), run anyway
+      setTimeout(run, 2500);
+    } else { run(); }
+  }
+
+  /* run `cb` once when `el` scrolls into view (with a timed fallback) */
+  function whenInView(el, cb, threshold, fallbackMs) {
+    if (!el) return;
+    var done = false;
+    function fire() { if (done) return; done = true; cb(); }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) { if (e.isIntersecting) { fire(); obs.disconnect(); } });
+      }, { threshold: threshold || 0.25 });
+      io.observe(el);
+      setTimeout(fire, fallbackMs || 2600);
+    } else { fire(); }
+  }
+
+  /* animated effects for the "How proposals are scored" section */
+  function initEvalEffects() {
+    var bars = document.getElementById('eval-bars');
+    whenInView(bars, function () {
+      bars.classList.add('in');
+      Array.prototype.forEach.call(bars.querySelectorAll('.eval-fill'), function (f) {
+        f.style.width = (f.getAttribute('data-fill') || '0') + '%';
+      });
+      // count-up the point values
+      Array.prototype.forEach.call(bars.querySelectorAll('.pts'), function (el) {
+        var target = parseInt(el.getAttribute('data-pts'), 10) || 0;
+        var start = null, dur = 1000;
+        function step(ts) {
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + ' pts';
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, 0.3);
+
+    whenInView(document.getElementById('cross-cutting'), function (el) {
+      document.getElementById('cross-cutting').classList.add('in');
+    }, 0.2);
+
+    whenInView(document.getElementById('eval-threshold'), function () {
+      document.getElementById('eval-threshold').classList.add('in');
+    }, 0.3);
+
+    whenInView(document.getElementById('apply-flow'), function () {
+      document.getElementById('apply-flow').classList.add('in');
+    }, 0.25);
+
+    // Funding panels: reveal the top stripe + animate the co-financing split meter
+    var fundGrid = document.querySelector('#funding .panel-grid');
+    whenInView(fundGrid, function () {
+      Array.prototype.forEach.call(document.querySelectorAll('#funding .panel'), function (p) { p.classList.add('in'); });
+      var split = document.getElementById('cofin-split');
+      if (split) split.classList.add('in');
+    }, 0.25);
+  }
+
+  /* ============================================================
+     CP filter pills
+     ============================================================ */
+  function wireCpFilter() {
+    var pills = document.querySelectorAll('.cp-pill');
+    Array.prototype.forEach.call(pills, function (pill) {
+      pill.addEventListener('click', function () {
+        activeCp = pill.getAttribute('data-cp');
+        Array.prototype.forEach.call(pills, function (p) {
+          p.classList.toggle('is-active', p === pill);
+          p.setAttribute('aria-selected', p === pill ? 'true' : 'false');
+        });
+        renderWinners();
+      });
+    });
+  }
+
+  /* ============================================================
+     MODAL  —  shared for winners and stories
+     ============================================================ */
+  function openModal() {
+    document.getElementById('project-modal').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('project-modal').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function setModalHeadings(a, b, c) {
+    var s = document.querySelector('#modal-summary-section h4');
+    var o = document.querySelector('#modal-objectives-section h4');
+    var k = document.querySelector('#modal-activities-section h4');
+    if (s) s.textContent = a;
+    if (o) o.textContent = b;
+    if (k) k.textContent = c;
+  }
+
+  function openWinnerModal(w) {
+    if (!w) return;
+    var cps = projectCps(w);
+
+    var metaHtml = '<span class="modal-meta-tag pn">Project ' + escapeHtml(w.n) + '</span>';
+    w.areas.forEach(function (a) {
+      metaHtml += '<span class="modal-meta-tag t-' + a.t + '">' + escapeHtml(a.l) + '</span>';
+    });
+    cps.forEach(function (cp) {
+      metaHtml += '<span class="modal-meta-tag cp">' + escapeHtml(cp) + '</span>';
+    });
+    document.getElementById('modal-meta-row').innerHTML = metaHtml;
+
+    document.getElementById('modal-title-el').textContent = w.title;
+    document.getElementById('modal-lead-el').innerHTML =
+      '<strong>Lead Applicant:</strong> ' + escapeHtml(w.lead);
+
+    var stats = [
+      { label: 'Lead Contracting Party', value: w.cp },
+      { label: 'Partner organisations',  value: String(w.partners.length) },
+      { label: 'Contracting Parties',    value: String(cps.length) + ' of 6' }
+    ];
+    document.getElementById('modal-grid-el').innerHTML = stats.map(function (s) {
+      return '<div class="modal-stat"><div class="modal-stat-label">' + escapeHtml(s.label) + '</div><div class="modal-stat-value">' + escapeHtml(s.value) + '</div></div>';
+    }).join('');
+
+    setModalHeadings('Objective', 'Project partners', 'Regional reach');
+
+    document.getElementById('modal-summary-el').textContent = w.objective;
+
+    document.getElementById('modal-objectives-el').innerHTML =
+      '<span class="modal-partners">' + w.partners.map(function (p) {
+        return '<span class="mp-item">' +
+               '<span>' + escapeHtml(p.name) + '</span>' +
+               '<span class="pcp">' + escapeHtml(p.cp) + '</span></span>';
+      }).join('') + '</span>';
+
+    document.getElementById('modal-activities-el').textContent =
+      'This project brings together ' + (w.partners.length + 1) + ' organisations across ' + cps.length +
+      ' Contracting ' + (cps.length === 1 ? 'Party' : 'Parties') + ' of the Western Balkans Six.';
+
+    openModal();
+  }
+
+  function openStoryModal(key) {
+    var s = STORIES[key];
+    if (!s) return;
+    var metaHtml = '<span class="modal-meta-tag pn">' + escapeHtml(s.pn) + '</span>' +
+                   '<span class="modal-meta-tag ' + s.areaClass + '">' + escapeHtml(s.area) + '</span>';
+    document.getElementById('modal-meta-row').innerHTML = metaHtml;
+    document.getElementById('modal-title-el').textContent = s.title;
+    document.getElementById('modal-lead-el').innerHTML = s.lead;
+    document.getElementById('modal-grid-el').innerHTML = s.stats.map(function (st) {
+      return '<div class="modal-stat"><div class="modal-stat-label">' + escapeHtml(st.label) + '</div><div class="modal-stat-value">' + escapeHtml(st.value) + '</div></div>';
+    }).join('');
+    setModalHeadings('Project summary', 'Objectives', 'Key activities');
+    document.getElementById('modal-summary-el').textContent    = s.summary;
+    document.getElementById('modal-objectives-el').textContent = s.objectives;
+    document.getElementById('modal-activities-el').textContent = s.activities;
+    openModal();
+  }
+
+  function wireModalClose() {
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    document.getElementById('project-modal').addEventListener('click', function (e) {
+      if (e.target === this) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  /* ============================================================
+     NEWS  —  load CSV, filter to GGI, take top 6
+     ============================================================ */
+  function loadNews() {
+    var grid = document.getElementById('ggi-news-grid');
+    if (!grid) return;
+    fetch(CONFIG.newsCsvUrl)
+      .then(function (r) {
+        if (!r.ok) throw new Error('News CSV not available');
+        return r.text();
+      })
+      .then(function (text) {
+        var rows = parseCsv(text);
+        var items = rows
+          .filter(function (n) {
+            return (n.programme || '').toUpperCase() === CONFIG.newsProgrammeTag.toUpperCase();
+          })
+          .sort(function (a, b) {
+            return (b.date || '').localeCompare(a.date || '');
+          })
+          .slice(0, 6);
+
+        if (items.length === 0) {
+          grid.innerHTML = '<div class="winners-empty" style="grid-column:1/-1;">No GGI news items yet.</div>';
+          return;
+        }
+
+        grid.innerHTML = items.map(function (n) {
+          var img = n.image ? 'style="background-image:url(' + escapeHtml(n.image) + ');"' : '';
+          return '<a class="news-card" href="' + escapeHtml(n.url || 'news.html') + '">' +
+            '<div class="news-thumb" ' + img + '>' +
+              '<span class="news-tag">GGI</span>' +
+            '</div>' +
+            '<div class="news-body">' +
+              '<div class="news-date">' + escapeHtml(n.date || '') + '</div>' +
+              '<div class="news-title">' + escapeHtml(n.title || '') + '</div>' +
+              '<div class="news-excerpt">' + escapeHtml(n.excerpt || '') + '</div>' +
+              '<span class="news-more">Read more <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>' +
+            '</div>' +
+          '</a>';
+        }).join('');
+      })
+      .catch(function (err) {
+        grid.innerHTML = '<div class="winners-empty" style="grid-column:1/-1;">Latest news will appear here once the data feed is connected. (Expected file: <code>' + CONFIG.newsCsvUrl + '</code>)</div>';
+        console.warn('News CSV could not be loaded:', err);
+      });
+  }
+
+  /* ============================================================
+     INIT
+     ============================================================ */
+  document.addEventListener('DOMContentLoaded', function () {
+    wireCpFilter();
+    wireModalClose();
+    loadWinners();
+    animateStats();
+    initEvalEffects();
+  });
+})();
+</script>
+
+<!-- FOOTER (unchanged — loads from master) -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

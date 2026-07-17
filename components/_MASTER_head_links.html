@@ -1,0 +1,269 @@
+<!--
+  ============================================================
+  _MASTER_head_links.html  ·  Canonical <head> boilerplate
+  ============================================================
+
+  Source of truth for everything that belongs inside <head>
+  EXCEPT the per-page <title>, <meta name="description">,
+  and the inline <style> block.
+
+  Usage
+  -----
+  Paste this block immediately after the per-page <title> /
+  <meta name="description"> tags, and BEFORE the <style> block.
+
+  A typical page <head> should therefore read:
+
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- PER-PAGE: title + description + og:image override -->
+        <title>Page Title — Western Balkans Fund</title>
+        <meta name="description" content="…">
+
+        <!-- PER-PAGE: canonical -->
+        <link rel="canonical" href="https://westernbalkansfund.org/THIS-PAGE.html">
+
+        <!-- PER-PAGE: Open Graph + Twitter overrides -->
+        <meta property="og:title"       content="Page Title — Western Balkans Fund">
+        <meta property="og:description" content="…">
+        <meta property="og:url"         content="https://westernbalkansfund.org/THIS-PAGE.html">
+        <meta property="og:image"       content="https://westernbalkansfund.org/social/THIS-PAGE.jpg">
+        <meta name="twitter:title"      content="Page Title — Western Balkans Fund">
+        <meta name="twitter:description" content="…">
+        <meta name="twitter:image"      content="https://westernbalkansfund.org/social/THIS-PAGE.jpg">
+
+        <!-- SHARED: paste _MASTER_head_links.html below -->
+        …
+
+        <!-- PER-PAGE: page styles -->
+        <style> … </style>
+
+        <!-- PER-PAGE: optional JSON-LD for Article / Event /
+             JobPosting / GrantOpportunity / FAQPage /
+             BreadcrumbList. Examples in comments at bottom. -->
+      </head>
+
+  Outstanding TODOs (tracked in the audit)
+  ----------------------------------------
+  - [P0] Add real OG image assets to /social/ (1200×630 PNG/JPG,
+         <200KB, branded, with page title baked in).
+  - [P0] Add /favicon.ico, /favicon.svg, /apple-touch-icon.png,
+         /icon-192.png, /icon-512.png, and /site.webmanifest at
+         site root.
+  - [P0] Ship /robots.txt and /sitemap.xml.
+  - [P1] Decide canonical domain (apex vs www) and use ONE
+         everywhere in canonical / og:url. The comment block
+         assumes the apex (westernbalkansfund.org).
+  - [P1] Add hreflang variants when SQ/SR/MK launch.
+  - [P2] Swap the JSON-LD Organization "sameAs" placeholders for
+         real WBF social URLs (mirror _MASTER_footer.html TODO).
+  ============================================================
+-->
+
+
+<!-- ─── Document essentials (only paste if not already present on the page) ──────── -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#1A3668">
+<meta name="color-scheme" content="light">
+
+<!-- ─── SEO / crawlability ─────────────────────────────────────────────────────────── -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="generator" content="Western Balkans Fund — static site">
+
+<!-- ─── Open Graph (defaults; override og:title, og:description, og:url, og:image per page) ─ -->
+<meta property="og:site_name"   content="Western Balkans Fund">
+<meta property="og:type"        content="website">
+<meta property="og:locale"      content="en_GB">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt"    content="Western Balkans Fund — Building Regional Cooperation">
+
+<!-- ─── Twitter / X cards (override twitter:title, twitter:description, twitter:image per page) ─ -->
+<meta name="twitter:card"        content="summary_large_image">
+<!-- TODO [P1]: set the WBF X handle, e.g. content="@WBalkansFund". -->
+<meta name="twitter:site"        content="">
+<meta name="twitter:creator"     content="">
+
+<!-- ─── Favicons / app icons (place files at site root) ────────────────────────────── -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1A3668">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- ─── Design tokens (must load BEFORE site-chrome.css and per-page <style>) ──────── -->
+<link rel="stylesheet" href="/css/tokens.css">
+
+<!-- ─── Performance hints ──────────────────────────────────────────────────────────── -->
+<link rel="dns-prefetch" href="https://docs.google.com">
+<link rel="preconnect"   href="https://docs.google.com" crossorigin>
+<!-- If/when external fonts are introduced, also preconnect to fonts.googleapis.com + fonts.gstatic.com (crossorigin). -->
+
+<!-- ─── Site-wide JSON-LD: Organization + WebSite ──────────────────────────────────── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["NGO", "Organization"],
+      "@id": "https://westernbalkansfund.org/#organization",
+      "name": "Western Balkans Fund",
+      "alternateName": "WBF",
+      "url": "https://westernbalkansfund.org/",
+      "logo": "https://westernbalkansfund.org/assets/img/logo-color.png",
+      "description": "The Western Balkans Fund is an international organisation supporting civil society, institutions and communities across all six Contracting Parties of the Western Balkans through grants, conferences and capacity building.",
+      "foundingDate": "2015",
+      "email": "info@westernbalkansfund.org",
+      "telephone": "+355 42 400420",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rruga \"Skënderbeg\" No. 8, Kati IV, Ap. 35/36",
+        "addressLocality": "Tirana",
+        "addressCountry": "AL"
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "Albania" },
+        { "@type": "Country", "name": "Bosnia and Herzegovina" },
+        { "@type": "Country", "name": "Kosovo" },
+        { "@type": "Country", "name": "Montenegro" },
+        { "@type": "Country", "name": "North Macedonia" },
+        { "@type": "Country", "name": "Serbia" }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/REPLACE",
+        "https://www.instagram.com/REPLACE",
+        "https://www.linkedin.com/company/REPLACE",
+        "https://www.youtube.com/@REPLACE"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://westernbalkansfund.org/#website",
+      "url": "https://westernbalkansfund.org/",
+      "name": "Western Balkans Fund",
+      "publisher": { "@id": "https://westernbalkansfund.org/#organization" },
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://westernbalkansfund.org/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
+
+
+<!--
+  ============================================================
+  Per-page JSON-LD examples (DO NOT paste; copy what you need
+  into the page <head>, then fill in the data).
+  ============================================================
+
+  ── BreadcrumbList (every interior page) ─────────────────────
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://westernbalkansfund.org/" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://westernbalkansfund.org/about.html" }
+    ]
+  }
+  </script>
+
+  ── NewsArticle (news.html article detail) ───────────────────
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "…",
+    "datePublished": "2026-06-01T09:00:00+02:00",
+    "dateModified":  "2026-06-01T09:00:00+02:00",
+    "author":   { "@type": "Organization", "name": "Western Balkans Fund" },
+    "publisher": { "@id": "https://westernbalkansfund.org/#organization" },
+    "image":    ["https://westernbalkansfund.org/news/IMG.jpg"],
+    "mainEntityOfPage": "https://westernbalkansfund.org/news/SLUG.html"
+  }
+  </script>
+
+  ── Event (events.html event detail) ─────────────────────────
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "…",
+    "startDate": "2026-09-12T14:00:00+02:00",
+    "endDate":   "2026-09-12T17:30:00+02:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus":         "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "Venue Name",
+      "address": "City, Country"
+    },
+    "organizer": { "@id": "https://westernbalkansfund.org/#organization" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://…/register",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
+  ── JobPosting (about-careers.html) ──────────────────────────
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": "…",
+    "datePosted": "2026-06-01",
+    "validThrough": "2026-07-31T23:59:00+02:00",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": { "@id": "https://westernbalkansfund.org/#organization" },
+    "jobLocation": {
+      "@type": "Place",
+      "address": { "@type": "PostalAddress", "addressLocality": "Tirana", "addressCountry": "AL" }
+    },
+    "description": "<p>…</p>",
+    "directApply": false
+  }
+  </script>
+
+  ── GrantOpportunity (programmes / open calls) ───────────────
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GrantOpportunity",
+    "name": "GGI Grants — Good Governance and Integration",
+    "url": "https://westernbalkansfund.org/ggi.html",
+    "funder": { "@id": "https://westernbalkansfund.org/#organization" },
+    "applicationDeadline": "2025-11-15",
+    "amount": { "@type": "MonetaryAmount", "currency": "EUR", "value": 15000 },
+    "audience": { "@type": "Audience", "audienceType": "CSOs, NGOs, municipalities, academic institutions" }
+  }
+  </script>
+
+  ── FAQPage (knowledge-hub.html FAQ section) ─────────────────
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "…",
+        "acceptedAnswer": { "@type": "Answer", "text": "…" } }
+    ]
+  }
+  </script>
+
+  ============================================================
+-->

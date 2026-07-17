@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WBF Regional Academy on Dialogue and Culture of Cooperation | Western Balkans Fund</title>
+<meta name="description" content="WBF Regional Academy is an initiative of the Western Balkans Fund, supported by the Open Society Foundation Western Balkans, for junior professionals and emerging leaders to advance dialogue and a culture of cooperation across the WB6. This year's edition is on Dialogue and Culture of Cooperation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+
+/* ============================================================
+   DESIGN TOKENS · Academy palette (blue + gold) + WBF navy
+   ============================================================ */
+:root {
+  /* Academy primary · blue */
+  --aqua:        #007db2;
+  --aqua-bright: #29a3d9;
+  --aqua-deep:   #00618c;   /* readable on white */
+  --aqua-darker: #004a6b;
+  --aqua-tint:   #E0F1F9;
+  --aqua-tint-2: #F0F8FC;
+  --aqua-border: #B3D9EC;
+
+  /* Academy highlight · gold */
+  --gold:        #dba91c;
+  --gold-deep:   #a67f14;
+  --gold-tint:   #F9EFD0;
+  --gold-border: #ECDCA0;
+
+  /* WBF navy · structural */
+
+  /* Neutrals */
+  --surface:    #ffffff;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--ink); background: #fff; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font-family: inherit; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
+
+::selection { background: var(--aqua); color: var(--navy); }
+
+/* Justified body paragraphs */
+.overview-text p,
+.module-desc,
+.cohort-text p,
+.heritage-text > p,
+.partners-head p,
+.partners-thanks { text-align: justify; }
+
+/* Mobile navigation (hamburger + drawer) is provided by js/nav.js,
+   consistent with every other page — no page-local mobile-nav CSS. */
+
+/* ============================================================
+   HERO · Academy blue gradient with warm gold accent
+   ============================================================ */
+.prog-hero {
+  position: relative;
+  background: linear-gradient(135deg, #004a6b 0%, #00618c 35%, #007db2 70%, #29a3d9 100%);
+  overflow: hidden;
+  padding: 64px 0 48px;
+  color: #fff;
+}
+.hero-orb { position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(219,169,28,0.28) 0%, transparent 70%); top: -160px; right: -140px; filter: blur(10px); pointer-events: none; }
+.hero-orb-2 { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(92,235,219,0.34) 0%, transparent 70%); bottom: -120px; left: -80px; filter: blur(12px); pointer-events: none; }
+
+.prog-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+.breadcrumb { font-size: 12.5px; color: rgba(255,255,255,0.65); margin-bottom: 26px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: none; }
+.breadcrumb a:hover { color: #fff; }
+.breadcrumb span { color: rgba(255,255,255,0.45); }
+
+.hero-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+  background: rgba(219,169,28,0.16);
+  border: 1px solid rgba(219,169,28,0.42);
+  color: #f2dc9c;
+}
+.status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(219,169,28,0.22); }
+.status-pill.is-amber {
+  background: rgba(245,158,11,0.18);
+  border-color: rgba(245,158,11,0.42);
+  color: #f6dd93;
+}
+.status-pill.is-amber .status-pill-dot { background: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,0.22); }
+.status-pill-text { text-transform: uppercase; font-size: 11.5px; }
+
+.brand-mark {
+  display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 12px;
+  font-size: clamp(32px, 4.4vw, 52px);
+  font-weight: 800; letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  color: #fff;
+  line-height: 1.05;
+}
+.brand-mark .we { color: var(--gold); }
+.brand-mark .be { color: #fff; }
+.brand-tagline {
+  font-size: clamp(13px, 1.4vw, 15px);
+  text-transform: uppercase; letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+.prog-hero h1 {
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.022em;
+  line-height: 1.22;
+  margin-bottom: 22px;
+  max-width: 52ch;
+  text-wrap: balance;
+}
+.prog-hero .tagline {
+  font-size: clamp(15px, 1.55vw, 17.5px);
+  color: rgba(255,255,255,0.86);
+  line-height: 1.6;
+  max-width: 92ch;
+  margin-bottom: 36px;
+  font-weight: 400;
+}
+
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
+.btn-primary, .btn-ghost, .btn-gold {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 22px; border-radius: 999px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none; transition: background 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  border: 1px solid transparent;
+  font-family: inherit; cursor: pointer;
+}
+.btn-primary { background: #fff; color: var(--aqua-darker); }
+.btn-primary:hover { background: var(--aqua-tint); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+.btn-primary svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-gold { background: var(--gold); color: var(--navy); }
+.btn-gold:hover { background: var(--gold-deep); color: #fff; transform: translateY(-1px); box-shadow: 0 8px 18px rgba(219,169,28,0.25); }
+.btn-gold svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.42); }
+.btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: #fff; }
+.btn-ghost svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.meta-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px 32px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  max-width: 920px;
+}
+.meta-fact-key { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+.meta-fact-value { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.2; }
+.meta-fact-value .gold-accent { color: var(--gold); }
+
+/* ============================================================
+   PARTNER STRIP · co-branded with OSF-WB
+   ============================================================ */
+.partner-strip {
+  background: var(--surface-alt);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+}
+.partner-strip-inner {
+  max-width: 1080px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; justify-content: center; gap: 22px; flex-wrap: wrap;
+  font-size: 13px; color: var(--ink-soft);
+}
+.partner-strip-inner strong { color: var(--ink); font-weight: 600; }
+.partner-strip-sep { color: var(--faint); }
+.partner-strip-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border-radius: 999px;
+  background: var(--aqua-tint); border: 1px solid var(--aqua-border);
+  font-size: 12px; font-weight: 600; color: var(--aqua-darker);
+}
+.partner-strip-logo { display: inline-flex; align-items: center; }
+.partner-strip-logo img { height: 34px; width: auto; display: block; }
+
+/* ============================================================
+   GENERIC SECTION
+   ============================================================ */
+.section { padding: 80px 0; }
+.section-alt { background: var(--surface-alt); }
+.section-tint { background: linear-gradient(180deg, var(--surface) 0%, var(--aqua-tint-2) 100%); }
+.sec-head { text-align: center; max-width: 760px; margin: 0 auto 52px; }
+.sec-head.left { text-align: left; margin-left: 0; }
+.sec-head .overline { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--aqua-deep); margin-bottom: 14px; padding: 4px 12px; background: var(--aqua-tint); border-radius: 999px; }
+.sec-head h2 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.025em; line-height: 1.15; }
+.sec-head h2 .gold-accent { color: var(--gold-deep); }
+.sec-head p { font-size: 16.5px; color: var(--ink-soft); line-height: 1.65; }
+
+/* ============================================================
+   OVERVIEW · what & why
+   ============================================================ */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.overview-text p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 16px; }
+.overview-text p:last-child { margin-bottom: 0; }
+.overview-text strong { color: var(--ink); font-weight: 700; }
+.overview-text em { color: var(--aqua-deep); font-style: normal; font-weight: 600; }
+
+.distinguishing-card {
+  background: linear-gradient(160deg, var(--aqua-tint) 0%, #fff 100%);
+  border: 1px solid var(--aqua-border);
+  border-radius: 16px;
+  padding: 32px 30px;
+  position: relative;
+  overflow: hidden;
+}
+.distinguishing-card::before {
+  content: ""; position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(219,169,28,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.distinguishing-card .dc-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold-deep); margin-bottom: 12px; }
+.distinguishing-card h3 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.02em; line-height: 1.25; }
+.distinguishing-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.distinguishing-card li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+.distinguishing-card li .dot {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--gold); color: var(--navy);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+/* ============================================================
+   PILLARS · five thematic pillars
+   ============================================================ */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+.pillar-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--aqua);
+  border-radius: 12px;
+  padding: 26px 22px 24px;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.pillar-card:nth-child(2) { border-top-color: var(--gold); }
+.pillar-card:nth-child(4) { border-top-color: var(--gold); }
+.pillar-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,97,140,0.12); }
+.pillar-num { font-size: 11px; font-weight: 700; color: var(--aqua-deep); letter-spacing: 0.12em; margin-bottom: 12px; }
+.pillar-card:nth-child(2) .pillar-num,
+.pillar-card:nth-child(4) .pillar-num { color: var(--gold-deep); }
+.pillar-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--aqua-tint); color: var(--aqua-deep);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.pillar-card:nth-child(2) .pillar-icon,
+.pillar-card:nth-child(4) .pillar-icon { background: var(--gold-tint); color: var(--gold-deep); }
+.pillar-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pillar-title { font-size: 15.5px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.3; letter-spacing: -0.01em; }
+.pillar-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ============================================================
+   JOURNEY · 8-day timeline
+   ============================================================ */
+.journey {
+  position: relative;
+  padding: 60px 0 20px;
+}
+.journey-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 16px;
+}
+.journey-track::before {
+  content: "";
+  position: absolute;
+  top: 32px; left: 4%; right: 4%; height: 3px;
+  background: linear-gradient(90deg, var(--aqua-deep) 0%, var(--aqua) 30%, var(--gold) 70%, var(--gold-deep) 100%);
+  border-radius: 2px;
+  z-index: 0;
+}
+.day-card {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 14px 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.day-card:hover { transform: translateY(-4px); border-color: var(--aqua); box-shadow: 0 12px 28px rgba(0,97,140,0.14); background: var(--aqua-tint-2); }
+.day-card.is-finale { border-color: var(--gold-border); }
+.day-card.is-finale:hover { border-color: var(--gold); box-shadow: 0 12px 28px rgba(219,169,28,0.18); background: var(--gold-tint); }
+.day-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--aqua);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800;
+  margin-bottom: 12px;
+  margin-top: -34px;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,97,140,0.18);
+}
+.day-card.is-finale .day-dot { background: var(--gold); color: var(--navy); box-shadow: 0 4px 10px rgba(219,169,28,0.22); }
+.day-date { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 6px; }
+.day-theme { font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 8px; min-height: 32px; }
+.day-activity { font-size: 11.5px; color: var(--ink-soft); line-height: 1.5; }
+.day-card.is-clickable { cursor: pointer; }
+.day-card.is-clickable:focus-visible { outline: 2px solid var(--aqua-deep); outline-offset: 3px; }
+.day-more {
+  margin-top: 10px; padding-top: 10px; width: 100%;
+  border-top: 1px dashed var(--line);
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--aqua-deep);
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+}
+.day-more::after { content: "→"; transition: transform 0.2s; }
+.day-card.is-clickable:hover .day-more::after { transform: translateX(3px); }
+.day-card.is-finale .day-more { color: var(--gold-deep); }
+
+/* ============================================================
+   DAY MODAL · Learning Journey pop-up
+   ============================================================ */
+.day-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: flex-start; justify-content: center; padding: 6vh 20px; }
+.day-modal[hidden] { display: none; }
+.day-modal-backdrop { position: absolute; inset: 0; background: rgba(12,28,34,0.55); backdrop-filter: blur(3px); animation: dm-fade 0.2s ease; }
+.day-modal-dialog {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 600px; max-height: 88vh; overflow-y: auto;
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(10,25,30,0.35);
+  padding: 34px 36px 36px;
+  animation: dm-pop 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+@keyframes dm-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dm-pop { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+.day-modal-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: none; background: var(--aqua-tint-2); color: var(--ink-soft);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.day-modal-close:hover { background: var(--aqua); color: #fff; }
+.day-modal-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--aqua-deep); margin-bottom: 10px; }
+.day-modal-title { font-size: clamp(20px, 2.6vw, 26px); font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 18px; padding-right: 32px; }
+.day-modal-body .module-desc,
+.day-modal-body .daymodal-desc { font-size: 14.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 18px; }
+.day-modal-body .module-sub { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; }
+.day-modal-body .daymodal-module + .daymodal-module { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+.day-modal-body .daymodal-subtitle { font-size: 15.5px; font-weight: 800; color: var(--aqua-deep); margin-bottom: 10px; letter-spacing: -0.01em; }
+.day-modal-body h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 8px; }
+.day-modal-body ul { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 0 0 4px; }
+.day-modal-body li { position: relative; padding-left: 16px; font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+.day-modal-body li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--aqua); }
+.day-modal-body em { color: var(--aqua-deep); font-style: italic; }
+body.dm-open { overflow: hidden; }
+@media (max-width: 600px) {
+  .day-modal-dialog { padding: 28px 22px 30px; }
+  .day-modal-body .module-sub { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* ============================================================
+   CURRICULUM · 6 thematic modules (accordion)
+   ============================================================ */
+.modules-list {
+  display: flex; flex-direction: column;
+  gap: 12px;
+  max-width: 960px; margin: 0 auto;
+}
+.module-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.module-card.is-open { border-color: var(--aqua); box-shadow: 0 10px 24px rgba(0,97,140,0.10); }
+.module-head {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 22px 26px;
+  display: flex; align-items: center; gap: 18px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+.module-head:hover { background: var(--aqua-tint-2); }
+.module-num {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--aqua-tint); color: var(--aqua-deep);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.module-card.is-open .module-num { background: var(--aqua); color: #fff; }
+.module-meta { flex: 1; min-width: 0; }
+.module-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold-deep); margin-bottom: 4px; }
+.module-title { font-size: 17.5px; font-weight: 700; color: var(--ink); letter-spacing: -0.015em; line-height: 1.3; }
+.module-toggle {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--surface-alt);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+.module-toggle svg { width: 14px; height: 14px; fill: none; stroke: var(--ink-soft); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.module-card.is-open .module-toggle { background: var(--aqua); transform: rotate(180deg); }
+.module-card.is-open .module-toggle svg { stroke: #fff; }
+.module-body {
+  display: none;
+  padding: 0 26px 26px 88px;
+  animation: slideDown 0.25s ease;
+}
+@keyframes slideDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.module-card.is-open .module-body { display: block; }
+.module-desc { font-size: 14.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 20px; }
+.module-sub { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; margin-top: 18px; }
+.module-sub h4 { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--aqua-deep); margin-bottom: 10px; }
+.module-sub ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.module-sub li { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; padding-left: 16px; position: relative; }
+.module-sub li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--aqua); }
+
+/* ============================================================
+   METHODOLOGY · four-track approach
+   ============================================================ */
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.method-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px 24px 26px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.method-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.06); }
+.method-time {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 999px;
+  background: var(--aqua-tint); color: var(--aqua-deep);
+  margin-bottom: 14px;
+}
+.method-card.alt .method-time { background: var(--gold-tint); color: var(--gold-deep); }
+.method-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--aqua) 0%, var(--aqua-deep) 100%);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.method-card.alt .method-icon { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%); }
+.method-icon svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.method-title { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.015em; }
+.method-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 14px; }
+.method-examples { display: flex; flex-direction: column; gap: 6px; }
+.method-example { font-size: 12.5px; color: var(--muted); padding-left: 14px; position: relative; line-height: 1.5; }
+.method-example::before { content: "→"; position: absolute; left: 0; color: var(--aqua); font-weight: 700; }
+.method-card.alt .method-example::before { color: var(--gold-deep); }
+
+/* ============================================================
+   FACULTY · role-based profile cards
+   ============================================================ */
+.faculty-intro {
+  max-width: 720px; margin: 0 auto 44px;
+  text-align: center;
+  padding: 22px 28px;
+  background: var(--gold-tint);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  font-size: 14px; color: #6b5615; line-height: 1.65;
+}
+.faculty-intro strong { color: #4a3a0e; font-weight: 700; }
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.faculty-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.faculty-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
+.faculty-photo {
+  height: 180px;
+  background: linear-gradient(135deg, var(--aqua-deep) 0%, var(--aqua) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.faculty-card:nth-child(2) .faculty-photo { background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 100%); }
+.faculty-card:nth-child(3) .faculty-photo { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-700) 100%); }
+.faculty-card:nth-child(4) .faculty-photo { background: linear-gradient(135deg, var(--aqua) 0%, var(--gold) 100%); }
+.faculty-photo::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(255,255,255,0.10) 0%, transparent 50%);
+  pointer-events: none;
+}
+.faculty-silhouette {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+}
+.faculty-silhouette svg { width: 38px; height: 38px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.faculty-body { padding: 20px 22px 22px; }
+.faculty-role-tag {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 999px;
+  background: var(--aqua-tint); color: var(--aqua-deep);
+  margin-bottom: 10px;
+}
+.faculty-card:nth-child(2) .faculty-role-tag { background: var(--gold-tint); color: var(--gold-deep); }
+.faculty-card:nth-child(4) .faculty-role-tag { background: var(--gold-tint); color: var(--gold-deep); }
+.faculty-name { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+.faculty-status { font-size: 12.5px; color: var(--muted); font-style: italic; margin-bottom: 14px; }
+.faculty-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ============================================================
+   COHORT · first cohort representation
+   ============================================================ */
+.cohort-wrap {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.cohort-wrap--single { grid-template-columns: 1fr; max-width: 820px; margin: 0 auto; }
+.cohort-text h3 { font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.02em; }
+.cohort-text p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
+.cohort-profile { display: flex; flex-direction: column; gap: 10px; }
+.cohort-profile-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px;
+  background: var(--aqua-tint-2);
+  border-left: 3px solid var(--aqua);
+  border-radius: 0 8px 8px 0;
+}
+.cohort-profile-item:nth-child(odd) { border-left-color: var(--gold); background: var(--gold-tint); }
+.cohort-profile-item svg { width: 18px; height: 18px; fill: none; stroke: var(--aqua-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
+.cohort-profile-item:nth-child(odd) svg { stroke: var(--gold-deep); }
+.cohort-profile-item strong { font-size: 13.5px; color: var(--ink); font-weight: 700; display: block; margin-bottom: 2px; }
+.cohort-profile-item span { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+/* Country chips */
+.regions-visual {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 32px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.regions-visual::before {
+  content: ""; position: absolute; top: -60px; right: -60px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(64,224,208,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.regions-visual h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--aqua-deep); margin-bottom: 22px; position: relative; }
+.country-chips {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  position: relative;
+}
+.country-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 999px;
+  background: var(--aqua-tint);
+  border: 1px solid var(--aqua-border);
+  font-size: 13.5px; font-weight: 600;
+  color: var(--aqua-darker);
+  transition: transform 0.2s, background 0.2s;
+  cursor: default;
+}
+.country-chip:hover { background: var(--aqua); color: #fff; transform: translateY(-2px); }
+.country-chip .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--aqua); flex-shrink: 0; }
+.country-chip:hover .chip-dot { background: #fff; }
+.regions-note { font-size: 12px; color: var(--muted); margin-top: 22px; line-height: 1.55; font-style: italic; position: relative; }
+
+/* ============================================================
+   SITE VISITS · Heritage Day Sept 19
+   ============================================================ */
+.heritage-wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: start; }
+.heritage-text h3 { font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 14px; letter-spacing: -0.02em; }
+.heritage-day-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px; border-radius: 999px;
+  background: var(--gold-tint); color: var(--gold-deep);
+  border: 1px solid var(--gold-border);
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.heritage-text > p { font-size: 15px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 24px; }
+
+.heritage-stops { display: flex; flex-direction: column; gap: 14px; }
+.heritage-stop {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.heritage-stop:hover { border-color: var(--aqua); transform: translateX(3px); }
+.heritage-time {
+  flex-shrink: 0;
+  width: 92px;
+  font-size: 12.5px; font-weight: 700;
+  color: var(--aqua-deep);
+  letter-spacing: 0.03em;
+}
+.heritage-stop-body strong { font-size: 14px; color: var(--ink); font-weight: 700; display: block; margin-bottom: 4px; }
+.heritage-stop-body span { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+.heritage-values {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-900) 100%);
+  border-radius: 18px;
+  padding: 32px 30px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.heritage-values::before {
+  content: ""; position: absolute; bottom: -60px; right: -60px;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(219,169,28,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.heritage-values h4 { font-size: 18px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.015em; }
+.heritage-values .gold-accent { color: var(--gold); }
+.heritage-values > p { font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.6; margin-bottom: 20px; }
+.value-cloud { display: flex; flex-wrap: wrap; gap: 8px; position: relative; }
+.value-tag {
+  display: inline-block;
+  padding: 7px 13px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.88);
+  cursor: default;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.value-tag:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); transform: translateY(-2px); }
+.value-tag.is-aqua { background: rgba(64,224,208,0.16); border-color: rgba(64,224,208,0.36); color: #a8f0e6; }
+.value-tag.is-aqua:hover { background: var(--aqua); color: var(--navy); }
+
+/* ============================================================
+   IMPACT · animated counters
+   ============================================================ */
+.section-impact {
+  background: linear-gradient(135deg, #004a6b 0%, #00618c 60%, #007db2 100%);
+  color: #fff;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+.section-impact::before {
+  content: ""; position: absolute; top: -120px; left: -80px;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(219,169,28,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.section-impact::after {
+  content: ""; position: absolute; bottom: -120px; right: -80px;
+  width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(92,235,219,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.section-impact .sec-head .overline { background: rgba(219,169,28,0.18); color: var(--gold); }
+.section-impact .sec-head h2 { color: #fff; }
+.section-impact .sec-head p { color: rgba(255,255,255,0.78); }
+.impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; max-width: 1080px; margin: 0 auto; }
+.impact-grid--three { grid-template-columns: repeat(3, 1fr); max-width: 920px; }
+.impact-stat {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 14px;
+  padding: 32px 24px 28px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+.impact-stat:hover { background: rgba(255,255,255,0.10); border-color: rgba(219,169,28,0.4); transform: translateY(-4px); }
+.impact-num { font-size: 48px; font-weight: 800; color: var(--gold); letter-spacing: -0.03em; line-height: 1; margin-bottom: 12px; }
+.impact-num .plus { font-size: 28px; vertical-align: top; margin-left: 2px; }
+.impact-label { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 6px; letter-spacing: -0.005em; }
+.impact-desc { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+/* ============================================================
+   PUBLICATION
+   ============================================================ */
+.pub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.pub-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 26px 24px;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.pub-card:hover { transform: translateY(-3px); border-color: var(--gold-border); box-shadow: 0 10px 24px rgba(219,169,28,0.10); }
+.pub-icon {
+  width: 46px; height: 46px; border-radius: 10px;
+  background: var(--gold-tint); color: var(--gold-deep);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.pub-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pub-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+.pub-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 12px; }
+.pub-stat { font-size: 12px; font-weight: 700; color: var(--gold-deep); letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* ============================================================
+   PARTNERS
+   ============================================================ */
+.partners-wrap {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 40px 36px;
+  max-width: 1080px; margin: 0 auto;
+}
+.partners-head { text-align: center; margin-bottom: 28px; }
+.partners-head h3 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.02em; }
+.partners-head p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; max-width: 60ch; margin: 0 auto; }
+.partners-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.partner-block {
+  display: flex; flex-direction: column;
+  padding: 22px 24px;
+  background: var(--aqua-tint-2);
+  border: 1px solid var(--aqua-border);
+  border-radius: 12px;
+}
+.partner-block.is-gold { background: var(--gold-tint); border-color: var(--gold-border); }
+.partner-block-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--aqua-deep); margin-bottom: 8px; }
+.partner-block.is-gold .partner-block-label { color: var(--gold-deep); }
+.partner-block-name { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.015em; line-height: 1.25; }
+.partner-block-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+.partners-list-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); text-align: center; margin-bottom: 14px; }
+.partners-list {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+}
+.partner-pill {
+  font-size: 12.5px; font-weight: 600;
+  padding: 8px 14px;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
+   CTA · subscribe for next edition
+   ============================================================ */
+.cta-band {
+  background: linear-gradient(135deg, var(--navy) 0%, #133254 50%, var(--aqua-darker) 100%);
+  padding: 80px 0;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::before {
+  content: ""; position: absolute; top: -100px; right: -60px;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(64,224,208,0.28) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-band::after {
+  content: ""; position: absolute; bottom: -120px; left: -60px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(219,169,28,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; text-align: center; padding: 0 40px; }
+.cta-overline { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); margin-bottom: 14px; padding: 4px 12px; background: rgba(219,169,28,0.14); border-radius: 999px; }
+.cta-band h2 { font-size: clamp(26px, 3.2vw, 34px); font-weight: 800; color: #fff; margin-bottom: 18px; letter-spacing: -0.022em; line-height: 1.2; }
+.cta-band p { font-size: 16px; color: rgba(255,255,255,0.78); line-height: 1.65; max-width: 60ch; margin: 0 auto 30px; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; background: #fff; color: var(--aqua-darker); font-weight: 600; font-size: 14px; border-radius: 999px; text-decoration: none; transition: background 0.18s, transform 0.18s, box-shadow 0.18s; }
+.btn-white:hover { background: var(--aqua-tint); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,0.18); }
+.btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-ghost-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; color: #fff; border: 1px solid rgba(255,255,255,0.42); font-weight: 600; font-size: 14px; border-radius: 999px; text-decoration: none; transition: background 0.18s, border-color 0.18s; }
+.btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: #fff; }
+
+/* Inline Kosovo footnote */
+.inline-footnote {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  font-style: italic;
+  padding: 10px 14px;
+  background: var(--surface-alt);
+  border-left: 3px solid var(--line);
+  border-radius: 0 6px 6px 0;
+  margin-top: 8px;
+}
+.inline-footnote strong { font-style: normal; color: var(--ink-soft); font-weight: 600; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1200px) {
+  .prog-hero-inner { padding: 0 32px; }
+  .pillars-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .pillars-grid > .pillar-card:nth-child(n+4) { grid-column: auto; }
+  .impact-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .container, .container-narrow { padding: 0 24px; }
+  .prog-hero-inner { padding: 0 24px; }
+
+  .meta-facts { grid-template-columns: repeat(2, 1fr); gap: 18px 28px; }
+
+  .overview-grid { grid-template-columns: 1fr; gap: 36px; }
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .method-grid { grid-template-columns: repeat(2, 1fr); }
+  .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+  .cohort-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .heritage-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .impact-grid { grid-template-columns: repeat(2, 1fr); }
+  .pub-grid { grid-template-columns: 1fr; }
+  .partners-row { grid-template-columns: 1fr; }
+
+  /* Journey: horizontal scroll on tablet */
+  .journey-track { grid-template-columns: repeat(8, 200px); overflow-x: auto; padding: 36px 4px 12px; gap: 14px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .day-card { scroll-snap-align: start; }
+  .journey-track::before { left: 0; right: 0; }
+
+  .module-body { padding-left: 26px; }
+}
+
+@media (max-width: 768px) {
+  .prog-hero { padding: 52px 0 36px; }
+  .section { padding: 60px 0; }
+  .section-impact { padding: 60px 0; }
+  .cta-band { padding: 60px 0; }
+
+  .brand-mark { font-size: clamp(34px, 8vw, 48px); }
+  .prog-hero h1 { font-size: clamp(20px, 4.5vw, 28px); }
+  .prog-hero .tagline { max-width: 100%; }
+
+  .hero-ctas { flex-direction: column; align-items: stretch; }
+  .hero-ctas .btn-primary, .hero-ctas .btn-ghost, .hero-ctas .btn-gold { justify-content: center; }
+
+  .meta-facts { grid-template-columns: repeat(2, 1fr); gap: 16px 24px; }
+
+  .pillars-grid { grid-template-columns: 1fr; }
+  .method-grid { grid-template-columns: 1fr; }
+  .faculty-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr; gap: 14px; }
+  .impact-num { font-size: 40px; }
+
+  .module-sub { grid-template-columns: 1fr; gap: 18px; }
+  .module-head { padding: 18px 18px; gap: 14px; }
+  .module-num { width: 38px; height: 38px; font-size: 14px; }
+  .module-body { padding: 0 18px 22px 18px; }
+
+  .heritage-stop { flex-direction: column; gap: 6px; }
+  .heritage-time { width: auto; }
+
+  .partners-wrap { padding: 28px 22px; }
+}
+
+@media (max-width: 480px) {
+  .container, .container-narrow, .prog-hero-inner { padding: 0 18px; }
+
+  .prog-hero { padding: 44px 0 64px; }
+  .section { padding: 52px 0; }
+  .meta-facts { grid-template-columns: 1fr; gap: 14px; }
+
+  .sec-head { margin-bottom: 36px; }
+  .journey-track { grid-template-columns: repeat(8, 180px); }
+  .day-card { padding: 14px 12px; }
+
+  .partner-strip-inner { gap: 12px; font-size: 12px; }
+  .partner-strip-sep { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ============================================================
+   FIRST COHORT · auto-scroll participant carousel
+   ============================================================ */
+.first-cohort { padding: 80px 0; background: linear-gradient(180deg, var(--surface) 0%, var(--aqua-tint-2) 100%); overflow: hidden; }
+.first-cohort .sec-head { margin-bottom: 44px; }
+.cohort-marquee { position: relative; width: 100%; overflow: hidden; margin-bottom: 22px; padding: 8px 0; }
+.cohort-marquee::before,
+.cohort-marquee::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+}
+.cohort-marquee::before { left: 0; background: linear-gradient(90deg, var(--aqua-tint-2) 0%, rgba(242,251,249,0) 100%); }
+.cohort-marquee::after  { right: 0; background: linear-gradient(270deg, var(--aqua-tint-2) 0%, rgba(242,251,249,0) 100%); }
+.cohort-marquee-track {
+  display: flex; gap: 16px; width: max-content;
+  animation: cohort-scroll-left 60s linear infinite;
+  will-change: transform;
+}
+.cohort-marquee-track.is-reverse { animation-name: cohort-scroll-right; animation-duration: 75s; }
+.cohort-marquee:hover .cohort-marquee-track { animation-play-state: paused; }
+@keyframes cohort-scroll-left  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes cohort-scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.participant-card {
+  flex: 0 0 220px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 18px 18px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.participant-card:hover { transform: translateY(-3px); border-color: var(--aqua-border); box-shadow: 0 10px 22px rgba(0,97,140,0.10); }
+.participant-photo {
+  width: 76px; height: 76px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+  color: #fff; font-weight: 700; font-size: 22px; letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--aqua-deep) 0%, var(--aqua) 100%);
+  overflow: hidden; flex-shrink: 0;
+}
+.participant-card:nth-child(3n) .participant-photo { background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 100%); color: var(--navy); }
+.participant-card:nth-child(5n) .participant-photo { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-700) 100%); }
+.participant-card:nth-child(7n) .participant-photo { background: linear-gradient(135deg, var(--aqua) 0%, var(--gold) 100%); color: var(--navy); }
+.participant-photo img { width: 100%; height: 100%; object-fit: cover; }
+.participant-photo svg { width: 32px; height: 32px; color: rgba(255,255,255,0.85); }
+.participant-card:nth-child(3n) .participant-photo svg { color: rgba(15,32,68,0.55); }
+.participant-name { font-size: 14.5px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 4px; letter-spacing: -0.005em; }
+.participant-org  { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; }
+.cohort-footnote { text-align: center; font-size: 12.5px; color: var(--muted); margin-top: 18px; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+@media (max-width: 768px) {
+  .first-cohort { padding: 60px 0; }
+  .participant-card { flex: 0 0 180px; padding: 18px 14px 16px; }
+  .participant-photo { width: 64px; height: 64px; font-size: 18px; }
+  .cohort-marquee::before, .cohort-marquee::after { width: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cohort-marquee-track { animation: none !important; }
+  .cohort-marquee { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+.partners-wrap--featured { padding: 44px 40px; }
+.partners-row--featured { grid-template-columns: repeat(2, 1fr); gap: 22px; margin-bottom: 28px; }
+.partner-block--featured { padding: 28px 28px 26px; border-width: 1.5px; }
+.partner-block--featured .partner-block-label { font-size: 11px; letter-spacing: 0.16em; margin-bottom: 12px; }
+.partner-block--featured .partner-block-name { font-size: 19px; line-height: 1.2; margin-bottom: 10px; }
+.partner-block--featured .partner-block-desc { font-size: 13.5px; line-height: 1.65; margin-bottom: 14px; }
+.partner-block-role { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--aqua-deep); padding-top: 12px; border-top: 1px dashed var(--aqua-border); }
+.partner-block--featured.is-gold .partner-block-role { color: var(--gold-deep); border-top-color: var(--gold-border); }
+.partner-block--logo { display: flex; align-items: center; justify-content: center; padding: 32px; min-height: 200px; background: transparent; border: none; box-shadow: none; }
+.partner-block--logo.is-gold { background: transparent; border: none; }
+.partner-block-logo { display: flex; align-items: center; justify-content: center; width: 100%; }
+.partner-block-logo img, .partner-block-logo a { display: block; }
+/* Per-logo heights: optically balanced so the wide, heavy WBF mark and the
+   compact OSF wordmark read as the same visual size. */
+.partner-block-logo img { width: auto; max-width: 100%; }
+.partner-block-logo img[src*="logo-color"] { height: 115px; }
+.partner-block-logo img[src*="partner-osf"] { height: 140px; }
+.partners-thanks { text-align: center; font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; max-width: 64ch; margin: 0 auto; font-style: italic; }
+@media (max-width: 1024px) {
+  .partners-row--featured { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="prog-hero">
+  <div class="hero-orb"></div>
+  <div class="hero-orb-2"></div>
+  <div class="prog-hero-inner">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/index.html">Home</a><span>›</span><a href="/our-programs.html">Our Programs</a><span>›</span>WBF Regional Academy
+    </nav>
+
+    <div class="hero-pills">
+      <div class="status-pill is-amber">
+        <span class="status-pill-dot"></span>
+        <span class="status-pill-text">1st Edition · Applications Under Review</span>
+      </div>
+      <div class="status-pill">
+        <span class="status-pill-dot"></span>
+        <span class="status-pill-text">13–20 September 2026 · Tirana, Albania</span>
+      </div>
+    </div>
+
+    <div class="brand-mark" aria-label="WBF Regional Academy">
+      <span class="we">WBF</span><span class="be">Regional Academy</span>
+    </div>
+    <div class="brand-tagline">On Dialogue and Culture of Cooperation</div>
+
+    <h1>A 7-day learning journey for junior professionals and emerging leaders from across the Western Balkans.</h1>
+    <p class="tagline">An initiative of the <strong>Western Balkans Fund</strong>, supported by the <strong>Open Society Foundation Western Balkans</strong>, the WBF Regional Academy combines thematic lectures, interactive workshops, dialogue sessions, and site visits to equip a new generation with the skills, networks, and mindset needed to advance dialogue, cooperation, and reconciliation across the WB6.</p>
+
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#journey">
+        Explore the Curriculum
+        <svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
+      </a>
+      <a class="btn-gold" href="#journey">
+        See the Learning Journey
+        <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
+      </a>
+      <a class="btn-ghost" href="#first-cohort">
+        Meet the Cohort
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+      </a>
+    </div>
+
+    <div class="meta-facts">
+      <div>
+        <div class="meta-fact-key">Duration</div>
+        <div class="meta-fact-value">One week</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Cohort</div>
+        <div class="meta-fact-value">WB6 Junior Professionals</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Host City</div>
+        <div class="meta-fact-value">Tirana, Albania</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Format</div>
+        <div class="meta-fact-value" style="font-size:14.5px;line-height:1.35">In-person, residential, with online post-program mentorship</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">About the Academy</div>
+      <h2>Why the <span class="gold-accent">Regional Academy</span>, and why now</h2>
+      <p>The Western Balkans remains one of the regions with the greatest need for a new culture of cooperation grounded in dialogue, trust-building, and intercultural understanding. The Regional Academy responds directly to that need.</p>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-text">
+        <p>Despite ongoing reforms and international support, the region continues to face structural, institutional, and socio-political challenges that limit democratic development, social cohesion, and lasting peace. Public discourse is still shaped by historical divisions, national narratives, and mutual mistrust, while citizens, and particularly young people, women, and minority communities, remain underrepresented in decision-making.</p>
+        <p>Emerging professionals often lack structured platforms to <em>practice dialogue</em>, exchange across differences, and engage in joint problem-solving. The Regional Academy was designed to fill that gap through joint learning, peer exchange, mentoring, and experiential engagement.</p>
+        <p>Although non-formal education programmes and leadership academies have increased significantly across the region, the WBF Regional Academy is distinguished by its <strong>integrated, practice-oriented, and regionally embedded design</strong>. Unlike traditional approaches that prioritise individual leadership development, the Academy places dialogue and cooperation at its core: it bridges critical reflection with experiential engagement so participants simultaneously learn, apply, and co-create solutions in real time.</p>
+        <p>Leadership, in this context, is understood not as a title or a position, but as a natural outcome of those who have genuinely learned to listen, cooperate, and through dialogue build trust across differences.</p>
+      </div>
+
+      <div class="distinguishing-card">
+        <div class="dc-overline">What makes the Academy different</div>
+        <h3>An academy you experience, not just attend</h3>
+        <ul>
+          <li><span class="dot">1</span><span><strong>Dialogue at the core:</strong> not as a topic to study, but as a daily practice that runs through every lecture, workshop, and evening session.</span></li>
+          <li><span class="dot">2</span><span><strong>Maximum 30% lecture time.</strong> The rest is interactive workshops, dialogue sessions, site visits, and co-creation labs.</span></li>
+          <li><span class="dot">3</span><span><strong>Tangible final products:</strong> group policy briefs, regional initiative concepts, and articles for the annual publication, not just certificates.</span></li>
+          <li><span class="dot">4</span><span><strong>Pre and post mentorship.</strong> The programme starts before arrival and continues well after; it does not end with a closing ceremony.</span></li>
+          <li><span class="dot">5</span><span><strong>Difficult conversations on the table.</strong> Memory, identity, and regional tensions are engaged with directly, in a safe and facilitated environment.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PILLARS · five thematic
+     ============================================================ -->
+<section class="section section-tint" id="pillars">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Thematic Pillars</div>
+      <h2>Five threads that run through the week</h2>
+      <p>The full programme is structured around five interconnected thematic pillars. Every lecture, session, and site visit is anchored in at least one of them.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-num">PILLAR 01</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
+        </div>
+        <div class="pillar-title">Democratic Citizenship &amp; Governance</div>
+        <div class="pillar-desc">Core principles and skills for effective leadership, including accountability, transparency, and citizen participation, and how to engage with institutions and decision-making.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-num">PILLAR 02</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg>
+        </div>
+        <div class="pillar-title">Gender Equality &amp; Inclusive Leadership</div>
+        <div class="pillar-desc">Structural and cultural barriers to equal participation, and the tools to advance gender-responsive leadership and women's inclusion in peacebuilding.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-num">PILLAR 03</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        </div>
+        <div class="pillar-title">Freedom of Expression &amp; Democratic Participation</div>
+        <div class="pillar-desc">The role of free expression in democratic societies, challenges to media freedom and civic space, and how to advocate for and protect these rights.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-num">PILLAR 04</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        </div>
+        <div class="pillar-title">Regional Cooperation &amp; Peacebuilding</div>
+        <div class="pillar-desc">Interdependencies across WB6 Contracting Parties and joint regional solutions that strengthen trust, social cohesion, reconciliation, and joint development.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-num">PILLAR 05</div>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="pillar-title">Intercultural Understanding &amp; Cooperation Culture</div>
+        <div class="pillar-desc">Both theoretical frameworks and practical case studies: analysing regional dynamics while developing inclusive, actionable solutions together.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     JOURNEY · 8-day timeline
+     ============================================================ -->
+<section class="section" id="journey">
+  <div class="container">
+    <div class="sec-head">
+      <div class="overline">Learning Journey</div>
+      <h2>Seven days that build on each other</h2>
+      <p>Every day builds on the one before. From arrival and ice-breakers through thematic foundations, dialogue practice, governance, leadership, heritage immersion, and a closing day where participants present what they've co-created.</p>
+    </div>
+
+    <div class="journey">
+      <div class="journey-track" role="list">
+        <div class="day-card" role="listitem">
+          <div class="day-dot">1</div>
+          <div class="day-date">SUN 13 SEP</div>
+          <div class="day-theme">Arrival</div>
+          <div class="day-activity">Welcome &amp; ice-breaker · Intra-regional mapping</div>
+        </div>
+        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="2" aria-haspopup="dialog" aria-label="Day 2, Foundations of Cooperation — view module details">
+          <div class="day-dot">2</div>
+          <div class="day-date">MON 14 SEP</div>
+          <div class="day-theme">Foundations of Cooperation</div>
+          <div class="day-activity">Opening · Lecture 1 · Fireside leadership stories</div>
+          <div class="day-more">View details</div>
+        </div>
+        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="3" aria-haspopup="dialog" aria-label="Day 3, Culture of Cooperation — view module details">
+          <div class="day-dot">3</div>
+          <div class="day-date">TUE 15 SEP</div>
+          <div class="day-theme">Culture of Cooperation</div>
+          <div class="day-activity">Lecture 2 · Policy brief sprint · Fishbowl dialogue</div>
+          <div class="day-more">View details</div>
+        </div>
+        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="4" aria-haspopup="dialog" aria-label="Day 4, Dialogue, Democracy and Inclusion — view module details">
+          <div class="day-dot">4</div>
+          <div class="day-date">WED 16 SEP</div>
+          <div class="day-theme">Dialogue, Democracy &amp; Inclusion</div>
+          <div class="day-activity">Lecture 3 · Practising difficult conversations</div>
+          <div class="day-more">View details</div>
+        </div>
+        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="5" aria-haspopup="dialog" aria-label="Day 5, Institutions and Civil Society — view module details">
+          <div class="day-dot">5</div>
+          <div class="day-date">THU 17 SEP</div>
+          <div class="day-theme">Institutions &amp; Civil Society</div>
+          <div class="day-activity">Lecture 4 · Communication workshop · Visual dialogue</div>
+          <div class="day-more">View details</div>
+        </div>
+        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="6" aria-haspopup="dialog" aria-label="Day 6, Leadership and Human Rights — view module details">
+          <div class="day-dot">6</div>
+          <div class="day-date">FRI 18 SEP</div>
+          <div class="day-theme">Leadership &amp; Human Rights</div>
+          <div class="day-activity">Lecture 5 · Ethics workshop · Closing reception</div>
+          <div class="day-more">View details</div>
+        </div>
+        <div class="day-card" role="listitem">
+          <div class="day-dot">7</div>
+          <div class="day-date">SAT 19 SEP</div>
+          <div class="day-theme">Heritage &amp; Memory</div>
+          <div class="day-activity">Kruja · Bunk'Art 1 · Cultural exchange dinner</div>
+        </div>
+        <div class="day-card is-finale" role="listitem">
+          <div class="day-dot">8</div>
+          <div class="day-date">SUN 20 SEP</div>
+          <div class="day-theme">Closing &amp; Reflection</div>
+          <div class="day-activity">Final presentations · &ldquo;The region we want to build&rdquo;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DAY MODAL DATA · hidden source for the Learning Journey pop-ups.
+     (Was the visible "Six thematic modules" Curriculum section; its
+     text is now shown only inside the day-card modals above. Kept here,
+     hidden, so the exact module content feeds the modals via JS.)
+     ============================================================ -->
+<div id="day-modal-data" hidden>
+    <div class="modules-list" id="modules-list">
+
+      <div class="module-card">
+        <button class="module-head" type="button" aria-expanded="false">
+          <div class="module-num">01</div>
+          <div class="module-meta">
+            <div class="module-overline">Day 2 · 14 September</div>
+            <div class="module-title">Culture of Cooperation, Memory, Reconciliation &amp; Shared History</div>
+          </div>
+          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
+        </button>
+        <div class="module-body">
+          <p class="module-desc">Explores the historical evolution and contemporary dynamics of the Western Balkans, with a particular focus on the legacy of the 1990s conflicts and the ongoing processes of peacebuilding and regional cooperation. Provides participants with a structured analytical framework to understand how historical experiences, collective memory, and identity narratives continue to shape political relations, social cohesion, and trust across the region.</p>
+          <div class="module-sub">
+            <div>
+              <h4>Objectives</h4>
+              <ul>
+                <li>Develop a critical understanding of conflicts, peace processes, and post-conflict transformation in the Western Balkans.</li>
+                <li>Analyse the state of social inclusion and cohesion, and assess the achievements and limits of frameworks like RCC, RYCO, WBF, and CEFTA.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Learning Outcomes</h4>
+              <ul>
+                <li>Explore the role of collective memory and historical narratives in shaping community relationships.</li>
+                <li>Analyse challenges and opportunities in post-conflict reconciliation.</li>
+                <li>Reflect on the role of inclusive remembrance, education, culture, and civil society in building sustainable peace.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <button class="module-head" type="button" aria-expanded="false">
+          <div class="module-num">02</div>
+          <div class="module-meta">
+            <div class="module-overline">Day 3 · 15 September</div>
+            <div class="module-title">The Theory and Practice of Dialogue</div>
+          </div>
+          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
+        </button>
+        <div class="module-body">
+          <p class="module-desc">Examines dialogue as both a theoretical framework and a practical tool for transforming relationships in divided societies. Distinguishes genuine, transformative dialogue from ordinary conversation, focusing on its role in post-conflict and multicultural contexts where competing narratives, identity differences, and historical sensitivities require structured and facilitated communication processes.</p>
+          <div class="module-sub">
+            <div>
+              <h4>Objectives</h4>
+              <ul>
+                <li>Understand the core principles and dimensions of dialogue: what enables meaningful exchange beyond superficial conversation.</li>
+                <li>Analyse how dialogue can be used as a tool for trust-building, conflict transformation, and cooperation in divided or post-conflict societies.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Key Readings</h4>
+              <ul>
+                <li>David Bohm, <em>On Dialogue</em></li>
+                <li>William Isaacs, <em>Dialogue: The Art of Thinking Together</em></li>
+                <li>John Paul Lederach, <em>Building Peace</em></li>
+                <li>Harold Saunders, <em>A Public Peace Process</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <button class="module-head" type="button" aria-expanded="false">
+          <div class="module-num">03</div>
+          <div class="module-meta">
+            <div class="module-overline">Day 4 · 16 September</div>
+            <div class="module-title">Institutions, Civil Society &amp; Regional Governance</div>
+          </div>
+          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
+        </button>
+        <div class="module-body">
+          <p class="module-desc">Examines the architecture of governance and cooperation in the Western Balkans, focusing on the interplay between formal institutions, regional organizations, and civil society actors. Encourages participants to understand governance not as a top-down institutional system, but as a multi-layered ecosystem where state actors, regional bodies, and civil society jointly shape outcomes.</p>
+          <div class="module-sub">
+            <div>
+              <h4>Objectives</h4>
+              <ul>
+                <li>Understand the structure and functioning of governance systems and regional cooperation mechanisms in the Western Balkans.</li>
+                <li>Analyse the role of institutions and civil society in promoting democratic governance, accountability, and regional cooperation.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Learning Outcomes</h4>
+              <ul>
+                <li>Identify key regional governance frameworks and their significance for regional development.</li>
+                <li>Evaluate challenges and opportunities for cooperation among institutions, civil society, and regional actors.</li>
+                <li>Recognise the importance of inclusive governance and multi-stakeholder cooperation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <button class="module-head" type="button" aria-expanded="false">
+          <div class="module-num">04</div>
+          <div class="module-meta">
+            <div class="module-overline">Day 5 · 17 September</div>
+            <div class="module-title">Media, Narrative &amp; the Public Dimension of Cooperation</div>
+          </div>
+          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
+        </button>
+        <div class="module-body">
+          <p class="module-desc">Explores how media, communication, and public narratives shape perceptions of cooperation, conflict, and identity in the Western Balkans. Examines how information ecosystems influence public opinion, reinforce or challenge stereotypes, and contribute to either polarisation or social cohesion. Particular focus on media freedom and the role of journalists, civil society actors, and communicators in the public dimension of peacebuilding.</p>
+          <div class="module-sub">
+            <div>
+              <h4>Objectives</h4>
+              <ul>
+                <li>Understand how media, communication, and narratives shape perceptions of cooperation, identity, and conflict.</li>
+                <li>Analyse the role of traditional and digital media in framing public discourse, including misinformation and polarisation.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Learning Outcomes</h4>
+              <ul>
+                <li>Critically assess the impact of disinformation, stereotypes, and biased narratives on social cohesion.</li>
+                <li>Identify strategies for promoting balanced, inclusive narratives.</li>
+                <li>Develop a critical understanding of the responsibilities of media professionals and citizens in public discourse.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <button class="module-head" type="button" aria-expanded="false">
+          <div class="module-num">05</div>
+          <div class="module-meta">
+            <div class="module-overline">Day 6 · 18 September</div>
+            <div class="module-title">Leadership, Human Rights &amp; Democratic Resilience</div>
+          </div>
+          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
+        </button>
+        <div class="module-body">
+          <p class="module-desc">Examines leadership not as positional authority, but as a set of values, behaviours, and practices grounded in accountability, empathy, integrity, and the ability to foster trust in diverse and polarised societies. Connects human rights as both a normative framework and a practical tool with the concept of democratic resilience and the role of emerging leaders in safeguarding democratic values.</p>
+          <div class="module-sub">
+            <div>
+              <h4>Objectives</h4>
+              <ul>
+                <li>Understand leadership as a value-based and relational practice connected to human rights and democratic governance.</li>
+                <li>Analyse democratic resilience and the role of emerging leaders in strengthening institutions, civic space, and social cohesion.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Learning Outcomes</h4>
+              <ul>
+                <li>Explain the relationship between leadership, human rights, and societal resilience.</li>
+                <li>Assess challenges to democracy, including polarisation, discrimination, and democratic backsliding.</li>
+                <li>Reflect on one's own potential as a leader and active citizen advancing democratic values.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <button class="module-head" type="button" aria-expanded="false">
+          <div class="module-num">06</div>
+          <div class="module-meta">
+            <div class="module-overline">Day 4 · 16 September</div>
+            <div class="module-title">Women, Inclusion &amp; Future Regional Cooperation</div>
+          </div>
+          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
+        </button>
+        <div class="module-body">
+          <p class="module-desc">Explores the role of women, youth, and marginalised groups in shaping more inclusive, equitable, and sustainable models of regional cooperation. Examines structural and cultural barriers to participation in public, political, and economic life while highlighting the transformative contributions of women's leadership and inclusive movements. Forward-looking dimension on youth engagement, digital transformation, and civic innovation.</p>
+          <div class="module-sub">
+            <div>
+              <h4>Objectives</h4>
+              <ul>
+                <li>Understand inclusion, gender equality, and intersectionality as a foundation for sustainable cooperation and democratic governance.</li>
+                <li>Analyse the barriers and opportunities for women's leadership in shaping future regional cooperation.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Learning Outcomes</h4>
+              <ul>
+                <li>Explain the importance of gender equality in advancing cooperation and sustainable development.</li>
+                <li>Identify barriers limiting the participation of women and underrepresented groups.</li>
+                <li>Evaluate good practices that promote gender-responsive approaches to development.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+<!-- ============================================================
+     METHODOLOGY · four tracks
+     ============================================================ -->
+<section class="section" id="methodology">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Methodology</div>
+      <h2>Four learning tracks, one daily rhythm</h2>
+    </div>
+
+    <div class="method-grid">
+      <div class="method-card">
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div class="method-title">Thematic Lectures</div>
+        <div class="method-desc">Expert-led morning sessions on the six thematic modules, structured as opening → presentation → break → interactive discussion → participatory closing.</div>
+        <div class="method-examples">
+          <span class="method-example">Visual materials, case studies, video testimonies</span>
+          <span class="method-example">Critical examination of inherited narratives</span>
+          <span class="method-example">Co-creation between expert and participants</span>
+        </div>
+      </div>
+
+      <div class="method-card alt">
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17,11 19,13 23,9"/></svg>
+        </div>
+        <div class="method-title">Interactive Sessions</div>
+        <div class="method-desc">Afternoon workshops in flexible, mixed-CP groups. Highly participatory, non-formal education methods linked directly to the morning's themes.</div>
+        <div class="method-examples">
+          <span class="method-example">Role-plays and simulations</span>
+          <span class="method-example">Case study analysis &amp; problem-solving</span>
+          <span class="method-example">Co-creation lab: policy brief &amp; initiative sprint</span>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <div class="method-title">Dialogue Sessions</div>
+        <div class="method-desc">Evening sessions in informal settings such as terraces, gardens, and lounges that shift the atmosphere from classroom to community. Unstructured by design, facilitated lightly.</div>
+        <div class="method-examples">
+          <span class="method-example">Fireside leadership conversations</span>
+          <span class="method-example">Photography as dialogue</span>
+        </div>
+      </div>
+
+      <div class="method-card alt">
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="method-title">Site Visits</div>
+        <div class="method-desc">Heritage day combining classroom learning with experiential engagement, reflection, and dialogue across different dimensions of cultural memory and identity.</div>
+        <div class="method-examples">
+          <span class="method-example">Kruja: Skanderbeg Museum &amp; Old Bazaar</span>
+          <span class="method-example">Bunk'Art 1: Cold War memory institution</span>
+          <span class="method-example">Reflection dinner on Dajti Mountain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FACULTY · role-based
+     ============================================================ -->
+<section class="section section-alt" id="faculty">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Faculty &amp; Facilitators</div>
+      <h2>The people who make the room come alive</h2>
+    </div>
+
+    <div class="faculty-grid">
+
+      <div class="faculty-card">
+        <div class="faculty-photo">
+          <div class="faculty-silhouette">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><circle cx="12" cy="10" r="2"/></svg>
+          </div>
+        </div>
+        <div class="faculty-body">
+          <span class="faculty-role-tag">Lecturer</span>
+          <div class="faculty-name">Subject-matter Experts</div>
+          <div class="faculty-status">Six per edition · one per module</div>
+          <p class="faculty-desc">Senior academics and practitioners who anchor each thematic module with conceptual depth, regional case studies, and structured analytical frameworks.</p>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-photo">
+          <div class="faculty-silhouette">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><polyline points="16,11 18,13 22,9"/></svg>
+          </div>
+        </div>
+        <div class="faculty-body">
+          <span class="faculty-role-tag">Facilitator</span>
+          <div class="faculty-name">Dialogue Practitioners</div>
+          <div class="faculty-status">Five per edition · workshops &amp; sessions</div>
+          <p class="faculty-desc">Experienced intercultural dialogue and negotiation practitioners who guide the interactive sessions, role-plays, and difficult-conversation workshops.</p>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-photo">
+          <div class="faculty-silhouette">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+        </div>
+        <div class="faculty-body">
+          <span class="faculty-role-tag">Mentor</span>
+          <div class="faculty-name">Pre &amp; Post Mentors</div>
+          <div class="faculty-status">Ongoing · before, during &amp; after</div>
+          <p class="faculty-desc">Senior mentors who accompany participants from pre-arrival preparation through post-Academy initiative development, in line with WBF mentorship guidelines.</p>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-photo">
+          <div class="faculty-silhouette">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+          </div>
+        </div>
+        <div class="faculty-body">
+          <span class="faculty-role-tag">Keynote</span>
+          <div class="faculty-name">Regional Voices</div>
+          <div class="faculty-status">Four per edition · daily keynote</div>
+          <p class="faculty-desc">Senior political leaders, accomplished professionals, and emerging young leaders who join fireside conversations to share lived experiences of leadership across the region.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COHORT · first cohort
+     ============================================================ -->
+<section class="section" id="cohort">
+  <div class="container">
+    <div class="sec-head left" style="margin: 0 0 32px;">
+      <div class="overline">The Cohort</div>
+      <h2>Who the Academy is built for?</h2>
+    </div>
+    <div class="cohort-wrap">
+      <div class="cohort-text">
+        <p>The Regional Academy is designed for junior professionals and emerging leaders from across the WB6: people who are eager to grow beyond their national context, build lasting regional relationships, and develop practical dialogue and cooperation skills that are recognised across the region.</p>
+        <p>The cohort is deliberately mixed. Lawyers and activists work alongside artists and journalists. Civil servants exchange with entrepreneurs and researchers. Diversity is not an add-on; it is the precondition for the kind of dialogue the Academy is designed to enable.</p>
+      </div>
+
+      <div class="cohort-profile">
+        <div class="cohort-profile-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+            <div>
+              <strong>Junior professionals</strong>
+              <span>Citizens of one of the WB6 Contracting Parties, early-to-mid career.</span>
+            </div>
+          </div>
+          <div class="cohort-profile-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <div>
+              <strong>Mixed disciplines</strong>
+              <span>Activists, artists, journalists, lawyers, civil servants, researchers, entrepreneurs.</span>
+            </div>
+          </div>
+          <div class="cohort-profile-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+            <div>
+              <strong>Regional outlook</strong>
+              <span>Eager to think beyond their national context and build lasting cross-border relationships.</span>
+            </div>
+          </div>
+          <div class="cohort-profile-item">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+            <div>
+              <strong>Action-oriented</strong>
+              <span>Ready to commit to pre, during, and post-Academy work, including a group policy brief or initiative.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FIRST COHORT · participant showcase (auto-scroll carousel)
+     NOTE: participant data below is placeholder for layout review.
+     Replace name + organisation strings with the confirmed cohort.
+     ============================================================ -->
+<section class="first-cohort" id="first-cohort">
+  <div class="container">
+    <div class="sec-head">
+      <div class="overline">First Cohort</div>
+      <h2>Meet the <span class="gold-accent">inaugural participants</span></h2>
+      <p>Fifty junior professionals and emerging leaders from across the WB6, joining the first edition of the Regional Academy in Tirana in September 2026.</p>
+    </div>
+
+    <div class="cohort-marquee" aria-label="First cohort participants, row 1">
+      <div class="cohort-marquee-track">
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+      </div>
+    </div>
+
+    <div class="cohort-marquee" aria-label="First cohort participants, row 2">
+      <div class="cohort-marquee-track is-reverse">
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     HERITAGE DAY
+     ============================================================ -->
+<section class="section section-tint" id="heritage">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Heritage Day · 19 September</div>
+      <h2>The field-learning day that ties everything together</h2>
+      <p>One full day outside the classroom, combining visits to sites that represent different historical periods and dimensions of identity, memory, and social transformation.</p>
+    </div>
+
+    <div class="heritage-wrap">
+      <div class="heritage-text">
+        <span class="heritage-day-pill">SAT 19 SEP · Day 7</span>
+        <h3>A day of heritage, memory, and reflection</h3>
+        <p>Participants take part in a full-day heritage visit that combines guided site visits, structured reflection, and informal intercultural exchange. The day is designed as an extended learning exercise rather than a touristic activity: participants receive a background pack with historical context and guiding questions before departure, and facilitators lead reflection sessions throughout the day that connect what is seen on site with the Academy's themes of leadership, democracy, peacebuilding, and regional cooperation. The day concludes with a shared meal and a group reflection on what the experience has revealed about memory, identity, and cooperation across the region.</p>
+      </div>
+
+      <div class="heritage-values">
+        <h4>Heritage Values <span class="gold-accent">Framework</span></h4>
+        <p>At each site, participants assess and discuss the different values represented, recognising that different communities assign different meanings to heritage, and that this diversity of perspectives is itself an important learning outcome.</p>
+        <div class="value-cloud">
+          <span class="value-tag is-aqua">Historical</span>
+          <span class="value-tag">Archaeological</span>
+          <span class="value-tag is-aqua">Architectural</span>
+          <span class="value-tag">Aesthetic</span>
+          <span class="value-tag is-aqua">Sense of Place</span>
+          <span class="value-tag">Spiritual</span>
+          <span class="value-tag is-aqua">Community</span>
+          <span class="value-tag">Recreational</span>
+          <span class="value-tag is-aqua">Ecological</span>
+          <span class="value-tag">Political</span>
+          <span class="value-tag is-aqua">Identity</span>
+          <span class="value-tag">Associative</span>
+          <span class="value-tag is-aqua">Economic</span>
+          <span class="value-tag">Educational</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PARTNERS
+     ============================================================ -->
+<section class="section section-alt" id="partners">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Institutional Support</div>
+      <h2>Organised by the WBF, made possible <span class="gold-accent">with support</span></h2>
+      <p>The WBF Regional Academy is an initiative of the Western Balkans Fund, supported by the Open Society Foundation Western Balkans in advancing dialogue, regional cooperation, and the development of open societies across the Western Balkans.</p>
+    </div>
+
+    <div class="partners-wrap partners-wrap--featured">
+      <div class="partners-row partners-row--featured">
+        <div class="partner-block partner-block--featured partner-block--logo">
+          <div class="partner-block-logo">
+            <img src="/assets/img/logo-color.png" alt="Western Balkans Fund">
+          </div>
+        </div>
+        <div class="partner-block partner-block--featured is-gold partner-block--logo">
+          <div class="partner-block-logo">
+            <a href="https://osfwb.org/" target="_blank" rel="noopener">
+              <img src="/assets/images/partners/partner-osf.svg" alt="Open Society Foundation Western Balkans">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="partners-thanks">The Academy is organised by the Western Balkans Fund with the support of the Open Society Foundation Western Balkans. Their support helps make the programme, the cohort, and the regional alumni network possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA · subscribe for next edition
+     ============================================================ -->
+<section class="cta-band" id="subscribe">
+  <div class="cta-inner">
+    <div class="cta-overline">Future Editions</div>
+    <h2>Be the first to know when the next call opens</h2>
+    <p>Applications for the inaugural cohort have closed. If you are a junior professional from the Western Balkans interested in joining a future edition of the Regional Academy, subscribe to updates and we will notify you the moment the next call is published.</p>
+    <div class="cta-btns">
+      <a class="btn-white" href="/contact.html">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Subscribe to updates
+      </a>
+      <a class="btn-ghost-white" href="/our-programs.html">All WBF programmes →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     DAY MODAL · pop-up for Learning Journey day cards
+     ============================================================ -->
+<div class="day-modal" id="dayModal" role="dialog" aria-modal="true" aria-labelledby="dayModalTitle" hidden>
+  <div class="day-modal-backdrop" data-close></div>
+  <div class="day-modal-dialog" role="document">
+    <button class="day-modal-close" type="button" aria-label="Close" data-close>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="day-modal-eyebrow" id="dayModalEyebrow"></div>
+    <h2 class="day-modal-title" id="dayModalTitle"></h2>
+    <div class="day-modal-body" id="dayModalBody"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+<script>
+/* Learning Journey · day-card detail modal.
+   Content is sourced from the hidden #day-modal-data block (former Curriculum
+   section), grouped by the "Day N" label in each module's overline. */
+(function () {
+  const modal = document.getElementById('dayModal');
+  if (!modal) return;
+  const eyebrowEl = document.getElementById('dayModalEyebrow');
+  const titleEl = document.getElementById('dayModalTitle');
+  const bodyEl = document.getElementById('dayModalBody');
+  const closeBtn = modal.querySelector('.day-modal-close');
+  let lastFocused = null;
+
+  /* Build a day -> [modules] map from the hidden data store. */
+  const dayData = {};
+  document.querySelectorAll('#day-modal-data .module-card').forEach(card => {
+    const overlineEl = card.querySelector('.module-overline');
+    const titleNode = card.querySelector('.module-title');
+    const bodyNode = card.querySelector('.module-body');
+    if (!overlineEl || !titleNode || !bodyNode) return;
+    const match = overlineEl.textContent.match(/Day\s+(\d+)/i);
+    if (!match) return;
+    const day = match[1];
+    (dayData[day] = dayData[day] || []).push({
+      title: titleNode.innerHTML.trim(),
+      bodyHTML: bodyNode.innerHTML
+    });
+  });
+
+  function buildContent(day) {
+    const mods = dayData[day];
+    if (!mods || !mods.length) return false;
+    const card = document.querySelector('.day-card[data-day="' + day + '"]');
+    const date = card ? (card.querySelector('.day-date') || {}).textContent : '';
+    const theme = card ? (card.querySelector('.day-theme') || {}).textContent : '';
+    eyebrowEl.textContent = 'Day ' + day + (date ? ' · ' + date.trim() : '');
+    if (mods.length === 1) {
+      titleEl.innerHTML = mods[0].title;
+      bodyEl.innerHTML = mods[0].bodyHTML;
+    } else {
+      titleEl.textContent = theme ? theme.trim() : 'Day ' + day;
+      bodyEl.innerHTML = mods.map(m =>
+        '<div class="daymodal-module"><h3 class="daymodal-subtitle">' + m.title + '</h3>' + m.bodyHTML + '</div>'
+      ).join('');
+    }
+    return true;
+  }
+
+  function openModal(day) {
+    if (!buildContent(day)) return;
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('dm-open');
+    modal.querySelector('.day-modal-dialog').scrollTop = 0;
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove('dm-open');
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  document.querySelectorAll('.day-card.is-clickable').forEach(card => {
+    card.addEventListener('click', () => openModal(card.getAttribute('data-day')));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        openModal(card.getAttribute('data-day'));
+      }
+    });
+  });
+
+  modal.addEventListener('click', e => {
+    if (e.target.closest('[data-close]')) closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+})();
+
+/* Impact counter animation · IntersectionObserver, respects reduced-motion */
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function animateCounter(el) {
+  const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+  const suffix = el.getAttribute('data-suffix') || '';
+  if (reducedMotion) {
+    el.textContent = target + suffix;
+    return;
+  }
+  const duration = 1400;
+  const start = performance.now();
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3); /* easeOutCubic */
+    const value = Math.round(eased * target);
+    el.textContent = value + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const counterObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.impact-num[data-target]').forEach(el => counterObserver.observe(el));
+</script>
+</body>
+</html>
