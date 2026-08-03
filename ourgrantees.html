@@ -502,14 +502,20 @@
     .gm-party-logo { width: 46px; height: 46px; border-radius: 10px; object-fit: contain; background: #fff; border: 1px solid var(--line-soft); flex-shrink: 0; }
     .gm-party-role { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--programme-accent, #2a78d6); margin: 0 0 3px; }
     .gm-party-name { font: 800 15px/1.3 var(--font-display); color: var(--navy-deep); margin: 0; }
-    .gm-fields { display: flex; flex-direction: column; gap: 9px; }
-    .gm-field { display: grid; grid-template-columns: 128px 1fr; gap: 10px; font-size: 13px; line-height: 1.5; }
-    .gm-field dt { color: var(--faint); font-weight: 600; margin: 0; }
+    .gm-fields { display: flex; flex-direction: column; gap: 12px; }
+    /* Label above value: labels vary from "CP" to "Partner Contracting Parties",
+       so a fixed label column wrapped long ones onto two lines and left the
+       value stranded beside them. Stacking also matches the .gm-detail cards. */
+    .gm-field { font-size: 13px; line-height: 1.5; }
+    .gm-field dt { color: var(--faint); font-weight: 600; margin: 0 0 2px; font-size: 11.5px; letter-spacing: .01em; }
     .gm-field dd { color: var(--ink); margin: 0; font-weight: 600; }
 
     /* About */
-    .gm-about { max-width: 68ch; }
-    .gm-about p { text-align: justify; hyphens: auto; color: #40506a; line-height: 1.85; margin: 0 0 14px; font-size: 14.5px; }
+    /* font-size is set here as well as on the p, so the ch-based measure
+       resolves against the paragraph size rather than the inherited body size
+       (68ch of 16px text was rendering ~93 characters per line). */
+    .gm-about { max-width: 68ch; font-size: 14.5px; }
+    .gm-about p { color: #40506a; line-height: 1.8; margin: 0 0 14px; font-size: 14.5px; }
     .gm-about p:last-child { margin-bottom: 0; }
 
     /* Intervention pills */
@@ -517,6 +523,9 @@
     .gm-pill { display: inline-flex; align-items: center; font-size: 12.5px; font-weight: 700; color: var(--navy-deep); background: #f4f7fb; border: 1px solid var(--line); border-radius: 999px; padding: 7px 15px; }
 
     /* Project details grid */
+    /* Fixed 2 columns: with Funded by removed there are at most two details,
+       so they sit 50/50, and a lone Duration card stays half-width rather than
+       stretching across the whole modal. */
     .gm-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .gm-detail { padding: 14px 16px; border: 1px solid var(--line-soft); border-radius: 12px; background: #fbfcfd; }
     .gm-detail span { display: block; font-size: 9.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-bottom: 5px; }
@@ -556,7 +565,6 @@
       .gm-body { padding: 4px 20px 32px; }
       .gm-parties { grid-template-columns: 1fr; }
       .gm-details { grid-template-columns: 1fr; }
-      .gm-field { grid-template-columns: 110px 1fr; }
       .gm-lb-prev { left: 8px; } .gm-lb-next { right: 8px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -946,7 +954,6 @@
             countries: codes.join('|'),
             grantAmount: pick(row, ['Total Spent','Grant Amount','grantAmount']).replace(/[^0-9.]/g, ''),
             totalSpent: pick(row, ['Total Spent']),
-            fundedBy: pick(row, ['Funded by:','Funded by','fundedBy']),
             duration: pick(row, ['Duration','duration']),
             currency: pick(row, ['currency','Currency']) || 'EUR',
             grantee: grantee,
@@ -1368,8 +1375,7 @@
         const details = [
           ['Duration', clean(item.duration)],
           // Individual grantees (e.g. MOVE): the amount received is not disclosed.
-          ['Total Spent', move ? '' : clean(item.totalSpent)],
-          ['Funded by', clean(item.fundedBy)]
+          ['Total Spent', move ? '' : clean(item.totalSpent)]
         ].filter(d => hasData(d[1]));
         const detailsHtml = details.length
           ? '<section class="gm-section"><h3>Project Details</h3><div class="gm-details">' + details.map(d => '<div class="gm-detail"><span>' + esc(d[0]) + '</span><strong>' + esc(d[1]) + '</strong></div>').join('') + '</div></section>'
