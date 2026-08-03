@@ -35,7 +35,7 @@ internal paths are absolute, e.g. `/css/tokens.css`).
 ├── assets/
 │   ├── img/            Logos + og-default.png (social share image)
 │   ├── images/         Photos, organised by section (team/, partners/, gefund/, ...)
-│   ├── projects/       projects.csv (data for projects.html)
+│   ├── projects/       projects.csv (data for ourgrantees.html)
 │   ├── documents/      PDFs + documents.csv (see "Large PDFs" below)
 │   └── js/pdfjs/       Bundled PDF.js viewer
 ├── css/
@@ -96,14 +96,14 @@ Every page contains:
 ## 4. CSV-driven content pages
 
 Some pages render their content from a CSV instead of hard-coded HTML, so non-developers
-can update them. These pages: `projects.html`, `about-team.html`,
-`about-accountability.html`, `about-careers.html`, `events.html`.
+can update them. These pages: `ourgrantees.html`, `about-team.html`,
+`wbfdocuments.html`, `about-careers.html`, `events.html`.
 
 Each has a `CSV_URL` constant near the top of its inline `<script>`, plus a `SAMPLE_DATA`
 array used as a fallback.
 
 - If `CSV_URL` points at a **local file** committed in the repo (e.g.
-  `projects.html` → `/assets/projects/projects.csv`), edit that CSV and push.
+  `ourgrantees.html` → `/assets/projects/projects.csv`), edit that CSV and push.
 - If `CSV_URL` is a **published Google Sheet CSV URL**, edit the sheet, no push needed.
 - If `CSV_URL` is **empty (`''`)**, the page shows the built-in `SAMPLE_DATA` (placeholder
   content). Leaving it empty in production means visitors see sample data, so fill it in.

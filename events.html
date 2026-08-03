@@ -4,10 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Events &amp; Activities — Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/events.html">
 <meta name="description" content="Upcoming and past events from the Western Balkans Fund — conferences, workshops, info sessions and networking across the region.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
@@ -34,14 +42,9 @@
   .page-hero-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
   .page-hero h1 { font-family: var(--font-display); font-size: var(--text-hero); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 16px; max-width: 22ch; }
   .page-hero p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.65; max-width: 62ch; }
-  .hero-stats { position: relative; z-index: 2; margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; }
-  .hero-stat { padding-right: 20px; border-right: 1px solid rgba(255,255,255,0.08); }
-  .hero-stat:last-child { border-right: none; padding-right: 0; }
-  .hero-stat-num { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; }
-  .hero-stat-label { font-size: var(--text-sm); color: rgba(255,255,255,0.55); }
 
   /* FILTERS */
-  .filters-wrap { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 56px; z-index: 100; }
+  .filters-wrap { background: #fff; border-bottom: 1px solid var(--line); }
   .filters-inner { max-width: 1400px; margin: 0 auto; padding: 20px 40px; display: flex; flex-direction: column; gap: 12px; }
   .filter-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .filter-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin-right: 4px; flex-shrink: 0; width: 80px; }
@@ -86,7 +89,7 @@
   .event-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .event-cover-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,32,68,0.55), transparent 60%); }
   .event-type-badge { position: relative; z-index: 1; background: rgba(255,255,255,0.95); color: var(--navy); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; }
-  .event-mode-badge { position: absolute; top: 14px; right: 14px; background: rgba(15,32,68,0.85); color: #5eead4; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 5px; backdrop-filter: blur(4px); }
+  .event-mode-badge { position: absolute; top: 14px; right: 14px; background: rgba(15,32,68,0.85); color: #7db8ec; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 5px; backdrop-filter: blur(4px); }
   .event-mode-badge svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .event-mode-badge.in-person { color: #fbbf24; }
 
@@ -131,7 +134,7 @@
   .modal-header-text { position: relative; z-index: 1; color: #fff; }
   .modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
   .modal-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.95); color: var(--navy); }
-  .modal-tag.dark { background: rgba(15,32,68,0.85); color: #5eead4; }
+  .modal-tag.dark { background: rgba(15,32,68,0.85); color: #7db8ec; }
   .modal-title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; line-height: 1.2; }
 
   .modal-body { padding: 32px 44px 44px; }
@@ -142,7 +145,7 @@
   .fact-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 2px; }
   .fact-value { font-size: var(--text-sm); color: var(--ink); font-weight: 600; line-height: 1.4; }
 
-  .modal-description { font-size: var(--text-md); color: #334155; line-height: 1.75; }
+  .modal-description { font-size: var(--text-md); color: #334155; line-height: 1.75; text-align: justify; }
   .modal-description p { margin-bottom: 14px; }
   .modal-description p:last-child { margin-bottom: 0; }
   .modal-description h3 { font-size: var(--text-lg); font-weight: 600; color: var(--ink); margin: 22px 0 10px; }
@@ -174,9 +177,6 @@
 
   @media (max-width: 1024px) {
     .container, .page-hero-inner, .filters-inner, .results-meta { padding-left: 24px; padding-right: 24px; }
-    .hero-stats { grid-template-columns: repeat(1, 1fr); gap: 16px; }
-    .hero-stat { border-right: none; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .hero-stat:last-child { border-bottom: none; padding-bottom: 0; }
     .events-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
     .modal-facts { grid-template-columns: 1fr; }
     .modal-body { padding: 28px 28px 36px; }
@@ -209,12 +209,7 @@
     <nav class="breadcrumb"><a href="/index.html">Home</a><span>›</span>Events</nav>
     <div class="page-hero-overline">News &amp; Events</div>
     <h1>Events &amp; Activities</h1>
-    <p>Conferences, workshops, info sessions and networking events across the Western Balkans — connecting grantees, partners, civil society and policymakers throughout the year.</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-num" id="stat-upcoming">—</div><div class="hero-stat-label">Upcoming events</div></div>
-      <div class="hero-stat"><div class="hero-stat-num" id="stat-types">—</div><div class="hero-stat-label">Event types</div></div>
-      <div class="hero-stat"><div class="hero-stat-num" id="stat-past">—</div><div class="hero-stat-label">Past events archived</div></div>
-    </div>
+    <p>Explore upcoming conferences, workshops, seminars, information sessions, and other events organised by the Western Balkans Fund. You can also view the calendar of activities organised by our grantees across the region.</p>
   </div>
 </section>
 
@@ -273,13 +268,18 @@
   'use strict';
   /* CSV_URL — set to your Google Sheet CSV publish URL.
      Columns: id, title, type, mode, startDate, endDate, startTime,
-              endTime, city, country, venue, coverImage, summary,
+              endTime, city, contractingparty, venue, coverImage, summary,
               description, agenda (pipe: 09:00|Welcome|10:00|Panel),
               registrationUrl, programme, capacity, status
      type values: conference, workshop, webinar, info-session,
                   networking, awards, training
      mode values: in-person, online, hybrid */
-  const CSV_URL = '';
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSOzfTVArPvCpsEUjBoCbiHHZIO2phMIPSFkNDe5v-69ktrRjW62Rr6KvC93Umcmy5of3rVxTFi-NPS/pub?output=csv';
+
+  /* SAMPLE_DATA is illustrative placeholder content for local development only.
+     It must NEVER be shown to real visitors — a live-feed failure in production
+     must surface an honest error state instead of fabricated events. */
+  const IS_DEV = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
 
   const TYPE_LABELS = {
     'conference': 'Conference', 'workshop': 'Workshop', 'webinar': 'Webinar',
@@ -326,9 +326,20 @@
   }
 
   async function loadData() {
-    if (!CSV_URL) { STATE.items = SAMPLE_DATA.slice(); return; }
-    try { const res = await fetch(CSV_URL, { cache: 'no-store' }); if (!res.ok) throw new Error(); STATE.items = parseCSV(await res.text()).filter(i => (i.status || 'published').toLowerCase() !== 'draft'); }
-    catch { STATE.items = SAMPLE_DATA.slice(); }
+    if (!CSV_URL) {
+      if (IS_DEV) { STATE.items = SAMPLE_DATA.slice(); return; }
+      throw new Error('Events feed is not configured');
+    }
+    try {
+      const res = await fetch(CSV_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      STATE.items = parseCSV(await res.text()).filter(i => (i.status || 'published').toLowerCase() !== 'draft');
+    } catch (err) {
+      /* Dev-only graceful degradation. In production, re-throw so init() can
+         render an honest error state instead of fabricated sample events. */
+      if (IS_DEV) { console.warn('[events] live feed unavailable — using local sample data:', err); STATE.items = SAMPLE_DATA.slice(); return; }
+      throw err;
+    }
   }
 
   function normalizeType(t) { const k = String(t || '').trim().toLowerCase().replace(/\s+/g, '-'); return TYPE_LABELS[k] ? k : 'info-session'; }
@@ -363,20 +374,11 @@
         : new Date(a.startDate) - new Date(b.startDate));
   }
 
-  function renderStats() {
-    const upcoming = STATE.items.filter(i => i.startDate && !isPast(i.startDate)).length;
-    const past = STATE.items.filter(i => i.startDate && isPast(i.startDate)).length;
-    const types = new Set(STATE.items.map(i => normalizeType(i.type))).size;
-    $('#stat-upcoming').textContent = upcoming;
-    $('#stat-types').textContent = types;
-    $('#stat-past').textContent = past;
-  }
-
   function renderCard(e) {
     const type = normalizeType(e.type); const mode = normalizeMode(e.mode);
     const grad = TYPE_GRADIENT[type] || 'brand';
     const coverStyle = e.coverImage ? ' style="background-image:url(' + JSON.stringify(e.coverImage).slice(1,-1) + ')"' : '';
-    const location = mode === 'online' ? 'Online' : [e.city, COUNTRY[e.country] || e.country].filter(Boolean).join(', ');
+    const location = mode === 'online' ? 'Online' : [e.city, COUNTRY[e.contractingparty || e.country] || e.contractingparty || e.country].filter(Boolean).join(', ');
     return '<button type="button" class="event-card" data-id="' + escapeAttr(e.id) + '">' +
       '<div class="event-cover ' + escapeAttr(grad) + '"' + coverStyle + '>' +
         (e.coverImage ? '<div class="event-cover-overlay"></div>' : '') +
@@ -418,12 +420,24 @@
     else { pastBand.style.display = 'none'; }
   }
 
+  /* Description: plain text (spreadsheet cell) → paragraphs, or pass HTML through. */
+  function looksLikeHtml(s) { return /<(p|div|h[1-6]|ul|ol|li|br|blockquote|table|img|a|strong|em|span)\b/i.test(s); }
+  function formatRichText(raw, fallback) {
+    const t = (raw == null ? '' : String(raw)).trim();
+    if (!t) return '<p>' + escapeHtml(fallback || '') + '</p>';
+    if (looksLikeHtml(t)) return t;
+    return t.replace(/\r\n/g, '\n').split(/\n[ \t]*\n+/).map(function (para) {
+      const s = para.replace(/^\n+|\n+$/g, '');
+      return s ? '<p>' + escapeHtml(s).replace(/\n/g, '<br>') + '</p>' : '';
+    }).filter(Boolean).join('');
+  }
+
   const Modal = (function () {
     const overlay = $('#modal'); const content = $('#modal-content');
     function open(e) {
       const type = normalizeType(e.type); const mode = normalizeMode(e.mode);
       const grad = TYPE_GRADIENT[type] || 'brand';
-      const location = mode === 'online' ? 'Online' : [e.city, COUNTRY[e.country] || e.country].filter(Boolean).join(', ');
+      const location = mode === 'online' ? 'Online' : [e.city, COUNTRY[e.contractingparty || e.country] || e.contractingparty || e.country].filter(Boolean).join(', ');
       const dateRange = e.startDate ? (e.endDate && e.endDate !== e.startDate ? formatDate(e.startDate) + ' — ' + formatDate(e.endDate) : formatDate(e.startDate)) : '';
       const timeRange = e.startTime ? (e.endTime ? e.startTime + '–' + e.endTime : e.startTime) : '';
       const headerStyle = e.coverImage ? ' style="background-image:url(' + JSON.stringify(e.coverImage).slice(1,-1) + ')"' : '';
@@ -465,7 +479,7 @@
         '<div class="modal-body">' +
           (facts ? '<div class="modal-facts">' + facts + '</div>' : '') +
           '<h3 class="section-h">About this event</h3>' +
-          '<div class="modal-description">' + (e.description || ('<p>' + escapeHtml(e.summary || '') + '</p>')) + '</div>' +
+          '<div class="modal-description">' + formatRichText(e.description, e.summary) + '</div>' +
           agenda +
           actions +
         '</div>';
@@ -505,8 +519,8 @@
 
   async function init() {
     bindFilters(); bindCards(); bindHistory();
-    try { await loadData(); buildTypeFilters(); renderStats(); render(); maybeOpen(); }
-    catch (err) { console.error(err); $('#upcoming-grid').innerHTML = '<div class="state-msg"><h3>Unable to load events</h3></div>'; }
+    try { await loadData(); buildTypeFilters(); render(); maybeOpen(); }
+    catch (err) { console.error(err); $('#upcoming-grid').innerHTML = '<div class="state-msg"><h3>We couldn\'t load the events right now</h3><p>Please refresh the page or try again shortly. For event enquiries, contact us at <a href="mailto:info@westernbalkansfund.org">info@westernbalkansfund.org</a>.</p></div>'; }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

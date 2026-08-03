@@ -4,10 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Western Balkans Fund — Building Regional Cooperation</title>
-<meta name="description" content="The Western Balkans Fund supports civil society, institutions, and communities across all six Contracting Parties — funding projects that strengthen reconciliation, EU integration, and people-to-people ties.">
+<link rel="canonical" href="https://westernbalkansfund.org/">
+<meta name="description" content="The Western Balkans Fund funds civil society projects across six Contracting Parties — strengthening reconciliation, EU integration and people-to-people ties.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
@@ -56,19 +64,6 @@
     overflow: hidden;
   }
 
-  /* Soft dotted-grid overlay, masked to fade out */
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.4px);
-    background-size: 26px 26px;
-    -webkit-mask-image: radial-gradient(1100px 560px at 22% 5%, #000 0%, transparent 72%);
-    mask-image: radial-gradient(1100px 560px at 22% 5%, #000 0%, transparent 72%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
   /* Floating blurred blue orb */
   .hero::after {
     content: "";
@@ -94,7 +89,7 @@
     z-index: 2;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 64px 40px 56px;
+    padding: 64px 40px 28px;
   }
 
   .hero-text {
@@ -228,110 +223,13 @@
   .hero-text h1 { animation: hero-in 0.7s ease 0.08s both; }
   .hero-text p  { animation: hero-in 0.7s ease 0.18s both; }
   .hero-btns    { animation: hero-in 0.7s ease 0.28s both; }
-  .stats-bar    { animation: hero-in 0.7s ease 0.38s both; }
   @media (prefers-reduced-motion: reduce) {
     .hero::after,
     .hero-eyebrow .dot,
-    .hero-eyebrow, .hero-text h1, .hero-text p, .hero-btns, .stats-bar { animation: none; }
+    .hero-eyebrow, .hero-text h1, .hero-text p, .hero-btns { animation: none; }
   }
 
-  .hero-aside {
-    max-width: 880px;
-  }
-
-  .hero-aside-label {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.3);
-    margin-bottom: 16px;
-  }
-
-  .audience-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-
-  .audience-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 14px 20px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.09);
-    border-radius: 8px;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .audience-card:hover {
-    background: rgba(255,255,255,0.09);
-    border-color: rgba(255,255,255,0.18);
-  }
-
-  .audience-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 3px;
-    background: rgba(255,255,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #fff;
-  }
-  .audience-icon svg { width: 20px; height: 20px; stroke-width: 1.8; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
-
-  .audience-title { flex: 1; font-size: var(--text-md); font-weight: 600; color: #fff; }
   .audience-arrow { color: rgba(255,255,255,0.25); font-size: var(--text-base); transition: color 0.15s; }
-  .audience-card:hover .audience-arrow { color: rgba(255,255,255,0.6); }
-
-  /* Stats bar */
-  .stats-bar {
-    position: relative;
-    z-index: 2;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    background: rgba(0,0,0,0.22);
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-  }
-  .stats-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .stat-item {
-    position: relative;
-    padding: 26px 24px;
-    border-right: 1px solid rgba(255,255,255,0.07);
-    overflow: hidden;
-    transition: background 0.2s ease;
-  }
-  .stat-item:last-child { border-right: none; }
-  .stat-item::before {
-    content: "";
-    position: absolute;
-    top: -1px; left: 0;
-    width: 0; height: 2px;
-    background: linear-gradient(90deg, #4f8bf5, #9bbcf0);
-    transition: width 0.35s ease;
-  }
-  .stat-item:hover { background: rgba(255,255,255,0.04); }
-  .stat-item:hover::before { width: 100%; }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 34px;
-    font-weight: 800;
-    color: #fff;
-    line-height: 1;
-    letter-spacing: -0.015em;
-    margin-bottom: 6px;
-  }
-  .stat-label { font-size: var(--text-sm); color: rgba(255,255,255,0.5); }
 
   /* ============================================================
      SECTION SHARED
@@ -372,6 +270,7 @@
     position: relative;
     background: #fff;
     overflow: hidden;
+    padding-top: 44px;
   }
   .about::before {
     content: "";
@@ -499,7 +398,7 @@
   .about-text .btn-dark svg { transition: transform 0.15s; }
   .about-text .btn-dark:hover svg { transform: translateX(3px); }
 
-  /* Pillar cards — 2×2 interactive grid */
+  /* Pillar cards,2×2 interactive grid */
   .about-cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -507,50 +406,61 @@
   }
   .pillar-card {
     position: relative;
-    background: linear-gradient(180deg, #ffffff 0%, #eef3fb 100%);
-    border: 1px solid #d8e2f0;
+    background: linear-gradient(155deg, #1c48a8 0%, #173D8F 55%, #102554 100%);
+    border: 1px solid rgba(255,255,255,0.12);
     border-radius: 14px;
     padding: 26px 22px 22px;
     overflow: hidden;
-    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    transition: transform 0.3s cubic-bezier(.22,.61,.36,1), box-shadow 0.3s ease, border-color 0.3s ease;
   }
+  /* soft glow orb that brightens on hover */
+  .pillar-card::before {
+    content: "";
+    position: absolute; top: -55px; right: -45px;
+    width: 170px; height: 170px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(127,176,255,0.30) 0%, transparent 70%);
+    opacity: 0.55; pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.45s ease;
+  }
+  .pillar-card:hover::before { opacity: 1; transform: scale(1.22); }
+  /* smaller corner number (no longer overlaps the text) */
   .pillar-card::after {
     content: attr(data-num);
     position: absolute;
-    top: -22px; right: 8px;
+    top: 14px; right: 18px;
     font-family: var(--font-display);
-    font-size: 104px; font-weight: 800; line-height: 1;
-    color: rgba(26,54,104,0.06);
+    font-size: 44px; font-weight: 800; line-height: 1;
+    color: rgba(255,255,255,0.13);
     pointer-events: none;
-    transition: color 0.28s ease, transform 0.28s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
   }
   .pillar-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 22px 44px rgba(15,32,68,0.16);
-    border-color: var(--navy-700);
+    box-shadow: 0 24px 48px rgba(15,32,68,0.38);
+    border-color: rgba(127,176,255,0.5);
   }
-  .pillar-card:hover::after { color: rgba(51,114,227,0.14); transform: translateY(5px); }
+  .pillar-card:hover::after { color: rgba(127,176,255,0.42); transform: scale(1.08); }
   .pillar-bar {
     display: block;
     width: 34px; height: 4px; border-radius: 999px;
-    background: linear-gradient(90deg, var(--navy), #3372e3);
+    background: linear-gradient(90deg, #7fb0ff, #ffffff);
     margin-bottom: 18px;
-    transition: width 0.28s ease;
+    transition: width 0.3s ease, box-shadow 0.3s ease;
   }
-  .pillar-card:hover .pillar-bar { width: 58px; }
+  .pillar-card:hover .pillar-bar { width: 58px; box-shadow: 0 0 14px rgba(127,176,255,0.7); }
   .pillar-title {
     position: relative; z-index: 1;
     font-family: var(--font-display);
     font-size: var(--text-base);
     font-weight: 700;
-    color: var(--navy);
+    color: #fff;
     line-height: 1.3;
     margin-bottom: 8px;
   }
   .pillar-desc {
     position: relative; z-index: 1;
     font-size: var(--text-sm);
-    color: var(--ink-soft);
+    color: rgba(255,255,255,0.74);
     line-height: 1.6;
   }
 
@@ -634,7 +544,23 @@
     flex-wrap: wrap;
     margin-bottom: 26px;
   }
-  .pf-tabs { display: inline-flex; flex-wrap: wrap; gap: 8px; }
+  .pf-tabs { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  /* thin separator between the "who it's for" and "what you get" tab groups */
+  .pf-tab-divider {
+    width: 1px; height: 22px;
+    background: rgba(255,255,255,0.22);
+    margin: 0 4px;
+    flex-shrink: 0;
+  }
+  .pf-tab-grouplabel {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.45);
+    padding: 0 2px;
+    align-self: center;
+  }
   .pf-tab {
     display: inline-flex;
     align-items: center;
@@ -677,7 +603,7 @@
     z-index: 2;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 14px;
   }
 
   .pf-card {
@@ -687,14 +613,14 @@
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(147,184,247,0.20);
     border-radius: 14px;
-    padding: 22px 20px 18px;
+    padding: 15px 16px 13px;
     text-decoration: none;
     color: inherit;
     overflow: hidden;
     backdrop-filter: blur(4px);
     transition: transform 0.3s cubic-bezier(.16,.84,.44,1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
   }
-  /* animated top accent — reveals on hover, like the Chairmanship timeline cards */
+  /* animated top accent,reveals on hover, like the Chairmanship timeline cards */
   .pf-card::before {
     content: "";
     position: absolute;
@@ -709,7 +635,7 @@
   .pf-card:hover::before { transform: scaleX(1); }
   .pf-card:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
-  /* featured (currently open) program — mirrors the timeline's "current term" highlight */
+  /* featured (currently open) program,mirrors the timeline's "current term" highlight */
   .pf-card.featured { background: linear-gradient(135deg, rgba(51,114,227,0.34), rgba(51,114,227,0.12)); border-color: rgba(147,184,247,0.55); box-shadow: 0 12px 30px rgba(51,114,227,0.28); }
   .pf-card.featured::before { transform: scaleX(1); }
 
@@ -718,7 +644,7 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 10px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
   .pf-badge {
     font-size: var(--text-xs);
@@ -748,17 +674,42 @@
     font-size: var(--text-base);
     font-weight: 700;
     color: #fff;
-    line-height: 1.3;
+    line-height: 1.25;
     margin-bottom: 8px;
   }
+  /* Beneficiary + type tags: let users tell at a glance who a programme is
+     for and what it offers, matching the combined filter above */
+  .pf-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .pf-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 3px 9px 3px 8px;
+    border-radius: 999px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .pf-tag svg { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .pf-tag.who-org        { background: rgba(45,190,210,0.16); color: #86dbe8; border: 1px solid rgba(45,190,210,0.32); }
+  .pf-tag.who-individual { background: rgba(245,180,60,0.15);  color: #f3c778; border: 1px solid rgba(245,180,60,0.34); }
+  .pf-tag.type-grant     { background: rgba(51,114,227,0.20);  color: #a9c6f7; border: 1px solid rgba(51,114,227,0.40); }
+  .pf-tag.type-capacity  { background: rgba(60,200,130,0.16);  color: #7fe0ac; border: 1px solid rgba(60,200,130,0.36); }
   .pf-card-desc {
     font-size: var(--text-sm);
     color: rgba(255,255,255,0.70);
-    line-height: 1.6;
-    margin-bottom: 16px;
+    line-height: 1.55;
+    margin-bottom: 12px;
     flex: 1;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -768,7 +719,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding-top: 12px;
+    padding-top: 10px;
     border-top: 1px solid rgba(147,184,247,0.18);
   }
   .pf-when { font-size: var(--text-sm); color: rgba(255,255,255,0.60); line-height: 1.35; }
@@ -812,11 +763,33 @@
   /* ============================================================
      IMPACT STATS
      ============================================================ */
-  .impact { background: #fff; }
+  .impact { background: #fff; padding-top: 24px; }
 
-  .impact-header { text-align: center; margin-bottom: 56px; }
-  .impact-header .overline { display: inline-block; }
-  .impact-header h2 { margin-bottom: 16px; }
+  .impact-header { text-align: center; margin-bottom: 48px; }
+  .impact-header .overline {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4.6vw, 54px);
+    font-weight: 800;
+    text-transform: none;
+    letter-spacing: -0.015em;
+    line-height: 1.04;
+    margin-bottom: 14px;
+    background: linear-gradient(100deg, #0f2044 0%, #173D8F 36%, #3372e3 60%, #6aa2f7 80%, #173D8F 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: glanceShine 7s linear infinite;
+  }
+  .impact-header .overline::after {
+    content: ""; display: block; width: 66px; height: 4px; margin: 16px auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #dba91c, #f2cf6b);
+    box-shadow: 0 4px 14px rgba(219,169,28,0.4);
+  }
+  @keyframes glanceShine { to { background-position: 220% center; } }
+  @media (prefers-reduced-motion: reduce) { .impact-header .overline { animation: none; } }
+  .impact-header h2 { font-size: var(--text-lg); font-weight: 600; color: var(--muted); letter-spacing: 0; margin-bottom: 16px; }
   .impact-header p { font-size: var(--text-base); color: var(--muted); max-width: 50ch; margin: 0 auto; line-height: 1.65; }
 
   .impact { position: relative; overflow: hidden; }
@@ -826,99 +799,36 @@
   }
   .impact .container { position: relative; z-index: 1; }
 
-  .hl-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    max-width: 1120px;
-    margin: 0 auto;
-  }
-
-  .hl-card {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(180deg, #ffffff 0%, #f6f9fe 100%);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 22px 20px;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: 0 6px 18px rgba(15,32,68,0.05);
-    transition: transform 0.3s cubic-bezier(.16,.84,.44,1), box-shadow 0.3s ease, border-color 0.3s ease;
-  }
-  .hl-card::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--acc), var(--acc-soft));
-    transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
-  }
-  .hl-card:hover { transform: translateY(-5px); border-color: var(--acc-soft); box-shadow: 0 16px 34px rgba(15,32,68,0.12); }
-  .hl-card:hover::before { transform: scaleX(1); }
-
-  .hl-eyebrow {
-    align-self: flex-start;
-    display: inline-flex; align-items: center;
-    font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--acc-ink); background: var(--acc-tint); border: 1px solid var(--acc-line);
-    padding: 4px 10px; border-radius: 999px; margin-bottom: 16px;
-  }
-
-  .hl-num {
-    display: block;
-    font-family: var(--font-display); font-size: 40px; font-weight: 800; line-height: 1;
-    background: linear-gradient(120deg, var(--navy-900), var(--acc));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hl-label { display: block; margin-top: 10px; font-size: var(--text-sm); font-weight: 700; color: var(--navy); line-height: 1.35; }
-  .hl-sub { display: block; margin-top: 5px; font-size: var(--text-xs); color: var(--muted); line-height: 1.4; }
-
-  .hl-more {
-    display: inline-flex; align-items: center; gap: 6px; margin-top: 16px;
-    font-size: var(--text-xs); font-weight: 700; color: var(--acc-ink);
-  }
-  .hl-more svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s ease; }
-  .hl-card:hover .hl-more svg { transform: translateX(3px); }
-
-  /* per-programme accents */
-  .hl-card.move       { --acc: #7c5cf0; --acc-soft: #b9a6f8; --acc-ink: #5a3fd0; --acc-tint: #f1edfe; --acc-line: rgba(124,92,240,0.22); }
-  .hl-card.fellowship { --acc: #3372e3; --acc-soft: #93b8f7; --acc-ink: #1e4fa3; --acc-tint: #e9f0fd; --acc-line: rgba(51,114,227,0.22); }
-  .hl-card.gef        { --acc: #1fa6bd; --acc-soft: #7fdde8; --acc-ink: #0f7d90; --acc-tint: #e6f7fa; --acc-line: rgba(31,166,189,0.22); }
-  .hl-card.ggi        { --acc: #d99a2b; --acc-soft: #f6ca77; --acc-ink: #a8721a; --acc-tint: #fdf4e3; --acc-line: rgba(217,154,43,0.24); }
-
   /* ============================================================
-     FLAGSHIP — WBF Regional Academy
+     FLAGSHIP,WBF Regional Academy
      ============================================================ */
   .academy { background: #fff; }
+  .glance-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; align-items: stretch; }
   .academy-card {
     position: relative;
     overflow: hidden;
-    display: grid;
-    grid-template-columns: 1.35fr 1fr;
     border-radius: 22px;
     background: linear-gradient(150deg, #004a6b 0%, #00618c 55%, #007db2 100%);
     box-shadow: 0 26px 62px rgba(0,74,107,0.32);
   }
-  .academy-card::before {
-    content: ""; position: absolute; top: -140px; right: -90px; width: 420px; height: 420px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(219,169,28,0.32) 0%, transparent 70%); pointer-events: none;
-  }
+  .academy-head { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
   .academy-card::after {
     content: ""; position: absolute; bottom: -160px; left: -120px; width: 380px; height: 380px; border-radius: 50%;
     background: radial-gradient(circle, rgba(41,163,217,0.28) 0%, transparent 70%); pointer-events: none;
   }
-  .academy-body { position: relative; z-index: 2; padding: 48px 46px; }
-  .academy-wbf { position: absolute; top: 30px; right: 40px; height: 30px; width: auto; opacity: 0.96; z-index: 3; }
-  .academy-support { position: absolute; bottom: 30px; right: 40px; display: flex; align-items: center; gap: 10px; z-index: 3; }
+  .academy-body { position: relative; z-index: 2; padding: 44px 46px; }
+  .academy-wbf { height: 40px; width: auto; opacity: 0.98; flex-shrink: 0; }
+  .academy-actions { display: flex; align-items: center; justify-content: space-between; gap: 18px 24px; flex-wrap: wrap; }
+  .academy-support { display: flex; align-items: center; gap: 11px; }
   .academy-support-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.72); }
   .academy-support-logo {
     display: inline-flex; align-items: center;
-    background: #fff; border-radius: 8px; padding: 6px 10px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.20);
+    background: #fff; border-radius: 9px; padding: 8px 13px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
   }
-  .academy-support-logo img { height: 22px; width: auto; display: block; }
+  .academy-support-logo img { height: 30px; width: auto; display: block; }
   .academy-flag {
-    display: inline-flex; align-items: center; gap: 7px; margin-bottom: 18px;
+    display: inline-flex; align-items: center; gap: 7px;
     font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.13em; color: #004a6b;
     background: linear-gradient(90deg, #f2cf6b, #dba91c); padding: 6px 14px; border-radius: 999px;
   }
@@ -954,20 +864,88 @@
   .academy-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 38px rgba(219,169,28,0.44); filter: brightness(1.05); }
   .academy-btn:hover svg { transform: translateX(4px); }
 
-  .academy-media {
+  /* 2026 programme accordion (right column of the flagship card) */
+  .academy-highlights {
     position: relative; z-index: 2;
-    display: flex; align-items: center; justify-content: center;
-    padding: 40px;
+    display: flex; flex-direction: column; gap: 18px;
+    padding: 30px 26px;
     background: linear-gradient(160deg, #ffffff 0%, #F0F8FC 100%);
-    border-left: 1px solid rgba(179,217,236,0.45);
+    border: 1px solid #dcebf4;
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(0,74,107,0.12);
   }
-  .academy-logo-ph {
-    position: absolute; inset: 32px;
-    display: flex; align-items: center; justify-content: center; text-align: center;
-    color: #5c8098; font-size: var(--text-sm); line-height: 1.5;
-    border: 2px dashed rgba(0,125,178,0.30); border-radius: 16px; padding: 20px;
+  /* vertical accordion of horizontal programme cards; unified light theme,
+     each programme's page-gradient used only on the number, side bar and CTA */
+  .prog-acc { display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 440px; }
+
+  .prog-c {
+    position: relative; overflow: hidden;
+    flex: 1 1 0; min-height: 64px;
+    display: flex; flex-direction: column; justify-content: center;
+    border-radius: 14px;
+    border: 1px solid #e3edf8;
+    background: linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
+    text-decoration: none; color: inherit;
+    transition: box-shadow .3s ease, border-color .3s ease;
   }
-  .academy-logo { position: relative; max-width: 80%; max-height: 260px; width: auto; height: auto; }
+  .prog-c::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 4px; background: var(--g); z-index: 2; }
+  /* focused card sizes to its own content; the others grow to fill — no dead space.
+     Open state is driven by JS (.prog-c--open), not :hover, to avoid reflow flicker. */
+  .prog-c--open { flex: 0 0 auto; justify-content: flex-start; box-shadow: 0 16px 34px -14px rgba(15,32,68,.22); border-color: var(--pc-soft); }
+
+  /* always-visible header row (horizontal) */
+  .pc-head { display: flex; align-items: center; gap: 14px; min-height: 62px; padding: 0 16px 0 22px; flex-shrink: 0; }
+  .pc-num {
+    font: 800 34px/1 var(--font-display); letter-spacing: -.035em; flex-shrink: 0;
+    background: var(--g); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .pc-name { font-size: 16.5px; font-weight: 800; color: var(--navy, #173D8F); line-height: 1.16; letter-spacing: -.01em; }
+  .pc-logo { height: 27px; width: auto; display: block; }
+  .pc-chev { margin-left: auto; flex-shrink: 0; color: var(--pc); transition: transform .4s ease; }
+  .pc-chev svg { width: 18px; height: 18px; display: block; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .prog-c--open .pc-chev { transform: rotate(90deg); }
+
+  /* revealed body — collapses to zero height so the header can center */
+  .pc-body {
+    display: flex; flex-direction: column; gap: 14px;
+    padding: 0 22px; max-height: 0; opacity: 0; overflow: hidden;
+    transition: max-height .5s cubic-bezier(.22,.61,.36,1), opacity .35s ease, padding .5s ease;
+  }
+  .prog-c--open .pc-body { max-height: 360px; opacity: 1; padding: 6px 22px 24px; }
+  .pc-lead { display: flex; align-items: center; gap: 13px; }
+  .pc-lead-num {
+    font: 800 58px/.82 var(--font-display); letter-spacing: -.04em; flex-shrink: 0;
+    background: var(--g); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .pc-lead-unit { font-size: 14.5px; font-weight: 700; color: var(--navy, #173D8F); line-height: 1.3; }
+  .pc-text { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-soft, #3c4863); }
+  .pc-text b { font-weight: 800; color: var(--pc); }
+  .pc-cta {
+    align-self: flex-start; margin-top: 4px;
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 12px 21px; border-radius: 999px;
+    background: var(--g); color: #fff;
+    font-size: 14px; font-weight: 800; letter-spacing: .01em;
+    box-shadow: 0 11px 22px -9px var(--pc-shadow);
+    transition: gap .2s ease, box-shadow .2s ease;
+  }
+  .prog-c--open .pc-cta { gap: 13px; box-shadow: 0 15px 28px -9px var(--pc-shadow); }
+  .pc-cta svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* per-programme accents = each programme page's own gradient */
+  .prog-c.gef   { --g: linear-gradient(90deg, #5A2DFF 0%, #3F6DFF 26%, #8A2BE2 54%, #C2185B 82%, #FF1A1A 100%); --pc: #8A2BE2; --pc-soft: #d8b4fe; --pc-shadow: rgba(138,43,226,.6); }
+  .prog-c.ggi   { --g: linear-gradient(120deg, #173D8F 0%, #2567D8 60%, #4AA3F0 100%); --pc: #2567D8; --pc-soft: #aacbf5; --pc-shadow: rgba(37,103,216,.6); }
+  .prog-c.move  { --g: linear-gradient(120deg, #0E8C84 0%, #076b64 100%); --pc: #0E8C84; --pc-soft: #8fcfc9; --pc-shadow: rgba(14,140,132,.6); }
+  .prog-c.viseg { --g: linear-gradient(120deg, #08213b 0%, #0F3250 48%, #1D5C9E 100%); --pc: #1D5C9E; --pc-soft: #a8c8e8; --pc-shadow: rgba(29,92,158,.6); }
+
+  @media (max-width: 600px) {
+    .prog-acc { min-height: 0; }
+    .prog-c { flex: 0 0 auto; justify-content: flex-start; }
+    .pc-body { max-height: none; opacity: 1; padding: 6px 22px 24px; }
+    .pc-chev { display: none; }
+  }
 
   /* ============================================================
      CHAIRMANSHIP IN OFFICE
@@ -1023,7 +1001,7 @@
   .chair-carousel { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
   .chair-carousel .cc-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(.16,.84,.44,1); }
   .chair-carousel .cc-slide { flex: 0 0 100%; height: 100%; }
-  /* must beat `.chair-media img { position:absolute; inset:0 }` — otherwise the
+  /* must beat `.chair-media img { position:absolute; inset:0 }`,otherwise the
      transformed track becomes their containing block and they slide off-screen */
   .chair-carousel .cc-slide img { position: static; inset: auto; width: 100%; height: 100%; object-fit: cover; display: block; }
   .chair-carousel .cc-btn {
@@ -1308,6 +1286,7 @@
   .benefit-icon svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .benefit-label { font-size: var(--text-md); font-weight: 500; color: #334155; }
 
+  .partnership-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
   .partnership-btn {
     display: inline-flex;
     align-items: center;
@@ -1317,9 +1296,22 @@
     color: #fff;
     font-weight: 600;
     font-size: var(--text-md);
+    text-decoration: none;
     border-radius: 10px;
     box-shadow: 0 8px 22px rgba(26,54,104,0.22);
     transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .partnership-fb {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: #1877F2; color: #fff; border-radius: 12px; text-decoration: none;
+    box-shadow: 0 8px 22px rgba(24,119,242,0.30);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  .partnership-fb svg { width: 24px; height: 24px; }
+  .partnership-fb:hover, .partnership-fb:focus-visible {
+    background: #0f6ae0; transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(24,119,242,0.42); outline: none;
   }
   .partnership-btn svg { transition: transform 0.18s ease; }
   .partnership-card:hover .partnership-btn {
@@ -1351,64 +1343,10 @@
     padding: 24px;
   }
 
-  .browser-frame {
-    width: 100%;
-    max-width: 520px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
-  }
-  .browser-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #1e293b;
-    padding: 10px 16px;
-  }
-  .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .browser-dot.r { background: #f87171; }
-  .browser-dot.y { background: #fbbf24; }
-  .browser-dot.g { background: #34d399; }
-  .browser-url {
-    flex: 1;
-    margin-left: 12px;
-    background: #334155;
-    padding: 4px 12px;
-    font-size: var(--text-xs);
-    color: #cbd5e1;
-    border-radius: 3px;
-  }
-  .browser-body {
-    background: #fff;
-    padding: 24px;
-  }
-  .bb-title { height: 12px; width: 40%; background: #dbe5f1; border-radius: 999px; margin-bottom: 20px; }
-  .bb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-  .bb-card { border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
-  .bb-card-icon { width: 28px; height: 28px; background: #eef2f8; border-radius: 3px; margin-bottom: 10px; }
-  .bb-card-label { font-size: var(--text-xs); font-weight: 600; color: #334155; margin-bottom: 6px; }
-  .bb-card-line { height: 6px; background: var(--line-soft); border-radius: 999px; margin-bottom: 4px; }
-  .bb-card-line.short { width: 75%; }
-  .bb-people {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 12px;
-  }
-  .bb-avatars { display: flex; }
-  .bb-avatar { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #fff; margin-left: -6px; }
-  .bb-avatar:first-child { margin-left: 0; }
-  .bb-avatar.a { background: #93c5fd; }
-  .bb-avatar.b { background: #5eead4; }
-  .bb-avatar.c { background: #fcd34d; }
-  .bb-people-text { font-size: var(--text-xs); color: var(--muted); }
-
   /* ============================================================
      NEWS GRID
      ============================================================ */
-  .news { background: #fff; }
+  .news { background: #fff; padding-bottom: 40px; }
   .news-header {
     display: flex;
     align-items: flex-end;
@@ -1447,12 +1385,12 @@
   .news-featured:hover { box-shadow: 0 16px 32px rgba(15,32,68,0.08); transform: translateY(-2px); }
 
   .news-featured-img {
-    min-height: 320px;
+    min-height: 190px;
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-700) 100%);
     background-size: cover;
     background-position: center;
   }
-  .news-featured-body { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+  .news-featured-body { padding: 24px 28px; display: flex; flex-direction: column; justify-content: center; }
 
   .news-badge {
     display: inline-block;
@@ -1470,18 +1408,18 @@
 
   .news-featured h3 {
     font-family: var(--font-display);
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
     font-weight: 700;
     color: var(--ink);
     line-height: 1.25;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
-  .news-featured p { color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
+  .news-featured p { color: var(--muted); line-height: 1.55; margin-bottom: 12px; font-size: var(--text-sm); }
   .news-date { font-size: var(--text-sm); color: var(--faint); display: flex; align-items: center; gap: 6px; }
 
   .news-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
   }
 
@@ -1498,16 +1436,16 @@
   .news-card:hover { box-shadow: 0 12px 24px rgba(15,32,68,0.08); transform: translateY(-2px); }
 
   .news-card-img {
-    height: 180px;
+    aspect-ratio: 16 / 9;
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-700) 100%);
     background-size: cover;
     background-position: center;
   }
-  .news-card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+  .news-card-body { padding: 16px 18px; display: flex; flex-direction: column; flex: 1; }
   .news-card-body .news-badge { font-size: var(--text-xs); padding: 3px 8px; margin-bottom: 12px; }
-  .news-card h3 { font-size: var(--text-md); font-weight: 600; color: var(--ink); line-height: 1.4; margin-bottom: 8px; flex: 1; }
-  .news-card p { font-size: var(--text-sm); color: var(--muted); line-height: 1.55; margin-bottom: 16px; }
-  .news-card-foot { display: flex; justify-content: space-between; align-items: center; font-size: var(--text-sm); color: var(--faint); }
+  .news-card h3 { font-size: var(--text-md); font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-card p { font-size: var(--text-sm); color: var(--muted); line-height: 1.5; margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-card-foot { display: flex; justify-content: space-between; align-items: center; font-size: var(--text-sm); color: var(--faint); margin-top: auto; }
   .news-card-read { color: var(--navy); font-weight: 600; }
 
   /* ============================================================
@@ -1629,14 +1567,9 @@
   @media (max-width: 1024px) {
     .container { padding: 0 24px; }
     .hero-inner { padding: 48px 24px 40px; }
-    .audience-cards { grid-template-columns: 1fr; }
-    .stats-grid { padding: 0 24px; grid-template-columns: repeat(2, 1fr); }
-    .stat-item:nth-child(2) { border-right: none; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .pf-grid { grid-template-columns: repeat(2, 1fr); }
-    .hl-grid { grid-template-columns: repeat(2, 1fr); }
-    .academy-card { grid-template-columns: 1fr; }
-    .academy-media { border-left: none; border-top: 1px solid rgba(179,217,236,0.45); min-height: 240px; order: -1; }
+    .glance-grid { grid-template-columns: 1fr; gap: 20px; }
     .chair-card { grid-template-columns: 1fr; }
     .chair-media { min-height: 260px; }
     .chair-body { padding: 40px 28px; }
@@ -1653,18 +1586,27 @@
     .nav-items { display: none; }
     .btn-partners { display: none; }
     .section { padding: 56px 0; }
-    .stats-grid { grid-template-columns: 1fr; }
-    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
-    .pf-grid { grid-template-columns: 1fr; }
     .about-cards { grid-template-columns: 1fr; }
-    .hl-grid { grid-template-columns: repeat(2, 1fr); }
     .academy-body { padding: 36px 26px; }
-    .academy-wbf { position: static; display: block; margin-bottom: 18px; height: 26px; }
-    .academy-support { position: static; margin-top: 22px; justify-content: flex-start; }
+    .academy-wbf { height: 34px; }
+    .academy-actions { flex-direction: column; align-items: flex-start; gap: 22px; }
     .academy-facts { grid-template-columns: 1fr 1fr; }
     .news-grid { grid-template-columns: 1fr; }
     .partners-row { flex-direction: column; }
     .partner-link { border-right: none; border-bottom: 1px solid var(--line); width: 100%; text-align: center; }
+    /* Chairmanship: drop logo into flow so it stops overlapping the title/intro */
+    .chair-logo { position: static; width: 116px; margin: 0 0 18px; }
+    .chair-title { max-width: none; }
+    .chair-intro { max-width: none; }
+  }
+
+  /* Programme cards: two compact columns hold on tablets/large phones,
+     single column only on the narrowest screens */
+  @media (max-width: 560px) {
+    .pf-grid { grid-template-columns: 1fr; }
+    .pf-tab-divider { display: none; }
+    .pf-tab-grouplabel { width: 100%; margin-top: 4px; }
+    .pf-tab-grouplabel:first-of-type { margin-top: 0; }
   }
 
   /* ============================================================
@@ -1823,10 +1765,14 @@
     .lc-logos { gap: 20px 32px; }
   }
   @media (max-width: 600px) {
-    .lc-carousel { height: 440px; }
-    .lc-slide { padding: 22px 46px 44px; }
-    .lc-logo { width: 150px; height: 74px; }
-    .lc-logos { gap: 18px 22px; }
+    /* Let the carousel grow to fit its logos instead of clipping the taller
+       (7-logo) "Other Partners" slide — fixed height + overflow:hidden was
+       hiding most of them. Two logos per row, height driven by content. */
+    .lc-carousel { height: auto; }
+    .lc-track { align-items: stretch; }
+    .lc-slide { padding: 22px 44px 44px; min-height: 320px; justify-content: flex-start; }
+    .lc-logo { width: 118px; height: 62px; }
+    .lc-logos { gap: 18px 16px; }
     .lc-btn { width: 34px; height: 34px; }
     .lc-btn svg { width: 14px; height: 14px; }
     .lc-prev { left: 8px; }
@@ -1851,10 +1797,10 @@
     <div class="hero-text">
       <h1>
         Building <em>lasting</em><br>
-        <span class="grad">regional cooperation</span><br>
-        across the Western Balkans
+        <span class="grad">cooperation</span> across<br>
+        the Western Balkans
       </h1>
-      <p>The Western Balkans Fund supports civil society, institutions, and communities across all six Contracting Parties — funding projects that strengthen reconciliation, EU integration, and people-to-people ties.</p>
+      <p>The Western Balkans Fund supports civil society, institutions, and communities across all six Contracting Parties, funding projects that strengthen reconciliation, EU integration, and people-to-people ties.</p>
       <div class="hero-btns">
         <a href="/our-programs.html" class="hero-btn-primary">
           Funding &amp; Opportunities
@@ -1868,42 +1814,7 @@
     </div>
   </div>
 
-  <div class="stats-bar">
-    <div class="stats-grid">
-      <div class="stat-item"><div class="stat-num" data-count="3.5" data-prefix="€" data-suffix="M+">0</div><div class="stat-label">Total funding disbursed</div></div>
-      <div class="stat-item"><div class="stat-num" data-count="9">0</div><div class="stat-label">Active programs</div></div>
-    </div>
-  </div>
 </section>
-
-<!-- Hero stat count-up -->
-<script>
-(function () {
-  var nums = Array.prototype.slice.call(document.querySelectorAll('.stats-bar .stat-num[data-count]'));
-  if (!nums.length) return;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function fmt(el, v) {
-    return (el.getAttribute('data-prefix') || '') + v + (el.getAttribute('data-suffix') || '');
-  }
-  function run(el) {
-    var target = parseFloat(el.getAttribute('data-count')) || 0;
-    if (reduce || !window.requestAnimationFrame) { el.textContent = fmt(el, target); return; }
-    var dur = 1500, t0 = null, done = false;
-    function step(ts) {
-      if (t0 === null) t0 = ts;
-      var p = Math.min((ts - t0) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt(el, Math.round(target * eased));
-      if (p < 1) requestAnimationFrame(step);
-      else { done = true; el.textContent = fmt(el, target); }
-    }
-    requestAnimationFrame(step);
-    /* Safety net: guarantee the final value even if rAF is throttled */
-    setTimeout(function () { if (!done) el.textContent = fmt(el, target); }, dur + 900);
-  }
-  nums.forEach(run);
-})();
-</script>
 
 <!-- ============================================================
      ABOUT
@@ -1913,7 +1824,7 @@
     <div class="about-grid">
       <div class="about-text">
         <h2 class="about-title">The first <span class="hl">home-grown</span> regional mechanism</h2>
-        <p class="about-lead">The WBF promotes ever closer cooperation and stronger ties between the Contracting Parties, their integration into the European Union, and a common presentation within and beyond the region — supporting the champions of regional cooperation through a diversified programme of grants, dialogue and technical assistance.</p>
+        <p class="about-lead">The WBF promotes ever closer cooperation and stronger ties between the Contracting Parties, their integration into the European Union, and a common presentation within and beyond the region, supporting the champions of regional cooperation through a diversified programme of grants, dialogue and technical assistance.</p>
         <a href="/about.html" class="btn-dark">
           Learn About WBF
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
@@ -1975,13 +1886,19 @@
     <div class="programs-header">
       <div class="overline">Funding &amp; Opportunities</div>
       <h2>Explore our programs</h2>
-      <p>From flagship regional grant schemes to fellowships, mobility funding, and capacity-building academies — find the WBF programme that fits your organisation or your work, and open its page to apply.</p>
+      <p>From flagship regional grant schemes to fellowships, mobility funding, and capacity-building academies, find the WBF programme that fits your organisation, institution, or individual work, and open its page to apply.</p>
     </div>
 
     <div class="pf-controls">
-      <div class="pf-tabs" role="tablist" aria-label="Filter programs">
-        <button type="button" class="pf-tab active" data-filter="all" role="tab" aria-selected="true">All programs <span class="pf-tab-count">8</span></button>
-        <button type="button" class="pf-tab" data-filter="grants" role="tab" aria-selected="false">Grant programmes <span class="pf-tab-count">6</span></button>
+      <div class="pf-tabs" role="tablist" aria-label="Filter programmes by who they are for and what they offer">
+        <button type="button" class="pf-tab active" data-filter="all" role="tab" aria-selected="true">All programmes <span class="pf-tab-count">8</span></button>
+        <span class="pf-tab-divider" aria-hidden="true"></span>
+        <span class="pf-tab-grouplabel">Who it's for</span>
+        <button type="button" class="pf-tab" data-filter="org" role="tab" aria-selected="false">Organisations <span class="pf-tab-count">5</span></button>
+        <button type="button" class="pf-tab" data-filter="individual" role="tab" aria-selected="false">Individuals <span class="pf-tab-count">3</span></button>
+        <span class="pf-tab-divider" aria-hidden="true"></span>
+        <span class="pf-tab-grouplabel">What you get</span>
+        <button type="button" class="pf-tab" data-filter="grant" role="tab" aria-selected="false">Grant funding <span class="pf-tab-count">6</span></button>
         <button type="button" class="pf-tab" data-filter="capacity" role="tab" aria-selected="false">Capacity building <span class="pf-tab-count">2</span></button>
       </div>
       <a href="/our-programs.html" class="pf-viewall">
@@ -1992,12 +1909,16 @@
 
     <div class="pf-grid" id="pf-grid">
 
-      <a href="/ggi.html" class="pf-card" data-cat="grants">
+      <a href="/ggi.html" class="pf-card" data-who="org" data-type="grant">
         <div class="pf-card-top">
           <span class="pf-badge winners">Winners Announced</span>
           <div class="pf-grant"><div class="pf-grant-num">€15,000</div><div class="pf-grant-sub">max grant</div></div>
         </div>
-        <h3 class="pf-card-title">Good Governance &amp; Integration (GGI)</h3>
+        <h3 class="pf-card-title">Grants for Grassroots Initiatives (GGI)</h3>
+        <div class="pf-tags">
+          <span class="pf-tag who-org"><svg viewBox="0 0 14 14"><path d="M2.5 12.5V2.5h6v10M8.5 5.5h3v7M4.5 4.8h2M4.5 6.8h2M4.5 8.8h2"/></svg>Organisations</span>
+          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
+        </div>
         <p class="pf-card-desc">Supports young, emerging CSOs and grassroots organisations to contribute to regional cooperation, reconciliation, democratic governance and EU integration across the WB6.</p>
         <div class="pf-card-foot">
           <span class="pf-when">Call No. 8 · results published</span>
@@ -2005,12 +1926,16 @@
         </div>
       </a>
 
-      <a href="/gefund.html" class="pf-card featured" data-cat="grants">
+      <a href="/gefund.html" class="pf-card featured" data-who="org" data-type="grant">
         <div class="pf-card-top">
           <span class="pf-badge eval">Under Evaluation</span>
           <div class="pf-grant"><div class="pf-grant-num">€40,000</div><div class="pf-grant-sub">max grant</div></div>
         </div>
         <h3 class="pf-card-title">Gender Equality Fund (GEFund)</h3>
+        <div class="pf-tags">
+          <span class="pf-tag who-org"><svg viewBox="0 0 14 14"><path d="M2.5 12.5V2.5h6v10M8.5 5.5h3v7M4.5 4.8h2M4.5 6.8h2M4.5 8.8h2"/></svg>Organisations</span>
+          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
+        </div>
         <p class="pf-card-desc">The Fund's dedicated regional mechanism for gender equality, supporting collaborative initiatives across the six Contracting Parties and turning long-term commitment into concrete action.</p>
         <div class="pf-card-foot">
           <span class="pf-when">Applications in evaluation</span>
@@ -2018,38 +1943,33 @@
         </div>
       </a>
 
-      <a href="/matching.html" class="pf-card" data-cat="grants">
+      <a href="/matching.html" class="pf-card" data-who="org" data-type="grant">
         <div class="pf-card-top">
           <span class="pf-badge open">Always Open</span>
           <div class="pf-grant"><div class="pf-grant-num">€10,000</div><div class="pf-grant-sub">max grant</div></div>
         </div>
         <h3 class="pf-card-title">Matching Grants</h3>
-        <p class="pf-card-desc">Co-financing for regional projects that have already earned the trust of another funder — amplifying their impact through matched WBF support on a rolling basis.</p>
+        <div class="pf-tags">
+          <span class="pf-tag who-org"><svg viewBox="0 0 14 14"><path d="M2.5 12.5V2.5h6v10M8.5 5.5h3v7M4.5 4.8h2M4.5 6.8h2M4.5 8.8h2"/></svg>Organisations</span>
+          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
+        </div>
+        <p class="pf-card-desc">Co-financing for regional projects that have already earned the trust of another funder, amplifying their impact through matched WBF support on a rolling basis.</p>
         <div class="pf-card-foot">
           <span class="pf-when">No deadline · rolling basis</span>
           <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
         </div>
       </a>
 
-      <a href="/visegrad.html" class="pf-card" data-cat="grants">
-        <div class="pf-card-top">
-          <span class="pf-badge winners">Winners Announced</span>
-          <div class="pf-grant"><div class="pf-grant-num">Fellowship</div><div class="pf-grant-sub">mobility grant</div></div>
-        </div>
-        <h3 class="pf-card-title">Western Balkans–Visegrad Fellowship</h3>
-        <p class="pf-card-desc">Short-term academic mobility between the Western Balkans and the Visegrad Group, enabling PhD candidates and doctoral holders to research, teach, or study at host institutions.</p>
-        <div class="pf-card-foot">
-          <span class="pf-when">With the International Visegrad Fund</span>
-          <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
-        </div>
-      </a>
-
-      <a href="/erc.html" class="pf-card" data-cat="grants">
+      <a href="/erc.html" class="pf-card" data-who="org" data-type="grant">
         <div class="pf-card-top">
           <span class="pf-badge soon">Coming Soon</span>
-          <div class="pf-grant"><div class="pf-grant-num">€30,000</div><div class="pf-grant-sub">max grant</div></div>
+          <div class="pf-grant"><div class="pf-grant-num">€25,000</div><div class="pf-grant-sub">max grant</div></div>
         </div>
-        <h3 class="pf-card-title">ERC — Empowering Regional Cooperation</h3>
+        <h3 class="pf-card-title">ERC Empowering Regional Cooperation</h3>
+        <div class="pf-tags">
+          <span class="pf-tag who-org"><svg viewBox="0 0 14 14"><path d="M2.5 12.5V2.5h6v10M8.5 5.5h3v7M4.5 4.8h2M4.5 6.8h2M4.5 8.8h2"/></svg>Organisations</span>
+          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
+        </div>
         <p class="pf-card-desc">Larger EU co-funded grants that strengthen civil society partnerships and collaborative initiatives across the Western Balkans, promoting democracy and sustainable development.</p>
         <div class="pf-card-foot">
           <span class="pf-when">Opening Autumn 2026</span>
@@ -2057,12 +1977,33 @@
         </div>
       </a>
 
-      <a href="/move.html" class="pf-card" data-cat="grants">
+      <a href="/visegrad-fellowship.html" class="pf-card" data-who="individual" data-type="grant">
+        <div class="pf-card-top">
+          <span class="pf-badge winners">Winners Announced</span>
+          <div class="pf-grant"><div class="pf-grant-num">Fellowship</div><div class="pf-grant-sub">mobility grant</div></div>
+        </div>
+        <h3 class="pf-card-title">Western Balkans–Visegrad Fellowship</h3>
+        <div class="pf-tags">
+          <span class="pf-tag who-individual"><svg viewBox="0 0 14 14"><circle cx="7" cy="4.3" r="2.1"/><path d="M3 12a4 4 0 0 1 8 0"/></svg>Individuals</span>
+          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
+        </div>
+        <p class="pf-card-desc">Short-term academic mobility between the Western Balkans and the Visegrad Group, enabling PhD candidates and doctoral holders to research, teach, or study at host institutions.</p>
+        <div class="pf-card-foot">
+          <span class="pf-when">With the International Visegrad Fund</span>
+          <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
+        </div>
+      </a>
+
+      <a href="/move.html" class="pf-card" data-who="individual" data-type="grant">
         <div class="pf-card-top">
           <span class="pf-badge soon">Coming Soon</span>
           <div class="pf-grant"><div class="pf-grant-num">People</div><div class="pf-grant-sub">to people</div></div>
         </div>
         <h3 class="pf-card-title">MOVE Grants</h3>
+        <div class="pf-tags">
+          <span class="pf-tag who-individual"><svg viewBox="0 0 14 14"><circle cx="7" cy="4.3" r="2.1"/><path d="M3 12a4 4 0 0 1 8 0"/></svg>Individuals</span>
+          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
+        </div>
         <p class="pf-card-desc">Short-term, people-to-people funding for researchers, students, professors, journalists, artists and activists to cross borders, connect with peers, and bring value back home.</p>
         <div class="pf-card-foot">
           <span class="pf-when">For individuals · next call TBC</span>
@@ -2070,12 +2011,16 @@
         </div>
       </a>
 
-      <a href="/regional-academy.html" class="pf-card" data-cat="capacity">
+      <a href="/regional-academy.html" class="pf-card" data-who="individual" data-type="capacity">
         <div class="pf-card-top">
           <span class="pf-badge closed">Applications Closed</span>
           <div class="pf-grant"><div class="pf-grant-num">7-day</div><div class="pf-grant-sub">residential</div></div>
         </div>
         <h3 class="pf-card-title">WBF Regional Academy</h3>
+        <div class="pf-tags">
+          <span class="pf-tag who-individual"><svg viewBox="0 0 14 14"><circle cx="7" cy="4.3" r="2.1"/><path d="M3 12a4 4 0 0 1 8 0"/></svg>Individuals</span>
+          <span class="pf-tag type-capacity"><svg viewBox="0 0 14 14"><path d="M7 2.8 1.5 5.3 7 7.8l5.5-2.5L7 2.8zM3.6 6.6v2.2C3.6 9.7 5.1 10.5 7 10.5s3.4-.8 3.4-1.7V6.6"/></svg>Capacity building</span>
+        </div>
         <p class="pf-card-desc">A flagship capacity-building programme combining online learning and a seven-day residential academy, equipping emerging leaders with the skills and networks to advance cooperation.</p>
         <div class="pf-card-foot">
           <span class="pf-when">On Dialogue &amp; Culture of Cooperation</span>
@@ -2083,13 +2028,17 @@
         </div>
       </a>
 
-      <a href="/p2p.html" class="pf-card" data-cat="capacity">
+      <a href="/peer-to-peer.html" class="pf-card" data-who="org" data-type="capacity">
         <div class="pf-card-top">
           <span class="pf-badge active">Implementation</span>
           <div class="pf-grant"><div class="pf-grant-num">CSO</div><div class="pf-grant-sub">twinning</div></div>
         </div>
         <h3 class="pf-card-title">Peer to Peer</h3>
-        <p class="pf-card-desc">A capacity-building programme connecting civil society organisations across the Western Balkans with their EU peers — learn, adapt, and lead the change together.</p>
+        <div class="pf-tags">
+          <span class="pf-tag who-org"><svg viewBox="0 0 14 14"><path d="M2.5 12.5V2.5h6v10M8.5 5.5h3v7M4.5 4.8h2M4.5 6.8h2M4.5 8.8h2"/></svg>Organisations</span>
+          <span class="pf-tag type-capacity"><svg viewBox="0 0 14 14"><path d="M7 2.8 1.5 5.3 7 7.8l5.5-2.5L7 2.8zM3.6 6.6v2.2C3.6 9.7 5.1 10.5 7 10.5s3.4-.8 3.4-1.7V6.6"/></svg>Capacity building</span>
+        </div>
+        <p class="pf-card-desc">A capacity-building programme connecting civil society organisations across the Western Balkans with their EU peers, learn, adapt, and lead the change together.</p>
         <div class="pf-card-foot">
           <span class="pf-when">WB6 ↔ EU peers</span>
           <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
@@ -2109,7 +2058,9 @@
 
   function apply(filter) {
     cards.forEach(function (c) {
-      var show = (filter === 'all') || (c.getAttribute('data-cat') === filter);
+      var show = (filter === 'all')
+        || (c.getAttribute('data-who') === filter)
+        || (c.getAttribute('data-type') === filter);
       c.classList.toggle('is-hidden', !show);
     });
     // restart entrance animation on the now-visible cards
@@ -2134,117 +2085,216 @@
 </script>
 
 <!-- ============================================================
+     NEWS GRID
+     ============================================================ -->
+<section class="section news">
+  <div class="container">
+    <div class="news-header">
+      <div>
+        <div class="overline">Latest News</div>
+        <h2 class="section-title">News &amp; Announcements</h2>
+        <p>Stay informed on WBF's latest activities, grants, and regional cooperation initiatives.</p>
+      </div>
+      <a href="/news.html" class="ghost-link">All News →</a>
+    </div>
+
+    <div class="news-grid">
+      <a href="/news.html" class="news-card">
+        <div class="news-card-img"></div>
+        <div class="news-card-body">
+          <span class="news-badge">Announcement</span>
+          <h3>Visegrad Fellowship, 3rd Edition opens to WB6 researchers</h3>
+          <p>Doctoral students and graduates invited to apply for mobility grants in partnership with the International Visegrad Fund.</p>
+          <div class="news-card-foot">
+            <span>10 June 2026</span>
+            <span class="news-card-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/news.html" class="news-card">
+        <div class="news-card-img"></div>
+        <div class="news-card-body">
+          <span class="news-badge">Story</span>
+          <h3>How a cross-border youth network reconnected three Balkan cities</h3>
+          <p>A grantee story from the GGI Call No. 7, three CSOs share lessons from a year of regional cooperation.</p>
+          <div class="news-card-foot">
+            <span>5 June 2026</span>
+            <span class="news-card-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/news.html" class="news-card">
+        <div class="news-card-img"></div>
+        <div class="news-card-body">
+          <span class="news-badge">Event Recap</span>
+          <h3>LeadBalkans 2026: Highlights from the regional advocacy forum</h3>
+          <p>Photos, speakers and key takeaways from the third edition of the LeadBalkans platform in Tirana.</p>
+          <div class="news-card-foot">
+            <span>28 May 2026</span>
+            <span class="news-card-read">Read →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/news.html" class="news-card">
+        <div class="news-card-img"></div>
+        <div class="news-card-body">
+          <span class="news-badge">Open Call</span>
+          <h3>GGI Call No. 9 opens for applications</h3>
+          <p>€15,000 grants for civil society, cultural and educational projects across the WB6.</p>
+          <div class="news-card-foot">
+            <span>14 June 2026</span>
+            <span class="news-card-read">Read →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Home news feed: latest 6 from the shared data service (same Google Sheet as /news.html) -->
+<script src="/js/data-service.js"></script>
+<script>
+(function () {
+  'use strict';
+  const LIMIT = 4;
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  function firstGalleryImage(item) {
+    const g = item.galleryImages;
+    if (!g) return '';
+    if (Array.isArray(g)) return g.find(Boolean) || '';
+    return String(g).split('|').map(s => s.trim()).filter(Boolean)[0] || '';
+  }
+  function coverOf(item) { return item.featuredImage || item.coverImage || firstGalleryImage(item) || ''; }
+  function badge(item) {
+    const labels = (window.WBFNewsCard && window.WBFNewsCard.TYPE_LABELS) || {};
+    return labels[item.type] || item.type || '';
+  }
+  function imgStyle(item) {
+    const c = coverOf(item);
+    return c ? ' style="background-image:url(' + JSON.stringify(c).slice(1, -1) + ')"' : '';
+  }
+  const href = item => '/news.html?article=' + encodeURIComponent(item.id);
+
+  function renderFeatured(item) {
+    return '<a href="' + href(item) + '" class="news-featured" data-article-id="' + escapeHtml(item.id) + '">' +
+      '<div class="news-featured-img"' + imgStyle(item) + '></div>' +
+      '<div class="news-featured-body">' +
+        (badge(item) ? '<span class="news-badge">' + escapeHtml(badge(item)) + '</span>' : '') +
+        '<h3>' + escapeHtml(item.title || '') + '</h3>' +
+        (item.excerpt ? '<p>' + escapeHtml(item.excerpt) + '</p>' : '') +
+        '<div class="news-date">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' +
+          escapeHtml(formatDate(item.date)) +
+        '</div>' +
+      '</div>' +
+    '</a>';
+  }
+  function renderCard(item) {
+    return '<a href="' + href(item) + '" class="news-card" data-article-id="' + escapeHtml(item.id) + '">' +
+      '<div class="news-card-img"' + imgStyle(item) + '></div>' +
+      '<div class="news-card-body">' +
+        (badge(item) ? '<span class="news-badge">' + escapeHtml(badge(item)) + '</span>' : '') +
+        '<h3>' + escapeHtml(item.title || '') + '</h3>' +
+        (item.excerpt ? '<p>' + escapeHtml(item.excerpt) + '</p>' : '') +
+        '<div class="news-card-foot">' +
+          '<span>' + escapeHtml(formatDate(item.date)) + '</span>' +
+          '<span class="news-card-read">Read &rarr;</span>' +
+        '</div>' +
+      '</div>' +
+    '</a>';
+  }
+
+  /* Inject a component's <script> (and optionally its <style> + mount markup). */
+  async function loadComponent(url, withStyle) {
+    const res = await fetch(url, { cache: 'no-cache' });
+    if (!res.ok) throw new Error('load failed ' + url);
+    const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+    if (withStyle) doc.querySelectorAll('style[data-wbf-component]').forEach(s => document.head.appendChild(s.cloneNode(true)));
+    Array.from(doc.body.childNodes).forEach(node => {
+      if (node.nodeType === 1 && (node.tagName === 'SCRIPT' || node.tagName === 'STYLE')) return;
+      document.body.appendChild(node.cloneNode(true));
+    });
+    doc.querySelectorAll('script[data-wbf-component]').forEach(orig => {
+      const s = document.createElement('script');
+      for (const a of orig.attributes) s.setAttribute(a.name, a.value);
+      s.textContent = orig.textContent;
+      document.body.appendChild(s);
+    });
+  }
+
+  async function init() {
+    if (!window.WBFData || !window.WBFData.news) return;
+    let items;
+    try { items = await window.WBFData.news.all(); }
+    catch (e) { console.error('[home-news] feed failed:', e); return; }  /* leave placeholder markup */
+    if (!items || !items.length) return;
+    const latest = items.slice(0, LIMIT);
+
+    const section = document.querySelector('section.news');
+    if (!section) return;
+    const grid = section.querySelector('.news-grid');
+    if (grid) grid.innerHTML = latest.map(renderCard).join('');
+
+    /* Load card utils (script only, no CSS to avoid clashing with the homepage .news-card design)
+       + the modal (with its own scoped CSS), so cards open in place. */
+    try {
+      await loadComponent('/components/news-card.html', false);
+      await loadComponent('/components/news-modal.html', true);
+    } catch (e) { console.error('[home-news] modal load failed:', e); return; }  /* links still work as fallback */
+
+    if (window.WBFNewsModal) {
+      section.addEventListener('click', (e) => {
+        const link = e.target.closest('[data-article-id]');
+        if (!link || !section.contains(link)) return;
+        const item = latest.find(i => String(i.id) === String(link.getAttribute('data-article-id')));
+        if (item) { e.preventDefault(); window.WBFNewsModal.open(item); }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
+<!-- ============================================================
      IMPACT STATS
      ============================================================ -->
 <section class="section impact" id="impact">
   <div class="container">
     <div class="impact-header">
-      <div class="overline">At a Glance</div>
-      <h2 class="section-title">Across our programmes</h2>
-      <p>A current snapshot of our grant schemes and fellowships — the calls, applications and awards moving people and ideas across the region.</p>
+      <div class="overline">2026 at a glance</div>
+      <h2 class="section-title">A milestone year across the programmes</h2>
     </div>
 
-    <div class="hl-grid">
+    <div class="glance-grid">
 
-      <!-- MOVE -->
-      <a href="/move.html" class="hl-card move">
-        <span class="hl-eyebrow">MOVE</span>
-        <span class="hl-num" data-count="173">0</span>
-        <span class="hl-label">Grants to individual changemakers</span>
-        <span class="hl-sub">Across 6 funding calls</span>
-        <span class="hl-more">Explore MOVE
-          <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
-        </span>
-      </a>
-
-      <!-- WB–Visegrad Fellowship -->
-      <a href="/visegrad.html" class="hl-card fellowship">
-        <span class="hl-eyebrow">Fellowship</span>
-        <span class="hl-num" data-count="136">0</span>
-        <span class="hl-label">Fellowships supported</span>
-        <span class="hl-sub">PhD &amp; doctoral · WB6 ↔ V4 · 41·44·51</span>
-        <span class="hl-more">Explore
-          <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
-        </span>
-      </a>
-
-      <!-- GEFund -->
-      <a href="/gefund.html" class="hl-card gef">
-        <span class="hl-eyebrow">GEFund</span>
-        <span class="hl-num" data-count="269">0</span>
-        <span class="hl-label">Applications received</span>
-        <span class="hl-sub">Evaluating which 6 projects win</span>
-        <span class="hl-more">Keep up with updates
-          <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
-        </span>
-      </a>
-
-      <!-- GGI -->
-      <a href="/ggi.html" class="hl-card ggi">
-        <span class="hl-eyebrow">GGI</span>
-        <span class="hl-num" data-count="24">0</span>
-        <span class="hl-label">Projects in implementation</span>
-        <span class="hl-sub">Winners announced</span>
-        <span class="hl-more">See the projects
-          <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
-        </span>
-      </a>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- "At a glance" count-up (fires when the numbers scroll into view) -->
-<script>
-(function () {
-  var nums = Array.prototype.slice.call(document.querySelectorAll('.hl-num[data-count]'));
-  if (!nums.length) return;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function run(el) {
-    var target = parseFloat(el.getAttribute('data-count')) || 0;
-    var suffix = el.getAttribute('data-suffix') || '';
-    if (reduce || !window.requestAnimationFrame) { el.textContent = target + suffix; return; }
-    var dur = 1400, t0 = null;
-    function step(ts) {
-      if (t0 === null) t0 = ts;
-      var p = Math.min((ts - t0) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = target + suffix;
-    }
-    requestAnimationFrame(step);
-  }
-  if (!('IntersectionObserver' in window)) { nums.forEach(run); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      run(e.target);
-      io.unobserve(e.target);
-    });
-  }, { threshold: 0.4 });
-  nums.forEach(function (n) { io.observe(n); });
-})();
-</script>
-
-<!-- ============================================================
-     FLAGSHIP — WBF Regional Academy
-     ============================================================ -->
-<section class="section academy" id="regional-academy">
-  <div class="container">
-    <div class="academy-card">
-
+      <div class="academy-card">
       <div class="academy-body">
-        <img class="academy-wbf" src="/assets/img/logo-white.png" alt="Western Balkans Fund" onerror="this.style.display='none'">
-        <span class="academy-flag">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,9 22,9.3 16.5,14 18.5,21 12,17 5.5,21 7.5,14 2,9.3 9,9"/></svg>
-          Flagship Initiative
-        </span>
+        <div class="academy-head">
+          <img class="academy-wbf" src="/assets/img/wbf-logo-white.svg" alt="Western Balkans Fund" onerror="this.style.display='none'">
+          <span class="academy-flag">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,9 22,9.3 16.5,14 18.5,21 12,17 5.5,21 7.5,14 2,9.3 9,9"/></svg>
+            Flagship Initiative
+          </span>
+        </div>
         <div class="academy-kicker">WBF Regional Academy</div>
         <h2 class="academy-title">On Dialogue &amp; Culture of Cooperation</h2>
-        <p class="academy-lead">A <strong>7-day residential learning journey</strong> for junior professionals and emerging leaders from across the WB6 — an initiative of the <strong>Western Balkans Fund</strong>, supported by the <strong>Open Society Foundation Western Balkans</strong>, equipping a new generation to advance dialogue, cooperation and reconciliation.</p>
+        <p class="academy-lead">A <strong>7-day residential learning journey</strong> for junior professionals and emerging leaders from across the WB6, an initiative of the <strong>Western Balkans Fund</strong>, supported by the <strong>Open Society Foundation Western Balkans</strong>, equipping a new generation to advance dialogue, cooperation and reconciliation.</p>
 
         <div class="academy-facts">
           <div class="academy-fact"><span class="af-key">When</span><span class="af-val">13–20 Sept 2026</span></div>
@@ -2261,32 +2311,117 @@
           <span class="academy-tag">5 thematic pillars</span>
         </div>
 
-        <a href="/regional-academy.html" class="academy-btn">
-          Discover the Academy
-          <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
-        </a>
+        <div class="academy-actions">
+          <a href="/regional-academy.html" class="academy-btn">
+            Discover the Academy
+            <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
+          </a>
+          <div class="academy-support">
+            <span class="academy-support-label">Supported by</span>
+            <span class="academy-support-logo"><img src="/assets/images/partners/partner-osf.svg" alt="Open Society Foundation Western Balkans"></span>
+          </div>
+        </div>
+      </div>
+      </div>
 
-        <div class="academy-support">
-          <span class="academy-support-label">Supported by</span>
-          <span class="academy-support-logo"><img src="/assets/images/partners/partner-osf.svg" alt="Open Society Foundations" onerror="this.style.display='none'"></span>
+      <div class="academy-highlights">
+        <div class="prog-acc">
+
+          <a class="prog-c gef prog-c--open" href="/gefund.html" aria-label="Gender Equality Fund — first Call for Proposals received 269 applications">
+            <span class="pc-head">
+              <img class="pc-logo" src="/assets/images/gefund/gefund-logo.png" alt="GEFund — Western Balkans Gender Equality Fund" onerror="this.style.display='none'">
+              <span class="pc-chev"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </span>
+            <span class="pc-body">
+              <span class="pc-lead"><span class="pc-lead-num">269</span><span class="pc-lead-unit">applications to the<br>first Call for Proposals</span></span>
+              <span class="pc-text">The Western Balkans Fund has earmarked <b>15%</b> of its core budget for gender-equality initiatives.</span>
+              <span class="pc-cta">Discover GEFund <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+            </span>
+          </a>
+
+          <a class="prog-c ggi" href="/ggi.html" aria-label="Grants for Grassroots Initiatives — 24 projects funded under the 8th Call">
+            <span class="pc-head">
+              <span class="pc-num">24</span>
+              <span class="pc-name">Grants for Grassroots Initiatives</span>
+              <span class="pc-chev"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </span>
+            <span class="pc-body">
+              <span class="pc-text">Through its <b>8th Call</b>, WBF awarded funding to <b>24 projects</b> under the annual GGI grant scheme — supporting young and emerging CSOs and grassroots organisations to actively contribute to regional cooperation.</span>
+              <span class="pc-cta">Explore GGI <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+            </span>
+          </a>
+
+          <a class="prog-c move" href="/move.html" aria-label="MOVE Grant — 29 changemakers supported to travel across the WB6">
+            <span class="pc-head">
+              <span class="pc-num">29</span>
+              <span class="pc-name">MOVE Grant</span>
+              <span class="pc-chev"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </span>
+            <span class="pc-body">
+              <span class="pc-text">Through the MOVE Grant, WBF supported <b>29 changemakers</b> to travel across the WB6 region — exchanging knowledge, building partnerships, and bringing new ideas back to their communities.</span>
+              <span class="pc-cta">Explore MOVE <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+            </span>
+          </a>
+
+          <a class="prog-c viseg" href="/visegrad-fellowship.html" aria-label="Western Balkans–Visegrad Fellowships — 51 fellows awarded academic exchanges">
+            <span class="pc-head">
+              <span class="pc-num">51</span>
+              <span class="pc-name">Western Balkans–Visegrád Fellowships</span>
+              <span class="pc-chev"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </span>
+            <span class="pc-body">
+              <span class="pc-text">Through the Western Balkans–Visegrad Fellowships, WBF and the Visegrad Fund awarded <b>51 fellows</b> the opportunity to undertake academic exchanges between the WB6 and V4 regions.</span>
+              <span class="pc-cta">Explore the Fellowship <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+            </span>
+          </a>
+
         </div>
       </div>
 
-      <div class="academy-media">
-        <div class="academy-logo-ph">Add logo:<br>assets/images/regional-academy/logo.png</div>
-        <img class="academy-logo"
-             src="/assets/images/regional-academy/logo.png"
-             alt="WBF Regional Academy"
-             onload="var p=this.parentElement.querySelector('.academy-logo-ph'); if(p) p.style.display='none'"
-             onerror="this.style.display='none'">
-      </div>
-
     </div>
+
   </div>
 </section>
 
+<!-- Programme accordion: hover-to-open, debounced so reflow can't cause flicker -->
+<script>
+(function () {
+  var acc = document.querySelector('.prog-acc');
+  if (!acc) return;
+  var cards = Array.prototype.slice.call(acc.querySelectorAll('.prog-c'));
+  if (!cards.length) return;
+  var defaultCard = acc.querySelector('.prog-c--open') || cards[0];
+  var timer = null, hasFine = false;
+
+  // only enable hover-to-open for devices with a fine pointer (mouse)
+  try { hasFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches; } catch (e) { hasFine = true; }
+  if (!hasFine) return;
+
+  function open(card) {
+    if (!card || card.classList.contains('prog-c--open')) return;
+    cards.forEach(function (c) { c.classList.toggle('prog-c--open', c === card); });
+  }
+
+  // A card opens only after the pointer has rested on it for ~120ms. The timer is
+  // shared and cleared on every mouseenter, so the transient mouseenters fired while
+  // the layout reflows keep resetting it — no card switches until the pointer settles.
+  cards.forEach(function (card) {
+    card.addEventListener('mouseenter', function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () { open(card); }, 120);
+    });
+  });
+
+  // leaving the whole strip settles back to the default focus
+  acc.addEventListener('mouseleave', function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () { open(defaultCard); }, 160);
+  });
+})();
+</script>
+
 <!-- ============================================================
-     CHAIRMANSHIP IN OFFICE — Montenegro 2026
+     CHAIRMANSHIP IN OFFICE,Montenegro 2026
      ============================================================ -->
 <section class="section chair" id="chairmanship">
   <div class="container">
@@ -2339,7 +2474,7 @@
   FILES.forEach(function (f, i) {
     var s = document.createElement('div'); s.className = 'cc-slide';
     var img = document.createElement('img');
-    img.src = BASE + f; img.alt = 'Montenegro — WBF Presidency 2026 (' + (i + 1) + ')';
+    img.src = BASE + f; img.alt = 'Montenegro, WBF Presidency 2026 (' + (i + 1) + ')';
     /* first frame eager so the card paints immediately; the rest can wait */
     img.loading = i === 0 ? 'eager' : 'lazy';
     img.decoding = 'async';
@@ -2380,7 +2515,7 @@
   });
   root.appendChild(dotsWrap);
 
-  /* manual slide — touch swipe + mouse drag */
+  /* manual slide,touch swipe + mouse drag */
   var startX = null;
   function swipeStart(x) { startX = x; stop(); }
   function swipeEnd(x) {
@@ -2413,7 +2548,7 @@
      ============================================================ -->
 <section class="section partnership" id="partnership-platform">
   <div class="container">
-    <a href="https://wbfpartnership.com/" target="_blank" rel="noopener" class="partnership-card" aria-label="Visit the WBF Partnership Platform">
+    <div class="partnership-card">
 
       <div class="partnership-text">
         <div class="overline">WBF Partnership Platform</div>
@@ -2439,10 +2574,15 @@
           </div>
         </div>
 
-        <span class="partnership-btn">
-          Visit the Partnership Platform
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="11" x2="11" y2="3"/><polyline points="5,3 11,3 11,9"/></svg>
-        </span>
+        <div class="partnership-actions">
+          <a href="https://wbfpartnership.com/" target="_blank" rel="noopener" class="partnership-btn">
+            Visit the Partnership Platform
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="11" x2="11" y2="3"/><polyline points="5,3 11,3 11,9"/></svg>
+          </a>
+          <a href="https://www.facebook.com/groups/WBFPartnershipPlatform/" target="_blank" rel="noopener" class="partnership-fb" aria-label="Join the WBF Partnership Platform group on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.313 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
       </div>
 
       <div class="partnership-visual">
@@ -2454,76 +2594,6 @@
              onerror="this.style.display='none'">
       </div>
 
-    </a>
-  </div>
-</section>
-
-<!-- ============================================================
-     NEWS GRID
-     ============================================================ -->
-<section class="section news">
-  <div class="container">
-    <div class="news-header">
-      <div>
-        <div class="overline">Latest News</div>
-        <h2 class="section-title">News &amp; Announcements</h2>
-        <p>Stay informed on WBF's latest activities, grants, and regional cooperation initiatives.</p>
-      </div>
-      <a href="/news.html" class="ghost-link">All News →</a>
-    </div>
-
-    <a href="/news.html" class="news-featured">
-      <div class="news-featured-img"></div>
-      <div class="news-featured-body">
-        <span class="news-badge">Open Call</span>
-        <h3>GGI Call No. 9 opens for applications — €15,000 grants for regional cooperation</h3>
-        <p>The Western Balkans Fund announces the opening of the ninth call under the Good Governance and Integration scheme, supporting civil society, cultural and educational projects across WB6.</p>
-        <div class="news-date">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          14 June 2026
-        </div>
-      </div>
-    </a>
-
-    <div class="news-grid">
-      <a href="/news.html" class="news-card">
-        <div class="news-card-img"></div>
-        <div class="news-card-body">
-          <span class="news-badge">Announcement</span>
-          <h3>Visegrad Fellowship — 3rd Edition opens to WB6 researchers</h3>
-          <p>Doctoral students and graduates invited to apply for mobility grants in partnership with the International Visegrad Fund.</p>
-          <div class="news-card-foot">
-            <span>10 June 2026</span>
-            <span class="news-card-read">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/news.html" class="news-card">
-        <div class="news-card-img"></div>
-        <div class="news-card-body">
-          <span class="news-badge">Story</span>
-          <h3>How a cross-border youth network reconnected three Balkan cities</h3>
-          <p>A grantee story from the GGI Call No. 7 — three CSOs share lessons from a year of regional cooperation.</p>
-          <div class="news-card-foot">
-            <span>5 June 2026</span>
-            <span class="news-card-read">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="/news.html" class="news-card">
-        <div class="news-card-img"></div>
-        <div class="news-card-body">
-          <span class="news-badge">Event Recap</span>
-          <h3>LeadBalkans 2026: Highlights from the regional advocacy forum</h3>
-          <p>Photos, speakers and key takeaways from the third edition of the LeadBalkans platform in Tirana.</p>
-          <div class="news-card-foot">
-            <span>28 May 2026</span>
-            <span class="news-card-read">Read →</span>
-          </div>
-        </div>
-      </a>
     </div>
   </div>
 </section>
@@ -2541,62 +2611,7 @@
       </div>
 
       <div>
-        <div class="events-list">
-          <a href="/events.html" class="event-item">
-            <div class="event-date">
-              <div class="event-date-month">Jul</div>
-              <div class="event-date-day">02</div>
-            </div>
-            <div class="event-body">
-              <div class="event-badges">
-                <span class="event-badge neutral">Info Session</span>
-                <span class="event-badge teal">Online</span>
-              </div>
-              <div class="event-title">GGI Call No. 9 — Application Information Webinar</div>
-              <div class="event-loc">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Online
-              </div>
-            </div>
-            <span class="audience-arrow" style="color:#cbd5e1">→</span>
-          </a>
-
-          <a href="/events.html" class="event-item">
-            <div class="event-date">
-              <div class="event-date-month">Jul</div>
-              <div class="event-date-day">18</div>
-            </div>
-            <div class="event-body">
-              <div class="event-badges">
-                <span class="event-badge neutral">Networking</span>
-              </div>
-              <div class="event-title">Regional Cooperation Forum — Skopje</div>
-              <div class="event-loc">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Skopje, North Macedonia
-              </div>
-            </div>
-            <span class="audience-arrow" style="color:#cbd5e1">→</span>
-          </a>
-
-          <a href="/events.html" class="event-item">
-            <div class="event-date">
-              <div class="event-date-month">Sep</div>
-              <div class="event-date-day">12</div>
-            </div>
-            <div class="event-body">
-              <div class="event-badges">
-                <span class="event-badge neutral">Conference</span>
-              </div>
-              <div class="event-title">LeadBalkans 2026 — Annual Advocacy Platform</div>
-              <div class="event-loc">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Tirana, Albania
-              </div>
-            </div>
-            <span class="audience-arrow" style="color:#cbd5e1">→</span>
-          </a>
-        </div>
+        <div class="events-list" id="home-events-list"></div>
 
         <a href="/events.html" class="ghost-link">All events →</a>
       </div>
@@ -2604,12 +2619,84 @@
   </div>
 </section>
 
+<!-- Home events feed: top 3 upcoming events from the shared Google Sheet (same source as /events.html) -->
+<script>
+(function () {
+  'use strict';
+  var CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSOzfTVArPvCpsEUjBoCbiHHZIO2phMIPSFkNDe5v-69ktrRjW62Rr6KvC93Umcmy5of3rVxTFi-NPS/pub?output=csv';
+  var LIMIT = 3;
+  var TYPE_LABELS = { 'conference':'Conference','workshop':'Workshop','webinar':'Webinar','info-session':'Info Session','networking':'Networking','awards':'Awards','training':'Training' };
+  var COUNTRY = { AL:'Albania', BA:'Bosnia and Herzegovina', XK:'Kosovo*', MK:'North Macedonia', ME:'Montenegro', RS:'Serbia' };
+
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+  function normType(t){ var k=String(t||'').trim().toLowerCase().replace(/\s+/g,'-'); return TYPE_LABELS[k]?k:'info-session'; }
+  function normMode(m){ var k=String(m||'').trim().toLowerCase().replace(/\s+/g,'-'); return ['in-person','online','hybrid'].indexOf(k)>=0?k:'in-person'; }
+
+  function parseCSV(text){
+    var rows=[], row=[], field='', q=false;
+    for (var i=0;i<text.length;i++){ var c=text[i];
+      if(q){ if(c==='"'){ if(text[i+1]==='"'){ field+='"'; i++; } else q=false; } else field+=c; }
+      else { if(c==='"') q=true; else if(c===',') { row.push(field); field=''; } else if(c==='\n'){ row.push(field); rows.push(row); row=[]; field=''; } else if(c==='\r'){} else field+=c; }
+    }
+    if(field.length||row.length){ row.push(field); rows.push(row); }
+    if(!rows.length) return [];
+    var headers = rows[0].map(function(h){ return h.trim(); });
+    return rows.slice(1).filter(function(r){ return r.some(function(v){ return v && v.trim(); }); })
+      .map(function(r){ var o={}; headers.forEach(function(h,i){ o[h]=(r[i]||'').trim(); }); return o; });
+  }
+
+  var pinSvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+
+  function render(e){
+    var type = normType(e.type), mode = normMode(e.mode);
+    var d = new Date(e.startDate);
+    var month = isNaN(d) ? '' : d.toLocaleDateString('en-GB', { month:'short' });
+    var day = isNaN(d) ? '' : d.getDate();
+    var cp = e.contractingparty || e.country || '';
+    var location = mode === 'online' ? 'Online' : [e.city, COUNTRY[cp] || cp].filter(Boolean).join(', ');
+    var modeBadge = (mode === 'online') ? '<span class="event-badge teal">Online</span>'
+                  : (mode === 'hybrid') ? '<span class="event-badge teal">Hybrid</span>' : '';
+    return '<a href="/events.html?event=' + encodeURIComponent(e.id) + '" class="event-item">' +
+        '<div class="event-date"><div class="event-date-month">' + esc(month) + '</div><div class="event-date-day">' + esc(String(day)) + '</div></div>' +
+        '<div class="event-body">' +
+          '<div class="event-badges"><span class="event-badge neutral">' + esc(TYPE_LABELS[type]) + '</span>' + modeBadge + '</div>' +
+          '<div class="event-title">' + esc(e.title) + '</div>' +
+          (location ? '<div class="event-loc">' + pinSvg + ' ' + esc(location) + '</div>' : '') +
+        '</div>' +
+        '<span class="audience-arrow" style="color:#cbd5e1">&rarr;</span>' +
+      '</a>';
+  }
+
+  function init(){
+    var host = document.getElementById('home-events-list');
+    var section = document.querySelector('section.events');
+    if (!host) return;
+    var today = new Date(); today.setHours(0,0,0,0);
+    fetch(CSV_URL, { cache: 'no-store' })
+      .then(function(r){ if(!r.ok) throw new Error('fetch failed'); return r.text(); })
+      .then(function(txt){
+        var items = parseCSV(txt)
+          .filter(function(i){ return (i.status || 'published').toLowerCase() !== 'draft'; })
+          .filter(function(i){ return i.startDate && !isNaN(new Date(i.startDate)) && new Date(i.startDate) >= today; })
+          .sort(function(a,b){ return new Date(a.startDate) - new Date(b.startDate); })
+          .slice(0, LIMIT);
+        if (!items.length) { if (section) section.style.display = 'none'; return; }
+        host.innerHTML = items.map(render).join('');
+      })
+      .catch(function(){ if (section) section.style.display = 'none'; });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
 <!-- ============================================================
      DONOR / PARTNER LOGOS
      Save SVG logos in /assets/images/partners/ with these filenames:
-       Slide 1 — Strategic Partners: partner-eu.svg, partner-sdc.svg, partner-japan.svg, partner-germany.svg
-       Slide 2 — Other Partners:   partner-visegrad.svg, partner-osf.svg, partner-rcc.svg, partner-ryco.svg, partner-aics.svg, partner-cei.svg, partner-respa.svg
-     Different filenames are fine — just edit the src="" values.
+       Slide 1,Strategic Partners: partner-eu.svg, partner-sdc.svg, partner-japan.svg, partner-germany.svg
+       Slide 2,Other Partners:   partner-visegrad.svg, partner-osf.svg, partner-rcc.svg, partner-ryco.svg, partner-aics.svg, partner-cei.svg, partner-respa.svg
+     Different filenames are fine,just edit the src="" values.
      ============================================================ -->
 <section class="section section-alt">
   <div class="container">
@@ -2677,7 +2764,7 @@
 </section>
 
 <!-- ============================================================
-     SCRIPT — Partners logo carousel
+     SCRIPT,Partners logo carousel
      ============================================================ -->
 <script>
 (function () {
@@ -2750,137 +2837,6 @@
 })();
 </script>
 
-<!-- ============================================================
-     INSTAGRAM — Self-hosted photo grid (clean uniform squares)
-     ------------------------------------------------------------
-     Each tile shows a square-cropped photo that links to the real
-     post. To update the grid:
-       1. Open the post on instagram.com/westernbalkansfund and
-          save its image (right-click → Save image, or screenshot).
-       2. Put the file in:  assets/images/instagram/
-          named  ig-1.jpg, ig-2.jpg, …  (jpg or png; keep them
-          reasonably square-ish — CSS crops them to a square).
-       3. The href on each <a> is the post permalink so a click
-          opens the actual post. Swap the shortcode to change it.
-     Add/remove tiles by copying a block. 6 tiles = a tidy 3×2 grid.
-     Until an image exists, its tile shows a branded placeholder.
-     ============================================================ -->
-<section class="section ig-section" aria-labelledby="ig-heading">
-  <div class="container">
-    <div class="ig-header">
-      <div>
-        <div class="overline">Follow Us</div>
-        <h2 class="section-title" id="ig-heading">From our Instagram</h2>
-        <p>See the latest moments, events, and stories from across the Western Balkans.</p>
-      </div>
-      <a href="https://www.instagram.com/westernbalkansfund/" target="_blank" rel="noopener" class="ghost-link">@westernbalkansfund →</a>
-    </div>
-
-    <div class="ig-grid">
-      <!-- Tile 1 -->
-      <a class="ig-tile" href="https://www.instagram.com/p/DaheJ3oF5wM/" target="_blank" rel="noopener" aria-label="View post on Instagram">
-        <img src="/assets/images/instagram/ig-1.jpg" alt="Western Balkans Fund Instagram post" loading="lazy" onerror="this.closest('.ig-tile').classList.add('ig-missing')">
-        <span class="ig-tile-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
-      </a>
-
-      <!-- Tile 2 -->
-      <a class="ig-tile" href="https://www.instagram.com/p/DaUeUQpk8rh/" target="_blank" rel="noopener" aria-label="View post on Instagram">
-        <img src="/assets/images/instagram/ig-2.jpg" alt="Western Balkans Fund Instagram post" loading="lazy" onerror="this.closest('.ig-tile').classList.add('ig-missing')">
-        <span class="ig-tile-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
-      </a>
-
-      <!-- Tile 3 -->
-      <a class="ig-tile" href="https://www.instagram.com/p/DaKWg7pF9pq/" target="_blank" rel="noopener" aria-label="View post on Instagram">
-        <img src="/assets/images/instagram/ig-3.jpg" alt="Western Balkans Fund Instagram post" loading="lazy" onerror="this.closest('.ig-tile').classList.add('ig-missing')">
-        <span class="ig-tile-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
-      </a>
-
-      <!-- Tile 4 -->
-      <a class="ig-tile" href="https://www.instagram.com/p/DZXZR-fl0VX/" target="_blank" rel="noopener" aria-label="View post on Instagram">
-        <img src="/assets/images/instagram/ig-4.jpg" alt="Western Balkans Fund Instagram post" loading="lazy" onerror="this.closest('.ig-tile').classList.add('ig-missing')">
-        <span class="ig-tile-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
-      </a>
-
-      <!-- Tile 5 -->
-      <a class="ig-tile" href="https://www.instagram.com/p/DZNHHXCF4hU/" target="_blank" rel="noopener" aria-label="View post on Instagram">
-        <img src="/assets/images/instagram/ig-5.jpg" alt="Western Balkans Fund Instagram post" loading="lazy" onerror="this.closest('.ig-tile').classList.add('ig-missing')">
-        <span class="ig-tile-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
-      </a>
-
-      <!-- Tile 6 — add a 6th photo (ig-6.jpg) for a perfect 3×2 grid.
-      <a class="ig-tile" href="https://www.instagram.com/p/YOUR_SHORTCODE/" target="_blank" rel="noopener" aria-label="View post on Instagram">
-        <img src="/assets/images/instagram/ig-6.jpg" alt="Western Balkans Fund Instagram post" loading="lazy" onerror="this.closest('.ig-tile').classList.add('ig-missing')">
-        <span class="ig-tile-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
-      </a>
-      -->
-    </div>
-  </div>
-</section>
-
-<style>
-  .ig-section { background: var(--surface-alt); }
-  .ig-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin-bottom: 32px;
-  }
-  .ig-header p { color: var(--muted); font-size: var(--text-md); max-width: 48ch; margin-top: 4px; }
-
-  /* Uniform square grid — 3 across on desktop, 2 on smaller screens */
-  .ig-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-  }
-  @media (max-width: 720px) { .ig-grid { grid-template-columns: repeat(2, 1fr); } }
-
-  .ig-tile {
-    position: relative;
-    display: block;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border-radius: var(--radius-md);
-    background: var(--accent-tint);
-    box-shadow: 0 1px 3px rgba(15, 32, 68, 0.08);
-  }
-  .ig-tile img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.45s ease;
-  }
-  .ig-tile:hover img { transform: scale(1.06); }
-
-  /* Instagram glyph — hidden until hover on real photos */
-  .ig-tile-glyph {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background: rgba(26, 54, 104, 0);
-    opacity: 0;
-    transition: opacity 0.3s ease, background 0.3s ease;
-    pointer-events: none;
-  }
-  .ig-tile:hover .ig-tile-glyph {
-    opacity: 1;
-    background: rgba(26, 54, 104, 0.42);
-  }
-
-  /* Placeholder shown when the image file isn't there yet */
-  .ig-tile.ig-missing { background: var(--accent-tint); }
-  .ig-tile.ig-missing .ig-tile-glyph {
-    opacity: 1;
-    color: var(--accent);
-    background: transparent;
-  }
-</style>
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>
@@ -2901,7 +2857,7 @@
 <!-- ============================================================
      CHAIRMANSHIP / PRESIDENCY MODAL CONTENT
      The two <article> blocks below hold the modal text as plain
-     HTML — edit them directly to update wording. Keep each
+     HTML,edit them directly to update wording. Keep each
      data-key in sync with the data-cm attribute on its button.
      ============================================================ -->
 <div id="cm-data" hidden>
@@ -2920,7 +2876,7 @@
 
   <article data-key="remarks"
            data-sub="Chairmanship in Office · 2026"
-           data-title="H.E. Minister Ibrahimović — Remarks at the Montenegro 2026 Presidency Event">
+           data-title="H.E. Minister Ibrahimović, Remarks at the Montenegro 2026 Presidency Event">
     <p>Excellencies<br>Esteemed Mr. Murra<br>Distinguished representatives of the Swiss Confederation, Japan and the International Visegrad Fund<br>Members of the Committee of Senior Officials of the Western Balkans Fund<br>Dear partners and friends<br>Ladies and Gentlemen,</p>
     <p>It is a great honor and pleasure to welcome you today to the official opening of Montenegro’s 2026 Presidency of the Western Balkans Fund.</p>
     <p>Since 2006, Montenegro has established itself as a credible actor in the region, persistently committed to encouraging political dialogue, fostering good-neighborly relations, and contributing to the prosperity of the region.</p>
@@ -2952,7 +2908,7 @@
 
 <!-- ============================================================
      PRESIDENCY MODAL SCRIPT
-     Add more photos by appending to the GALLERY array below — the
+     Add more photos by appending to the GALLERY array below,the
      same images render in every modal, with arrows/dots appearing
      automatically once there is more than one.
      ============================================================ -->
@@ -2963,19 +2919,19 @@
   var dataRoot = document.getElementById('cm-data');
   if (!overlay || !modal || !dataRoot) return;
 
-  /* Shared gallery — same picture(s) as the Presidency card.
+  /* Shared gallery,same picture(s) as the Presidency card.
      Add more { src, alt } entries here as photos become available. */
   var GALLERY = [
-    { src: '/assets/images/chairmanship/montenegro-2026-01.jpg', alt: 'Montenegro — WBF Presidency 2026 (1)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-02.jpg', alt: 'Montenegro — WBF Presidency 2026 (2)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-03.jpg', alt: 'Montenegro — WBF Presidency 2026 (3)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-04.jpg', alt: 'Montenegro — WBF Presidency 2026 (4)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-05.jpg', alt: 'Montenegro — WBF Presidency 2026 (5)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-06.jpg', alt: 'Montenegro — WBF Presidency 2026 (6)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-07.jpg', alt: 'Montenegro — WBF Presidency 2026 (7)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-09.jpg', alt: 'Montenegro — WBF Presidency 2026 (8)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-10.jpg', alt: 'Montenegro — WBF Presidency 2026 (9)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-11.jpg', alt: 'Montenegro — WBF Presidency 2026 (10)' }
+    { src: '/assets/images/chairmanship/montenegro-2026-01.jpg', alt: 'Montenegro, WBF Presidency 2026 (1)' },
+    { src: '/assets/images/chairmanship/montenegro-2026-02.jpg', alt: 'Montenegro, WBF Presidency 2026 (2)' },
+    { src: '/assets/images/chairmanship/montenegro-2026-03.jpg', alt: 'Montenegro, WBF Presidency 2026 (3)' },
+    { src: '/assets/images/chairmanship/montenegro-2026-04.jpg', alt: 'Montenegro, WBF Presidency 2026 (4)' },
+    { src: '/assets/images/chairmanship/montenegro-2026-05.jpg', alt: 'Montenegro, WBF Presidency 2026 (5)' },
+    { src: '/assets/images/chairmanship/montenegro-2026-06.jpg', alt: 'Montenegro, WBF Presidency 2026 (6)' },
+    { src: '/assets/images/chairmanship/montenegro-2026-07.jpg', alt: 'Montenegro, WBF Presidency 2026 (7)' },
+    { src: '/assets/images/chairmanship/montenegro-2026-09.jpg', alt: 'Montenegro, WBF Presidency 2026 (8)' },
+    { src: '/assets/images/chairmanship/montenegro-2026-10.jpg', alt: 'Montenegro, WBF Presidency 2026 (9)' },
+    { src: '/assets/images/chairmanship/montenegro-2026-11.jpg', alt: 'Montenegro, WBF Presidency 2026 (10)' }
   ];
 
   function galleryHTML() {

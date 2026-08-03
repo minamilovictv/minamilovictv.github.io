@@ -1,4 +1,8 @@
+# PREVIEW MODE — the whole site is closed to crawlers while it is being
+# reviewed internally. BEFORE LAUNCH, replace the two lines below with:
+#     User-agent: *
+#     Allow: /
 User-agent: *
-Allow: /
+Disallow: /
 
 Sitemap: https://westernbalkansfund.org/sitemap.xml

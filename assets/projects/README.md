@@ -1,6 +1,6 @@
 # Funded Projects — how to add & edit projects
 
-The **Funded Projects** page (`html/projects.html`) is driven entirely by one file in this
+The **Our Grantees** page (`ourgrantees.html`) is driven entirely by one file in this
 folder: **`projects.csv`**. Edit that file and the website updates — no code changes needed.
 
 Everything lives in this folder (`assets/projects/`):

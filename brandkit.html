@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Western Balkans Fund — Brand Kit</title>
+<meta name="description" content="The official brand kit for the Western Balkans Fund: logo, colours, typography, spacing, elevation and components.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Brand */
+    --navy:        #173D8F;
+    --navy-900:    #0f2044;
+    --navy-700:    #2a4a85;
+    --emblem:      #223771;
+    --teal:        #0E8C84;  --teal-tint:  #e6f4f3;
+    --teal-deep:   #0f5a5e;
+    --amber:       #C2841C;  --amber-tint: #fbf2e2;
+    --blue:        #3372e3;  --blue-tint:  #e9f0fd;
+
+    /* Neutrals (Slate) */
+    --ink: #0f172a; --ink-soft: #475569; --muted: #64748b; --faint: #94a3b8;
+    --line: #e2e8f0; --line-soft: #f1f5f9;
+    --surface: #ffffff; --surface-alt: #f8fafc;
+
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Type scale */
+    --text-xs:   11px;
+    --text-sm:   13px;
+    --text-md:   15px;
+    --text-base: 16px;
+    --text-lg:   17px;
+    --text-xl:   clamp(19px, 1.8vw, 24px);
+    --text-2xl:  clamp(24px, 3vw, 34px);
+    --text-3xl:  clamp(28px, 3.6vw, 44px);
+    --text-hero: clamp(32px, 4.4vw, 52px);
+
+    /* Radius */
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px; --radius-pill: 999px;
+
+    /* Elevation — navy-tinted (brand signature) */
+    --shadow-1: 0 4px 12px  rgba(15,32,68,0.05);
+    --shadow-2: 0 8px 20px  rgba(15,32,68,0.08);
+    --shadow-3: 0 12px 28px rgba(15,32,68,0.10);
+    --shadow-4: 0 24px 64px rgba(15,32,68,0.22);
+
+    --gradient-hero: linear-gradient(160deg, var(--navy-900) 0%, var(--navy) 55%, var(--navy-900) 100%);
+    --container: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; font-family: var(--font-sans); color: var(--ink);
+    background: var(--surface-alt); font-size: var(--text-md); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { max-width: 100%; display: block; }
+  a { color: var(--navy); }
+
+  .wrap { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: var(--gradient-hero); color: #fff; padding: 72px 0 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(900px 420px at 82% -10%, rgba(14,140,132,0.28), transparent 60%);
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+  .hero-emblem { width: 84px; height: 84px; margin-bottom: 28px; }
+  .hero-emblem svg { width: 100%; height: 100%; }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.16em; font-size: var(--text-xs);
+    font-weight: 700; color: rgba(255,255,255,0.62); margin: 0 0 14px;
+  }
+  .hero h1 {
+    font-size: var(--text-hero); font-weight: 800; letter-spacing: -0.02em;
+    line-height: 1.05; margin: 0 0 18px;
+  }
+  .hero p { font-size: var(--text-lg); color: rgba(255,255,255,0.78); max-width: 620px; margin: 0; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .chip {
+    font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.04em;
+    padding: 7px 13px; border-radius: var(--radius-pill);
+    background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 68px 0; border-bottom: 1px solid var(--line); }
+  .sec-head { max-width: 720px; margin-bottom: 40px; }
+  .sec-num {
+    font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--teal); margin: 0 0 10px;
+  }
+  h2 { font-size: var(--text-2xl); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 12px; color: var(--ink); }
+  .sec-head p { color: var(--ink-soft); font-size: var(--text-base); margin: 0; }
+  h3 { font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-1);
+  }
+
+  /* ---------- Logo section ---------- */
+  .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .logo-tile { padding: 40px; display: flex; align-items: center; justify-content: center; min-height: 190px; border-radius: var(--radius-lg); }
+  .logo-tile.light { background: var(--surface); border: 1px solid var(--line); }
+  .logo-tile.alt   { background: var(--surface-alt); border: 1px solid var(--line); }
+  .logo-tile.navy  { background: var(--gradient-hero); }
+  .logo-tile.teal  { background: var(--teal); }
+  .tile-label { font-size: var(--text-xs); font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 12px; }
+
+  .lockup { display: flex; align-items: center; gap: 16px; }
+  .lockup .mark { width: 58px; height: 58px; flex-shrink: 0; }
+  .lockup .mark svg { width: 100%; height: 100%; }
+  .lockup .word { display: flex; flex-direction: column; line-height: 1.05; }
+  .lockup .word .w1 { font-weight: 800; font-size: 15px; letter-spacing: 0.02em; }
+  .lockup .word .w2 { font-weight: 500; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 3px; opacity: 0.72; }
+  .lockup.on-navy .word { color: #fff; }
+  .lockup.on-teal .word { color: #fff; }
+
+  .clearspace { position: relative; padding: 28px; }
+  .clearspace-inner { border: 1px dashed var(--faint); border-radius: var(--radius-md); padding: 26px; display: inline-flex; }
+
+  /* ---------- Colour ---------- */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+  .swatch { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-1); }
+  .swatch .chip-color { height: 96px; display: flex; align-items: flex-end; padding: 12px; }
+  .swatch .chip-color .role { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .swatch .meta { padding: 12px 14px 14px; }
+  .swatch .name { font-weight: 700; font-size: var(--text-sm); margin: 0 0 3px; }
+  .swatch .hex { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 12px; color: var(--muted); text-transform: uppercase; }
+  .swatch .use { font-size: 11.5px; color: var(--faint); margin-top: 6px; line-height: 1.4; }
+
+  .gradient-band { height: 120px; border-radius: var(--radius-lg); background: var(--gradient-hero); display: flex; align-items: flex-end; padding: 16px; box-shadow: var(--shadow-2); }
+  .gradient-band code { color: rgba(255,255,255,0.85); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+
+  /* ---------- Typography ---------- */
+  .type-row { display: flex; align-items: baseline; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line-soft); flex-wrap: wrap; }
+  .type-row:last-child { border-bottom: 0; }
+  .type-token { flex: 0 0 130px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: var(--teal); font-weight: 600; }
+  .type-token span { display: block; color: var(--faint); font-family: var(--font-sans); font-weight: 500; margin-top: 3px; }
+  .type-sample { color: var(--ink); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; min-width: 0; }
+  .weights { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 28px; }
+  .weight b { display: block; font-size: 30px; letter-spacing: -0.01em; }
+  .weight span { font-size: var(--text-xs); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ---------- Spacing / radius ---------- */
+  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .space-row { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+  .space-bar { background: var(--teal); height: 16px; border-radius: 3px; }
+  .space-lbl { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: var(--muted); width: 120px; flex-shrink: 0; }
+  .radius-row { display: flex; gap: 18px; flex-wrap: wrap; }
+  .radius-demo { text-align: center; }
+  .radius-demo .box { width: 78px; height: 78px; background: var(--navy); }
+  .radius-demo span { font-size: 11px; color: var(--muted); font-family: ui-monospace, Menlo, Consolas, monospace; display: block; margin-top: 8px; }
+
+  /* ---------- Elevation ---------- */
+  .shadow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 26px; }
+  .shadow-demo { background: var(--surface); border-radius: var(--radius-lg); height: 110px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--navy); font-size: var(--text-sm); }
+
+  /* ---------- Components ---------- */
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+  .comp-card { padding: 26px; }
+  .btn { display: inline-flex; align-items: center; gap: 7px; font-family: inherit; font-weight: 600; font-size: 14px; border-radius: var(--radius-sm); padding: 10px 18px; cursor: pointer; text-decoration: none; border: 1px solid transparent; transition: background .25s, color .25s; }
+  .btn-primary { background: var(--navy); color: #fff; }
+  .btn-primary:hover { background: var(--navy-900); }
+  .btn-outline { background: none; border-color: var(--navy); color: var(--navy); }
+  .btn-outline:hover { background: var(--navy); color: #fff; }
+  .btn-teal { background: var(--teal); color: #fff; }
+  .btn-teal:hover { background: var(--teal-deep); }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .tag { display: inline-block; font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.04em; padding: 5px 11px; border-radius: var(--radius-pill); }
+  .tag-teal  { background: var(--teal-tint); color: var(--teal-deep); }
+  .tag-amber { background: var(--amber-tint); color: var(--amber); }
+  .tag-blue  { background: var(--blue-tint); color: var(--blue); }
+  .tag-navy  { background: var(--navy); color: #fff; }
+  .mini-card { padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-1); }
+  .mini-card .stat { font-size: 34px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; line-height: 1; }
+  .mini-card .stat-lbl { font-size: var(--text-sm); color: var(--muted); margin-top: 6px; }
+
+  /* ---------- Do / Don't ---------- */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .rule { padding: 22px 24px; border-radius: var(--radius-lg); border: 1px solid var(--line); }
+  .rule.do { background: var(--teal-tint); border-color: #cde9e6; }
+  .rule.dont { background: #fdecec; border-color: #f6d4d4; }
+  .rule h4 { margin: 0 0 12px; font-size: var(--text-sm); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; }
+  .rule.do h4 { color: var(--teal-deep); }
+  .rule.dont h4 { color: #c0392b; }
+  .rule ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: var(--text-sm); }
+  .rule li { margin-bottom: 8px; }
+
+  footer { background: var(--navy-900); color: rgba(255,255,255,0.6); padding: 40px 0; text-align: center; font-size: var(--text-sm); }
+  footer strong { color: #fff; font-weight: 700; }
+
+  @media (max-width: 760px) {
+    .cols-2, .rules { grid-template-columns: 1fr; }
+    section { padding: 48px 0; }
+  }
+  @media print {
+    body { background: #fff; }
+    .hero::after, .hero-meta { display: none; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Reusable emblem symbol (the WBF five-dot arc mark) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Faithful reconstruction of the WBF emblem: six equal graduated dots
+       forming an ascending arc (centres/radius derived from the master SVG). -->
+  <symbol id="wbf-emblem" viewBox="0 127 560 612">
+    <circle cx="108" cy="216" r="60" fill="currentColor" opacity="0.20"/>
+    <circle cx="92"  cy="354" r="61" fill="currentColor" opacity="0.40"/>
+    <circle cx="137" cy="487" r="61" fill="currentColor" opacity="0.60"/>
+    <circle cx="230" cy="591" r="61" fill="currentColor" opacity="0.80"/>
+    <circle cx="357" cy="647" r="60" fill="currentColor" opacity="0.90"/>
+    <circle cx="497" cy="648" r="61" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-emblem" style="color:#fff">
+      <svg><use href="#wbf-emblem"></use></svg>
+    </div>
+    <p class="eyebrow">Brand Kit · v1.0</p>
+    <h1>Western Balkans Fund</h1>
+    <p>The visual language behind the Fund — logo, colour, type, spacing and components — as used across westernbalkansfund.org. One source of truth for a consistent, institutional voice.</p>
+    <div class="hero-meta">
+      <span class="chip">Primary · Navy #173D8F</span>
+      <span class="chip">Typeface · Inter</span>
+      <span class="chip">Six Contracting Parties</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LOGO ============ -->
+<section id="logo">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">01 — Identity</p>
+      <h2>Logo &amp; emblem</h2>
+      <p>The mark is a five-dot ascending arc — a graduated progression that reads as growth and momentum across the region. Pair it with the wordmark in the primary lockup; the emblem may stand alone at small sizes (favicon, app icon, social avatar).</p>
+    </div>
+
+    <div class="logo-grid">
+      <div class="logo-tile light">
+        <div>
+          <div class="lockup">
+            <div class="mark" style="color:var(--emblem)"><svg><use href="#wbf-emblem"></use></svg></div>
+            <div class="word" style="color:var(--emblem)"><span class="w1">Western Balkans Fund</span><span class="w2">WBF</span></div>
+          </div>
+          <p class="tile-label">Primary · on light</p>
+        </div>
+      </div>
+      <div class="logo-tile navy">
+        <div>
+          <div class="lockup on-navy">
+            <div class="mark" style="color:#fff"><svg><use href="#wbf-emblem"></use></svg></div>
+            <div class="word"><span class="w1">Western Balkans Fund</span><span class="w2">WBF</span></div>
+          </div>
+          <p class="tile-label" style="color:rgba(255,255,255,0.6)">Reversed · on navy</p>
+        </div>
+      </div>
+      <div class="logo-tile alt">
+        <div style="text-align:center">
+          <div class="mark" style="width:64px;height:64px;margin:0 auto;color:var(--emblem)"><svg><use href="#wbf-emblem"></use></svg></div>
+          <p class="tile-label">Emblem only</p>
+        </div>
+      </div>
+      <div class="logo-tile teal">
+        <div style="text-align:center">
+          <div class="mark" style="width:64px;height:64px;margin:0 auto;color:#fff"><svg><use href="#wbf-emblem"></use></svg></div>
+          <p class="tile-label" style="color:rgba(255,255,255,0.75)">Mono reversed</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px" class="cols-2">
+      <div>
+        <h3>Clear space</h3>
+        <div class="card clearspace">
+          <div class="clearspace-inner">
+            <div class="mark" style="width:56px;height:56px;color:var(--emblem)"><svg><use href="#wbf-emblem"></use></svg></div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--muted);margin-top:12px">Keep clear space equal to the height of one emblem dot on every side. Never crowd the mark with text or other logos.</p>
+      </div>
+      <div>
+        <h3>Minimum size</h3>
+        <div class="card" style="padding:28px;display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap">
+          <div style="text-align:center"><div class="mark" style="width:24px;height:24px;color:var(--emblem)"><svg><use href="#wbf-emblem"></use></svg></div><span style="font-size:11px;color:var(--muted)">24px favicon</span></div>
+          <div style="text-align:center"><div class="mark" style="width:40px;height:40px;color:var(--emblem)"><svg><use href="#wbf-emblem"></use></svg></div><span style="font-size:11px;color:var(--muted)">40px nav</span></div>
+          <div style="text-align:center"><div class="mark" style="width:64px;height:64px;color:var(--emblem)"><svg><use href="#wbf-emblem"></use></svg></div><span style="font-size:11px;color:var(--muted)">64px+</span></div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--muted);margin-top:12px">The emblem stays legible down to 24px. Below that, use a single solid dot as a fallback favicon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOUR ============ -->
+<section id="colour">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">02 — Colour</p>
+      <h2>Colour palette</h2>
+      <p>Navy is the anchor of the brand — it carries the header, footer and hero. Teal, amber and blue are functional accents used sparingly to signal programmes and states. Neutrals are a cool slate scale for text and surfaces.</p>
+    </div>
+
+    <h3>Brand</h3>
+    <div class="swatches">
+      <div class="swatch"><div class="chip-color" style="background:#173D8F;color:#fff"><span class="role">Primary</span></div><div class="meta"><p class="name">Navy</p><span class="hex">#173D8F</span><p class="use">Header, hero, primary buttons, links.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#0f2044;color:#fff"><span class="role">Deep</span></div><div class="meta"><p class="name">Navy 900</p><span class="hex">#0F2044</span><p class="use">Footer, hover states, gradient ends.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#2a4a85;color:#fff"><span class="role">Soft</span></div><div class="meta"><p class="name">Navy 700</p><span class="hex">#2A4A85</span><p class="use">Secondary navy fills, borders.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#223771;color:#fff"><span class="role">Mark</span></div><div class="meta"><p class="name">Emblem Navy</p><span class="hex">#223771</span><p class="use">The logo mark's native colour.</p></div></div>
+    </div>
+
+    <h3 style="margin-top:32px">Accents</h3>
+    <div class="swatches">
+      <div class="swatch"><div class="chip-color" style="background:#0E8C84;color:#fff"><span class="role">Accent</span></div><div class="meta"><p class="name">Teal</p><span class="hex">#0E8C84</span><p class="use">Highlights, section numbers, success.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#0f5a5e;color:#fff"><span class="role">Deep</span></div><div class="meta"><p class="name">Teal Deep</p><span class="hex">#0F5A5E</span><p class="use">Teal hover / text on tint.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#C2841C;color:#fff"><span class="role">Accent</span></div><div class="meta"><p class="name">Amber</p><span class="hex">#C2841C</span><p class="use">Warnings, funding highlights.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#3372e3;color:#fff"><span class="role">Accent</span></div><div class="meta"><p class="name">Blue</p><span class="hex">#3372E3</span><p class="use">Informational, links on tint.</p></div></div>
+    </div>
+
+    <h3 style="margin-top:32px">Tints</h3>
+    <div class="swatches">
+      <div class="swatch"><div class="chip-color" style="background:#e6f4f3;color:var(--teal-deep)"><span class="role">Teal tint</span></div><div class="meta"><span class="hex">#E6F4F3</span></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#fbf2e2;color:var(--amber)"><span class="role">Amber tint</span></div><div class="meta"><span class="hex">#FBF2E2</span></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#e9f0fd;color:var(--blue)"><span class="role">Blue tint</span></div><div class="meta"><span class="hex">#E9F0FD</span></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#e8eef8;color:var(--navy)"><span class="role">Navy tint</span></div><div class="meta"><span class="hex">#E8EEF8</span></div></div>
+    </div>
+
+    <h3 style="margin-top:32px">Neutrals — Slate</h3>
+    <div class="swatches">
+      <div class="swatch"><div class="chip-color" style="background:#0f172a;color:#fff"><span class="role">Ink</span></div><div class="meta"><span class="hex">#0F172A</span><p class="use">Body headings.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#475569;color:#fff"><span class="role">Ink soft</span></div><div class="meta"><span class="hex">#475569</span><p class="use">Body copy.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#64748b;color:#fff"><span class="role">Muted</span></div><div class="meta"><span class="hex">#64748B</span><p class="use">Meta, captions.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#94a3b8;color:#fff"><span class="role">Faint</span></div><div class="meta"><span class="hex">#94A3B8</span><p class="use">Disabled, hints.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#e2e8f0;color:var(--ink)"><span class="role">Line</span></div><div class="meta"><span class="hex">#E2E8F0</span><p class="use">Borders.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#f1f5f9;color:var(--ink)"><span class="role">Line soft</span></div><div class="meta"><span class="hex">#F1F5F9</span><p class="use">Dividers.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#f8fafc;color:var(--ink)"><span class="role">Surface alt</span></div><div class="meta"><span class="hex">#F8FAFC</span><p class="use">Page background.</p></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#ffffff;color:var(--ink);border-bottom:1px solid var(--line)"><span class="role">Surface</span></div><div class="meta"><span class="hex">#FFFFFF</span><p class="use">Cards.</p></div></div>
+    </div>
+
+    <h3 style="margin-top:32px">Signature gradient — Hero</h3>
+    <div class="gradient-band"><code>linear-gradient(160deg, #0F2044 0%, #173D8F 55%, #0F2044 100%)</code></div>
+  </div>
+</section>
+
+<!-- ============ TYPOGRAPHY ============ -->
+<section id="type">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">03 — Typography</p>
+      <h2>Typography</h2>
+      <p><strong>Inter</strong> carries the entire system — both display headings and body. It is loaded from Google Fonts with a system-font fallback stack. Headings use tight tracking (−0.02em) and heavy weights; body stays at a comfortable 1.6 line-height.</p>
+    </div>
+
+    <div class="card" style="padding:8px 28px">
+      <div class="type-row"><span class="type-token">--text-hero<span>clamp(32→52px)</span></span><span class="type-sample" style="font-size:clamp(32px,4.4vw,52px)">Building regional cooperation</span></div>
+      <div class="type-row"><span class="type-token">--text-3xl<span>clamp(28→44px)</span></span><span class="type-sample" style="font-size:clamp(28px,3.6vw,44px)">Feature heading</span></div>
+      <div class="type-row"><span class="type-token">--text-2xl<span>clamp(24→34px)</span></span><span class="type-sample" style="font-size:clamp(24px,3vw,34px)">Section heading (h2)</span></div>
+      <div class="type-row"><span class="type-token">--text-xl<span>clamp(19→24px)</span></span><span class="type-sample" style="font-size:clamp(19px,1.8vw,24px)">Card &amp; panel title (h3)</span></div>
+      <div class="type-row"><span class="type-token">--text-lg<span>17px</span></span><span class="type-sample" style="font-size:17px;font-weight:500">Large body / hero deck</span></div>
+      <div class="type-row"><span class="type-token">--text-base<span>16px</span></span><span class="type-sample" style="font-size:16px;font-weight:500">Lead paragraph / intro copy</span></div>
+      <div class="type-row"><span class="type-token">--text-md<span>15px</span></span><span class="type-sample" style="font-size:15px;font-weight:400">Default body text — the workhorse size for running paragraphs.</span></div>
+      <div class="type-row"><span class="type-token">--text-sm<span>13px</span></span><span class="type-sample" style="font-size:13px;font-weight:400;color:var(--muted)">Captions, meta and small body</span></div>
+      <div class="type-row"><span class="type-token">--text-xs<span>11px</span></span><span class="type-sample" style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint)">Overline · tags · fine print</span></div>
+    </div>
+
+    <div class="weights">
+      <div class="weight"><b style="font-weight:400">Aa</b><span>Regular 400</span></div>
+      <div class="weight"><b style="font-weight:500">Aa</b><span>Medium 500</span></div>
+      <div class="weight"><b style="font-weight:600">Aa</b><span>Semibold 600</span></div>
+      <div class="weight"><b style="font-weight:700">Aa</b><span>Bold 700</span></div>
+      <div class="weight"><b style="font-weight:800">Aa</b><span>Extrabold 800</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPACING / RADIUS ============ -->
+<section id="spacing">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">04 — Layout</p>
+      <h2>Spacing &amp; radius</h2>
+      <p>All spacing derives from a 4px base scale. Corners use four fixed radii; the pill radius is reserved for chips and tags. Max content width is 1400px (920px for text-heavy pages).</p>
+    </div>
+    <div class="cols-2">
+      <div>
+        <h3>Spacing scale (4px base)</h3>
+        <div class="card" style="padding:24px">
+          <div class="space-row"><span class="space-lbl">--space-1 · 4</span><div class="space-bar" style="width:4px"></div></div>
+          <div class="space-row"><span class="space-lbl">--space-2 · 8</span><div class="space-bar" style="width:8px"></div></div>
+          <div class="space-row"><span class="space-lbl">--space-3 · 12</span><div class="space-bar" style="width:12px"></div></div>
+          <div class="space-row"><span class="space-lbl">--space-4 · 16</span><div class="space-bar" style="width:16px"></div></div>
+          <div class="space-row"><span class="space-lbl">--space-5 · 24</span><div class="space-bar" style="width:24px"></div></div>
+          <div class="space-row"><span class="space-lbl">--space-6 · 32</span><div class="space-bar" style="width:32px"></div></div>
+          <div class="space-row"><span class="space-lbl">--space-7 · 48</span><div class="space-bar" style="width:48px"></div></div>
+          <div class="space-row"><span class="space-lbl">--space-8 · 64</span><div class="space-bar" style="width:64px"></div></div>
+          <div class="space-row"><span class="space-lbl">--space-9 · 96</span><div class="space-bar" style="width:96px"></div></div>
+        </div>
+      </div>
+      <div>
+        <h3>Corner radius</h3>
+        <div class="card" style="padding:28px">
+          <div class="radius-row">
+            <div class="radius-demo"><div class="box" style="border-radius:6px"></div><span>sm · 6</span></div>
+            <div class="radius-demo"><div class="box" style="border-radius:10px"></div><span>md · 10</span></div>
+            <div class="radius-demo"><div class="box" style="border-radius:14px"></div><span>lg · 14</span></div>
+            <div class="radius-demo"><div class="box" style="border-radius:999px"></div><span>pill</span></div>
+          </div>
+        </div>
+        <h3 style="margin-top:28px">Elevation — navy-tinted shadows</h3>
+        <div class="shadow-grid">
+          <div class="shadow-demo" style="box-shadow:var(--shadow-1)">shadow-1</div>
+          <div class="shadow-demo" style="box-shadow:var(--shadow-2)">shadow-2</div>
+          <div class="shadow-demo" style="box-shadow:var(--shadow-3)">shadow-3</div>
+          <div class="shadow-demo" style="box-shadow:var(--shadow-4)">shadow-4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPONENTS ============ -->
+<section id="components">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">05 — Components</p>
+      <h2>Core components</h2>
+      <p>A small kit of reusable primitives built from the tokens above — buttons, tags, and stat cards — mirroring what appears across the live site.</p>
+    </div>
+    <div class="comp-grid">
+      <div class="card comp-card">
+        <h3>Buttons</h3>
+        <div class="btn-row" style="margin-bottom:14px">
+          <a class="btn btn-primary" href="#">Apply now →</a>
+          <a class="btn btn-outline" href="#">For partners</a>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-teal" href="#">Learn more</a>
+          <a class="btn btn-primary" href="#" style="opacity:.45;pointer-events:none">Disabled</a>
+        </div>
+      </div>
+      <div class="card comp-card">
+        <h3>Tags &amp; chips</h3>
+        <div class="btn-row">
+          <span class="tag tag-navy">Programme</span>
+          <span class="tag tag-teal">Open call</span>
+          <span class="tag tag-amber">Deadline soon</span>
+          <span class="tag tag-blue">News</span>
+        </div>
+      </div>
+      <div class="card comp-card">
+        <h3>Stat card</h3>
+        <div class="mini-card" style="box-shadow:none;border:0;padding:0">
+          <div class="stat">€2.4M</div>
+          <div class="stat-lbl">Capital deployed across six Contracting Parties</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ USAGE ============ -->
+<section id="usage" style="border-bottom:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">06 — Usage</p>
+      <h2>Do &amp; don't</h2>
+    </div>
+    <div class="rules">
+      <div class="rule do">
+        <h4>✓ Do</h4>
+        <ul>
+          <li>Lead with navy; use teal, amber and blue as sparing accents.</li>
+          <li>Set all type in Inter with the defined scale and weights.</li>
+          <li>Give the emblem clear space equal to one dot on all sides.</li>
+          <li>Use navy-tinted shadows for elevation — never neutral grey.</li>
+          <li>Say <strong>"Contracting Parties"</strong> / <strong>"CP"</strong>, never "countries".</li>
+        </ul>
+      </div>
+      <div class="rule dont">
+        <h4>✕ Don't</h4>
+        <ul>
+          <li>Recolour the emblem outside navy, white or a single mono tone.</li>
+          <li>Stretch, rotate, or add effects (drop-shadow, outline) to the mark.</li>
+          <li>Fill large areas with accent colours or use them for body text.</li>
+          <li>Swap in a different typeface or use light weights for headings.</li>
+          <li>Place the logo on a busy image without a navy scrim.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>Western Balkans Fund</strong> — Brand Kit v1.0 · Generated from the live design tokens (tokens.css)<br>
+    westernbalkansfund.org · info@westernbalkansfund.org
+  </div>
+</footer>
+
+</body>
+</html>

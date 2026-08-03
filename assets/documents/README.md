@@ -1,7 +1,7 @@
 # WBF Important Documents — depository folder
 
 This is the folder that feeds the **WBF Important Documents** page
-(`html/about-accountability.html`). Everything on that page is driven by
+(`wbfdocuments.html`). Everything on that page is driven by
 one file in here: **`documents.csv`**.
 
 There are two things in this folder:

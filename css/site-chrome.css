@@ -28,11 +28,13 @@
   .nb { background: var(--surface); width: 100%; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--line); box-shadow: var(--shadow-1); }
   .nb-inner { position: relative; display: flex; align-items: center; height: 72px; padding: 0 24px; max-width: 1400px; margin: 0 auto; gap: 4px; }
   /* Logo flush to the far left; text label removed in Phase 2. */
-  .logo { display: flex; align-items: center; gap: 9px; margin-right: 16px; flex-shrink: 0; text-decoration: none; }
+  .logo { display: flex; align-items: center; gap: 9px; margin-left: 22px; margin-right: 16px; flex-shrink: 0; text-decoration: none; }
   .logo-icon { width: 40px; height: 40px; background: var(--navy); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: #fff; }
-  /* Primary nav is centered on the page independently of the logo/CTA widths. */
-  .nav-items { display: flex; align-items: center; gap: 4px; position: absolute; left: 50%; transform: translateX(-50%); }
-  .nav-btn { background: none; border: none; color: var(--navy); font-size: 16px; font-weight: 600; padding: 11px 16px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; white-space: nowrap; font-family: inherit; text-decoration: none; transition: background 0.25s ease, color 0.25s ease; }
+  /* Primary nav sits between the logo and the CTAs, filling the leftover space
+     and centering its own buttons. Kept in normal flow (not absolutely centered)
+     so it can never overlap the right-hand buttons on narrower desktops. */
+  .nav-items { display: flex; align-items: center; justify-content: center; gap: 2px; flex: 1 1 auto; min-width: 0; }
+  .nav-btn { background: none; border: none; color: var(--navy); font-size: 15px; font-weight: 600; padding: 10px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; white-space: nowrap; font-family: inherit; text-decoration: none; transition: background 0.25s ease, color 0.25s ease; }
   .nav-btn:hover, .nav-btn:focus-visible, .dropdown-wrap:hover > .nav-btn, .nav-btn[aria-current="page"] { background: var(--navy); color: #fff; outline: none; }
   .chevron { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; transition: transform 0.2s; }
   .dropdown-wrap:hover .chevron { transform: rotate(180deg); }
@@ -45,17 +47,20 @@
   .dd-item:hover { background: #f4f7fb; }
   .dd-title { font-family: var(--font-display); font-size: 15px; color: #1a1e2e; font-weight: 600; line-height: 1.3; }
   .dd-sub   { font-size: 12.5px; color: #6b7280; line-height: 1.35; margin-top: 2px; }
-  .mega { left: -140px; width: 520px; padding: 22px; }
-  .dropdown-wrap:hover .mega { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .mega-col { padding: 0 20px; }
-  .mega-col:first-child { padding-left: 0; }
-  .mega-col:last-child { padding-right: 0; }
-  .mega-head { font-size: 11px; font-weight: 600; color: #9ca3af; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 12px; }
-  .mega-item { display: block; padding: 0; cursor: pointer; text-decoration: none; color: inherit; }
-  .mega-item:hover .m-title { color: var(--navy); text-decoration: underline; }
-  /* Programme titles match the top-level nav items (16px / 600) for a
-     consistent typographic hierarchy across the whole navigation. */
-  .m-title { font-size: 16px; font-weight: 600; color: #1a1e2e; line-height: 1.35; padding: 6px 0; display: block; }
+  /* Mega menu — "Funding Opportunities" flows in two balanced columns so the
+     panel isn't lopsided against the shorter "Capacity Building" list. */
+  .mega { left: -150px; width: 620px; padding: 18px 16px; grid-template-columns: 1.75fr 1fr; gap: 0; }
+  .dropdown-wrap:hover .mega { display: grid; }
+  .mega-col { padding: 0 18px; min-width: 0; }
+  .mega-col:first-child { padding-left: 6px; }
+  .mega-col:last-child { padding-right: 6px; border-left: 1px solid #eef1f6; }
+  .mega-head { font-size: 11px; font-weight: 700; color: #9ca3af; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 8px 8px; }
+  .mega-items { display: grid; grid-template-columns: 1fr; gap: 2px; }
+  .mega-col-wide .mega-items { grid-template-columns: 1fr 1fr; column-gap: 8px; }
+  .mega-item { display: flex; align-items: center; min-height: 40px; padding: 7px 10px; border-radius: 7px; cursor: pointer; text-decoration: none; color: inherit; transition: background 0.12s ease; }
+  .mega-item:hover { background: #f4f7fb; }
+  .mega-item:hover .m-title { color: var(--navy); }
+  .m-title { font-size: 14px; font-weight: 600; color: #1a1e2e; line-height: 1.3; display: block; }
   .nav-right { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
   .btn-partners { background: none; border: 1px solid var(--navy); color: var(--navy); font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-family: inherit; text-decoration: none; transition: color 0.25s ease, background 0.25s ease; }
   .btn-partners:hover, .btn-partners:focus-visible { background: var(--navy); color: #fff; outline: none; }
@@ -106,12 +111,22 @@
 }
 
 /* Collapse the primary nav to the hamburger (js/nav.js) once the full
-   desktop menu can no longer fit — otherwise it overflows the viewport
-   in the ~769–1189px range (very common on Windows displays at 125%
-   scaling). The hamburger breakpoint in js/nav.js must match this. */
-@media (max-width: 1200px) {
+   desktop menu can no longer fit comfortably — below ~1240px the six nav
+   items start crowding (and overlapping) the right-hand CTAs. The hamburger
+   breakpoint in js/nav.js must match this. */
+@media (max-width: 1240px) {
 .nav-items, .btn-partners { display: none; }
 }
 @media (max-width: 768px) {
 .footer-bottom { flex-direction: column; gap: 8px; align-items: flex-start; }
+/* Tighten the mobile header so the logo + Apply + hamburger sit comfortably. */
+.nb-inner { padding: 0 16px; gap: 8px; }
+.logo { margin-left: 0; margin-right: 0; }
+.logo img { height: 46px !important; }
+.btn-apply { padding: 8px 13px; font-size: 13px; }
+}
+@media (max-width: 380px) {
+.logo img { height: 42px !important; }
+.btn-apply { padding: 8px 11px; }
+.btn-apply svg { display: none; }
 }

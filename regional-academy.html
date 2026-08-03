@@ -3,11 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WBF Regional Academy on Dialogue and Culture of Cooperation | Western Balkans Fund</title>
-<meta name="description" content="WBF Regional Academy is an initiative of the Western Balkans Fund, supported by the Open Society Foundation Western Balkans, for junior professionals and emerging leaders to advance dialogue and a culture of cooperation across the WB6. This year's edition is on Dialogue and Culture of Cooperation.">
+<title>Regional Academy for Cooperation | Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/regional-academy.html">
+<meta name="description" content="The WBF Regional Academy prepares junior professionals and emerging leaders from across the WB6 to advance dialogue and a culture of regional cooperation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
@@ -145,6 +153,7 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   max-width: 92ch;
   margin-bottom: 36px;
   font-weight: 400;
+  text-wrap: balance;
 }
 
 .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
@@ -177,30 +186,6 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 .meta-fact-key { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
 .meta-fact-value { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.2; }
 .meta-fact-value .gold-accent { color: var(--gold); }
-
-/* ============================================================
-   PARTNER STRIP · co-branded with OSF-WB
-   ============================================================ */
-.partner-strip {
-  background: var(--surface-alt);
-  border-bottom: 1px solid var(--line);
-  padding: 18px 0;
-}
-.partner-strip-inner {
-  max-width: 1080px; margin: 0 auto; padding: 0 40px;
-  display: flex; align-items: center; justify-content: center; gap: 22px; flex-wrap: wrap;
-  font-size: 13px; color: var(--ink-soft);
-}
-.partner-strip-inner strong { color: var(--ink); font-weight: 600; }
-.partner-strip-sep { color: var(--faint); }
-.partner-strip-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 12px; border-radius: 999px;
-  background: var(--aqua-tint); border: 1px solid var(--aqua-border);
-  font-size: 12px; font-weight: 600; color: var(--aqua-darker);
-}
-.partner-strip-logo { display: inline-flex; align-items: center; }
-.partner-strip-logo img { height: 34px; width: auto; display: block; }
 
 /* ============================================================
    GENERIC SECTION
@@ -236,6 +221,12 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   padding: 32px 30px;
   position: relative;
   overflow: hidden;
+  transition: transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s ease, border-color .3s ease;
+}
+.distinguishing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 46px rgba(15,32,68,0.13);
+  border-color: var(--gold-border);
 }
 .distinguishing-card::before {
   content: ""; position: absolute; top: -40px; right: -40px;
@@ -243,17 +234,27 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   background: radial-gradient(circle, rgba(219,169,28,0.18) 0%, transparent 70%);
   pointer-events: none;
 }
-.distinguishing-card .dc-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold-deep); margin-bottom: 12px; }
-.distinguishing-card h3 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.02em; line-height: 1.25; }
-.distinguishing-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-.distinguishing-card li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+@media (prefers-reduced-motion: no-preference) {
+  .distinguishing-card::before { animation: dc-drift 9s ease-in-out infinite; }
+}
+@keyframes dc-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-16px, 14px) scale(1.12); }
+}
+.distinguishing-card .dc-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold-deep); margin-bottom: 12px; position: relative; }
+.distinguishing-card h3 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.02em; line-height: 1.25; position: relative; }
+.distinguishing-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; position: relative; }
+.distinguishing-card li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; transition: transform .2s ease; }
+.distinguishing-card li:hover { transform: translateX(4px); }
 .distinguishing-card li .dot {
   width: 22px; height: 22px; border-radius: 50%;
   background: var(--gold); color: var(--navy);
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 800;
   flex-shrink: 0; margin-top: 1px;
+  transition: transform .22s ease, box-shadow .22s ease;
 }
+.distinguishing-card li:hover .dot { transform: scale(1.18); box-shadow: 0 0 0 4px rgba(219,169,28,0.22); }
 
 /* ============================================================
    PILLARS · five thematic pillars
@@ -463,42 +464,94 @@ body.dm-open { overflow: hidden; }
 /* ============================================================
    METHODOLOGY · four-track approach
    ============================================================ */
-.method-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-.method-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 28px 24px 26px;
+/* Interactive "one day" rhythm timeline (dawn -> dusk rail + expandable detail) */
+#methodology { padding-top: 48px; padding-bottom: 48px; }
+#methodology .sec-head { margin-bottom: 24px; }
+.rhythm-rail {
   position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  margin: 6px 0 30px;
 }
-.method-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.06); }
-.method-time {
-  display: inline-block;
-  font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 3px 10px; border-radius: 999px;
-  background: var(--aqua-tint); color: var(--aqua-deep);
-  margin-bottom: 14px;
+.rhythm-rail::before {
+  content: ""; position: absolute; left: 12%; right: 12%; top: 28px; height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--aqua) 55%, #3B5BC0 100%);
+  border-radius: 999px; z-index: 0;
 }
-.method-card.alt .method-time { background: var(--gold-tint); color: var(--gold-deep); }
-.method-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--aqua) 0%, var(--aqua-deep) 100%);
+.rhythm-stop {
+  position: relative; z-index: 1;
+  background: none; border: 0; cursor: pointer; font-family: inherit;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 0 6px; text-align: center;
+}
+.rhythm-node {
+  position: relative;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--line);
+  display: flex; align-items: center; justify-content: center; color: var(--ink-soft);
+  transition: transform .32s cubic-bezier(.22,.61,.36,1), border-color .3s, background .3s, color .3s, box-shadow .3s;
+}
+/* pulsing ring on the active node */
+.rhythm-stop.is-active .rhythm-node::after {
+  content: ""; position: absolute; inset: -5px; border-radius: 50%;
+  border: 2px solid var(--rc); pointer-events: none;
+  animation: node-pulse 1.9s ease-out infinite;
+}
+@keyframes node-pulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.4); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .rhythm-stop.is-active .rhythm-node::after { animation: none; opacity: 0; } }
+.rhythm-node svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.rhythm-time { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); transition: color .25s; }
+.rhythm-label { font-size: 13.5px; font-weight: 800; color: var(--ink); letter-spacing: -.01em; transition: color .25s; }
+.rhythm-stop:hover .rhythm-node { transform: translateY(-3px) scale(1.05); border-color: var(--rc); color: var(--rc-deep); }
+.rhythm-stop.is-active .rhythm-node {
+  background: linear-gradient(135deg, var(--rc) 0%, var(--rc-deep) 100%);
+  border-color: transparent; color: #fff; transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--rc) 42%, transparent);
+}
+.rhythm-stop.is-active .rhythm-time { color: var(--rc-deep); }
+
+.rhythm-stage { position: relative; }
+.rhythm-panel {
+  display: none;
+  grid-template-columns: auto 1fr; gap: 26px; align-items: start;
+  background: var(--surface); border: 1px solid var(--line);
+  border-top: 3px solid var(--rc); border-radius: 16px; padding: 30px 32px;
+}
+.rhythm-panel.is-active { display: grid; animation: rhythm-in .35s ease both; }
+@keyframes rhythm-in { from { opacity: 0; } to { opacity: 1; } }
+/* staggered reveal of the panel's contents each time it opens */
+.rhythm-panel.is-active .rhythm-panel-icon { animation: rp-icon .55s cubic-bezier(.22,.61,.36,1) both; }
+.rhythm-panel.is-active .rhythm-panel-time { animation: rp-up .4s ease .04s both; }
+.rhythm-panel.is-active h3 { animation: rp-up .45s ease .09s both; }
+.rhythm-panel.is-active p { animation: rp-up .45s ease .15s both; }
+.rhythm-panel.is-active .rhythm-ex li { animation: rp-up .45s ease both; }
+.rhythm-panel.is-active .rhythm-ex li:nth-child(1) { animation-delay: .21s; }
+.rhythm-panel.is-active .rhythm-ex li:nth-child(2) { animation-delay: .29s; }
+.rhythm-panel.is-active .rhythm-ex li:nth-child(3) { animation-delay: .37s; }
+@keyframes rp-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes rp-icon { from { opacity: 0; transform: scale(.55) rotate(-14deg); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .rhythm-panel.is-active .rhythm-panel-icon,
+  .rhythm-panel.is-active .rhythm-panel-time,
+  .rhythm-panel.is-active h3,
+  .rhythm-panel.is-active p,
+  .rhythm-panel.is-active .rhythm-ex li { animation: none; }
+}
+.rhythm-panel-icon {
+  width: 62px; height: 62px; border-radius: 16px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--rc) 0%, var(--rc-deep) 100%);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 18px;
 }
-.method-card.alt .method-icon { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%); }
-.method-icon svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.method-title { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.015em; }
-.method-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 14px; }
-.method-examples { display: flex; flex-direction: column; gap: 6px; }
-.method-example { font-size: 12.5px; color: var(--muted); padding-left: 14px; position: relative; line-height: 1.5; }
-.method-example::before { content: "→"; position: absolute; left: 0; color: var(--aqua); font-weight: 700; }
-.method-card.alt .method-example::before { color: var(--gold-deep); }
+.rhythm-panel-icon svg { width: 28px; height: 28px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.rhythm-panel-time { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--rc-deep); display: block; margin-bottom: 6px; }
+.rhythm-panel h3 { font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -.02em; }
+.rhythm-panel p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 16px; max-width: 70ch; }
+.rhythm-ex { list-style: none; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.rhythm-ex li { font-size: 12.5px; color: var(--ink-soft); background: var(--rc-tint); border: 1px solid color-mix(in srgb, var(--rc) 24%, transparent); border-radius: 999px; padding: 6px 14px; transition: transform .2s ease; }
+.rhythm-ex li:hover { transform: translateX(4px); }
+@media (max-width: 720px) {
+  .rhythm-label { display: none; }
+  .rhythm-panel { grid-template-columns: 1fr; }
+}
 
 /* ============================================================
    FACULTY · role-based profile cards
@@ -564,28 +617,50 @@ body.dm-open { overflow: hidden; }
 /* ============================================================
    COHORT · first cohort representation
    ============================================================ */
+#cohort { padding-top: 52px; padding-bottom: 52px; }
 .cohort-wrap {
   display: grid;
   grid-template-columns: 0.85fr 1fr;
   gap: 56px;
-  align-items: center;
+  align-items: start;
 }
 .cohort-wrap--single { grid-template-columns: 1fr; max-width: 820px; margin: 0 auto; }
 .cohort-text h3 { font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.02em; }
 .cohort-text p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
-.cohort-profile { display: flex; flex-direction: column; gap: 10px; }
+.cohort-profile { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .cohort-profile-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 12px 14px;
-  background: var(--aqua-tint-2);
-  border-left: 3px solid var(--aqua);
-  border-radius: 0 8px 8px 0;
+  --c: var(--aqua); --c-deep: var(--aqua-deep); --c-tint: var(--aqua-tint-2);
+  position: relative;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  padding: 20px 18px 18px;
+  background: #fff;
+  border: 1px solid var(--line, #e7ecf3);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform .28s cubic-bezier(.22,.61,.36,1), box-shadow .28s ease, border-color .28s ease;
 }
-.cohort-profile-item:nth-child(odd) { border-left-color: var(--gold); background: var(--gold-tint); }
-.cohort-profile-item svg { width: 18px; height: 18px; fill: none; stroke: var(--aqua-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
-.cohort-profile-item:nth-child(odd) svg { stroke: var(--gold-deep); }
-.cohort-profile-item strong { font-size: 13.5px; color: var(--ink); font-weight: 700; display: block; margin-bottom: 2px; }
-.cohort-profile-item span { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.cohort-profile-item:nth-child(odd) { --c: var(--gold); --c-deep: var(--gold-deep); --c-tint: var(--gold-tint); }
+.cohort-profile-item::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--c); transform: scaleX(0); transform-origin: left;
+  transition: transform .32s ease;
+}
+.cohort-profile-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(15,32,68,0.12);
+  border-color: color-mix(in srgb, var(--c) 45%, var(--line, #e7ecf3));
+}
+.cohort-profile-item:hover::before { transform: scaleX(1); }
+.cohort-profile-item svg {
+  width: 20px; height: 20px; padding: 10px; box-sizing: content-box;
+  fill: none; stroke: var(--c-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  background: var(--c-tint); border-radius: 12px; flex-shrink: 0; margin: 0;
+  transition: transform .32s cubic-bezier(.22,.61,.36,1), background .25s ease, stroke .25s ease;
+}
+.cohort-profile-item:hover svg { transform: rotate(-6deg) scale(1.08); background: var(--c); stroke: #fff; }
+.cohort-profile-item strong { font-size: 14.5px; color: var(--ink); font-weight: 800; display: block; margin-bottom: 4px; letter-spacing: -.01em; }
+.cohort-profile-item span { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+@media (max-width: 520px) { .cohort-profile { grid-template-columns: 1fr; } }
 
 /* Country chips */
 .regions-visual {
@@ -691,71 +766,6 @@ body.dm-open { overflow: hidden; }
 .value-tag.is-aqua:hover { background: var(--aqua); color: var(--navy); }
 
 /* ============================================================
-   IMPACT · animated counters
-   ============================================================ */
-.section-impact {
-  background: linear-gradient(135deg, #004a6b 0%, #00618c 60%, #007db2 100%);
-  color: #fff;
-  padding: 80px 0;
-  position: relative;
-  overflow: hidden;
-}
-.section-impact::before {
-  content: ""; position: absolute; top: -120px; left: -80px;
-  width: 380px; height: 380px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(219,169,28,0.2) 0%, transparent 70%);
-  pointer-events: none;
-}
-.section-impact::after {
-  content: ""; position: absolute; bottom: -120px; right: -80px;
-  width: 360px; height: 360px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(92,235,219,0.22) 0%, transparent 70%);
-  pointer-events: none;
-}
-.section-impact .sec-head .overline { background: rgba(219,169,28,0.18); color: var(--gold); }
-.section-impact .sec-head h2 { color: #fff; }
-.section-impact .sec-head p { color: rgba(255,255,255,0.78); }
-.impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; max-width: 1080px; margin: 0 auto; }
-.impact-grid--three { grid-template-columns: repeat(3, 1fr); max-width: 920px; }
-.impact-stat {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 14px;
-  padding: 32px 24px 28px;
-  text-align: center;
-  backdrop-filter: blur(6px);
-  transition: transform 0.2s, background 0.2s, border-color 0.2s;
-}
-.impact-stat:hover { background: rgba(255,255,255,0.10); border-color: rgba(219,169,28,0.4); transform: translateY(-4px); }
-.impact-num { font-size: 48px; font-weight: 800; color: var(--gold); letter-spacing: -0.03em; line-height: 1; margin-bottom: 12px; }
-.impact-num .plus { font-size: 28px; vertical-align: top; margin-left: 2px; }
-.impact-label { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 6px; letter-spacing: -0.005em; }
-.impact-desc { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5; }
-
-/* ============================================================
-   PUBLICATION
-   ============================================================ */
-.pub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.pub-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 26px 24px;
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-.pub-card:hover { transform: translateY(-3px); border-color: var(--gold-border); box-shadow: 0 10px 24px rgba(219,169,28,0.10); }
-.pub-icon {
-  width: 46px; height: 46px; border-radius: 10px;
-  background: var(--gold-tint); color: var(--gold-deep);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-}
-.pub-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.pub-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
-.pub-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 12px; }
-.pub-stat { font-size: 12px; font-weight: 700; color: var(--gold-deep); letter-spacing: 0.04em; text-transform: uppercase; }
-
-/* ============================================================
    PARTNERS
    ============================================================ */
 .partners-wrap {
@@ -854,7 +864,6 @@ body.dm-open { overflow: hidden; }
   .prog-hero-inner { padding: 0 32px; }
   .pillars-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .pillars-grid > .pillar-card:nth-child(n+4) { grid-column: auto; }
-  .impact-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 @media (max-width: 1024px) {
@@ -869,8 +878,6 @@ body.dm-open { overflow: hidden; }
   .faculty-grid { grid-template-columns: repeat(2, 1fr); }
   .cohort-wrap { grid-template-columns: 1fr; gap: 36px; }
   .heritage-wrap { grid-template-columns: 1fr; gap: 36px; }
-  .impact-grid { grid-template-columns: repeat(2, 1fr); }
-  .pub-grid { grid-template-columns: 1fr; }
   .partners-row { grid-template-columns: 1fr; }
 
   /* Journey: horizontal scroll on tablet */
@@ -884,7 +891,6 @@ body.dm-open { overflow: hidden; }
 @media (max-width: 768px) {
   .prog-hero { padding: 52px 0 36px; }
   .section { padding: 60px 0; }
-  .section-impact { padding: 60px 0; }
   .cta-band { padding: 60px 0; }
 
   .brand-mark { font-size: clamp(34px, 8vw, 48px); }
@@ -899,8 +905,6 @@ body.dm-open { overflow: hidden; }
   .pillars-grid { grid-template-columns: 1fr; }
   .method-grid { grid-template-columns: 1fr; }
   .faculty-grid { grid-template-columns: 1fr; }
-  .impact-grid { grid-template-columns: 1fr; gap: 14px; }
-  .impact-num { font-size: 40px; }
 
   .module-sub { grid-template-columns: 1fr; gap: 18px; }
   .module-head { padding: 18px 18px; gap: 14px; }
@@ -924,8 +928,6 @@ body.dm-open { overflow: hidden; }
   .journey-track { grid-template-columns: repeat(8, 180px); }
   .day-card { padding: 14px 12px; }
 
-  .partner-strip-inner { gap: 12px; font-size: 12px; }
-  .partner-strip-sep { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -964,6 +966,7 @@ body.dm-open { overflow: hidden; }
 }
 .participant-card:hover { transform: translateY(-3px); border-color: var(--aqua-border); box-shadow: 0 10px 22px rgba(0,97,140,0.10); }
 .participant-photo {
+  position: relative;
   width: 76px; height: 76px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 14px;
@@ -974,7 +977,7 @@ body.dm-open { overflow: hidden; }
 .participant-card:nth-child(3n) .participant-photo { background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 100%); color: var(--navy); }
 .participant-card:nth-child(5n) .participant-photo { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-700) 100%); }
 .participant-card:nth-child(7n) .participant-photo { background: linear-gradient(135deg, var(--aqua) 0%, var(--gold) 100%); color: var(--navy); }
-.participant-photo img { width: 100%; height: 100%; object-fit: cover; }
+.participant-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .participant-photo svg { width: 32px; height: 32px; color: rgba(255,255,255,0.85); }
 .participant-card:nth-child(3n) .participant-photo svg { color: rgba(15,32,68,0.55); }
 .participant-name { font-size: 14.5px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 4px; letter-spacing: -0.005em; }
@@ -1006,7 +1009,7 @@ body.dm-open { overflow: hidden; }
 /* Per-logo heights: optically balanced so the wide, heavy WBF mark and the
    compact OSF wordmark read as the same visual size. */
 .partner-block-logo img { width: auto; max-width: 100%; }
-.partner-block-logo img[src*="logo-color"] { height: 115px; }
+.partner-block-logo img[src*="wbf-logo"] { height: 115px; }
 .partner-block-logo img[src*="partner-osf"] { height: 140px; }
 .partners-thanks { text-align: center; font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; max-width: 64ch; margin: 0 auto; font-style: italic; }
 @media (max-width: 1024px) {
@@ -1043,13 +1046,9 @@ body.dm-open { overflow: hidden; }
     </nav>
 
     <div class="hero-pills">
-      <div class="status-pill is-amber">
-        <span class="status-pill-dot"></span>
-        <span class="status-pill-text">1st Edition · Applications Under Review</span>
-      </div>
       <div class="status-pill">
         <span class="status-pill-dot"></span>
-        <span class="status-pill-text">13–20 September 2026 · Tirana, Albania</span>
+        <span class="status-pill-text">13–19 September 2026 · Tirana, Albania</span>
       </div>
     </div>
 
@@ -1069,10 +1068,6 @@ body.dm-open { overflow: hidden; }
       <a class="btn-gold" href="#journey">
         See the Learning Journey
         <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
-      </a>
-      <a class="btn-ghost" href="#first-cohort">
-        Meet the Cohort
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
       </a>
     </div>
 
@@ -1246,15 +1241,9 @@ body.dm-open { overflow: hidden; }
           <div class="day-activity">Lecture 5 · Ethics workshop · Closing reception</div>
           <div class="day-more">View details</div>
         </div>
-        <div class="day-card" role="listitem">
+        <div class="day-card is-finale" role="listitem">
           <div class="day-dot">7</div>
           <div class="day-date">SAT 19 SEP</div>
-          <div class="day-theme">Heritage &amp; Memory</div>
-          <div class="day-activity">Kruja · Bunk'Art 1 · Cultural exchange dinner</div>
-        </div>
-        <div class="day-card is-finale" role="listitem">
-          <div class="day-dot">8</div>
-          <div class="day-date">SUN 20 SEP</div>
           <div class="day-theme">Closing &amp; Reflection</div>
           <div class="day-activity">Final presentations · &ldquo;The region we want to build&rdquo;</div>
         </div>
@@ -1472,58 +1461,91 @@ body.dm-open { overflow: hidden; }
       <h2>Four learning tracks, one daily rhythm</h2>
     </div>
 
-    <div class="method-grid">
-      <div class="method-card">
-        <div class="method-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M9 12l2 2 4-4"/></svg>
-        </div>
-        <div class="method-title">Thematic Lectures</div>
-        <div class="method-desc">Expert-led morning sessions on the six thematic modules, structured as opening → presentation → break → interactive discussion → participatory closing.</div>
-        <div class="method-examples">
-          <span class="method-example">Visual materials, case studies, video testimonies</span>
-          <span class="method-example">Critical examination of inherited narratives</span>
-          <span class="method-example">Co-creation between expert and participants</span>
-        </div>
+    <div class="rhythm" id="rhythm">
+      <div class="rhythm-rail" role="tablist" aria-label="Daily learning tracks">
+        <button type="button" class="rhythm-stop is-active" role="tab" aria-selected="true" data-r="0" style="--rc:var(--gold);--rc-deep:var(--gold-deep);--rc-tint:var(--gold-tint)">
+          <span class="rhythm-node"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="rhythm-time">Morning</span>
+          <span class="rhythm-label">Thematic Lectures</span>
+        </button>
+        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="1" style="--rc:var(--aqua);--rc-deep:var(--aqua-deep);--rc-tint:var(--aqua-tint)">
+          <span class="rhythm-node"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="13" rx="1.5"/><path d="M12 16v4"/><path d="M8 20h8"/><polyline points="7,12 10,9 12.5,11.5 17,7"/></svg></span>
+          <span class="rhythm-time">Afternoon</span>
+          <span class="rhythm-label">Interactive Sessions</span>
+        </button>
+        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="2" style="--rc:var(--aqua);--rc-deep:var(--aqua-deep);--rc-tint:var(--aqua-tint)">
+          <span class="rhythm-node"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+          <span class="rhythm-time">Evening</span>
+          <span class="rhythm-label">Dialogue Sessions</span>
+        </button>
+        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="3" style="--rc:var(--gold);--rc-deep:var(--gold-deep);--rc-tint:var(--gold-tint)">
+          <span class="rhythm-node"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
+          <span class="rhythm-time">Field day</span>
+          <span class="rhythm-label">Site Visits</span>
+        </button>
       </div>
 
-      <div class="method-card alt">
-        <div class="method-icon">
-          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17,11 19,13 23,9"/></svg>
+      <div class="rhythm-stage">
+        <div class="rhythm-panel is-active" role="tabpanel" data-r="0" style="--rc:var(--gold);--rc-deep:var(--gold-deep);--rc-tint:var(--gold-tint)">
+          <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div>
+            <span class="rhythm-panel-time">Morning</span>
+            <h3>Thematic Lectures</h3>
+            <p>Expert-led morning sessions on the six thematic modules, structured as opening → presentation → break → interactive discussion → participatory closing.</p>
+          </div>
         </div>
-        <div class="method-title">Interactive Sessions</div>
-        <div class="method-desc">Afternoon workshops in flexible, mixed-CP groups. Highly participatory, non-formal education methods linked directly to the morning's themes.</div>
-        <div class="method-examples">
-          <span class="method-example">Role-plays and simulations</span>
-          <span class="method-example">Case study analysis &amp; problem-solving</span>
-          <span class="method-example">Co-creation lab: policy brief &amp; initiative sprint</span>
+        <div class="rhythm-panel" role="tabpanel" data-r="1" style="--rc:var(--aqua);--rc-deep:var(--aqua-deep);--rc-tint:var(--aqua-tint)">
+          <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="13" rx="1.5"/><path d="M12 16v4"/><path d="M8 20h8"/><polyline points="7,12 10,9 12.5,11.5 17,7"/></svg></div>
+          <div>
+            <span class="rhythm-panel-time">Afternoon</span>
+            <h3>Interactive Sessions</h3>
+            <p>Afternoon workshops in flexible, mixed-CP groups. Highly participatory, non-formal education methods linked directly to the morning's themes.</p>
+            <ul class="rhythm-ex">
+              <li>Role-plays and simulations</li>
+              <li>Case study analysis &amp; problem-solving</li>
+              <li>Co-creation lab: policy brief &amp; initiative sprint</li>
+            </ul>
+          </div>
         </div>
-      </div>
-
-      <div class="method-card">
-        <div class="method-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <div class="rhythm-panel" role="tabpanel" data-r="2" style="--rc:var(--aqua);--rc-deep:var(--aqua-deep);--rc-tint:var(--aqua-tint)">
+          <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+          <div>
+            <span class="rhythm-panel-time">Evening</span>
+            <h3>Dialogue Sessions</h3>
+            <p>Evening sessions in informal settings such as terraces, gardens, and lounges that shift the atmosphere from classroom to community. Unstructured by design, facilitated lightly.</p>
+            <ul class="rhythm-ex">
+              <li>Fireside leadership conversations</li>
+              <li>Photography as dialogue</li>
+            </ul>
+          </div>
         </div>
-        <div class="method-title">Dialogue Sessions</div>
-        <div class="method-desc">Evening sessions in informal settings such as terraces, gardens, and lounges that shift the atmosphere from classroom to community. Unstructured by design, facilitated lightly.</div>
-        <div class="method-examples">
-          <span class="method-example">Fireside leadership conversations</span>
-          <span class="method-example">Photography as dialogue</span>
-        </div>
-      </div>
-
-      <div class="method-card alt">
-        <div class="method-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="method-title">Site Visits</div>
-        <div class="method-desc">Heritage day combining classroom learning with experiential engagement, reflection, and dialogue across different dimensions of cultural memory and identity.</div>
-        <div class="method-examples">
-          <span class="method-example">Kruja: Skanderbeg Museum &amp; Old Bazaar</span>
-          <span class="method-example">Bunk'Art 1: Cold War memory institution</span>
-          <span class="method-example">Reflection dinner on Dajti Mountain</span>
+        <div class="rhythm-panel" role="tabpanel" data-r="3" style="--rc:var(--gold);--rc-deep:var(--gold-deep);--rc-tint:var(--gold-tint)">
+          <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+          <div>
+            <span class="rhythm-panel-time">Field day</span>
+            <h3>Site Visits</h3>
+            <p>Heritage day combining classroom learning with experiential engagement, reflection, and dialogue across different dimensions of cultural memory and identity.</p>
+          </div>
         </div>
       </div>
     </div>
+
+    <script>
+    (function(){
+      var r = document.getElementById('rhythm');
+      if (!r) return;
+      var stops = [].slice.call(r.querySelectorAll('.rhythm-stop'));
+      var panels = [].slice.call(r.querySelectorAll('.rhythm-panel'));
+      function show(i){
+        stops.forEach(function(s){ var on = s.dataset.r === String(i); s.classList.toggle('is-active', on); s.setAttribute('aria-selected', on ? 'true' : 'false'); });
+        panels.forEach(function(p){ p.classList.toggle('is-active', p.dataset.r === String(i)); });
+      }
+      stops.forEach(function(s){
+        s.addEventListener('click', function(){ show(s.dataset.r); });
+        s.addEventListener('mouseenter', function(){ show(s.dataset.r); });
+      });
+    })();
+    </script>
   </div>
 </section>
 
@@ -1604,12 +1626,12 @@ body.dm-open { overflow: hidden; }
      ============================================================ -->
 <section class="section" id="cohort">
   <div class="container">
-    <div class="sec-head left" style="margin: 0 0 32px;">
-      <div class="overline">The Cohort</div>
-      <h2>Who the Academy is built for?</h2>
-    </div>
     <div class="cohort-wrap">
       <div class="cohort-text">
+        <div class="sec-head left" style="margin: 0 0 20px;">
+          <div class="overline">The Cohort</div>
+          <h2>Who the Academy is built for?</h2>
+        </div>
         <p>The Regional Academy is designed for junior professionals and emerging leaders from across the WB6: people who are eager to grow beyond their national context, build lasting regional relationships, and develop practical dialogue and cooperation skills that are recognised across the region.</p>
         <p>The cohort is deliberately mixed. Lawyers and activists work alongside artists and journalists. Civil servants exchange with entrepreneurs and researchers. Diversity is not an add-on; it is the precondition for the kind of dialogue the Academy is designed to enable.</p>
       </div>
@@ -1649,145 +1671,18 @@ body.dm-open { overflow: hidden; }
 </section>
 
 <!-- ============================================================
-     FIRST COHORT · participant showcase (auto-scroll carousel)
-     NOTE: participant data below is placeholder for layout review.
-     Replace name + organisation strings with the confirmed cohort.
-     ============================================================ -->
-<section class="first-cohort" id="first-cohort">
-  <div class="container">
-    <div class="sec-head">
-      <div class="overline">First Cohort</div>
-      <h2>Meet the <span class="gold-accent">inaugural participants</span></h2>
-      <p>Fifty junior professionals and emerging leaders from across the WB6, joining the first edition of the Regional Academy in Tirana in September 2026.</p>
-    </div>
-
-    <div class="cohort-marquee" aria-label="First cohort participants, row 1">
-      <div class="cohort-marquee-track">
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-      </div>
-    </div>
-
-    <div class="cohort-marquee" aria-label="First cohort participants, row 2">
-      <div class="cohort-marquee-track is-reverse">
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-        <div class="participant-card"><div class="participant-photo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div class="participant-name">Name Surname</div><div class="participant-org">Organization</div></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================================
      HERITAGE DAY
      ============================================================ -->
 <section class="section section-tint" id="heritage">
   <div class="container-narrow">
     <div class="sec-head">
-      <div class="overline">Heritage Day · 19 September</div>
+      <div class="overline">Heritage visits</div>
       <h2>The field-learning day that ties everything together</h2>
       <p>One full day outside the classroom, combining visits to sites that represent different historical periods and dimensions of identity, memory, and social transformation.</p>
     </div>
 
     <div class="heritage-wrap">
       <div class="heritage-text">
-        <span class="heritage-day-pill">SAT 19 SEP · Day 7</span>
         <h3>A day of heritage, memory, and reflection</h3>
         <p>Participants take part in a full-day heritage visit that combines guided site visits, structured reflection, and informal intercultural exchange. The day is designed as an extended learning exercise rather than a touristic activity: participants receive a background pack with historical context and guiding questions before departure, and facilitators lead reflection sessions throughout the day that connect what is seen on site with the Academy's themes of leadership, democracy, peacebuilding, and regional cooperation. The day concludes with a shared meal and a group reflection on what the experience has revealed about memory, identity, and cooperation across the region.</p>
       </div>
@@ -1821,17 +1716,11 @@ body.dm-open { overflow: hidden; }
      ============================================================ -->
 <section class="section section-alt" id="partners">
   <div class="container-narrow">
-    <div class="sec-head">
-      <div class="overline">Institutional Support</div>
-      <h2>Organised by the WBF, made possible <span class="gold-accent">with support</span></h2>
-      <p>The WBF Regional Academy is an initiative of the Western Balkans Fund, supported by the Open Society Foundation Western Balkans in advancing dialogue, regional cooperation, and the development of open societies across the Western Balkans.</p>
-    </div>
-
     <div class="partners-wrap partners-wrap--featured">
       <div class="partners-row partners-row--featured">
         <div class="partner-block partner-block--featured partner-block--logo">
           <div class="partner-block-logo">
-            <img src="/assets/img/logo-color.png" alt="Western Balkans Fund">
+            <img src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
           </div>
         </div>
         <div class="partner-block partner-block--featured is-gold partner-block--logo">
@@ -1843,7 +1732,7 @@ body.dm-open { overflow: hidden; }
         </div>
       </div>
 
-      <p class="partners-thanks">The Academy is organised by the Western Balkans Fund with the support of the Open Society Foundation Western Balkans. Their support helps make the programme, the cohort, and the regional alumni network possible.</p>
+      <p class="partners-thanks">The Academy is organised by the Western Balkans Fund with the support of the Open Society Foundation Western Balkans.</p>
     </div>
   </div>
 </section>
@@ -1980,35 +1869,6 @@ body.dm-open { overflow: hidden; }
   });
 })();
 
-/* Impact counter animation · IntersectionObserver, respects reduced-motion */
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function animateCounter(el) {
-  const target = parseInt(el.getAttribute('data-target'), 10) || 0;
-  const suffix = el.getAttribute('data-suffix') || '';
-  if (reducedMotion) {
-    el.textContent = target + suffix;
-    return;
-  }
-  const duration = 1400;
-  const start = performance.now();
-  function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3); /* easeOutCubic */
-    const value = Math.round(eased * target);
-    el.textContent = value + suffix;
-    if (progress < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-const counterObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.4 });
-document.querySelectorAll('.impact-num[data-target]').forEach(el => counterObserver.observe(el));
 </script>
 </body>
 </html>

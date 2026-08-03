@@ -4,10 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>News & Announcements — Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/news.html">
 <meta name="description" content="Latest updates, opportunities, publications, stories, and announcements from the Western Balkans Fund.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
@@ -93,9 +101,6 @@
   .filters-wrap {
     background: #fff;
     border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 56px;
-    z-index: 100;
   }
   .filters-inner {
     max-width: 1400px;
@@ -184,6 +189,43 @@
     .filters-wrap { position: static; }
     .filter-label { width: auto; }
   }
+
+  /* ---------- Pagination ---------- */
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin: 40px auto 8px;
+    padding: 0 40px;
+  }
+  .pagination[hidden] { display: none; }
+  .page-btn {
+    min-width: 40px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .page-btn:hover:not(:disabled):not(.active) { border-color: var(--navy); color: var(--navy); }
+  .page-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+    cursor: default;
+  }
+  .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .page-gap { padding: 0 4px; color: var(--faint); user-select: none; }
+  @media (max-width: 768px) {
+    .pagination { padding: 0 20px; }
+  }
 </style>
 </head>
 <body>
@@ -246,6 +288,7 @@
 <section class="news-section">
   <div class="container">
     <div class="cards-grid" id="cards-grid" aria-live="polite"></div>
+    <nav class="pagination" id="pagination" aria-label="News pages" hidden></nav>
   </div>
 </section>
 
@@ -276,10 +319,13 @@
      ────────────────────────────────────────────────────────── */
   const COMPONENTS_BASE = "/components/";
 
+  const PAGE_SIZE = 15;
+
   const STATE = {
     items: [],
     activeType: 'all',
-    activeProgramme: 'all'
+    activeProgramme: 'all',
+    page: 1
   };
 
   /* ──────────────────────────────────────────────────────────
@@ -353,14 +399,60 @@
   function renderGrid() {
     const grid = $('#cards-grid');
     const meta = $('#results-meta');
-    const list = getFiltered();
+    const list = getFiltered();                 // full filtered archive
+    const total = list.length;
+    const filtered = (STATE.activeType !== 'all' || STATE.activeProgramme !== 'all');
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
-    meta.innerHTML = '<strong>' + list.length + '</strong> ' +
-      (list.length === 1 ? 'article' : 'articles') +
-      (STATE.activeType !== 'all' || STATE.activeProgramme !== 'all' ? ' matching your filters' : '');
+    /* Keep the requested page in range (e.g. after a filter shrinks the set). */
+    if (STATE.page > totalPages) STATE.page = totalPages;
+    if (STATE.page < 1) STATE.page = 1;
 
-    if (!list.length) { window.WBFNewsCard.renderEmpty(grid); return; }
-    window.WBFNewsCard.renderGrid(list, grid);
+    if (!total) {
+      meta.innerHTML = '<strong>0</strong> articles' + (filtered ? ' matching your filters' : '');
+      window.WBFNewsCard.renderEmpty(grid);
+      renderPagination(1);
+      return;
+    }
+
+    const start = (STATE.page - 1) * PAGE_SIZE;
+    const pageItems = list.slice(start, start + PAGE_SIZE);
+    const from = start + 1;
+    const to = start + pageItems.length;
+
+    meta.innerHTML = 'Showing <strong>' + from + '&ndash;' + to + '</strong> of <strong>' + total + '</strong> ' +
+      (total === 1 ? 'article' : 'articles') + (filtered ? ' matching your filters' : '');
+
+    window.WBFNewsCard.renderGrid(pageItems, grid);
+    renderPagination(totalPages);
+  }
+
+  /* Windowed page controls: first, last, and a small window around the current page. */
+  function renderPagination(totalPages) {
+    const nav = $('#pagination');
+    if (!nav) return;
+    if (totalPages <= 1) { nav.innerHTML = ''; nav.hidden = true; return; }
+    nav.hidden = false;
+
+    const cur = STATE.page;
+    const pageBtn = (p, active) =>
+      '<button type="button" class="page-btn' + (active ? ' active' : '') + '" data-page="' + p + '"' +
+      (active ? ' aria-current="page"' : '') + ' aria-label="Page ' + p + '">' + p + '</button>';
+
+    /* Page numbers to show: 1, last, and current ± 1, with … for gaps. */
+    const show = [];
+    for (let p = 1; p <= totalPages; p++) {
+      if (p === 1 || p === totalPages || (p >= cur - 1 && p <= cur + 1)) show.push(p);
+      else if (show[show.length - 1] !== 'gap') show.push('gap');
+    }
+
+    let html = '<button type="button" class="page-btn" data-page="' + (cur - 1) + '"' +
+      (cur === 1 ? ' disabled' : '') + ' aria-label="Previous page">&lsaquo; Prev</button>';
+    show.forEach(p => { html += (p === 'gap') ? '<span class="page-gap">&hellip;</span>' : pageBtn(p, p === cur); });
+    html += '<button type="button" class="page-btn" data-page="' + (cur + 1) + '"' +
+      (cur === totalPages ? ' disabled' : '') + ' aria-label="Next page">Next &rsaquo;</button>';
+
+    nav.innerHTML = html;
   }
 
   /* ──────────────────────────────────────────────────────────
@@ -371,6 +463,7 @@
       const btn = e.target.closest('button[data-type]');
       if (!btn) return;
       STATE.activeType = btn.dataset.type;
+      STATE.page = 1;                          // new filter → back to first page
       $$('button[data-type]').forEach(b => b.classList.toggle('active', b === btn));
       renderGrid();
     });
@@ -379,8 +472,22 @@
       const btn = e.target.closest('button[data-programme]');
       if (!btn) return;
       STATE.activeProgramme = btn.dataset.programme;
+      STATE.page = 1;                          // new filter → back to first page
       $$('#programme-filters button[data-programme]').forEach(b => b.classList.toggle('active', b === btn));
       renderGrid();
+    });
+  }
+
+  function bindPagination() {
+    $('#pagination').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-page]');
+      if (!btn || btn.disabled) return;
+      const p = parseInt(btn.dataset.page, 10);
+      if (!p || p === STATE.page) return;
+      STATE.page = p;
+      renderGrid();
+      const anchor = $('.results-meta');
+      if (anchor && anchor.scrollIntoView) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 
@@ -420,6 +527,7 @@
 
     window.WBFNewsCard.renderSkeletons(grid, 6);
     bindFilterChips();
+    bindPagination();
 
     try {
       STATE.items = await window.WBFData.news.all();

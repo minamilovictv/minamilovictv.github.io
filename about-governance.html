@@ -4,10 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Governance — Western Balkans Fund</title>
-<meta name="description" content="The governing bodies of the Western Balkans Fund — the Conference of Ministers of Foreign Affairs, the Council of Senior Officials, the Executive Director, and the Secretariat — and the annual Chairmanship-in-Office.">
+<link rel="canonical" href="https://westernbalkansfund.org/about-governance.html">
+<meta name="description" content="The Western Balkans Fund's governing bodies — Conference of Ministers of Foreign Affairs, Council of Senior Officials, Executive Director and Secretariat.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
@@ -169,12 +177,8 @@
   .flow-title { font-size: var(--text-md); font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 4px; }
   .flow-card:hover .flow-title { color: var(--gv-blue); }
   .flow-role { font-size: var(--text-sm); color: var(--gv-blue-700); font-weight: 500; }
-  .flow-connector {
-    position: absolute; top: 50%; right: -16px; transform: translateY(-50%);
-    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
-    color: #cbd5e1; z-index: 2; pointer-events: none;
-  }
-  .flow-connector svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: nudge 1.8s ease-in-out infinite; }
+  /* Decorative arrow between cards removed — it poked past the card's right edge. */
+  .flow-connector { display: none; }
   @keyframes nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
 
   /* ============================================================
@@ -426,7 +430,7 @@
     </nav>
     <div class="page-hero-overline"><span class="dot"></span>About</div>
     <h1>Governance of the <span class="shine">Western Balkans Fund</span></h1>
-    <p>The Fund operates under a transparent governance framework with equal representation from all six Contracting Parties — ensuring accountability, independence, and effective delivery across the region.</p>
+    <p>The Fund operates under a transparent governance framework in which all six Contracting Parties are equally represented, ensuring accountability, independence, and effective delivery across the region.</p>
   </div>
 </section>
 
@@ -520,12 +524,12 @@
         </ul>
       </div>
       <div class="body-image-col reveal-r">
-        <div class="gov-carousel" data-folder="/assets/governance/ministers/" aria-roledescription="carousel" aria-label="Conference of Ministers photos">
+        <div class="gov-carousel" data-folder="/assets/images/governance/Ministers/" aria-roledescription="carousel" aria-label="Conference of Ministers photos">
           <div class="gov-carousel-viewport"><div class="gov-carousel-track"></div></div>
           <div class="gov-carousel-empty">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
             <span>Add photos</span>
-            <small>Drop 1.jpg, 2.jpg… into /assets/governance/ministers/</small>
+            <small>Drop 1.jpg, 2.jpg… into /assets/images/governance/Ministers/</small>
           </div>
           <button class="gov-arrow gov-prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
           <button class="gov-arrow gov-next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></button>
@@ -565,12 +569,12 @@
         </ul>
       </div>
       <div class="body-image-col reveal-l">
-        <div class="gov-carousel" data-folder="/assets/governance/council/" aria-roledescription="carousel" aria-label="Council of Senior Officials photos">
+        <div class="gov-carousel" data-folder="/assets/images/governance/Council/" aria-roledescription="carousel" aria-label="Council of Senior Officials photos">
           <div class="gov-carousel-viewport"><div class="gov-carousel-track"></div></div>
           <div class="gov-carousel-empty">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
             <span>Add photos</span>
-            <small>Drop 1.jpg, 2.jpg… into /assets/governance/council/</small>
+            <small>Drop 1.jpg, 2.jpg… into /assets/images/governance/Council/</small>
           </div>
           <button class="gov-arrow gov-prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
           <button class="gov-arrow gov-next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></button>
@@ -613,12 +617,12 @@
         </ul>
       </div>
       <div class="body-image-col reveal-r">
-        <div class="gov-carousel" data-folder="/assets/governance/director/" aria-roledescription="carousel" aria-label="Executive Director photos">
+        <div class="gov-carousel" data-folder="/assets/images/governance/Director/" aria-roledescription="carousel" aria-label="Executive Director photos">
           <div class="gov-carousel-viewport"><div class="gov-carousel-track"></div></div>
           <div class="gov-carousel-empty">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
             <span>Add photos</span>
-            <small>Drop 1.jpg, 2.jpg… into /assets/governance/director/</small>
+            <small>Drop 1.jpg, 2.jpg… into /assets/images/governance/Director/</small>
           </div>
           <button class="gov-arrow gov-prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
           <button class="gov-arrow gov-next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></button>
@@ -663,12 +667,12 @@
         </div>
       </div>
       <div class="body-image-col reveal-l">
-        <div class="gov-carousel" data-folder="/assets/governance/secretariat/" aria-roledescription="carousel" aria-label="Secretariat photos">
+        <div class="gov-carousel" data-folder="/assets/images/governance/Secretariat/" aria-roledescription="carousel" aria-label="Secretariat photos">
           <div class="gov-carousel-viewport"><div class="gov-carousel-track"></div></div>
           <div class="gov-carousel-empty">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
             <span>Add photos</span>
-            <small>Drop 1.jpg, 2.jpg… into /assets/governance/secretariat/</small>
+            <small>Drop 1.jpg, 2.jpg… into /assets/images/governance/Secretariat/</small>
           </div>
           <button class="gov-arrow gov-prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
           <button class="gov-arrow gov-next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></button>
@@ -871,14 +875,20 @@
     var MAX = 30;          // safety cap on how many photos to probe
     var AUTO_MS = 6000;
 
-    // Sequentially probe folder/1.jpg, /2.jpg, ... stop at first missing
+    // Sequentially probe folder/1.<ext>, /2.<ext>, ... stop at first index
+    // with no matching file. Each index tries several extensions in order.
+    var EXTS = ['jpg', 'jpeg', 'png', 'webp'];
     var urls = [];
     (function probe(i) {
       if (i > MAX) return build();
-      var test = new Image();
-      test.onload  = function () { urls.push(folder + i + '.jpg'); probe(i + 1); };
-      test.onerror = function () { build(); };
-      test.src = folder + i + '.jpg';
+      (function tryExt(e) {
+        if (e >= EXTS.length) return build();   // no extension matched → done
+        var src  = folder + i + '.' + EXTS[e];
+        var test = new Image();
+        test.onload  = function () { urls.push(src); probe(i + 1); };
+        test.onerror = function () { tryExt(e + 1); };
+        test.src = src;
+      })(0);
     })(1);
 
     function build() {

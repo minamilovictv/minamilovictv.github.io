@@ -34,9 +34,9 @@
       '.nb.nav-open .nav-toggle .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg);}',
       /* desktop: click-toggled state mirrors the hover state */
       '.dropdown-wrap.open>.dropdown{display:block!important;}',
-      '.dropdown-wrap.open>.mega{display:grid!important;grid-template-columns:1fr 1fr;}',
+      '.dropdown-wrap.open>.mega{display:grid!important;grid-template-columns:1.75fr 1fr;}',
       /* Breakpoint MUST match css/site-chrome.css (.nav-items collapse). */
-      '@media (max-width:1200px){',
+      '@media (max-width:1240px){',
       '  .nav-toggle{display:block;}',
       /* Mobile drawer mirrors the desktop light theme: white surface,
          navy text, navy-fill hover (inherited from .nav-btn:hover). */
@@ -53,6 +53,11 @@
       '  .nb.nav-open .dropdown-wrap.open>.mega{display:block!important;grid-template-columns:1fr;}',
       '  .nb.nav-open .dd-item,.nb.nav-open .mega-item{padding:12px 14px;}',
       '  .nb.nav-open .mega-col{padding:0;border:0;}',
+      /* "Our Programs" mega → clean single-column list matching the other menus */
+      '  .nb.nav-open .mega-col-wide .mega-items{grid-template-columns:1fr;column-gap:0;}',
+      '  .nb.nav-open .mega-item{min-height:0;border-radius:0;}',
+      '  .nb.nav-open .m-title{font-size:15px;font-weight:600;}',
+      '  .nb.nav-open .mega-head{padding:12px 14px 4px;margin:0;}',
       '  body.nav-locked{overflow:hidden;}',
       '}'
     ].join('\n');
@@ -90,21 +95,27 @@
       wraps.forEach(function (w) {
         if (w !== except) {
           w.classList.remove('open');
-          var b = w.querySelector('button.nav-btn');
+          var b = w.querySelector('.nav-btn');
           if (b) b.setAttribute('aria-expanded', 'false');
         }
       });
     }
 
     wraps.forEach(function (w) {
-      var btn = w.querySelector('button.nav-btn');
-      if (!btn) return;
-      btn.addEventListener('click', function (e) {
+      var trigger = w.querySelector('.nav-btn');   /* <button> or <a> (e.g. "Our Programs") */
+      if (!trigger) return;
+      trigger.addEventListener('click', function (e) {
+        /* On desktop a link trigger navigates and the menu opens on hover.
+           Inside the mobile drawer there is no hover, so tapping the trigger
+           expands its submenu instead of following the link. */
+        var inDrawer = nb.classList.contains('nav-open');
+        if (trigger.tagName === 'A' && !inDrawer) return;
+        e.preventDefault();
         e.stopPropagation();
         var opening = !w.classList.contains('open');
         closeAllDropdowns(w);
         w.classList.toggle('open', opening);
-        btn.setAttribute('aria-expanded', String(opening));
+        trigger.setAttribute('aria-expanded', String(opening));
       });
     });
 

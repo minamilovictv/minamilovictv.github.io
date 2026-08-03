@@ -115,7 +115,7 @@
   .wbf-modal .modal-date { font-size: 12.5px; color: #64748b; margin-left: 6px; }
 
   .wbf-modal .modal-title {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: clamp(22px, 3vw, 32px);
     font-weight: 700;
     color: #0f172a;
@@ -225,10 +225,11 @@
     font-size: 15.5px;
     color: #334155;
     line-height: 1.75;
+    text-align: justify;
   }
   .wbf-modal .article-body p { margin-bottom: 16px; }
   .wbf-modal .article-body h2 {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: 22px;
     color: #0f172a;
     margin: 28px 0 12px;
@@ -459,6 +460,25 @@
     if (next) next.disabled = (i === currentMedia.length - 1);
   }
 
+  /* ---------- Article body: plain text (Google Sheet cell) → paragraphs, or pass HTML through ---------- */
+  function looksLikeHtml(s) {
+    return /<(p|div|h[1-6]|ul|ol|li|br|blockquote|table|img|a|strong|em|span)\b/i.test(s);
+  }
+  function formatArticleBody(contentRaw, excerpt) {
+    const raw = (contentRaw == null ? '' : String(contentRaw)).trim();
+    if (!raw) return '<p>' + escapeHtml(excerpt || '') + '</p>';
+    if (looksLikeHtml(raw)) return raw;            // already rich HTML — render as-is
+    return raw
+      .replace(/\r\n/g, '\n')
+      .split(/\n[ \t]*\n+/)                        // blank line(s) → new paragraph
+      .map(function (para) {
+        const t = para.replace(/^\n+|\n+$/g, '');
+        return t ? '<p>' + escapeHtml(t).replace(/\n/g, '<br>') + '</p>' : '';  // single newline → line break
+      })
+      .filter(Boolean)
+      .join('');
+  }
+
   /* ---------- Open / close ---------- */
   function open(item) {
     if (!attached) attach();
@@ -486,7 +506,7 @@
         '</div>' +
         '<h2 id="wbf-news-modal-title" class="modal-title">' + escapeHtml(item.title || '') + '</h2>' +
         renderCarousel(currentMedia) +
-        '<div class="article-body">' + (item.content || ('<p>' + escapeHtml(item.excerpt || '') + '</p>')) + '</div>' +
+        '<div class="article-body">' + formatArticleBody(item.content, item.excerpt) + '</div>' +
         renderAttachments(attachments) +
         ((item.downloadUrl || item.externalUrl) ?
           '<div class="modal-actions">' +

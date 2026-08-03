@@ -4,10 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About the Western Balkans Fund</title>
-<meta name="description" content="The Western Balkans Fund is an international organization based in Tirana, founded by the six Western Balkans governments to promote regional cooperation, reconciliation, and people-to-people ties.">
+<link rel="canonical" href="https://westernbalkansfund.org/about.html">
+<meta name="description" content="The Western Balkans Fund, based in Tirana, was founded by its six Contracting Parties to promote regional cooperation, reconciliation and people-to-people ties.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
@@ -122,6 +130,9 @@
   .mandate-row { margin-bottom: 44px; }
   .mandate-row:last-child { margin-bottom: 0; }
   .split-col { min-width: 0; } /* prevents grid overflow */
+  /* Gallery row: let the gallery column stretch to the text column's height so
+     the featured image fills the space instead of leaving a gap below it. */
+  .mandate-row-2 { align-items: stretch; }
 
   .mandate-section .overline {
     display: inline-block;
@@ -170,6 +181,22 @@
     hyphens: auto;
   }
 
+  /* highlighted pull-quote inside the mandate/history columns */
+  .mandate-quote {
+    margin: 20px 0;
+    padding: 18px 24px;
+    background: var(--accent-tint, #e8eef8);
+    border-left: 4px solid var(--accent, #173D8F);
+    border-radius: 0 12px 12px 0;
+    font-size: var(--text-md) !important;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--ink, #0f172a) !important;
+    line-height: 1.65 !important;
+    text-align: left !important;
+    hyphens: none !important;
+  }
+
   .mandate-footnote {
     margin-top: 18px;
     padding-top: 14px;
@@ -201,56 +228,53 @@
   }
 
   /* ---- 6-image gallery ---- */
-  .wbf-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
-    gap: 10px;
-    height: 100%;
-    min-height: 380px;
-  }
-  .wbf-gallery-item {
+  /* Gallery: one large featured image + a strip of thumbnails.
+     Hovering / clicking a thumbnail (or the arrows) swaps the main image. */
+  .wbf-gallery { display: flex; flex-direction: column; gap: 12px; height: 100%; }
+  .wbf-gallery-main {
     position: relative;
+    border-radius: 10px;
     overflow: hidden;
-    border-radius: 8px;
+    flex: 1 1 auto;
+    min-height: 320px;            /* falls back to a sensible height on mobile */
     background: linear-gradient(135deg, #e6ecf3 0%, #cfd9e6 100%);
-    aspect-ratio: 4 / 3;
-    cursor: default;
+    box-shadow: 0 10px 26px rgba(15,32,68,0.10);
   }
-  .wbf-gallery-item::before {
-    content: attr(data-num);
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 30px;
-    font-weight: 300;
-    color: rgba(15,32,68,0.32);
-    letter-spacing: 0.08em;
-    pointer-events: none;
+  .wbf-gallery-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .wbf-gallery-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px; border: none; border-radius: 50%;
+    background: rgba(15,32,68,0.55); color: #fff; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+    transition: background 0.15s ease, opacity 0.15s ease; opacity: 0; z-index: 2;
   }
-  .wbf-gallery-item img {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  .wbf-gallery-main:hover .wbf-gallery-nav { opacity: 1; }
+  .wbf-gallery-nav:focus-visible { opacity: 1; outline: 2px solid #fff; outline-offset: -4px; }
+  .wbf-gallery-nav:hover { background: rgba(15,32,68,0.82); }
+  .wbf-gallery-nav.prev { left: 12px; }
+  .wbf-gallery-nav.next { right: 12px; }
+  .wbf-gallery-nav svg { width: 18px; height: 18px; }
+  .wbf-gallery-thumbs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .wbf-gallery-thumb {
+    position: relative; padding: 0; border: 2px solid transparent; border-radius: 6px;
+    overflow: hidden; cursor: pointer; aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, #e6ecf3 0%, #cfd9e6 100%);
+    transition: border-color 0.15s ease, transform 0.15s ease;
   }
-  .wbf-gallery-item:hover img { transform: scale(1.05); }
+  .wbf-gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.62; transition: opacity 0.15s ease; }
+  .wbf-gallery-thumb:hover { transform: translateY(-2px); }
+  .wbf-gallery-thumb:hover img, .wbf-gallery-thumb.is-active img { opacity: 1; }
+  .wbf-gallery-thumb.is-active { border-color: var(--navy); }
+  .wbf-gallery-thumb:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
 
   @media (max-width: 900px) {
     .split-grid { grid-template-columns: 1fr; gap: 40px; }
     .mandate-row { margin-bottom: 40px; }
-    .wbf-gallery { grid-template-columns: repeat(3, 1fr); min-height: 260px; }
     .mandate-section .facts-grid { grid-template-columns: repeat(3, 1fr); }
     .mandate-section .quick-grid { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 600px) {
-    .wbf-gallery { grid-template-columns: repeat(2, 1fr); }
     .mandate-section .facts-grid { grid-template-columns: 1fr; }
     .mandate-section .quick-grid { grid-template-columns: 1fr; }
   }
@@ -386,7 +410,7 @@
      the arrow controls) and snaps gently. Swap the placeholder
      images by dropping files into assets/images/milestones/.
      ============================================================ */
-  .milestones-section { position: relative; }
+  .milestones-section { position: relative; padding-bottom: 16px; }
 
   /* Full-bleed scroller. --ms-gutter aligns the first and last
      cards with the container content edge on wide screens, while
@@ -394,21 +418,33 @@
   .ms-gallery {
     --ms-gutter: max(24px, calc((100% - var(--container)) / 2 + 40px));
     margin-top: 4px;
-    padding: 12px 0 24px;
+    padding: 12px 0 14px;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x proximity;
     scroll-behavior: smooth;
     scroll-padding-inline-start: var(--ms-gutter);
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(26,54,104,0.22) transparent;
+    scrollbar-width: auto;
+    scrollbar-color: var(--navy) rgba(23,61,143,0.14);
   }
   .ms-gallery:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; }
-  .ms-gallery::-webkit-scrollbar { height: 6px; }
-  .ms-gallery::-webkit-scrollbar-track { background: transparent; }
-  .ms-gallery::-webkit-scrollbar-thumb { background: rgba(26,54,104,0.20); border-radius: 999px; }
-  .ms-gallery::-webkit-scrollbar-thumb:hover { background: rgba(26,54,104,0.34); }
+  /* Bold, brand-navy scrollbar — the primary cue that the row scrolls. */
+  .ms-gallery::-webkit-scrollbar { height: 12px; }
+  .ms-gallery::-webkit-scrollbar-track {
+    background: rgba(23,61,143,0.14);
+    border-radius: 999px;
+  }
+  .ms-gallery::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--navy), #3a63c0);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .ms-gallery::-webkit-scrollbar-thumb:hover {
+    background: var(--navy);
+    background-clip: padding-box;
+  }
 
   .ms-track {
     display: flex;
@@ -420,14 +456,14 @@
   }
 
   .ms-card {
-    flex: 0 0 340px;
-    width: 340px;
+    flex: 0 0 300px;
+    width: 300px;
     scroll-snap-align: start;
   }
   .ms-card-inner {
     display: flex;
     flex-direction: column;
-    height: 520px;
+    height: 508px;
     background: var(--navy);
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -443,7 +479,7 @@
 
   .ms-card-media {
     position: relative;
-    height: 168px;                /* ~one-third of the card */
+    height: 250px;                /* tall enough that group-photo heads aren't cropped */
     flex-shrink: 0;
     background: var(--navy-700);  /* refined placeholder until a photo is added */
     overflow: hidden;
@@ -462,7 +498,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 26px 28px 28px;
+    padding: 20px 22px 22px;
   }
   .ms-card-date {
     font-size: var(--text-xs);
@@ -470,24 +506,24 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.60);
-    margin-bottom: 12px;
+    margin-bottom: 9px;
   }
   .ms-card-title {
     font-family: var(--font-display);
-    font-size: 1.16rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    line-height: 1.32;
+    line-height: 1.3;
     color: #fff;
-    margin: 0 0 14px;
+    margin: 0 0 10px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: 2.64em;           /* reserve 2 lines so every body aligns */
+    min-height: 2.5em;            /* reserve 2 lines so every body aligns */
   }
   .ms-card-desc {
-    font-size: var(--text-sm);
-    line-height: 1.6;
+    font-size: 12.5px;
+    line-height: 1.5;
     color: rgba(255,255,255,0.74);
     margin: 0;
     display: -webkit-box;
@@ -496,37 +532,13 @@
     overflow: hidden;
   }
 
-  .ms-controls {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 22px;
-  }
-  .ms-controls button {
-    width: 46px; height: 46px;
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    color: var(--navy);
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
-  }
-  .ms-controls button:hover:not(:disabled) {
-    background: var(--navy); color: #fff; border-color: var(--navy);
-    transform: translateY(-1px);
-  }
-  .ms-controls button:disabled { opacity: 0.35; cursor: default; }
-  .ms-controls svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-
   @media (max-width: 768px) {
-    .ms-card { flex-basis: 300px; width: 300px; }
+    .ms-card { flex-basis: 280px; width: 280px; }
     .ms-card-inner { height: 540px; }
-    .ms-controls { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
     .ms-gallery { scroll-behavior: auto; }
-    .ms-card-inner, .ms-controls button { transition: none; }
+    .ms-card-inner { transition: none; }
     .ms-card-inner:hover, .ms-card-inner:focus-within { transform: none; }
   }
   /* (obsolete arc-fan / modal styles removed — replaced by .ms-* gallery above) */
@@ -691,109 +703,6 @@
 
   .partners-photos { align-self: stretch; }
 
-  /* ---- Event photo carousel (right column, beside prose) ---- */
-  .pc-carousel {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    border-radius: 12px;
-    overflow: hidden;
-    background: linear-gradient(135deg, #e6ecf3 0%, #cfd9e6 100%);
-    box-shadow: 0 12px 30px rgba(15,32,68,0.10);
-  }
-  .pc-track {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
-    will-change: transform;
-  }
-  .pc-slide {
-    flex: 0 0 100%;
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  .pc-slide::before {
-    content: "Photo " attr(data-num);
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
-    font-weight: 300;
-    color: rgba(15,32,68,0.32);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    pointer-events: none;
-  }
-  .pc-slide img {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .pc-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: rgba(255,255,255,0.92);
-    border: none;
-    border-radius: 50%;
-    color: #0f2044;
-    color: var(--navy, #0f2044);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    box-shadow: 0 4px 12px rgba(15,32,68,0.18);
-    transition: background 0.15s ease, transform 0.15s ease;
-  }
-  .pc-btn:hover {
-    background: #fff;
-    transform: translateY(-50%) scale(1.06);
-  }
-  .pc-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-  .pc-prev { left: 12px; }
-  .pc-next { right: 12px; }
-  .pc-dots {
-    position: absolute;
-    bottom: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 3;
-    background: rgba(255,255,255,0.55);
-    padding: 6px 10px;
-    border-radius: 999px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-  }
-  .pc-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(15,32,68,0.35);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-  .pc-dot:hover { background: rgba(15,32,68,0.6); }
-  .pc-dot.active {
-    background: #0f2044;
-    background: var(--navy, #0f2044);
-    transform: scale(1.3);
-  }
-
   /* ---- Full-width partner logo carousel band (below split) ---- */
   .partner-logos-band {
     margin-top: 48px;
@@ -946,16 +855,21 @@
 
   /* Responsive: shrink logos + grow band as rows wrap */
   @media (max-width: 900px) {
-    .lc-carousel { height: 380px; }
-    .lc-slide { padding: 24px 58px 42px; }
+    /* Grow to fit content so wrapped logo rows are never clipped. */
+    .lc-carousel { height: auto; }
+    .lc-track { height: auto; align-items: stretch; }
+    .lc-slide { height: auto; padding: 24px 58px 50px; }
     .lc-logo { width: 200px; height: 96px; }
     .lc-logos { gap: 20px 32px; }
   }
   @media (max-width: 600px) {
-    .lc-carousel { height: 440px; }
-    .lc-slide { padding: 22px 46px 44px; }
-    .lc-logo { width: 150px; height: 74px; }
-    .lc-logos { gap: 18px 22px; }
+    /* Let the carousel grow to fit the taller "Other Partners" slide
+       (7 logos) instead of clipping the bottom rows with a fixed height. */
+    .lc-carousel { height: auto; }
+    .lc-track { height: auto; align-items: stretch; }
+    .lc-slide { height: auto; padding: 22px 44px 52px; }
+    .lc-logos { gap: 18px 20px; }
+    .lc-logo { width: 132px; height: 66px; }
     .lc-btn { width: 34px; height: 34px; }
     .lc-btn svg { width: 14px; height: 14px; }
     .lc-prev { left: 8px; }
@@ -1331,36 +1245,63 @@
     <!-- Row 2: Gallery (left) | WBF Establishment (right) -->
     <div class="split-grid mandate-row mandate-row-2">
       <!-- LEFT: 6-image gallery -->
-      <!-- To use your images: save them as /assets/images/gallery/wbf-01.jpg through wbf-06.jpg,
+      <!-- To use your images: save them as /assets/images/wbf-establishment/wbf-01.jpg through wbf-06.jpg,
            or just edit the src="" of each <img> below. Cards show numbered placeholders until images load. -->
       <div class="split-col">
-        <div class="wbf-gallery">
-          <div class="wbf-gallery-item" data-num="01">
-            <img src="/assets/images/gallery/wbf-01.jpg" alt="WBF establishment — image 1" onerror="this.style.display='none'">
+        <div class="wbf-gallery" id="wbf-gallery">
+          <div class="wbf-gallery-main">
+            <img id="wbf-gallery-main-img" src="/assets/images/wbf-establishment/wbf-01.jpg" alt="WBF establishment — image 1">
+            <button type="button" class="wbf-gallery-nav prev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
+            <button type="button" class="wbf-gallery-nav next" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,6 15,12 9,18"/></svg></button>
           </div>
-          <div class="wbf-gallery-item" data-num="02">
-            <img src="/assets/images/gallery/wbf-02.jpg" alt="WBF establishment — image 2" onerror="this.style.display='none'">
-          </div>
-          <div class="wbf-gallery-item" data-num="03">
-            <img src="/assets/images/gallery/wbf-03.jpg" alt="WBF establishment — image 3" onerror="this.style.display='none'">
-          </div>
-          <div class="wbf-gallery-item" data-num="04">
-            <img src="/assets/images/gallery/wbf-04.jpg" alt="WBF establishment — image 4" onerror="this.style.display='none'">
-          </div>
-          <div class="wbf-gallery-item" data-num="05">
-            <img src="/assets/images/gallery/wbf-05.jpg" alt="WBF establishment — image 5" onerror="this.style.display='none'">
-          </div>
-          <div class="wbf-gallery-item" data-num="06">
-            <img src="/assets/images/gallery/wbf-06.jpg" alt="WBF establishment — image 6" onerror="this.style.display='none'">
+          <div class="wbf-gallery-thumbs">
+            <button type="button" class="wbf-gallery-thumb is-active" data-src="/assets/images/wbf-establishment/wbf-01.jpg" data-alt="WBF establishment — image 1" aria-label="Show image 1"><img src="/assets/images/wbf-establishment/wbf-01.jpg" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-02.jpg" data-alt="WBF establishment — image 2" aria-label="Show image 2"><img src="/assets/images/wbf-establishment/wbf-02.jpg" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-03.jpg" data-alt="WBF establishment — image 3" aria-label="Show image 3"><img src="/assets/images/wbf-establishment/wbf-03.jpg" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-04.jpg" data-alt="WBF establishment — image 4" aria-label="Show image 4"><img src="/assets/images/wbf-establishment/wbf-04.jpg" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-05.jpg" data-alt="WBF establishment — image 5" aria-label="Show image 5"><img src="/assets/images/wbf-establishment/wbf-05.jpg" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-06.jpg" data-alt="WBF establishment — image 6" aria-label="Show image 6"><img src="/assets/images/wbf-establishment/wbf-06.jpg" alt="" onerror="this.style.display='none'"></button>
           </div>
         </div>
       </div>
+      <script>
+      (function(){
+        /* Wires every .wbf-gallery on the page (establishment + partners). */
+        function initGallery(g){
+          if (g.dataset.galleryInit) return; g.dataset.galleryInit = '1';
+          var mainImg = g.querySelector('.wbf-gallery-main img');
+          var thumbs = [].slice.call(g.querySelectorAll('.wbf-gallery-thumb'));
+          if (!mainImg || !thumbs.length) return;
+          var i = 0;
+          function show(n){
+            i = (n + thumbs.length) % thumbs.length;
+            var t = thumbs[i];
+            mainImg.src = t.getAttribute('data-src');
+            mainImg.alt = t.getAttribute('data-alt') || '';
+            thumbs.forEach(function(b){ b.classList.toggle('is-active', b === t); });
+          }
+          thumbs.forEach(function(t, idx){
+            t.addEventListener('mouseenter', function(){ show(idx); });
+            t.addEventListener('click', function(){ show(idx); });
+            t.addEventListener('focus', function(){ show(idx); });
+          });
+          var prev = g.querySelector('.wbf-gallery-nav.prev');
+          var next = g.querySelector('.wbf-gallery-nav.next');
+          if (prev) prev.addEventListener('click', function(){ show(i - 1); });
+          if (next) next.addEventListener('click', function(){ show(i + 1); });
+        }
+        function initAll(){ document.querySelectorAll('.wbf-gallery').forEach(initGallery); }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll);
+        else initAll();
+      })();
+      </script>
 
       <!-- RIGHT: WBF Establishment text -->
       <div class="split-col">
         <div class="overline">History</div>
         <h2 class="mandate-heading">WBF establishment</h2>
-        <p>The Agreement for the creation of the Western Balkans Fund was signed by the Ministers of Foreign Affairs of the Western Balkans Six in November 2015. Following the completion of ratification procedures in all six national parliaments, the Fund became operational on 1 October 2017.</p>
+        <p>The Agreement for the creation of the Western Balkans Fund was signed by the Ministers of Foreign Affairs of the Western Balkans Six in November 2015.</p>
+        <p class="mandate-quote">Following the completion of ratification procedures in all six national parliaments, the Fund became operational on 1 October 2017.</p>
         <p>The Fund is financed by its six Contracting Parties in equal quotas, ensuring balanced ownership and shared responsibility across the region. Its founding Executive Director, elected by the WBF Conference of Ministers of Foreign Affairs, is Mr Gjergj Murra, a career diplomat from Albania, who continues to lead the organisation. The Secretariat, seated in Tirana, brings together experts from across the Western Balkans, reflecting the regional character of the institution at every level.</p>
         <p>Governance is exercised through the Conference of Ministers of Foreign Affairs as the Fund's highest body, supported by the Council of Senior Officials and the Secretariat. The presidency of the Fund rotates annually among the Contracting Parties; in 2026 it is held by Montenegro.</p>
       </div>
@@ -1380,7 +1321,7 @@
     </div>
     <div class="values-grid">
       <div class="value-card">
-        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <div class="value-title">Transparency</div>
       </div>
       <div class="value-card">
@@ -1581,23 +1522,12 @@
           <div class="ms-card-body">
             <p class="ms-card-date">September 2026</p>
             <h3 class="ms-card-title">WBF Regional Academy Launched</h3>
-            <p class="ms-card-desc">WBF launched the WBF Regional Academy, a flagship leadership programme &mdash; this year on Dialogue and Culture of Cooperation &mdash; bringing together emerging leaders from across the region to strengthen dialogue, cooperation, and a culture of regional collaboration. Supported by the Open Society Foundations &ndash; Western Balkans.</p>
+            <p class="ms-card-desc">WBF Regional Academy is a flagship leadership programme that brings together emerging leaders from across the region to strengthen dialogue, cooperation, and a lasting culture of regional collaboration, with support from the Open Society Foundations Western Balkans.</p>
           </div>
         </article>
       </li>
 
     </ol>
-  </div>
-
-  <div class="container">
-    <div class="ms-controls">
-      <button type="button" id="ms-prev" aria-label="Scroll to earlier milestones" aria-controls="ms-gallery">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15,6 9,12 15,18"/></svg>
-      </button>
-      <button type="button" id="ms-next" aria-label="Scroll to later milestones" aria-controls="ms-gallery">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9,6 15,12 9,18"/></svg>
-      </button>
-    </div>
   </div>
 </section>
 
@@ -1694,7 +1624,7 @@
       <div class="mv-card">
         <div class="overline">Our Mission</div>
         <div class="mv-divider"></div>
-        <p>The Western Balkans Fund (WBF) is dedicated to promoting reconciliation, strengthening regional cooperation, and fostering closer ties among the Contracting Parties of the Western Balkans. Through its initiatives, the Fund contributes to building trust, dialogue, and sustainable partnerships across the region.</p>
+        <p>The Western Balkans Fund is dedicated to promoting reconciliation, strengthening regional cooperation, and fostering closer ties among the Contracting Parties of the Western Balkans. Through its initiatives, the Fund contributes to building trust, dialogue, and sustainable partnerships across the region.</p>
       </div>
       <div class="mv-card">
         <div class="overline">Values</div>
@@ -1747,36 +1677,20 @@
            Drop photos into /assets/images/partners/event-01.jpg through event-06.jpg
            (or change the src="" of each <img>). Numbered placeholders show until images load. -->
       <div class="split-col partners-photos">
-        <div class="pc-carousel" id="pc-carousel" role="region" aria-roledescription="carousel" aria-label="Partner event photos">
-          <div class="pc-track" id="pc-track">
-            <div class="pc-slide" data-num="01">
-              <img src="/assets/images/partners/event-01.jpg" alt="Partner event — 1" onerror="this.style.display='none'">
-            </div>
-            <div class="pc-slide" data-num="02">
-              <img src="/assets/images/partners/event-02.jpg" alt="Partner event — 2" onerror="this.style.display='none'">
-            </div>
-            <div class="pc-slide" data-num="03">
-              <img src="/assets/images/partners/event-03.jpg" alt="Partner event — 3" onerror="this.style.display='none'">
-            </div>
-            <div class="pc-slide" data-num="04">
-              <img src="/assets/images/partners/event-04.jpg" alt="Partner event — 4" onerror="this.style.display='none'">
-            </div>
-            <div class="pc-slide" data-num="05">
-              <img src="/assets/images/partners/event-05.jpg" alt="Partner event — 5" onerror="this.style.display='none'">
-            </div>
-            <div class="pc-slide" data-num="06">
-              <img src="/assets/images/partners/event-06.jpg" alt="Partner event — 6" onerror="this.style.display='none'">
-            </div>
+        <div class="wbf-gallery">
+          <div class="wbf-gallery-main">
+            <img src="/assets/images/partners/event-01.png" alt="Partner event — 1">
+            <button type="button" class="wbf-gallery-nav prev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
+            <button type="button" class="wbf-gallery-nav next" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,6 15,12 9,18"/></svg></button>
           </div>
-
-          <button type="button" class="pc-btn pc-prev" id="pc-prev" aria-label="Previous photo">
-            <svg viewBox="0 0 24 24"><polyline points="15,6 9,12 15,18"/></svg>
-          </button>
-          <button type="button" class="pc-btn pc-next" id="pc-next" aria-label="Next photo">
-            <svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg>
-          </button>
-
-          <div class="pc-dots" id="pc-dots" role="tablist" aria-label="Choose photo"></div>
+          <div class="wbf-gallery-thumbs">
+            <button type="button" class="wbf-gallery-thumb is-active" data-src="/assets/images/partners/event-01.png" data-alt="Partner event — 1" aria-label="Show photo 1"><img src="/assets/images/partners/event-01.png" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/partners/event-02.png" data-alt="Partner event — 2" aria-label="Show photo 2"><img src="/assets/images/partners/event-02.png" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/partners/event-03.png" data-alt="Partner event — 3" aria-label="Show photo 3"><img src="/assets/images/partners/event-03.png" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/partners/event-04.png" data-alt="Partner event — 4" aria-label="Show photo 4"><img src="/assets/images/partners/event-04.png" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/partners/event-05.png" data-alt="Partner event — 5" aria-label="Show photo 5"><img src="/assets/images/partners/event-05.png" alt="" onerror="this.style.display='none'"></button>
+            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/partners/event-06.png" data-alt="Partner event — 6" aria-label="Show photo 6"><img src="/assets/images/partners/event-06.png" alt="" onerror="this.style.display='none'"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -1964,75 +1878,6 @@
   wrap.addEventListener('focusout',   () => { isPaused = false; startAuto(); });
 
   // Basic swipe support
-  let touchStartX = 0;
-  wrap.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-    stopAuto();
-  }, { passive: true });
-  wrap.addEventListener('touchend', (e) => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
-    startAuto();
-  });
-
-  startAuto();
-})();
-</script>
-
-<!-- ============================================================
-     SCRIPT — Partners event-photo carousel (right column)
-     ============================================================ -->
-<script>
-(function () {
-  const wrap    = document.getElementById('pc-carousel');
-  const track   = document.getElementById('pc-track');
-  const prev    = document.getElementById('pc-prev');
-  const next    = document.getElementById('pc-next');
-  const dotsBox = document.getElementById('pc-dots');
-  if (!wrap || !track || !prev || !next || !dotsBox) return;
-
-  const slides = Array.from(track.querySelectorAll('.pc-slide'));
-  if (slides.length === 0) return;
-
-  const AUTO_MS = 5000;
-  let idx      = 0;
-  let autoId   = null;
-  let isPaused = false;
-
-  slides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.type = 'button';
-    d.className = 'pc-dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('role', 'tab');
-    d.setAttribute('aria-label', 'Photo ' + (i + 1));
-    d.addEventListener('click', () => { go(i); restartAuto(); });
-    dotsBox.appendChild(d);
-  });
-  const dots = Array.from(dotsBox.querySelectorAll('.pc-dot'));
-
-  function go(i) {
-    idx = ((i % slides.length) + slides.length) % slides.length;
-    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
-    dots.forEach((d, j) => d.classList.toggle('active', j === idx));
-  }
-  function startAuto() {
-    stopAuto();
-    if (isPaused) return;
-    autoId = setInterval(() => go(idx + 1), AUTO_MS);
-  }
-  function stopAuto() {
-    if (autoId) { clearInterval(autoId); autoId = null; }
-  }
-  function restartAuto() { startAuto(); }
-
-  prev.addEventListener('click', () => { go(idx - 1); restartAuto(); });
-  next.addEventListener('click', () => { go(idx + 1); restartAuto(); });
-
-  wrap.addEventListener('mouseenter', () => { isPaused = true;  stopAuto(); });
-  wrap.addEventListener('mouseleave', () => { isPaused = false; startAuto(); });
-  wrap.addEventListener('focusin',    () => { isPaused = true;  stopAuto(); });
-  wrap.addEventListener('focusout',   () => { isPaused = false; startAuto(); });
-
   let touchStartX = 0;
   wrap.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;

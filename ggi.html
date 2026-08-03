@@ -3,11 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GGI — Grants for Grassroots Initiatives | Western Balkans Fund</title>
-<meta name="description" content="Grants for Grassroots Initiatives (GGI) is the Western Balkans Fund's annual grant scheme for civil society regional cooperation projects in the WB6, funded by the EU under IPA III and the six Contracting Parties.">
+<title>Grants for Grassroots Initiatives | Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/ggi.html">
+<meta name="description" content="Grants for Grassroots Initiatives (GGI): the Western Balkans Fund's annual grant scheme for civil society regional cooperation across the WB6, funded by the EU.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
@@ -76,7 +84,7 @@
   img { max-width: 100%; display: block; }
   a { color: inherit; }
   button { font-family: inherit; }
-  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  
   .container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
 
   h1, h2, h3, h4, .display { font-family: var(--font-display); letter-spacing: -0.015em; font-weight: 600; }
@@ -123,7 +131,7 @@
     letter-spacing: -0.025em; margin-bottom: 20px; max-width: 20ch;
   }
   .tagline { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 64ch; margin-bottom: 12px; }
-  .footnote { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 32px; max-width: 64ch; }
+  
 
   .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
   .btn-primary {
@@ -151,7 +159,7 @@
      ============================================================ */
   .section { padding: 54px 0; }
   .section-alt { background: var(--surface-alt); }
-  .section-dark { background: var(--ggi-deep); color: #fff; }
+  
 
   .sec-head { margin-bottom: 30px; }
   .sec-head.center { text-align: center; }
@@ -275,12 +283,12 @@
   .about-photo:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(15,32,68,0.18); }
   .about-photo:hover img { transform: scale(1.06); }
 
-  .coverage-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-sm); }
-  .coverage-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); }
+  
+  
   .coverage-head .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); }
   .coverage-head .count { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--ggi); letter-spacing: -0.02em; }
-  .coverage-list { display: flex; flex-direction: column; gap: 6px; }
-  .coverage-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; font-size: 13.5px; color: #334155; background: var(--surface-alt); }
+  
+  
   .coverage-row .flag { font-size: 18px; }
   .coverage-row .name { font-weight: 500; }
 
@@ -448,7 +456,7 @@
   .fund-row .v { font-weight: 700; color: var(--ink); font-size: 15px; }
   .fund-row .v small { font-weight: 500; color: var(--muted); font-size: 12px; margin-left: 4px; }
 
-  .cofin-bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; margin: 10px 0 6px; border: 1px solid var(--line); }
+  
   .cofin-bar .wbf { background: var(--ggi); flex: 0 0 80%; }
   .cofin-bar .cof { background: var(--accent); flex: 0 0 20%; }
   .cofin-legend { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); }
@@ -522,18 +530,11 @@
   /* ============================================================
      HOW TO APPLY  —  steps
      ============================================================ */
-  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  .step-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 26px; position: relative; box-shadow: var(--shadow-sm); }
-  .step-num {
-    position: absolute; top: -14px; left: 22px;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: var(--grad-primary); color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display); font-size: 13px; font-weight: 600;
-    box-shadow: var(--shadow-sm);
-  }
-  .step-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--ink); margin: 10px 0 8px; letter-spacing: -0.01em; }
-  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  
+  
+  
+  
+  
   .step-link {
     display: inline-flex; align-items: center; gap: 6px;
     margin-top: 12px; padding: 7px 12px;
@@ -714,38 +715,23 @@
   /* ============================================================
      CALL NO. 8 WINNERS — featured cards
      ============================================================ */
-  .winners-banner {
-    background: linear-gradient(135deg, var(--green-tint), #fff);
-    border: 1px solid var(--green);
-    border-left-width: 4px;
-    border-radius: 10px;
-    padding: 16px 22px;
-    margin-bottom: 28px;
-    display: flex; align-items: center; gap: 14px;
-    font-size: 14px; color: var(--ink-soft); line-height: 1.55;
-  }
-  .winners-banner svg { width: 22px; height: 22px; color: var(--green); flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .winners-banner strong { color: var(--ink); font-weight: 700; }
+  
+  
+  
 
   .winners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .winner-card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 24px; display: flex; flex-direction: column;
-    text-decoration: none; color: inherit;
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
-  }
-  .winner-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); border-color: rgba(37,103,216,0.25); }
-  .winner-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-  .winner-pn { font-family: var(--font-display); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ggi); background: var(--light); padding: 3px 9px; border-radius: var(--radius-pill); }
-  .winner-area { font-size: 11px; color: var(--muted); }
-  .winner-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 8px; letter-spacing: -0.015em; }
-  .winner-card:hover .winner-title { color: var(--ggi); }
-  .winner-lead { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.5; }
+  
+  
+  
+  
+  
+  
+  
+  
   .winner-lead .role { color: var(--faint); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; font-size: 10.5px; display: block; margin-bottom: 2px; }
-  .winner-flags { display: flex; gap: 6px; margin-bottom: 14px; }
-  .winner-flag { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--ink-soft); background: var(--surface-alt); border: 1px solid var(--line); padding: 4px 10px; border-radius: var(--radius-pill); }
-  .winner-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line-soft); display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; }
+  
+  
+  
   .winner-foot .grant { color: var(--ggi); font-weight: 700; }
   .winner-foot .link { color: var(--ggi); display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
   .winner-foot .link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
@@ -759,19 +745,19 @@
   /* ============================================================
      DOCUMENTS
      ============================================================ */
-  .docs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .doc-card { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); text-decoration: none; color: inherit; transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s; }
-  .doc-card[href]:hover { box-shadow: 0 8px 20px rgba(15,32,68,0.06); transform: translateY(-1px); border-color: #cbd5e1; }
-  .doc-card.unavailable { opacity: 0.7; }
-  .doc-icon { width: 44px; height: 44px; background: var(--light); color: var(--ggi); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .doc-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-  .doc-body { flex: 1; min-width: 0; }
-  .doc-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
-  .doc-card[href]:hover .doc-title { color: var(--ggi); }
-  .doc-meta { font-size: 11.5px; color: var(--faint); }
-  .doc-action { color: var(--ggi); flex-shrink: 0; }
-  .doc-action svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .doc-soon { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 9px; border-radius: 999px; background: var(--line-soft); color: var(--muted); flex-shrink: 0; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   /* ============================================================
      SUBSCRIBE CTA
@@ -788,8 +774,8 @@
   .btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; background: #fff; color: var(--ggi); font-family: var(--font-display); font-weight: 600; font-size: 14px; border-radius: var(--radius-pill); text-decoration: none; transition: background 0.15s, box-shadow 0.15s; }
   .btn-white:hover { background: var(--light); box-shadow: var(--shadow-sm); }
   .btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .btn-ghost-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; color: #fff; border: 1px solid rgba(255,255,255,0.4); font-family: var(--font-display); font-weight: 600; font-size: 14px; border-radius: var(--radius-pill); text-decoration: none; transition: background 0.15s, border-color 0.15s; }
-  .btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+  
+  
 
   /* ============================================================
      CP FILTER PILLS  (Call 8 winners filter)
@@ -824,63 +810,24 @@
   /* ============================================================
      WINNERS  (CSV-driven, with modal)
      ============================================================ */
-  .winners-csv-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-  }
-  .winner-csv-card {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: 12px; padding: 20px;
-    display: flex; flex-direction: column;
-    cursor: pointer; text-align: left;
-    font-family: inherit; color: inherit;
-    transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
-  }
-  .winner-csv-card:hover {
-    box-shadow: 0 12px 28px rgba(15,32,68,0.10);
-    transform: translateY(-3px); border-color: #cbd5e1;
-  }
-  .winner-csv-card.is-hidden { display: none; }
-  .winner-csv-pn {
-    display: inline-block; align-self: flex-start;
-    font-size: 10.5px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--ggi); background: #eef2f8;
-    padding: 3px 9px; border-radius: 999px; margin-bottom: 10px;
-  }
-  .winner-csv-area {
-    font-size: 11px; font-weight: 600; color: var(--amber);
-    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
-  }
-  .winner-csv-card[data-area="Education &amp; Scientific Exchanges"] .winner-csv-area,
-  .winner-csv-card[data-area="Education & Scientific Exchanges"] .winner-csv-area { color: var(--teal); }
-  .winner-csv-card[data-area="Sustainable Development"] .winner-csv-area { color: var(--green); }
-  .winner-csv-title {
-    font-size: 15px; font-weight: 700; color: var(--ink);
-    line-height: 1.35; letter-spacing: -0.01em;
-    margin-bottom: 10px; min-height: 40px;
-  }
-  .winner-csv-lead {
-    font-size: 12.5px; color: var(--ink-soft);
-    line-height: 1.5; margin-bottom: 12px;
-  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   .winner-csv-lead .role {
     color: var(--faint); font-weight: 500;
     text-transform: uppercase; letter-spacing: 0.06em;
     font-size: 10.5px; display: block; margin-bottom: 2px;
   }
-  .winner-csv-flags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
-  .winner-csv-flag {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 11px; color: var(--ink-soft);
-    background: var(--surface-alt); border: 1px solid var(--line);
-    padding: 3px 7px; border-radius: 999px;
-  }
-  .winner-csv-foot {
-    margin-top: auto; padding-top: 12px;
-    border-top: 1px solid var(--line-soft);
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 12px;
-  }
+  
+  
+  
   .winner-csv-foot .grant { color: var(--ggi); font-weight: 700; }
   .winner-csv-foot .more {
     color: var(--ggi); font-weight: 600;
@@ -1200,56 +1147,24 @@
   /* ============================================================
      GRANTEES STORIES
      ============================================================ */
-  .stories-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-  }
-  .story-card {
-    position: relative; overflow: hidden;
-    border-radius: 14px; min-height: 260px;
-    padding: 24px; cursor: pointer;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    color: #fff; text-align: left;
-    font-family: inherit; border: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .story-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(15,32,68,0.18); }
-  .story-card.is-culture { background: linear-gradient(160deg, var(--ggi) 0%, var(--ggi-deep) 100%); }
-  .story-card.is-edu     { background: linear-gradient(160deg, var(--blue) 0%, var(--ggi) 100%); }
-  .story-card.is-sd      { background: linear-gradient(160deg, var(--accent) 0%, var(--blue) 100%); }
-  .story-card::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background-image:
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 1px, transparent 1px, transparent 14px);
-    pointer-events: none;
-  }
-  .story-area-pill {
-    align-self: flex-start; padding: 5px 12px; border-radius: 999px;
-    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.32);
-    font-size: 10.5px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    margin-bottom: auto; position: relative; z-index: 1;
-  }
-  .story-title {
-    font-size: 19px; font-weight: 700; line-height: 1.3;
-    letter-spacing: -0.015em; margin-bottom: 10px;
-    position: relative; z-index: 1;
-  }
-  .story-meta {
-    font-size: 12.5px; color: rgba(255,255,255,0.85);
-    margin-bottom: 14px; position: relative; z-index: 1;
-  }
-  .story-cta {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12.5px; font-weight: 600;
-    position: relative; z-index: 1;
-  }
-  .story-cta svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
-  .story-card:hover .story-cta svg { transform: translateX(3px); }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   /* ============================================================
      NEWS CARDS  (top 6 GGI news, CSV-driven)
      ============================================================ */
-  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  
   .news-card {
     background: var(--surface); border: 1px solid var(--line);
     border-radius: 12px; overflow: hidden;
@@ -1312,26 +1227,26 @@
     .about-grid { grid-template-columns: 1fr; gap: 32px; }
     .ia-grid { grid-template-columns: repeat(2, 1fr); }
     .panel-grid { grid-template-columns: 1fr; }
-    .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 18px; }
+    
     .flow-steps { grid-template-columns: repeat(2, 1fr); gap: 30px 18px; }
     .flow-line { display: none; }
     .eval-wrap { grid-template-columns: 1fr; gap: 28px; }
     .winners-grid { grid-template-columns: repeat(2, 1fr); }
-    .winners-csv-grid { grid-template-columns: repeat(2, 1fr); }
-    .stories-grid { grid-template-columns: 1fr; }
-    .news-grid { grid-template-columns: repeat(2, 1fr); }
-    .docs-grid { grid-template-columns: 1fr; }
+    
+    
+    
+    
   }
   @media (max-width: 768px) {
     .prog-hero { padding: 48px 0 76px; }
     .section { padding: 56px 0; }
     .meta-facts { gap: 24px; }
     .ia-grid { grid-template-columns: 1fr; }
-    .steps-grid { grid-template-columns: 1fr; }
+    
     .flow-steps { grid-template-columns: 1fr; }
     .winners-grid { grid-template-columns: 1fr; }
-    .winners-csv-grid { grid-template-columns: 1fr; }
-    .news-grid { grid-template-columns: 1fr; }
+    
+    
     .cc-grid { grid-template-columns: 1fr; }
     .modal-grid { grid-template-columns: 1fr; }
     .modal-head, .modal-body { padding-left: 22px; padding-right: 22px; }
@@ -1916,7 +1831,7 @@
     </div>
 
     <div class="see-all">
-      <a href="/projects.html?programme=GGI">All GGI-funded projects <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+      <a href="/ourgrantees.html?programme=GGI">All GGI-funded projects <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
     </div>
   </div>
 </section>
@@ -2476,7 +2391,7 @@
       return '<div class="modal-stat"><div class="modal-stat-label">' + escapeHtml(s.label) + '</div><div class="modal-stat-value">' + escapeHtml(s.value) + '</div></div>';
     }).join('');
 
-    setModalHeadings('Objective', 'Project partners', 'Regional reach');
+    setModalHeadings('Objective', 'Project partners', '');
 
     document.getElementById('modal-summary-el').textContent = w.objective;
 
@@ -2487,9 +2402,7 @@
                '<span class="pcp">' + escapeHtml(p.cp) + '</span></span>';
       }).join('') + '</span>';
 
-    document.getElementById('modal-activities-el').textContent =
-      'This project brings together ' + (w.partners.length + 1) + ' organisations across ' + cps.length +
-      ' Contracting ' + (cps.length === 1 ? 'Party' : 'Parties') + ' of the Western Balkans Six.';
+    document.getElementById('modal-activities-section').style.display = 'none';
 
     openModal();
   }
@@ -2506,6 +2419,7 @@
       return '<div class="modal-stat"><div class="modal-stat-label">' + escapeHtml(st.label) + '</div><div class="modal-stat-value">' + escapeHtml(st.value) + '</div></div>';
     }).join('');
     setModalHeadings('Project summary', 'Objectives', 'Key activities');
+    document.getElementById('modal-activities-section').style.display = '';
     document.getElementById('modal-summary-el').textContent    = s.summary;
     document.getElementById('modal-objectives-el').textContent = s.objectives;
     document.getElementById('modal-activities-el').textContent = s.activities;

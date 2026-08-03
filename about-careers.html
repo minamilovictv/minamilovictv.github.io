@@ -4,10 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Careers — Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/about-careers.html">
 <meta name="description" content="Join the Western Balkans Fund Secretariat in Tirana — open positions, internships and consultancy opportunities.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
@@ -33,7 +41,7 @@
   a { color: inherit; }
   button, input { font-family: inherit; }
   .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-  .container-narrow { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+  
 
   /* ============================================================
      PAGE HERO
@@ -85,7 +93,7 @@
   }
   .why-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
   }
   .why-card {
@@ -391,74 +399,6 @@
   }
 
   /* ============================================================
-     SPECULATIVE CTA
-     ============================================================ */
-  .spec-section {
-    background: var(--gradient-hero);
-    padding: 72px 0;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-  .spec-section::before {
-    content: ""; position: absolute; top: -100px; right: -80px;
-    width: 360px; height: 360px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,168,152,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .spec-card {
-    position: relative; z-index: 1;
-    max-width: 920px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .spec-card .overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #5eead4; margin-bottom: 14px; }
-  .spec-card h2 {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 16px;
-  }
-  .spec-card p {
-    font-size: var(--text-base);
-    color: rgba(255,255,255,0.75);
-    line-height: 1.7;
-    max-width: 60ch;
-    margin: 0 auto 28px;
-  }
-  .spec-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn-white {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background: #fff;
-    color: var(--navy);
-    font-weight: 600;
-    font-size: var(--text-md);
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background 0.15s;
-  }
-  .btn-white:hover { background: #e8eef8; }
-  .btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .btn-ghost-white {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.4);
-    font-weight: 600;
-    font-size: var(--text-md);
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
-
-  /* ============================================================
      RESPONSIVE
      ============================================================ */
   @media (max-width: 1024px) {
@@ -525,13 +465,6 @@
         </div>
       </div>
       <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg></div>
-        <div>
-          <div class="why-title">Multilingual Environment</div>
-          <div class="why-desc">Daily work in English plus the working languages of the WB6 region.</div>
-        </div>
-      </div>
-      <div class="why-card">
         <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
         <div>
           <div class="why-title">Growth &amp; Learning</div>
@@ -577,31 +510,6 @@
 <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
   <div class="modal" id="modal-content"></div>
 </div>
-
-<!-- ============================================================
-     SPECULATIVE APPLICATION
-     ============================================================ -->
-<section class="spec-section">
-  <div class="container">
-    <div class="spec-card">
-      <div class="overline">Don't see the right role?</div>
-      <h2>We're always happy to hear from talented people</h2>
-      <p>Even when there are no open vacancies, the Secretariat welcomes speculative applications from professionals with experience in regional cooperation, grant management, EU integration, communications, finance, or programme delivery in the Western Balkans.</p>
-      <div class="spec-btns">
-        <a class="btn-white" href="mailto:info@westernbalkansfund.org?subject=Speculative%20application">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Send a speculative application
-        </a>
-        <a class="btn-ghost-white" href="/contact.html">
-          Contact the Secretariat
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 
 <!-- ============================================================
      SCRIPT — CSV CMS, FILTERS, MODAL
