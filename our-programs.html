@@ -106,137 +106,85 @@
   .offer-lead p {
     font-size: var(--text-lg); color: var(--ink-soft); line-height: 1.6;
   }
-  .offer-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-  }
-  .offer-card {
-    position: relative;
-    background: linear-gradient(180deg, #ffffff 0%, #eef3fb 100%);
-    border: 1px solid #d3ddee;
-    border-radius: 16px;
-    padding: 30px 26px 28px;
-    overflow: hidden;
-    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-  }
-  .offer-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 48px rgba(15,32,68,0.18);
-    border-color: var(--navy-700);
-  }
-  /* giant ghost number watermark */
-  .offer-card::after {
-    content: attr(data-num);
-    position: absolute;
-    top: -26px; right: 10px;
-    font-family: var(--font-display);
-    font-size: 130px; font-weight: 800; line-height: 1;
-    color: rgba(26,54,104,0.06);
-    pointer-events: none;
-    transition: color 0.28s ease, transform 0.28s ease;
-  }
-  .offer-card:hover::after { color: rgba(26,54,104,0.12); transform: translateY(6px); }
-  /* short accent bar above the title */
-  .offer-bar {
-    width: 44px; height: 4px; border-radius: 999px;
-    background: linear-gradient(90deg, var(--navy), var(--teal));
-    margin-bottom: 20px;
-    transition: width 0.28s ease;
-  }
-  .offer-card:hover .offer-bar { width: 72px; }
-  .offer-card h3 {
-    position: relative; z-index: 1;
-    font-family: var(--font-display);
-    font-size: var(--text-xl); font-weight: 700; color: var(--navy);
-    line-height: 1.25; margin-bottom: 10px;
-  }
-  .offer-card p {
-    position: relative; z-index: 1;
-    font-size: var(--text-sm); color: var(--ink-soft); line-height: 1.65;
-  }
-  @keyframes offer-in {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .offer-card { animation: offer-in 0.5s ease both; }
-  .offer-card:nth-child(2) { animation-delay: 0.08s; }
-  .offer-card:nth-child(3) { animation-delay: 0.16s; }
-  @media (prefers-reduced-motion: reduce) {
-    .offer-card { animation: none; transition: none; }
-    .offer-card::after, .offer-bar { transition: none; }
-  }
-
   /* ============================================================
      SECTION SHARED
      ============================================================ */
   .section { padding: 72px 0; }
-  .section:first-of-type { padding-top: 72px; }
-  .section + .section { padding-top: 0; }
 
-  .sec-head {
+  /* ============================================================
+     PROGRAMME BOARD — one column per programme type
+     ============================================================
+     The three types the Fund currently implements sit side by side as
+     columns; each type's programmes stack vertically underneath it, so a
+     card's column tells you which type it belongs to without a heading
+     above every row.
+
+     Columns are top-aligned (align-items: start) rather than stretched:
+     the funding column carries six programmes and the other two carry two
+     each, so equal-height panels would leave a very tall empty box under
+     the short columns. Letting each panel hug its own content reads as a
+     deliberate board instead. */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    align-items: start;
+  }
+  .prog-col {
+    position: relative;
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-    padding-bottom: 16px;
+    flex-direction: column;
+    background: linear-gradient(180deg, #f6f9fd 0%, #ffffff 38%);
+    border: 1px solid #d3ddee;
+    border-radius: 18px;
+    padding: 28px 22px 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-1);
+  }
+  .col-head {
+    position: relative; z-index: 1;
+    padding-bottom: 20px;
+    margin-bottom: 22px;
     border-bottom: 1px solid var(--line);
   }
-  .sec-head .left .overline {
-    font-size: var(--text-xs);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--navy);
-    margin-bottom: 8px;
+  .col-bar {
+    width: 44px; height: 4px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--navy), var(--teal));
+    margin-bottom: 18px;
   }
-  .sec-head h2 {
+  .col-head h2 {
     font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 700;
-    color: var(--ink);
+    font-size: var(--text-xl); font-weight: 700; color: var(--navy);
+    line-height: 1.22; margin-bottom: 10px;
   }
-  .sec-head .count {
-    font-size: var(--text-xs);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--faint);
+  .col-head p { font-size: var(--text-sm); color: var(--ink-soft); line-height: 1.65; }
+
+  .col-body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; }
+
+  /* Sub-groups within the funding column (individuals vs organizations) */
+  .col-group-label {
+    display: flex; align-items: center; gap: 10px;
+    font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--muted);
+    margin-top: 8px;
+  }
+  .col-group-label:first-child { margin-top: 0; }
+  .col-group-label::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(15,32,68,0.16), transparent);
   }
 
   /* ============================================================
-     PROGRAM CARD GRID
+     PROGRAM CARD
      ============================================================ */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  /* Sub-groups within the grant programmes (individuals vs organizations) */
-  .grant-group + .grant-group { margin-top: 40px; }
-  .group-label {
-    display: flex; align-items: center; gap: 14px;
-    font: 800 clamp(17px, 1.5vw, 21px)/1.2 var(--font-display, 'Inter', sans-serif);
-    letter-spacing: -.02em; color: var(--navy);
-    margin: 0 0 18px;
-  }
-  .group-label::after {
-    content: ""; flex: 1; height: 1px;
-    background: linear-gradient(90deg, rgba(15,32,68,0.14), transparent);
-  }
-
   .program-card {
     display: flex;
     flex-direction: column;
-    background:
-      radial-gradient(135% 95% at 100% -10%, rgba(26,54,104,0.10) 0%, rgba(26,54,104,0) 48%),
-      linear-gradient(180deg, #eef3fb 0%, #ffffff 44%);
-    border: 1px solid #d3ddee;
-    border-radius: 14px;
-    padding: 24px 22px 20px;
+    /* Plain white so the card separates from the tinted column panel behind it. */
+    background: #fff;
+    border: 1px solid #dbe4f0;
+    border-radius: 12px;
+    padding: 20px 18px 18px;
     text-decoration: none;
     color: inherit;
     transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
@@ -261,14 +209,19 @@
     outline-offset: 2px;
   }
 
-  .card-top {
+  /* Footer row: "Explore" on the left, status badge on the right.
+     margin-top:auto pins it to the bottom so the row lines up across cards
+     of differing height. */
+  .card-foot {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 14px;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
   }
 
   .card-badge {
+    flex-shrink: 0;
     font-size: var(--text-xs);
     font-weight: 700;
     text-transform: uppercase;
@@ -293,12 +246,20 @@
   }
   .program-card:hover .card-title { color: var(--navy-900); }
 
+  /* Descriptions vary from one line to a full paragraph. In a narrow column
+     that swings the card heights wildly, so the summary is clamped to four
+     lines here — the full text still lives on each programme page. The markup
+     is untouched, so removing the clamp restores the copy in full. */
   .card-desc {
     font-size: var(--text-sm);
     color: var(--ink-soft);
     line-height: 1.6;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .card-explore {
@@ -308,8 +269,8 @@
     font-size: var(--text-sm);
     font-weight: 700;
     color: var(--navy);
-    align-self: flex-start;
     letter-spacing: 0.01em;
+    white-space: nowrap;
   }
   .card-explore svg {
     width: 15px; height: 15px;
@@ -325,16 +286,16 @@
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  .cards-grid .program-card {
-    animation: card-in 0.5s ease both;
-  }
-  .cards-grid .program-card:nth-child(2) { animation-delay: 0.06s; }
-  .cards-grid .program-card:nth-child(3) { animation-delay: 0.12s; }
-  .cards-grid .program-card:nth-child(4) { animation-delay: 0.18s; }
-  .cards-grid .program-card:nth-child(5) { animation-delay: 0.24s; }
-  .cards-grid .program-card:nth-child(6) { animation-delay: 0.30s; }
+  .col-body .program-card { animation: card-in 0.5s ease both; }
+  .col-body .program-card:nth-child(2) { animation-delay: 0.05s; }
+  .col-body .program-card:nth-child(3) { animation-delay: 0.10s; }
+  .col-body .program-card:nth-child(4) { animation-delay: 0.15s; }
+  .col-body .program-card:nth-child(5) { animation-delay: 0.20s; }
+  .col-body .program-card:nth-child(6) { animation-delay: 0.25s; }
+  .col-body .program-card:nth-child(7) { animation-delay: 0.30s; }
+  .col-body .program-card:nth-child(8) { animation-delay: 0.35s; }
   @media (prefers-reduced-motion: reduce) {
-    .cards-grid .program-card { animation: none; }
+    .col-body .program-card { animation: none; }
     .program-card, .program-card::before, .card-explore svg { transition: none; }
   }
 
@@ -356,18 +317,22 @@
   /* ============================================================
      RESPONSIVE
      ============================================================ */
-  @media (max-width: 1024px) {
+  @media (max-width: 1120px) {
     .container, .page-hero-inner { padding-left: 24px; padding-right: 24px; }
-    .cards-grid { grid-template-columns: repeat(2, 1fr); }
-    .offer-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-    
+    /* Two columns: the funding column keeps its own column, the two shorter
+       types pair up beneath it. */
+    .board { grid-template-columns: 1fr 1fr; gap: 22px; }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 760px) {
     .page-hero { padding: 56px 0 48px; }
     .offer { padding: 52px 0; }
-    .offer-grid { grid-template-columns: 1fr; gap: 16px; }
     .section { padding: 48px 0; }
-    .cards-grid { grid-template-columns: 1fr; gap: 16px; }
+    /* Single column — the type headings become the section headings again,
+       which is the reading order the columns encode on desktop. */
+    .board { grid-template-columns: 1fr; gap: 20px; }
+    .prog-col { padding: 24px 18px 20px; }
+    /* Vertical space is no longer scarce, so let the summaries run in full. */
+    .card-desc { -webkit-line-clamp: initial; display: block; overflow: visible; }
   }
 </style>
 </head>
@@ -402,180 +367,152 @@
     <div class="offer-lead">
       <div class="overline">What We Offer</div>
       <h2>Three ways we back regional cooperation</h2>
-      <p>The Western Balkans Fund works across all six Contracting Parties to turn shared ideas into shared results. Our support falls into three connected areas, each designed to help partners meet, learn, and build something that outlasts a single project.</p>
-    </div>
-    <div class="offer-grid">
-      <div class="offer-card" data-num="01">
-        <div class="offer-bar"></div>
-        <h3>Diverse Grants</h3>
-        <p>From flagship regional schemes to fast, people-to-people mobility funding, our grants back partnerships of every size and ambition across the Western Balkans.</p>
-      </div>
-      <div class="offer-card" data-num="02">
-        <div class="offer-bar"></div>
-        <h3>Convening &amp; Networking</h3>
-        <p>Forums, conferences, and matchmaking that bring civil society, public institutions, and academia together to build trust and lasting regional connections.</p>
-      </div>
-      <div class="offer-card" data-num="03">
-        <div class="offer-bar"></div>
-        <h3>Capacity Building</h3>
-        <p>Academies, training, and peer-learning that equip emerging leaders with the skills, knowledge, and networks to drive cooperation and reconciliation.</p>
-      </div>
+      <p>The Western Balkans Fund works across all six Contracting Parties to turn shared ideas into shared results. Our support falls into three connected areas, each designed to help partners meet, learn, and build something that outlasts a single project. Each one is a column below, with its programmes listed underneath.</p>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     FUNDING OPPORTUNITIES
+     PROGRAMME BOARD
+     ------------------------------------------------------------
+     One column per programme type. Cards stack vertically inside
+     their column, so the column a card sits in is what marks it as
+     a grant, a capacity-building programme or an advocacy strand.
+     Column order matches the "Our Programs" mega menu.
      ============================================================ -->
 <section class="section">
   <div class="container">
-    <div class="sec-head">
-      <div class="left">
-        <div class="overline">Funding Opportunities</div>
-        <h2>Grant Programmes</h2>
-      </div>
-      <div class="count">6 programmes</div>
-    </div>
+    <div class="board">
 
-    <div class="grant-group">
-      <h3 class="group-label">Grants for individuals</h3>
-      <div class="cards-grid">
-
-        <a class="program-card" href="/move.html">
-          <div class="card-top">
-            <span class="card-badge cool">Coming Soon</span>
-          </div>
-          <h3 class="card-title">MOVE Grants</h3>
-          <p class="card-desc">Short term, people to people funding for Researchers, Students, Professors, Journalists, Doctors, Actors, Artists, Musicians, Activists, to cross-border cooperation, connect with peers, and bring knowledge and added value back home.</p>
-          <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </a>
-
-        <a class="program-card" href="/visegrad-fellowship.html">
-          <div class="card-top">
-            <span class="card-badge">Winners Announced</span>
-          </div>
-          <h3 class="card-title">Western Balkans–Visegrad Fellowship</h3>
-          <p class="card-desc">The Visegrad Fellowship Programme supports short-term academic mobility between the Western Balkans and the Visegrad Group. It enables PhD candidates and doctoral holders to undertake research, teaching, or academic study at host institutions across the two regions, fostering knowledge exchange and regional cooperation.</p>
-          <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </a>
-
-      </div>
-    </div>
-
-    <div class="grant-group">
-      <h3 class="group-label">Grants for non-profit organizations</h3>
-      <div class="cards-grid">
-
-        <a class="program-card" href="/ggi.html">
-          <div class="card-top">
-            <span class="card-badge">Winners Announced</span>
-          </div>
-          <h3 class="card-title">Grants for Grassroots Initiatives (GGI)</h3>
-          <p class="card-desc">GGI supports young, emerging CSOs and Grassroots organizations to participate and contribute to regional cooperation, peacebuilding, good neighborly relations, reconciliation, democratic governance and EU integration across the WB6.</p>
-          <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </a>
-
-        <a class="program-card" href="/gefund.html">
-          <div class="card-top">
-            <span class="card-badge amber">Under Evaluation</span>
-          </div>
-          <h3 class="card-title">Gender Equality Fund (GEFund)</h3>
-          <p class="card-desc">GeFund is the Western Balkans Fund's dedicated regional funding mechanism for gender equality. By supporting collaborative initiatives across the six Contracting Parties, it transforms the Fund's long-term commitment to women's empowerment into concrete action and regional impact.</p>
-          <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </a>
-
-        <a class="program-card" href="/erc.html">
-          <div class="card-top">
-            <span class="card-badge cool">Coming Soon</span>
-          </div>
-          <h3 class="card-title">ERC Empowering Regional Cooperation</h3>
-          <p class="card-desc">ERC Grant strengthens regional civil society partnerships and supports collaborative initiatives across the Western Balkans. It promotes democracy, active citizenship, and sustainable development while fostering regional cooperation and dialogue.</p>
-          <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </a>
-
-        <a class="program-card" id="matching" href="/matching.html">
-          <div class="card-top">
-            <span class="card-badge">Always Open</span>
-          </div>
-          <h3 class="card-title">Matching Grants</h3>
-          <p class="card-desc">Co-financing for regional projects that have already earned the trust of another funder.</p>
-          <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </a>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     CAPACITY BUILDING
-     ============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="sec-head">
-      <div class="left">
-        <div class="overline">Capacity Building</div>
-        <h2>Training &amp; Peer Learning</h2>
-      </div>
-      <div class="count">2 programmes</div>
-    </div>
-
-    <div class="cards-grid">
-
-      <a class="program-card" href="/regional-academy.html">
-        <div class="card-top">
-          <span class="card-badge muted">Applications Closed</span>
+      <!-- COLUMN 1 · FUNDING OPPORTUNITIES -->
+      <div class="prog-col">
+        <div class="col-head">
+          <div class="col-bar"></div>
+          <h2>Funding Opportunities</h2>
+          <p>From flagship regional schemes to fast, people-to-people mobility funding, our grants back partnerships of every size and ambition across the Western Balkans.</p>
         </div>
-        <h3 class="card-title">WBF Regional Academy</h3>
-        <p class="card-desc">A flagship capacity-building programme of the Western Balkans Fund, delivered through online learning and a seven-day residential academy. Supported by the Open Society Foundation – Western Balkans, it equips junior professionals and emerging leaders with the knowledge, skills, and regional networks to advance dialogue, cooperation, and reconciliation across the Western Balkans. This year's edition is on Dialogue and Culture of Cooperation.</p>
-        <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-      </a>
+        <div class="col-body">
 
-      <a class="program-card" id="p2p" href="/peer-to-peer.html">
-        <div class="card-top">
-          <span class="card-badge cool">Implementation</span>
+          <div class="col-group-label">Grants for non-profit organizations</div>
+
+          <a class="program-card" href="/ggi.html">
+            <h3 class="card-title">Grants for Grassroots Initiatives (GGI)</h3>
+            <p class="card-desc">GGI supports young, emerging CSOs and Grassroots organizations to participate and contribute to regional cooperation, peacebuilding, good neighborly relations, reconciliation, democratic governance and EU integration across the WB6.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge">Winners Announced</span>
+            </div>
+          </a>
+
+          <a class="program-card" href="/gefund.html">
+            <h3 class="card-title">Gender Equality Fund (GEFund)</h3>
+            <p class="card-desc">GeFund is the Western Balkans Fund's dedicated regional funding mechanism for gender equality. By supporting collaborative initiatives across the six Contracting Parties, it transforms the Fund's long-term commitment to women's empowerment into concrete action and regional impact.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge amber">Under Evaluation</span>
+            </div>
+          </a>
+
+          <a class="program-card" href="/erc.html">
+            <h3 class="card-title">ERC Empowering Regional Cooperation</h3>
+            <p class="card-desc">ERC Grant strengthens regional civil society partnerships and supports collaborative initiatives across the Western Balkans. It promotes democracy, active citizenship, and sustainable development while fostering regional cooperation and dialogue.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge cool">Coming Soon</span>
+            </div>
+          </a>
+
+          <a class="program-card" id="matching" href="/matching.html">
+            <h3 class="card-title">Matching Grants</h3>
+            <p class="card-desc">Co-financing for regional projects that have already earned the trust of another funder.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge">Always Open</span>
+            </div>
+          </a>
+
+          <div class="col-group-label">Grants for individuals</div>
+
+          <a class="program-card" href="/move.html">
+            <h3 class="card-title">MOVE Grants</h3>
+            <p class="card-desc">Short term, people to people funding for Researchers, Students, Professors, Journalists, Doctors, Actors, Artists, Musicians, Activists, to cross-border cooperation, connect with peers, and bring knowledge and added value back home.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge cool">Coming Soon</span>
+            </div>
+          </a>
+
+          <a class="program-card" href="/visegrad-fellowship.html">
+            <h3 class="card-title">Western Balkans–Visegrad Fellowship</h3>
+            <p class="card-desc">The Visegrad Fellowship Programme supports short-term academic mobility between the Western Balkans and the Visegrad Group. It enables PhD candidates and doctoral holders to undertake research, teaching, or academic study at host institutions across the two regions, fostering knowledge exchange and regional cooperation.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge">Winners Announced</span>
+            </div>
+          </a>
+
         </div>
-        <h3 class="card-title">Peer to Peer</h3>
-        <p class="card-desc">A capacity-building programme connecting civil society organisations across the Western Balkans with their EU peers. Learn, adapt, and lead the change together.</p>
-        <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     ADVOCACY & NETWORKING
-     ============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="sec-head">
-      <div class="left">
-        <div class="overline">Advocacy &amp; Networking</div>
-        <h2>Convening the Region</h2>
       </div>
-      <div class="count">2 strands</div>
-    </div>
 
-    <div class="cards-grid">
-
-      <a class="program-card" id="past-events" href="/past-events.html">
-        <div class="card-top">
-          <span class="card-badge muted">Archive</span>
+      <!-- COLUMN 2 · CAPACITY BUILDING -->
+      <div class="prog-col">
+        <div class="col-head">
+          <div class="col-bar"></div>
+          <h2>Capacity Building</h2>
+          <p>Academies, training, and peer-learning that equip emerging leaders with the skills, knowledge, and networks to drive cooperation and reconciliation.</p>
         </div>
-        <h3 class="card-title">Past Events</h3>
-        <p class="card-desc">A curated archive of the conferences, forums, dialogue sessions and networking moments the Fund has convened across the six Contracting Parties.</p>
-        <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-      </a>
+        <div class="col-body">
 
-      <a class="program-card" id="regional-dialogue-sessions" href="/regional-dialogue-sessions.html">
-        <div class="card-top">
-          <span class="card-badge cool">Ongoing</span>
+          <a class="program-card" href="/regional-academy.html">
+            <h3 class="card-title">WBF Regional Academy</h3>
+            <p class="card-desc">A flagship capacity-building programme of the Western Balkans Fund, delivered through online learning and a seven-day residential academy. Supported by the Open Society Foundation – Western Balkans, it equips junior professionals and emerging leaders with the knowledge, skills, and regional networks to advance dialogue, cooperation, and reconciliation across the Western Balkans. This year's edition is on Dialogue and Culture of Cooperation.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge muted">Applications Closed</span>
+            </div>
+          </a>
+
+          <a class="program-card" id="p2p" href="/peer-to-peer.html">
+            <h3 class="card-title">Peer to Peer</h3>
+            <p class="card-desc">A capacity-building programme connecting civil society organisations across the Western Balkans with their EU peers. Learn, adapt, and lead the change together.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge cool">Implementation</span>
+            </div>
+          </a>
+
         </div>
-        <h3 class="card-title">Regional Dialogue Sessions</h3>
-        <p class="card-desc">A facilitated convening format that brings civil society, public institutions and academia from all six Contracting Parties around one table to work through a shared regional question.</p>
-        <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-      </a>
+      </div>
+
+      <!-- COLUMN 3 · ADVOCACY & NETWORKING -->
+      <div class="prog-col">
+        <div class="col-head">
+          <div class="col-bar"></div>
+          <h2>Advocacy &amp; Networking</h2>
+          <p>Forums, conferences, and matchmaking that bring civil society, public institutions, and academia together to build trust and lasting regional connections.</p>
+        </div>
+        <div class="col-body">
+
+          <a class="program-card" id="past-events" href="/past-events.html">
+            <h3 class="card-title">Past Events</h3>
+            <p class="card-desc">A curated archive of the conferences, forums, dialogue sessions and networking moments the Fund has convened across the six Contracting Parties.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge muted">Archive</span>
+            </div>
+          </a>
+
+          <a class="program-card" id="regional-dialogue-sessions" href="/regional-dialogue-sessions.html">
+            <h3 class="card-title">Regional Dialogue Sessions</h3>
+            <p class="card-desc">A facilitated convening format that brings civil society, public institutions and academia from all six Contracting Parties around one table to work through a shared regional question.</p>
+            <div class="card-foot">
+              <span class="card-explore">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+              <span class="card-badge cool">Ongoing</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
 
     </div>
   </div>
