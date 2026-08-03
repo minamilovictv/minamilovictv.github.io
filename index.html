@@ -89,11 +89,47 @@
     z-index: 2;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 64px 40px 28px;
+    /* --hero-pb is reused by .hero-flag to cancel this bottom padding, so the
+       two must stay in step. */
+    --hero-pb: 28px;
+    padding: 64px 40px var(--hero-pb);
+    /* Headline left, flag right — the flag fills what was empty blue. */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+    gap: 28px;
+    align-items: center;
   }
 
   .hero-text {
     max-width: 880px;
+  }
+
+  /* ---- Hero flag ----
+     Placed as-is: no blend mode, mask or entrance animation. The source PNG
+     carries its own grey studio background, so it shows as a rectangle
+     against the navy. */
+  .hero-flag {
+    justify-self: end;
+    /* Sit on the hero's bottom edge rather than centred, so the flag reads as
+       rising out of the section below instead of floating with blue beneath
+       it. The negative margin cancels .hero-inner's bottom padding; the hero's
+       overflow:hidden keeps it from spilling past the section. */
+    align-self: end;
+    margin-bottom: calc(var(--hero-pb) * -1);
+    width: 100%;
+    max-width: 620px;
+    pointer-events: none;
+  }
+  .hero-flag img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  /* Narrower than this the headline needs the full measure, and the flag is
+     decorative — drop it rather than squeezing both. */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-flag { display: none; }
   }
 
   /* Eyebrow badge with pulsing dot */
@@ -1566,7 +1602,7 @@
      ============================================================ */
   @media (max-width: 1024px) {
     .container { padding: 0 24px; }
-    .hero-inner { padding: 48px 24px 40px; }
+    .hero-inner { --hero-pb: 40px; padding: 48px 24px var(--hero-pb); }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .pf-grid { grid-template-columns: repeat(2, 1fr); }
     .glance-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -1811,6 +1847,15 @@
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
         </a>
       </div>
+    </div>
+
+    <!-- Decorative: the WBF wordmark already appears in the header, so this
+         carries no information a screen reader needs. -->
+    <div class="hero-flag" aria-hidden="true">
+      <!-- TODO: wbfflag.png is a 2.3 MB source export displayed at ~580px wide.
+           Replace with a web-sized version (WebP or JPEG, ~1200px, well under
+           300 KB) — it is the heaviest asset on the homepage. -->
+      <img src="/assets/images/wbfflag.png" alt="" width="1536" height="1024" onerror="this.closest('.hero-flag').remove()">
     </div>
   </div>
 
