@@ -34,7 +34,8 @@
       '.nb.nav-open .nav-toggle .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg);}',
       /* desktop: click-toggled state mirrors the hover state */
       '.dropdown-wrap.open>.dropdown{display:block!important;}',
-      '.dropdown-wrap.open>.mega{display:grid!important;grid-template-columns:1.75fr 1fr;}',
+      /* Column template MUST match .mega in css/site-chrome.css. */
+      '.dropdown-wrap.open>.mega{display:grid!important;grid-template-columns:1.6fr 1fr 1.05fr;}',
       /* Breakpoint MUST match css/site-chrome.css (.nav-items collapse). */
       '@media (max-width:1240px){',
       '  .nav-toggle{display:block;}',
