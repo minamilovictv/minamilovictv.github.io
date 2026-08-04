@@ -156,22 +156,25 @@
   .who-card h3 { font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; color: var(--ink); margin-bottom: 8px; }
   .who-card p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.65; }
 
-  /* EDITIONS — vertical rail + expandable detail panel.
-     Same interaction and motion as the Methodology "rhythm" block on
-     regional-academy.html, turned on its side: the rail runs down the left,
-     the panel sits beside it. Per-stop colour comes in via --ec / --ec-deep / --ec-tint. */
-  .editions { display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: start; }
-  /* the panels run long, so the rail stays in view while the text is read */
-  .ed-rail { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 14px; }
+  /* EDITIONS — rail of four stops above a full-width detail panel, the same
+     interaction and motion as the Methodology "rhythm" block on regional-academy.html.
+     The panel splits into a reading column and a photo column.
+     Per-stop colour comes in via --ec / --ec-deep / --ec-tint. */
+  .ed-rail {
+    position: relative;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    margin: 6px 0 34px;
+  }
   .ed-rail::before {
-    content: ""; position: absolute; left: 28px; top: 30px; bottom: 30px; width: 3px;
-    background: linear-gradient(180deg, var(--adv-light) 0%, var(--adv) 38%, #3372E3 72%, var(--adv-deep) 100%);
+    content: ""; position: absolute; left: 12%; right: 12%; top: 28px; height: 3px;
+    background: linear-gradient(90deg, var(--adv-light) 0%, var(--adv) 38%, #3372E3 72%, var(--adv-deep) 100%);
     border-radius: 999px; z-index: 0;
   }
   .ed-stop {
     position: relative; z-index: 1;
     background: none; border: 0; cursor: pointer; font-family: inherit;
-    display: flex; align-items: center; gap: 16px; padding: 4px 6px 4px 0; text-align: left; width: 100%;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding: 0 10px; text-align: center;
   }
   .ed-node {
     position: relative; flex-shrink: 0;
@@ -188,14 +191,14 @@
     animation: ed-node-pulse 1.9s ease-out infinite;
   }
   @keyframes ed-node-pulse { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.4); opacity: 0; } }
-  .ed-stop-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .ed-stop-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   /* no text-transform here: this line carries the event's own place and date, shown as written */
   .ed-when { font-size: var(--text-sm); font-weight: 600; color: var(--muted); transition: color 0.25s; }
   .ed-label { font-size: var(--text-md); font-weight: 700; color: var(--ink); letter-spacing: -0.01em; line-height: 1.35; transition: color 0.25s; }
-  .ed-stop:hover .ed-node { transform: translateX(3px) scale(1.05); border-color: var(--ec); color: var(--ec-deep); }
+  .ed-stop:hover .ed-node { transform: translateY(-3px) scale(1.05); border-color: var(--ec); color: var(--ec-deep); }
   .ed-stop.is-active .ed-node {
     background: linear-gradient(135deg, var(--ec) 0%, var(--ec-deep) 100%);
-    border-color: transparent; color: #fff; transform: translateX(4px) scale(1.1);
+    border-color: transparent; color: #fff; transform: translateY(-4px) scale(1.1);
     box-shadow: 0 12px 26px color-mix(in srgb, var(--ec) 42%, transparent);
   }
   .ed-stop.is-active .ed-when { color: var(--ec-deep); }
@@ -204,12 +207,31 @@
   .ed-stage { position: relative; }
   .ed-panel {
     display: none;
-    grid-template-columns: auto 1fr; gap: 26px; align-items: start;
     background: #fff; border: 1px solid var(--line);
-    border-top: 3px solid var(--ec); border-radius: 16px; padding: 32px 34px;
+    border-top: 3px solid var(--ec); border-radius: 16px; padding: 34px 38px 38px;
     box-shadow: var(--shadow-1);
   }
-  .ed-panel.is-active { display: grid; animation: ed-in 0.35s ease both; }
+  .ed-panel.is-active { display: block; animation: ed-in 0.35s ease both; }
+  /* header spans the full panel; body splits into the text column and the photo column */
+  .ed-panel-head { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; margin-bottom: 26px; }
+  .ed-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr); gap: 40px; align-items: start; }
+  /* the panel is wide, so the reading column is capped at a comfortable measure */
+  .ed-text { min-width: 0; }
+  .ed-text p { max-width: 80ch; }
+
+  /* photo column — drop files in and the placeholder frame under each one disappears */
+  .ed-gallery { display: flex; flex-direction: column; gap: 14px; }
+  .ed-photo {
+    position: relative; margin: 0; aspect-ratio: 3 / 2; overflow: hidden;
+    border-radius: 12px; border: 1px solid var(--line); background: var(--surface-alt);
+    box-shadow: var(--shadow-1);
+  }
+  .ed-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+  .ed-photo:hover img { transform: scale(1.05); }
+  .ed-photo .img-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--faint); text-align: center; padding: 16px; }
+  .ed-photo .img-ph svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; }
+  .ed-photo .img-ph span { font-size: var(--text-sm); font-weight: 600; }
+  .ed-photo .img-ph code { display: block; margin-top: 3px; font-size: 10.5px; font-weight: 500; opacity: 0.85; word-break: break-all; }
   @keyframes ed-in { from { opacity: 0; } to { opacity: 1; } }
   /* staggered reveal of the panel's contents each time it opens */
   .ed-panel.is-active .ed-panel-icon { animation: ed-icon 0.55s cubic-bezier(0.22,0.61,0.36,1) both; }
@@ -238,7 +260,7 @@
   }
   .ed-panel-when { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ec-deep); display: block; margin-bottom: 6px; }
   .ed-panel h3 { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
-  .ed-panel p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.75; margin-bottom: 20px; max-width: 78ch; }
+  .ed-panel p { font-size: var(--text-base); color: var(--ink-soft); line-height: 1.75; margin-bottom: 20px; }
   .ed-panel p strong { color: var(--ink); font-weight: 700; }
   .ed-panel p:last-child { margin-bottom: 0; }
   .ed-ex { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -269,10 +291,17 @@
     .journey { grid-template-columns: repeat(2, 1fr); }
     .journey::before { display: none; }
   }
+  @media (max-width: 1100px) {
+    /* photos move under the text so the reading column keeps a sane width */
+    .ed-body { grid-template-columns: 1fr; gap: 26px; }
+    .ed-gallery { flex-direction: row; }
+    .ed-photo { flex: 1; }
+  }
   @media (max-width: 900px) {
-    .editions { grid-template-columns: 1fr; gap: 26px; }
-    .ed-rail { position: static; gap: 10px; }
-    .ed-panel { grid-template-columns: 1fr; gap: 18px; padding: 26px 24px; }
+    .ed-rail { grid-template-columns: repeat(2, 1fr); row-gap: 26px; }
+    .ed-rail::before { display: none; }
+    .ed-panel { padding: 26px 24px 30px; }
+    .ed-panel-head { gap: 16px; margin-bottom: 20px; }
   }
   @media (max-width: 640px) {
     .page-hero { padding: 56px 0 48px; }
@@ -281,7 +310,7 @@
     .theme-list { grid-template-columns: 1fr; }
     .who-grid { grid-template-columns: 1fr; }
     .ed-node { width: 48px; height: 48px; font-size: 16px; }
-    .ed-rail::before { left: 23px; }
+    .ed-gallery { flex-direction: column; }
   }
 </style>
 </head>
@@ -505,7 +534,7 @@
 
 <!-- EDITIONS -->
 <section class="section" id="editions">
-  <div class="container-narrow">
+  <div class="container">
     <div class="sec-head">
       <div class="overline">Past Editions</div>
       <h2>Four editions so far</h2>
@@ -520,29 +549,29 @@
         <button type="button" class="ed-stop is-active" role="tab" aria-selected="true" aria-controls="ed-panel-0" id="ed-tab-0" data-e="0" style="--ec:var(--adv-light);--ec-deep:var(--adv);--ec-tint:#eaf6fe">
           <span class="ed-node" aria-hidden="true">I</span>
           <span class="ed-stop-text">
-            <span class="ed-when">Skopje, 7-8 November 2024</span>
             <span class="ed-label">RNDS on Education and Scientific Exchange</span>
+            <span class="ed-when">Skopje, 7-8 November 2024</span>
           </span>
         </button>
         <button type="button" class="ed-stop" role="tab" aria-selected="false" aria-controls="ed-panel-1" id="ed-tab-1" data-e="1" style="--ec:var(--adv);--ec-deep:var(--adv-deep);--ec-tint:var(--adv-tint)">
           <span class="ed-node" aria-hidden="true">II</span>
           <span class="ed-stop-text">
-            <span class="ed-when">Belgrade, 17-18 December 2024</span>
             <span class="ed-label">RNDS on Cultural Cooperation</span>
+            <span class="ed-when">Belgrade, 17-18 December 2024</span>
           </span>
         </button>
         <button type="button" class="ed-stop" role="tab" aria-selected="false" aria-controls="ed-panel-2" id="ed-tab-2" data-e="2" style="--ec:#3372E3;--ec-deep:#234FA6;--ec-tint:#eaf0fd">
           <span class="ed-node" aria-hidden="true">III</span>
           <span class="ed-stop-text">
-            <span class="ed-when">Podgorica, 26-27 March 2025</span>
             <span class="ed-label">RNDS on Sustainable Development</span>
+            <span class="ed-when">Podgorica, 26-27 March 2025</span>
           </span>
         </button>
         <button type="button" class="ed-stop" role="tab" aria-selected="false" aria-controls="ed-panel-3" id="ed-tab-3" data-e="3" style="--ec:var(--adv-deep);--ec-deep:#0d3c5c;--ec-tint:#e7eff5">
           <span class="ed-node" aria-hidden="true">IV</span>
           <span class="ed-stop-text">
-            <span class="ed-when">Prishtina, 11-13 June, 2025</span>
             <span class="ed-label">RNDS on Regional Cooperation</span>
+            <span class="ed-when">Prishtina, 11-13 June, 2025</span>
           </span>
         </button>
       </div>
@@ -550,46 +579,162 @@
       <div class="ed-stage">
 
         <div class="ed-panel is-active" role="tabpanel" id="ed-panel-0" aria-labelledby="ed-tab-0" data-e="0" style="--ec:var(--adv-light);--ec-deep:var(--adv);--ec-tint:#eaf6fe">
-          <div class="ed-panel-icon" aria-hidden="true">I</div>
-          <div>
-            <span class="ed-panel-when">First edition</span>
-            <h3>RNDS on Education and Scientific Exchange (Skopje, 7-8 November 2024)</h3>
+          <div class="ed-panel-head">
+            <div class="ed-panel-icon" aria-hidden="true">I</div>
+            <div>
+              <span class="ed-panel-when">First edition</span>
+              <h3>RNDS on Education and Scientific Exchange (Skopje, 7-8 November 2024)</h3>
+            </div>
+          </div>
+          <div class="ed-body">
+            <div class="ed-text">
             <p>The Regional Networking and Dialogue Session (RNDS) on Education and Scientific Exchange, held in Skopje under the EU/WBF Joint Action Phase II, brought together <strong>30 representatives</strong> from educational institutions, civil society organisations, public authorities, and regional cooperation programmes from across the Western Balkans to strengthen regional dialogue and identify common priorities for the future of education and scientific exchange. As <strong>the first of four thematic dialogue sessions envisaged under the Action</strong>, the event provided a dynamic platform for networking, peer learning, and evidence-based discussions through panel debates and interactive workshops, enabling participants to exchange experiences, identify shared challenges, and jointly explore practical solutions for enhanced regional cooperation.</p>
             <p>The discussions highlighted a strong consensus that the Western Balkans share many of the same educational challenges and that <strong>regional cooperation remains one of the most effective instruments</strong> for improving education systems, strengthening scientific exchange, and supporting the region’s European integration process. Participants recognised the crucial role of the European Union and regional initiatives, particularly <strong>the Western Balkans Fund (WBF), RYCO and Erasmus+</strong>, in promoting mobility, institutional partnerships and collaborative projects, while also acknowledging that finding reliable regional partners and ensuring the sustainability of initiatives continue to be significant challenges. Interactive sessions further demonstrated that common needs exist across all levels of the education ecosystem from policy development to institutional capacities and individual competencies emphasising the importance of investing in capacity building for educators, trainers, researchers and education institutions, alongside expanding opportunities for regional mobility and professional exchange.</p>
             <p>Building on these findings, participants recommended continuing and further expanding regional networking and dialogue initiatives, extending the duration of future events to allow for deeper discussions and more comprehensive outcomes, and broadening participation to include representatives of public institutions responsible for education, employment and labour. They also proposed exploring the development of <strong>a dedicated regional online platform</strong> that would facilitate <strong>partner matching, networking, mobility and knowledge exchange</strong>, helping organisations establish new partnerships and strengthen long-term regional cooperation. The outcomes and recommendations generated through the RNDS will serve as an important evidence base for the Western Balkans Fund in designing future interventions and ensuring that its support remains responsive to the evolving needs and priorities of the education and scientific exchange sector across the Western Balkans.</p>
+            </div>
+            <div class="ed-gallery">
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/skopje-2024/1.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/skopje-2024/1.jpg" alt="RNDS on Education and Scientific Exchange, Skopje" loading="lazy" onerror="this.remove()">
+              </figure>
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/skopje-2024/2.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/skopje-2024/2.jpg" alt="RNDS on Education and Scientific Exchange, Skopje" loading="lazy" onerror="this.remove()">
+              </figure>
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/skopje-2024/3.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/skopje-2024/3.jpg" alt="RNDS on Education and Scientific Exchange, Skopje" loading="lazy" onerror="this.remove()">
+              </figure>
+            </div>
           </div>
         </div>
 
         <div class="ed-panel" role="tabpanel" id="ed-panel-1" aria-labelledby="ed-tab-1" data-e="1" style="--ec:var(--adv);--ec-deep:var(--adv-deep);--ec-tint:var(--adv-tint)">
-          <div class="ed-panel-icon" aria-hidden="true">II</div>
-          <div>
-            <span class="ed-panel-when">Second edition</span>
-            <h3>RNDS on Cultural Cooperation (Belgrade, 17-18 December 2024)</h3>
+          <div class="ed-panel-head">
+            <div class="ed-panel-icon" aria-hidden="true">II</div>
+            <div>
+              <span class="ed-panel-when">Second edition</span>
+              <h3>RNDS on Cultural Cooperation (Belgrade, 17-18 December 2024)</h3>
+            </div>
+          </div>
+          <div class="ed-body">
+            <div class="ed-text">
             <p>The Regional Networking and Dialogue Session (RNDS) on Cultural Cooperation, held in Belgrade under the EU/WBF Joint Action Phase II, brought together representatives of civil society organisations, public institutions, cultural practitioners, donors and regional initiatives from across the Western Balkans to strengthen regional dialogue and identify practical pathways for advancing cultural cooperation. Through a combination of plenary discussions, thematic working groups and interactive exchanges, participants explored the current state of regional cultural collaboration, shared successful practices, and jointly identified the main barriers and opportunities for future cooperation. The discussions reinforced a common understanding that <strong>culture extends beyond artistic expression</strong>, serving as a powerful instrument for <strong>reconciliation, social cohesion, intercultural dialogue and sustainable economic development</strong>, while contributing to a shared regional identity and supporting the Western Balkans’ European integration aspirations.</p>
             <p>Participants highlighted the importance of ensuring <strong>sustainable and more flexible funding mechanisms</strong> for cultural initiatives, including multiannual and continuously accessible funding opportunities, while emphasising the need to simplify administrative and bureaucratic procedures that often hinder cross-border cooperation. <strong>The role of digitalisation</strong> in preserving and promoting cultural heritage, the growing potential of cultural tourism, and stronger links between culture, education and technology were identified as key drivers for expanding the impact of regional cooperation. Participants also stressed the importance of strengthening regional networks, facilitating the mobility of artists and cultural workers, supporting young cultural professionals, and encouraging innovative approaches through heritage digitisation, creative industries and cross-sectoral partnerships. Discussions further recognised the value of existing EU-supported programmes and regional initiatives, while calling for stronger alignment between WBF-supported actions and broader European instruments such as <strong>Creative Europe, IPA III and Horizon Europe</strong> to maximise long-term impact and sustainability.</p>
             <p>Building on these discussions, the RNDS generated a comprehensive set of recommendations addressed to donors, governments and civil society organisations. These included increasing investment in cross-border cultural projects, strengthening capacity building for cultural organisations, streamlining legislative and administrative frameworks to facilitate regional exchanges, promoting shared cultural heritage through joint initiatives and regional tourism strategies, and expanding opportunities for networking through both physical and digital platforms. Participants also proposed the establishment of dedicated regional mechanisms to support cultural cooperation, stronger follow-up and monitoring of collaborative initiatives, and continued dialogue among cultural stakeholders beyond the event itself. The session concluded that sustained regional engagement, combined with strategic support from governments, the European Union and regional organisations, is essential to transform culture into <strong>a lasting bridge between communities</strong>, fostering mutual understanding, regional resilience and long-term cooperation across the Western Balkans.</p>
+            </div>
+            <div class="ed-gallery">
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/belgrade-2024/1.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/belgrade-2024/1.jpg" alt="RNDS on Cultural Cooperation, Belgrade" loading="lazy" onerror="this.remove()">
+              </figure>
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/belgrade-2024/2.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/belgrade-2024/2.jpg" alt="RNDS on Cultural Cooperation, Belgrade" loading="lazy" onerror="this.remove()">
+              </figure>
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/belgrade-2024/3.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/belgrade-2024/3.jpg" alt="RNDS on Cultural Cooperation, Belgrade" loading="lazy" onerror="this.remove()">
+              </figure>
+            </div>
           </div>
         </div>
 
         <div class="ed-panel" role="tabpanel" id="ed-panel-2" aria-labelledby="ed-tab-2" data-e="2" style="--ec:#3372E3;--ec-deep:#234FA6;--ec-tint:#eaf0fd">
-          <div class="ed-panel-icon" aria-hidden="true">III</div>
-          <div>
-            <span class="ed-panel-when">Third edition</span>
-            <h3>RNDS on Sustainable Development (Podgorica, 26-27 March 2025)</h3>
+          <div class="ed-panel-head">
+            <div class="ed-panel-icon" aria-hidden="true">III</div>
+            <div>
+              <span class="ed-panel-when">Third edition</span>
+              <h3>RNDS on Sustainable Development (Podgorica, 26-27 March 2025)</h3>
+            </div>
+          </div>
+          <div class="ed-body">
+            <div class="ed-text">
             <p>The Regional Networking and Dialogue Session (RNDS) on Sustainable Development, held in Podgorica under the EU/WBF Joint Action Phase II, brought together <strong>32 representatives</strong> from government institutions, civil society organisations, academia, scientific institutions and regional programmes from across the six Western Balkans economies. Dedicated to advancing regional cooperation in environmental, economic and social sustainability, the event provided a platform for dialogue, networking and knowledge exchange aligned with <strong>the Green Agenda for the Western Balkans</strong>, <strong>Chapter 27 of the EU acquis</strong> and the broader EU integration process. Through panel discussions and participatory workshops, participants reflected on a decade of regional progress, examined common sustainability challenges, exchanged good practices and jointly identified priorities for strengthening regional cooperation and resilience.</p>
             <p>The discussions reaffirmed that <strong>regional cooperation is indispensable</strong> for addressing the Western Balkans’ shared environmental, economic and social challenges and for accelerating progress towards the Sustainable Development Goals. Participants highlighted that while the region has made important advances, common obstacles such as limited institutional capacities, underfinancing, fragmented governance and insufficient integration of sustainability into national policies continue to hinder implementation. The session underscored the importance of strengthening cross-border collaboration, particularly in areas such as <strong>climate resilience, biodiversity protection, green jobs, circular economy and social inclusion</strong>. Participants also recognised the critical role played by the European Union, the Western Balkans Fund, Erasmus+ and other regional initiatives in supporting sustainable development through funding opportunities, capacity building, regional mobility and knowledge exchange. Particular attention was given to the role of <strong>youth, digitalisation and innovation</strong> as drivers of sustainable transformation, alongside the contribution of civil society, academia, grassroots initiatives and green entrepreneurship in advancing practical solutions and fostering regional resilience.</p>
             <p>Building on these discussions, the RNDS generated a comprehensive set of recommendations aimed at reinforcing regional cooperation in sustainable development. Participants called for continued investment in capacity building for stakeholders across all governance levels, expanded regional mobility and networking opportunities, particularly for young professionals and the development of <strong>integrated digital platforms</strong> to facilitate partner matching, knowledge sharing and access to regional funding opportunities. They also recommended strengthening the involvement of public institutions responsible for environmental stewardship, economic development and social inclusion, extending the duration of future networking events to enable deeper dialogue and more concrete planning, and promoting more structured regional project pipelines aligned with the Green Agenda and EU funding mechanisms. The session concluded that sustained dialogue, stronger partnerships and coordinated regional action are essential for <strong>transforming shared sustainability challenges into opportunities</strong> for innovation, resilience and long-term development, while ensuring that future WBF interventions remain closely aligned with the evolving needs of stakeholders across the Western Balkans.</p>
+            </div>
+            <div class="ed-gallery">
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/podgorica-2025/1.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/podgorica-2025/1.jpg" alt="RNDS on Sustainable Development, Podgorica" loading="lazy" onerror="this.remove()">
+              </figure>
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/podgorica-2025/2.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/podgorica-2025/2.jpg" alt="RNDS on Sustainable Development, Podgorica" loading="lazy" onerror="this.remove()">
+              </figure>
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/podgorica-2025/3.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/podgorica-2025/3.jpg" alt="RNDS on Sustainable Development, Podgorica" loading="lazy" onerror="this.remove()">
+              </figure>
+            </div>
           </div>
         </div>
 
         <div class="ed-panel" role="tabpanel" id="ed-panel-3" aria-labelledby="ed-tab-3" data-e="3" style="--ec:var(--adv-deep);--ec-deep:#0d3c5c;--ec-tint:#e7eff5">
-          <div class="ed-panel-icon" aria-hidden="true">IV</div>
-          <div>
-            <span class="ed-panel-when">Fourth edition</span>
-            <h3>RNDS on Regional Cooperation (Prishtina, 11-13 June, 2025)</h3>
+          <div class="ed-panel-head">
+            <div class="ed-panel-icon" aria-hidden="true">IV</div>
+            <div>
+              <span class="ed-panel-when">Fourth edition</span>
+              <h3>RNDS on Regional Cooperation (Prishtina, 11-13 June, 2025)</h3>
+            </div>
+          </div>
+          <div class="ed-body">
+            <div class="ed-text">
             <p>The Regional Networking and Dialogue Session (RNDS) on Regional Cooperation and Reconciliation, held in Prishtina under the EU/WBF Joint Action Phase II, marked <strong>the conclusion of the first cycle of thematic dialogue sessions</strong>, building on the outcomes of the previous RNDS events in Belgrade, Skopje and Podgorica. Bringing together civil society representatives, youth leaders, policymakers, cultural and education practitioners, donors, thematic experts, private sector representatives and public institutions from across the Western Balkans, the three-day event served as a platform to consolidate the lessons learned from the thematic dialogues and translate them into a shared regional agenda for the future. Through high-level panel discussions, interactive thematic sessions, participatory workshops and collaborative exercises such as <strong>the Prishtina Cooperation Wall</strong>, participants reflected on the achievements, remaining challenges and emerging opportunities for regional cooperation, while validating a common set of conclusions and recommendations to guide future regional initiatives.</p>
             <p>Discussions throughout the event reaffirmed that <strong>regional cooperation is not only an important element of the EU accession process, but also a societal necessity</strong> for promoting sustainable peace, democratic resilience and shared prosperity across the Western Balkans. Building on the findings from the previous thematic sessions, participants recognised <strong>grassroots initiatives</strong>, particularly those led by civil society, youth organisations and cultural actors, as the most effective drivers of <strong>trust, reconciliation and people-to-people connection</strong>. They highlighted the need to strengthen the role of bottom-up approaches in shaping regional and European policy agendas, ensuring that local experiences and innovative solutions are systematically integrated into regional cooperation frameworks. Emphasis was placed on increasing citizen engagement, strengthening strategic communication to counter divisive narratives, and aligning regional initiatives more closely with the EU Growth Plan, the Common Regional Market and the Green Agenda for the Western Balkans.</p>
             <p>The Prishtina Dialogue Session culminated in the endorsement of <strong>the RNDS Series Conclusions and Recommendations</strong>, representing a collective regional call to action for <strong>more inclusive, sustainable and people-centred cooperation</strong>. Participants called for stronger institutional recognition of grassroots actors through more flexible funding mechanisms, long-term capacity building and greater inclusion of civil society in the planning, monitoring and evaluation of regional programmes. They further recommended promoting co-ownership between donors and local stakeholders, protecting civic and cultural spaces as essential platforms for dialogue and reconciliation, encouraging greater engagement of the private sector and philanthropy, and reinforcing national government ownership of regional cooperation through sustained political and financial support for regional initiatives such as the Western Balkans Fund. The conclusions also emphasised <strong>the European Union’s continued leadership</strong> in supporting people-to-people cooperation and highlighted the importance of investing in future-oriented skills, green and digital transition, and youth entrepreneurship to strengthen the long-term sustainability of regional cooperation. As the concluding event of the RNDS series, the Prishtina session successfully transformed the insights generated across the four thematic dialogues into a coherent regional vision that will inform <strong>future WBF programming, donor strategies and policy frameworks</strong> supporting regional cooperation and the EU integration process in the Western Balkans.</p>
+            </div>
+            <div class="ed-gallery">
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/prishtina-2025/1.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/prishtina-2025/1.jpg" alt="RNDS on Regional Cooperation, Prishtina" loading="lazy" onerror="this.remove()">
+              </figure>
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/prishtina-2025/2.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/prishtina-2025/2.jpg" alt="RNDS on Regional Cooperation, Prishtina" loading="lazy" onerror="this.remove()">
+              </figure>
+              <figure class="ed-photo">
+                <div class="img-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Add photo<code>rds/prishtina-2025/3.jpg</code></span>
+                </div>
+                <img src="/assets/images/rds/prishtina-2025/3.jpg" alt="RNDS on Regional Cooperation, Prishtina" loading="lazy" onerror="this.remove()">
+              </figure>
+            </div>
           </div>
         </div>
 
