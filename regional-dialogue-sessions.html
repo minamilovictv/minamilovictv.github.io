@@ -42,7 +42,7 @@
   .container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
 
   /* HERO */
-  .page-hero { position: relative; background: var(--gradient-hero); overflow: hidden; padding: 80px 0 76px; }
+  .page-hero { position: relative; background: var(--gradient-hero); overflow: hidden; padding: 72px 0 60px; }
   .page-hero::after { content: ""; position: absolute; top: -120px; right: -80px; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(125,200,247,0.26) 0%, transparent 70%); pointer-events: none; }
   .page-hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(600px 300px at 12% 120%, rgba(51,114,227,0.20), transparent 60%), radial-gradient(520px 300px at 92% -10%, rgba(125,200,247,0.14), transparent 60%); }
   @media (prefers-reduced-motion: no-preference) { .page-hero::before { animation: heroAurora 15s ease-in-out infinite alternate; } }
@@ -52,7 +52,8 @@
   .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; } .breadcrumb a:hover { color: #fff; } .breadcrumb span { margin: 0 8px; opacity: 0.5; }
   .page-hero-overline { position: relative; display: inline-block; font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--adv-light); margin-bottom: 16px; }
   .page-hero-overline::after { content: ""; position: absolute; left: 0; bottom: -6px; height: 2px; width: 100%; background: linear-gradient(90deg, var(--adv-light), transparent); }
-  .page-hero h1 { font-family: var(--font-display); font-size: var(--text-hero); font-weight: 700; color: #fff; line-height: 1.08; margin-bottom: 14px; max-width: 16ch; }
+  /* no width cap: the title is meant to sit on one line */
+  .page-hero h1 { font-family: var(--font-display); font-size: var(--text-hero); font-weight: 700; color: #fff; line-height: 1.08; }
   .page-hero .subtitle { font-size: var(--text-lg); color: rgba(255,255,255,0.92); font-weight: 500; line-height: 1.45; margin-bottom: 20px; max-width: 60ch; }
   .page-hero p.lead { font-size: var(--text-base); color: rgba(255,255,255,0.72); line-height: 1.75; max-width: 68ch; }
 
@@ -68,6 +69,20 @@
   .prose p { font-size: var(--text-base); color: var(--ink-soft); line-height: 1.8; max-width: 72ch; margin-bottom: 18px; }
   .prose p:last-child { margin-bottom: 0; }
   .prose strong { color: var(--ink); font-weight: 700; }
+
+  /* Justified body text across the page. Headings, the centred section leads and the
+     centred closer keep their own alignment — justifying those would fight the centring.
+     Hyphenation is on only for the narrow card columns, where justification would
+     otherwise open up rivers of white space. */
+  .prose p,
+  .page-hero p.lead,
+  .feature-card p,
+  .journey-card p,
+  .who-card p,
+  .ed-panel p { text-align: justify; }
+  .feature-card p,
+  .journey-card p,
+  .who-card p { -webkit-hyphens: auto; hyphens: auto; }
   .prose--intro { max-width: 860px; }
   .prose--intro p { font-size: var(--text-lg); line-height: 1.75; max-width: none; margin-bottom: 22px; }
 
@@ -145,8 +160,9 @@
      Same interaction and motion as the Methodology "rhythm" block on
      regional-academy.html, turned on its side: the rail runs down the left,
      the panel sits beside it. Per-stop colour comes in via --ec / --ec-deep / --ec-tint. */
-  .editions { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; }
-  .ed-rail { position: relative; display: flex; flex-direction: column; gap: 14px; }
+  .editions { display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: start; }
+  /* the panels run long, so the rail stays in view while the text is read */
+  .ed-rail { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 14px; }
   .ed-rail::before {
     content: ""; position: absolute; left: 28px; top: 30px; bottom: 30px; width: 3px;
     background: linear-gradient(180deg, var(--adv-light) 0%, var(--adv) 38%, #3372E3 72%, var(--adv-deep) 100%);
@@ -173,7 +189,8 @@
   }
   @keyframes ed-node-pulse { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.4); opacity: 0; } }
   .ed-stop-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-  .ed-when { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); transition: color 0.25s; }
+  /* no text-transform here: this line carries the event's own place and date, shown as written */
+  .ed-when { font-size: var(--text-sm); font-weight: 600; color: var(--muted); transition: color 0.25s; }
   .ed-label { font-size: var(--text-md); font-weight: 700; color: var(--ink); letter-spacing: -0.01em; line-height: 1.35; transition: color 0.25s; }
   .ed-stop:hover .ed-node { transform: translateX(3px) scale(1.05); border-color: var(--ec); color: var(--ec-deep); }
   .ed-stop.is-active .ed-node {
@@ -221,7 +238,8 @@
   }
   .ed-panel-when { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ec-deep); display: block; margin-bottom: 6px; }
   .ed-panel h3 { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
-  .ed-panel p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; max-width: 70ch; }
+  .ed-panel p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.75; margin-bottom: 20px; max-width: 78ch; }
+  .ed-panel p strong { color: var(--ink); font-weight: 700; }
   .ed-panel p:last-child { margin-bottom: 0; }
   .ed-ex { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
   .ed-ex li { font-size: var(--text-sm); color: var(--ink-soft); background: var(--ec-tint); border: 1px solid color-mix(in srgb, var(--ec) 24%, transparent); border-radius: 999px; padding: 6px 14px; transition: transform 0.2s ease; }
@@ -253,7 +271,7 @@
   }
   @media (max-width: 900px) {
     .editions { grid-template-columns: 1fr; gap: 26px; }
-    .ed-rail { gap: 10px; }
+    .ed-rail { position: static; gap: 10px; }
     .ed-panel { grid-template-columns: 1fr; gap: 18px; padding: 26px 24px; }
   }
   @media (max-width: 640px) {
@@ -287,8 +305,6 @@
     </nav>
     <div class="page-hero-overline">Advocacy &amp; Networking</div>
     <h1>Regional Dialogue Sessions</h1>
-    <p class="subtitle">Dialogue and people to people links</p>
-    <p class="lead">The Western Balkans Fund actively organizes events that bring stakeholders together for constructive dialogue on regional cooperation, and for the exchange of ideas and the relationships that follow from it.</p>
   </div>
 </section>
 
@@ -491,79 +507,92 @@
 <section class="section" id="editions">
   <div class="container-narrow">
     <div class="sec-head">
-      <div class="overline">The Editions</div>
+      <div class="overline">Past Editions</div>
       <h2>Four editions so far</h2>
     </div>
 
-    <!-- DRAFT COPY — every edition title, date, place and paragraph below is placeholder.
-         Replace the four .ed-stop buttons and their matching .ed-panel blocks with the
-         real edition text. The data-e index ties a button to its panel; keep them in sync.
-         The .ed-ex chips are optional — delete the <ul> if an edition has none. -->
+    <!-- The four Regional Networking and Dialogue Sessions held under the EU/WBF Joint
+         Action Phase II. Body text is Mina's, supplied 2026-08-04 and reproduced verbatim —
+         do not reword, shorten or re-punctuate it. The data-e index ties a button to its
+         panel; keep them in sync if an edition is added. -->
     <div class="editions" id="editions-switch">
-      <div class="ed-rail" role="tablist" aria-orientation="vertical" aria-label="Regional Dialogue Session editions">
+      <div class="ed-rail" role="tablist" aria-orientation="vertical" aria-label="Regional Networking and Dialogue Sessions">
         <button type="button" class="ed-stop is-active" role="tab" aria-selected="true" aria-controls="ed-panel-0" id="ed-tab-0" data-e="0" style="--ec:var(--adv-light);--ec-deep:var(--adv);--ec-tint:#eaf6fe">
           <span class="ed-node" aria-hidden="true">I</span>
           <span class="ed-stop-text">
-            <span class="ed-when">First edition</span>
-            <span class="ed-label">Edition title</span>
+            <span class="ed-when">Skopje, 7-8 November 2024</span>
+            <span class="ed-label">RNDS on Education and Scientific Exchange</span>
           </span>
         </button>
         <button type="button" class="ed-stop" role="tab" aria-selected="false" aria-controls="ed-panel-1" id="ed-tab-1" data-e="1" style="--ec:var(--adv);--ec-deep:var(--adv-deep);--ec-tint:var(--adv-tint)">
           <span class="ed-node" aria-hidden="true">II</span>
           <span class="ed-stop-text">
-            <span class="ed-when">Second edition</span>
-            <span class="ed-label">Edition title</span>
+            <span class="ed-when">Belgrade, 17-18 December 2024</span>
+            <span class="ed-label">RNDS on Cultural Cooperation</span>
           </span>
         </button>
         <button type="button" class="ed-stop" role="tab" aria-selected="false" aria-controls="ed-panel-2" id="ed-tab-2" data-e="2" style="--ec:#3372E3;--ec-deep:#234FA6;--ec-tint:#eaf0fd">
           <span class="ed-node" aria-hidden="true">III</span>
           <span class="ed-stop-text">
-            <span class="ed-when">Third edition</span>
-            <span class="ed-label">Edition title</span>
+            <span class="ed-when">Podgorica, 26-27 March 2025</span>
+            <span class="ed-label">RNDS on Sustainable Development</span>
           </span>
         </button>
         <button type="button" class="ed-stop" role="tab" aria-selected="false" aria-controls="ed-panel-3" id="ed-tab-3" data-e="3" style="--ec:var(--adv-deep);--ec-deep:#0d3c5c;--ec-tint:#e7eff5">
           <span class="ed-node" aria-hidden="true">IV</span>
           <span class="ed-stop-text">
-            <span class="ed-when">Fourth edition</span>
-            <span class="ed-label">Edition title</span>
+            <span class="ed-when">Prishtina, 11-13 June, 2025</span>
+            <span class="ed-label">RNDS on Regional Cooperation</span>
           </span>
         </button>
       </div>
 
       <div class="ed-stage">
+
         <div class="ed-panel is-active" role="tabpanel" id="ed-panel-0" aria-labelledby="ed-tab-0" data-e="0" style="--ec:var(--adv-light);--ec-deep:var(--adv);--ec-tint:#eaf6fe">
           <div class="ed-panel-icon" aria-hidden="true">I</div>
           <div>
             <span class="ed-panel-when">First edition</span>
-            <h3>Edition title</h3>
-            <p>Placeholder — replace with the description of the first edition: what it was about, where and when it was held, who took part and what came out of it.</p>
+            <h3>RNDS on Education and Scientific Exchange (Skopje, 7-8 November 2024)</h3>
+            <p>The Regional Networking and Dialogue Session (RNDS) on Education and Scientific Exchange, held in Skopje under the EU/WBF Joint Action Phase II, brought together <strong>30 representatives</strong> from educational institutions, civil society organisations, public authorities, and regional cooperation programmes from across the Western Balkans to strengthen regional dialogue and identify common priorities for the future of education and scientific exchange. As <strong>the first of four thematic dialogue sessions envisaged under the Action</strong>, the event provided a dynamic platform for networking, peer learning, and evidence-based discussions through panel debates and interactive workshops, enabling participants to exchange experiences, identify shared challenges, and jointly explore practical solutions for enhanced regional cooperation.</p>
+            <p>The discussions highlighted a strong consensus that the Western Balkans share many of the same educational challenges and that <strong>regional cooperation remains one of the most effective instruments</strong> for improving education systems, strengthening scientific exchange, and supporting the region’s European integration process. Participants recognised the crucial role of the European Union and regional initiatives, particularly <strong>the Western Balkans Fund (WBF), RYCO and Erasmus+</strong>, in promoting mobility, institutional partnerships and collaborative projects, while also acknowledging that finding reliable regional partners and ensuring the sustainability of initiatives continue to be significant challenges. Interactive sessions further demonstrated that common needs exist across all levels of the education ecosystem from policy development to institutional capacities and individual competencies emphasising the importance of investing in capacity building for educators, trainers, researchers and education institutions, alongside expanding opportunities for regional mobility and professional exchange.</p>
+            <p>Building on these findings, participants recommended continuing and further expanding regional networking and dialogue initiatives, extending the duration of future events to allow for deeper discussions and more comprehensive outcomes, and broadening participation to include representatives of public institutions responsible for education, employment and labour. They also proposed exploring the development of <strong>a dedicated regional online platform</strong> that would facilitate <strong>partner matching, networking, mobility and knowledge exchange</strong>, helping organisations establish new partnerships and strengthen long-term regional cooperation. The outcomes and recommendations generated through the RNDS will serve as an important evidence base for the Western Balkans Fund in designing future interventions and ensuring that its support remains responsive to the evolving needs and priorities of the education and scientific exchange sector across the Western Balkans.</p>
           </div>
         </div>
+
         <div class="ed-panel" role="tabpanel" id="ed-panel-1" aria-labelledby="ed-tab-1" data-e="1" style="--ec:var(--adv);--ec-deep:var(--adv-deep);--ec-tint:var(--adv-tint)">
           <div class="ed-panel-icon" aria-hidden="true">II</div>
           <div>
             <span class="ed-panel-when">Second edition</span>
-            <h3>Edition title</h3>
-            <p>Placeholder — replace with the description of the second edition.</p>
+            <h3>RNDS on Cultural Cooperation (Belgrade, 17-18 December 2024)</h3>
+            <p>The Regional Networking and Dialogue Session (RNDS) on Cultural Cooperation, held in Belgrade under the EU/WBF Joint Action Phase II, brought together representatives of civil society organisations, public institutions, cultural practitioners, donors and regional initiatives from across the Western Balkans to strengthen regional dialogue and identify practical pathways for advancing cultural cooperation. Through a combination of plenary discussions, thematic working groups and interactive exchanges, participants explored the current state of regional cultural collaboration, shared successful practices, and jointly identified the main barriers and opportunities for future cooperation. The discussions reinforced a common understanding that <strong>culture extends beyond artistic expression</strong>, serving as a powerful instrument for <strong>reconciliation, social cohesion, intercultural dialogue and sustainable economic development</strong>, while contributing to a shared regional identity and supporting the Western Balkans’ European integration aspirations.</p>
+            <p>Participants highlighted the importance of ensuring <strong>sustainable and more flexible funding mechanisms</strong> for cultural initiatives, including multiannual and continuously accessible funding opportunities, while emphasising the need to simplify administrative and bureaucratic procedures that often hinder cross-border cooperation. <strong>The role of digitalisation</strong> in preserving and promoting cultural heritage, the growing potential of cultural tourism, and stronger links between culture, education and technology were identified as key drivers for expanding the impact of regional cooperation. Participants also stressed the importance of strengthening regional networks, facilitating the mobility of artists and cultural workers, supporting young cultural professionals, and encouraging innovative approaches through heritage digitisation, creative industries and cross-sectoral partnerships. Discussions further recognised the value of existing EU-supported programmes and regional initiatives, while calling for stronger alignment between WBF-supported actions and broader European instruments such as <strong>Creative Europe, IPA III and Horizon Europe</strong> to maximise long-term impact and sustainability.</p>
+            <p>Building on these discussions, the RNDS generated a comprehensive set of recommendations addressed to donors, governments and civil society organisations. These included increasing investment in cross-border cultural projects, strengthening capacity building for cultural organisations, streamlining legislative and administrative frameworks to facilitate regional exchanges, promoting shared cultural heritage through joint initiatives and regional tourism strategies, and expanding opportunities for networking through both physical and digital platforms. Participants also proposed the establishment of dedicated regional mechanisms to support cultural cooperation, stronger follow-up and monitoring of collaborative initiatives, and continued dialogue among cultural stakeholders beyond the event itself. The session concluded that sustained regional engagement, combined with strategic support from governments, the European Union and regional organisations, is essential to transform culture into <strong>a lasting bridge between communities</strong>, fostering mutual understanding, regional resilience and long-term cooperation across the Western Balkans.</p>
           </div>
         </div>
+
         <div class="ed-panel" role="tabpanel" id="ed-panel-2" aria-labelledby="ed-tab-2" data-e="2" style="--ec:#3372E3;--ec-deep:#234FA6;--ec-tint:#eaf0fd">
           <div class="ed-panel-icon" aria-hidden="true">III</div>
           <div>
             <span class="ed-panel-when">Third edition</span>
-            <h3>Edition title</h3>
-            <p>Placeholder — replace with the description of the third edition.</p>
+            <h3>RNDS on Sustainable Development (Podgorica, 26-27 March 2025)</h3>
+            <p>The Regional Networking and Dialogue Session (RNDS) on Sustainable Development, held in Podgorica under the EU/WBF Joint Action Phase II, brought together <strong>32 representatives</strong> from government institutions, civil society organisations, academia, scientific institutions and regional programmes from across the six Western Balkans economies. Dedicated to advancing regional cooperation in environmental, economic and social sustainability, the event provided a platform for dialogue, networking and knowledge exchange aligned with <strong>the Green Agenda for the Western Balkans</strong>, <strong>Chapter 27 of the EU acquis</strong> and the broader EU integration process. Through panel discussions and participatory workshops, participants reflected on a decade of regional progress, examined common sustainability challenges, exchanged good practices and jointly identified priorities for strengthening regional cooperation and resilience.</p>
+            <p>The discussions reaffirmed that <strong>regional cooperation is indispensable</strong> for addressing the Western Balkans’ shared environmental, economic and social challenges and for accelerating progress towards the Sustainable Development Goals. Participants highlighted that while the region has made important advances, common obstacles such as limited institutional capacities, underfinancing, fragmented governance and insufficient integration of sustainability into national policies continue to hinder implementation. The session underscored the importance of strengthening cross-border collaboration, particularly in areas such as <strong>climate resilience, biodiversity protection, green jobs, circular economy and social inclusion</strong>. Participants also recognised the critical role played by the European Union, the Western Balkans Fund, Erasmus+ and other regional initiatives in supporting sustainable development through funding opportunities, capacity building, regional mobility and knowledge exchange. Particular attention was given to the role of <strong>youth, digitalisation and innovation</strong> as drivers of sustainable transformation, alongside the contribution of civil society, academia, grassroots initiatives and green entrepreneurship in advancing practical solutions and fostering regional resilience.</p>
+            <p>Building on these discussions, the RNDS generated a comprehensive set of recommendations aimed at reinforcing regional cooperation in sustainable development. Participants called for continued investment in capacity building for stakeholders across all governance levels, expanded regional mobility and networking opportunities, particularly for young professionals and the development of <strong>integrated digital platforms</strong> to facilitate partner matching, knowledge sharing and access to regional funding opportunities. They also recommended strengthening the involvement of public institutions responsible for environmental stewardship, economic development and social inclusion, extending the duration of future networking events to enable deeper dialogue and more concrete planning, and promoting more structured regional project pipelines aligned with the Green Agenda and EU funding mechanisms. The session concluded that sustained dialogue, stronger partnerships and coordinated regional action are essential for <strong>transforming shared sustainability challenges into opportunities</strong> for innovation, resilience and long-term development, while ensuring that future WBF interventions remain closely aligned with the evolving needs of stakeholders across the Western Balkans.</p>
           </div>
         </div>
+
         <div class="ed-panel" role="tabpanel" id="ed-panel-3" aria-labelledby="ed-tab-3" data-e="3" style="--ec:var(--adv-deep);--ec-deep:#0d3c5c;--ec-tint:#e7eff5">
           <div class="ed-panel-icon" aria-hidden="true">IV</div>
           <div>
             <span class="ed-panel-when">Fourth edition</span>
-            <h3>Edition title</h3>
-            <p>Placeholder — replace with the description of the fourth edition.</p>
+            <h3>RNDS on Regional Cooperation (Prishtina, 11-13 June, 2025)</h3>
+            <p>The Regional Networking and Dialogue Session (RNDS) on Regional Cooperation and Reconciliation, held in Prishtina under the EU/WBF Joint Action Phase II, marked <strong>the conclusion of the first cycle of thematic dialogue sessions</strong>, building on the outcomes of the previous RNDS events in Belgrade, Skopje and Podgorica. Bringing together civil society representatives, youth leaders, policymakers, cultural and education practitioners, donors, thematic experts, private sector representatives and public institutions from across the Western Balkans, the three-day event served as a platform to consolidate the lessons learned from the thematic dialogues and translate them into a shared regional agenda for the future. Through high-level panel discussions, interactive thematic sessions, participatory workshops and collaborative exercises such as <strong>the Prishtina Cooperation Wall</strong>, participants reflected on the achievements, remaining challenges and emerging opportunities for regional cooperation, while validating a common set of conclusions and recommendations to guide future regional initiatives.</p>
+            <p>Discussions throughout the event reaffirmed that <strong>regional cooperation is not only an important element of the EU accession process, but also a societal necessity</strong> for promoting sustainable peace, democratic resilience and shared prosperity across the Western Balkans. Building on the findings from the previous thematic sessions, participants recognised <strong>grassroots initiatives</strong>, particularly those led by civil society, youth organisations and cultural actors, as the most effective drivers of <strong>trust, reconciliation and people-to-people connection</strong>. They highlighted the need to strengthen the role of bottom-up approaches in shaping regional and European policy agendas, ensuring that local experiences and innovative solutions are systematically integrated into regional cooperation frameworks. Emphasis was placed on increasing citizen engagement, strengthening strategic communication to counter divisive narratives, and aligning regional initiatives more closely with the EU Growth Plan, the Common Regional Market and the Green Agenda for the Western Balkans.</p>
+            <p>The Prishtina Dialogue Session culminated in the endorsement of <strong>the RNDS Series Conclusions and Recommendations</strong>, representing a collective regional call to action for <strong>more inclusive, sustainable and people-centred cooperation</strong>. Participants called for stronger institutional recognition of grassroots actors through more flexible funding mechanisms, long-term capacity building and greater inclusion of civil society in the planning, monitoring and evaluation of regional programmes. They further recommended promoting co-ownership between donors and local stakeholders, protecting civic and cultural spaces as essential platforms for dialogue and reconciliation, encouraging greater engagement of the private sector and philanthropy, and reinforcing national government ownership of regional cooperation through sustained political and financial support for regional initiatives such as the Western Balkans Fund. The conclusions also emphasised <strong>the European Union’s continued leadership</strong> in supporting people-to-people cooperation and highlighted the importance of investing in future-oriented skills, green and digital transition, and youth entrepreneurship to strengthen the long-term sustainability of regional cooperation. As the concluding event of the RNDS series, the Prishtina session successfully transformed the insights generated across the four thematic dialogues into a coherent regional vision that will inform <strong>future WBF programming, donor strategies and policy frameworks</strong> supporting regional cooperation and the EU integration process in the Western Balkans.</p>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -595,21 +624,6 @@
       });
     })();
     </script>
-  </div>
-</section>
-
-<!-- CLOSER -->
-<section class="closer">
-  <div class="container-narrow closer-inner">
-    <div class="overline">Advocacy &amp; Networking</div>
-    <h2>See where the conversation has already happened</h2>
-    <p>Regional Dialogue Sessions sit alongside the Fund's other forums, conferences and networking events. The archive collects what has been held so far, and the events page lists what is coming next.</p>
-    <div class="closer-actions">
-      <a class="btn-solid" href="/past-events.html">Browse past events
-        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
-      </a>
-      <a class="btn-ghost" href="/contact.html">Get in touch</a>
-    </div>
   </div>
 </section>
 
