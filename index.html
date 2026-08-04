@@ -434,66 +434,47 @@
   .about-text .btn-dark svg { transition: transform 0.15s; }
   .about-text .btn-dark:hover svg { transform: translateX(3px); }
 
-  /* ---- Right column: mosaic gallery ----------------------------
-     Six tiles absolutely positioned on a notional 3x3 cell grid.
-     Position and size are what animate (not transform), so object-fit
-     re-crops every frame and the photos never distort mid-move.
-
-     The script below the section runs the spotlight layout: one photo
-     fills a 2x2 block while the other five sit around it as equal
-     squares, and the spotlight passes to the next photo every few
-     seconds. Hover does nothing.
-
-     The rules below are the balanced mosaic layout, used when the
-     script does not run — no JS, or a reduced-motion preference.
-     --cw/--ch are the same
-     expression: a percentage resolves against width in left/width and
-     against height in top/height. */
-  .about-mosaic {
+  /* ---- Right column: photo carousel ----------------------------
+     Same cc-* vocabulary as the Chairmanship carousel further down,
+     scoped to this section. Slides are static markup so the photos and
+     their alt text survive without JS — the script only adds the arrows,
+     dots and autoplay. */
+  .about-carousel {
     position: relative;
-    aspect-ratio: 1 / 1;
-    --g: 10px;
-    --cw: calc((100% - 2 * var(--g)) / 3);
-    --ch: calc((100% - 2 * var(--g)) / 3);
-  }
-  .mosaic-tile {
-    position: absolute;
-    margin: 0;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 16px;
+    aspect-ratio: 4 / 3;
     background: var(--surface-alt);
-    box-shadow: 0 2px 10px rgba(15,32,68,0.10);
-    transition: left 0.7s cubic-bezier(.22,1,.36,1),
-                top 0.7s cubic-bezier(.22,1,.36,1),
-                width 0.7s cubic-bezier(.22,1,.36,1),
-                height 0.7s cubic-bezier(.22,1,.36,1),
-                box-shadow 0.45s ease;
+    box-shadow: var(--shadow-2);
   }
-  .mosaic-tile img {
+  .about-carousel .cc-track {
+    display: flex; height: 100%;
+    transition: transform 0.6s cubic-bezier(.16,.84,.44,1);
+  }
+  .about-carousel .cc-slide { flex: 0 0 100%; height: 100%; margin: 0; }
+  .about-carousel .cc-slide img {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
   }
-  /* Emphasis is carried by size alone — no tint over any photo, and
-     hovering changes nothing. */
-  .mosaic-tile.is-active { box-shadow: 0 16px 38px rgba(15,32,68,0.26); z-index: 2; }
-
-  /* Static fallback: the mosaic layout, matching MOSAIC[] in the script. */
-  .mosaic-tile:nth-child(1) { left: 0; top: 0;
-    width: calc(var(--cw) * 2 + var(--g)); height: var(--ch); }
-  .mosaic-tile:nth-child(2) { left: calc((var(--cw) + var(--g)) * 2); top: 0;
-    width: var(--cw); height: calc(var(--ch) * 2 + var(--g)); }
-  .mosaic-tile:nth-child(3) { left: 0; top: calc(var(--ch) + var(--g));
-    width: var(--cw); height: var(--ch); }
-  .mosaic-tile:nth-child(4) { left: calc(var(--cw) + var(--g)); top: calc(var(--ch) + var(--g));
-    width: var(--cw); height: var(--ch); }
-  .mosaic-tile:nth-child(5) { left: 0; top: calc((var(--ch) + var(--g)) * 2);
-    width: calc(var(--cw) * 2 + var(--g)); height: var(--ch); }
-  .mosaic-tile:nth-child(6) { left: calc((var(--cw) + var(--g)) * 2); top: calc((var(--ch) + var(--g)) * 2);
-    width: var(--cw); height: var(--ch); }
-
+  .about-carousel .cc-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(15,32,68,0.42); color: #fff;
+    display: flex; align-items: center; justify-content: center; z-index: 2;
+    transition: background 0.2s ease, opacity 0.2s ease; opacity: 0.85;
+  }
+  .about-carousel:hover .cc-btn { opacity: 1; }
+  .about-carousel .cc-btn:hover { background: rgba(15,32,68,0.72); }
+  .about-carousel .cc-btn:focus-visible { opacity: 1; outline: 2px solid #fff; outline-offset: 2px; }
+  .about-carousel .cc-prev { left: 14px; }
+  .about-carousel .cc-next { right: 14px; }
+  .about-carousel .cc-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .about-carousel .cc-dots { position: absolute; bottom: 14px; left: 0; right: 0; display: flex; justify-content: center; gap: 7px; z-index: 2; }
+  .about-carousel .cc-dot { width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: rgba(255,255,255,0.5); transition: background 0.2s ease, transform 0.2s ease; }
+  .about-carousel .cc-dot.active { background: #fff; transform: scale(1.25); }
   @media (prefers-reduced-motion: reduce) {
-    .mosaic-tile { transition: none; }
+    .about-carousel .cc-track { transition: none; }
   }
 
   /* ============================================================
@@ -1602,7 +1583,6 @@
     .nav-items { display: none; }
     .btn-partners { display: none; }
     .section { padding: 56px 0; }
-    .about-mosaic { --g: 8px; }
     .academy-body { padding: 36px 26px; }
     .academy-wbf { height: 34px; }
     .academy-actions { flex-direction: column; align-items: flex-start; gap: 22px; }
@@ -1856,128 +1836,126 @@
         </a>
       </div>
 
-      <!-- Mosaic gallery. Tile order is the grid-area order set in the CSS;
-           reordering these figures reshuffles the layout. Photos are existing
-           repo assets — swap a src to change one. -->
-      <div class="about-mosaic" id="about-mosaic">
-        <figure class="mosaic-tile">
-          <img src="/assets/images/wbf-establishment/wbf-04.jpg"
-               alt="Foreign ministers of the six Contracting Parties at the WBF Ministerial Conference in Sarajevo"
-               loading="lazy" decoding="async">
-        </figure>
-        <figure class="mosaic-tile">
-          <img src="/assets/images/ggi/ggi-about-1.jpg"
-               alt="Awarding ceremony for the Grants for Grassroots Initiatives in Tirana"
-               loading="lazy" decoding="async">
-        </figure>
-        <figure class="mosaic-tile">
-          <img src="/assets/images/p2p/residential-1.jpg"
-               alt="A participant in discussion during a WBF residential training"
-               loading="lazy" decoding="async">
-        </figure>
-        <figure class="mosaic-tile">
-          <img src="/assets/images/wbf-establishment/wbf-01.jpg"
-               alt="Signing ceremony establishing the Western Balkans Fund"
-               loading="lazy" decoding="async">
-        </figure>
-        <figure class="mosaic-tile">
-          <img src="/assets/images/p2p/why-peer-to-peer.jpg"
-               alt="Facilitated session during a WBF peer-to-peer capacity building workshop"
-               loading="lazy" decoding="async">
-        </figure>
-        <figure class="mosaic-tile">
-          <img src="/assets/images/milestones/milestone-03.jpg"
-               alt="Delegates at a Western Balkans Fund call for proposals launch in Skopje"
-               loading="lazy" decoding="async">
-        </figure>
+      <!-- Photo carousel. Slides are static so they survive without JS;
+           add or remove a figure and the arrows, dots and autoplay follow.
+           Photos are existing repo assets — swap a src to change one. -->
+      <div class="about-carousel" id="about-carousel"
+           role="region" aria-roledescription="carousel"
+           aria-label="The Western Balkans Fund at work">
+        <div class="cc-track">
+          <figure class="cc-slide">
+            <img src="/assets/images/wbf-establishment/wbf-04.jpg"
+                 alt="Foreign ministers of the six Contracting Parties at the WBF Ministerial Conference in Sarajevo"
+                 loading="eager" decoding="async">
+          </figure>
+          <figure class="cc-slide">
+            <img src="/assets/images/ggi/ggi-about-1.jpg"
+                 alt="Awarding ceremony for the Grants for Grassroots Initiatives in Tirana"
+                 loading="lazy" decoding="async">
+          </figure>
+          <figure class="cc-slide">
+            <img src="/assets/images/p2p/residential-1.jpg"
+                 alt="A participant in discussion during a WBF residential training"
+                 loading="lazy" decoding="async">
+          </figure>
+          <figure class="cc-slide">
+            <img src="/assets/images/wbf-establishment/wbf-01.jpg"
+                 alt="Signing ceremony establishing the Western Balkans Fund"
+                 loading="lazy" decoding="async">
+          </figure>
+          <figure class="cc-slide">
+            <img src="/assets/images/p2p/why-peer-to-peer.jpg"
+                 alt="Facilitated session during a WBF peer-to-peer capacity building workshop"
+                 loading="lazy" decoding="async">
+          </figure>
+          <figure class="cc-slide">
+            <img src="/assets/images/milestones/milestone-03.jpg"
+                 alt="Delegates at a Western Balkans Fund call for proposals launch in Skopje"
+                 loading="lazy" decoding="async">
+          </figure>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- About photo carousel -->
 <script>
 (function () {
-  var mosaic = document.getElementById('about-mosaic');
-  if (!mosaic) return;
+  var root = document.getElementById('about-carousel');
+  if (!root) return;
+  var track = root.querySelector('.cc-track');
+  var slides = track ? Array.prototype.slice.call(track.querySelectorAll('.cc-slide')) : [];
+  if (slides.length <= 1) return;
 
-  var tiles = Array.prototype.slice.call(mosaic.querySelectorAll('.mosaic-tile'));
-  if (!tiles.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var count = slides.length, idx = 0, dots = [];
 
-  var HOLD = 3200;   // ms each photo holds the spotlight
+  /* Every slide past the first is lazy and stays clipped by overflow:hidden,
+     so it would not start fetching until it is already sliding in. Warm the
+     neighbours instead, and advancing never lands on a blank frame. */
+  function warm(i) {
+    var img = slides[(i + count) % count].querySelector('img');
+    if (!img || img.getAttribute('data-warm')) return;
+    img.setAttribute('data-warm', '1');
+    var pre = new Image();
+    pre.src = img.currentSrc || img.src;
+  }
 
-  // Cells are [column, row, colSpan, rowSpan] on a 1-indexed 3x3 grid.
-  var MOSAIC = [ [1,1,2,1], [3,1,1,2], [1,2,1,1], [2,2,1,1], [1,3,2,1], [3,3,1,1] ];
-  var HERO   = [1,1,2,2];
-  var SLOTS  = [ [3,1,1,1], [3,2,1,1], [1,3,1,1], [2,3,1,1], [3,3,1,1] ];
+  function go(i) {
+    idx = (i + count) % count;
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+    dots.forEach(function (d, di) { d.classList.toggle('active', di === idx); });
+    warm(idx + 1);
+    warm(idx - 1);
+  }
+
+  var prev = document.createElement('button');
+  prev.type = 'button'; prev.className = 'cc-btn cc-prev'; prev.setAttribute('aria-label', 'Previous photo');
+  prev.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="15,6 9,12 15,18"/></svg>';
+  var next = document.createElement('button');
+  next.type = 'button'; next.className = 'cc-btn cc-next'; next.setAttribute('aria-label', 'Next photo');
+  next.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg>';
 
   var timer = null;
-  var index = 0;
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function play() { if (reduce) return; stop(); timer = setInterval(function () { go(idx + 1); }, 4500); }
+  function rest() { stop(); play(); }
 
-  // Sizes stay in CSS units so --g remains the single source of truth
-  // for the gutter, including the narrower one set at the 768px breakpoint.
-  function place(tile, cell) {
-    var c = cell[0], r = cell[1], cs = cell[2], rs = cell[3];
-    tile.style.left   = 'calc((var(--cw) + var(--g)) * ' + (c - 1) + ')';
-    tile.style.top    = 'calc((var(--ch) + var(--g)) * ' + (r - 1) + ')';
-    tile.style.width  = 'calc(var(--cw) * ' + cs + ' + var(--g) * ' + (cs - 1) + ')';
-    tile.style.height = 'calc(var(--ch) * ' + rs + ' + var(--g) * ' + (rs - 1) + ')';
+  prev.addEventListener('click', function () { go(idx - 1); rest(); });
+  next.addEventListener('click', function () { go(idx + 1); rest(); });
+  root.appendChild(prev); root.appendChild(next);
+
+  var dotsWrap = document.createElement('div'); dotsWrap.className = 'cc-dots';
+  slides.forEach(function (_, i) {
+    var d = document.createElement('button');
+    d.type = 'button'; d.className = 'cc-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+    d.addEventListener('click', function () { go(i); rest(); });
+    dotsWrap.appendChild(d); dots.push(d);
+  });
+  root.appendChild(dotsWrap);
+
+  /* manual slide,touch swipe + mouse drag */
+  var startX = null;
+  function swipeStart(x) { startX = x; stop(); }
+  function swipeEnd(x) {
+    if (startX === null) return;
+    var dx = x - startX;
+    startX = null;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+    play();
   }
+  root.addEventListener('touchstart', function (e) { swipeStart(e.changedTouches[0].clientX); }, { passive: true });
+  root.addEventListener('touchend',   function (e) { swipeEnd(e.changedTouches[0].clientX); }, { passive: true });
+  root.addEventListener('mousedown', function (e) { swipeStart(e.clientX); });
+  root.addEventListener('mouseup',   function (e) { swipeEnd(e.clientX); });
+  root.addEventListener('dragstart', function (e) { e.preventDefault(); });
 
-  function showMosaic() {
-    tiles.forEach(function (t, n) {
-      t.classList.remove('is-active');
-      place(t, MOSAIC[n]);
-    });
-  }
-
-  function showSpotlight(i) {
-    index = i;
-    var slot = 0;
-    tiles.forEach(function (t, n) {
-      var hero = (n === i);
-      t.classList.toggle('is-active', hero);
-      place(t, hero ? HERO : SLOTS[slot++]);
-    });
-  }
-
-  function advance() { showSpotlight((index + 1) % tiles.length); }
-
-  function start() {
-    stop();
-    showSpotlight(index);
-    timer = setInterval(advance, HOLD);
-  }
-  function stop() {
-    if (timer) { clearInterval(timer); timer = null; }
-  }
-
-  // Hover is deliberately inert — the gallery reads the same whether or not
-  // the pointer is over it. Only the spotlight cycle moves anything.
-
-  // Only run the cycle while the section is on screen, and never against a
-  // reduced-motion preference — hover still works in both cases.
-  var still = window.matchMedia('(prefers-reduced-motion: reduce)');
-  // Assume visible until the observer says otherwise, so a missing or slow
-  // IntersectionObserver can only ever pause the cycle, never withhold it.
-  var inView = true;
-
-  function sync() {
-    (inView && !document.hidden && !still.matches) ? start() : stop();
-  }
-
-  // Reduced motion keeps the even mosaic and never cycles.
-  if (still.matches) { showMosaic(); return; }
-
-  showSpotlight(0);
-
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { inView = e.isIntersecting; });
-      sync();
-    }, { threshold: 0.25 }).observe(mosaic);
-  }
-  document.addEventListener('visibilitychange', sync);
-  sync();
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', play);
+  warm(1);
+  play();
 })();
 </script>
 
