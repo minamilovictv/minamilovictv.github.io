@@ -55,7 +55,8 @@
   /* no width cap: the title is meant to sit on one line */
   .page-hero h1 { font-family: var(--font-display); font-size: var(--text-hero); font-weight: 700; color: #fff; line-height: 1.08; }
   .page-hero .subtitle { font-size: var(--text-lg); color: rgba(255,255,255,0.92); font-weight: 500; line-height: 1.45; margin-bottom: 20px; max-width: 60ch; }
-  .page-hero p.lead { font-size: var(--text-base); color: rgba(255,255,255,0.72); line-height: 1.75; max-width: 68ch; }
+  .page-hero p.lead { font-size: var(--text-base); color: rgba(255,255,255,0.72); line-height: 1.75; max-width: 68ch; margin-top: 16px; text-align: justify; }
+  .page-hero p.lead strong { color: #fff; font-weight: 700; }
 
   /* SECTIONS */
   .section { padding: 76px 0; }
@@ -64,8 +65,6 @@
   .sec-head.is-center { margin-left: auto; margin-right: auto; text-align: center; }
   .sec-head .overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--adv); margin-bottom: 14px; }
   .sec-head h2 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--ink); line-height: 1.18; }
-  .sec-head-lead { font-size: var(--text-base); color: var(--ink-soft); line-height: 1.7; max-width: 68ch; margin-top: 14px; }
-  .sec-head.is-center .sec-head-lead { margin-left: auto; margin-right: auto; }
   .prose p { font-size: var(--text-base); color: var(--ink-soft); line-height: 1.8; max-width: 72ch; margin-bottom: 18px; }
   .prose p:last-child { margin-bottom: 0; }
   .prose strong { color: var(--ink); font-weight: 700; }
@@ -75,14 +74,7 @@
      Hyphenation is on only for the narrow card columns, where justification would
      otherwise open up rivers of white space. */
   .prose p,
-  .page-hero p.lead,
-  .feature-card p,
-  .journey-card p,
-  .who-card p,
   .ed-panel p { text-align: justify; }
-  .feature-card p,
-  .journey-card p,
-  .who-card p { -webkit-hyphens: auto; hyphens: auto; }
   .prose--intro { max-width: 860px; }
   .prose--intro p { font-size: var(--text-lg); line-height: 1.75; max-width: none; margin-bottom: 22px; }
 
@@ -90,41 +82,53 @@
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
   .split .sec-head { max-width: none; margin-bottom: 18px; }
   .split .prose p { max-width: none; }
-  .split--reverse .split-media { order: -1; }
-  .split-media { position: relative; aspect-ratio: 4 / 3; margin: 0; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg, var(--surface-alt), #eef2f8); border: 1px solid var(--line); box-shadow: var(--shadow-2); transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease; }
-  .split-media:hover { transform: translateY(-6px); box-shadow: var(--shadow-4); }
-  .split-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
-  .split-media:hover img { transform: scale(1.06); }
-  .split-media .img-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--faint); text-align: center; padding: 24px; }
-  .split-media .img-ph svg { width: 46px; height: 46px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; }
-  .split-media .img-ph span { font-size: var(--text-sm); font-weight: 600; }
-  .split-media .img-ph code { display: block; margin-top: 4px; font-size: 11px; font-weight: 500; opacity: 0.85; }
-  @media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 30px; } .split--reverse .split-media { order: 0; } }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 30px; } }
 
-  /* FEATURE CARDS */
-  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .feature-card {
-    --c: var(--adv); --c-deep: var(--adv-deep); --c-glow: rgba(27,120,191,0.30);
-    position: relative; overflow: hidden; background: linear-gradient(180deg, #ffffff, #fbfdfd);
-    border: 1px solid var(--line); border-radius: 18px; padding: 34px 30px 32px; box-shadow: var(--shadow-1);
-    transition: transform 0.3s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  /* INTRO CAROUSEL — sits beside the opening text and matches its height.
+     .has-photos is set by the script once at least one file actually loads;
+     without it the empty frame shows and the controls stay hidden. */
+  .split--intro { align-items: stretch; grid-template-columns: 1.15fr 1fr; }
+  .carousel {
+    position: relative; margin: 0; overflow: hidden; min-height: 380px;
+    border-radius: 16px; border: 1px solid var(--line); box-shadow: var(--shadow-2);
+    background: linear-gradient(135deg, var(--surface-alt), #eef2f8);
   }
-  /* Card 2 steps down to brand navy so it reads as distinct from the light-blue card 1. */
-  .feature-grid > .feature-card:nth-child(2) { --c: var(--navy); --c-deep: var(--navy-900); --c-glow: rgba(23,61,143,0.28); }
-  .feature-grid > .feature-card:nth-child(3) { --c: var(--amber); --c-deep: #8a5b00; --c-glow: rgba(194,132,28,0.32); }
-  .feature-card::after { content: ""; position: absolute; left: 0; top: 0; height: 4px; width: 100%; background: linear-gradient(90deg, var(--c), var(--c-deep)); transform: scaleX(0); transform-origin: left; transition: transform 0.55s cubic-bezier(0.22,1,0.36,1); }
-  .feature-card:hover { border-color: color-mix(in srgb, var(--c) 45%, var(--line)); box-shadow: 0 26px 52px -18px var(--c-glow); }
-  .feature-card:hover::after { transform: scaleX(1); }
-  .feature-num { position: absolute; top: -8px; right: 14px; z-index: 0; font-family: var(--font-display); font-weight: 800; font-size: 104px; line-height: 1; letter-spacing: -0.05em; color: var(--c); opacity: 0.09; pointer-events: none; user-select: none; transition: opacity 0.4s ease, transform 0.4s ease; }
-  .feature-card:hover .feature-num { opacity: 0.17; transform: translateY(-2px) scale(1.05); }
-  .feature-card > :not(.feature-num) { position: relative; z-index: 1; }
-  .feature-icon { position: relative; width: 60px; height: 60px; border-radius: 16px; background: linear-gradient(140deg, var(--c), var(--c-deep)); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; box-shadow: 0 12px 26px -8px var(--c-glow); transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1); }
-  .feature-card:hover .feature-icon { transform: translateY(-4px) rotate(-6deg) scale(1.07); }
-  .feature-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .feature-card h3 { position: relative; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--ink); line-height: 1.28; margin-bottom: 14px; padding-bottom: 14px; }
-  .feature-card h3::after { content: ""; position: absolute; left: 0; bottom: 0; width: 38px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--c), var(--c-deep)); transition: width 0.45s cubic-bezier(0.22,1,0.36,1); }
-  .feature-card:hover h3::after { width: 66px; }
-  .feature-card p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.7; }
+  .carousel .img-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--faint); text-align: center; padding: 24px; }
+  .carousel .img-ph svg { width: 46px; height: 46px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; }
+  .carousel .img-ph span { font-size: var(--text-sm); font-weight: 600; }
+  .carousel .img-ph code { display: block; margin-top: 4px; font-size: 11px; font-weight: 500; opacity: 0.85; }
+  .carousel.has-photos .img-ph { display: none; }
+  .carousel-track { position: absolute; inset: 0; }
+  .carousel-track img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity 0.7s ease;
+  }
+  .carousel-track img.is-active { opacity: 1; }
+  .carousel-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
+    background: rgba(255,255,255,0.86); color: var(--navy);
+    display: none; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-2); opacity: 0; transition: opacity 0.25s ease, background 0.2s ease;
+  }
+  .carousel.has-photos:not(.is-single) .carousel-nav { display: flex; }
+  .carousel:hover .carousel-nav, .carousel-nav:focus-visible { opacity: 1; }
+  .carousel-nav:hover { background: #fff; }
+  .carousel-nav.is-prev { left: 12px; }
+  .carousel-nav.is-next { right: 12px; }
+  .carousel-nav svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .carousel-dots { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 8px; }
+  .carousel.is-single .carousel-dots { display: none; }
+  .carousel-dot {
+    width: 8px; height: 8px; padding: 0; border-radius: 50%; cursor: pointer;
+    border: 0; background: rgba(255,255,255,0.55); box-shadow: 0 1px 4px rgba(15,32,68,0.35);
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .carousel-dot.is-active { background: #fff; transform: scale(1.35); }
+  @media (max-width: 860px) {
+    .split--intro { grid-template-columns: 1fr; }
+    .carousel { aspect-ratio: 4 / 3; min-height: 0; }
+  }
 
   /* JOURNEY — how a session runs */
   .journey { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; }
@@ -135,26 +139,6 @@
   .journey-card:hover .journey-num { transform: scale(1.12) rotate(-6deg); background: var(--adv); }
   .journey-card h3 { font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; color: var(--ink); text-align: center; margin-bottom: 10px; }
   .journey-card p { font-size: var(--text-sm); color: var(--muted); line-height: 1.65; text-align: center; }
-
-  /* THEMES */
-  .theme-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px; max-width: 900px; }
-  .theme-item { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; background: #fff; border: 1px solid var(--line); border-radius: 12px; transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease; }
-  .theme-item:hover { transform: translateX(4px); border-color: var(--adv); box-shadow: var(--shadow-1); }
-  .theme-item .tick { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--adv-tint); color: var(--adv-deep); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
-  .theme-item .tick svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-  .theme-item span { font-size: var(--text-md); color: var(--ink); font-weight: 600; line-height: 1.5; }
-
-  /* WHO TAKES PART */
-  /* auto-fit so the five stakeholder groups sit on one row on wide screens and wrap evenly below */
-  .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 20px; }
-  .who-card { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 28px 26px; box-shadow: var(--shadow-1); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
-  .who-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(var(--adv), var(--adv-light)); transform: scaleY(0); transform-origin: top; transition: transform 0.4s ease; }
-  .who-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-3); border-color: var(--adv); }
-  .who-card:hover::before { transform: scaleY(1); }
-  .who-icon { width: 46px; height: 46px; border-radius: 12px; background: var(--adv-tint); color: var(--adv-deep); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-  .who-icon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .who-card h3 { font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-  .who-card p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.65; }
 
   /* EDITIONS — rail of four stops above a full-width detail panel, the same
      interaction and motion as the Methodology "rhythm" block on regional-academy.html.
@@ -287,7 +271,6 @@
 
   @media (max-width: 1024px) {
     .container, .container-narrow, .page-hero-inner { padding-left: 24px; padding-right: 24px; }
-    .feature-grid { grid-template-columns: 1fr; }
     .journey { grid-template-columns: repeat(2, 1fr); }
     .journey::before { display: none; }
   }
@@ -307,8 +290,6 @@
     .page-hero { padding: 56px 0 48px; }
     .section { padding: 56px 0; }
     .journey { grid-template-columns: 1fr; }
-    .theme-list { grid-template-columns: 1fr; }
-    .who-grid { grid-template-columns: 1fr; }
     .ed-node { width: 48px; height: 48px; font-size: 16px; }
     .ed-gallery { flex-direction: column; }
   }
@@ -334,6 +315,7 @@
     </nav>
     <div class="page-hero-overline">Advocacy &amp; Networking</div>
     <h1>Regional Dialogue Sessions</h1>
+    <p class="lead"><strong>WBF actively organizes events that centre around dialogue and people to people links.</strong> These events serve as platforms for stakeholders to participate in constructive dialogues and strengthen people to people links.</p>
   </div>
 </section>
 
@@ -342,11 +324,8 @@
 <!-- INTRO -->
 <section class="section">
   <div class="container">
+    <div class="split split--intro">
     <div class="prose prose--intro">
-      <p>
-        <strong>WBF actively organizes events that centre around dialogue and people to people links.</strong> These events serve as platforms for stakeholders to participate in constructive dialogues and strengthen people to people links.
-      </p>
-
       <p>
         <strong>The primary objective of these activities is to emphasize the significance of regional cooperation.</strong> During these events, stakeholders have the opportunity to express their perspectives, share insights, and discuss pertinent issues among each other and continue fostering a collaborative and open dialogue that not only highlights the importance of regional cooperation but also facilitates a meaningful exchange of ideas and viewpoints.
       </p>
@@ -359,72 +338,75 @@
         These inclusive dialogues platforms aim to provide a comprehensive understanding of the challenges and opportunities surrounding regional cooperation. <strong>Networking opportunities embedded in these events facilitate relationship-building among participants, laying the groundwork for sustained collaborative efforts.</strong>
       </p>
     </div>
-  </div>
-</section>
 
-<!-- WHAT THESE EVENTS SET OUT TO DO -->
-<section class="section section--alt">
-  <div class="container">
-    <div class="split">
-      <div>
-        <div class="sec-head">
-          <div class="overline">The Objective</div>
-          <h2>What these events set out to do</h2>
-        </div>
-        <div class="theme-list" style="grid-template-columns:1fr;">
-          <div class="theme-item"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span>Emphasize the significance of regional cooperation</span></div>
-          <div class="theme-item"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span>Foster collaborative and open dialogue</span></div>
-          <div class="theme-item"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span>Facilitate a meaningful exchange of ideas and viewpoints</span></div>
-          <div class="theme-item"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span>Promote understanding, cooperation and networking efforts</span></div>
-          <div class="theme-item"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span>Support regional development goals within the Western Balkans</span></div>
-          <div class="theme-item"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span><span>Strengthen people to people links across the region</span></div>
-        </div>
-      </div>
-      <figure class="split-media">
+      <!-- Auto-rotating photo carousel. Slides live in /assets/images/rds/intro/ as
+           1.jpg … 5.jpg; any file that is missing removes itself and the carousel
+           adjusts, falling back to the empty frame when none of them exist. -->
+      <figure class="carousel" id="intro-carousel" aria-roledescription="carousel" aria-label="Photos from Regional Dialogue Sessions">
         <div class="img-ph" aria-hidden="true">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Add image<code>/assets/images/rds/dialogue.jpg</code></span>
+          <span>Add photos<code>/assets/images/rds/intro/1.jpg … 5.jpg</code></span>
         </div>
-        <img src="/assets/images/rds/dialogue.jpg" alt="Stakeholders in discussion during a Western Balkans Fund dialogue event" onerror="this.remove()">
+        <div class="carousel-track">
+          <img src="/assets/images/rds/intro/1.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
+          <img src="/assets/images/rds/intro/2.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
+          <img src="/assets/images/rds/intro/3.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
+          <img src="/assets/images/rds/intro/4.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
+          <img src="/assets/images/rds/intro/5.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
+        </div>
+        <button type="button" class="carousel-nav is-prev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15,18 9,12 15,6"/></svg>
+        </button>
+        <button type="button" class="carousel-nav is-next" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+        <div class="carousel-dots"></div>
       </figure>
     </div>
   </div>
-</section>
 
-<!-- WHY THEY MATTER -->
-<section class="section">
-  <div class="container">
-    <div class="sec-head is-center">
-      <div class="overline">Why It Matters</div>
-      <h2>Why these events matter</h2>
-    </div>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <span class="feature-num" aria-hidden="true">01</span>
-        <div class="feature-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        </div>
-        <h3>A platform for constructive dialogue</h3>
-        <p>Stakeholders have the opportunity to express their perspectives, share insights and discuss pertinent issues among each other in a collaborative and open setting.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-num" aria-hidden="true">02</span>
-        <div class="feature-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <h3>Regional cooperation at the centre</h3>
-        <p>Every event is built around the significance of regional cooperation, and around a comprehensive understanding of the challenges and opportunities that surround it.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-num" aria-hidden="true">03</span>
-        <div class="feature-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-        </div>
-        <h3>Networking that outlasts the event</h3>
-        <p>Networking opportunities embedded in these events facilitate relationship-building among participants, laying the groundwork for sustained collaborative efforts.</p>
-      </div>
-    </div>
-  </div>
+  <script>
+  (function(){
+    var c = document.getElementById('intro-carousel');
+    if (!c) return;
+    var track = c.querySelector('.carousel-track');
+    var dots  = c.querySelector('.carousel-dots');
+    var i = 0, timer = null;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function slides(){ return [].slice.call(track.querySelectorAll('img')); }
+    function render(){
+      var s = slides();
+      if (i >= s.length) i = 0;
+      c.classList.toggle('has-photos', s.length > 0);
+      c.classList.toggle('is-single', s.length < 2);
+      dots.innerHTML = '';
+      s.forEach(function(img, n){
+        img.classList.toggle('is-active', n === i);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'carousel-dot' + (n === i ? ' is-active' : '');
+        b.setAttribute('aria-label', 'Photo ' + (n + 1) + ' of ' + s.length);
+        b.addEventListener('click', function(){ i = n; render(); restart(); });
+        dots.appendChild(b);
+      });
+    }
+    function go(step){ var s = slides(); if (!s.length) return; i = (i + step + s.length) % s.length; render(); }
+    function start(){ if (still.matches) return; stop(); timer = setInterval(function(){ go(1); }, 5000); }
+    function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+    function restart(){ stop(); start(); }
+    c.querySelector('.is-prev').addEventListener('click', function(){ go(-1); restart(); });
+    c.querySelector('.is-next').addEventListener('click', function(){ go(1); restart(); });
+    c.addEventListener('mouseenter', stop);
+    c.addEventListener('mouseleave', start);
+    // a missing file removes its own <img>, so re-render once the browser has settled
+    slides().forEach(function(img){
+      img.addEventListener('load', render);
+      img.addEventListener('error', function(){ setTimeout(render, 0); });
+    });
+    render();
+    start();
+  })();
+  </script>
 </section>
 
 <!-- HOW A SESSION RUNS -->
@@ -454,79 +436,6 @@
         <div class="journey-num">4</div>
         <h3>Relationships that continue</h3>
         <p>Networking built into each event turns that exchange into relationships, and the groundwork for sustained collaborative efforts.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NETWORKING -->
-<section class="section">
-  <div class="container">
-    <div class="split split--reverse">
-      <div>
-        <div class="sec-head">
-          <div class="overline">People to People</div>
-          <h2>Networking as part of the format</h2>
-        </div>
-        <div class="prose">
-          <p>Networking opportunities are embedded in these events rather than added around them. They facilitate relationship-building among participants, laying the groundwork for sustained collaborative efforts once everyone is back home.</p>
-          <p>This is what strengthening people to people links means in practice: stakeholders who meet across the region continue the conversation, and the understanding built in the room supports regional development goals within the Western Balkans.</p>
-        </div>
-      </div>
-      <figure class="split-media">
-        <div class="img-ph" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Add image<code>/assets/images/rds/networking.jpg</code></span>
-        </div>
-        <img src="/assets/images/rds/networking.jpg" alt="Participants networking during a Western Balkans Fund dialogue event" onerror="this.remove()">
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- WHO TAKES PART -->
-<section class="section section--alt">
-  <div class="container">
-    <div class="sec-head is-center">
-      <div class="overline">Around the Table</div>
-      <h2>A broad spectrum of stakeholders</h2>
-      <p class="sec-head-lead">WBF takes a proactive approach to who is in the room, so that the dialogue reflects the full picture of regional cooperation rather than a single perspective.</p>
-    </div>
-    <div class="who-grid">
-      <div class="who-card">
-        <div class="who-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>Grantees</h3>
-        <p>Organisations currently implementing projects with the support of the Western Balkans Fund.</p>
-      </div>
-      <div class="who-card">
-        <div class="who-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-        </div>
-        <h3>Potential applicants</h3>
-        <p>Organisations considering applying to the Fund's calls, who meet the programmes and the people behind them.</p>
-      </div>
-      <div class="who-card">
-        <div class="who-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </div>
-        <h3>Donors</h3>
-        <p>Partners supporting the Fund's work, in dialogue with the organisations and priorities they help finance.</p>
-      </div>
-      <div class="who-card">
-        <div class="who-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M10 21v-6h4v6"/></svg>
-        </div>
-        <h3>Policymakers</h3>
-        <p>Representatives of institutions whose decisions shape the conditions for regional cooperation.</p>
-      </div>
-      <div class="who-card">
-        <div class="who-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <h3>Experts</h3>
-        <p>Researchers and practitioners who bring evidence and analysis into the discussion.</p>
       </div>
     </div>
   </div>
