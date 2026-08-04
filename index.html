@@ -1812,10 +1812,13 @@
     <!-- Decorative: the WBF wordmark already appears in the header, so this
          carries no information a screen reader needs. -->
     <div class="hero-flag" aria-hidden="true">
-      <!-- TODO: wbfflag.png is a 2.3 MB source export displayed at ~580px wide.
-           Replace with a web-sized version (WebP or JPEG, ~1200px, well under
-           300 KB) — it is the heaviest asset on the homepage. -->
-      <img src="/assets/images/wbfflag.png" alt="" width="1536" height="1024" onerror="this.closest('.hero-flag').remove()">
+      <!-- Must stay a PNG with a live alpha channel: it sits directly on the
+           navy hero, so any baked-in background shows as a white box. The
+           width/height below are the file's real pixels — keep them in step
+           when swapping the image, or the reserved space shifts on load.
+           TODO: still ~690 KB at ~580px wide, the heaviest asset on the
+           homepage; a smaller export (or WebP with alpha) would pay off. -->
+      <img src="/assets/images/wbfflag.png" alt="" width="1024" height="768" onerror="this.closest('.hero-flag').remove()">
     </div>
   </div>
 
