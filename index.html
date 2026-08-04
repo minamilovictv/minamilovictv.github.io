@@ -120,6 +120,7 @@
     max-width: 620px;
     pointer-events: none;
   }
+  .hero-flag picture { display: block; }
   .hero-flag img {
     display: block;
     width: 100%;
@@ -1812,13 +1813,16 @@
     <!-- Decorative: the WBF wordmark already appears in the header, so this
          carries no information a screen reader needs. -->
     <div class="hero-flag" aria-hidden="true">
-      <!-- Must stay a PNG with a live alpha channel: it sits directly on the
-           navy hero, so any baked-in background shows as a white box. The
-           width/height below are the file's real pixels — keep them in step
-           when swapping the image, or the reserved space shifts on load.
-           TODO: still ~690 KB at ~580px wide, the heaviest asset on the
-           homepage; a smaller export (or WebP with alpha) would pay off. -->
-      <img src="/assets/images/wbfflag.png" alt="" width="1024" height="768" onerror="this.closest('.hero-flag').remove()">
+      <!-- Both files must keep a live alpha channel: this sits directly on the
+           navy hero, so any baked-in background shows as a white box. The WebP
+           is 53 KB against the PNG's 690 KB — the PNG stays only as a fallback
+           and is fetched solely by browsers without WebP support. Keep the two
+           the same pixel size as the width/height below, or the reserved space
+           shifts on load. -->
+      <picture>
+        <source srcset="/assets/images/wbfflag.webp" type="image/webp">
+        <img src="/assets/images/wbfflag.png" alt="" width="1024" height="768" onerror="this.closest('.hero-flag').remove()">
+      </picture>
     </div>
   </div>
 
