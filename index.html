@@ -434,86 +434,72 @@
   .about-text .btn-dark svg { transition: transform 0.15s; }
   .about-text .btn-dark:hover svg { transform: translateX(3px); }
 
-  /* Pillar cards,2×2 interactive grid */
-  .about-cards {
+  /* ---- Right column: photo mosaic + compact pillar list ---- */
+  .about-media { display: flex; flex-direction: column; gap: 26px; }
+
+  /* One lead photo spanning both tracks, two smaller ones beneath it. */
+  .about-photos {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    gap: 12px;
   }
-  .pillar-card {
+  .about-photo {
     position: relative;
-    background: linear-gradient(155deg, #1c48a8 0%, #173D8F 55%, #102554 100%);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 14px;
-    padding: 26px 22px 22px;
+    margin: 0;
     overflow: hidden;
-    transition: transform 0.3s cubic-bezier(.22,.61,.36,1), box-shadow 0.3s ease, border-color 0.3s ease;
+    border-radius: 14px;
+    background: var(--surface-alt);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-2);
   }
-  /* soft glow orb that brightens on hover */
-  .pillar-card::before {
-    content: "";
-    position: absolute; top: -55px; right: -45px;
-    width: 170px; height: 170px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(127,176,255,0.30) 0%, transparent 70%);
-    opacity: 0.55; pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.45s ease;
-  }
-  .pillar-card:hover::before { opacity: 1; transform: scale(1.22); }
-  /* smaller corner number (no longer overlaps the text) */
-  .pillar-card::after {
-    content: attr(data-num);
-    position: absolute;
-    top: 14px; right: 18px;
-    font-family: var(--font-display);
-    font-size: 44px; font-weight: 800; line-height: 1;
-    color: rgba(255,255,255,0.13);
-    pointer-events: none;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  .pillar-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 48px rgba(15,32,68,0.38);
-    border-color: rgba(127,176,255,0.5);
-  }
-  .pillar-card:hover::after { color: rgba(127,176,255,0.42); transform: scale(1.08); }
-  .pillar-bar {
+  .about-photo.is-lead { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+  .about-photo:not(.is-lead) { aspect-ratio: 4 / 3; }
+  .about-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
     display: block;
-    width: 34px; height: 4px; border-radius: 999px;
-    background: linear-gradient(90deg, #7fb0ff, #ffffff);
-    margin-bottom: 18px;
-    transition: width 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.6s cubic-bezier(.22,1,.36,1);
   }
-  .pillar-card:hover .pillar-bar { width: 58px; box-shadow: 0 0 14px rgba(127,176,255,0.7); }
-  .pillar-title {
-    position: relative; z-index: 1;
-    font-family: var(--font-display);
-    font-size: var(--text-base);
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.3;
-    margin-bottom: 8px;
-  }
-  .pillar-desc {
-    position: relative; z-index: 1;
-    font-size: var(--text-sm);
-    color: rgba(255,255,255,0.74);
-    line-height: 1.6;
+  .about-photo:hover img { transform: scale(1.05); }
+  /* Subtle navy wash keeps the mixed-source photos reading as one set. */
+  .about-photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(15,32,68,0.22));
+    pointer-events: none;
   }
 
-  /* Scroll-in reveal (JS-gated; cards stay visible without JS) */
-  @keyframes about-card-in {
-    from { opacity: 0; transform: translateY(22px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .about-pillars {
+    list-style: none;
+    margin: 0; padding: 0;
+    border-top: 1px solid var(--line);
   }
-  .about-cards.reveal-ready .pillar-card { opacity: 0; }
-  .about-cards.revealed .pillar-card { animation: about-card-in 0.55s ease backwards; }
-  .about-cards.revealed .pillar-card:nth-child(2) { animation-delay: 0.09s; }
-  .about-cards.revealed .pillar-card:nth-child(3) { animation-delay: 0.18s; }
-  .about-cards.revealed .pillar-card:nth-child(4) { animation-delay: 0.27s; }
+  .about-pillar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--line);
+    transition: transform 0.22s ease;
+  }
+  .about-pillar:hover { transform: translateX(4px); }
+  .about-pillar-num {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    color: #3372e3;
+    letter-spacing: 0.04em;
+    min-width: 24px;
+  }
+  .about-pillar-title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+  }
   @media (prefers-reduced-motion: reduce) {
-    .about-cards.reveal-ready .pillar-card { opacity: 1; }
-    .about-cards.revealed .pillar-card { animation: none; }
-    .pillar-card, .pillar-card::after, .pillar-bar { transition: none; }
+    .about-photo img, .about-pillar { transition: none; }
   }
 
   /* ============================================================
@@ -1287,8 +1273,9 @@
     font-size: var(--text-base);
     color: var(--ink-soft);
     line-height: 1.7;
-    margin-bottom: 28px;
+    margin-bottom: 14px;
   }
+  .partnership-text p:last-of-type { margin-bottom: 28px; }
 
   .benefits-grid {
     display: grid;
@@ -1622,7 +1609,8 @@
     .nav-items { display: none; }
     .btn-partners { display: none; }
     .section { padding: 56px 0; }
-    .about-cards { grid-template-columns: 1fr; }
+    /* Stacked layout: the mosaic keeps its two-up row, it just gets wider. */
+    .about-media { gap: 22px; }
     .academy-body { padding: 36px 26px; }
     .academy-wbf { height: 34px; }
     .academy-actions { flex-direction: column; align-items: flex-start; gap: 22px; }
@@ -1876,27 +1864,33 @@
         </a>
       </div>
 
-      <div class="about-cards">
-        <div class="pillar-card" data-num="01">
-          <span class="pillar-bar"></span>
-          <h3 class="pillar-title">Regional Cooperation</h3>
-          <p class="pillar-desc">Every project must cross at least three Contracting Parties, building genuine ties rather than bilateral arrangements.</p>
+      <!-- Right column: photo mosaic above a compact list of the four pillars.
+           Photos are existing repo assets; swap the src to change one. -->
+      <div class="about-media">
+        <div class="about-photos">
+          <figure class="about-photo is-lead">
+            <img src="/assets/images/wbf-establishment/wbf-04.jpg"
+                 alt="Foreign ministers of the six Contracting Parties at the Western Balkans Fund Ministerial Conference"
+                 loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-photo">
+            <img src="/assets/images/p2p/residential-1.jpg"
+                 alt="A participant in discussion during a Western Balkans Fund training"
+                 loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-photo">
+            <img src="/assets/images/wbf-establishment/wbf-01.jpg"
+                 alt="Signing ceremony establishing the Western Balkans Fund"
+                 loading="lazy" decoding="async">
+          </figure>
         </div>
-        <div class="pillar-card" data-num="02">
-          <span class="pillar-bar"></span>
-          <h3 class="pillar-title">Civil Society Empowerment</h3>
-          <p class="pillar-desc">From grassroots organizations to universities, WBF funds the actors closest to communities who anchor change where it matters.</p>
-        </div>
-        <div class="pillar-card" data-num="03">
-          <span class="pillar-bar"></span>
-          <h3 class="pillar-title">EU Integration Pathway</h3>
-          <p class="pillar-desc">Every program supports the Western Balkans' path toward European integration through democratic governance and people-to-people links.</p>
-        </div>
-        <div class="pillar-card" data-num="04">
-          <span class="pillar-bar"></span>
-          <h3 class="pillar-title">Reconciliation &amp; Dialogue</h3>
-          <p class="pillar-desc">WBF supports projects that address shared history and build common futures across the region.</p>
-        </div>
+
+        <ul class="about-pillars">
+          <li class="about-pillar"><span class="about-pillar-num">01</span><span class="about-pillar-title">Regional Cooperation</span></li>
+          <li class="about-pillar"><span class="about-pillar-num">02</span><span class="about-pillar-title">Civil Society Empowerment</span></li>
+          <li class="about-pillar"><span class="about-pillar-num">03</span><span class="about-pillar-title">EU Integration Pathway</span></li>
+          <li class="about-pillar"><span class="about-pillar-num">04</span><span class="about-pillar-title">Reconciliation &amp; Dialogue</span></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -1905,27 +1899,6 @@
 <!-- ============================================================
      PROGRAMS OVERVIEW
      ============================================================ -->
-<script>
-(function () {
-  var grid = document.querySelector('.about-cards');
-  if (!grid) return;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || !('IntersectionObserver' in window)) return; /* leave cards visible */
-  grid.classList.add('reveal-ready');
-  function reveal() {
-    if (!grid.classList.contains('reveal-ready')) return;
-    grid.classList.remove('reveal-ready');
-    grid.classList.add('revealed');
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { reveal(); io.disconnect(); } });
-  }, { threshold: 0.2 });
-  io.observe(grid);
-  /* Safety net: never leave the cards hidden if the observer doesn't fire */
-  setTimeout(reveal, 2500);
-})();
-</script>
-
 <section class="section programs" id="programs">
   <div class="container">
     <div class="programs-header">
@@ -2598,7 +2571,10 @@
       <div class="partnership-text">
         <div class="overline">WBF Partnership Platform</div>
         <h2>Build Stronger <span class="hl">Regional Partnerships</span></h2>
-        <p>The Western Balkans Fund Partnership Platform helps organizations across the region connect with potential partners, develop consortiums, and prepare stronger project applications. Whether you are looking for new collaborators or seeking expertise for a regional initiative, the platform provides a dedicated space to build meaningful partnerships.</p>
+        <p>Finding the right project partners is an essential part of preparing a strong regional project application. To make this process easier, the Western Balkans Fund has launched the WBF Partnership Platform, a dedicated online space for organisations across the Western Balkans to connect and collaborate.</p>
+        <p>Through the platform, organisations can present their profiles, search for potential partners, share partnership requests, identify relevant expertise, and develop regional consortia for future project applications.</p>
+        <p>Whether you are looking for new collaborators or offering your organisation&rsquo;s experience for a regional initiative, the WBF Partnership Platform helps you build meaningful partnerships and prepare stronger projects.</p>
+        <p>Create your profile, explore potential partners, and start building your regional consortium.</p>
 
         <div class="benefits-grid">
           <div class="benefit">
