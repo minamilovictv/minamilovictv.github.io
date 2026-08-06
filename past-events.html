@@ -64,11 +64,17 @@
 
 
   /* YEAR TABS — single row, reverse chronological */
-  .yeartabs { display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; border-bottom: 1px solid var(--line); margin-bottom: 34px; scrollbar-width: thin; }
-  .yeartab { position: relative; flex: 0 0 auto; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--muted); font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; letter-spacing: 0.01em; padding: 12px 22px 13px; cursor: pointer; white-space: nowrap; transition: color 0.2s ease, border-color 0.2s ease; }
+  /* A year can hold more than one conference (2023 has two), so a tab is
+     year + conference name. Empty years carry the year alone. */
+  .yeartabs { display: flex; flex-wrap: nowrap; align-items: stretch; gap: 6px; overflow-x: auto; border-bottom: 1px solid var(--line); margin-bottom: 34px; scrollbar-width: thin; }
+  .yeartab { position: relative; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 3px; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--muted); letter-spacing: 0.01em; padding: 11px 20px 12px; cursor: pointer; white-space: nowrap; transition: color 0.2s ease, border-color 0.2s ease; }
+  .yeartab .ty { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; line-height: 1.1; }
+  .yeartab .tn { font-family: var(--font-sans); font-size: 10.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--faint); line-height: 1.2; transition: color 0.2s ease; }
   .yeartab:hover { color: var(--adv); }
+  .yeartab:hover .tn { color: var(--adv); }
   .yeartab:focus-visible { outline: 2px solid var(--adv); outline-offset: -3px; border-radius: 6px 6px 0 0; }
   .yeartab[aria-selected="true"] { color: var(--adv-deep); border-bottom-color: var(--adv); }
+  .yeartab[aria-selected="true"] .tn { color: var(--adv); }
 
   /* TAB PANELS */
   .yearpanel[hidden] { display: none; }
@@ -118,8 +124,17 @@
   .panel-callout .ico { flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; background: rgba(125,200,247,0.16); display: flex; align-items: center; justify-content: center; }
   .panel-callout .ico svg { width: 19px; height: 19px; fill: none; stroke: var(--adv-light); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .panel-callout .k { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--adv-light); margin-bottom: 7px; }
+  .panel-callout p + .k { margin-top: 18px; }
   .panel-callout p { font-size: var(--text-base); color: rgba(255,255,255,0.9); line-height: 1.7; margin: 0; }
   .panel-callout p strong { color: #fff; font-weight: 700; }
+  /* Light variant — for a second callout in the same panel, so two navy
+     blocks never sit in one column of text. */
+  .panel-callout.light { background: var(--adv-tint); border-left: 4px solid var(--adv); border-radius: 0 16px 16px 0; }
+  .panel-callout.light .ico { background: rgba(27,120,191,0.13); }
+  .panel-callout.light .ico svg { stroke: var(--adv-deep); }
+  .panel-callout.light .k { color: var(--adv-deep); }
+  .panel-callout.light p { color: var(--ink-soft); }
+  .panel-callout.light p strong { color: var(--navy); }
 
   /* REVEAL ON SCROLL */
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1); }
@@ -153,7 +168,10 @@
   .agenda-item { padding: 14px 0; border-bottom: 1px solid var(--line); }
   .agenda-item:last-child { border-bottom: 0; padding-bottom: 2px; }
   .agenda-time { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.05em; color: var(--adv-deep); margin-bottom: 5px; }
+  .agenda-tag { display: inline-block; margin-left: 8px; font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--adv-deep); background: var(--adv-tint); border-radius: var(--radius-pill); padding: 2px 7px; }
   .agenda-body h5 { font-family: var(--font-display); font-size: var(--text-md); font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 6px; }
+  .agenda-place { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--faint); margin-bottom: 7px; }
+  .agenda-place svg { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
   .agenda-mod { font-size: 12.5px; color: var(--muted); margin-bottom: 7px; }
   .agenda-mod strong { color: var(--ink-soft); font-weight: 600; }
   .agenda-people { list-style: none; }
@@ -301,13 +319,13 @@
          ============================================================ -->
 
     <div class="yeartabs" role="tablist" aria-label="Events by year">
-      <button type="button" class="yeartab" role="tab" id="tab-2026" aria-controls="panel-2026" aria-selected="true">2026</button>
-      <button type="button" class="yeartab" role="tab" id="tab-2025" aria-controls="panel-2025" aria-selected="false" tabindex="-1">2025</button>
-      <button type="button" class="yeartab" role="tab" id="tab-2024" aria-controls="panel-2024" aria-selected="false" tabindex="-1">2024</button>
-      <button type="button" class="yeartab" role="tab" id="tab-2023" aria-controls="panel-2023" aria-selected="false" tabindex="-1">2023</button>
-      <button type="button" class="yeartab" role="tab" id="tab-2022" aria-controls="panel-2022" aria-selected="false" tabindex="-1">2022</button>
-      <button type="button" class="yeartab" role="tab" id="tab-2021" aria-controls="panel-2021" aria-selected="false" tabindex="-1">2021</button>
-      <button type="button" class="yeartab" role="tab" id="tab-2020" aria-controls="panel-2020" aria-selected="false" tabindex="-1">2020</button>
+      <button type="button" class="yeartab" role="tab" id="tab-2026" aria-controls="panel-2026" data-slug="2026" aria-selected="true"><span class="ty">2026</span><span class="tn">#LeadBalkans</span></button>
+      <button type="button" class="yeartab" role="tab" id="tab-2025" aria-controls="panel-2025" data-slug="2025" aria-selected="false" tabindex="-1"><span class="ty">2025</span><span class="tn">SYNERGY</span></button>
+      <button type="button" class="yeartab" role="tab" id="tab-veritycon" aria-controls="panel-veritycon" data-slug="2023-veritycon" aria-selected="false" tabindex="-1"><span class="ty">2023</span><span class="tn">VerityCon23</span></button>
+      <button type="button" class="yeartab" role="tab" id="tab-unstoppable" aria-controls="panel-unstoppable" data-slug="2023-unstoppable" aria-selected="false" tabindex="-1"><span class="ty">2023</span><span class="tn">UNSTOPPABLE</span></button>
+      <button type="button" class="yeartab" role="tab" id="tab-2022" aria-controls="panel-2022" data-slug="2022" aria-selected="false" tabindex="-1"><span class="ty">2022</span></button>
+      <button type="button" class="yeartab" role="tab" id="tab-2021" aria-controls="panel-2021" data-slug="2021" aria-selected="false" tabindex="-1"><span class="ty">2021</span></button>
+      <button type="button" class="yeartab" role="tab" id="tab-2020" aria-controls="panel-2020" data-slug="2020" aria-selected="false" tabindex="-1"><span class="ty">2020</span></button>
     </div>
 
     <!-- ============================================================
@@ -420,7 +438,7 @@
                   <li>Gjergj Murra <span>· Executive Director, WBF</span></li>
                   <li>Miriam Shyti <span>· Deputy Minister, MEFA Albania</span></li>
                   <li>Ervin Ibrahimovi&cacute; <span>· Minister of Foreign Affairs, Montenegro &mdash; Chairmanship-in-Office of the WBF</span></li>
-                  <li>Omori Tsukasa <span>· Chargé d&rsquo;Affaires, Embassy of Japan in Albania</span></li>
+                  <li>Tsukasa Omori <span>· Chargé d&rsquo;Affaires, Embassy of Japan in Albania</span></li>
                   <li>Linda Kapustov&aacute; Helbichov&aacute; <span>· Executive Director, International Visegrad Fund</span></li>
                 </ul>
               </div>
@@ -839,12 +857,492 @@
 
     </section>
 
-    <section class="yearpanel" id="panel-2024" role="tabpanel" aria-labelledby="tab-2024" tabindex="0" hidden>
-      <div class="slot"><strong>2024</strong><p>Awaiting the conference name, text and photos for this year.</p></div>
+    <section class="yearpanel" id="panel-veritycon" role="tabpanel" aria-labelledby="tab-veritycon" tabindex="0" hidden>
+
+      <div class="panel-kicker">Freedom of Expression &amp; Disinformation</div>
+      <h3>VerityCon23: Navigating the Disinformation Era</h3>
+      <div class="panel-meta">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>14&ndash;16 November 2023</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tirana, Albania</span>
+      </div>
+
+      <div class="panel-split">
+      <div class="panel-main">
+
+      <p class="panel-lead reveal">Held in Tirana from 14 to 16 November 2023, VerityCon23: Navigating the Disinformation Era was a <strong>flagship regional conference</strong> dedicated to freedom of expression and the growing challenge of disinformation in the Western Balkans.</p>
+
+      <div class="panel-stats">
+        <div class="panel-stat reveal"><div class="n" data-n="3">3</div><div class="l">days</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="6">6</div><div class="l">panels</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="60" data-suffix="+">60+</div><div class="l">experts, journalists, policymakers and civil society representatives</div></div>
+      </div>
+
+      <div class="panel-prose reveal">
+        <p>Organised by the Western Balkans Fund with the support of the Ministry of Foreign Affairs of Japan and the International Visegrad Fund, the conference brought together <strong>more than 60 experts, journalists, policymakers and civil society representatives</strong> from the Western Balkans, the Visegrad countries, Japan, the United States and European Union member states.</p>
+        <p>The conference was built around a clear idea: access to information has never been wider, but <strong>distinguishing reliable information from deliberate manipulation has rarely been more difficult</strong>. Digital platforms have enabled ideas and news to travel across borders within seconds, but they have also created an environment in which false narratives, propaganda and manipulated content can spread faster than facts.</p>
+        <p>For the Western Balkans, this challenge carries particular significance. In societies still affected by political polarisation, unresolved divisions and low levels of institutional trust, <strong>disinformation can deepen existing tensions, weaken democratic debate and undermine regional cooperation</strong>. It can also distort public understanding of reforms and weaken support for the European integration process.</p>
+      </div>
+
+      <div class="panel-callout light reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6"/></svg></div>
+        <div>
+          <div class="k">Overall goal</div>
+          <p>To provide a platform for open discussion among a diverse group of stakeholders, with an emphasis on fostering the right to freely express ideas in relation to combating false information, misleading content, and deliberate falsehoods, including impacts from external sources.</p>
+          <div class="k">Specific objective</div>
+          <p>To further facilitate the analysis of the situation regarding the topic, identifying gaps, highlighting the available and required capabilities to address, prevent, contain and reduce the impact of fake news, misinformation and disinformation around the region.</p>
+        </div>
+      </div>
+
+      <div class="panel-prose reveal">
+        <p>VerityCon23 therefore moved beyond the narrow understanding of disinformation as simply a media problem. It approached it as <strong>a broader democratic and societal challenge</strong> requiring coordinated action from governments, journalists, civil society organisations, educational institutions, digital platforms and citizens themselves.</p>
+        <p>Across three days, participants examined some of the most difficult questions shaping the contemporary information environment. They discussed how to recognise disinformation, propaganda, conspiracy theories, pseudoscience, clickbait, automated accounts and manipulated content. The sessions also explored how images, videos and information circulating through websites and social media can be verified, and how individuals and organisations can respond without unintentionally amplifying false narratives.</p>
+        <p><strong>Through six panels and interactive buzz sessions</strong>, the conference combined strategic discussion with practical knowledge. Participants explored digital safety, media literacy, fact-checking, the protection of journalists, the responsibility of public institutions and the complex balance between regulation and freedom of expression.</p>
+      </div>
+
+      <div class="panel-callout reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div>
+          <div class="k">Key message</div>
+          <p>A central message emerged from the discussions: disinformation <strong>cannot be addressed solely by correcting individual falsehoods after they appear</strong>. A sustainable response must also confront the conditions in which disinformation thrives, including political polarisation, social divisions, weak independent media, limited transparency and declining public trust.</p>
+        </div>
+      </div>
+
+      </div><!-- /.panel-main -->
+
+      <aside class="panel-rail">
+        <h4 class="rail-title">Programme</h4>
+        <p class="rail-sub">Three days at Queen Gueraldine, with parallel buzz sessions at Marin Barleti and Dora d&rsquo;Istria.</p>
+        <div class="agenda">
+
+          <details class="agenda-day" open>
+            <summary><span class="daytag">Day 1</span>14 November</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-time">18:00</div>
+                <div class="agenda-body">
+                  <h5>Official opening of the conference</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Queen Gueraldine</div>
+                  <div class="agenda-mod">Moderated by <strong>Ognen Janeski</strong></div>
+                  <ul class="agenda-people">
+                    <li>Gjergj Murra <span>· Executive Director, Western Balkans Fund</span></li>
+                    <li>Mitsuyuki Takada <span>· Ambassador of Japan to Albania</span></li>
+                    <li>Megi Fino <span>· Deputy Minister of Europe and Foreign Affairs of Albania</span></li>
+                    <li>Petr Mareš <span>· Executive Director, International Visegrad Fund</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">18:30</div>
+                <div class="agenda-body">
+                  <h5>Navigating the disinformation era</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Queen Gueraldine</div>
+                  <ul class="agenda-people">
+                    <li>Remzi Lani <span>· Media Institute</span></li>
+                    <li>Robert Huqi <span>· Strategic Communication Officer, European External Action Service</span></li>
+                    <li>Alec Klein <span>· bestselling author and award-winning investigative journalist, USA</span></li>
+                    <li>Jovana Marovic <span>· former Deputy Prime Minister and Minister of European Affairs of Montenegro</span></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+          <details class="agenda-day">
+            <summary><span class="daytag">Day 2</span>15 November</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-time">10:00</div>
+                <div class="agenda-body">
+                  <h5>Navigating the disinformation landscape in the Western Balkans</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Queen Gueraldine</div>
+                  <div class="agenda-mod">Moderated by <strong>Mila Carovska</strong></div>
+                  <ul class="agenda-people">
+                    <li>Rrapo Zguri <span>· University of Tirana</span></li>
+                    <li>Flutura Kusari <span>· legal expert on freedom of expression</span></li>
+                    <li>Emir Zulejhic <span>· Zašto ne / WhyNot</span></li>
+                    <li>Nikola Burazer <span>· European Western Balkans, Serbia</span></li>
+                    <li>Vuk Maras <span>· BIRN</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">12:00</div>
+                <div class="agenda-body">
+                  <h5>Striking the balance between policy and self-regulation to counter disinformation in the Western Balkans</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Queen Gueraldine</div>
+                  <div class="agenda-mod">Moderated by <strong>Davor Marko</strong></div>
+                  <ul class="agenda-people">
+                    <li>Jean Bapiste Le Bras <span>· EU Delegation to Albania</span></li>
+                    <li>Mihajlo Lahtov <span>· IREX</span></li>
+                    <li>Lejla Bicakcic <span>· Centre for Investigative Reporting</span></li>
+                    <li>Krisztina Rozgonyi <span>· Institute for Comparative Media and Communication Studies, University of Klagenfurt</span></li>
+                    <li>Ranko Vujovic <span>· Executive Secretary, Media Council for Self-Regulation; Head of the Monitoring Sector, Agency for Electronic Media</span></li>
+                    <li>Bence &Aacute;kos G&aacute;t <span>· President of the Duel Amical Association</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">15:00<span class="agenda-tag">Buzz session A</span></div>
+                <div class="agenda-body">
+                  <h5>Tools to identify and combat disinformation in the Western Balkans</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Marin Barleti</div>
+                  <div class="agenda-mod">Moderated by <strong>Blerjana Bino</strong></div>
+                  <ul class="agenda-people">
+                    <li>Darko Sokovic <span>· Propulsion</span></li>
+                    <li>Jim Djoka <span>· CleverLynx</span></li>
+                    <li>Marko Sostero <span>· KyotoNews</span></li>
+                    <li>Justin Spike <span>· news reporter, The Associated Press Hungary</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">15:00<span class="agenda-tag">Buzz session B</span></div>
+                <div class="agenda-body">
+                  <h5>Digital safety and disinformation: strategies for a secure online experience</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Dora d&rsquo;Istria</div>
+                  <div class="agenda-mod">Moderated by <strong>Michaela Ružičkov&aacute;</strong></div>
+                  <ul class="agenda-people">
+                    <li>Aleksandra Krstic <span>· University of Belgrade</span></li>
+                    <li>Erjon Curraj <span>· cybersecurity expert</span></li>
+                    <li>Goran Rizaov <span>· Media for Democracy Programme, Metamorphosis</span></li>
+                    <li>Jan Cingel <span>· President, Strategic Analysis</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">17:30<span class="agenda-tag">Storytelling</span></div>
+                <div class="agenda-body">
+                  <h5>My Authentic Story</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Queen Gueraldine</div>
+                  <div class="agenda-mod">Moderated by <strong>Neli Rašovi&cacute;</strong></div>
+                  <ul class="agenda-people">
+                    <li>Ognen Janevski <span>· media professional</span></li>
+                    <li>Valon Syla <span>· journalist</span></li>
+                    <li>Ola Xama <span>· investigative journalist</span></li>
+                    <li>Sasa Krajnc <span>· news anchor</span></li>
+                    <li>Norbert Sinkovic <span>· professor of journalism</span></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+          <details class="agenda-day">
+            <summary><span class="daytag">Day 3</span>16 November</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-time">10:00</div>
+                <div class="agenda-body">
+                  <h5>Strengthening regional cooperation and communication: charting the way forward against disinformation</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Queen Gueraldine</div>
+                  <div class="agenda-mod">Moderated by <strong>Valbona Sulce</strong></div>
+                  <ul class="agenda-people">
+                    <li>Milan Antonijevic <span>· lawyer on human rights</span></li>
+                    <li>Lura Pollozhani <span>· researcher, University of Gratz</span></li>
+                    <li>Klodiana Kapom <span>· Faktoje.al</span></li>
+                    <li>Leon Malazogu <span>· consultant</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">11:30</div>
+                <div class="agenda-body">
+                  <h5>Concluding remarks and recommendations</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Queen Gueraldine</div>
+                  <div class="agenda-mod">Moderated by <strong>Uroš Citakovi&cacute;</strong></div>
+                  <ul class="agenda-people">
+                    <li>Blerjana Bino</li>
+                    <li>Dafina Beqiri</li>
+                    <li>Representative of the Embassy of Japan in Albania</li>
+                    <li>Representative of the International Visegrad Fund</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+        </div>
+      </aside>
+
+      </div><!-- /.panel-split -->
+
+      <!-- PHOTO CAROUSEL -->
+      <div class="gallery-head">
+        <h4>In pictures</h4>
+        <a class="album-link" href="https://www.flickr.com/photos/204725264@N07/albums/72177720334985121" target="_blank" rel="noopener">View the full album on Flickr
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+        </a>
+      </div>
+      <div class="carousel" data-album="veritycon"></div>
+
     </section>
 
-    <section class="yearpanel" id="panel-2023" role="tabpanel" aria-labelledby="tab-2023" tabindex="0" hidden>
-      <div class="slot"><strong>2023</strong><p>Awaiting the conference name, text and photos for this year.</p></div>
+    <section class="yearpanel" id="panel-unstoppable" role="tabpanel" aria-labelledby="tab-unstoppable" tabindex="0" hidden>
+
+      <div class="panel-kicker">Gender Equality &amp; Women&rsquo;s Leadership</div>
+      <h3>UNSTOPPABLE International Conference</h3>
+      <div class="panel-meta">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>20&ndash;23 February 2023</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tirana, Albania</span>
+      </div>
+
+      <div class="panel-split">
+      <div class="panel-main">
+
+      <p class="panel-lead reveal">Held in Tirana from 20 to 23 February 2023, the UNSTOPPABLE International Conference was a <strong>flagship regional gathering</strong> dedicated to gender equality, women&rsquo;s empowerment and equal access to leadership.</p>
+
+      <div class="panel-stats">
+        <div class="panel-stat reveal"><div class="n" data-n="4">4</div><div class="l">days</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="12">12</div><div class="l">sessions</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="150" data-suffix="+">150+</div><div class="l">participants</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="60" data-suffix="+">60+</div><div class="l">speakers</div></div>
+      </div>
+
+      <div class="panel-prose reveal">
+        <p>Organised by the Western Balkans Fund with the financial support of the Ministry of Foreign Affairs of Japan, the International Visegrad Fund and Forum 2000, the four-day conference brought together <strong>more than 150 participants and over 60 speakers from more than 20 countries</strong>. They represented governments, civil society, international organisations, academia, the media and the business community across the Western Balkans, the Visegrad region, Japan, Switzerland and other European countries.</p>
+        <p>The conference was built around a clear idea: although women&rsquo;s participation in public, political and economic life has increased, <strong>equal access to leadership remains far from achieved</strong>.</p>
+        <p>Women continue to face <strong>structural barriers</strong>, including unequal access to professional networks, financial resources, mentoring and decision-making positions, as well as discrimination, sexist language and institutional cultures that preserve established models of leadership.</p>
+      </div>
+
+      <div class="panel-callout light reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6"/></svg></div>
+        <div>
+          <div class="k">Purpose</div>
+          <p>UNSTOPPABLE was therefore conceived as <strong>a practical space</strong> for examining how governments, businesses and civil society organisations can create more equal conditions for women to lead and influence development processes.</p>
+        </div>
+      </div>
+
+      <div class="panel-prose reveal">
+        <p><strong>Across 12 sessions</strong>, participants explored women&rsquo;s leadership, democratic participation, financial literacy, peace and security, sexist hate speech and the challenges faced by emerging young leaders.</p>
+        <p>Through panel discussions, mentoring sessions and smaller working circles, participants exchanged experiences and received practical guidance on communication, negotiation, professional development and building sustainable networks. The conference emphasised that <strong>empowerment cannot be reduced to inspiration alone, but requires skills, resources, institutional reform and long-term support</strong>.</p>
+      </div>
+
+      <div class="panel-callout reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="k">Outcome</div>
+          <p>More importantly, UNSTOPPABLE <strong>strengthened a regional and international network of women and men</strong> committed to advancing gender equality. It connected established leaders with younger professionals, civil society with public institutions and regional experience with international expertise.</p>
+        </div>
+      </div>
+
+      </div><!-- /.panel-main -->
+
+      <aside class="panel-rail">
+        <h4 class="rail-title">Programme</h4>
+        <p class="rail-sub">Twelve sessions across four days. Open a day to see its sessions and speakers.</p>
+        <div class="agenda">
+
+          <details class="agenda-day" open>
+            <summary><span class="daytag">Day 1</span>20 February</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-body">
+                  <h5>Welcoming remarks</h5>
+                  <ul class="agenda-people">
+                    <li>Gjergj Murra <span>· Executive Director, Western Balkans Fund</span></li>
+                    <li>Olta Xhacka <span>· Minister of Foreign Affairs, Albania</span></li>
+                    <li>Maja Wawrzyk <span>· Deputy Executive Director, International Visegrad Fund</span></li>
+                    <li>Mitsuyuki Takada <span>· Ambassador of Japan in Tirana</span></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+          <details class="agenda-day">
+            <summary><span class="daytag">Day 2</span>21 February</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-time">10:30 &ndash; 12:30</div>
+                <div class="agenda-body">
+                  <h5>Rising Up: the science behind lasting leadership</h5>
+                  <ul class="agenda-people">
+                    <li>Edita Gjonaj <span>· Deputy Chair of the European Integration Parliamentary Committee, Albania</span></li>
+                    <li>Fatmire Isaki <span>· Deputy Minister of Foreign Affairs, North Macedonia</span></li>
+                    <li>Maja Wawrzyk <span>· Deputy Executive Director, International Visegrad Fund</span></li>
+                    <li>Liza Gashi <span>· Deputy Minister of Foreign Affairs and Diaspora, Kosovo*</span></li>
+                    <li>Gavan Patrick Gray <span>· Tsuda University, Tokyo</span></li>
+                    <li>Maja Rai&ccaron;evi&cacute; <span>· Executive Director, Women&rsquo;s Rights Center, Montenegro</span></li>
+                    <li>Violeta Jovanovi&cacute; <span>· Executive Director, NALED</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">15:00 &ndash; 17:00<span class="agenda-tag">Parallel</span></div>
+                <div class="agenda-body">
+                  <h5>Pitching for Success: how to develop your leadership pitch</h5>
+                  <ul class="agenda-people"><li>Jelena Markovi&cacute; <span>· SmartChange</span></li></ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">15:00 &ndash; 17:00<span class="agenda-tag">Parallel</span></div>
+                <div class="agenda-body">
+                  <h5>Personal Branding: the ultimate way to success</h5>
+                  <ul class="agenda-people"><li>Michael Frassine <span>· LABA University</span></li></ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">15:00 &ndash; 17:00<span class="agenda-tag">Parallel</span></div>
+                <div class="agenda-body">
+                  <h5>Negotiate Like a Real Leader: how gender changes negotiation</h5>
+                  <ul class="agenda-people"><li>Ivona Gvozdenovi&cacute; <span>· Vlade Divac Foundation</span></li></ul>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+          <details class="agenda-day">
+            <summary><span class="daytag">Day 3</span>22 February</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-time">09:30 &ndash; 11:30</div>
+                <div class="agenda-body">
+                  <h5>Women as a catalyst for democratic change</h5>
+                  <ul class="agenda-people">
+                    <li>Christiane Hohmann <span>· EU Ambassador to Albania</span></li>
+                    <li>Ruth Huber <span>· Swiss Ambassador to Albania</span></li>
+                    <li>Valdete Idrizi <span>· Director of Culture, Youth and Sports, Municipality of Mitrovica</span></li>
+                    <li>Veronika Skoupa <span>· Forum 2000</span></li>
+                    <li>Petrit Selimi <span>· Millennium Foundation</span></li>
+                    <li>Magdalena Jakubowska <span>· Visegrad Insight</span></li>
+                    <li>Aida Corovic <span>· Belgrade, Serbia</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">12:00 &ndash; 14:00<span class="agenda-tag">Parallel</span></div>
+                <div class="agenda-body">
+                  <h5>Financial literacy and its impact on gender equality</h5>
+                  <ul class="agenda-people"><li>Rafaela Rica</li><li>Maja Aleksic</li></ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">12:00 &ndash; 14:00<span class="agenda-tag">Parallel</span></div>
+                <div class="agenda-body">
+                  <h5>Gender equality, peace and security</h5>
+                  <ul class="agenda-people"><li>Zorana Antonojevic</li><li>Ramadan Ilazi</li></ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">12:00 &ndash; 14:00<span class="agenda-tag">Parallel</span></div>
+                <div class="agenda-body">
+                  <h5>Combating sexist hate speech</h5>
+                  <ul class="agenda-people">
+                    <li>Valbona Sulce</li>
+                    <li>Gavan Patrick Gray <span>· Tsuda University, Tokyo</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">15:30 &ndash; 17:00</div>
+                <div class="agenda-body">
+                  <h5>Leading Our Way: young leaders take the stage</h5>
+                  <ul class="agenda-people">
+                    <li>Katarina Popovic <span>· Alumna of Japan Aviation School</span></li>
+                    <li>Ferid Murseli <span>· Democracy for Development</span></li>
+                    <li>Ania Sauku <span>· Albanian Youth Delegate to the United Nations</span></li>
+                    <li>Dimitrije Jovicevic <span>· Connect International</span></li>
+                    <li>Domenika Vondrackova <span>· Youth SpeakUp</span></li>
+                    <li>Ognen Janeski <span>· No Hate Speech Ambassador for the Western Balkans</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">18:00 &ndash; 20:00</div>
+                <div class="agenda-body">
+                  <h5>My Authentic Story</h5>
+                  <ul class="agenda-people">
+                    <li>Edita Tahiri <span>· former Deputy Prime Minister</span></li>
+                    <li>Elizabeta Imeraj <span>· Prosecutor</span></li>
+                    <li>Belma Alispahic <span>· Entrepreneur</span></li>
+                    <li>Filip Vulovic <span>· Human rights activist</span></li>
+                    <li>Selma Lacic <span>· Lawyer</span></li>
+                    <li>Marta Lempart <span>· All-Poland Women&rsquo;s Strike</span></li>
+                    <li>Rudina Collaku <span>· Women Center for Development and Culture</span></li>
+                    <li>Marko Mihajlovic <span>· Human rights activist</span></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+          <details class="agenda-day">
+            <summary><span class="daytag">Day 4</span>23 February</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-time">09:30 &ndash; 11:00</div>
+                <div class="agenda-body">
+                  <h5>What remained with us? Impressions, similarities and challenges</h5>
+                  <ul class="agenda-people">
+                    <li>Jovanka Visekruna-Jankovic <span>· ArtLink</span></li>
+                    <li>Tanja Tomich <span>· North Macedonia</span></li>
+                    <li>Amra Smriko <span>· Women&rsquo;s Block</span></li>
+                    <li>Alba Cela <span>· AIIS</span></li>
+                    <li>Monika Kociova <span>· Center for International Enterprise</span></li>
+                    <li>Dafina Beqiri <span>· Western Balkans Fund</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">11:30 &ndash; 13:00</div>
+                <div class="agenda-body">
+                  <h5>What do we do next? Institutional and donor views on equal participation</h5>
+                  <ul class="agenda-people">
+                    <li>Hiroko Morikawa <span>· Embassy of Japan in Tirana</span></li>
+                    <li>Ksenija Vukmirovic <span>· Western Balkans Fund</span></li>
+                    <li>Klodian Seferaj <span>· Open Society</span></li>
+                    <li>Evisi Kopliku <span>· Regional Cooperation Council</span></li>
+                    <li>Michele Ribota <span>· UN Women</span></li>
+                    <li>Denis Piplas <span>· Deputy Secretary General, Regional Youth Cooperation Office</span></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+        </div>
+      </aside>
+
+      </div><!-- /.panel-split -->
+
+      <!-- PHOTO CAROUSEL -->
+      <div class="gallery-head">
+        <h4>In pictures</h4>
+        <a class="album-link" href="https://www.flickr.com/photos/204725264@N07/albums/72177720334980467" target="_blank" rel="noopener">View the full album on Flickr
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+        </a>
+      </div>
+      <div class="carousel" data-album="unstoppable"></div>
+
     </section>
 
     <section class="yearpanel" id="panel-2022" role="tabpanel" aria-labelledby="tab-2022" tabindex="0" hidden>
@@ -912,8 +1410,8 @@
       document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
     });
     if (focus) tab.focus();
-    const y = tab.textContent.trim();
-    history.replaceState(null, '', y === tabs[0].textContent.trim() ? location.pathname : '?year=' + y);
+    /* data-slug, not the label — a label can be "2023 VerityCon23". */
+    history.replaceState(null, '', tab === tabs[0] ? location.pathname : '?year=' + tab.dataset.slug);
   }
 
   tabs.forEach((tab, i) => {
@@ -930,7 +1428,7 @@
   });
 
   const want = new URLSearchParams(location.search).get('year');
-  const match = want && tabs.find(t => t.textContent.trim() === want);
+  const match = want && tabs.find(t => t.dataset.slug === want);
   if (match) select(match, false);
 })();
 </script>
@@ -981,6 +1479,28 @@
         '55442203971 9e61f5869d', '55442373834 f9564e972d', '55442373814 1320a5693a',
         '55442596430 aa9de70498', '55442325348 6df81f6083', '55442325333 8d27fa8587',
         '55442373819 4214591b81', '55442373804 4f557be402', '55442373799 106f497372'
+      ]
+    },
+    'veritycon': {
+      user: '204725264@N07',
+      album: '72177720334985121',
+      label: 'VerityCon23, Tirana 2023',
+      photos: [
+        '55442597780 085edf2a51', '55442597755 feaaff841a', '55442597745 fd625ba932',
+        '55442326568 096d8ef541', '55441238292 4faabf71da', '55442375159 2817cb0526',
+        '55442205386 334b0ce14e', '55442597740 61fe2518fe', '55442375129 f925ab6631',
+        '55441238272 e3a2a79fbc'
+      ]
+    },
+    'unstoppable': {
+      user: '204725264@N07',
+      album: '72177720334980467',
+      label: 'UNSTOPPABLE International Conference 2023',
+      photos: [
+        '55442204721 7dca8bb1f4', '55442204671 1207beb60d', '55442204731 f6b74efe18',
+        '55441237602 2252fd950b', '55442204736 3ddd22ef06', '55442597145 68186c0ffd',
+        '55442204701 768bdc5491', '55442326008 d023da8c72', '55442597095 9d4c6a1dab',
+        '55442204631 99fdb73da7', '55442597090 b73579c802', '55442204641 df43717fab'
       ]
     }
   };
