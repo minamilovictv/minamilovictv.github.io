@@ -142,7 +142,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .breadcrumb a:hover { color: var(--navy-900); }
 .breadcrumb span { margin: 0 8px; opacity: 0.5; }
 
-/* GEFund status pill — amber/warning dot for "Under Evaluation" */
+/* GEFund status pill — amber/warning dot is the default (call in progress) */
 .status-pill {
   display: inline-flex; align-items: center; gap: 8px;
   margin-bottom: 20px; padding: 6px 14px; border-radius: 999px;
@@ -160,6 +160,19 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   50%      { transform: scale(1.15); box-shadow: 0 0 0 7px rgba(255,140,0,0); }
 }
 .status-pill-text { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #B45309; }
+
+/* Result variant — green dot, used once a call's winners are published */
+.status-pill.is-result { background: rgba(16,153,86,0.12); border-color: rgba(16,153,86,0.32); }
+.status-pill.is-result .status-pill-dot {
+  background: #0F9D58;
+  box-shadow: 0 0 0 3px rgba(16,153,86,0.22);
+  animation: pulse-dot-green 1.8s ease-in-out infinite;
+}
+.status-pill.is-result .status-pill-text { color: #0B6E3F; }
+@keyframes pulse-dot-green {
+  0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16,153,86,0.4); }
+  50%      { transform: scale(1.15); box-shadow: 0 0 0 7px rgba(16,153,86,0); }
+}
 
 /* Hero layout: single column (PDF card removed) */
 .hero-layout {
@@ -280,11 +293,124 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .qf-tl-date  { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; }
 .qf-tl li.is-done .qf-tl-date { color: var(--faint); }
 .qf-tl-label { font-size: 13px; color: var(--ink-soft); line-height: 1.4; margin-top: 1px; }
+/* Result milestone — the award announcement stays lit, not greyed out like the other past dates */
+.qf-tl li.is-result::before { background: #0F9D58; box-shadow: 0 0 0 4px rgba(16,153,86,0.16); }
+.qf-tl li.is-result .qf-tl-date  { color: #0B6E3F; }
+.qf-tl li.is-result .qf-tl-label { color: var(--ink); font-weight: 600; }
 
 .qf-foot { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
 .qf-link { display: inline-flex; align-items: center; gap: 5px; font-size: var(--text-sm); font-weight: 600; color: var(--accent); text-decoration: none; }
 .qf-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
 .qf-link:hover svg { transform: translateX(3px); }
+
+/* ============================================================
+   AWARDED PROJECTS — Call 1 winners
+   ============================================================ */
+/* Soft lavender band at the top so the section reads as its own chapter
+   without a hard edge under the floating quick-facts cards. */
+#winners { background: linear-gradient(180deg, var(--surface) 0%, #faf8ff 20%, var(--surface) 100%); }
+
+/* Headline figures for the call */
+.winners-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 30px; }
+.winner-stat {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--gefund);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 4px 14px rgba(15,32,68,0.05);
+  transition: transform .28s cubic-bezier(.2,.7,.3,1), box-shadow .28s ease;
+}
+.winner-stat:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(138,43,226,0.16); }
+.winner-stat-num {
+  font-size: 30px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 4px;
+  background: var(--gef-gradient);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.winner-stat-label { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+/* Six cards, two across — deliberately not numbered or ranked */
+.winners-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.winner-card {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 26px 20px;
+  box-shadow: 0 4px 14px rgba(15,32,68,0.05);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease, border-color .3s ease;
+}
+/* gradient hairline draws across the top edge on hover */
+.winner-card::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; z-index: 3;
+  background: var(--gef-gradient);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.winner-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gefund-border);
+  box-shadow: 0 24px 50px rgba(138,43,226,0.16), 0 8px 20px rgba(15,32,68,0.07);
+}
+.winner-card:hover::before { transform: scaleX(1); }
+
+/* Priority area (left) and the Contracting Parties involved (right) */
+.winner-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.winner-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 5px 11px; border-radius: 999px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.3;
+  color: var(--ink-soft); background: var(--surface-alt); border: 1px solid var(--line);
+  transition: color .3s ease, background .3s ease, border-color .3s ease;
+}
+.winner-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gef-gradient); flex-shrink: 0; }
+.winner-card:hover .winner-tag { color: var(--gefund); background: var(--gefund-tint); border-color: var(--gefund-border); }
+
+.winner-cps { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+.cp-chip {
+  padding: 4px 8px; border-radius: 999px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--gefund); background: var(--gefund-tint); border: 1px solid var(--gefund-border);
+  cursor: default;
+}
+
+.winner-title { font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 10px; transition: color .3s ease; }
+.winner-card:hover .winner-title {
+  background: var(--gef-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.winner-summary { font-size: 13.5px; color: var(--ink-soft); line-height: 1.65; }
+
+/* Lead applicant is the contract signatory with WBF — hence its own gradient rail */
+.winner-consortium { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 12px; }
+.consortium-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--faint); margin-bottom: 5px; }
+.consortium-row.lead { position: relative; padding-left: 12px; }
+.consortium-row.lead::before {
+  content: ""; position: absolute; left: 0; top: 3px; bottom: 3px; width: 3px;
+  border-radius: 3px; background: var(--gef-gradient);
+}
+.consortium-org { font-size: 13.5px; font-weight: 600; color: var(--ink); line-height: 1.45; }
+.partner-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.partner-list li { position: relative; padding-left: 15px; font-size: 13px; color: var(--ink-soft); line-height: 1.45; }
+.partner-list li::before { content: ""; position: absolute; left: 0; top: 9px; width: 8px; height: 1px; background: var(--gefund); }
+.cp-tag { color: var(--muted); font-weight: 500; white-space: nowrap; }
+
+/* Contracting Party the project sits under, and its WBF project number */
+.winner-meta {
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line-soft);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
+}
+.wm-item { display: flex; align-items: baseline; gap: 7px; min-width: 0; }
+.winner-meta .label { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--faint); flex-shrink: 0; }
+.winner-meta .value { font-size: 12px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 1024px) { .winners-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px)  { .winners-grid  { grid-template-columns: 1fr; } }
+@media (max-width: 520px) {
+  .winners-stats { grid-template-columns: 1fr; }
+  /* Justification needs room to breathe — below this it only makes rivers */
+  #main .winner-summary { text-align: left; }
+}
 
 /* ============================================================
    SECTION SHARED
@@ -604,6 +730,10 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 }
 .tl-time.is-amber { background: rgba(255,140,0,0.15); border-color: rgba(255,140,0,0.35); color: #FFB347; }
 .tl-time.is-done  { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.3); }
+.tl-time.is-green { background: rgba(16,185,129,0.16); border-color: rgba(16,185,129,0.38); color: #6EE7B7; }
+/* The award announcement is past, but stays lit rather than fading like the other closed dates */
+.tl-row.is-result .tl-date  { color: #6EE7B7; font-weight: 700; }
+.tl-row.is-result .tl-event { color: #fff; font-weight: 600; }
 
 /* ============================================================
    FAQ
@@ -1037,9 +1167,9 @@ body.gef-modal-lock { overflow: hidden; }
       <a href="/index.html">Home</a><span>›</span><a href="/our-programs.html">Our Programs</a><span>›</span>Gender Equality Fund (GEFund)
     </nav>
 
-    <div class="status-pill">
+    <div class="status-pill is-result">
       <span class="status-pill-dot"></span>
-      <span class="status-pill-text">Call 1 — Under Evaluation</span>
+      <span class="status-pill-text">Call 1 — Winners Announced</span>
     </div>
 
     <div class="hero-layout">
@@ -1050,15 +1180,15 @@ body.gef-modal-lock { overflow: hidden; }
           <h1>Advancing <em>gender equality</em><br>in the Western Balkans.</h1>
         </div>
         <p class="tagline">The Western Balkans Gender Equality Fund (GEFund) is WBF's dedicated mechanism for advancing women's empowerment across the region — co-funded by the European Union and the Swiss Agency for Development and Cooperation.</p>
-        <p class="footnote">Call 1 closed 10 June 2026. Evaluation in process. Results expected July 2026.</p>
+        <p class="footnote">Call 1 closed 10 June 2026 with <strong>269 applications</strong> from <strong>785 organisations</strong>. Six regional projects were awarded on 7 August 2026 — one per Contracting Party.</p>
         <div class="hero-ctas">
-          <a class="btn-primary" href="https://wbfportal.org/applicant" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Apply via OGMS
+          <a class="btn-primary" href="#winners">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/></svg>
+            See the six awarded projects
           </a>
           <a class="btn-ghost" href="#facts">
             <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-            Check Eligibility
+            Programme at a glance
           </a>
         </div>
       </div>
@@ -1128,7 +1258,7 @@ body.gef-modal-lock { overflow: hidden; }
         </div>
       </div>
       <ul class="qf-list">
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Min. 3 Contracting Parties</strong> — Lead + 2 partners from different countries</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Min. 3 Contracting Parties</strong> — Lead + 2 partners from different Contracting Parties</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Duration 8–12 months</strong>, starting from contract signature</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Co-financing ≥ 10%</strong> of total eligible costs</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Gender equality</strong> as the <em>main objective</em> (DAC marker score 2)</span></li>
@@ -1151,13 +1281,244 @@ body.gef-modal-lock { overflow: hidden; }
       <ul class="qf-tl">
         <li class="is-done"><div class="qf-tl-date">13–26 May 2026</div><div class="qf-tl-label">Information sessions &amp; partner matchmaking</div></li>
         <li class="is-done"><div class="qf-tl-date">10 June 2026</div><div class="qf-tl-label">Application deadline closed</div></li>
-        <li class="is-now"><div class="qf-tl-date">June – July 2026</div><div class="qf-tl-label">Evaluation in progress</div></li>
-        <li><div class="qf-tl-date">July 2026</div><div class="qf-tl-label">Results &amp; contract signing</div></li>
+        <li class="is-done"><div class="qf-tl-date">June – July 2026</div><div class="qf-tl-label">Evaluation &amp; Panel review</div></li>
+        <li class="is-result"><div class="qf-tl-date">7 August 2026</div><div class="qf-tl-label">Six projects awarded</div></li>
+        <li class="is-now"><div class="qf-tl-date">August 2026</div><div class="qf-tl-label">Contract signing</div></li>
         <li><div class="qf-tl-date">September 2026</div><div class="qf-tl-label">Earliest project start</div></li>
         <li><div class="qf-tl-date">2026/2027</div><div class="qf-tl-label">Call 2 — date TBC</div></li>
       </ul>
     </div>
 
+  </div>
+</section>
+
+<!-- ============================================================
+     AWARDED PROJECTS — Call 1 winners
+
+     Final award data, approved by the WBF Committee of Senior Officials.
+     Cards run in Contracting Party order (Tirana, Sarajevo, Prishtina,
+     Podgorica, Skopje, Belgrade) — deliberately not by rank or score.
+
+     Per card:
+       .winner-tag       priority area (title attr = the full name used
+                         in the Priority Areas section below)
+       .winner-cps       one .cp-chip per Contracting Party, lead first
+       .winner-summary   the project's overall objective
+       .consortium-row.lead  lead applicant — contract signatory with WBF
+       .winner-meta      Contracting Party the grant sits under + project number
+     ============================================================ -->
+<section class="section" id="winners">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Call 1 · 2026 — Awarded Projects</div>
+      <h2>Six consortia. <em>One region.</em></h2>
+      <p>Six regional projects — one from each Contracting Party of the Western Balkans Fund — selected from 269 applications submitted by 785 organisations coming together in partnership. Proposals were assessed through an eligibility check, the OECD DAC Gender Equality Marker, individual expert evaluations, and an Evaluation Panel with Swisspeace external evaluators. The final list was approved by the WBF Committee of Senior Officials.</p>
+    </div>
+
+    <div class="winners-stats">
+      <div class="winner-stat">
+        <div class="winner-stat-num">269</div>
+        <div class="winner-stat-label">Applications received</div>
+      </div>
+      <div class="winner-stat">
+        <div class="winner-stat-num">785</div>
+        <div class="winner-stat-label">Organisations joining in partnership</div>
+      </div>
+      <div class="winner-stat">
+        <div class="winner-stat-num">€10.15m</div>
+        <div class="winner-stat-label">Requested against a €240,000 envelope</div>
+      </div>
+      <div class="winner-stat">
+        <div class="winner-stat-num">6</div>
+        <div class="winner-stat-label">Projects awarded — one per Contracting Party</div>
+      </div>
+    </div>
+
+    <div class="winners-grid">
+
+      <article class="winner-card">
+        <div class="winner-top">
+          <span class="winner-tag" title="Countering Anti-Gender Backlash">Anti-Gender Backlash</span>
+          <div class="winner-cps">
+            <span class="cp-chip" title="Albania">AL</span>
+            <span class="cp-chip" title="North Macedonia">MKD</span>
+            <span class="cp-chip" title="Montenegro">MNE</span>
+          </div>
+        </div>
+        <h3 class="winner-title">Piercing the Shadows — Her Digital Voice</h3>
+        <p class="winner-summary">To advance gender equality in the Western Balkans by strengthening the digital safety, resilience and public visibility of women journalists and media professionals in Albania, North Macedonia and Montenegro, while building sustainable regional mechanisms to monitor, document and counter technology-facilitated gender-based violence (TF-GBV) and anti-gender backlash in digital spaces.</p>
+        <div class="winner-consortium">
+          <div class="consortium-row lead">
+            <div class="consortium-label">Lead applicant</div>
+            <div class="consortium-org">Albanian Women in Audiovisual (AWA) <span class="cp-tag">— Albania</span></div>
+          </div>
+          <div class="consortium-row">
+            <div class="consortium-label">Project partners</div>
+            <ul class="partner-list">
+              <li>Metamorphosis Foundation <span class="cp-tag">— North Macedonia</span></li>
+              <li>Montenegro Media Institute (MMI) <span class="cp-tag">— Montenegro</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="winner-meta">
+          <div class="wm-item"><span class="label">Contracting Party</span><span class="value">Tirana</span></div>
+          <div class="wm-item"><span class="label">PN</span><span class="value">9-198</span></div>
+        </div>
+      </article>
+
+      <article class="winner-card">
+        <div class="winner-top">
+          <span class="winner-tag" title="Empowerment of Women in Economic &amp; Public Life">Economic &amp; Public Life</span>
+          <div class="winner-cps">
+            <span class="cp-chip" title="Bosnia and Herzegovina">BH</span>
+            <span class="cp-chip" title="Montenegro">MNE</span>
+            <span class="cp-chip" title="North Macedonia">MKD</span>
+          </div>
+        </div>
+        <h3 class="winner-title">Leadership, Equality and Athletic Development for Women in the Western Balkans (The LEAD Project)</h3>
+        <p class="winner-summary">To advance gender equality and women's empowerment in the Western Balkans by building a sustainable, cross-border pipeline that transitions young women from grassroots sports participation into visible, public decision-making and sports governance roles. By using sport-for-development as a structural catalyst, the project targets deep-seated patriarchal exclusions, enabling young women to directly shape inclusive local youth policies and challenge discriminatory socio-cultural norms across the trilateral region.</p>
+        <div class="winner-consortium">
+          <div class="consortium-row lead">
+            <div class="consortium-label">Lead applicant</div>
+            <div class="consortium-org">Udruženje Otvorene zabavne škole <span class="cp-tag">— Bosnia and Herzegovina</span></div>
+          </div>
+          <div class="consortium-row">
+            <div class="consortium-label">Project partners</div>
+            <ul class="partner-list">
+              <li>Football Club Breznica <span class="cp-tag">— Montenegro</span></li>
+              <li>Otvoreni zabavni fudbalski skoli <span class="cp-tag">— North Macedonia</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="winner-meta">
+          <div class="wm-item"><span class="label">Contracting Party</span><span class="value">Sarajevo</span></div>
+          <div class="wm-item"><span class="label">PN</span><span class="value">9-022</span></div>
+        </div>
+      </article>
+
+      <article class="winner-card">
+        <div class="winner-top">
+          <span class="winner-tag" title="Empowerment of Women in Economic &amp; Public Life">Economic &amp; Public Life</span>
+          <div class="winner-cps">
+            <span class="cp-chip" title="Kosovo*">KS*</span>
+            <span class="cp-chip" title="Albania">AL</span>
+            <span class="cp-chip" title="Bosnia and Herzegovina">BH</span>
+            <span class="cp-chip" title="Montenegro">MNE</span>
+          </div>
+        </div>
+        <h3 class="winner-title">Women into Angel Investing in the Western Balkans</h3>
+        <p class="winner-summary">To advance women's economic empowerment and strengthen their participation in economic decision-making across the Western Balkans by increasing women's engagement in early-stage investment activities, enhancing their capacity to participate as angel investors, and fostering greater inclusion of women within regional investment and entrepreneurship ecosystems. The project seeks to address structural barriers that limit women's access to investment networks, knowledge and decision-making opportunities, while contributing to more inclusive and gender-responsive economic development across the region.</p>
+        <div class="winner-consortium">
+          <div class="consortium-row lead">
+            <div class="consortium-label">Lead applicant</div>
+            <div class="consortium-org">Keiretsu Forum SEE <span class="cp-tag">— Kosovo*</span></div>
+          </div>
+          <div class="consortium-row">
+            <div class="consortium-label">Project partners</div>
+            <ul class="partner-list">
+              <li>Keiretsu Forum SEE <span class="cp-tag">— Albania</span></li>
+              <li>Investment Foundation IMPAKT <span class="cp-tag">— Bosnia and Herzegovina</span></li>
+              <li>ICT Cortex <span class="cp-tag">— Montenegro</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="winner-meta">
+          <div class="wm-item"><span class="label">Contracting Party</span><span class="value">Prishtina</span></div>
+          <div class="wm-item"><span class="label">PN</span><span class="value">9-220</span></div>
+        </div>
+      </article>
+
+      <article class="winner-card">
+        <div class="winner-top">
+          <span class="winner-tag" title="Countering Anti-Gender Backlash">Anti-Gender Backlash</span>
+          <div class="winner-cps">
+            <span class="cp-chip" title="Montenegro">MNE</span>
+            <span class="cp-chip" title="Serbia">SRB</span>
+            <span class="cp-chip" title="Bosnia and Herzegovina">BH</span>
+          </div>
+        </div>
+        <h3 class="winner-title">GEquality — Strengthening gender equality towards a cohesive society in the Western Balkans</h3>
+        <p class="winner-summary">To raise public awareness of the importance of gender equality in the Western Balkans through the promotion of women's heritage and women's history, thereby contributing to the building of cohesive and democratic societies resilient to anti-gender narratives and disinformation.</p>
+        <div class="winner-consortium">
+          <div class="consortium-row lead">
+            <div class="consortium-label">Lead applicant</div>
+            <div class="consortium-org">Juventas <span class="cp-tag">— Montenegro</span></div>
+          </div>
+          <div class="consortium-row">
+            <div class="consortium-label">Project partners</div>
+            <ul class="partner-list">
+              <li>Center E8 (Center for the promotion of healthy lifestyles) <span class="cp-tag">— Serbia</span></li>
+              <li>Association for Promotion of Arts and Culture "Forum" <span class="cp-tag">— Bosnia and Herzegovina</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="winner-meta">
+          <div class="wm-item"><span class="label">Contracting Party</span><span class="value">Podgorica</span></div>
+          <div class="wm-item"><span class="label">PN</span><span class="value">9-104</span></div>
+        </div>
+      </article>
+
+      <article class="winner-card">
+        <div class="winner-top">
+          <span class="winner-tag" title="Gender Equality in the Digital Space">Digital Space</span>
+          <div class="winner-cps">
+            <span class="cp-chip" title="North Macedonia">MKD</span>
+            <span class="cp-chip" title="Serbia">SRB</span>
+            <span class="cp-chip" title="Montenegro">MNE</span>
+          </div>
+        </div>
+        <h3 class="winner-title">WB Cyber-Women Hub: Regional Accelerator for Cyber Security, Data Protection and Responsible AI</h3>
+        <p class="winner-summary">To advance gender equality and women's empowerment in the Western Balkans by increasing women's participation, leadership, economic opportunities and influence in cybersecurity, data governance and responsible AI, while strengthening gender-responsive digital resilience and regional cooperation among civil society, public institutions and the private sector.</p>
+        <div class="winner-consortium">
+          <div class="consortium-row lead">
+            <div class="consortium-label">Lead applicant</div>
+            <div class="consortium-org">Women4Cyber North Macedonia <span class="cp-tag">— North Macedonia</span></div>
+          </div>
+          <div class="consortium-row">
+            <div class="consortium-label">Project partners</div>
+            <ul class="partner-list">
+              <li>AFA, Association for Affirmation of Woman Potential and Networking — Women4Cyber Serbia chapter <span class="cp-tag">— Serbia</span></li>
+              <li>Žene za sajber Crna Gora (Women4Cyber Montenegro) <span class="cp-tag">— Montenegro</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="winner-meta">
+          <div class="wm-item"><span class="label">Contracting Party</span><span class="value">Skopje</span></div>
+          <div class="wm-item"><span class="label">PN</span><span class="value">9-050</span></div>
+        </div>
+      </article>
+
+      <article class="winner-card">
+        <div class="winner-top">
+          <span class="winner-tag" title="Gender Equality &amp; Protection from Violence">Protection from Violence</span>
+          <div class="winner-cps">
+            <span class="cp-chip" title="Serbia">SRB</span>
+            <span class="cp-chip" title="Montenegro">MNE</span>
+            <span class="cp-chip" title="Kosovo*">KS*</span>
+          </div>
+        </div>
+        <h3 class="winner-title">Safe Homes, Stronger Futures: Advancing Gender-Responsive Housing Policies for Women Survivors of Violence in Kosovo*, Montenegro and Serbia</h3>
+        <p class="winner-summary">To contribute to the advancement of gender equality and women's empowerment in Serbia, Montenegro and Kosovo* through strengthened regional cooperation, coordinated advocacy and innovative civil society action aimed at improving access to gender-responsive and sustainable housing solutions for women survivors of violence.</p>
+        <div class="winner-consortium">
+          <div class="consortium-row lead">
+            <div class="consortium-label">Lead applicant</div>
+            <div class="consortium-org">Autonomous Women's Center (AWC) <span class="cp-tag">— Serbia</span></div>
+          </div>
+          <div class="consortium-row">
+            <div class="consortium-label">Project partners</div>
+            <ul class="partner-list">
+              <li>Women's Rights Center (WRC) <span class="cp-tag">— Montenegro</span></li>
+              <li>Kosovo Women's Network (KWN) <span class="cp-tag">— Kosovo*</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="winner-meta">
+          <div class="wm-item"><span class="label">Contracting Party</span><span class="value">Belgrade</span></div>
+          <div class="wm-item"><span class="label">PN</span><span class="value">9-087</span></div>
+        </div>
+      </article>
+
+    </div>
   </div>
 </section>
 
@@ -1410,21 +1771,33 @@ body.gef-modal-lock { overflow: hidden; }
       <h2>Key dates from <em>launch</em> to contract.</h2>
     </div>
 
+    <!-- Reverse chronological: what's next sits at the top, the opening
+         information sessions close the list. -->
     <div class="timeline-list">
       <div class="tl-row">
         <div class="tl-date">September 2026</div>
         <div class="tl-event">Earliest project implementation start</div>
         <div class="tl-time">Implementation</div>
       </div>
-      <div class="tl-row">
-        <div class="tl-date">July 2026</div>
-        <div class="tl-event">Results announced — contract signing</div>
-        <div class="tl-time">TBC</div>
-      </div>
       <div class="tl-row active">
-        <div class="tl-date">June – July 2026</div>
-        <div class="tl-event"><em>Evaluation in process</em> — Call 1 closed 10 June</div>
+        <div class="tl-date">August 2026</div>
+        <div class="tl-event"><em>Contract signing</em> — with the six awarded consortia</div>
         <div class="tl-time is-amber"><span class="tl-live"></span>Current stage</div>
+      </div>
+      <div class="tl-row is-result">
+        <div class="tl-date">7 August 2026</div>
+        <div class="tl-event">Six projects awarded — one per Contracting Party</div>
+        <div class="tl-time is-green">Winners announced</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">June – July 2026</div>
+        <div class="tl-event">Evaluation, expert review &amp; Evaluation Panel</div>
+        <div class="tl-time is-done">Completed</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">10 June 2026</div>
+        <div class="tl-event">Application deadline — Call 1 closed</div>
+        <div class="tl-time is-done">269 applications</div>
       </div>
       <div class="tl-row">
         <div class="tl-date">1 June 2026</div>
