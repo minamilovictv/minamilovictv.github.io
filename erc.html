@@ -137,6 +137,27 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
 .btn-ghost svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+/* Co-funded by — EU and WBF lockups closing the hero */
+.hero-funders { margin-top: 40px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.16); }
+.hero-funders-key {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; color: rgba(255,255,255,0.55); margin-bottom: 14px;
+}
+.funder-logos { display: flex; align-items: center; gap: 20px; }
+.hero-logo-eu {
+  height: 52px; width: auto; display: block;
+  background: #fff; padding: 7px 11px; border-radius: 8px;
+  box-sizing: border-box;
+}
+/* the WBF artwork carries ~30% built-in padding, so it needs a taller
+   box than the EU lockup to read at the same optical size */
+.hero-logo-wbf { height: 76px; width: auto; display: block; }
+@media (max-width: 520px) {
+  .funder-logos { gap: 16px; flex-wrap: wrap; }
+  .hero-logo-eu { height: 44px; padding: 6px 10px; }
+  .hero-logo-wbf { height: 64px; }
+}
+
 /* ============================================================
    SECTION SHARED
    ============================================================ */
@@ -293,6 +314,14 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Find Partners
       </a>
+    </div>
+
+    <div class="hero-funders">
+      <div class="hero-funders-key">Co-funded by</div>
+      <div class="funder-logos">
+        <img class="hero-logo-eu" src="/assets/images/ggi/eu-logo.webp" alt="Co-funded by the European Union" width="1020" height="214" loading="eager" decoding="async">
+        <img class="hero-logo-wbf" src="/assets/images/ggi/wbf-logo-white.svg" alt="Western Balkans Fund" loading="eager" decoding="async">
+      </div>
     </div>
 
   </div>

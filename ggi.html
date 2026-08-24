@@ -130,6 +130,7 @@
     font-weight: 800; color: #fff; line-height: 1.06;
     letter-spacing: -0.025em; margin-bottom: 20px; max-width: 20ch;
   }
+
   .tagline { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 64ch; margin-bottom: 12px; }
   
 
@@ -713,36 +714,6 @@
   .cc-chip:hover .n { background: #fff; color: var(--ggi); border-color: #fff; transform: rotate(-8deg) scale(1.1); }
 
   /* ============================================================
-     CALL NO. 8 WINNERS — featured cards
-     ============================================================ */
-  
-  
-  
-
-  .winners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  
-  
-  
-  
-  
-  
-  
-  
-  .winner-lead .role { color: var(--faint); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; font-size: 10.5px; display: block; margin-bottom: 2px; }
-  
-  
-  
-  .winner-foot .grant { color: var(--ggi); font-weight: 700; }
-  .winner-foot .link { color: var(--ggi); display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
-  .winner-foot .link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
-  .winner-card:hover .winner-foot .link svg { transform: translateX(3px); }
-
-  .see-all { text-align: center; margin-top: 36px; }
-  .see-all a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; color: var(--ggi); border: 1px solid var(--line); border-radius: var(--radius-pill); font-family: var(--font-display); font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
-  .see-all a:hover { border-color: var(--ggi); background: var(--light); }
-  .see-all svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-  /* ============================================================
      DOCUMENTS
      ============================================================ */
   
@@ -777,275 +748,7 @@
   
   
 
-  /* ============================================================
-     CP FILTER PILLS  (Call 8 winners filter)
-     ============================================================ */
-  .cp-filter {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin-bottom: 28px;
-    padding: 16px; border-radius: var(--radius);
-    background: var(--surface); border: 1px solid var(--line);
-    box-shadow: var(--shadow-sm);
-  }
-  .cp-filter-label {
-    width: 100%;
-    font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--faint); margin-bottom: 4px;
-  }
-  .cp-pill {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 8px 14px; border-radius: 999px;
-    background: var(--surface-alt); border: 1px solid var(--line);
-    font-size: 13px; font-weight: 600; color: var(--ink-soft);
-    cursor: pointer; transition: all 0.18s ease;
-  }
-  .cp-pill .flag { font-size: 15px; line-height: 1; }
-  .cp-pill:hover { border-color: var(--ggi); color: var(--ggi); }
-  .cp-pill.is-active {
-    background: var(--ggi); border-color: var(--ggi);
-    color: #fff;
-  }
-
-  /* ============================================================
-     WINNERS  (CSV-driven, with modal)
-     ============================================================ */
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .winner-csv-lead .role {
-    color: var(--faint); font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.06em;
-    font-size: 10.5px; display: block; margin-bottom: 2px;
-  }
-  
-  
-  
-  .winner-csv-foot .grant { color: var(--ggi); font-weight: 700; }
-  .winner-csv-foot .more {
-    color: var(--ggi); font-weight: 600;
-    display: inline-flex; align-items: center; gap: 4px;
-  }
-  .winner-csv-foot .more svg {
-    width: 12px; height: 12px;
-    fill: none; stroke: currentColor; stroke-width: 2;
-    stroke-linecap: round; stroke-linejoin: round;
-    transition: transform 0.15s;
-  }
-  .winner-csv-card:hover .winner-csv-foot .more svg { transform: translateX(3px); }
-
-  .winners-loading,
-  .winners-empty {
-    grid-column: 1 / -1;
-    padding: 40px; text-align: center;
-    font-size: 14px; color: var(--muted);
-  }
-
-  /* ============================================================
-     AWARDS 2026  —  interactive winners showcase
-     ============================================================ */
-  #call-8-winners {
-    position: relative; overflow: hidden;
-  }
-  /* soft animated aura behind the section */
-  #call-8-winners::before {
-    content: ""; position: absolute; z-index: 0;
-    top: -160px; right: -140px;
-    width: 460px; height: 460px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(74,163,240,0.18), transparent 68%);
-    filter: blur(6px);
-    animation: awardsAura 14s ease-in-out infinite alternate;
-    pointer-events: none;
-  }
-  #call-8-winners::after {
-    content: ""; position: absolute; z-index: 0;
-    bottom: -180px; left: -120px;
-    width: 420px; height: 420px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(37,103,216,0.13), transparent 70%);
-    filter: blur(6px);
-    animation: awardsAura 18s ease-in-out infinite alternate-reverse;
-    pointer-events: none;
-  }
-  @keyframes awardsAura {
-    from { transform: translate3d(0,0,0) scale(1); }
-    to   { transform: translate3d(-30px,26px,0) scale(1.12); }
-  }
-  #call-8-winners .container-narrow { position: relative; z-index: 1; }
-
-  /* area accent palette — GGI blue family only */
-  #call-8-winners {
-    --a-culture: #173D8F;
-    --a-edu:     #2567D8;
-    --a-sd:      #1B78C7;
-  }
-
-  /* ---- headline stats strip ---- */
-  .awards-stats {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-    margin: 4px 0 30px;
-  }
-  .awards-stat {
-    position: relative; overflow: hidden;
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: 16px; padding: 20px 18px; text-align: center;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s;
-  }
-  .awards-stat::before {
-    content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%;
-    background: var(--grad-primary);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.6s ease;
-  }
-  .awards-stat.in::before { transform: scaleX(1); }
-  .awards-stat:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(15,32,68,0.12); }
-  .awards-stat-num {
-    font-size: 34px; font-weight: 800; letter-spacing: -0.02em;
-    line-height: 1; color: var(--ggi);
-    background: var(--grad-primary); -webkit-background-clip: text;
-    background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .awards-stat-num .suffix { -webkit-text-fill-color: initial; color: var(--accent); }
-  .awards-stat-label {
-    margin-top: 8px; font-size: 11.5px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
-  }
-
-  /* ---- filter bar upgrade ---- */
-  .cp-pill .count {
-    display: inline-flex; align-items: center; justify-content: center;
-    min-width: 18px; height: 18px; padding: 0 5px; margin-left: 2px;
-    font-size: 10.5px; font-weight: 700; border-radius: 999px;
-    background: rgba(23,61,143,0.10); color: var(--ggi);
-    transition: all 0.18s ease;
-  }
-  .cp-pill.is-active .count { background: rgba(255,255,255,0.24); color: #fff; }
-  .cp-pill { transition: transform 0.18s ease, all 0.18s ease; }
-  .cp-pill.is-active { box-shadow: 0 8px 20px rgba(23,61,143,0.28); transform: translateY(-1px); }
-
-  /* ---- awards grid ---- */
-  .awards-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
-    grid-auto-rows: 1fr;
-  }
-  .award-card {
-    position: relative; isolation: isolate; overflow: hidden;
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: 16px; padding: 0;
-    display: flex; flex-direction: column;
-    cursor: pointer; text-align: left;
-    font-family: inherit; color: inherit;
-    --acc: var(--ggi);
-    perspective: 900px;
-    opacity: 0; transform: translateY(26px) scale(0.98);
-    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.2,.8,.2,1),
-                box-shadow 0.28s ease, border-color 0.28s ease;
-  }
-  .award-card.in { opacity: 1; transform: none; }
-  /* left accent bar */
-  .award-card::before {
-    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-    background: var(--acc); opacity: 0.85;
-    transition: width 0.28s ease;
-  }
-  /* shimmer sweep on hover */
-  .award-card::after {
-    content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
-    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.55) 48%, transparent 66%);
-    transform: translateX(-120%);
-    transition: transform 0.7s ease;
-  }
-  .award-card:hover {
-    transform: translateY(-8px) scale(1.015);
-    box-shadow: 0 26px 50px rgba(15,32,68,0.18);
-    border-color: color-mix(in srgb, var(--acc) 45%, var(--line));
-  }
-  .award-card:hover::before { width: 6px; }
-  .award-card:hover::after { transform: translateX(120%); }
-  .award-card:focus-visible {
-    outline: none; border-color: var(--acc);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--acc) 30%, transparent);
-  }
-
-  .award-inner {
-    padding: 20px 20px 18px 22px; display: flex; flex-direction: column; height: 100%;
-    transform-style: preserve-3d; transition: transform 0.12s ease-out;
-  }
-
-  .award-areas { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
-  .award-area {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-    padding: 3px 8px; border-radius: 999px;
-    color: var(--tagc, var(--ggi));
-    background: color-mix(in srgb, var(--tagc, var(--ggi)) 12%, #fff);
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-  .award-area.t-culture { --tagc: var(--a-culture); }
-  .award-area.t-edu     { --tagc: var(--a-edu); }
-  .award-area.t-sd      { --tagc: var(--a-sd); }
-  .award-card:hover .award-area { background: color-mix(in srgb, var(--tagc, var(--ggi)) 20%, #fff); }
-
-  .award-title {
-    font-size: 16px; font-weight: 700; color: var(--ink);
-    line-height: 1.36; letter-spacing: -0.01em; margin-bottom: 14px;
-    transition: color 0.22s ease;
-  }
-  .award-card:hover .award-title { color: var(--ggi); }
-  .award-lead { font-size: 12.5px; color: var(--ink); line-height: 1.5; margin-bottom: 12px; }
-  .award-lead .role {
-    display: block; color: var(--faint, var(--muted)); font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.06em; font-size: 10px; margin-bottom: 2px;
-  }
-  .award-lead .lead-org { font-weight: 700; }
-
-  .award-collab {
-    margin-top: auto; display: flex; align-items: center;
-    padding-top: 12px; border-top: 1px solid var(--line);
-  }
-  .award-more {
-    margin-left: auto; font-size: 12px; font-weight: 700; color: var(--ggi);
-    display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
-  }
-  .award-more svg {
-    width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.2;
-    stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s ease;
-  }
-  .award-card:hover .award-more svg { transform: translateX(4px); }
-
-  /* modal: partner list + area tag colours */
-  .modal-partners { display: grid; gap: 8px; margin-top: 4px; }
-  .modal-partners .mp-item {
-    display: flex; align-items: center; gap: 9px;
-    font-size: 13.5px; color: var(--ink);
-    padding: 9px 12px; border-radius: 10px;
-    background: var(--surface-alt); border: 1px solid var(--line);
-  }
-  .modal-partners .mp-item .pflag { font-size: 16px; line-height: 1; flex: none; }
-  .modal-partners .mp-item .pcp { margin-left: auto; font-size: 11px; color: var(--muted); font-weight: 600; }
-  .modal-meta-tag.t-culture { background: color-mix(in srgb, var(--a-culture) 14%, #fff); color: var(--a-culture); }
-  .modal-meta-tag.t-edu     { background: color-mix(in srgb, var(--a-edu) 14%, #fff); color: var(--a-edu); }
-  .modal-meta-tag.t-sd      { background: color-mix(in srgb, var(--a-sd) 14%, #fff); color: var(--a-sd); }
-
-  @media (max-width: 960px) {
-    .awards-grid { grid-template-columns: repeat(2, 1fr); }
-    .awards-stats { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 560px) {
-    .awards-grid { grid-template-columns: 1fr; }
-    .awards-stat-num { font-size: 28px; }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .award-card { opacity: 1; transform: none; transition: box-shadow 0.2s ease, border-color 0.2s ease; }
-    .award-inner { transform: none !important; }
-    #call-8-winners::before, #call-8-winners::after { animation: none; }
-    .award-card::after { display: none; }
     .eval-row, .cross-cutting .cc-chip, .eval-threshold { opacity: 1 !important; transform: none !important; transition: none; }
     .thr-icon, .eval-threshold::before, .eval-fill::after { animation: none !important; }
   }
@@ -1231,7 +934,6 @@
     .flow-steps { grid-template-columns: repeat(2, 1fr); gap: 30px 18px; }
     .flow-line { display: none; }
     .eval-wrap { grid-template-columns: 1fr; gap: 28px; }
-    .winners-grid { grid-template-columns: repeat(2, 1fr); }
     
     
     
@@ -1244,7 +946,6 @@
     .ia-grid { grid-template-columns: 1fr; }
     
     .flow-steps { grid-template-columns: 1fr; }
-    .winners-grid { grid-template-columns: 1fr; }
     
     
     .cc-grid { grid-template-columns: 1fr; }
@@ -1290,11 +991,7 @@
     <p class="tagline">The Western Balkans Fund's annual grant scheme supports young, emerging CSOs and Grassroots organizations to participate and contribute to regional cooperation, peacebuilding, good neighborly relations, reconciliation, democratic governance and EU integration across the WB6, under the EU/WBF Joint Action (Phase III).</p>
 
     <div class="hero-ctas">
-      <a class="btn-primary" href="#call-8-winners">
-        Check the awarded grantees for Call No. 8
-        <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-      </a>
-      <a class="btn-ghost" href="#eligibility">
+      <a class="btn-primary" href="#eligibility">
         Check Eligibility
         <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
       </a>
@@ -1785,58 +1482,6 @@
 </section>
 
 <!-- ============================================================
-     CALL NO. 8 — AWARDED PROJECTS  (CSV-driven, filterable)
-     ============================================================ -->
-<section class="section" id="call-8-winners">
-  <div class="container-narrow">
-    <div class="sec-head">
-      <div class="overline">Call No. 8 / Awarded Projects</div>
-      <h2>Meet the winning teams</h2>
-      <p>The 24 regional projects selected under the 8th Call for Proposals are presented below. We invite you to explore the awardees, follow their work, attend their public events where available, and connect with them through their social media channels to stay updated on the progress and impact of their project implementation.</p>
-    </div>
-
-    <!-- Animated headline stats -->
-    <div class="awards-stats" id="awards-stats">
-      <div class="awards-stat"><div class="awards-stat-num" data-count="24">0</div><div class="awards-stat-label">Projects awarded</div></div>
-      <div class="awards-stat"><div class="awards-stat-num" data-count="6">0</div><div class="awards-stat-label">Contracting Parties</div></div>
-      <div class="awards-stat"><div class="awards-stat-num" data-count="264">0</div><div class="awards-stat-label">Applications received</div></div>
-    </div>
-
-    <!-- CP filter row -->
-    <div class="cp-filter" role="tablist" aria-label="Filter winners by Contracting Party">
-      <div class="cp-filter-label">Filter by Contracting Party</div>
-      <button class="cp-pill is-active" data-cp="Albania" role="tab" aria-selected="true">
-        Albania <span class="count">4</span>
-      </button>
-      <button class="cp-pill" data-cp="Bosnia and Herzegovina" role="tab" aria-selected="false">
-        Bosnia and Herzegovina <span class="count">4</span>
-      </button>
-      <button class="cp-pill" data-cp="Kosovo*" role="tab" aria-selected="false">
-        Kosovo* <span class="count">4</span>
-      </button>
-      <button class="cp-pill" data-cp="Montenegro" role="tab" aria-selected="false">
-        Montenegro <span class="count">4</span>
-      </button>
-      <button class="cp-pill" data-cp="North Macedonia" role="tab" aria-selected="false">
-        North Macedonia <span class="count">4</span>
-      </button>
-      <button class="cp-pill" data-cp="Serbia" role="tab" aria-selected="false">
-        Serbia <span class="count">4</span>
-      </button>
-    </div>
-
-    <!-- Winners grid (rendered from embedded data) -->
-    <div class="awards-grid" id="winners-grid" aria-live="polite">
-      <div class="winners-loading">Loading awarded projects…</div>
-    </div>
-
-    <div class="see-all">
-      <a href="/ourgrantees.html?programme=GGI">All GGI-funded projects <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      CALL NO. 9 INTEREST CTA  (kept for those interested in next call)
      ============================================================ -->
 <section class="subscribe" id="call-9-interest">
@@ -1898,10 +1543,6 @@
      CONFIG  —  swap these URLs with the published Google Sheets CSVs
      ============================================================ */
   var CONFIG = {
-    // Sheet must have columns: pn, title, area, lead_cp, lead_org,
-    // partners, grant_amount, duration, start_date, end_date,
-    // summary, objectives, activities
-    winnersCsvUrl: 'data/ggi-call-8-winners.csv',
     // Sheet must have columns: programme, date, title, excerpt, image, url
     newsCsvUrl: 'data/news.csv',
     // Programme tag to filter the news feed by
@@ -2026,249 +1667,6 @@
       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
-  /* ============================================================
-     WINNERS  —  Call No. 8 awarded projects (First Call, 2026)
-     Data embedded directly. To add a logo later, set `logo` on a
-     project to an image path (e.g. 'assets/logos/eco-infinity.png').
-     ============================================================ */
-  var AREA = {
-    culture: { t: 'culture', l: 'Cultural Cooperation' },
-    edux:    { t: 'edu',     l: 'Education & Scientific Exchange' },
-    edur:    { t: 'edu',     l: 'Education & Scientific Research' },
-    sd:      { t: 'sd',      l: 'Sustainable Development' }
-  };
-  function P(name, cp) { return { name: name, cp: cp }; }
-
-  var WINNERS_2026 = [
-    { n: '01', cp: 'Serbia', areas: [AREA.sd],
-      title: 'Empowering Future Environmental Lawyers for EU Integration and the Green Agenda',
-      lead: 'Aarhus Centre (Novi Sad)',
-      partners: [P('Environmental movement Ozon (Nikšić)', 'Montenegro'), P('Association DINARICA (Mostar)', 'Bosnia and Herzegovina')],
-      objective: 'To strengthen environmental rule of law in the Western Balkans by building the capacity of future legal professionals to support implementation of the EU environmental acquis and defend citizens’ environmental rights.' },
-    { n: '02', cp: 'Serbia', areas: [AREA.edux],
-      title: 'Regional Alliances for Innovation, STEM and Education in the Western Balkans (RAISE-WB)',
-      lead: 'Dečiji Inovacioni Centar (Belgrade)',
-      partners: [P('SOUUD “Dimitar Vlahov” (Strumica)', 'North Macedonia'), P('Association for STEAM Education “STEAM ACADEMY” (Tuzla)', 'Bosnia and Herzegovina'), P('STEM Hub Center (Tirana)', 'Albania'), P('Crnogorsko Udruženje za Znanje i Nauku MAKS (Bijela)', 'Montenegro')],
-      objective: 'To strengthen regional cooperation and people-to-people links among grassroots CSOs, educators and youth by advancing inclusive, practice-based STEM education and innovation across the Western Balkans.' },
-    { n: '03', cp: 'Serbia', areas: [AREA.culture, AREA.edur],
-      title: 'DocuConnect Balkans – Regional Documentary Co-production Lab',
-      lead: 'Independent Film Centre Filmart (Požega)',
-      partners: [P('FusionACT Centre (Tirana)', 'Albania'), P('Asocijacija za vizuelnu kulturu VIZART (Banja Luka)', 'Bosnia and Herzegovina'), P('KINEMATIKA (Skopje)', 'North Macedonia'), P('NGO Montenegro Film Festival (Podgorica)', 'Montenegro')],
-      objective: 'To strengthen regional cooperation, intercultural dialogue and professional exchange in the Western Balkans through documentary film development, collaboration and mobility for young and emerging directors and producers.' },
-    { n: '04', cp: 'Serbia', areas: [AREA.culture, AREA.sd],
-      title: 'Small Communities, Big Voices – International Youth Infinity Lab',
-      lead: 'Eco Infinity (Sjenica)',
-      partners: [P('YOUTH ON BOARD (Štip)', 'North Macedonia'), P('ToPeeR (Doboj)', 'Bosnia and Herzegovina'), P('Balkan Youth Activism (Korçë)', 'Albania')],
-      objective: 'To strengthen regional cooperation, reconciliation and social inclusion in the Western Balkans by empowering young people from small and rural communities to engage in intercultural dialogue, creative expression and cross-border exchange.' },
-
-    { n: '05', cp: 'Montenegro', areas: [AREA.culture, AREA.sd],
-      title: 'Regional Empowerment of Deaf Communities and Sign Language Equality in the Western Balkans',
-      lead: 'Association of the Deaf and Hard of Hearing of Montenegro (Podgorica)',
-      partners: [P('Cultural Center Homer (Podgorica)', 'Montenegro'), P('Deaf and Hard of Hearing Association of Serbia – SGNS (Belgrade)', 'Serbia'), P('Association of the organisations of Deaf and Hard of Hearing of Republika Srpska (Banja Luka)', 'Bosnia and Herzegovina')],
-      objective: 'To strengthen regional cooperation and promote the rights and equality of deaf communities in the Western Balkans through joint initiatives, knowledge exchange and the advancement of sign language recognition.' },
-    { n: '06', cp: 'Montenegro', areas: [AREA.culture],
-      title: 'Western Balkans Girls Basketball Camp – Next Step',
-      lead: 'BC Olymp (Nikšić)',
-      partners: [P('Basketball Club “10th August” (Vlasenica)', 'Bosnia and Herzegovina'), P('Akademia 109 Tirona (Tirana)', 'Albania'), P('Women’s Basketball Club Trebjesa (Nikšić)', 'Montenegro'), P('University Women’s Basketball Club Student (Niš)', 'Serbia')],
-      objective: 'To contribute to regional cooperation, reconciliation and EU integration by empowering young girls and grassroots sports organisations across the Western Balkans.' },
-    { n: '07', cp: 'Montenegro', areas: [AREA.culture, AREA.sd],
-      title: 'Environmental Peacebuilding Festival',
-      lead: 'Youth Initiative for Human Rights Montenegro (Podgorica)',
-      partners: [P('Centar za mlade “Kvart” (Prijedor)', 'Bosnia and Herzegovina'), P('Fondacija Jelena Šantić (Belgrade)', 'Serbia')],
-      objective: 'To contribute to strengthening regional cooperation and reconciliation in the Western Balkans by creating a platform that connects environmental engagement, peacebuilding and creative expression.' },
-    { n: '08', cp: 'Montenegro', areas: [AREA.edux],
-      title: 'See What You Think: Youth Decision-Making and Media Literacy in the Western Balkans',
-      lead: 'Epeka Montenegro (Berane)',
-      partners: [P('Epeka Srbija (Niš)', 'Serbia'), P('Institute for Project Management and Development (Skopje)', 'North Macedonia')],
-      objective: 'To strengthen critical thinking, media literacy and decision-making skills among young people in the Western Balkans, while encouraging regional cooperation and dialogue.' },
-
-    { n: '09', cp: 'Kosovo*', areas: [AREA.edux],
-      title: 'Under One Sky 2.0: Building Trust through Astronomy and Youth Cooperation in the Western Balkans',
-      lead: 'Astronomy Club of Kosovo* – ACK (Prishtina)',
-      partners: [P('EDU Act Albania (Tirana)', 'Albania'), P('Orion Astronomical Society (Sarajevo)', 'Bosnia and Herzegovina'), P('Montenegro Space Research (Podgorica)', 'Montenegro'), P('Skopje Astronomical Society (Skopje)', 'North Macedonia'), P('ALEPH (Novi Pazar)', 'Serbia')],
-      objective: 'To strengthen trust, youth cooperation and good neighbourly relations in the Western Balkans through astronomy-based learning, exchange and outreach.' },
-    { n: '10', cp: 'Kosovo*', areas: [AREA.sd],
-      title: 'Let’s Clean the Western Balkans: A Regional Initiative for Environmental Action and Cooperation',
-      lead: 'Let’s Clean Kosovo (Prishtina)',
-      partners: [P('Association for Sustainable Development Go Green (Skopje)', 'North Macedonia'), P('Green Line (Tirana)', 'Albania')],
-      objective: 'To strengthen regional cooperation and joint action in environmental protection across the Western Balkans.' },
-    { n: '11', cp: 'Kosovo*', areas: [AREA.edux],
-      title: 'Youth Makers Exchange: Advancing STEAM Skills and Regional Cooperation in the Western Balkans',
-      lead: 'Kosovo Makers League (Prishtina)',
-      partners: [P('Fondacioni BONEVET (Prishtina)', 'Kosovo*'), P('Center for Balkan Cooperation LOJA (Tetovo)', 'North Macedonia'), P('Albict (Tirana)', 'Albania')],
-      objective: 'To strengthen regional cooperation and mutual understanding among youth in the Western Balkans through collaborative STEAM education and scientific exchange.' },
-    { n: '12', cp: 'Kosovo*', areas: [AREA.culture, AREA.sd],
-      title: 'Writers’ Room: First Feature Lab',
-      lead: 'Filmik Institute (Prishtina)',
-      partners: [P('First Step Association (Tirana)', 'Albania'), P('Planet-M (Skopje)', 'North Macedonia'), P('PriFilm Fest (Prishtina)', 'Kosovo*')],
-      objective: 'To strengthen regional cooperation and intercultural dialogue in the Western Balkans by empowering emerging filmmakers through collaborative script development, knowledge exchange and access to regional and European film networks.' },
-
-    { n: '13', cp: 'Bosnia and Herzegovina', areas: [AREA.edux],
-      title: 'Connected Voices: Youth with Disabilities Shaping Change',
-      lead: 'Information Center for Persons with Disabilities (Tuzla)',
-      partners: [P('Youth with Disabilities Forum – YDF (Belgrade)', 'Serbia'), P('Association of Paraplegics (Cetinje)', 'Montenegro')],
-      objective: 'To improve the position and active participation of youth with disabilities in decision-making processes in the Western Balkans by strengthening regional connectivity, enhancing their capacities and fostering joint advocacy.' },
-    { n: '14', cp: 'Bosnia and Herzegovina', areas: [AREA.edux],
-      title: 'WB Maker Bridge: Regional Makerspace Initiative for Youth, Women and Digital Innovation',
-      lead: 'Faculty of Electrical Engineering, University of East Sarajevo (East Sarajevo)',
-      partners: [P('Balkan Distance Education Network – BADEN (Čačak)', 'Serbia'), P('Institute of Modern Technologies Montenegro – IMTM (Podgorica)', 'Montenegro')],
-      objective: 'To strengthen regional cooperation among youth-oriented educational and innovation actors in Bosnia and Herzegovina, Serbia and Montenegro through a makerspace-based programme for practical learning, digital skills and inclusive innovation.' },
-    { n: '15', cp: 'Bosnia and Herzegovina', areas: [AREA.culture],
-      title: 'First Draft — A Regional Laboratory for Emerging Artists in the Western Balkans',
-      lead: 'Udruženje Magični teatar (Sarajevo)',
-      partners: [P('Civil Association for Arts and Culture Atrium Hub (Skopje)', 'North Macedonia'), P('Center E8 (Belgrade)', 'Serbia'), P('Association Realstage (Sarajevo)', 'Bosnia and Herzegovina'), P('Association Prazan Prostor (Podgorica)', 'Montenegro')],
-      objective: 'To enable emerging performing artists in the Western Balkans to access regional professional networks, develop portable artistic work and build cross-border professional relationships through experimental cultural cooperation, contributing to good neighbourly relations and reconciliation.' },
-    { n: '16', cp: 'Bosnia and Herzegovina', areas: [AREA.edux, AREA.sd],
-      title: 'Youth VA Western Balkans: Digital Skills for Staying and Thriving',
-      lead: 'Balkan Association for Sustainable Energy – BASE (Sarajevo)',
-      partners: [P('Crnogorsko stručno udruženje za energetiku, ekologiju, ekonomiju i efikasnost (Podgorica)', 'Montenegro'), P('ACT for Society Centre (Tirana)', 'Albania'), P('SIT – Center for Counseling, Social Services and Research (Prishtina)', 'Kosovo*')],
-      objective: 'To strengthen regional cooperation and youth employability by expanding a proven digital career programme to Bosnia and Herzegovina and Montenegro.' },
-
-    { n: '17', cp: 'North Macedonia', areas: [AREA.edur],
-      title: 'Regional Youth Forum: “EUth Negotiators of the Future”',
-      lead: 'Strategers Institute (Skopje)',
-      partners: [P('NVO Centar za omladinsku edukaciju (Podgorica)', 'Montenegro'), P('Partners Albania for Change and Development (Tirana)', 'Albania'), P('Regional School of Public Administration – ReSPA (Podgorica)', 'Montenegro')],
-      objective: 'To enhance youth participation in regional cooperation and EU integration processes in the Western Balkans through an interactive, simulation-based learning approach.' },
-    { n: '18', cp: 'North Macedonia', areas: [AREA.culture, AREA.edur],
-      title: 'Prespa Connects Cultures',
-      lead: 'EUROTHINK – Center for European Strategies (Resen)',
-      partners: [P('Destination Management Organization (Korçë)', 'Albania'), P('REC – Reconciliation Empowering Communities (Mitrovica)', 'Kosovo*')],
-      objective: 'To strengthen regional cooperation and mutual understanding in the Western Balkans through cultural exchange and participatory dialogue among communities.' },
-    { n: '19', cp: 'North Macedonia', areas: [AREA.culture, AREA.edur],
-      title: '“Our Stories, Our Voices: Roma Youth for Regional Change”',
-      lead: 'Roma Cultural and Educational Center TERNIPE MK (Delchevo)',
-      partners: [P('NVO Ternipe (Pirot)', 'Serbia'), P('Institute of Romani Culture in Albania – IRCA (Tirana)', 'Albania')],
-      objective: 'To empower Roma youth from North Macedonia, Serbia and Albania by promoting their active participation in regional dialogue, cultural exchange and social inclusion.' },
-    { n: '20', cp: 'North Macedonia', areas: [AREA.sd],
-      title: 'Persons with Disabilities Growing Organic Aromatic Herbs',
-      lead: 'Združenie na lica so cerebralna paraliza i drugi poprečenosti (Veles)',
-      partners: [P('Association “Oaza” (Sarajevo)', 'Bosnia and Herzegovina'), P('“The Will to Live” (Velika Plana)', 'Serbia')],
-      objective: 'To enhance social inclusion and economic empowerment of persons with disabilities in the Western Balkans through inclusive, sustainable employment.' },
-
-    { n: '21', cp: 'Albania', areas: [AREA.sd],
-      title: 'Mountain Connect: Balkan Mountain Forum',
-      lead: 'Albanian Local Capacity Development Foundation – ALCDF (Tirana)',
-      partners: [P('CSCD – Center for Sustainability Community Development (Debar)', 'North Macedonia'), P('Kosova Development Center – KDC (Gjakova)', 'Kosovo*'), P('Regional Development Agency – RDA (Berane)', 'Montenegro')],
-      objective: 'To establish and operationalise a Transboundary Balkan Mountain Forum that connects at least 80 grassroots stakeholders through structured engagement, including four thematic workshops and a regional forum event.' },
-    { n: '22', cp: 'Albania', areas: [AREA.edur],
-      title: 'Regional Diaspora Observatory',
-      lead: 'Center for Economic and Social Studies – CESS (Tirana)',
-      partners: [P('GERMIN (Prishtina)', 'Kosovo*'), P('Naša Perspektiva (Sarajevo)', 'Bosnia and Herzegovina'), P('Tačka povratka (Belgrade)', 'Serbia'), P('Macedonia2025 (Skopje)', 'North Macedonia'), P('Akademska dijaspora Crne Gore (Podgorica)', 'Montenegro')],
-      objective: 'To strengthen regional cooperation in the Western Balkans by establishing a structured, sustainable and inclusive mechanism for diaspora engagement that mobilises knowledge, networks and resources for regional development, social cohesion and European integration.' },
-    { n: '23', cp: 'Albania', areas: [AREA.culture, AREA.sd],
-      title: 'Balkan Creative Bridge',
-      lead: 'Tulla Culture Center (Tirana)',
-      partners: [P('Femina (Prishtina)', 'Kosovo*'), P('Uzor (Podgorica)', 'Montenegro')],
-      objective: 'To empower young artists from the Western Balkans to access and compete in international markets through strengthened skills, visibility and regional cooperation in the cultural and creative industries.' },
-    { n: '24', cp: 'Albania', areas: [AREA.culture],
-      title: 'Common Ground WB: Youth Cultural Pacts for Local Change',
-      lead: 'New Bridges NGO (Tirana)',
-      partners: [P('Education for Change (Tirana)', 'Albania'), P('Alfacentar (Nikšić)', 'Montenegro'), P('Community Development Institute – CDI (Tetovo)', 'North Macedonia')],
-      objective: 'To strengthen regional cooperation and good neighbourly relations among youth in the Western Balkans through intercultural dialogue and culture-based community engagement.' }
-  ];
-
-  var activeCp = 'Albania';
-
-  // unique contracting parties for a project (lead first)
-  function projectCps(w) {
-    var seen = {}; var out = [];
-    [w.cp].concat(w.partners.map(function (p) { return p.cp; })).forEach(function (cp) {
-      if (cp && !seen[cp]) { seen[cp] = 1; out.push(cp); }
-    });
-    return out;
-  }
-
-  function renderWinners() {
-    var grid = document.getElementById('winners-grid');
-    if (!grid) return;
-    var filtered = WINNERS_2026.filter(function (w) { return activeCp === 'all' || w.cp === activeCp; });
-
-    if (filtered.length === 0) {
-      grid.innerHTML = '<div class="winners-empty">No projects to show for ' + escapeHtml(activeCp) + '.</div>';
-      return;
-    }
-
-    grid.innerHTML = filtered.map(function (w, i) {
-      var areasHtml = w.areas.map(function (a) {
-        return '<span class="award-area t-' + a.t + '">' + escapeHtml(a.l) + '</span>';
-      }).join('');
-
-      return '<button type="button" class="award-card" data-index="' + i + '" style="transition-delay:' + Math.min(i * 45, 520) + 'ms">' +
-        '<span class="award-inner">' +
-          '<span class="award-areas">' + areasHtml + '</span>' +
-          '<span class="award-title">' + escapeHtml(w.title) + '</span>' +
-          '<span class="award-lead"><span class="role">Lead Applicant</span><span class="lead-org">' + escapeHtml(w.lead) + '</span></span>' +
-          '<span class="award-collab">' +
-            '<span class="award-more">View details <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>' +
-          '</span>' +
-        '</span>' +
-        '</button>';
-    }).join('');
-
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // click → modal  +  interactive 3D tilt
-    Array.prototype.forEach.call(grid.querySelectorAll('.award-card'), function (btn) {
-      btn.addEventListener('click', function () {
-        openWinnerModal(filtered[parseInt(btn.getAttribute('data-index'), 10)]);
-      });
-      if (!reduce) {
-        var inner = btn.querySelector('.award-inner');
-        btn.addEventListener('mousemove', function (e) {
-          var r = btn.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width - 0.5;
-          var py = (e.clientY - r.top) / r.height - 0.5;
-          inner.style.transform = 'rotateX(' + (-py * 5).toFixed(2) + 'deg) rotateY(' + (px * 6).toFixed(2) + 'deg)';
-        });
-        btn.addEventListener('mouseleave', function () { inner.style.transform = ''; });
-      }
-    });
-
-    // staggered reveal
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        Array.prototype.forEach.call(grid.querySelectorAll('.award-card'), function (c) { c.classList.add('in'); });
-      });
-    });
-  }
-
-  function loadWinners() { renderWinners(); }
-
-  /* count-up on the headline stats */
-  function animateStats() {
-    var wrap = document.getElementById('awards-stats');
-    if (!wrap) return;
-    var nums = wrap.querySelectorAll('.awards-stat-num');
-    var stats = wrap.querySelectorAll('.awards-stat');
-    var started = false;
-    function run() {
-      if (started) return;
-      started = true;
-      Array.prototype.forEach.call(stats, function (s) { s.classList.add('in'); });
-      Array.prototype.forEach.call(nums, function (el) {
-        var target = parseInt(el.getAttribute('data-count'), 10) || 0;
-        var span = el.querySelector('span') || el;
-        var start = null, dur = 1400;
-        function step(ts) {
-          if (start === null) start = ts;
-          var p = Math.min((ts - start) / dur, 1);
-          var eased = 1 - Math.pow(1 - p, 3);
-          span.textContent = Math.round(target * eased);
-          if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      });
-    }
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (e) { if (e.isIntersecting) { run(); obs.disconnect(); } });
-      }, { threshold: 0.4 });
-      io.observe(wrap);
-      // fallback: if the observer never fires (e.g. zero-height viewport), run anyway
-      setTimeout(run, 2500);
-    } else { run(); }
-  }
-
   /* run `cb` once when `el` scrolls into view (with a timed fallback) */
   function whenInView(el, cb, threshold, fallbackMs) {
     if (!el) return;
@@ -2328,24 +1726,7 @@
   }
 
   /* ============================================================
-     CP filter pills
-     ============================================================ */
-  function wireCpFilter() {
-    var pills = document.querySelectorAll('.cp-pill');
-    Array.prototype.forEach.call(pills, function (pill) {
-      pill.addEventListener('click', function () {
-        activeCp = pill.getAttribute('data-cp');
-        Array.prototype.forEach.call(pills, function (p) {
-          p.classList.toggle('is-active', p === pill);
-          p.setAttribute('aria-selected', p === pill ? 'true' : 'false');
-        });
-        renderWinners();
-      });
-    });
-  }
-
-  /* ============================================================
-     MODAL  —  shared for winners and stories
+     MODAL  —  grantee stories
      ============================================================ */
   function openModal() {
     document.getElementById('project-modal').classList.add('is-open');
@@ -2363,48 +1744,6 @@
     if (s) s.textContent = a;
     if (o) o.textContent = b;
     if (k) k.textContent = c;
-  }
-
-  function openWinnerModal(w) {
-    if (!w) return;
-    var cps = projectCps(w);
-
-    var metaHtml = '<span class="modal-meta-tag pn">Project ' + escapeHtml(w.n) + '</span>';
-    w.areas.forEach(function (a) {
-      metaHtml += '<span class="modal-meta-tag t-' + a.t + '">' + escapeHtml(a.l) + '</span>';
-    });
-    cps.forEach(function (cp) {
-      metaHtml += '<span class="modal-meta-tag cp">' + escapeHtml(cp) + '</span>';
-    });
-    document.getElementById('modal-meta-row').innerHTML = metaHtml;
-
-    document.getElementById('modal-title-el').textContent = w.title;
-    document.getElementById('modal-lead-el').innerHTML =
-      '<strong>Lead Applicant:</strong> ' + escapeHtml(w.lead);
-
-    var stats = [
-      { label: 'Lead Contracting Party', value: w.cp },
-      { label: 'Partner organisations',  value: String(w.partners.length) },
-      { label: 'Contracting Parties',    value: String(cps.length) + ' of 6' }
-    ];
-    document.getElementById('modal-grid-el').innerHTML = stats.map(function (s) {
-      return '<div class="modal-stat"><div class="modal-stat-label">' + escapeHtml(s.label) + '</div><div class="modal-stat-value">' + escapeHtml(s.value) + '</div></div>';
-    }).join('');
-
-    setModalHeadings('Objective', 'Project partners', '');
-
-    document.getElementById('modal-summary-el').textContent = w.objective;
-
-    document.getElementById('modal-objectives-el').innerHTML =
-      '<span class="modal-partners">' + w.partners.map(function (p) {
-        return '<span class="mp-item">' +
-               '<span>' + escapeHtml(p.name) + '</span>' +
-               '<span class="pcp">' + escapeHtml(p.cp) + '</span></span>';
-      }).join('') + '</span>';
-
-    document.getElementById('modal-activities-section').style.display = 'none';
-
-    openModal();
   }
 
   function openStoryModal(key) {
@@ -2488,10 +1827,7 @@
      INIT
      ============================================================ */
   document.addEventListener('DOMContentLoaded', function () {
-    wireCpFilter();
     wireModalClose();
-    loadWinners();
-    animateStats();
     initEvalEffects();
   });
 })();
