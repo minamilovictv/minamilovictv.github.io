@@ -21,6 +21,14 @@
   img, video, svg, iframe, table { max-width: 100%; }
 
 /* ============================================================
+     GLOBAL SAFETY — no automatic hyphenation
+     ============================================================
+     Paragraphs must never break mid-word. `hyphens` inherits, so
+     setting it on <html> covers every page; the per-page
+     `hyphens: auto` declarations were removed alongside this. */
+  html { -webkit-hyphens: none; -ms-hyphens: none; hyphens: none; }
+
+/* ============================================================
      NAVBAR (identical to other pages)
      ============================================================ */
   /* Light institutional header: white surface, navy text, navy-fill hover.

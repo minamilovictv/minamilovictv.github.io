@@ -204,7 +204,7 @@
     margin-bottom: 14px;
     text-align: justify;
     text-justify: inter-word;
-    hyphens: auto;
+    hyphens: none;
   }
 
   /* highlighted pull-quote inside the mandate/history columns */
@@ -580,7 +580,7 @@
     margin: 0;
     text-align: justify;
     text-justify: inter-word;
-    hyphens: auto;
+    hyphens: none;
   }
 
   @media (max-width: 1024px) {
@@ -825,7 +825,7 @@
     margin-bottom: 18px;
     text-align: justify;
     text-justify: inter-word;
-    hyphens: auto;
+    hyphens: none;
   }
   .prose-block p:last-child { margin-bottom: 0; }
   .prose-cta {
@@ -1147,7 +1147,7 @@
     margin-bottom: 12px;
     text-align: justify;
     text-justify: inter-word;
-    hyphens: auto;
+    hyphens: none;
   }
   .gp-more {
     display: inline-flex;
@@ -1257,8 +1257,8 @@
   /* ============================================================
      BERLIN PROCESS
      ------------------------------------------------------------
-     Intro prose + three-milestone timeline (Poznan 2019,
-     Sofia 2020, London 2025). Each milestone pairs justified text
+     Intro prose + three-milestone timeline, newest first (London 2025,
+     Sofia 2020, Poznan 2019). Each milestone pairs justified text
      with a photo column; an empty photo slot shows a dashed frame
      naming the file to drop into /assets/images/berlin-process/.
      ============================================================ */
@@ -1406,7 +1406,7 @@
   .bp-text p {
     font-size: var(--text-md); color: var(--ink-soft); line-height: 1.85;
     margin-bottom: 16px;
-    text-align: justify; text-justify: inter-word; hyphens: auto;
+    text-align: justify; text-justify: inter-word; hyphens: none;
   }
   .bp-text p:last-child { margin-bottom: 0; }
   .bp-text strong { color: var(--ink); font-weight: 700; }
@@ -1659,7 +1659,7 @@
         <h2 class="mandate-heading">Who we are</h2>
         <p>The Western Balkans Fund (WBF) is an intergovernmental organisation based in Tirana, Albania, established by the governments of Albania, Bosnia and Herzegovina, Kosovo*, Montenegro, North Macedonia and Serbia. Conceived as a fully regionally owned and all-inclusive initiative, the Fund stands as a tangible expression of a renewed spirit of cooperation in the Western Balkans, a mechanism created by the region, for the region, to bring its people, institutions and communities closer together.</p>
         <p>WBF is the first home-grown regional mechanism that boost cooperation through grants for civil society organisations and other stakeholders in the Western Balkans Six. Its founding reflects a shared conviction that lasting reconciliation and a common European future are built not only between governments, but between citizens, civil-society organisations and communities working side by side on concrete, cross-border projects.</p>
-        <p class="mandate-footnote">*This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo Declaration of Independence.</p>
+        <p class="mandate-footnote">*This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
       </div>
 
       <!-- RIGHT: Our Mandate at a glance -->
@@ -2400,45 +2400,54 @@
         <p>This connection goes back to the early years of the Berlin Process. <strong>Three important milestones</strong> have marked this road.</p>
       </div>
       <ul class="bp-chips">
-        <li><a class="bp-chip" href="#bp-poznan" data-delay="1"><span class="bp-chip-year">2019</span><span class="bp-chip-place">Pozna&#324;</span></a></li>
+        <li><a class="bp-chip" href="#bp-london" data-delay="1"><span class="bp-chip-year">2025</span><span class="bp-chip-place">London</span></a></li>
         <li><a class="bp-chip" href="#bp-sofia" data-delay="2"><span class="bp-chip-year">2020</span><span class="bp-chip-place">Sofia</span></a></li>
-        <li><a class="bp-chip" href="#bp-london" data-delay="3"><span class="bp-chip-year">2025</span><span class="bp-chip-place">London</span></a></li>
+        <li><a class="bp-chip" href="#bp-poznan" data-delay="3"><span class="bp-chip-year">2019</span><span class="bp-chip-place">Pozna&#324;</span></a></li>
       </ul>
     </div>
 
     <ol class="bp-timeline">
 
-      <!-- ---------- 01 · Poznan 2019 ---------- -->
-      <li class="bp-step" id="bp-poznan">
+      <!-- ---------- 01 · London 2025 ---------- -->
+      <li class="bp-step" id="bp-london">
         <span class="bp-node" aria-hidden="true">01</span>
         <div class="bp-step-head">
-          <span class="bp-year">2019</span>
-          <h3>Pozna&#324; &mdash; WBF joins the Berlin Process activities</h3>
+          <span class="bp-year">2025</span>
+          <h3>London &mdash; From recognition to concrete responsibility</h3>
         </div>
 
 
         <div class="bp-step-grid">
           <div class="bp-text">
-            <p class="bp-lede">The first important milestone came under the <strong>Polish Presidency</strong> of the Berlin Process.</p>
-            <p>On <strong>5 July 2019</strong>, Pozna&#324; hosted the <strong>sixth Western Balkans Summit</strong> of the Berlin Process. <span class="bp-hl">For the first time, the Western Balkans Fund was invited to participate in Berlin Process activities</span>, recognising the value of its contribution to regional cooperation, reconciliation, and people-to-people contacts. WBF also had its own <strong>exhibition booth</strong> at the accompanying fair, presenting its mission, grant-making activities, and regional impact.</p>
+            <p class="bp-lede">The most recent milestone came in 2025 and represented perhaps the <strong>strongest recognition of WBF</strong> within the Berlin Process to date.</p>
+            <p>On <strong>22 October 2025</strong>, the Western Balkans Fund <span class="bp-hl">participated for the first time in a Berlin Process Leaders&rsquo; Summit</span>, hosted by the United Kingdom in London.</p>
+            <p>In <strong>Decision No. 46</strong> of the Chair&rsquo;s Conclusions, Berlin Process participants welcomed:</p>
+
+            <blockquote class="bp-quote is-lead">
+              <p>&ldquo;the decision by the WB6 that 15% of funds through the Western Balkans Fund will now be earmarked for initiatives on gender equality.&rdquo;</p>
+              <cite>Chair&rsquo;s Conclusions, Decision No. 46 &middot; London Summit, 22 October 2025</cite>
+            </blockquote>
+
+            <p>The decision formed part of a wider commitment to integrate gender equality throughout the Berlin Process agenda, recognising it as an <strong>enabler and accelerator</strong> of regional priorities and linking women&rsquo;s empowerment with more secure, stable, and prosperous societies.</p>
+            <p>Building upon the London Conclusions, WBF established the <a href="/gefund.html"><strong>Western Balkans Gender Equality Fund</strong></a>, a dedicated regional mechanism supporting civil society cooperation, advocacy, and initiatives advancing women&rsquo;s empowerment and gender equality. The <strong>first Open Call was launched on 5 May 2026</strong>, translating the political commitment adopted within the Berlin Process into direct support for organisations and communities across the Western Balkans.</p>
           </div>
 
           <div class="bp-media">
             <figure class="bp-frame">
-              <img src="/assets/images/berlin-process/poznan-2019-01.jpg" alt="Western Balkans Fund at the sixth Western Balkans Summit, Pozna&#324;, July 2019" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-              <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>Photo<code>poznan-2019-01.jpg</code></span>
+              <img src="/assets/images/berlin-process/london-2025-01.jpg" alt="Western Balkans Fund at the Berlin Process Leaders&rsquo; Summit, London, October 2025" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
+              <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>Photo<code>london-2025-01.jpg</code></span>
             </figure>
             <div class="bp-media-row">
               <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/poznan-2019-02.jpg" alt="WBF exhibition booth at the Pozna&#324; Summit fair, July 2019" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>poznan-2019-02.jpg</code></span>
+                <img src="/assets/images/berlin-process/london-2025-02.jpg" alt="Berlin Process Leaders&rsquo; Summit session, London, October 2025" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
+                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>london-2025-02.jpg</code></span>
               </figure>
               <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/poznan-2019-03.jpg" alt="Delegates at the sixth Western Balkans Summit, Pozna&#324;, July 2019" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>poznan-2019-03.jpg</code></span>
+                <img src="/assets/images/berlin-process/london-2025-03.jpg" alt="Gender equality commitment announced at the London Summit, October 2025" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
+                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>london-2025-03.jpg</code></span>
               </figure>
             </div>
-            <p class="bp-caption">Sixth Western Balkans Summit of the Berlin Process &mdash; Pozna&#324;, 5 July 2019.</p>
+            <p class="bp-caption">Berlin Process Leaders&rsquo; Summit &mdash; London, 22 October 2025.</p>
           </div>
         </div>
       </li>
@@ -2454,7 +2463,7 @@
 
         <div class="bp-step-grid">
           <div class="bp-text">
-            <p class="bp-lede">One year later, WBF was <strong>formally acknowledged in the Chair&rsquo;s Conclusions</strong> of the Sofia Summit, held on <strong>9&ndash;10 November 2020</strong> under the joint Bulgarian and North Macedonian chairmanship of the Berlin Process.</p>
+            <p class="bp-lede">One year after Pozna&#324;, WBF was <strong>formally acknowledged in the Chair&rsquo;s Conclusions</strong> of the Sofia Summit, held on <strong>9&ndash;10 November 2020</strong> under the joint Bulgarian and North Macedonian chairmanship of the Berlin Process.</p>
             <p>In addressing the future of the Process, the Joint Chairmanship stated:</p>
 
             <blockquote class="bp-quote">
@@ -2485,46 +2494,37 @@
         </div>
       </li>
 
-      <!-- ---------- 03 · London 2025 ---------- -->
-      <li class="bp-step" id="bp-london">
+      <!-- ---------- 03 · Poznan 2019 ---------- -->
+      <li class="bp-step" id="bp-poznan">
         <span class="bp-node" aria-hidden="true">03</span>
         <div class="bp-step-head">
-          <span class="bp-year">2025</span>
-          <h3>London &mdash; From recognition to concrete responsibility</h3>
+          <span class="bp-year">2019</span>
+          <h3>Pozna&#324; &mdash; WBF joins the Berlin Process activities</h3>
         </div>
 
 
         <div class="bp-step-grid">
           <div class="bp-text">
-            <p class="bp-lede">The third milestone came in 2025 and represented perhaps the <strong>strongest recognition of WBF</strong> within the Berlin Process to date.</p>
-            <p>On <strong>22 October 2025</strong>, the Western Balkans Fund <span class="bp-hl">participated for the first time in a Berlin Process Leaders&rsquo; Summit</span>, hosted by the United Kingdom in London.</p>
-            <p>In <strong>Decision No. 46</strong> of the Chair&rsquo;s Conclusions, Berlin Process participants welcomed:</p>
-
-            <blockquote class="bp-quote is-lead">
-              <p>&ldquo;the decision by the WB6 that 15% of funds through the Western Balkans Fund will now be earmarked for initiatives on gender equality.&rdquo;</p>
-              <cite>Chair&rsquo;s Conclusions, Decision No. 46 &middot; London Summit, 22 October 2025</cite>
-            </blockquote>
-
-            <p>The decision formed part of a wider commitment to integrate gender equality throughout the Berlin Process agenda, recognising it as an <strong>enabler and accelerator</strong> of regional priorities and linking women&rsquo;s empowerment with more secure, stable, and prosperous societies.</p>
-            <p>Building upon the London Conclusions, WBF established the <a href="/gefund.html"><strong>Western Balkans Gender Equality Fund</strong></a>, a dedicated regional mechanism supporting civil society cooperation, advocacy, and initiatives advancing women&rsquo;s empowerment and gender equality. The <strong>first Open Call was launched on 5 May 2026</strong>, translating the political commitment adopted within the Berlin Process into direct support for organisations and communities across the Western Balkans.</p>
+            <p class="bp-lede">The earliest of the three milestones came under the <strong>Polish Presidency</strong> of the Berlin Process.</p>
+            <p>On <strong>5 July 2019</strong>, Pozna&#324; hosted the <strong>sixth Western Balkans Summit</strong> of the Berlin Process. <span class="bp-hl">For the first time, the Western Balkans Fund was invited to participate in Berlin Process activities</span>, recognising the value of its contribution to regional cooperation, reconciliation, and people-to-people contacts. WBF also had its own <strong>exhibition booth</strong> at the accompanying fair, presenting its mission, grant-making activities, and regional impact.</p>
           </div>
 
           <div class="bp-media">
             <figure class="bp-frame">
-              <img src="/assets/images/berlin-process/london-2025-01.jpg" alt="Western Balkans Fund at the Berlin Process Leaders&rsquo; Summit, London, October 2025" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-              <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>Photo<code>london-2025-01.jpg</code></span>
+              <img src="/assets/images/berlin-process/poznan-2019-01.jpg" alt="Western Balkans Fund at the sixth Western Balkans Summit, Pozna&#324;, July 2019" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
+              <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>Photo<code>poznan-2019-01.jpg</code></span>
             </figure>
             <div class="bp-media-row">
               <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/london-2025-02.jpg" alt="Berlin Process Leaders&rsquo; Summit session, London, October 2025" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>london-2025-02.jpg</code></span>
+                <img src="/assets/images/berlin-process/poznan-2019-02.jpg" alt="WBF exhibition booth at the Pozna&#324; Summit fair, July 2019" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
+                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>poznan-2019-02.jpg</code></span>
               </figure>
               <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/london-2025-03.jpg" alt="Gender equality commitment announced at the London Summit, October 2025" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>london-2025-03.jpg</code></span>
+                <img src="/assets/images/berlin-process/poznan-2019-03.jpg" alt="Delegates at the sixth Western Balkans Summit, Pozna&#324;, July 2019" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
+                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>poznan-2019-03.jpg</code></span>
               </figure>
             </div>
-            <p class="bp-caption">Berlin Process Leaders&rsquo; Summit &mdash; London, 22 October 2025.</p>
+            <p class="bp-caption">Sixth Western Balkans Summit of the Berlin Process &mdash; Pozna&#324;, 5 July 2019.</p>
           </div>
         </div>
       </li>
