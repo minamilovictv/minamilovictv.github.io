@@ -72,7 +72,6 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 
 /* Justified body paragraphs */
 .overview-text p,
-.module-desc,
 .cohort-text p,
 .heritage-text > p,
 .partners-head p,
@@ -292,174 +291,167 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 .pillar-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
 
 /* ============================================================
-   JOURNEY · 8-day timeline
+   PROGRAMME · 7-day agenda, one panel per day
+   ============================================================
+   Day tabs switch the visible .prog-panel. Each panel is a
+   timetable of .prog-row items (time · session · people).
+   Row modifiers: .is-break (meals/coffee, muted) and
+   .is-parallel (the two concurrent Tuesday sessions).
    ============================================================ */
-.journey {
-  position: relative;
-  padding: 60px 0 20px;
+.prog-tabs {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px; margin-bottom: 36px;
 }
-.journey-track {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: 16px;
+.prog-tab {
+  flex: 0 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  min-width: 112px; padding: 11px 16px;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; cursor: pointer; font-family: inherit; text-align: center;
+  transition: background 0.18s, border-color 0.18s, transform 0.18s, box-shadow 0.18s;
 }
-.journey-track::before {
-  content: "";
-  position: absolute;
-  top: 32px; left: 4%; right: 4%; height: 3px;
-  background: linear-gradient(90deg, var(--aqua-deep) 0%, var(--aqua) 30%, var(--gold) 70%, var(--gold-deep) 100%);
-  border-radius: 2px;
-  z-index: 0;
+.prog-tab:hover { border-color: var(--aqua); background: var(--aqua-tint-2); transform: translateY(-2px); }
+.prog-tab:focus-visible { outline: 2px solid var(--aqua-deep); outline-offset: 3px; }
+.prog-tab-num { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+.prog-tab-date { font-size: 14.5px; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; line-height: 1.15; }
+.prog-tab[aria-selected="true"] {
+  background: var(--aqua-deep); border-color: var(--aqua-deep);
+  box-shadow: 0 8px 20px rgba(0,97,140,0.22);
 }
-.day-card {
-  position: relative; z-index: 1;
-  display: flex; flex-direction: column; align-items: center;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 18px 14px 18px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
-}
-.day-card:hover { transform: translateY(-4px); border-color: var(--aqua); box-shadow: 0 12px 28px rgba(0,97,140,0.14); background: var(--aqua-tint-2); }
-.day-card.is-finale { border-color: var(--gold-border); }
-.day-card.is-finale:hover { border-color: var(--gold); box-shadow: 0 12px 28px rgba(219,169,28,0.18); background: var(--gold-tint); }
-.day-dot {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--aqua);
-  color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 800;
-  margin-bottom: 12px;
-  margin-top: -34px;
-  border: 4px solid #fff;
-  box-shadow: 0 4px 10px rgba(0,97,140,0.18);
-}
-.day-card.is-finale .day-dot { background: var(--gold); color: var(--navy); box-shadow: 0 4px 10px rgba(219,169,28,0.22); }
-.day-date { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 6px; }
-.day-theme { font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 8px; min-height: 32px; }
-.day-activity { font-size: 11.5px; color: var(--ink-soft); line-height: 1.5; }
-.day-card.is-clickable { cursor: pointer; }
-.day-card.is-clickable:focus-visible { outline: 2px solid var(--aqua-deep); outline-offset: 3px; }
-.day-more {
-  margin-top: 10px; padding-top: 10px; width: 100%;
-  border-top: 1px dashed var(--line);
-  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--aqua-deep);
-  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
-}
-.day-more::after { content: "→"; transition: transform 0.2s; }
-.day-card.is-clickable:hover .day-more::after { transform: translateX(3px); }
-.day-card.is-finale .day-more { color: var(--gold-deep); }
+.prog-tab[aria-selected="true"]:hover { transform: none; background: var(--aqua-deep); }
+.prog-tab[aria-selected="true"] .prog-tab-num { color: rgba(255,255,255,0.70); }
+.prog-tab[aria-selected="true"] .prog-tab-date { color: #fff; }
+/* Arrival and closing days carry the gold accent, as the finale card did. */
+.prog-tab.is-bookend[aria-selected="true"] { background: var(--gold-deep); border-color: var(--gold-deep); box-shadow: 0 8px 20px rgba(166,127,20,0.24); }
+.prog-tab.is-bookend[aria-selected="true"]:hover { background: var(--gold-deep); }
+.prog-tab.is-bookend:hover { border-color: var(--gold); background: var(--gold-tint); }
 
-/* ============================================================
-   DAY MODAL · Learning Journey pop-up
-   ============================================================ */
-.day-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: flex-start; justify-content: center; padding: 6vh 20px; }
-.day-modal[hidden] { display: none; }
-.day-modal-backdrop { position: absolute; inset: 0; background: rgba(12,28,34,0.55); backdrop-filter: blur(3px); animation: dm-fade 0.2s ease; }
-.day-modal-dialog {
-  position: relative; z-index: 1;
-  width: 100%; max-width: 600px; max-height: 88vh; overflow-y: auto;
-  background: var(--surface);
-  border-radius: 16px;
-  box-shadow: 0 30px 80px rgba(10,25,30,0.35);
-  padding: 34px 36px 36px;
-  animation: dm-pop 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+.prog-panels { max-width: 1080px; margin: 0 auto; }
+.prog-panel { display: none; }
+.prog-panel.is-active { display: block; animation: prog-in 0.24s ease; }
+@keyframes prog-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.prog-day-head {
+  padding-bottom: 16px; margin-bottom: 6px;
+  border-bottom: 2px solid var(--aqua-tint);
 }
-@keyframes dm-fade { from { opacity: 0; } to { opacity: 1; } }
-@keyframes dm-pop { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
-.day-modal-close {
-  position: absolute; top: 16px; right: 16px;
-  width: 36px; height: 36px; border-radius: 50%;
-  border: none; background: var(--aqua-tint-2); color: var(--ink-soft);
-  display: flex; align-items: center; justify-content: center; cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.day-modal-close:hover { background: var(--aqua); color: #fff; }
-.day-modal-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--aqua-deep); margin-bottom: 10px; }
-.day-modal-title { font-size: clamp(20px, 2.6vw, 26px); font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 18px; padding-right: 32px; }
-.day-modal-body .module-desc,
-.day-modal-body .daymodal-desc { font-size: 14.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 18px; }
-.day-modal-body .module-sub { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; }
-.day-modal-body .daymodal-module + .daymodal-module { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
-.day-modal-body .daymodal-subtitle { font-size: 15.5px; font-weight: 800; color: var(--aqua-deep); margin-bottom: 10px; letter-spacing: -0.01em; }
-.day-modal-body h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 8px; }
-.day-modal-body ul { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 0 0 4px; }
-.day-modal-body li { position: relative; padding-left: 16px; font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
-.day-modal-body li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--aqua); }
-.day-modal-body em { color: var(--aqua-deep); font-style: italic; }
-body.dm-open { overflow: hidden; }
-@media (max-width: 600px) {
-  .day-modal-dialog { padding: 28px 22px 30px; }
-  .day-modal-body .module-sub { grid-template-columns: 1fr; gap: 18px; }
+.prog-day-date { font-size: 12.5px; font-weight: 700; color: var(--aqua-deep); letter-spacing: 0.04em; margin-bottom: 7px; }
+.prog-day-strand {
+  font-size: clamp(15px, 2.1vw, 20px); font-weight: 800; color: var(--ink);
+  letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; margin: 0;
 }
 
-/* ============================================================
-   CURRICULUM · 6 thematic modules (accordion)
-   ============================================================ */
-.modules-list {
-  display: flex; flex-direction: column;
-  gap: 12px;
-  max-width: 960px; margin: 0 auto;
+.prog-rows { list-style: none; margin: 0; padding: 0; }
+.prog-row {
+  display: grid; grid-template-columns: 124px 1fr 232px;
+  gap: 6px 24px; align-items: center;
+  padding: 16px 10px; border-bottom: 1px solid var(--line);
 }
-.module-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.module-card.is-open { border-color: var(--aqua); box-shadow: 0 10px 24px rgba(0,97,140,0.10); }
-.module-head {
-  width: 100%;
-  background: none;
-  border: none;
-  padding: 22px 26px;
-  display: flex; align-items: center; gap: 18px;
-  cursor: pointer;
-  text-align: left;
-  font-family: inherit;
-  transition: background 0.2s;
-}
-.module-head:hover { background: var(--aqua-tint-2); }
-.module-num {
-  width: 44px; height: 44px; border-radius: 50%;
+.prog-row:last-child { border-bottom: 0; }
+.prog-row.is-break { background: var(--aqua-tint-2); border-radius: 8px; border-bottom-color: transparent; padding-top: 11px; padding-bottom: 11px; }
+.prog-time { font-size: 13.5px; font-weight: 700; color: var(--aqua-deep); font-variant-numeric: tabular-nums; white-space: nowrap; padding-top: 1px; }
+.prog-row.is-break .prog-time { color: var(--muted); font-weight: 600; }
+.prog-title { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.45; }
+.prog-row.is-break .prog-title { font-size: 14px; font-weight: 500; color: var(--ink-soft); }
+.prog-people { font-size: 14.5px; font-weight: 700; color: var(--ink); line-height: 1.45; letter-spacing: -0.01em; text-align: right; }
+
+.prog-kind {
+  display: inline-block; margin-bottom: 7px; vertical-align: middle;
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 3px 9px; border-radius: 999px;
   background: var(--aqua-tint); color: var(--aqua-deep);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; font-weight: 800;
-  flex-shrink: 0;
-  transition: background 0.2s, color 0.2s;
 }
-.module-card.is-open .module-num { background: var(--aqua); color: #fff; }
-.module-meta { flex: 1; min-width: 0; }
-.module-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold-deep); margin-bottom: 4px; }
-.module-title { font-size: 17.5px; font-weight: 700; color: var(--ink); letter-spacing: -0.015em; line-height: 1.3; }
-.module-toggle {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: var(--surface-alt);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.2s, transform 0.2s;
+.prog-kind.is-keynote { background: var(--gold-tint); color: var(--gold-deep); }
+.prog-kind.is-visit   { background: var(--gold-tint); color: var(--gold-deep); }
+.prog-flag {
+  display: inline-block; margin: 0 0 7px 6px; vertical-align: middle;
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 2px 8px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--aqua-border); color: var(--aqua-deep);
 }
-.module-toggle svg { width: 14px; height: 14px; fill: none; stroke: var(--ink-soft); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-.module-card.is-open .module-toggle { background: var(--aqua); transform: rotate(180deg); }
-.module-card.is-open .module-toggle svg { stroke: #fff; }
-.module-body {
-  display: none;
-  padding: 0 26px 26px 88px;
-  animation: slideDown 0.25s ease;
+/* Concurrent sessions read as one bracketed pair. */
+.prog-row.is-parallel { border-left: 3px solid var(--aqua-border); border-bottom-color: transparent; padding-left: 14px; }
+.prog-row.is-parallel + .prog-row.is-parallel { border-bottom-color: var(--line); }
+
+@media (max-width: 900px) {
+  .prog-row { grid-template-columns: 108px 1fr; }
+  .prog-people { grid-column: 2; padding-top: 2px; text-align: left; }
 }
-@keyframes slideDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
-.module-card.is-open .module-body { display: block; }
-.module-desc { font-size: 14.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 20px; }
-.module-sub { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; margin-top: 18px; }
-.module-sub h4 { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--aqua-deep); margin-bottom: 10px; }
-.module-sub ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.module-sub li { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; padding-left: 16px; position: relative; }
-.module-sub li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--aqua); }
+@media (max-width: 560px) {
+  .prog-tab { min-width: 0; flex: 1 1 88px; padding: 9px 10px; }
+  .prog-tab-date { font-size: 13px; }
+  .prog-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 8px; }
+  .prog-people { grid-column: 1; text-align: left; }
+  .prog-row.is-parallel { padding-left: 12px; }
+}
+
+/* ============================================================
+   PRE-ACADEMY MENTORING · modal opened by the Mentor faculty card
+   ============================================================
+   The "Pre & Post Mentors" card in the Faculty grid carries
+   .is-clickable and opens #mentorModal; the copy itself lives in
+   the hidden #mentor-data store inside that section, so it stays
+   in the markup rather than in JavaScript.
+   ============================================================ */
+.faculty-card.is-clickable { cursor: pointer; border-color: var(--aqua-border); }
+.faculty-card.is-clickable:hover { border-color: var(--aqua); box-shadow: 0 16px 32px rgba(0,97,140,0.16); }
+.faculty-card.is-clickable:focus-visible { outline: 2px solid var(--aqua-deep); outline-offset: 3px; }
+.faculty-more {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 14px;
+  font-size: 12.5px; font-weight: 700; color: var(--aqua-deep);
+}
+.faculty-more::after { content: "\2192"; transition: transform 0.2s; }
+.faculty-card.is-clickable:hover .faculty-more::after { transform: translateX(3px); }
+
+/* Modal */
+.mtr-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: flex-start; justify-content: center; padding: 6vh 20px; }
+.mtr-modal[hidden] { display: none; }
+.mtr-backdrop { position: absolute; inset: 0; background: rgba(12,28,34,0.55); backdrop-filter: blur(3px); animation: mtr-fade 0.2s ease; }
+@keyframes mtr-fade { from { opacity: 0; } to { opacity: 1; } }
+.mtr-dialog {
+  position: relative; z-index: 1;
+  width: min(720px, 100%); max-height: 88vh; overflow-y: auto;
+  background: var(--surface); border-radius: 18px;
+  padding: 34px 38px 36px; box-shadow: 0 30px 70px rgba(0,0,0,0.28);
+  animation: mtr-rise 0.22s ease;
+}
+@keyframes mtr-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.mtr-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: 50%; background: var(--surface);
+  color: var(--ink-soft); cursor: pointer; transition: background 0.18s, color 0.18s;
+}
+.mtr-close:hover { background: var(--aqua); border-color: var(--aqua); color: #fff; }
+.mtr-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--aqua-deep); margin-bottom: 10px; }
+.mtr-title { font-size: clamp(21px, 2.6vw, 27px); font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.2; margin: 0 32px 20px 0; }
+.mtr-body p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 15px; text-align: justify; }
+.mtr-body p:last-child { margin-bottom: 0; }
+/* Standfirst above the two mentor profiles. */
+.mtr-body .mtr-lede { font-size: 15.5px; color: var(--ink); line-height: 1.7; text-align: left; margin-bottom: 4px; }
+/* One profile per mentor, divided by a hairline. */
+.mtr-person { margin-top: 26px; padding-top: 26px; border-top: 1px solid var(--line); }
+.mtr-person-track {
+  display: inline-block; margin-bottom: 8px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+  padding: 4px 11px; border-radius: 999px;
+  background: var(--aqua-tint); color: var(--aqua-deep);
+}
+.mtr-person-track.is-gold { background: var(--gold-tint); color: var(--gold-deep); }
+.mtr-person-name { font-size: 20px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 14px; }
+.mtr-body .mtr-scope {
+  margin-top: 22px; padding: 18px 20px;
+  background: var(--aqua-tint-2); border-left: 3px solid var(--aqua);
+  border-radius: 0 10px 10px 0;
+}
+.mtr-body .mtr-scope p { margin: 0; color: var(--ink); text-align: left; }
+.mtr-body .mtr-scope h4 { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--aqua-deep); margin-bottom: 8px; }
+body.mtr-open { overflow: hidden; }
+
+@media (max-width: 760px) {
+  .mtr-dialog { padding: 30px 22px 30px; }
+  .mtr-body p { text-align: left; }
+}
 
 /* ============================================================
    METHODOLOGY · four-track approach
@@ -880,12 +872,7 @@ body.dm-open { overflow: hidden; }
   .heritage-wrap { grid-template-columns: 1fr; gap: 36px; }
   .partners-row { grid-template-columns: 1fr; }
 
-  /* Journey: horizontal scroll on tablet */
-  .journey-track { grid-template-columns: repeat(8, 200px); overflow-x: auto; padding: 36px 4px 12px; gap: 14px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
-  .day-card { scroll-snap-align: start; }
-  .journey-track::before { left: 0; right: 0; }
 
-  .module-body { padding-left: 26px; }
 }
 
 @media (max-width: 768px) {
@@ -906,10 +893,6 @@ body.dm-open { overflow: hidden; }
   .method-grid { grid-template-columns: 1fr; }
   .faculty-grid { grid-template-columns: 1fr; }
 
-  .module-sub { grid-template-columns: 1fr; gap: 18px; }
-  .module-head { padding: 18px 18px; gap: 14px; }
-  .module-num { width: 38px; height: 38px; font-size: 14px; }
-  .module-body { padding: 0 18px 22px 18px; }
 
   .heritage-stop { flex-direction: column; gap: 6px; }
   .heritage-time { width: auto; }
@@ -925,8 +908,6 @@ body.dm-open { overflow: hidden; }
   .meta-facts { grid-template-columns: 1fr; gap: 14px; }
 
   .sec-head { margin-bottom: 36px; }
-  .journey-track { grid-template-columns: repeat(8, 180px); }
-  .day-card { padding: 14px 12px; }
 
 }
 
@@ -1061,12 +1042,12 @@ body.dm-open { overflow: hidden; }
     <p class="tagline">An initiative of the <strong>Western Balkans Fund</strong>, supported by the <strong>Open Society Foundation Western Balkans</strong>, the WBF Regional Academy combines thematic lectures, interactive workshops, dialogue sessions, and site visits to equip a new generation with the skills, networks, and mindset needed to advance dialogue, cooperation, and reconciliation across the WB6.</p>
 
     <div class="hero-ctas">
-      <a class="btn-primary" href="#journey">
-        Explore the Curriculum
+      <a class="btn-primary" href="#programme">
+        Explore the Programme
         <svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
       </a>
-      <a class="btn-gold" href="#journey">
-        See the Learning Journey
+      <a class="btn-gold" href="#pillars">
+        Thematic Pillars
         <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
       </a>
     </div>
@@ -1188,268 +1169,318 @@ body.dm-open { overflow: hidden; }
 </section>
 
 <!-- ============================================================
-     JOURNEY · 8-day timeline
+     PROGRAMME · full 7-day agenda
+     ------------------------------------------------------------
+     Tab buttons switch .prog-panel visibility (JS at the foot of
+     the page). To edit a day, edit its panel: each session is one
+     li.prog-row with a time, a title (optionally led by a
+     .prog-kind badge) and a .prog-people column. Meals and coffee
+     breaks use .is-break; the two concurrent Tuesday sessions use
+     .is-parallel.
      ============================================================ -->
-<section class="section" id="journey">
+<section class="section" id="programme">
   <div class="container">
     <div class="sec-head">
-      <div class="overline">Learning Journey</div>
-      <h2>Seven days that build on each other</h2>
-      <p>Every day builds on the one before. From arrival and ice-breakers through thematic foundations, dialogue practice, governance, leadership, heritage immersion, and a closing day where participants present what they've co-created.</p>
+      <div class="overline">Tirana &middot; 13&ndash;19 September 2026</div>
+      <h2>The Programme</h2>
+      <p>Seven days &middot; five thematic strands &middot; lectures, keynotes, interactive and dialogue sessions</p>
     </div>
 
-    <div class="journey">
-      <div class="journey-track" role="list">
-        <div class="day-card" role="listitem">
-          <div class="day-dot">1</div>
-          <div class="day-date">SUN 13 SEP</div>
-          <div class="day-theme">Arrival</div>
-          <div class="day-activity">Welcome &amp; ice-breaker · Intra-regional mapping</div>
+    <div class="prog-tabs" role="tablist" aria-label="Programme days">
+      <button class="prog-tab is-bookend" role="tab" type="button" id="progtab-1" aria-controls="progpanel-1" aria-selected="true"  data-day="1"><span class="prog-tab-num">Day 1</span><span class="prog-tab-date">Sun 13</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-2" aria-controls="progpanel-2" aria-selected="false" data-day="2"><span class="prog-tab-num">Day 2</span><span class="prog-tab-date">Mon 14</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-3" aria-controls="progpanel-3" aria-selected="false" data-day="3"><span class="prog-tab-num">Day 3</span><span class="prog-tab-date">Tue 15</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-4" aria-controls="progpanel-4" aria-selected="false" data-day="4"><span class="prog-tab-num">Day 4</span><span class="prog-tab-date">Wed 16</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-5" aria-controls="progpanel-5" aria-selected="false" data-day="5"><span class="prog-tab-num">Day 5</span><span class="prog-tab-date">Thu 17</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-6" aria-controls="progpanel-6" aria-selected="false" data-day="6"><span class="prog-tab-num">Day 6</span><span class="prog-tab-date">Fri 18</span></button>
+      <button class="prog-tab is-bookend" role="tab" type="button" id="progtab-7" aria-controls="progpanel-7" aria-selected="false" data-day="7"><span class="prog-tab-num">Day 7</span><span class="prog-tab-date">Sat 19</span></button>
+    </div>
+
+    <div class="prog-panels">
+
+      <!-- ---------- Day 1 · Sunday 13 September ---------- -->
+      <div class="prog-panel is-active" role="tabpanel" id="progpanel-1" aria-labelledby="progtab-1" tabindex="0">
+        <div class="prog-day-head">
+          <div class="prog-day-date">Sunday, 13 September 2026</div>
+          <h3 class="prog-day-strand">Arrival &amp; Welcome</h3>
         </div>
-        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="2" aria-haspopup="dialog" aria-label="Day 2, Foundations of Cooperation — view module details">
-          <div class="day-dot">2</div>
-          <div class="day-date">MON 14 SEP</div>
-          <div class="day-theme">Foundations of Cooperation</div>
-          <div class="day-activity">Opening · Lecture 1 · Fireside leadership stories</div>
-          <div class="day-more">View details</div>
-        </div>
-        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="3" aria-haspopup="dialog" aria-label="Day 3, Culture of Cooperation — view module details">
-          <div class="day-dot">3</div>
-          <div class="day-date">TUE 15 SEP</div>
-          <div class="day-theme">Culture of Cooperation</div>
-          <div class="day-activity">Lecture 2 · Policy brief sprint · Fishbowl dialogue</div>
-          <div class="day-more">View details</div>
-        </div>
-        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="4" aria-haspopup="dialog" aria-label="Day 4, Dialogue, Democracy and Inclusion — view module details">
-          <div class="day-dot">4</div>
-          <div class="day-date">WED 16 SEP</div>
-          <div class="day-theme">Dialogue, Democracy &amp; Inclusion</div>
-          <div class="day-activity">Lecture 3 · Practising difficult conversations</div>
-          <div class="day-more">View details</div>
-        </div>
-        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="5" aria-haspopup="dialog" aria-label="Day 5, Institutions and Civil Society — view module details">
-          <div class="day-dot">5</div>
-          <div class="day-date">THU 17 SEP</div>
-          <div class="day-theme">Institutions &amp; Civil Society</div>
-          <div class="day-activity">Lecture 4 · Communication workshop · Visual dialogue</div>
-          <div class="day-more">View details</div>
-        </div>
-        <div class="day-card is-clickable" role="listitem" tabindex="0" data-day="6" aria-haspopup="dialog" aria-label="Day 6, Leadership and Human Rights — view module details">
-          <div class="day-dot">6</div>
-          <div class="day-date">FRI 18 SEP</div>
-          <div class="day-theme">Leadership &amp; Human Rights</div>
-          <div class="day-activity">Lecture 5 · Ethics workshop · Closing reception</div>
-          <div class="day-more">View details</div>
-        </div>
-        <div class="day-card is-finale" role="listitem">
-          <div class="day-dot">7</div>
-          <div class="day-date">SAT 19 SEP</div>
-          <div class="day-theme">Closing &amp; Reflection</div>
-          <div class="day-activity">Final presentations · &ldquo;The region we want to build&rdquo;</div>
-        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">10:00&ndash;16:00</div>
+            <div class="prog-title">Arrival of Participants &amp; Check-in</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">14:00&ndash;16:00</div>
+            <div class="prog-title">Lunch</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">17:00&ndash;18:00</div>
+            <div class="prog-title"><span class="prog-kind">Icebreaker</span><br>Informal Welcome, Participant Introductions &amp; Icebreaker: Intra-Regional Mapping</div>
+            <div class="prog-people">Ira Topalli, Dafina Beqiri &amp; Uro&scaron; &Ccaron;itakovi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:00&ndash;21:00</div>
+            <div class="prog-title">Networking Dinner</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
       </div>
+
+      <!-- ---------- Day 2 · Monday 14 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-2" aria-labelledby="progtab-2" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Monday, 14 September 2026</div>
+          <h3 class="prog-day-strand">Culture of Cooperation and European Integration</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;09:30</div>
+            <div class="prog-title">Welcoming Remarks</div>
+            <div class="prog-people">Dr. Gjergj Murra, WBF<br>Mr. Andi Dobrushi, OSF WB</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">09:30&ndash;11:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 1</span><br>Western Balkans and the Politics of Regional Cooperation</div>
+            <div class="prog-people">Ms. Majlinda Bregu</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">11:00&ndash;11:30</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:30&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 2</span><br>Regional Progress toward EU Integration</div>
+            <div class="prog-people">Mr. Dane Taleski</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><br>Shaping the Regional Future in the Western Balkans</div>
+            <div class="prog-people">Mr. Ramadan Ilazi</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">18:00&ndash;20:00</div>
+            <div class="prog-title"><span class="prog-kind">Dialogue Session</span><br>Public Relations, Public Speaking and Strategic Communication for Leaders</div>
+            <div class="prog-people">Mr. Klevis Gjoni &amp; Mr. Thanas Goga</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:00&ndash;21:00</div>
+            <div class="prog-title">Dinner</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 3 · Tuesday 15 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-3" aria-labelledby="progtab-3" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Tuesday, 15 September 2026</div>
+          <h3 class="prog-day-strand">Democracy, Citizenship &amp; European Future</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;10:30</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>Regional Economic Integration as Preparation for the EU Single Market &mdash; The CEFTA Experience</div>
+            <div class="prog-people">Ms. Pranvera Kastrati</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">10:30&ndash;11:00</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:00&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 3</span><br>Democracy in Practice &mdash; Citizens, Participation and European Futures</div>
+            <div class="prog-people">Mr. Endri Shabani</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row is-parallel">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><span class="prog-flag">Parallel</span><br>Practicing Project Cycle Management</div>
+            <div class="prog-people">Ms. Valbona Dedja &amp; Ms. Dafina Beqiri</div>
+          </li>
+          <li class="prog-row is-parallel">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><span class="prog-flag">Parallel</span><br>Co-creation Lab &mdash; How to Design a Policy Brief &amp; Initiative Sprint</div>
+            <div class="prog-people">Ms. Danijela Jocimovi&cacute;</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">18:00&ndash;19:30</div>
+            <div class="prog-title"><span class="prog-kind">Dialogue Session</span><br>Protecting Rights, Promoting Dialogue, Acting &mdash; Emerging Leaders in Freedom of Religion or Belief at Cumberland Lodge</div>
+            <div class="prog-people">Ms. Marika Djolai</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:30&ndash;21:00</div>
+            <div class="prog-title">Dinner</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 4 · Wednesday 16 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-4" aria-labelledby="progtab-4" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Wednesday, 16 September 2026</div>
+          <h3 class="prog-day-strand">Leadership for Social Impact</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;11:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 4</span><br>Values-Based Leadership and Human Rights</div>
+            <div class="prog-people">Ms. Remzije Istrefi</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">11:00&ndash;11:30</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:30&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 5</span><br>Democratic Resilience and Emerging Leadership for Social Impact</div>
+            <div class="prog-people">Ms. Larisa Halilovi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><br>Diplomatic Etiquette, Dialogue and Negotiation</div>
+            <div class="prog-people">Mr. Idriz Konjari &amp; Mr. Valter Ibrahimi</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">17:00&ndash;19:00</div>
+            <div class="prog-title"><span class="prog-kind is-visit">Site Visit</span><br>Bunk&rsquo;Art 2</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:30&ndash;21:00</div>
+            <div class="prog-title">Dinner in Tirana &mdash; Piramida</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 5 · Thursday 17 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-5" aria-labelledby="progtab-5" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Thursday, 17 September 2026</div>
+          <h3 class="prog-day-strand">Media, Communication and Freedom of Expression</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;11:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 6</span><br>Role of Media, Media Ecosystems and Freedom of Expression in the Regional Context</div>
+            <div class="prog-people">Mr. Bojan Vrani&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">11:00&ndash;11:30</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:30&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 7</span><br>Disinformation, Media Literacy and Responsible Communication</div>
+            <div class="prog-people">Mr. Norbert &Scaron;inkovi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">15:30&ndash;17:00</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>Regional Cooperation Seen from Representatives of the Ministries of Foreign Affairs &mdash; The WBF Case</div>
+            <div class="prog-people">Andrej, Mihajlo, Vana &amp; Ilir</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">19:00&ndash;21:00</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Ceremony</span><br>Closing Reception &amp; Award Ceremony</div>
+            <div class="prog-people">WBF</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 6 · Friday 18 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-6" aria-labelledby="progtab-6" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Friday, 18 September 2026</div>
+          <h3 class="prog-day-strand">Women, Inclusion and Gender-Responsive Leadership in Regional Cooperation</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;10:30</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>The RCC&rsquo;s Role in Promoting Regional Integration</div>
+            <div class="prog-people">Mr. Pavle Jankovi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">10:30&ndash;11:00</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:00&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 8</span><br>Inclusion as a Foundation of Democratic Governance and Regional Cooperation</div>
+            <div class="prog-people">Ms. Maja Rai&ccaron;evi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 9</span><br>Gender-Responsive Leadership in Practice</div>
+            <div class="prog-people">Ms. Shk&euml;ndije Himaj</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">17:00&ndash;18:30</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><br>Challenging Gender Norms in Leadership and Decision-Making</div>
+            <div class="prog-people">Ms. Ira Topalli</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:00&ndash;21:00</div>
+            <div class="prog-title">Dinner</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 7 · Saturday 19 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-7" aria-labelledby="progtab-7" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Saturday, 19 September 2026</div>
+          <h3 class="prog-day-strand">Reflection &amp; Closing</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;11:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><br>Presentation of Regional Actions and Policy Ideas &amp; Closing Reflections</div>
+            <div class="prog-people">WBF</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">13:00&ndash;15:00</div>
+            <div class="prog-title">Departure of Participants</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </section>
-
-<!-- ============================================================
-     DAY MODAL DATA · hidden source for the Learning Journey pop-ups.
-     (Was the visible "Six thematic modules" Curriculum section; its
-     text is now shown only inside the day-card modals above. Kept here,
-     hidden, so the exact module content feeds the modals via JS.)
-     ============================================================ -->
-<div id="day-modal-data" hidden>
-    <div class="modules-list" id="modules-list">
-
-      <div class="module-card">
-        <button class="module-head" type="button" aria-expanded="false">
-          <div class="module-num">01</div>
-          <div class="module-meta">
-            <div class="module-overline">Day 2 · 14 September</div>
-            <div class="module-title">Culture of Cooperation, Memory, Reconciliation &amp; Shared History</div>
-          </div>
-          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
-        </button>
-        <div class="module-body">
-          <p class="module-desc">Explores the historical evolution and contemporary dynamics of the Western Balkans, with a particular focus on the legacy of the 1990s conflicts and the ongoing processes of peacebuilding and regional cooperation. Provides participants with a structured analytical framework to understand how historical experiences, collective memory, and identity narratives continue to shape political relations, social cohesion, and trust across the region.</p>
-          <div class="module-sub">
-            <div>
-              <h4>Objectives</h4>
-              <ul>
-                <li>Develop a critical understanding of conflicts, peace processes, and post-conflict transformation in the Western Balkans.</li>
-                <li>Analyse the state of social inclusion and cohesion, and assess the achievements and limits of frameworks like RCC, RYCO, WBF, and CEFTA.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Learning Outcomes</h4>
-              <ul>
-                <li>Explore the role of collective memory and historical narratives in shaping community relationships.</li>
-                <li>Analyse challenges and opportunities in post-conflict reconciliation.</li>
-                <li>Reflect on the role of inclusive remembrance, education, culture, and civil society in building sustainable peace.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-card">
-        <button class="module-head" type="button" aria-expanded="false">
-          <div class="module-num">02</div>
-          <div class="module-meta">
-            <div class="module-overline">Day 3 · 15 September</div>
-            <div class="module-title">The Theory and Practice of Dialogue</div>
-          </div>
-          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
-        </button>
-        <div class="module-body">
-          <p class="module-desc">Examines dialogue as both a theoretical framework and a practical tool for transforming relationships in divided societies. Distinguishes genuine, transformative dialogue from ordinary conversation, focusing on its role in post-conflict and multicultural contexts where competing narratives, identity differences, and historical sensitivities require structured and facilitated communication processes.</p>
-          <div class="module-sub">
-            <div>
-              <h4>Objectives</h4>
-              <ul>
-                <li>Understand the core principles and dimensions of dialogue: what enables meaningful exchange beyond superficial conversation.</li>
-                <li>Analyse how dialogue can be used as a tool for trust-building, conflict transformation, and cooperation in divided or post-conflict societies.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Key Readings</h4>
-              <ul>
-                <li>David Bohm, <em>On Dialogue</em></li>
-                <li>William Isaacs, <em>Dialogue: The Art of Thinking Together</em></li>
-                <li>John Paul Lederach, <em>Building Peace</em></li>
-                <li>Harold Saunders, <em>A Public Peace Process</em></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-card">
-        <button class="module-head" type="button" aria-expanded="false">
-          <div class="module-num">03</div>
-          <div class="module-meta">
-            <div class="module-overline">Day 4 · 16 September</div>
-            <div class="module-title">Institutions, Civil Society &amp; Regional Governance</div>
-          </div>
-          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
-        </button>
-        <div class="module-body">
-          <p class="module-desc">Examines the architecture of governance and cooperation in the Western Balkans, focusing on the interplay between formal institutions, regional organizations, and civil society actors. Encourages participants to understand governance not as a top-down institutional system, but as a multi-layered ecosystem where state actors, regional bodies, and civil society jointly shape outcomes.</p>
-          <div class="module-sub">
-            <div>
-              <h4>Objectives</h4>
-              <ul>
-                <li>Understand the structure and functioning of governance systems and regional cooperation mechanisms in the Western Balkans.</li>
-                <li>Analyse the role of institutions and civil society in promoting democratic governance, accountability, and regional cooperation.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Learning Outcomes</h4>
-              <ul>
-                <li>Identify key regional governance frameworks and their significance for regional development.</li>
-                <li>Evaluate challenges and opportunities for cooperation among institutions, civil society, and regional actors.</li>
-                <li>Recognise the importance of inclusive governance and multi-stakeholder cooperation.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-card">
-        <button class="module-head" type="button" aria-expanded="false">
-          <div class="module-num">04</div>
-          <div class="module-meta">
-            <div class="module-overline">Day 5 · 17 September</div>
-            <div class="module-title">Media, Narrative &amp; the Public Dimension of Cooperation</div>
-          </div>
-          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
-        </button>
-        <div class="module-body">
-          <p class="module-desc">Explores how media, communication, and public narratives shape perceptions of cooperation, conflict, and identity in the Western Balkans. Examines how information ecosystems influence public opinion, reinforce or challenge stereotypes, and contribute to either polarisation or social cohesion. Particular focus on media freedom and the role of journalists, civil society actors, and communicators in the public dimension of peacebuilding.</p>
-          <div class="module-sub">
-            <div>
-              <h4>Objectives</h4>
-              <ul>
-                <li>Understand how media, communication, and narratives shape perceptions of cooperation, identity, and conflict.</li>
-                <li>Analyse the role of traditional and digital media in framing public discourse, including misinformation and polarisation.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Learning Outcomes</h4>
-              <ul>
-                <li>Critically assess the impact of disinformation, stereotypes, and biased narratives on social cohesion.</li>
-                <li>Identify strategies for promoting balanced, inclusive narratives.</li>
-                <li>Develop a critical understanding of the responsibilities of media professionals and citizens in public discourse.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-card">
-        <button class="module-head" type="button" aria-expanded="false">
-          <div class="module-num">05</div>
-          <div class="module-meta">
-            <div class="module-overline">Day 6 · 18 September</div>
-            <div class="module-title">Leadership, Human Rights &amp; Democratic Resilience</div>
-          </div>
-          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
-        </button>
-        <div class="module-body">
-          <p class="module-desc">Examines leadership not as positional authority, but as a set of values, behaviours, and practices grounded in accountability, empathy, integrity, and the ability to foster trust in diverse and polarised societies. Connects human rights as both a normative framework and a practical tool with the concept of democratic resilience and the role of emerging leaders in safeguarding democratic values.</p>
-          <div class="module-sub">
-            <div>
-              <h4>Objectives</h4>
-              <ul>
-                <li>Understand leadership as a value-based and relational practice connected to human rights and democratic governance.</li>
-                <li>Analyse democratic resilience and the role of emerging leaders in strengthening institutions, civic space, and social cohesion.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Learning Outcomes</h4>
-              <ul>
-                <li>Explain the relationship between leadership, human rights, and societal resilience.</li>
-                <li>Assess challenges to democracy, including polarisation, discrimination, and democratic backsliding.</li>
-                <li>Reflect on one's own potential as a leader and active citizen advancing democratic values.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="module-card">
-        <button class="module-head" type="button" aria-expanded="false">
-          <div class="module-num">06</div>
-          <div class="module-meta">
-            <div class="module-overline">Day 4 · 16 September</div>
-            <div class="module-title">Women, Inclusion &amp; Future Regional Cooperation</div>
-          </div>
-          <div class="module-toggle"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
-        </button>
-        <div class="module-body">
-          <p class="module-desc">Explores the role of women, youth, and marginalised groups in shaping more inclusive, equitable, and sustainable models of regional cooperation. Examines structural and cultural barriers to participation in public, political, and economic life while highlighting the transformative contributions of women's leadership and inclusive movements. Forward-looking dimension on youth engagement, digital transformation, and civic innovation.</p>
-          <div class="module-sub">
-            <div>
-              <h4>Objectives</h4>
-              <ul>
-                <li>Understand inclusion, gender equality, and intersectionality as a foundation for sustainable cooperation and democratic governance.</li>
-                <li>Analyse the barriers and opportunities for women's leadership in shaping future regional cooperation.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Learning Outcomes</h4>
-              <ul>
-                <li>Explain the importance of gender equality in advancing cooperation and sustainable development.</li>
-                <li>Identify barriers limiting the participation of women and underrepresented groups.</li>
-                <li>Evaluate good practices that promote gender-responsive approaches to development.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-</div>
 
 <!-- ============================================================
      METHODOLOGY · four tracks
@@ -1589,7 +1620,11 @@ body.dm-open { overflow: hidden; }
         </div>
       </div>
 
-      <div class="faculty-card">
+      <!-- Clickable: opens #mentorModal with the pre-Academy online
+           mentoring detail held in #mentor-data below. -->
+      <div class="faculty-card is-clickable" data-mentor-open role="button" tabindex="0"
+           aria-haspopup="dialog"
+           aria-label="Pre and Post Mentors — read about the pre-Academy online mentoring">
         <div class="faculty-photo">
           <div class="faculty-silhouette">
             <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -1600,6 +1635,7 @@ body.dm-open { overflow: hidden; }
           <div class="faculty-name">Pre &amp; Post Mentors</div>
           <div class="faculty-status">Ongoing · before, during &amp; after</div>
           <p class="faculty-desc">Senior mentors who accompany participants from pre-arrival preparation through post-Academy initiative development, in line with WBF mentorship guidelines.</p>
+          <span class="faculty-more">Meet the mentors</span>
         </div>
       </div>
 
@@ -1614,6 +1650,46 @@ body.dm-open { overflow: hidden; }
           <div class="faculty-name">Regional Voices</div>
           <div class="faculty-status">Four per edition · daily keynote</div>
           <p class="faculty-desc">Senior political leaders, accomplished professionals, and emerging young leaders who join fireside conversations to share lived experiences of leadership across the region.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ------------------------------------------------------------
+         PRE-ACADEMY MENTORING · content for the "Pre & Post Mentors"
+         faculty card above. That card opens #mentorModal and the script
+         at the foot of the page copies this block into it, using the
+         data-track / data-name attributes as the modal's eyebrow and
+         title. Nothing here renders on the page — edit the copy here.
+         ------------------------------------------------------------ -->
+    <div id="mentor-data" hidden data-track="Before Tirana" data-name="Pre-Academy online mentoring">
+
+      <p class="mtr-lede">The Academy starts before arrival. Ahead of the week in Tirana, participants join online mentoring sessions in two tracks, each led by a practitioner who continues to work with the cohort on site.</p>
+
+      <div class="mtr-person">
+        <div class="mtr-person-track">Strategic Communication</div>
+        <div class="mtr-person-name">Ms. Eldisa Zhebo</div>
+        <p>The Strategic Communication component of the WBF Regional Academy is led by <strong>Ms. Eldisa Zhebo</strong>, a professional in lifelong guidance, career development, training, and organisational capacity building, with extensive experience working with public institutions and professionals in Albania.</p>
+        <p>Since 2021, she has served as a <strong>National Expert in Lifelong Guidance and Career Development for CEDEFOP</strong> (European Centre for the Development of Vocational Training), contributing to the development of career guidance systems and professional development initiatives.</p>
+        <p>Her experience also includes public administration reform and institutional capacity development. She supported the <strong>Albanian School of Public Administration (ASPA)</strong> in piloting an enhanced digital Training Needs Assessment tool across municipalities, including training delivery, stakeholder coordination, analysis of findings, and the development of strategic recommendations.</p>
+        <p>As <strong>Capacity Development Manager</strong> at the Institute for Change and Leadership in Albania (ICLA), she has managed and contributed to professional learning programmes in leadership, public administration, change management, strategic thinking, management, career development, and sustainable development.</p>
+        <div class="mtr-scope">
+          <h4>Within the WBF Regional Academy</h4>
+          <p>Her mentoring will focus on strategic communication, audience analysis, message development, and the effective communication of ideas and initiatives.</p>
+        </div>
+      </div>
+
+      <div class="mtr-person">
+        <div class="mtr-person-track is-gold">Leadership</div>
+        <div class="mtr-person-name">Ms. Elma Demir</div>
+        <p>The Leadership component of the WBF Regional Academy is led by <strong>Ms. Elma Demir</strong>, a professor, researcher, project manager, and social innovation practitioner with experience across the Western Balkans, Europe, and the United States in leadership, organisational change, participatory development, research, and multi-stakeholder cooperation.</p>
+        <p>She completed her doctoral studies in <strong>Management Sciences at Paris-Saclay University</strong> and is currently pursuing an MIT MicroMasters in Data, Economics, and Design of Policy. She also holds an M.A. in Globalization Studies from Dartmouth College and a B.A. in Political Science from the University of Sarajevo.</p>
+        <p>Elma is the <strong>Co-founder and Director of the Association for Research and Social Innovation ADT</strong> in Sarajevo, where she develops and leads initiatives related to social innovation, environmental sustainability, organisational learning, and community development. Her work incorporates strategic planning, design thinking, participatory research, foresight, impact evaluation, and multi-stakeholder engagement.</p>
+        <p>Her professional experience also includes European research and innovation programmes. She has worked as a Researcher and Project Manager at <strong>Institut Mines-T&eacute;l&eacute;com Business School</strong> in Paris and as a Researcher and Evaluator for <strong>Technopolis Group</strong>, contributing to assessments of research and science ecosystems across the Western Balkans. Through her work with <strong>Goldsmiths, University of London</strong>, she coordinated international projects related to gender justice and conducted interdisciplinary research on social development and post-conflict transformation.</p>
+        <div class="mtr-scope">
+          <h4>Within the WBF Regional Academy</h4>
+          <p>Her mentoring will focus on self-awareness, collaborative leadership, strategic thinking, organisational learning, and leading change in complex and diverse environments.</p>
         </div>
       </div>
 
@@ -1758,17 +1834,17 @@ body.dm-open { overflow: hidden; }
 </main>
 
 <!-- ============================================================
-     DAY MODAL · pop-up for Learning Journey day cards
+     MENTOR MODAL · full bio for the pre-Academy mentoring cards
      ============================================================ -->
-<div class="day-modal" id="dayModal" role="dialog" aria-modal="true" aria-labelledby="dayModalTitle" hidden>
-  <div class="day-modal-backdrop" data-close></div>
-  <div class="day-modal-dialog" role="document">
-    <button class="day-modal-close" type="button" aria-label="Close" data-close>
+<div class="mtr-modal" id="mentorModal" role="dialog" aria-modal="true" aria-labelledby="mentorModalTitle" hidden>
+  <div class="mtr-backdrop" data-close></div>
+  <div class="mtr-dialog" role="document">
+    <button class="mtr-close" type="button" aria-label="Close" data-close>
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <div class="day-modal-eyebrow" id="dayModalEyebrow"></div>
-    <h2 class="day-modal-title" id="dayModalTitle"></h2>
-    <div class="day-modal-body" id="dayModalBody"></div>
+    <div class="mtr-eyebrow" id="mentorModalEyebrow"></div>
+    <h2 class="mtr-title" id="mentorModalTitle"></h2>
+    <div class="mtr-body" id="mentorModalBody"></div>
   </div>
 </div>
 
@@ -1789,74 +1865,87 @@ body.dm-open { overflow: hidden; }
 </script>
 
 <script>
-/* Learning Journey · day-card detail modal.
-   Content is sourced from the hidden #day-modal-data block (former Curriculum
-   section), grouped by the "Day N" label in each module's overline. */
+/* Programme · day tabs.
+   Shows one .prog-panel at a time. Arrow keys move between tabs
+   (roving tabindex), matching the ARIA tabs pattern. */
 (function () {
-  const modal = document.getElementById('dayModal');
-  if (!modal) return;
-  const eyebrowEl = document.getElementById('dayModalEyebrow');
-  const titleEl = document.getElementById('dayModalTitle');
-  const bodyEl = document.getElementById('dayModalBody');
-  const closeBtn = modal.querySelector('.day-modal-close');
-  let lastFocused = null;
+  const tabs = Array.from(document.querySelectorAll('.prog-tab'));
+  const panels = Array.from(document.querySelectorAll('.prog-panel'));
+  if (!tabs.length || !panels.length) return;
 
-  /* Build a day -> [modules] map from the hidden data store. */
-  const dayData = {};
-  document.querySelectorAll('#day-modal-data .module-card').forEach(card => {
-    const overlineEl = card.querySelector('.module-overline');
-    const titleNode = card.querySelector('.module-title');
-    const bodyNode = card.querySelector('.module-body');
-    if (!overlineEl || !titleNode || !bodyNode) return;
-    const match = overlineEl.textContent.match(/Day\s+(\d+)/i);
-    if (!match) return;
-    const day = match[1];
-    (dayData[day] = dayData[day] || []).push({
-      title: titleNode.innerHTML.trim(),
-      bodyHTML: bodyNode.innerHTML
+  function select(day, moveFocus) {
+    tabs.forEach(t => {
+      const on = t.getAttribute('data-day') === day;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if (on && moveFocus) t.focus();
+    });
+    panels.forEach(p => {
+      const on = p.id === 'progpanel-' + day;
+      p.classList.toggle('is-active', on);
+      p.hidden = !on;
+    });
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
+    tab.addEventListener('click', () => select(tab.getAttribute('data-day'), false));
+    tab.addEventListener('keydown', e => {
+      let next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (!next) return;
+      e.preventDefault();
+      select(next.getAttribute('data-day'), true);
     });
   });
 
-  function buildContent(day) {
-    const mods = dayData[day];
-    if (!mods || !mods.length) return false;
-    const card = document.querySelector('.day-card[data-day="' + day + '"]');
-    const date = card ? (card.querySelector('.day-date') || {}).textContent : '';
-    const theme = card ? (card.querySelector('.day-theme') || {}).textContent : '';
-    eyebrowEl.textContent = 'Day ' + day + (date ? ' · ' + date.trim() : '');
-    if (mods.length === 1) {
-      titleEl.innerHTML = mods[0].title;
-      bodyEl.innerHTML = mods[0].bodyHTML;
-    } else {
-      titleEl.textContent = theme ? theme.trim() : 'Day ' + day;
-      bodyEl.innerHTML = mods.map(m =>
-        '<div class="daymodal-module"><h3 class="daymodal-subtitle">' + m.title + '</h3>' + m.bodyHTML + '</div>'
-      ).join('');
-    }
-    return true;
-  }
+  /* Deep-link a single day: regional-academy.html#day-3 */
+  const m = (location.hash || '').match(/^#day-([1-7])$/);
+  if (m) select(m[1], false);
+})();
+</script>
+<script>
+/* Pre-Academy mentoring modal.
+   Opened by the "Pre & Post Mentors" faculty card. The content —
+   standfirst plus both mentor profiles — comes from the hidden
+   #mentor-data store, with its data-track / data-name attributes
+   supplying the modal eyebrow and title. */
+(function () {
+  const modal = document.getElementById('mentorModal');
+  const store = document.getElementById('mentor-data');
+  if (!modal || !store) return;
+  const eyebrowEl = document.getElementById('mentorModalEyebrow');
+  const titleEl = document.getElementById('mentorModalTitle');
+  const bodyEl = document.getElementById('mentorModalBody');
+  const closeBtn = modal.querySelector('.mtr-close');
+  let lastFocused = null;
 
-  function openModal(day) {
-    if (!buildContent(day)) return;
+  function openModal() {
+    eyebrowEl.textContent = store.getAttribute('data-track') || '';
+    titleEl.textContent = store.getAttribute('data-name') || '';
+    bodyEl.innerHTML = store.innerHTML;
     lastFocused = document.activeElement;
     modal.hidden = false;
-    document.body.classList.add('dm-open');
-    modal.querySelector('.day-modal-dialog').scrollTop = 0;
+    document.body.classList.add('mtr-open');
+    modal.querySelector('.mtr-dialog').scrollTop = 0;
     closeBtn.focus();
   }
 
   function closeModal() {
     modal.hidden = true;
-    document.body.classList.remove('dm-open');
+    document.body.classList.remove('mtr-open');
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
   }
 
-  document.querySelectorAll('.day-card.is-clickable').forEach(card => {
-    card.addEventListener('click', () => openModal(card.getAttribute('data-day')));
+  document.querySelectorAll('[data-mentor-open]').forEach(card => {
+    card.addEventListener('click', openModal);
     card.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
         e.preventDefault();
-        openModal(card.getAttribute('data-day'));
+        openModal();
       }
     });
   });
@@ -1868,7 +1957,6 @@ body.dm-open { overflow: hidden; }
     if (e.key === 'Escape' && !modal.hidden) closeModal();
   });
 })();
-
 </script>
 </body>
 </html>
