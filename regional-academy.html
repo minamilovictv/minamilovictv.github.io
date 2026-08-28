@@ -81,9 +81,7 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 /* Justified body paragraphs */
 .overview-text p,
 .cohort-text p,
-.heritage-text > p,
-.partners-head p,
-.partners-thanks { text-align: justify; }
+.heritage-text > p { text-align: justify; }
 
 /* Hyphenation is disabled site-wide (see css/site-chrome.css), so justifying
    a narrow measure has nowhere to give except the word gaps. Below ~600px the
@@ -93,9 +91,8 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   .overview-text p,
   .cohort-text p,
   .heritage-text > p,
-  .partners-head p,
-  .partners-thanks,
-  .mtr-body p { text-align: left; }
+  .mtr-body p,
+  .pillars-intro p { text-align: left; }
 }
 
 /* Mobile navigation (hamburger + drawer) is provided by js/nav.js,
@@ -214,6 +211,11 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 .sec-head h2 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.025em; line-height: 1.15; }
 .sec-head h2 .gold-accent { color: var(--gold-deep); }
 .sec-head p { font-size: 16.5px; color: var(--ink-soft); line-height: 1.65; }
+/* A section head with no intro paragraph must not keep the heading's bottom
+   margin on top of the head's own 52px. */
+.sec-head h2:last-child { margin-bottom: 0; }
+/* Section intros that run to more than one paragraph need the gap. */
+.sec-head p + p { margin-top: 14px; }
 
 /* ============================================================
    OVERVIEW · what & why
@@ -271,6 +273,24 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   transition: transform .22s ease, box-shadow .22s ease;
 }
 .distinguishing-card li:hover .dot { transform: scale(1.18); box-shadow: 0 0 0 4px rgba(224,167,56,0.22); }
+
+/* The pillars intro is a sentence-length statement plus two dense paragraphs,
+   not the short title the shared .sec-head sizing assumes. At the common h2
+   size it set as three 38px lines and overpowered the cards beneath it, so
+   here the heading drops to statement size on a wider measure, and the body
+   is held to a readable measure inside it. */
+.pillars-intro { max-width: 1180px; }
+.pillars-intro h2 {
+  font-size: clamp(21px, 2.2vw, 28px);
+  font-weight: 700;
+  line-height: 1.34;
+  letter-spacing: -0.012em;
+  margin-bottom: 20px;
+}
+.pillars-intro p {
+  font-size: 15.5px;
+  line-height: 1.75;
+}
 
 /* ============================================================
    PILLARS · five thematic pillars, one per programme day
@@ -519,7 +539,8 @@ body.mtr-open { overflow: hidden; }
 
 @media (max-width: 760px) {
   .mtr-dialog { padding: 30px 22px 30px; }
-  .mtr-body p { text-align: left; }
+  .mtr-body p,
+  .pillars-intro p { text-align: left; }
 }
 
 /* ============================================================
@@ -690,37 +711,86 @@ body.mtr-open { overflow: hidden; }
 .cohort-text p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
 .cohort-profile { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .cohort-profile-item {
-  --c: var(--forest); --c-deep: var(--forest-deep); --c-tint: var(--forest-tint-2);
   position: relative;
   display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
-  padding: 20px 18px 18px;
-  background: #fff;
-  border: 1px solid var(--line, #e5ece9);
+  padding: 22px 20px 20px;
+  /* Resting state is the logo gold, kept as a tint so the ink stays readable;
+     a solid #e0a738 drops the description text to 3.5:1. */
+  background: linear-gradient(158deg, var(--gold-tint) 0%, #fffdf6 100%);
+  border: 1px solid var(--gold-border);
   border-radius: 14px;
   overflow: hidden;
-  transition: transform .28s cubic-bezier(.22,.61,.36,1), box-shadow .28s ease, border-color .28s ease;
+  isolation: isolate;
+  transition: transform .3s cubic-bezier(.22,.61,.36,1),
+              box-shadow .3s ease, border-color .3s ease;
 }
-.cohort-profile-item:nth-child(odd) { --c: var(--gold); --c-deep: var(--gold-deep); --c-tint: var(--gold-tint); }
+/* The green is painted as its own layer that wipes up over the gold, rather
+   than swapping background-color, which cannot be animated between gradients.
+   Negative z-index inside the isolated card sits above the gold and below the
+   text, so the copy stays legible throughout the wipe. */
+.cohort-profile-item::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(158deg, var(--forest-deep) 0%, var(--forest-darker) 100%);
+  opacity: 0; transform: translateY(26%);
+  transition: opacity .32s ease, transform .44s cubic-bezier(.22,.61,.36,1);
+}
+.cohort-profile-item:hover::after,
+.cohort-profile-item:focus-within::after { opacity: 1; transform: translateY(0); }
+
+/* Gold rule drawn along the top edge as the card is entered. */
 .cohort-profile-item::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--c); transform: scaleX(0); transform-origin: left;
-  transition: transform .32s ease;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform .34s ease, background .3s ease;
+  z-index: 1;
 }
-.cohort-profile-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 34px rgba(12,80,70,0.12);
-  border-color: color-mix(in srgb, var(--c) 45%, var(--line, #e5ece9));
+.cohort-profile-item:hover::before,
+.cohort-profile-item:focus-within::before { transform: scaleX(1); background: var(--gold-light); }
+
+.cohort-profile-item:hover,
+.cohort-profile-item:focus-within {
+  transform: translateY(-5px);
+  border-color: var(--forest-darker);
+  box-shadow: 0 18px 38px rgba(12,80,70,0.26);
 }
-.cohort-profile-item:hover::before { transform: scaleX(1); }
+
 .cohort-profile-item svg {
   width: 20px; height: 20px; padding: 10px; box-sizing: content-box;
-  fill: none; stroke: var(--c-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-  background: var(--c-tint); border-radius: 12px; flex-shrink: 0; margin: 0;
-  transition: transform .32s cubic-bezier(.22,.61,.36,1), background .25s ease, stroke .25s ease;
+  fill: none; stroke: var(--forest-darker); stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  background: var(--gold); border-radius: 12px; flex-shrink: 0; margin: 0;
+  transition: transform .34s cubic-bezier(.22,.61,.36,1),
+              background .3s ease, box-shadow .3s ease;
 }
-.cohort-profile-item:hover svg { transform: rotate(-6deg) scale(1.08); background: var(--c); stroke: #fff; }
-.cohort-profile-item strong { font-size: 14.5px; color: var(--ink); font-weight: 800; display: block; margin-bottom: 4px; letter-spacing: -.01em; }
-.cohort-profile-item span { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+.cohort-profile-item:hover svg,
+.cohort-profile-item:focus-within svg {
+  transform: rotate(-8deg) scale(1.1);
+  background: var(--gold-light);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.30);
+}
+
+.cohort-profile-item strong {
+  font-size: 14.5px; color: var(--ink); font-weight: 800;
+  display: block; margin-bottom: 4px; letter-spacing: -.01em;
+  transition: color .26s ease;
+}
+.cohort-profile-item span {
+  font-size: 13px; color: var(--ink-soft); line-height: 1.55;
+  transition: color .26s ease;
+}
+.cohort-profile-item:hover strong,
+.cohort-profile-item:focus-within strong { color: #fff; }
+.cohort-profile-item:hover span,
+.cohort-profile-item:focus-within span { color: rgba(255,255,255,0.85); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cohort-profile-item,
+  .cohort-profile-item::after,
+  .cohort-profile-item::before,
+  .cohort-profile-item svg { transition-duration: .01ms; }
+  .cohort-profile-item::after { transform: none; }
+  .cohort-profile-item:hover { transform: none; }
+}
 @media (max-width: 520px) { .cohort-profile { grid-template-columns: 1fr; } }
 
 /* Country chips */
@@ -827,48 +897,34 @@ body.mtr-open { overflow: hidden; }
 .value-tag.is-sage:hover { background: var(--sage); color: var(--forest-darker); border-color: var(--sage); }
 
 /* ============================================================
-   PARTNERS
+   PARTNERS · closing credit strip
+   ============================================================
+   One credit line over the two logos, sitting straight on the page
+   background. This replaced a white card that reserved 200px per
+   logo, where half the section's height was empty.
    ============================================================ */
-.partners-wrap {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 40px 36px;
-  max-width: 1080px; margin: 0 auto;
-}
-.partners-head { text-align: center; margin-bottom: 28px; }
-.partners-head h3 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.02em; }
-.partners-head p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; max-width: 60ch; margin: 0 auto; }
-.partners-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin-bottom: 24px;
-}
-.partner-block {
-  display: flex; flex-direction: column;
-  padding: 22px 24px;
-  background: var(--forest-tint-2);
-  border: 1px solid var(--forest-border);
-  border-radius: 12px;
-}
-.partner-block.is-gold { background: var(--gold-tint); border-color: var(--gold-border); }
-.partner-block-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--forest-deep); margin-bottom: 8px; }
-.partner-block.is-gold .partner-block-label { color: var(--gold-deep); }
-.partner-block-name { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.015em; line-height: 1.25; }
-.partner-block-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
-
-.partners-list-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); text-align: center; margin-bottom: 14px; }
-.partners-list {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-}
-.partner-pill {
-  font-size: 12.5px; font-weight: 600;
-  padding: 8px 14px;
+.partners-strip {
   background: var(--surface-alt);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+  padding: 30px 0 34px;
+}
+.partners-thanks {
+  text-align: center; font-size: 13.5px; color: var(--ink-soft);
+  line-height: 1.6; font-style: italic; margin: 0 0 18px;
+}
+.partners-logos {
+  display: flex; align-items: center; justify-content: center;
+  gap: 52px; flex-wrap: wrap;
+}
+.partners-logos img { display: block; width: auto; max-width: 100%; }
+/* Per-logo heights: optically balanced so the wide, heavy WBF mark and the
+   compact OSF wordmark read as the same visual size. */
+.partners-logos img[src*="wbf-logo"]    { height: 52px; }
+.partners-logos img[src*="partner-osf"] { height: 64px; }
+@media (max-width: 560px) {
+  .partners-logos { gap: 30px; }
+  .partners-logos img[src*="wbf-logo"]    { height: 42px; }
+  .partners-logos img[src*="partner-osf"] { height: 52px; }
 }
 
 /* Inline Kosovo footnote */
@@ -906,7 +962,6 @@ body.mtr-open { overflow: hidden; }
   .faculty-grid { grid-template-columns: repeat(2, 1fr); }
   .cohort-wrap { grid-template-columns: 1fr; gap: 36px; }
   .heritage-wrap { grid-template-columns: 1fr; gap: 36px; }
-  .partners-row { grid-template-columns: 1fr; }
 
 
 }
@@ -932,7 +987,6 @@ body.mtr-open { overflow: hidden; }
   .heritage-stop { flex-direction: column; gap: 6px; }
   .heritage-time { width: auto; }
 
-  .partners-wrap { padding: 28px 22px; }
 }
 
 @media (max-width: 480px) {
@@ -1010,27 +1064,6 @@ body.mtr-open { overflow: hidden; }
   .cohort-marquee { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
 
-.partners-wrap--featured { padding: 44px 40px; }
-.partners-row--featured { grid-template-columns: repeat(2, 1fr); gap: 22px; margin-bottom: 28px; }
-.partner-block--featured { padding: 28px 28px 26px; border-width: 1.5px; }
-.partner-block--featured .partner-block-label { font-size: 11px; letter-spacing: 0.16em; margin-bottom: 12px; }
-.partner-block--featured .partner-block-name { font-size: 19px; line-height: 1.2; margin-bottom: 10px; }
-.partner-block--featured .partner-block-desc { font-size: 13.5px; line-height: 1.65; margin-bottom: 14px; }
-.partner-block-role { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--forest-deep); padding-top: 12px; border-top: 1px dashed var(--forest-border); }
-.partner-block--featured.is-gold .partner-block-role { color: var(--gold-deep); border-top-color: var(--gold-border); }
-.partner-block--logo { display: flex; align-items: center; justify-content: center; padding: 32px; min-height: 200px; background: transparent; border: none; box-shadow: none; }
-.partner-block--logo.is-gold { background: transparent; border: none; }
-.partner-block-logo { display: flex; align-items: center; justify-content: center; width: 100%; }
-.partner-block-logo img, .partner-block-logo a { display: block; }
-/* Per-logo heights: optically balanced so the wide, heavy WBF mark and the
-   compact OSF wordmark read as the same visual size. */
-.partner-block-logo img { width: auto; max-width: 100%; }
-.partner-block-logo img[src*="wbf-logo"] { height: 115px; }
-.partner-block-logo img[src*="partner-osf"] { height: 140px; }
-.partners-thanks { text-align: center; font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; max-width: 64ch; margin: 0 auto; font-style: italic; }
-@media (max-width: 1024px) {
-  .partners-row--featured { grid-template-columns: 1fr; }
-}
 
 </style>
 </head>
@@ -1102,7 +1135,7 @@ body.mtr-open { overflow: hidden; }
       </div>
       <div>
         <div class="meta-fact-key">Format</div>
-        <div class="meta-fact-value" style="font-size:14.5px;line-height:1.35">In-person, residential, with online post-program mentorship</div>
+        <div class="meta-fact-value" style="font-size:14.5px;line-height:1.35">Residential in-person academy, supported by pre- and post-academy online mentoring</div>
       </div>
     </div>
 
@@ -1153,10 +1186,11 @@ body.mtr-open { overflow: hidden; }
      ============================================================ -->
 <section class="section section-tint" id="pillars">
   <div class="container">
-    <div class="sec-head">
+    <div class="sec-head pillars-intro">
       <div class="overline">Thematic Pillars</div>
-      <h2>Five threads, one for each day</h2>
-      <p>Between arrival and the closing day, every day of the Academy is built around a single thematic strand, with its lectures, keynotes and interactive sessions all anchored in the same theme. Choose a pillar to open that day in the programme.</p>
+      <h2>Designed based on the <span class="gold-accent">Charter on Education for Democratic Citizenship and Human Rights Education</span></h2>
+      <p>Through a comprehensive programme of peer learning, mentoring sessions, workshops, field experiences, and networking opportunities, the Academy will equip participants with the knowledge, skills, and professional networks required to act as future regional cooperation champions.</p>
+      <p>Directly contributing to the promotion of good-neighbourly relations and regional cooperation; fostering democratic values, inclusion, and dialogue; strengthening people-to-people connections; and supporting long-term peace and reconciliation efforts across the Western Balkans.</p>
     </div>
 
     <div class="pillars-grid">
@@ -1215,7 +1249,6 @@ body.mtr-open { overflow: hidden; }
     <div class="sec-head">
       <div class="overline">Tirana &middot; 13&ndash;19 September 2026</div>
       <h2>The Programme</h2>
-      <p>Seven days &middot; five thematic strands &middot; lectures, keynotes, interactive and dialogue sessions</p>
     </div>
 
     <div class="prog-tabs" role="tablist" aria-label="Programme days">
@@ -1820,27 +1853,16 @@ body.mtr-open { overflow: hidden; }
 </section>
 
 <!-- ============================================================
-     PARTNERS
+     PARTNERS · closing credit strip
      ============================================================ -->
-<section class="section section-alt" id="partners">
-  <div class="container-narrow">
-    <div class="partners-wrap partners-wrap--featured">
-      <div class="partners-row partners-row--featured">
-        <div class="partner-block partner-block--featured partner-block--logo">
-          <div class="partner-block-logo">
-            <img src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
-          </div>
-        </div>
-        <div class="partner-block partner-block--featured is-gold partner-block--logo">
-          <div class="partner-block-logo">
-            <a href="https://osfwb.org/" target="_blank" rel="noopener">
-              <img src="/assets/images/partners/partner-osf.svg" alt="Open Society Foundation Western Balkans">
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <p class="partners-thanks">The Academy is organised by the Western Balkans Fund with the support of the Open Society Foundation Western Balkans.</p>
+<section class="partners-strip" id="partners">
+  <div class="container">
+    <p class="partners-thanks">The Academy is organised by the Western Balkans Fund with the support of the Open Society Foundation Western Balkans.</p>
+    <div class="partners-logos">
+      <img src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
+      <a href="https://osfwb.org/" target="_blank" rel="noopener">
+        <img src="/assets/images/partners/partner-osf.svg" alt="Open Society Foundation Western Balkans">
+      </a>
     </div>
   </div>
 </section>
