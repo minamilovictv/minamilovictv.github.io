@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MOVE Grants — Individual Mobility | Western Balkans Fund</title>
 <link rel="canonical" href="https://westernbalkansfund.org/move.html">
-<meta name="description" content="MOVE Grants support individual mobility, exchange and people-to-people cooperation across the Western Balkans. Next call expected autumn 2026.">
+<meta name="description" content="MOVE Grants support individual mobility, exchange and people-to-people cooperation across the Western Balkans. Call 7 is open. Apply online through OGMS.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -84,14 +84,14 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .status-pill {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 6px 14px;
-  background: rgba(224,123,42,0.16);
-  border: 1px solid rgba(224,123,42,0.4);
+  background: rgba(74,222,128,0.16);
+  border: 1px solid rgba(74,222,128,0.45);
   border-radius: 999px;
   font-size: 12px; font-weight: 600;
-  color: #fcd9b8; letter-spacing: 0.04em;
+  color: #bbf7d0; letter-spacing: 0.04em;
   margin-bottom: 22px;
 }
-.status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: #E07B2A; box-shadow: 0 0 0 4px rgba(224,123,42,0.22); }
+.status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 4px rgba(74,222,128,0.28); }
 .status-pill-text { text-transform: uppercase; font-size: 11.5px; }
 
 .prog-hero h1 {
@@ -138,15 +138,15 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
 .meta-facts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px 32px;
   padding-top: 28px;
   border-top: 1px solid rgba(255,255,255,0.13);
-  max-width: 760px;
+  max-width: 900px;
 }
 .meta-fact-key { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: rgba(255,255,255,0.52); margin-bottom: 6px; }
 .meta-fact-value { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.2; }
-
+.meta-fact-sub { display: block; margin-top: 5px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.55); letter-spacing: 0; }
 
 /* ============================================================
    GENERIC SECTION
@@ -319,7 +319,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   box-shadow: 0 16px 40px rgba(14,140,132,0.12);
 }
 .grantee-photo {
-  height: 158px;
+  height: 190px;
   background: linear-gradient(135deg, var(--move) 0%, var(--move-deep) 100%);
   position: relative;
   display: flex;
@@ -342,6 +342,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%);
   pointer-events: none;
 }
+/* When a real photo loads, the placeholder initials are redundant, so hide them. */
+.grantee-photo:has(.grantee-photo-img) .grantee-initials { display: none; }
 .grantee-photo::before {
   content: ""; position: absolute; inset: 0;
   background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
@@ -381,26 +383,40 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .grantee-project { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
 .grantee-project strong { color: var(--ink); font-weight: 600; }
 .grantee-quote {
-  margin-top: 4px;
-  padding: 12px 14px;
-  background: var(--surface-alt);
-  border-left: 3px solid var(--move);
-  border-radius: 0 8px 8px 0;
-  font-size: 12.5px;
-  color: var(--ink-soft);
-  line-height: 1.6;
-  font-style: italic;
-}
-.grantee-quote::before {
-  content: "\201C";
-  font-family: var(--font-display);
-  font-size: 28px;
-  color: var(--move);
-  font-style: normal;
-  margin-right: 4px;
-  line-height: 0;
   position: relative;
-  top: 6px;
+  margin-top: 8px;
+  padding: 18px 18px 18px 44px;
+  background: linear-gradient(135deg, var(--move-tint) 0%, #ffffff 78%);
+  border: 1px solid rgba(14,140,132,0.22);
+  border-radius: 4px 14px 14px 14px;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.7;
+  font-style: italic;
+  overflow: hidden;
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+/* Oversized opening quote, set as a watermark behind the text. */
+.grantee-quote::before {
+  content: "“";
+  position: absolute;
+  top: 2px; left: 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 58px; line-height: 1;
+  color: var(--move);
+  opacity: 0.2;
+  font-style: normal;
+  pointer-events: none;
+}
+/* Gradient spine on the left edge: teal into the MOVE orange accent. */
+.grantee-quote::after {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--move) 0%, var(--move-orange) 100%);
+}
+.grantee-card:hover .grantee-quote {
+  border-color: rgba(14,140,132,0.4);
+  box-shadow: 0 6px 18px rgba(14,140,132,0.10);
 }
 
 .grantees-footer {
@@ -566,6 +582,310 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
 
 
+
+/* ============================================================
+   CALL 7 MECHANICS: mobility rules, funding, evaluation
+   ============================================================ */
+
+/* --- Mandatory-requirement callout --------------------------- */
+.req-callout {
+  display: flex; gap: 18px; align-items: flex-start;
+  padding: 22px 24px; margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--move-orange-tint) 0%, #fff 72%);
+  border: 1px solid rgba(224,123,42,0.3);
+  border-left: 4px solid var(--move-orange);
+  border-radius: 4px 14px 14px 4px;
+}
+.req-callout-icon {
+  flex-shrink: 0; width: 42px; height: 42px; border-radius: 11px;
+  background: var(--move-orange); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+.req-callout-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.req-callout-badge {
+  display: inline-block; margin-bottom: 8px; padding: 3px 9px; border-radius: 999px;
+  font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em;
+  color: #9a4f15; background: rgba(224,123,42,0.16);
+}
+.req-callout h3 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.015em; }
+.req-callout p { font-size: 14px; color: var(--ink-soft); line-height: 1.65; text-align: justify; text-justify: inter-word; hyphens: auto; }
+.req-callout p + p { margin-top: 8px; }
+.req-callout strong { color: var(--ink); font-weight: 700; }
+
+/* --- Mobility rule cards ------------------------------------- */
+.rule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 18px; }
+.rule-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  padding: 20px; display: flex; flex-direction: column; gap: 10px;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.rule-card:hover { border-color: var(--move-border); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(14,140,132,0.09); }
+.rule-mark {
+  width: 30px; height: 30px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--move-tint); color: var(--move-deep);
+}
+.rule-card.is-no .rule-mark { background: #fdeceb; color: #b3261e; }
+.rule-mark svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.rule-card h4 { font-size: 14.5px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+.rule-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+/* --- Funding headline figures -------------------------------- */
+.fund-figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 18px; margin-bottom: 24px; }
+.fund-fig { border-radius: 14px; padding: 22px 20px; color: #fff; background: linear-gradient(135deg, #0a3d38 0%, var(--move-deep) 100%); }
+.fund-fig:nth-child(2) { background: linear-gradient(135deg, #b85d1c 0%, var(--move-orange) 100%); }
+.fund-fig:nth-child(3) { background: linear-gradient(135deg, #1d6b41 0%, #2f9e6b 100%); }
+.fund-fig-key { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.11em; color: rgba(255,255,255,0.72); margin-bottom: 9px; }
+.fund-fig-val { font-size: clamp(20px, 2.3vw, 26px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 7px; }
+.fund-fig-note { font-size: 12.5px; color: rgba(255,255,255,0.74); line-height: 1.5; }
+
+/* --- Cost ceilings ------------------------------------------- */
+.ceiling-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; margin-bottom: 24px; }
+.ceiling-panel h3 { font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.ceiling-panel > p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.ceiling-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 0 36px; }
+.ceiling-item { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+.ceiling-item span { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+.ceiling-item b { font-size: 13.5px; font-weight: 800; color: var(--move-deep); white-space: nowrap; }
+
+/* --- Eligible vs ineligible costs ---------------------------- */
+.cost-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 18px; margin-bottom: 24px; }
+.cost-col { border-radius: 14px; padding: 20px 22px; border: 1px solid; }
+.cost-col.is-yes { background: var(--move-tint); border-color: rgba(14,140,132,0.28); }
+.cost-col.is-no { background: #fef5f4; border-color: rgba(179,38,30,0.2); }
+.cost-col h4 { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 14px; }
+.cost-col.is-yes h4 { color: var(--move-deep); }
+.cost-col.is-no h4 { color: #9b2c22; }
+.cost-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.cost-col li { position: relative; padding-left: 20px; font-size: 13.3px; line-height: 1.55; color: var(--ink-soft); }
+.cost-col li::before { position: absolute; left: 0; top: 0; font-weight: 800; }
+.cost-col.is-yes li::before { content: "\2713"; color: var(--move); }
+.cost-col.is-no li::before { content: "\2715"; color: #b3261e; }
+
+/* --- Cost columns: lift, accent bar, cascading rows ---------- */
+.cost-col { position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.cost-col::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.cost-col.is-yes::after { background: linear-gradient(90deg, var(--move) 0%, #2f9e6b 100%); }
+.cost-col.is-no::after { background: linear-gradient(90deg, #b3261e 0%, var(--move-orange) 100%); }
+.cost-col:hover { transform: translateY(-4px); }
+.cost-col:hover::after { transform: scaleX(1); }
+.cost-col.is-yes:hover { border-color: rgba(14,140,132,0.5); box-shadow: 0 14px 30px rgba(14,140,132,0.14); }
+.cost-col.is-no:hover { border-color: rgba(179,38,30,0.38); box-shadow: 0 14px 30px rgba(179,38,30,0.11); }
+
+.cost-col h4 svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; transition: transform .3s ease; }
+.cost-col:hover h4 svg { transform: rotate(-8deg) scale(1.14); }
+
+/* rows cascade in behind the panel reveal, then respond one by one */
+.cost-col li { transition: color .18s ease, transform .18s ease; }
+.cost-col li::before { transition: transform .2s ease; }
+.cost-col li:hover { color: var(--ink); transform: translateX(4px); }
+.cost-col.is-yes li:hover::before { transform: scale(1.35); }
+.cost-col.is-no li:hover::before { transform: scale(1.3) rotate(90deg); }
+.cost-col.is-visible li { animation: costRow .45s cubic-bezier(.2,.7,.2,1) backwards; }
+.cost-col.is-visible li:nth-child(1)  { animation-delay: .10s; }
+.cost-col.is-visible li:nth-child(2)  { animation-delay: .15s; }
+.cost-col.is-visible li:nth-child(3)  { animation-delay: .20s; }
+.cost-col.is-visible li:nth-child(4)  { animation-delay: .25s; }
+.cost-col.is-visible li:nth-child(5)  { animation-delay: .30s; }
+.cost-col.is-visible li:nth-child(6)  { animation-delay: .35s; }
+.cost-col.is-visible li:nth-child(7)  { animation-delay: .40s; }
+.cost-col.is-visible li:nth-child(8)  { animation-delay: .45s; }
+.cost-col.is-visible li:nth-child(9)  { animation-delay: .50s; }
+.cost-col.is-visible li:nth-child(10) { animation-delay: .55s; }
+@keyframes costRow { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+/* --- Payment schedule ---------------------------------------- */
+/* --- Payment split: one donut, two legend rows ---------------- */
+.pay-split {
+  display: grid; grid-template-columns: 210px 1fr; gap: 30px; align-items: center;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  padding: 26px 30px;
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.pay-split:hover { border-color: var(--move-border); box-shadow: 0 14px 32px rgba(14,140,132,0.10); }
+
+.pay-donut { position: relative; width: 196px; height: 196px; margin: 0 auto; }
+.pay-donut svg { width: 100%; height: 100%; display: block; }
+.donut-ring { fill: none; stroke: #eef2f6; stroke-width: 4.2; }
+.donut-seg {
+  fill: none; stroke-width: 4.2; stroke-dasharray: 0 100;
+  transition: stroke-dasharray 1.25s cubic-bezier(.2,.7,.2,1) .25s, stroke-width .25s ease, opacity .25s ease;
+}
+.donut-seg-1 { stroke: var(--move); }
+.donut-seg-2 { stroke: var(--move-orange); }
+.pay-split.is-visible .donut-seg-1 { stroke-dasharray: 70 30; }
+.pay-split.is-visible .donut-seg-2 { stroke-dasharray: 30 70; }
+
+/* the centre reads out whichever instalment is being pointed at */
+.pay-donut-centre { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.pdc { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 3px; opacity: 0; transition: opacity .22s ease; }
+.pdc-all { opacity: 1; }
+.pdc b { font-size: 32px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; color: var(--ink); }
+.pdc i { font-style: normal; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.11em; color: var(--muted); }
+.pdc-1 b { color: var(--move-deep); }
+.pdc-2 b { color: #b85d1c; }
+
+.pay-split:has(.pay-leg[data-seg="1"]:hover) .pdc-all,
+.pay-split:has(.pay-leg[data-seg="2"]:hover) .pdc-all { opacity: 0; }
+.pay-split:has(.pay-leg[data-seg="1"]:hover) .pdc-1 { opacity: 1; }
+.pay-split:has(.pay-leg[data-seg="2"]:hover) .pdc-2 { opacity: 1; }
+.pay-split:has(.pay-leg[data-seg="1"]:hover) .donut-seg-1 { stroke-width: 6.2; }
+.pay-split:has(.pay-leg[data-seg="1"]:hover) .donut-seg-2 { opacity: .22; }
+.pay-split:has(.pay-leg[data-seg="2"]:hover) .donut-seg-2 { stroke-width: 6.2; }
+.pay-split:has(.pay-leg[data-seg="2"]:hover) .donut-seg-1 { opacity: .22; }
+
+.pay-legend { display: flex; flex-direction: column; gap: 12px; }
+.pay-leg {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 14px 16px; border-radius: 12px; border: 1px solid transparent;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.pay-leg:hover { transform: translateX(4px); }
+.pay-leg[data-seg="1"]:hover { background: var(--move-tint); border-color: rgba(14,140,132,0.26); }
+.pay-leg[data-seg="2"]:hover { background: var(--move-orange-tint); border-color: rgba(224,123,42,0.3); }
+.pay-leg-pct { flex-shrink: 0; min-width: 62px; font-size: 27px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; }
+.pay-leg[data-seg="1"] .pay-leg-pct { color: var(--move); }
+.pay-leg[data-seg="2"] .pay-leg-pct { color: var(--move-orange); }
+.pay-leg h4 { font-size: 14.5px; font-weight: 700; color: var(--ink); margin-bottom: 5px; letter-spacing: -0.012em; }
+.pay-leg p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+@media (max-width: 760px) {
+  .pay-split { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; }
+  .pay-donut { width: 168px; height: 168px; }
+  .pdc b { font-size: 26px; }
+  .pdc i { font-size: 9.5px; letter-spacing: 0.07em; }
+  .pay-leg:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .donut-seg-1 { stroke-dasharray: 70 30; }
+  .donut-seg-2 { stroke-dasharray: 30 70; }
+}
+}
+
+/* --- Evaluation steps ---------------------------------------- */
+/* --- Evaluation rail: four numbered nodes on a connecting line --- */
+.eval-rail { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 34px; }
+.eval-rail::before {
+  content: ""; position: absolute; left: 12.5%; right: 12.5%; top: 19px; height: 2px;
+  background: linear-gradient(90deg, var(--move) 0%, var(--move-orange) 50%, var(--move) 100%);
+  background-size: 200% 100%;
+  opacity: 0.32;
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform 1s cubic-bezier(.2,.7,.2,1) .15s;
+  animation: railFlow 7s linear infinite;
+}
+/* the line draws itself once the first node scrolls into view */
+.eval-rail:has(.eval-node.is-visible)::before { transform: scaleX(1); }
+@keyframes railFlow { from { background-position: 0 0; } to { background-position: -200% 0; } }
+
+.eval-node { position: relative; text-align: center; padding: 0 10px; }
+.eval-dot {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; margin: 0 auto 14px;
+  border-radius: 50%; background: var(--surface); border: 2px solid var(--move);
+  color: var(--move-deep); font-size: 14px; font-weight: 800;
+  box-shadow: 0 0 0 6px var(--surface);
+  transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+}
+/* each dot pops in on its own beat as the row reveals */
+.eval-node.is-visible .eval-dot { animation: dotPop .5s cubic-bezier(.2,1.5,.4,1) backwards; animation-delay: calc(var(--i) * .11s + .18s); }
+@keyframes dotPop { 0% { transform: scale(.35); } 62% { transform: scale(1.14); } 100% { transform: scale(1); } }
+
+.eval-node:hover .eval-dot { transform: translateY(-3px); background: var(--move); color: #fff; }
+.eval-node:hover h4 { color: var(--move-deep); }
+.eval-node h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 5px; letter-spacing: -0.01em; transition: color .2s ease; }
+.eval-node p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+/* Step 1 is the gate everything else depends on, so it keeps a slow halo */
+.eval-node:first-child .eval-dot::after {
+  content: ""; position: absolute; inset: -2px; border-radius: 50%;
+  border: 2px solid var(--move); pointer-events: none;
+  animation: gatePulse 2.8s ease-out infinite;
+}
+@keyframes gatePulse {
+  0%   { transform: scale(1);    opacity: .5; }
+  70%  { transform: scale(1.85); opacity: 0; }
+  100% { transform: scale(1.85); opacity: 0; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .eval-rail::before { transform: none; }
+  .eval-node:first-child .eval-dot::after { display: none; }
+}
+
+/* --- Scoring breakdown --------------------------------------- */
+.score-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; margin-bottom: 24px; }
+.score-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+.score-head h3 { font-size: 15px; font-weight: 800; color: var(--ink); }
+.score-threshold { font-size: 12.5px; font-weight: 700; color: #9a4f15; background: var(--move-orange-tint); border: 1px solid rgba(224,123,42,0.3); padding: 4px 11px; border-radius: 999px; }
+.score-row { display: grid; grid-template-columns: 1fr auto; gap: 7px 16px; align-items: baseline; margin-bottom: 16px; }
+.score-label { font-size: 13.5px; color: var(--ink); font-weight: 600; }
+.score-pts { font-size: 13px; font-weight: 800; color: var(--move-deep); white-space: nowrap; }
+.score-bar { grid-column: 1 / -1; height: 8px; border-radius: 999px; background: #eef2f6; overflow: hidden; }
+.score-bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--move) 0%, var(--move-deep) 100%); }
+.score-row.is-b .score-bar i { background: linear-gradient(90deg, var(--move-orange) 0%, #b85d1c 100%); }
+.score-row.is-c .score-bar i { background: linear-gradient(90deg, #2f9e6b 0%, #1d6b41 100%); }
+.score-note { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+/* --- Cross-cutting priorities -------------------------------- */
+.xcut { background: linear-gradient(135deg, var(--move-tint) 0%, #fff 72%); border: 1px solid rgba(14,140,132,0.24); border-radius: 14px; padding: 22px 24px; }
+.xcut h3 { font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+.xcut > p { font-size: 13.3px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 14px; }
+.xcut > p strong { color: var(--ink); font-weight: 700; }
+.xcut-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.xcut-chip {
+  position: relative; overflow: hidden; cursor: default;
+  font-size: 12.5px; font-weight: 600; color: var(--move-deep);
+  background: #fff; border: 1px solid var(--move-border); border-radius: 999px; padding: 6px 13px;
+  transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.xcut-chip:hover {
+  transform: translateY(-3px) scale(1.04);
+  background: var(--move); color: #fff; border-color: var(--move);
+  box-shadow: 0 8px 18px rgba(14,140,132,0.26);
+}
+/* light sweeps across the chip on hover */
+.xcut-chip::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -45%; width: 45%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+  transform: skewX(-18deg); opacity: 0; pointer-events: none;
+}
+.xcut-chip:hover::after { animation: chipSheen .7s ease; }
+@keyframes chipSheen {
+  0%   { left: -45%; opacity: 1; }
+  100% { left: 125%; opacity: 0; }
+}
+/* chips drop in one after another when the panel reveals */
+.xcut.is-visible .xcut-chip { animation: chipIn .45s cubic-bezier(.2,1.35,.4,1) backwards; }
+.xcut.is-visible .xcut-chip:nth-child(1) { animation-delay: .12s; }
+.xcut.is-visible .xcut-chip:nth-child(2) { animation-delay: .18s; }
+.xcut.is-visible .xcut-chip:nth-child(3) { animation-delay: .24s; }
+.xcut.is-visible .xcut-chip:nth-child(4) { animation-delay: .30s; }
+.xcut.is-visible .xcut-chip:nth-child(5) { animation-delay: .36s; }
+.xcut.is-visible .xcut-chip:nth-child(6) { animation-delay: .42s; }
+.xcut.is-visible .xcut-chip:nth-child(7) { animation-delay: .48s; }
+@keyframes chipIn { from { opacity: 0; transform: translateY(10px) scale(.9); } to { opacity: 1; transform: none; } }
+@media (max-width: 900px) {
+  .eval-rail { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
+  .eval-rail::before { display: none; }
+}
+@media (max-width: 680px) {
+  /* one per row, dot beside the text so nothing collides */
+  .eval-rail { grid-template-columns: 1fr; row-gap: 18px; }
+  .eval-node {
+    display: grid; grid-template-columns: 38px 1fr; column-gap: 14px;
+    align-items: center; text-align: left; padding: 0;
+  }
+  .eval-node .eval-dot { grid-column: 1; grid-row: 1 / 3; margin: 0; box-shadow: none; }
+  .eval-node h4 { grid-column: 2; grid-row: 1; margin-bottom: 2px; }
+  .eval-node p { grid-column: 2; grid-row: 2; }
+  .req-callout { flex-direction: column; gap: 14px; }
+}
 /* ============================================================
    SUBSCRIBE / CTA
    ============================================================ */
@@ -589,6 +909,9 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .btn-ghost-white { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; color: #fff; border: 1px solid rgba(255,255,255,0.35); font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background 0.15s, border-color 0.15s; }
 .btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.65); }
+.subscribe .subscribe-note { max-width: 56ch; margin: 24px auto 0; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+.subscribe .subscribe-note a { color: #5eead4; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; transition: color 0.15s; }
+.subscribe .subscribe-note a:hover { color: #fff; }
 
 /* ============================================================
    MOTION ENGINE — scroll reveals + keyframes
@@ -635,8 +958,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 @keyframes spinHalo { to { transform: rotate(360deg); } }
 @keyframes floatIcon { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 @keyframes badgeGlow {
-  0%,100% { box-shadow: 0 0 0 4px rgba(224,123,42,0.22); }
-  50%     { box-shadow: 0 0 0 8px rgba(224,123,42,0.05); }
+  0%,100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.28); }
+  50%     { box-shadow: 0 0 0 8px rgba(74,222,128,0.06); }
 }
 
 /* ---- Hero atmosphere ------------------------------------- */
@@ -907,7 +1230,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   .prog-hero-inner { padding: 0 24px; }
   .subscribe-inner { padding: 0 24px; }
 
-  .meta-facts { grid-template-columns: repeat(3, 1fr); gap: 16px 24px; }
+  .meta-facts { grid-template-columns: repeat(2, 1fr); gap: 18px 28px; }
   .persona-grid { grid-template-columns: repeat(3, 1fr); }
   .ia-grid { grid-template-columns: repeat(2, 1fr); }
   
@@ -995,17 +1318,17 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
     <div class="status-pill">
       <span class="status-pill-dot"></span>
-      <span class="status-pill-text">Next call expected autumn 2026 · Terms under review</span>
+      <span class="status-pill-text">Open call</span>
     </div>
 
     <h1>MOVE Grants — Individual Mobility<br>Across the Western Balkans</h1>
-    <p class="tagline">Short term, people to people funding for Researchers, Students, Professors, Journalists, Doctors, Actors, Artists, Musicians, Activists, to cross-border cooperation, connect with peers, and bring knowledge and added value back home.</p>
-    <p class="footnote">Call 6 closed in November 2025. The programme is being refreshed, and the next call is expected to open in autumn 2026 with updated conditions.</p>
+    <p class="tagline">Short-term, people-to-people funding for researchers, students, professors, journalists, PhD candidates, actors, artists, musicians, and activists to engage in cross-border cooperation, connect with peers, and bring new knowledge and added value back home.</p>
+    <p class="footnote">Call 7 is open. Applications are submitted online through the WBF Online Grant Management System (OGMS).</p>
 
     <div class="hero-ctas">
-      <a class="btn-primary" href="/contact.html">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Get notified when Call 7 opens
+      <a class="btn-primary" href="https://wbfportal.org/applicants" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+        Apply here
       </a>
       <a class="btn-ghost" href="#grantees">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
@@ -1015,16 +1338,20 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
     <div class="meta-facts">
       <div>
+        <div class="meta-fact-key">Deadline</div>
+        <div class="meta-fact-value">5 October 2026<span class="meta-fact-sub">12:59 CET</span></div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Grant size</div>
+        <div class="meta-fact-value">EUR 500 – 3,000<span class="meta-fact-sub">up to 100% of eligible costs</span></div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Implementation</div>
+        <div class="meta-fact-value">Dec 2026 – Apr 2027<span class="meta-fact-sub">final report by 30 April 2027</span></div>
+      </div>
+      <div>
         <div class="meta-fact-key">Applicant Type</div>
-        <div class="meta-fact-value">Individuals only</div>
-      </div>
-      <div>
-        <div class="meta-fact-key">Mobility Scope</div>
-        <div class="meta-fact-value">Within the WB6</div>
-      </div>
-      <div>
-        <div class="meta-fact-key">Programme Status</div>
-        <div class="meta-fact-value">Closed</div>
+        <div class="meta-fact-value">Individuals only<span class="meta-fact-sub">one application per call</span></div>
       </div>
     </div>
 
@@ -1045,7 +1372,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <p>MOVE Grants are the dedicated individual mobility mechanism of the Western Balkans Fund. The programme is built around the individual changemaker: a researcher, journalist, artist, student or activist who wants to cross a border, learn something, collaborate, and bring it back home.</p>
       <p>Unlike WBF's larger calls for organisational proposals, MOVE rests on the belief that direct, in-person exchange (academic, artistic, professional) is irreplaceable for building trust across the Western Balkans. A researcher visiting a lab in another country, a journalist attending a regional media forum, an activist participating in a residency: these are the connections that accumulate into something larger.</p>
       <p>Each MOVE grantee commits to an agreed structured mobility activity with a formal host institution/organization in another Contracting Party of the Western Balkans Fund. After the visit, they share their experience in their networks, on social media and through WBF's platforms, becoming ambassadors for regional cooperation.</p>
-      <p>The programme funds short-term, individual mobility within the WB6: Albania, Bosnia and Herzegovina, Kosovo*, Montenegro, North Macedonia and Serbia. Specific grant amounts, eligibility rules and timing for the next call are being revised; an announcement is expected in autumn 2026.</p>
+      <p>The programme funds short-term, individual mobility within the WB6: Albania, Bosnia and Herzegovina, Kosovo*, Montenegro, North Macedonia and Serbia. Full eligibility rules, grant amounts and the submission deadline for Call 7 are set out in the call package on OGMS.</p>
 
       <!-- Kosovo footnote — placed contextually next to the WB6 mention -->
       <p class="inline-footnote">
@@ -1057,7 +1384,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
     <div class="persona-block">
       <div class="persona-head" data-reveal>
         <span class="persona-eyebrow">MOVE is for</span>
-        <h3>The individual changemakers we back</h3>
+        <h3>Individuals with a reason to cross a border</h3>
       </div>
 
       <div class="persona-grid" data-tilt data-stagger>
@@ -1069,7 +1396,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
         </div>
         <div class="persona-card" data-reveal style="--i:1">
           <span class="persona-num">02</span>
-          <div class="persona-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9h4"/><path d="M10 6h8v4h-8z"/><path d="M18 14h-8"/><path d="M15 18h-5"/></svg></div>
           <div class="persona-label">Journalists</div>
           <div class="persona-desc">Reporting trips, regional media forums, editorial exchange</div>
         </div>
@@ -1112,7 +1439,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <!-- Saša Dimitrijević -->
       <article class="grantee-card reveal-scale" data-reveal style="--i:0">
         <div class="grantee-photo variant-orange">
-          <img class="grantee-photo-img" src="/assets/images/move/grantees/sasa-dimitrijevic.jpg" alt="Saša Dimitrijević" loading="lazy" onerror="this.remove()">
+          <img class="grantee-photo-img" src="/assets/images/move/grantees/sasa-dimitrijevic.jpg" alt="Saša Dimitrijević" style="object-position: center 55%" loading="lazy" onerror="this.remove()">
           <span class="grantee-initials" aria-hidden="true">SD</span>
           <span class="grantee-route">
             <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
@@ -1132,7 +1459,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <!-- Marija Đurđević Ilić -->
       <article class="grantee-card reveal-scale" data-reveal style="--i:1">
         <div class="grantee-photo">
-          <img class="grantee-photo-img" src="/assets/images/move/grantees/marija-djurdjevic-ilic.jpg" alt="Marija Đurđević Ilić" loading="lazy" onerror="this.remove()">
+          <img class="grantee-photo-img" src="/assets/images/move/grantees/marija-djurdjevic-ilic.jpg" alt="Marija Đurđević Ilić" style="object-position: center 32%" loading="lazy" onerror="this.remove()">
           <span class="grantee-initials" aria-hidden="true">MĐ</span>
           <span class="grantee-route">
             <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
@@ -1141,6 +1468,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
         </div>
         <div class="grantee-body">
           <div class="grantee-meta">
+            <span class="grantee-area-tag">Cultural Cooperation</span>
             <span class="grantee-area-tag area-orange">Education &amp; Scientific Exchange</span>
           </div>
           <h3 class="grantee-name">Marija Đurđević Ilić</h3>
@@ -1152,7 +1480,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <!-- Lorena Gjana -->
       <article class="grantee-card reveal-scale" data-reveal style="--i:2">
         <div class="grantee-photo variant-deep">
-          <img class="grantee-photo-img" src="/assets/images/move/grantees/lorena-gjana.jpg" alt="Lorena Gjana" loading="lazy" onerror="this.remove()">
+          <img class="grantee-photo-img" src="/assets/images/move/grantees/lorena-gjana.jpg" alt="Lorena Gjana" style="object-position: center 55%" loading="lazy" onerror="this.remove()">
           <span class="grantee-initials" aria-hidden="true">LG</span>
           <span class="grantee-route">
             <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
@@ -1172,7 +1500,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <!-- Elza Krelani -->
       <article class="grantee-card reveal-scale" data-reveal style="--i:3">
         <div class="grantee-photo variant-navy">
-          <img class="grantee-photo-img" src="/assets/images/move/grantees/elza-krelani.jpg" alt="Elza Krelani" loading="lazy" onerror="this.remove()">
+          <img class="grantee-photo-img" src="/assets/images/move/grantees/elza-krelani.jpg" alt="Elza Krelani" style="object-position: center 40%" loading="lazy" onerror="this.remove()">
           <span class="grantee-initials" aria-hidden="true">EK</span>
           <span class="grantee-route">
             <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
@@ -1192,7 +1520,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <!-- Tamara Teodorović -->
       <article class="grantee-card reveal-scale" data-reveal style="--i:4">
         <div class="grantee-photo variant-orange">
-          <img class="grantee-photo-img" src="/assets/images/move/grantees/tamara-teodorovic.jpg" alt="Tamara Teodorović" loading="lazy" onerror="this.remove()">
+          <img class="grantee-photo-img" src="/assets/images/move/grantees/tamara-teodorovic.jpg" alt="Tamara Teodorović" style="object-position: center 45%" loading="lazy" onerror="this.remove()">
           <span class="grantee-initials" aria-hidden="true">TT</span>
           <span class="grantee-route">
             <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
@@ -1212,7 +1540,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <!-- Stefan Živković -->
       <article class="grantee-card reveal-scale" data-reveal style="--i:5">
         <div class="grantee-photo">
-          <img class="grantee-photo-img" src="/assets/images/move/grantees/stefan-zivkovic.jpg" alt="Stefan Živković" loading="lazy" onerror="this.remove()">
+          <img class="grantee-photo-img" src="/assets/images/move/grantees/stefan-zivkovic.jpg" alt="Stefan Živković" style="object-position: center 35%" loading="lazy" onerror="this.remove()">
           <span class="grantee-initials" aria-hidden="true">SŽ</span>
           <span class="grantee-route">
             <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
@@ -1312,6 +1640,232 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 </section>
 
 <!-- ============================================================
+     MOBILITY RULES: how a MOVE mobility has to be built
+     ============================================================ -->
+<section class="section" id="rules">
+  <div class="container-narrow">
+    <div class="sec-head" data-reveal>
+      <div class="overline">Before you apply</div>
+      <h2>How a MOVE mobility has to be built</h2>
+      <p>MOVE funds an individual travelling to a host institution in another Contracting Party. A few structural rules decide whether an application is eligible at all, and they are checked before anything else is read.</p>
+    </div>
+
+    <div class="req-callout" data-reveal>
+      <div class="req-callout-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      </div>
+      <div>
+        <span class="req-callout-badge">Mandatory</span>
+        <h3>Every mobility starts with a written invitation</h3>
+        <p>A MOVE application has to rest on a formal partnership with a <strong>host institution in another Contracting Party</strong>. The partnership is what confirms your mobility is grounded in a structured, mutually agreed framework rather than a self-organised trip.</p>
+        <p>You prove it with an <strong>official invitation letter from the host institution</strong>, stating the dates, the programme and the reason you are being invited. A confirmed registration, acceptance or enrolment letter for a course, programme or workshop they organise works too. <strong>Without this document the application is rejected at the eligibility check</strong>, before it is ever scored.</p>
+      </div>
+    </div>
+
+    <div class="rule-grid" data-stagger>
+      <div class="rule-card" data-reveal style="--i:0">
+        <div class="rule-mark"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></div>
+        <h4>At least two Contracting Parties</h4>
+        <p>Your mobility must connect your own Contracting Party with the one where the host institution is based. A single-CP action does not qualify.</p>
+      </div>
+      <div class="rule-card is-no" data-reveal style="--i:1">
+        <div class="rule-mark"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+        <h4>Not inside your own place of residence</h4>
+        <p>Mobility that takes place where you already live is not supported, regardless of the activity or the host.</p>
+      </div>
+      <div class="rule-card" data-reveal style="--i:2">
+        <div class="rule-mark"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h4>Primarily within the Western Balkans</h4>
+        <p>Activities should take place in the region. In exceptional, justified cases activities in the European Union are eligible where they promote the visibility of the Western Balkans internationally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FUNDING: what the grant covers
+     ============================================================ -->
+<section class="section section-alt" id="funding">
+  <div class="container-narrow">
+    <div class="sec-head" data-reveal>
+      <div class="overline">Funding</div>
+      <h2>What the grant covers</h2>
+      <p>Only the costs presented in your budget are considered for financing, and only within the ceilings below. Budgets are filled in directly in OGMS, in EUR, based on real market costs.</p>
+    </div>
+
+    <div class="fund-figures" data-stagger>
+      <div class="fund-fig" data-reveal style="--i:0">
+        <div class="fund-fig-key">Grant size</div>
+        <div class="fund-fig-val">EUR 500 – 3,000</div>
+        <div class="fund-fig-note">Minimum and maximum that can be requested per application.</div>
+      </div>
+      <div class="fund-fig" data-reveal style="--i:1">
+        <div class="fund-fig-key">Co-financing</div>
+        <div class="fund-fig-val">Up to 100%</div>
+        <div class="fund-fig-note">WBF can cover the full eligible cost of the action. Cost-sharing is allowed but not required.</div>
+      </div>
+      <div class="fund-fig" data-reveal style="--i:2">
+        <div class="fund-fig-key">Implementation</div>
+        <div class="fund-fig-val">Dec 2026 – Apr 2027</div>
+        <div class="fund-fig-note">All mobility activities run in this window. Final report due by 30 April 2027.</div>
+      </div>
+    </div>
+
+    <div class="ceiling-panel" data-reveal>
+      <h3>Cost ceilings</h3>
+      <p>These caps apply no matter what the market price is. Anything above them has to be covered from your own resources.</p>
+      <div class="ceiling-list">
+        <div class="ceiling-item"><span>Accommodation, inside the Western Balkans</span><b>≤ 65 EUR / night</b></div>
+        <div class="ceiling-item"><span>Accommodation, outside the region</span><b>≤ 80 EUR / night</b></div>
+        <div class="ceiling-item"><span>Daily allowance (meals, incidentals)</span><b>40 EUR / day</b></div>
+        <div class="ceiling-item"><span>Travel under 6 hours on a given day</span><b>Half daily allowance</b></div>
+        <div class="ceiling-item"><span>Personal car, where directly related to the mobility</span><b>≤ 0.30 EUR / km</b></div>
+        <div class="ceiling-item"><span>Visibility and promotion costs</span><b>≤ 7% of the budget</b></div>
+      </div>
+    </div>
+
+    <div class="cost-cols" data-stagger>
+      <div class="cost-col is-yes" data-reveal style="--i:0">
+        <h4><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>Eligible costs</h4>
+        <ul>
+          <li>Public transport to and from the host location (flights, trains, buses, shuttles, taxis)</li>
+          <li>Personal car, tolls and parking, where directly related to the mobility</li>
+          <li>Medical and travel insurance for the duration of the stay</li>
+          <li>Visa fees for regional mobility</li>
+          <li>Accommodation, at local market rates and against fiscal invoices</li>
+          <li>Daily allowance for activity and travel days</li>
+          <li>Special-needs support for applicants with disabilities</li>
+          <li>Registration or participation fees for conferences, training, workshops and residencies</li>
+          <li>Visibility costs for promoting the mobility action</li>
+          <li>Postal and courier costs for documents required by the mobility</li>
+        </ul>
+      </div>
+      <div class="cost-col is-no" data-reveal style="--i:1">
+        <h4><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Not eligible</h4>
+        <ul>
+          <li>Salaries, fees and consultancy or external expertise payments</li>
+          <li>Indirect and overhead costs</li>
+          <li>Subcontracting</li>
+          <li>Costs incurred before or after the contractual period, except confirmed registration payments</li>
+          <li>Double funding, meaning anything already financed from another source</li>
+          <li>Personal expenses unrelated to the mobility</li>
+          <li>Entertainment and leisure costs</li>
+          <li>Activities affiliated with political or religious agendas</li>
+          <li>Activities intended for profit-making</li>
+          <li>Debts, interest, currency exchange losses, fines and legal charges</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pay-split" data-reveal>
+      <div class="pay-donut">
+        <svg viewBox="0 0 42 42" role="img" aria-label="Grant paid in two instalments: 70 percent on signature of the contract, 30 percent after the approved final report.">
+          <circle class="donut-ring" cx="21" cy="21" r="15.915"></circle>
+          <circle class="donut-seg donut-seg-1" cx="21" cy="21" r="15.915" stroke-dashoffset="25"></circle>
+          <circle class="donut-seg donut-seg-2" cx="21" cy="21" r="15.915" stroke-dashoffset="55"></circle>
+        </svg>
+        <div class="pay-donut-centre" aria-hidden="true">
+          <span class="pdc pdc-all"><b>100%</b><i>Paid in 2 parts</i></span>
+          <span class="pdc pdc-1"><b>70%</b><i>On signature</i></span>
+          <span class="pdc pdc-2"><b>30%</b><i>After the report</i></span>
+        </div>
+      </div>
+      <div class="pay-legend">
+        <div class="pay-leg" data-seg="1">
+          <span class="pay-leg-pct">70%</span>
+          <div>
+            <h4>On signature of the grant contract</h4>
+            <p>Paid as a pre-payment once the budget is agreed, the contract is signed by both parties and the required documents are submitted. Implementation may start after signature.</p>
+          </div>
+        </div>
+        <div class="pay-leg" data-seg="2">
+          <span class="pay-leg-pct">30%</span>
+          <div>
+            <h4>After the approved final report</h4>
+            <p>The balance is disbursed once WBF has reviewed and approved your final narrative and financial report, with invoices and receipts. All payments are made in EUR.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EVALUATION: how applications are assessed
+     ============================================================ -->
+<section class="section" id="evaluation">
+  <div class="container-narrow">
+    <div class="sec-head" data-reveal>
+      <div class="overline">Evaluation</div>
+      <h2>How applications are assessed</h2>
+      <p>Every application moves through the same four stages, in this order.</p>
+    </div>
+
+    <div class="eval-rail" data-stagger>
+      <div class="eval-node" data-reveal style="--i:0">
+        <span class="eval-dot">1</span>
+        <h4>Eligibility check</h4>
+        <p>Criteria and documents verified</p>
+      </div>
+      <div class="eval-node" data-reveal style="--i:1">
+        <span class="eval-dot">2</span>
+        <h4>Technical evaluation</h4>
+        <p>Scored out of 100 points</p>
+      </div>
+      <div class="eval-node" data-reveal style="--i:2">
+        <span class="eval-dot">3</span>
+        <h4>Evaluation panel</h4>
+        <p>Top proposals put to a vote</p>
+      </div>
+      <div class="eval-node" data-reveal style="--i:3">
+        <span class="eval-dot">4</span>
+        <h4>Verification</h4>
+        <p>Supporting documents checked</p>
+      </div>
+    </div>
+
+    <div class="score-panel" data-reveal>
+      <div class="score-head">
+        <h3>Where the 100 points sit</h3>
+        <span class="score-threshold">Minimum 55 points to reach the panel</span>
+      </div>
+
+      <div class="score-row">
+        <span class="score-label">A · Mobility description and coherence</span>
+        <span class="score-pts">25 pts</span>
+        <span class="score-bar"><i style="width:25%"></i></span>
+      </div>
+      <div class="score-row is-b">
+        <span class="score-label">B · Regional relevance and call objective</span>
+        <span class="score-pts">60 pts</span>
+        <span class="score-bar"><i style="width:60%"></i></span>
+      </div>
+      <div class="score-row is-c">
+        <span class="score-label">C · Operational: financial planning and visibility</span>
+        <span class="score-pts">15 pts</span>
+        <span class="score-bar"><i style="width:15%"></i></span>
+      </div>
+
+      <p class="score-note">Section B carries most of the weight: regional relevance, contribution to MOVE, personal growth and expected impact, sustainability and follow-up, and the introduction of new practices. Applications scoring under 55 points are not recommended to the Evaluation Panel.</p>
+    </div>
+
+    <div class="xcut" data-reveal>
+      <h3>Cross-cutting priorities</h3>
+      <p>These are not decorative. <strong>Mainstreaming cross-cutting issues is scored</strong> as part of Section B. Applications that integrate one or more of them meaningfully do better.</p>
+      <div class="xcut-chips">
+        <span class="xcut-chip">Gender equality</span>
+        <span class="xcut-chip">Human rights</span>
+        <span class="xcut-chip">Inclusion of minorities &amp; vulnerable groups</span>
+        <span class="xcut-chip">Environmental sustainability &amp; climate action</span>
+        <span class="xcut-chip">Democracy &amp; rule of law</span>
+        <span class="xcut-chip">Digitalisation &amp; innovation</span>
+        <span class="xcut-chip">Youth engagement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      IMPACT STATS — six calls in motion
      ============================================================ -->
 <section class="section stats-section" id="impact">
@@ -1372,17 +1926,16 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
      ============================================================ -->
 <section class="subscribe">
   <div class="subscribe-inner" data-reveal>
-    <div class="overline">Next call · expected autumn 2026</div>
-    <h2>Be the first to know when Call 7 opens</h2>
-    <p>We will publish the updated MOVE call package, application guidelines and any info session dates as soon as the new conditions are finalised. Subscribe to WBF updates to receive the announcement directly.</p>
+    <div class="overline">Call 7 · Open now</div>
+    <h2>MOVE Call 7 is open for applications</h2>
+    <p>Applications are submitted online through the WBF Online Grant Management System (OGMS), the only accepted channel.</p>
     <div class="subscribe-btns">
-      <a class="btn-white" href="/contact.html">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Subscribe to updates
+      <a class="btn-white" href="https://wbfportal.org/applicants" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+        Apply here
       </a>
-      <a class="btn-ghost-white" href="/ourgrantees.html">See all MOVE grantees →</a>
-      <a class="btn-ghost-white" href="/our-programs.html">All WBF programmes →</a>
     </div>
+    <p class="subscribe-note">Have questions? Make sure to attend one of our <a href="/events.html">info sessions</a>, or email us at <a href="mailto:info@westernbalkansfund.org">info@westernbalkansfund.org</a>.</p>
   </div>
 </section>
 
