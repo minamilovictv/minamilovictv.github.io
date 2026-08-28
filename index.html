@@ -986,8 +986,11 @@
      so the image is decorative (empty alt) and does not need to be large. The
      white panel is what makes it readable: the artwork is red and gold, drawn
      for light grounds, so on the red banner it would otherwise be red on red. */
+  /* Placed on the grid rather than living inside the values column: when the
+     columns stack on mobile it would otherwise be stranded between the buttons
+     and the values. Here it can sit top-right on desktop and lead on mobile. */
   .pres-logo-chip {
-    align-self: flex-end;
+    grid-column: 2; grid-row: 1; justify-self: end;
     background: #fff; border-radius: 10px;
     padding: 9px 12px; margin: 0 0 16px;
     box-shadow: 0 5px 14px rgba(0,0,0,0.18);
@@ -1045,7 +1048,8 @@
   .pres-value p { font-size: var(--text-md); color: rgba(255,255,255,0.86); line-height: 1.5; margin: 0; }
   /* Column stretches to the banner height, so the closing statement drops to
      its foot: the leftover red reads as separation, not trailing emptiness. */
-  .pres-banner > div:last-child { display: flex; flex-direction: column; }
+  .pres-col-main   { grid-column: 1; grid-row: 1 / span 2; align-self: center; }
+  .pres-col-values { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; }
   .pres-closing {
     max-width: 60ch;
     margin-top: 18px;
@@ -1079,8 +1083,12 @@
   .pres-agenda-list strong { color: var(--ink); font-weight: 700; display: block; margin-bottom: 3px; }
 
   @media (max-width: 900px) {
-    .pres-banner { grid-template-columns: 1fr; gap: 26px; padding: 26px 22px 28px; }
-    .pres-logo { width: 124px; }
+    /* Stacked: the mark leads the banner, left aligned with everything else. */
+    .pres-banner { grid-template-columns: 1fr; row-gap: 22px; padding: 26px 22px 28px; }
+    .pres-logo-chip  { grid-column: 1; grid-row: 1; justify-self: start; margin-bottom: 0; }
+    .pres-col-main   { grid-column: 1; grid-row: 2; }
+    .pres-col-values { grid-column: 1; grid-row: 3; }
+    .pres-logo { width: 104px; }
     .pres-agenda { padding: 24px 22px 28px; }
 
     .pres-agenda-list { grid-template-columns: 1fr; gap: 18px; }
@@ -2534,7 +2542,13 @@
       <!-- Identity banner: the statement on the left, the three core values
            filling what was empty red on the right. -->
       <div class="pres-banner">
-        <div>
+              <div class="pres-logo-chip">
+                <img class="pres-logo"
+                     src="/assets/images/chairmanship/montenegro-logo.png"
+                     alt=""
+                     onerror="this.parentElement.style.display='none'">
+              </div>
+        <div class="pres-col-main">
           <span class="pres-eyebrow">Chairmanship in Office &middot; 2026</span>
           <h2 class="pres-title">Presidency of Montenegro <span>2026</span></h2>
           <p class="pres-lede">During our Presidency of the Western Balkans Fund, we are committed to advancing meaningful regional cooperation through responsible leadership and shared ownership.</p>
@@ -2550,13 +2564,7 @@
           </div>
         </div>
 
-        <div>
-          <div class="pres-logo-chip">
-            <img class="pres-logo"
-                 src="/assets/images/chairmanship/montenegro-logo.png"
-                 alt=""
-                 onerror="this.parentElement.style.display='none'">
-          </div>
+        <div class="pres-col-values">
           <p class="pres-values-lead">We are guided by three core values</p>
           <div class="pres-values-row">
             <div class="pres-value">
