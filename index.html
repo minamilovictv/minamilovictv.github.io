@@ -291,7 +291,7 @@
   .hero-text p,
   .about-text p,
   .program-desc,
-  .chair-intro,
+  .pres-lede,
   .partnership-text p,
   .news-card p { text-align: justify; }
 
@@ -941,143 +941,150 @@
   }
 
   /* ============================================================
-     CHAIRMANSHIP IN OFFICE
+     PRESIDENCY OF MONTENEGRO 2026
+     ============================================================
+     Not a card wrapping a whole section: a red identity banner
+     carrying the statement, then the values as divided columns and
+     the agenda as a numbered list. Red and gold come from the
+     Presidency flyer; the flyer gold is 3.0:1 on white, so text-sized
+     gold uses the deeper tone and the flyer gold stays on rules.
      ============================================================ */
   .chair { background: #fff; }
-  .chair-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border: 7px solid transparent;
-    border-radius: 22px;
-    overflow: hidden;
-    background:
-      linear-gradient(#fff, #fff) padding-box,
-      linear-gradient(120deg, #0f2044, #173D8F, #3372e3, #93b8f7, #3372e3, #173D8F, #0f2044) border-box;
-    background-size: 100% 100%, 300% 100%;
-    animation: chairFrame 9s ease-in-out infinite;
-    box-shadow: 0 20px 50px rgba(26,54,104,0.20), 0 0 0 1px rgba(51,114,227,0.10);
-    transition: transform 0.35s cubic-bezier(.16,.84,.44,1), box-shadow 0.35s ease;
-  }
-  @keyframes chairFrame {
-    0%   { background-position: 0% 50%, 0% 50%; }
-    50%  { background-position: 0% 50%, 100% 50%; }
-    100% { background-position: 0% 50%, 0% 50%; }
-  }
-  .chair-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 34px 74px rgba(26,54,104,0.32), 0 0 46px rgba(51,114,227,0.28), 0 0 0 1px rgba(51,114,227,0.18);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .chair-card { animation: none; background-position: 0% 50%, 50% 50%; }
-  }
-  .chair-media {
-    position: relative;
-    min-height: 440px;
-    background: linear-gradient(135deg, var(--navy-900), var(--navy));
-  }
-  .chair-media img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .chair-media-ph {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.5);
-    font-size: var(--text-sm);
-    letter-spacing: 0.03em;
-    text-align: center;
-    padding: 24px;
-  }
-  /* On-card photo carousel */
-  .chair-carousel { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
-  .chair-carousel .cc-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(.16,.84,.44,1); }
-  .chair-carousel .cc-slide { flex: 0 0 100%; height: 100%; }
-  /* must beat `.chair-media img { position:absolute; inset:0 }`,otherwise the
-     transformed track becomes their containing block and they slide off-screen */
-  .chair-carousel .cc-slide img { position: static; inset: auto; width: 100%; height: 100%; object-fit: cover; display: block; }
-  .chair-carousel .cc-btn {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer;
-    background: rgba(15,32,68,0.42); color: #fff;
-    display: flex; align-items: center; justify-content: center; z-index: 2;
-    transition: background 0.2s ease, opacity 0.2s ease; opacity: 0.85;
-  }
-  .chair-media:hover .cc-btn { opacity: 1; }
-  .chair-carousel .cc-btn:hover { background: rgba(15,32,68,0.72); }
-  .chair-carousel .cc-btn:focus-visible { opacity: 1; outline: 2px solid #fff; outline-offset: 2px; }
-  .chair-carousel .cc-prev { left: 14px; }
-  .chair-carousel .cc-next { right: 14px; }
-  .chair-carousel .cc-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  .chair-carousel .cc-dots { position: absolute; bottom: 14px; left: 0; right: 0; display: flex; justify-content: center; gap: 7px; z-index: 2; }
-  .chair-carousel .cc-dot { width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: rgba(255,255,255,0.5); transition: background 0.2s ease, transform 0.2s ease; }
-  .chair-carousel .cc-dot.active { background: #fff; transform: scale(1.25); }
-  @media (prefers-reduced-motion: reduce) {
-    .chair-carousel .cc-track { transition: none; }
-  }
-  .chair-body {
-    padding: 56px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-  .chair-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    align-self: flex-start;
-    padding: 6px 14px;
-    background: #eef2f8;
-    border-radius: 999px;
-    font-size: var(--text-xs);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--navy);
-    margin-bottom: 22px;
-  }
-  .chair-logo {
-    position: absolute;
-    top: 24px;
-    right: 32px;
-    width: 150px;
-    height: auto;
-    margin: 0;
-  }
-  .chair-title {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1.15;
-    margin-bottom: 14px;
-    max-width: 58%;
-  }
-  .chair-intro {
-    font-size: var(--text-base);
-    color: var(--ink-soft);
-    line-height: 1.7;
-    margin-bottom: 28px;
-    max-width: min(54ch, 58%);
-  }
-  .chair-btns {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    margin-top: auto;
-  }
-  .chair-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 11px 18px;
-    border-radius: 6px;
+  .pres {
+    --mne-red:        #b01e12;
+    --mne-red-deep:   #7a160f;
+    --mne-red-ink:    #a01b10;   /* 5.6:1 on white, for headings */
+    --mne-gold:       #c08a2e;
+    --mne-gold-deep:  #96681b;   /* 4.9:1 on white */
+    --mne-gold-light: #f0d9a0;   /* 5.0:1 on the red banner */
     border: 1px solid var(--line);
-    background: #fff;
-    color: var(--ink);
-    font-family: inherit;
-    font-size: var(--text-md);
-    font-weight: 600;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s, color 0.15s;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 18px 44px rgba(15,32,68,0.10);
   }
-  .chair-btn:hover { border-color: var(--navy); background: var(--navy); color: #fff; }
-  .chair-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---- Identity banner ---- */
+  /* ---- Identity banner: statement left, the three values filling what was
+     empty red on the right. Keeping them here removes a whole strip. ---- */
+  .pres-banner {
+    position: relative;
+    display: grid; grid-template-columns: 1.02fr 0.98fr;
+    align-items: center; column-gap: 44px;
+    padding: 34px 44px 34px;
+    background: linear-gradient(135deg, var(--mne-red) 0%, var(--mne-red-deep) 100%);
+    color: #fff;
+  }
+  .pres-banner::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 88% 12%, rgba(240,217,160,0.14) 0%, transparent 58%);
+    pointer-events: none;
+  }
+  .pres-banner > * { position: relative; z-index: 1; }
+  /* The Presidency logo is red and gold artwork drawn for light grounds, so on
+     the banner it needs its own white panel rather than sitting red on red. */
+  /* Small mark in the card's top-right corner. The title carries the wording,
+     so the image is decorative (empty alt) and does not need to be large. The
+     white panel is what makes it readable: the artwork is red and gold, drawn
+     for light grounds, so on the red banner it would otherwise be red on red. */
+  .pres-logo-chip {
+    align-self: flex-end;
+    background: #fff; border-radius: 10px;
+    padding: 9px 12px; margin: 0 0 16px;
+    box-shadow: 0 5px 14px rgba(0,0,0,0.18);
+  }
+  .pres-logo { width: 92px; height: auto; display: block; }
+  .pres-eyebrow {
+    display: inline-block; margin-bottom: 12px;
+    padding: 5px 13px; border-radius: 999px;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(240,217,160,0.45);
+    font-size: var(--text-xs); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--mne-gold-light);
+  }
+  .pres-title {
+    font-family: var(--font-display);
+    font-size: clamp(23px, 2.5vw, 32px); font-weight: 800;
+    line-height: 1.12; letter-spacing: -0.02em; color: #fff;
+    margin-bottom: 12px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--mne-gold-light);
+    display: inline-block;
+  }
+  .pres-title span { color: var(--mne-gold-light); }
+  .pres-lede {
+    font-size: var(--text-md); line-height: 1.65;
+    color: rgba(255,255,255,0.9); margin-bottom: 20px;
+  }
+  .pres-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .pres-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 999px;
+    font-family: inherit; font-size: var(--text-sm); font-weight: 600;
+    cursor: pointer; transition: background .18s, color .18s, border-color .18s, transform .18s;
+    border: 1px solid rgba(255,255,255,0.45);
+    background: transparent; color: #fff;
+  }
+  .pres-btn:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
+  .pres-btn.is-primary { background: #fff; color: var(--mne-red-deep); border-color: #fff; }
+  .pres-btn.is-primary:hover { background: var(--mne-gold-light); color: var(--mne-red-deep); }
+  .pres-btn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---- Values, on the banner ---- */
+  .pres-values-lead {
+    font-size: var(--text-xs); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--mne-gold-light); margin-bottom: 12px;
+  }
+  .pres-values-row { display: flex; flex-direction: column; gap: 14px; }
+  .pres-value { padding-left: 15px; border-left: 2px solid var(--mne-gold-light); }
+  .pres-value h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-md); font-weight: 800; color: #fff;
+    margin-bottom: 3px; letter-spacing: -0.005em;
+  }
+  .pres-value p { font-size: var(--text-md); color: rgba(255,255,255,0.86); line-height: 1.5; margin: 0; }
+  /* Column stretches to the banner height, so the closing statement drops to
+     its foot: the leftover red reads as separation, not trailing emptiness. */
+  .pres-banner > div:last-child { display: flex; flex-direction: column; }
+  .pres-closing {
+    max-width: 60ch;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.24);
+    font-size: var(--text-md); color: rgba(255,255,255,0.88); line-height: 1.6;
+  }
+  .pres-closing strong { color: var(--mne-gold-light); font-weight: 700; }
+
+  /* ---- Agenda: numbered list on a tint ---- */
+  .pres-agenda { padding: 34px 48px 42px; background: #fdf8f1; border-top: 1px solid #f0e2c8; }
+  .pres-agenda-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+  .pres-agenda-head h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl); font-weight: 800;
+    color: var(--mne-red-ink); letter-spacing: -0.015em;
+  }
+  .pres-agenda-head span {
+    font-size: var(--text-xs); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em; color: var(--mne-gold-deep);
+  }
+  .pres-agenda-list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .pres-agenda-list li { display: flex; gap: 14px; align-items: flex-start; }
+  .pres-agenda-n {
+    font-family: var(--font-display);
+    font-size: 30px; font-weight: 800; line-height: 1;
+    color: var(--mne-red); opacity: 0.32; flex: none;
+    letter-spacing: -0.04em;
+  }
+  .pres-agenda-list p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.65; margin: 0; }
+  .pres-agenda-list strong { color: var(--ink); font-weight: 700; display: block; margin-bottom: 3px; }
+
+  @media (max-width: 900px) {
+    .pres-banner { grid-template-columns: 1fr; gap: 26px; padding: 26px 22px 28px; }
+    .pres-logo { width: 124px; }
+    .pres-agenda { padding: 24px 22px 28px; }
+
+    .pres-agenda-list { grid-template-columns: 1fr; gap: 18px; }
+  }
 
   /* Chairmanship modal */
   .cm-overlay {
@@ -1096,7 +1103,7 @@
   .cm-modal {
     background: #fff;
     border-radius: 12px;
-    max-width: 680px; width: 100%;
+    max-width: 900px; width: 100%;
     margin: auto;
     box-shadow: 0 24px 64px rgba(0,0,0,0.4);
     transform: translateY(20px) scale(0.98);
@@ -1118,8 +1125,12 @@
     transition: background 0.15s, color 0.15s;
   }
   .cm-close:hover { background: #fff; color: var(--ink); }
+  /* The modals belong to the Presidency card, so the banner carries its red
+     rather than the site navy. Tokens are redeclared here because .pres does
+     not enclose the modal, which is a direct child of body. */
+  .cm-overlay { --mne-red: #b01e12; --mne-red-deep: #7a160f; --mne-gold-light: #f0d9a0; }
   .cm-banner {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-700) 100%);
+    background: linear-gradient(135deg, var(--mne-red) 0%, var(--mne-red-deep) 100%);
     padding: 40px 44px;
     color: #fff;
   }
@@ -1127,7 +1138,7 @@
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.6);
+    color: var(--mne-gold-light);
     font-weight: 600;
     margin-bottom: 8px;
   }
@@ -1143,14 +1154,20 @@
     color: #334155;
     line-height: 1.75;
   }
-  .cm-content p { margin-bottom: 14px; }
+  .cm-content p { margin-bottom: 14px; text-align: justify; }
+  /* Hyphenation is off site-wide, so a narrow justified measure can only
+     stretch the word gaps. Below 600px the modal drops under 60 characters. */
+  @media (max-width: 600px) { .cm-content p { text-align: left; } }
   .cm-content p:last-child { margin-bottom: 0; }
 
   /* Presidency modal photo gallery (shared across modals) */
   .cm-gallery {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    /* The source photos are all 3:2. A 16/9 frame with object-fit:cover was
+       slicing ~15.5% off the height of every one, so the frame matches the
+       photos and nothing is cropped. */
+    aspect-ratio: 3 / 2;
     background: linear-gradient(135deg, var(--navy-900), var(--navy));
     overflow: hidden;
   }
@@ -1249,7 +1266,9 @@
 
   .benefits-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* Single column: the photos live in the "Celebrating the Presidency"
+       modal, which already renders the whole gallery, so the card gets its
+       full width for the Presidency content. */
     gap: 12px;
     margin-bottom: 32px;
   }
@@ -1366,7 +1385,9 @@
 
   .news-featured {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* Single column: the photos live in the "Celebrating the Presidency"
+       modal, which already renders the whole gallery, so the card gets its
+       full width for the Presidency content. */
     border: 1px solid var(--line);
     border-radius: 8px;
     overflow: hidden;
@@ -1451,7 +1472,9 @@
   .events { background: var(--surface-alt); }
   .events-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* Single column: the photos live in the "Celebrating the Presidency"
+       modal, which already renders the whole gallery, so the card gets its
+       full width for the Presidency content. */
     gap: 48px;
     align-items: flex-start;
   }
@@ -1567,9 +1590,6 @@
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .pf-grid { grid-template-columns: repeat(2, 1fr); }
     .glance-grid { grid-template-columns: 1fr; gap: 20px; }
-    .chair-card { grid-template-columns: 1fr; }
-    .chair-media { min-height: 260px; }
-    .chair-body { padding: 40px 28px; }
     .partnership-card { grid-template-columns: 1fr; }
     .partnership-text { padding: 40px 24px; }
     .partnership-visual { min-height: 320px; }
@@ -1591,9 +1611,6 @@
     .partners-row { flex-direction: column; }
     .partner-link { border-right: none; border-bottom: 1px solid var(--line); width: 100%; text-align: center; }
     /* Chairmanship: drop logo into flow so it stops overlapping the title/intro */
-    .chair-logo { position: static; width: 116px; margin: 0 0 18px; }
-    .chair-title { max-width: none; }
-    .chair-intro { max-width: none; }
   }
 
   /* Programme cards: two compact columns hold on tablets/large phones,
@@ -2512,118 +2529,75 @@
      ============================================================ -->
 <section class="section chair" id="chairmanship">
   <div class="container">
-    <div class="chair-card">
+    <div class="pres">
 
-      <div class="chair-media">
-        <div class="chair-media-ph">Add photos:<br>assets/images/chairmanship/montenegro-2026-01.jpg …</div>
-        <div class="chair-carousel" id="chair-carousel" role="region" aria-roledescription="carousel" aria-label="Montenegro Chairmanship 2026 photos"></div>
+      <!-- Identity banner: the statement on the left, the three core values
+           filling what was empty red on the right. -->
+      <div class="pres-banner">
+        <div>
+          <span class="pres-eyebrow">Chairmanship in Office &middot; 2026</span>
+          <h2 class="pres-title">Presidency of Montenegro <span>2026</span></h2>
+          <p class="pres-lede">During our Presidency of the Western Balkans Fund, we are committed to advancing meaningful regional cooperation through responsible leadership and shared ownership.</p>
+          <div class="pres-btns">
+            <button type="button" class="pres-btn is-primary chair-btn" data-cm="celebration">
+              Celebrating the Presidency
+              <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+            </button>
+            <button type="button" class="pres-btn chair-btn" data-cm="remarks">
+              Remarks of the Chair
+              <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="pres-logo-chip">
+            <img class="pres-logo"
+                 src="/assets/images/chairmanship/montenegro-logo.png"
+                 alt=""
+                 onerror="this.parentElement.style.display='none'">
+          </div>
+          <p class="pres-values-lead">We are guided by three core values</p>
+          <div class="pres-values-row">
+            <div class="pres-value">
+              <h3>Resilience</h3>
+              <p>Perseverance in navigating complex regional realities</p>
+            </div>
+            <div class="pres-value">
+              <h3>Openness</h3>
+              <p>Dialogue, coexistence and inclusive cooperation</p>
+            </div>
+            <div class="pres-value">
+              <h3>Long-term responsibility</h3>
+              <p>Accountability to the region, its citizens and the European Integration process</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="chair-body">
-        <span class="chair-eyebrow">Chairmanship in Office · 2026</span>
-        <img class="chair-logo"
-             src="/assets/images/chairmanship/montenegro-logo.png"
-             alt="Montenegro"
-             onerror="this.style.display='none'">
-        <h2 class="chair-title">Montenegro</h2>
-        <p class="chair-intro">Montenegro holds the Chairmanship in Office of the Western Balkans Fund for 2026, steering the Fund's regional priorities and cooperation agenda throughout the year.</p>
-        <div class="chair-btns">
-          <button type="button" class="chair-btn" data-cm="celebration">
-            Celebrating the Presidency
-            <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
-          </button>
-          <button type="button" class="chair-btn" data-cm="remarks">
-            Remarks of the Chair
-            <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
-          </button>
+      <div class="pres-agenda">
+        <div class="pres-agenda-head">
+          <h3>Priorities of Montenegro&rsquo;s agenda</h3>
         </div>
+        <ol class="pres-agenda-list">
+          <li>
+            <span class="pres-agenda-n">01</span>
+            <p><strong>Strengthening regional cooperation</strong> through support to high-quality projects in culture, education, research, youth, sustainable development, environment, media, gender equality and European integration.</p>
+          </li>
+          <li>
+            <span class="pres-agenda-n">02</span>
+            <p><strong>Building capacities</strong> of applicants and grant beneficiaries through guidance, knowledge exchange and targeted support.</p>
+          </li>
+          <li>
+            <span class="pres-agenda-n">03</span>
+            <p><strong>Enhancing visibility and institutional development</strong> of the Fund at both regional and international levels.</p>
+          </li>
+        </ol>
       </div>
 
     </div>
   </div>
 </section>
-
-<!-- On-card Chairmanship photo carousel -->
-<script>
-(function () {
-  var root = document.getElementById('chair-carousel');
-  if (!root) return;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var BASE = '/assets/images/chairmanship/';
-  var FILES = [
-    'montenegro-2026-01.jpg','montenegro-2026-02.jpg','montenegro-2026-03.jpg',
-    'montenegro-2026-04.jpg','montenegro-2026-05.jpg','montenegro-2026-06.jpg',
-    'montenegro-2026-07.jpg','montenegro-2026-09.jpg','montenegro-2026-10.jpg',
-    'montenegro-2026-11.jpg'
-  ];
-  var ph = root.parentElement.querySelector('.chair-media-ph');
-  var track = document.createElement('div'); track.className = 'cc-track';
-  FILES.forEach(function (f, i) {
-    var s = document.createElement('div'); s.className = 'cc-slide';
-    var img = document.createElement('img');
-    img.src = BASE + f; img.alt = 'Montenegro, WBF Presidency 2026 (' + (i + 1) + ')';
-    /* first frame eager so the card paints immediately; the rest can wait */
-    img.loading = i === 0 ? 'eager' : 'lazy';
-    img.decoding = 'async';
-    img.onload = function () { if (ph) ph.style.display = 'none'; };
-    img.onerror = function () { s.style.display = 'none'; };
-    s.appendChild(img); track.appendChild(s);
-  });
-  root.appendChild(track);
-
-  var count = FILES.length, idx = 0, dots = [];
-  function go(i) {
-    idx = (i + count) % count;
-    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
-    dots.forEach(function (d, di) { d.classList.toggle('active', di === idx); });
-  }
-  if (count <= 1) return;
-
-  var prev = document.createElement('button');
-  prev.type = 'button'; prev.className = 'cc-btn cc-prev'; prev.setAttribute('aria-label', 'Previous photo');
-  prev.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="15,6 9,12 15,18"/></svg>';
-  var next = document.createElement('button');
-  next.type = 'button'; next.className = 'cc-btn cc-next'; next.setAttribute('aria-label', 'Next photo');
-  next.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg>';
-  var timer = null;
-  function stop() { if (timer) { clearInterval(timer); timer = null; } }
-  function play() { if (reduce) return; stop(); timer = setInterval(function () { go(idx + 1); }, 3000); }
-  function rest() { stop(); play(); }
-  prev.addEventListener('click', function () { go(idx - 1); rest(); });
-  next.addEventListener('click', function () { go(idx + 1); rest(); });
-  root.appendChild(prev); root.appendChild(next);
-
-  var dotsWrap = document.createElement('div'); dotsWrap.className = 'cc-dots';
-  FILES.forEach(function (_, i) {
-    var d = document.createElement('button');
-    d.type = 'button'; d.className = 'cc-dot' + (i === 0 ? ' active' : ''); d.setAttribute('aria-label', 'Go to photo ' + (i + 1));
-    d.addEventListener('click', function () { go(i); rest(); });
-    dotsWrap.appendChild(d); dots.push(d);
-  });
-  root.appendChild(dotsWrap);
-
-  /* manual slide,touch swipe + mouse drag */
-  var startX = null;
-  function swipeStart(x) { startX = x; stop(); }
-  function swipeEnd(x) {
-    if (startX === null) return;
-    var dx = x - startX;
-    startX = null;
-    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
-    play();
-  }
-  root.addEventListener('touchstart', function (e) { swipeStart(e.changedTouches[0].clientX); }, { passive: true });
-  root.addEventListener('touchend',   function (e) { swipeEnd(e.changedTouches[0].clientX); }, { passive: true });
-  root.addEventListener('mousedown', function (e) { swipeStart(e.clientX); });
-  root.addEventListener('mouseup',   function (e) { swipeEnd(e.clientX); });
-  root.addEventListener('dragstart', function (e) { e.preventDefault(); });
-
-  var media = root.parentElement;
-  media.addEventListener('mouseenter', stop);
-  media.addEventListener('mouseleave', play);
-  play();
-})();
-</script>
 
 <!-- Chairmanship modal (shared) -->
 <div class="cm-overlay" id="cm-overlay" hidden>
@@ -3025,7 +2999,7 @@
     { src: '/assets/images/chairmanship/montenegro-2026-07.jpg', alt: 'Montenegro, WBF Presidency 2026 (7)' },
     { src: '/assets/images/chairmanship/montenegro-2026-09.jpg', alt: 'Montenegro, WBF Presidency 2026 (8)' },
     { src: '/assets/images/chairmanship/montenegro-2026-10.jpg', alt: 'Montenegro, WBF Presidency 2026 (9)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-11.jpg', alt: 'Montenegro, WBF Presidency 2026 (10)' }
+    { src: '/assets/images/chairmanship/montenegro-2026-08.jpg', alt: 'Montenegro, WBF Presidency 2026 (8)' }
   ];
 
   function galleryHTML() {
