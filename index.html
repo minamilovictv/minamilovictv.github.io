@@ -1444,6 +1444,10 @@
   /* ============================================================
      EVENTS PREVIEW
      ============================================================ */
+  /* The section ships hidden and the feed reveals it only once at least one
+     upcoming event has rendered. Hiding it after the fetch instead would flash
+     an empty heading and "All events" link on every load that has no events. */
+  .events[hidden] { display: none; }
   .events { background: var(--surface-alt); }
   .events-grid {
     display: grid;
@@ -2688,7 +2692,7 @@
 <!-- ============================================================
      EVENTS PREVIEW
      ============================================================ -->
-<section class="section-sm events">
+<section class="section-sm events" hidden>
   <div class="container">
     <div class="events-grid">
       <div class="events-header">
@@ -2757,7 +2761,7 @@
   function init(){
     var host = document.getElementById('home-events-list');
     var section = document.querySelector('section.events');
-    if (!host) return;
+    if (!host || !section) return;
     var today = new Date(); today.setHours(0,0,0,0);
     fetch(CSV_URL, { cache: 'no-store' })
       .then(function(r){ if(!r.ok) throw new Error('fetch failed'); return r.text(); })
@@ -2767,10 +2771,13 @@
           .filter(function(i){ return i.startDate && !isNaN(new Date(i.startDate)) && new Date(i.startDate) >= today; })
           .sort(function(a,b){ return new Date(a.startDate) - new Date(b.startDate); })
           .slice(0, LIMIT);
-        if (!items.length) { if (section) section.style.display = 'none'; return; }
-        host.innerHTML = items.map(render).join('');
+        /* Nothing upcoming: leave the section hidden exactly as it shipped. */
+        if (!items.length) return;
+        host.innerHTML = items.map(render).join("");
+        section.hidden = false;
       })
-      .catch(function(){ if (section) section.style.display = 'none'; });
+      /* Sheet unreachable: treat it as having no events and stay hidden. */
+      .catch(function(){});
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
