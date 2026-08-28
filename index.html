@@ -1780,10 +1780,14 @@
   }
 
   @media (max-width: 900px) {
-    .lc-carousel { height: 380px; }
-    .lc-slide { padding: 24px 58px 42px; }
-    .lc-logo { width: 200px; height: 96px; }
-    .lc-logos { gap: 20px 32px; }
+    /* A fixed height with overflow:hidden clipped the seven-logo "Other
+       Partners" slide, which needs ~516px at this width. Let the carousel
+       grow to its tallest slide, as it already does below 600px. */
+    .lc-carousel { height: auto; }
+    .lc-track { align-items: stretch; }
+    .lc-slide { padding: 24px 58px 42px; min-height: 380px; }
+    .lc-logo { width: 168px; height: 88px; }
+    .lc-logos { gap: 20px 28px; }
   }
   @media (max-width: 600px) {
     /* Let the carousel grow to fit its logos instead of clipping the taller
