@@ -29,23 +29,27 @@
 <style>
 
 /* ============================================================
-   DESIGN TOKENS · Academy palette (blue + gold) + WBF navy
+   DESIGN TOKENS · Academy palette (forest green + gold) + WBF navy
+   Colours come straight from the Academy logo: the tile ramp runs
+   #0c5046 → #a4beba, the accent golds are #e0a738 / #e4c48e.
    ============================================================ */
 :root {
-  /* Academy primary · blue */
-  --aqua:        #007db2;
-  --aqua-bright: #29a3d9;
-  --aqua-deep:   #00618c;   /* readable on white */
-  --aqua-darker: #004a6b;
-  --aqua-tint:   #E0F1F9;
-  --aqua-tint-2: #F0F8FC;
-  --aqua-border: #B3D9EC;
+  /* Academy primary · forest green (logo tile ramp) */
+  --forest:        #326a61;   /* mid green · accents, dots, borders */
+  --forest-bright: #58857d;   /* lightest gradient stop */
+  --forest-deep:   #1c5e53;   /* readable on white */
+  --forest-darker: #0c5046;   /* logo core green · darkest */
+  --forest-tint:   #E3EDEA;
+  --forest-tint-2: #F2F8F6;
+  --forest-border: #BACFCA;
+  --sage:          #a4beba;   /* lightest logo tile */
 
-  /* Academy highlight · gold */
-  --gold:        #dba91c;
-  --gold-deep:   #a67f14;
-  --gold-tint:   #F9EFD0;
-  --gold-border: #ECDCA0;
+  /* Academy highlight · gold (logo) */
+  --gold:        #e0a738;
+  --gold-light:  #e4c48e;   /* logo light gold */
+  --gold-deep:   #8a661c;   /* readable on white */
+  --gold-tint:   #FAF2E3;
+  --gold-border: #EBD3AA;
 
   /* WBF navy · structural */
 
@@ -60,6 +64,10 @@
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+/* Anchor jumps (nav links, the #day-N pillar links) land below the
+   sticky 72px navbar instead of underneath it. scroll-padding on the
+   scroll container covers both native jumps and scrollIntoView. */
+html { scroll-padding-top: 90px; }
 body { font-family: var(--font); color: var(--ink); background: #fff; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
@@ -68,7 +76,7 @@ button { font-family: inherit; }
 .container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
 h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 
-::selection { background: var(--aqua); color: var(--navy); }
+::selection { background: var(--forest); color: #fff; }
 
 /* Justified body paragraphs */
 .overview-text p,
@@ -77,21 +85,34 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 .partners-head p,
 .partners-thanks { text-align: justify; }
 
+/* Hyphenation is disabled site-wide (see css/site-chrome.css), so justifying
+   a narrow measure has nowhere to give except the word gaps. Below ~600px the
+   column drops under 60 characters and that shows up as rivers of white, so
+   these paragraphs fall back to ragged-right on phones. */
+@media (max-width: 600px) {
+  .overview-text p,
+  .cohort-text p,
+  .heritage-text > p,
+  .partners-head p,
+  .partners-thanks,
+  .mtr-body p { text-align: left; }
+}
+
 /* Mobile navigation (hamburger + drawer) is provided by js/nav.js,
-   consistent with every other page — no page-local mobile-nav CSS. */
+   consistent with every other page, no page-local mobile-nav CSS. */
 
 /* ============================================================
-   HERO · Academy blue gradient with warm gold accent
+   HERO · Academy forest-green gradient with warm gold accent
    ============================================================ */
 .prog-hero {
   position: relative;
-  background: linear-gradient(135deg, #004a6b 0%, #00618c 35%, #007db2 70%, #29a3d9 100%);
+  background: linear-gradient(135deg, var(--forest-darker) 0%, var(--forest-deep) 35%, var(--forest) 70%, var(--forest-bright) 100%);
   overflow: hidden;
   padding: 64px 0 48px;
   color: #fff;
 }
-.hero-orb { position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(219,169,28,0.28) 0%, transparent 70%); top: -160px; right: -140px; filter: blur(10px); pointer-events: none; }
-.hero-orb-2 { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(92,235,219,0.34) 0%, transparent 70%); bottom: -120px; left: -80px; filter: blur(12px); pointer-events: none; }
+.hero-orb { position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(224,167,56,0.28) 0%, transparent 70%); top: -160px; right: -140px; filter: blur(10px); pointer-events: none; }
+.hero-orb-2 { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(164,190,186,0.40) 0%, transparent 70%); bottom: -120px; left: -80px; filter: blur(12px); pointer-events: none; }
 
 .prog-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
 
@@ -105,11 +126,11 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   display: inline-flex; align-items: center; gap: 8px;
   padding: 6px 14px; border-radius: 999px;
   font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
-  background: rgba(219,169,28,0.16);
-  border: 1px solid rgba(219,169,28,0.42);
-  color: #f2dc9c;
+  background: rgba(224,167,56,0.16);
+  border: 1px solid rgba(224,167,56,0.42);
+  color: var(--gold-light);
 }
-.status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(219,169,28,0.22); }
+.status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(224,167,56,0.22); }
 .status-pill.is-amber {
   background: rgba(245,158,11,0.18);
   border-color: rgba(245,158,11,0.42);
@@ -118,22 +139,17 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 .status-pill.is-amber .status-pill-dot { background: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,0.22); }
 .status-pill-text { text-transform: uppercase; font-size: 11.5px; }
 
-.brand-mark {
-  display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 12px;
-  font-size: clamp(32px, 4.4vw, 52px);
-  font-weight: 800; letter-spacing: -0.03em;
-  margin-bottom: 12px;
-  color: #fff;
-  line-height: 1.05;
-}
-.brand-mark .we { color: var(--gold); }
-.brand-mark .be { color: #fff; }
-.brand-tagline {
-  font-size: clamp(13px, 1.4vw, 15px);
-  text-transform: uppercase; letter-spacing: 0.22em;
-  color: rgba(255,255,255,0.7);
-  font-weight: 600;
-  margin-bottom: 28px;
+/* The Academy lockup (mark + name + tagline) ships as one SVG, so the hero
+   carries the artwork rather than typeset text. academy-logo-white.svg is the
+   supplied dark-background version with its opaque artboard rect removed and the
+   wordmark group scaled 1.649x so the name+tagline block matches the mark's
+   height (the supplied lockup sets it at 61%, which read as lopsided), so
+   it sits transparently on the hero gradient. */
+.brand-logo {
+  display: block;
+  width: clamp(320px, 46vw, 620px);   /* artwork is 5.24:1 */
+  height: auto;
+  margin: 0 0 30px;
 }
 .prog-hero h1 {
   font-size: clamp(22px, 2.8vw, 32px);
@@ -164,11 +180,11 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   border: 1px solid transparent;
   font-family: inherit; cursor: pointer;
 }
-.btn-primary { background: #fff; color: var(--aqua-darker); }
-.btn-primary:hover { background: var(--aqua-tint); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+.btn-primary { background: #fff; color: var(--forest-darker); }
+.btn-primary:hover { background: var(--forest-tint); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
 .btn-primary svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.btn-gold { background: var(--gold); color: var(--navy); }
-.btn-gold:hover { background: var(--gold-deep); color: #fff; transform: translateY(-1px); box-shadow: 0 8px 18px rgba(219,169,28,0.25); }
+.btn-gold { background: var(--gold); color: var(--forest-darker); }
+.btn-gold:hover { background: var(--gold-deep); color: #fff; transform: translateY(-1px); box-shadow: 0 8px 18px rgba(224,167,56,0.25); }
 .btn-gold svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.42); }
 .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: #fff; }
@@ -189,12 +205,12 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 /* ============================================================
    GENERIC SECTION
    ============================================================ */
-.section { padding: 80px 0; }
+.section { padding: 56px 0; }
 .section-alt { background: var(--surface-alt); }
-.section-tint { background: linear-gradient(180deg, var(--surface) 0%, var(--aqua-tint-2) 100%); }
+.section-tint { background: linear-gradient(180deg, var(--surface) 0%, var(--forest-tint-2) 100%); }
 .sec-head { text-align: center; max-width: 760px; margin: 0 auto 52px; }
 .sec-head.left { text-align: left; margin-left: 0; }
-.sec-head .overline { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--aqua-deep); margin-bottom: 14px; padding: 4px 12px; background: var(--aqua-tint); border-radius: 999px; }
+.sec-head .overline { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--forest-deep); margin-bottom: 14px; padding: 4px 12px; background: var(--forest-tint); border-radius: 999px; }
 .sec-head h2 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.025em; line-height: 1.15; }
 .sec-head h2 .gold-accent { color: var(--gold-deep); }
 .sec-head p { font-size: 16.5px; color: var(--ink-soft); line-height: 1.65; }
@@ -206,16 +222,17 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 64px;
-  align-items: start;
+  align-items: stretch;   /* card fills the row so both columns end level */
 }
 .overview-text p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 16px; }
 .overview-text p:last-child { margin-bottom: 0; }
 .overview-text strong { color: var(--ink); font-weight: 700; }
-.overview-text em { color: var(--aqua-deep); font-style: normal; font-weight: 600; }
+.overview-text em { color: var(--forest-deep); font-style: normal; font-weight: 600; }
 
 .distinguishing-card {
-  background: linear-gradient(160deg, var(--aqua-tint) 0%, #fff 100%);
-  border: 1px solid var(--aqua-border);
+  display: flex; flex-direction: column;
+  background: linear-gradient(160deg, var(--forest-tint) 0%, #fff 100%);
+  border: 1px solid var(--forest-border);
   border-radius: 16px;
   padding: 32px 30px;
   position: relative;
@@ -224,13 +241,13 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 }
 .distinguishing-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 46px rgba(15,32,68,0.13);
+  box-shadow: 0 22px 46px rgba(12,80,70,0.13);
   border-color: var(--gold-border);
 }
 .distinguishing-card::before {
   content: ""; position: absolute; top: -40px; right: -40px;
   width: 160px; height: 160px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(219,169,28,0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(224,167,56,0.18) 0%, transparent 70%);
   pointer-events: none;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -242,53 +259,103 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 }
 .distinguishing-card .dc-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold-deep); margin-bottom: 12px; position: relative; }
 .distinguishing-card h3 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.02em; line-height: 1.25; position: relative; }
-.distinguishing-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; position: relative; }
+.distinguishing-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; position: relative; flex: 1; justify-content: space-between; }
 .distinguishing-card li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; transition: transform .2s ease; }
 .distinguishing-card li:hover { transform: translateX(4px); }
 .distinguishing-card li .dot {
   width: 22px; height: 22px; border-radius: 50%;
-  background: var(--gold); color: var(--navy);
+  background: var(--gold); color: var(--forest-darker);
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 800;
   flex-shrink: 0; margin-top: 1px;
   transition: transform .22s ease, box-shadow .22s ease;
 }
-.distinguishing-card li:hover .dot { transform: scale(1.18); box-shadow: 0 0 0 4px rgba(219,169,28,0.22); }
+.distinguishing-card li:hover .dot { transform: scale(1.18); box-shadow: 0 0 0 4px rgba(224,167,56,0.22); }
 
 /* ============================================================
-   PILLARS · five thematic pillars
+   PILLARS · five thematic pillars, one per programme day
+   ============================================================
+   Each card mirrors one thematic strand of the agenda (Days 2-6)
+   and links to that day's tab via #day-N, which the Programme
+   script picks up on hashchange.
    ============================================================ */
 .pillars-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
+  gap: 20px;
 }
 .pillar-card {
+  /* Per-card accent. Days 3 and 5 (the even cards) run gold, the rest forest. */
+  --pc:      var(--forest);
+  --pc-deep: var(--forest-deep);
+  --pc-tint: var(--forest-tint);
+  display: flex; flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-top: 3px solid var(--aqua);
-  border-radius: 12px;
-  padding: 26px 22px 24px;
+  border-top: 3px solid var(--pc);
+  border-radius: 14px;
+  padding: 22px 22px 20px;
+  text-decoration: none;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  position: relative; overflow: hidden;
+}
+.pillar-card:nth-child(2n) {
+  --pc:      var(--gold);
+  --pc-deep: var(--gold-deep);
+  --pc-tint: var(--gold-tint);
+}
+.pillar-card:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(28,94,83,0.16); border-color: var(--forest-border); }
+.pillar-card:focus-visible { outline: 2px solid var(--forest-deep); outline-offset: 3px; }
+
+/* Oversized ghost numeral heading each card. */
+.pillar-num {
+  display: block;
+  font-size: 30px; font-weight: 800; line-height: 1;
+  color: var(--pc); opacity: 0.28; letter-spacing: -0.04em;
+  margin-bottom: 18px;
+}
+.pillar-card:nth-child(2n) .pillar-num { opacity: 0.42; }
+
+/* Title is the card's anchor now that the icons are gone: a short accent rule
+   sits under it and sweeps the full width as the card is hovered, while the
+   text itself warms from ink to the card's own accent. */
+.pillar-title {
   position: relative;
+  font-size: 17px; font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  line-height: 1.28; letter-spacing: -0.018em;
+  text-wrap: balance;
+  transition: color 0.25s ease;
 }
-.pillar-card:nth-child(2) { border-top-color: var(--gold); }
-.pillar-card:nth-child(4) { border-top-color: var(--gold); }
-.pillar-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,97,140,0.12); }
-.pillar-num { font-size: 11px; font-weight: 700; color: var(--aqua-deep); letter-spacing: 0.12em; margin-bottom: 12px; }
-.pillar-card:nth-child(2) .pillar-num,
-.pillar-card:nth-child(4) .pillar-num { color: var(--gold-deep); }
-.pillar-icon {
-  width: 44px; height: 44px; border-radius: 10px;
-  background: var(--aqua-tint); color: var(--aqua-deep);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
+.pillar-title::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 28px; height: 2px; border-radius: 2px;
+  background: var(--pc);
+  transition: width 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.pillar-card:nth-child(2) .pillar-icon,
-.pillar-card:nth-child(4) .pillar-icon { background: var(--gold-tint); color: var(--gold-deep); }
-.pillar-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.pillar-title { font-size: 15.5px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.3; letter-spacing: -0.01em; }
+.pillar-card:hover .pillar-title,
+.pillar-card:focus-visible .pillar-title { color: var(--pc-deep); }
+.pillar-card:hover .pillar-title::after,
+.pillar-card:focus-visible .pillar-title::after { width: 100%; }
+
 .pillar-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+.pillar-link {
+  margin-top: auto; padding-top: 16px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; color: var(--pc-deep);
+}
+.pillar-link::after { content: "\2192"; transition: transform 0.2s; }
+.pillar-card:hover .pillar-link::after { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar-title::after { transition: none; }
+}
+
+@media (max-width: 1200px) {
+  .pillars-grid { grid-template-columns: repeat(3, 1fr); }
+}
 
 /* ============================================================
    PROGRAMME · 7-day agenda, one panel per day
@@ -310,19 +377,19 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   border-radius: 12px; cursor: pointer; font-family: inherit; text-align: center;
   transition: background 0.18s, border-color 0.18s, transform 0.18s, box-shadow 0.18s;
 }
-.prog-tab:hover { border-color: var(--aqua); background: var(--aqua-tint-2); transform: translateY(-2px); }
-.prog-tab:focus-visible { outline: 2px solid var(--aqua-deep); outline-offset: 3px; }
+.prog-tab:hover { border-color: var(--forest); background: var(--forest-tint-2); transform: translateY(-2px); }
+.prog-tab:focus-visible { outline: 2px solid var(--forest-deep); outline-offset: 3px; }
 .prog-tab-num { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
 .prog-tab-date { font-size: 14.5px; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; line-height: 1.15; }
 .prog-tab[aria-selected="true"] {
-  background: var(--aqua-deep); border-color: var(--aqua-deep);
-  box-shadow: 0 8px 20px rgba(0,97,140,0.22);
+  background: var(--forest-deep); border-color: var(--forest-deep);
+  box-shadow: 0 8px 20px rgba(28,94,83,0.22);
 }
-.prog-tab[aria-selected="true"]:hover { transform: none; background: var(--aqua-deep); }
+.prog-tab[aria-selected="true"]:hover { transform: none; background: var(--forest-deep); }
 .prog-tab[aria-selected="true"] .prog-tab-num { color: rgba(255,255,255,0.70); }
 .prog-tab[aria-selected="true"] .prog-tab-date { color: #fff; }
 /* Arrival and closing days carry the gold accent, as the finale card did. */
-.prog-tab.is-bookend[aria-selected="true"] { background: var(--gold-deep); border-color: var(--gold-deep); box-shadow: 0 8px 20px rgba(166,127,20,0.24); }
+.prog-tab.is-bookend[aria-selected="true"] { background: var(--gold-deep); border-color: var(--gold-deep); box-shadow: 0 8px 20px rgba(138,102,28,0.24); }
 .prog-tab.is-bookend[aria-selected="true"]:hover { background: var(--gold-deep); }
 .prog-tab.is-bookend:hover { border-color: var(--gold); background: var(--gold-tint); }
 
@@ -333,9 +400,9 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 
 .prog-day-head {
   padding-bottom: 16px; margin-bottom: 6px;
-  border-bottom: 2px solid var(--aqua-tint);
+  border-bottom: 2px solid var(--forest-tint);
 }
-.prog-day-date { font-size: 12.5px; font-weight: 700; color: var(--aqua-deep); letter-spacing: 0.04em; margin-bottom: 7px; }
+.prog-day-date { font-size: 12.5px; font-weight: 700; color: var(--forest-deep); letter-spacing: 0.04em; margin-bottom: 7px; }
 .prog-day-strand {
   font-size: clamp(15px, 2.1vw, 20px); font-weight: 800; color: var(--ink);
   letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; margin: 0;
@@ -348,8 +415,8 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   padding: 16px 10px; border-bottom: 1px solid var(--line);
 }
 .prog-row:last-child { border-bottom: 0; }
-.prog-row.is-break { background: var(--aqua-tint-2); border-radius: 8px; border-bottom-color: transparent; padding-top: 11px; padding-bottom: 11px; }
-.prog-time { font-size: 13.5px; font-weight: 700; color: var(--aqua-deep); font-variant-numeric: tabular-nums; white-space: nowrap; padding-top: 1px; }
+.prog-row.is-break { background: var(--forest-tint-2); border-radius: 8px; border-bottom-color: transparent; padding-top: 11px; padding-bottom: 11px; }
+.prog-time { font-size: 13.5px; font-weight: 700; color: var(--forest-deep); font-variant-numeric: tabular-nums; white-space: nowrap; padding-top: 1px; }
 .prog-row.is-break .prog-time { color: var(--muted); font-weight: 600; }
 .prog-title { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.45; }
 .prog-row.is-break .prog-title { font-size: 14px; font-weight: 500; color: var(--ink-soft); }
@@ -359,7 +426,7 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   display: inline-block; margin-bottom: 7px; vertical-align: middle;
   font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
   padding: 3px 9px; border-radius: 999px;
-  background: var(--aqua-tint); color: var(--aqua-deep);
+  background: var(--forest-tint); color: var(--forest-deep);
 }
 .prog-kind.is-keynote { background: var(--gold-tint); color: var(--gold-deep); }
 .prog-kind.is-visit   { background: var(--gold-tint); color: var(--gold-deep); }
@@ -367,10 +434,10 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   display: inline-block; margin: 0 0 7px 6px; vertical-align: middle;
   font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
   padding: 2px 8px; border-radius: 999px;
-  background: var(--surface); border: 1px solid var(--aqua-border); color: var(--aqua-deep);
+  background: var(--surface); border: 1px solid var(--forest-border); color: var(--forest-deep);
 }
 /* Concurrent sessions read as one bracketed pair. */
-.prog-row.is-parallel { border-left: 3px solid var(--aqua-border); border-bottom-color: transparent; padding-left: 14px; }
+.prog-row.is-parallel { border-left: 3px solid var(--forest-border); border-bottom-color: transparent; padding-left: 14px; }
 .prog-row.is-parallel + .prog-row.is-parallel { border-bottom-color: var(--line); }
 
 @media (max-width: 900px) {
@@ -383,6 +450,8 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   .prog-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 8px; }
   .prog-people { grid-column: 1; text-align: left; }
   .prog-row.is-parallel { padding-left: 12px; }
+  /* 9.5px uppercase is below the legible minimum on a phone. */
+  .prog-kind, .prog-flag { font-size: 11px; padding: 3px 10px; }
 }
 
 /* ============================================================
@@ -393,12 +462,12 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
    the hidden #mentor-data store inside that section, so it stays
    in the markup rather than in JavaScript.
    ============================================================ */
-.faculty-card.is-clickable { cursor: pointer; border-color: var(--aqua-border); }
-.faculty-card.is-clickable:hover { border-color: var(--aqua); box-shadow: 0 16px 32px rgba(0,97,140,0.16); }
-.faculty-card.is-clickable:focus-visible { outline: 2px solid var(--aqua-deep); outline-offset: 3px; }
+.faculty-card.is-clickable { cursor: pointer; border-color: var(--forest-border); }
+.faculty-card.is-clickable:hover { border-color: var(--forest); box-shadow: 0 16px 32px rgba(28,94,83,0.16); }
+.faculty-card.is-clickable:focus-visible { outline: 2px solid var(--forest-deep); outline-offset: 3px; }
 .faculty-more {
   display: inline-flex; align-items: center; gap: 6px; margin-top: 14px;
-  font-size: 12.5px; font-weight: 700; color: var(--aqua-deep);
+  font-size: 12.5px; font-weight: 700; color: var(--forest-deep);
 }
 .faculty-more::after { content: "\2192"; transition: transform 0.2s; }
 .faculty-card.is-clickable:hover .faculty-more::after { transform: translateX(3px); }
@@ -406,7 +475,7 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 /* Modal */
 .mtr-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: flex-start; justify-content: center; padding: 6vh 20px; }
 .mtr-modal[hidden] { display: none; }
-.mtr-backdrop { position: absolute; inset: 0; background: rgba(12,28,34,0.55); backdrop-filter: blur(3px); animation: mtr-fade 0.2s ease; }
+.mtr-backdrop { position: absolute; inset: 0; background: rgba(7,40,35,0.55); backdrop-filter: blur(3px); animation: mtr-fade 0.2s ease; }
 @keyframes mtr-fade { from { opacity: 0; } to { opacity: 1; } }
 .mtr-dialog {
   position: relative; z-index: 1;
@@ -422,8 +491,8 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   border: 1px solid var(--line); border-radius: 50%; background: var(--surface);
   color: var(--ink-soft); cursor: pointer; transition: background 0.18s, color 0.18s;
 }
-.mtr-close:hover { background: var(--aqua); border-color: var(--aqua); color: #fff; }
-.mtr-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--aqua-deep); margin-bottom: 10px; }
+.mtr-close:hover { background: var(--forest); border-color: var(--forest); color: #fff; }
+.mtr-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--forest-deep); margin-bottom: 10px; }
 .mtr-title { font-size: clamp(21px, 2.6vw, 27px); font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.2; margin: 0 32px 20px 0; }
 .mtr-body p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 15px; text-align: justify; }
 .mtr-body p:last-child { margin-bottom: 0; }
@@ -435,17 +504,17 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   display: inline-block; margin-bottom: 8px;
   font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
   padding: 4px 11px; border-radius: 999px;
-  background: var(--aqua-tint); color: var(--aqua-deep);
+  background: var(--forest-tint); color: var(--forest-deep);
 }
 .mtr-person-track.is-gold { background: var(--gold-tint); color: var(--gold-deep); }
 .mtr-person-name { font-size: 20px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 14px; }
 .mtr-body .mtr-scope {
   margin-top: 22px; padding: 18px 20px;
-  background: var(--aqua-tint-2); border-left: 3px solid var(--aqua);
+  background: var(--forest-tint-2); border-left: 3px solid var(--forest);
   border-radius: 0 10px 10px 0;
 }
 .mtr-body .mtr-scope p { margin: 0; color: var(--ink); text-align: left; }
-.mtr-body .mtr-scope h4 { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--aqua-deep); margin-bottom: 8px; }
+.mtr-body .mtr-scope h4 { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--forest-deep); margin-bottom: 8px; }
 body.mtr-open { overflow: hidden; }
 
 @media (max-width: 760px) {
@@ -466,7 +535,7 @@ body.mtr-open { overflow: hidden; }
 }
 .rhythm-rail::before {
   content: ""; position: absolute; left: 12%; right: 12%; top: 28px; height: 3px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--aqua) 55%, #3B5BC0 100%);
+  background: linear-gradient(90deg, var(--gold) 0%, var(--forest) 55%, var(--forest-darker) 100%);
   border-radius: 999px; z-index: 0;
 }
 .rhythm-stop {
@@ -555,9 +624,9 @@ body.mtr-open { overflow: hidden; }
   background: var(--gold-tint);
   border: 1px solid var(--gold-border);
   border-radius: 12px;
-  font-size: 14px; color: #6b5615; line-height: 1.65;
+  font-size: 14px; color: #6b551f; line-height: 1.65;
 }
-.faculty-intro strong { color: #4a3a0e; font-weight: 700; }
+.faculty-intro strong { color: #4a3913; font-weight: 700; }
 .faculty-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -573,13 +642,13 @@ body.mtr-open { overflow: hidden; }
 .faculty-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
 .faculty-photo {
   height: 180px;
-  background: linear-gradient(135deg, var(--aqua-deep) 0%, var(--aqua) 100%);
+  background: linear-gradient(135deg, var(--forest-deep) 0%, var(--forest) 100%);
   position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
 }
 .faculty-card:nth-child(2) .faculty-photo { background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 100%); }
-.faculty-card:nth-child(3) .faculty-photo { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-700) 100%); }
-.faculty-card:nth-child(4) .faculty-photo { background: linear-gradient(135deg, var(--aqua) 0%, var(--gold) 100%); }
+.faculty-card:nth-child(3) .faculty-photo { background: linear-gradient(135deg, var(--forest) 0%, var(--forest-bright) 100%); }
+.faculty-card:nth-child(4) .faculty-photo { background: linear-gradient(135deg, var(--forest) 0%, var(--gold) 100%); }
 .faculty-photo::before {
   content: ""; position: absolute; inset: 0;
   background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(255,255,255,0.10) 0%, transparent 50%);
@@ -597,7 +666,7 @@ body.mtr-open { overflow: hidden; }
   display: inline-block;
   font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   padding: 3px 10px; border-radius: 999px;
-  background: var(--aqua-tint); color: var(--aqua-deep);
+  background: var(--forest-tint); color: var(--forest-deep);
   margin-bottom: 10px;
 }
 .faculty-card:nth-child(2) .faculty-role-tag { background: var(--gold-tint); color: var(--gold-deep); }
@@ -609,7 +678,7 @@ body.mtr-open { overflow: hidden; }
 /* ============================================================
    COHORT · first cohort representation
    ============================================================ */
-#cohort { padding-top: 52px; padding-bottom: 52px; }
+#cohort { padding-top: 44px; padding-bottom: 44px; }
 .cohort-wrap {
   display: grid;
   grid-template-columns: 0.85fr 1fr;
@@ -621,12 +690,12 @@ body.mtr-open { overflow: hidden; }
 .cohort-text p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
 .cohort-profile { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .cohort-profile-item {
-  --c: var(--aqua); --c-deep: var(--aqua-deep); --c-tint: var(--aqua-tint-2);
+  --c: var(--forest); --c-deep: var(--forest-deep); --c-tint: var(--forest-tint-2);
   position: relative;
   display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
   padding: 20px 18px 18px;
   background: #fff;
-  border: 1px solid var(--line, #e7ecf3);
+  border: 1px solid var(--line, #e5ece9);
   border-radius: 14px;
   overflow: hidden;
   transition: transform .28s cubic-bezier(.22,.61,.36,1), box-shadow .28s ease, border-color .28s ease;
@@ -639,8 +708,8 @@ body.mtr-open { overflow: hidden; }
 }
 .cohort-profile-item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 34px rgba(15,32,68,0.12);
-  border-color: color-mix(in srgb, var(--c) 45%, var(--line, #e7ecf3));
+  box-shadow: 0 16px 34px rgba(12,80,70,0.12);
+  border-color: color-mix(in srgb, var(--c) 45%, var(--line, #e5ece9));
 }
 .cohort-profile-item:hover::before { transform: scaleX(1); }
 .cohort-profile-item svg {
@@ -667,10 +736,10 @@ body.mtr-open { overflow: hidden; }
 .regions-visual::before {
   content: ""; position: absolute; top: -60px; right: -60px;
   width: 180px; height: 180px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(64,224,208,0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(164,190,186,0.18) 0%, transparent 70%);
   pointer-events: none;
 }
-.regions-visual h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--aqua-deep); margin-bottom: 22px; position: relative; }
+.regions-visual h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--forest-deep); margin-bottom: 22px; position: relative; }
 .country-chips {
   display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
   position: relative;
@@ -678,15 +747,15 @@ body.mtr-open { overflow: hidden; }
 .country-chip {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 16px; border-radius: 999px;
-  background: var(--aqua-tint);
-  border: 1px solid var(--aqua-border);
+  background: var(--forest-tint);
+  border: 1px solid var(--forest-border);
   font-size: 13.5px; font-weight: 600;
-  color: var(--aqua-darker);
+  color: var(--forest-darker);
   transition: transform 0.2s, background 0.2s;
   cursor: default;
 }
-.country-chip:hover { background: var(--aqua); color: #fff; transform: translateY(-2px); }
-.country-chip .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--aqua); flex-shrink: 0; }
+.country-chip:hover { background: var(--forest); color: #fff; transform: translateY(-2px); }
+.country-chip .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--forest); flex-shrink: 0; }
 .country-chip:hover .chip-dot { background: #fff; }
 .regions-note { font-size: 12px; color: var(--muted); margin-top: 22px; line-height: 1.55; font-style: italic; position: relative; }
 
@@ -714,19 +783,19 @@ body.mtr-open { overflow: hidden; }
   border-radius: 12px;
   transition: border-color 0.2s, transform 0.2s;
 }
-.heritage-stop:hover { border-color: var(--aqua); transform: translateX(3px); }
+.heritage-stop:hover { border-color: var(--forest); transform: translateX(3px); }
 .heritage-time {
   flex-shrink: 0;
   width: 92px;
   font-size: 12.5px; font-weight: 700;
-  color: var(--aqua-deep);
+  color: var(--forest-deep);
   letter-spacing: 0.03em;
 }
 .heritage-stop-body strong { font-size: 14px; color: var(--ink); font-weight: 700; display: block; margin-bottom: 4px; }
 .heritage-stop-body span { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
 
 .heritage-values {
-  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-900) 100%);
+  background: linear-gradient(160deg, var(--forest-deep) 0%, var(--forest-darker) 100%);
   border-radius: 18px;
   padding: 32px 30px;
   color: #fff;
@@ -736,7 +805,7 @@ body.mtr-open { overflow: hidden; }
 .heritage-values::before {
   content: ""; position: absolute; bottom: -60px; right: -60px;
   width: 220px; height: 220px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(219,169,28,0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(224,167,56,0.18) 0%, transparent 70%);
   pointer-events: none;
 }
 .heritage-values h4 { font-size: 18px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.015em; }
@@ -753,9 +822,9 @@ body.mtr-open { overflow: hidden; }
   cursor: default;
   transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
 }
-.value-tag:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); transform: translateY(-2px); }
-.value-tag.is-aqua { background: rgba(64,224,208,0.16); border-color: rgba(64,224,208,0.36); color: #a8f0e6; }
-.value-tag.is-aqua:hover { background: var(--aqua); color: var(--navy); }
+.value-tag:hover { background: var(--gold); color: var(--forest-darker); border-color: var(--gold); transform: translateY(-2px); }
+.value-tag.is-sage { background: rgba(164,190,186,0.18); border-color: rgba(164,190,186,0.40); color: #d3e3df; }
+.value-tag.is-sage:hover { background: var(--sage); color: var(--forest-darker); border-color: var(--sage); }
 
 /* ============================================================
    PARTNERS
@@ -779,12 +848,12 @@ body.mtr-open { overflow: hidden; }
 .partner-block {
   display: flex; flex-direction: column;
   padding: 22px 24px;
-  background: var(--aqua-tint-2);
-  border: 1px solid var(--aqua-border);
+  background: var(--forest-tint-2);
+  border: 1px solid var(--forest-border);
   border-radius: 12px;
 }
 .partner-block.is-gold { background: var(--gold-tint); border-color: var(--gold-border); }
-.partner-block-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--aqua-deep); margin-bottom: 8px; }
+.partner-block-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--forest-deep); margin-bottom: 8px; }
 .partner-block.is-gold .partner-block-label { color: var(--gold-deep); }
 .partner-block-name { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.015em; line-height: 1.25; }
 .partner-block-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
@@ -801,39 +870,6 @@ body.mtr-open { overflow: hidden; }
   border-radius: 999px;
   color: var(--ink-soft);
 }
-
-/* ============================================================
-   CTA · subscribe for next edition
-   ============================================================ */
-.cta-band {
-  background: linear-gradient(135deg, var(--navy) 0%, #133254 50%, var(--aqua-darker) 100%);
-  padding: 80px 0;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-}
-.cta-band::before {
-  content: ""; position: absolute; top: -100px; right: -60px;
-  width: 380px; height: 380px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(64,224,208,0.28) 0%, transparent 70%);
-  pointer-events: none;
-}
-.cta-band::after {
-  content: ""; position: absolute; bottom: -120px; left: -60px;
-  width: 320px; height: 320px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(219,169,28,0.22) 0%, transparent 70%);
-  pointer-events: none;
-}
-.cta-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; text-align: center; padding: 0 40px; }
-.cta-overline { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); margin-bottom: 14px; padding: 4px 12px; background: rgba(219,169,28,0.14); border-radius: 999px; }
-.cta-band h2 { font-size: clamp(26px, 3.2vw, 34px); font-weight: 800; color: #fff; margin-bottom: 18px; letter-spacing: -0.022em; line-height: 1.2; }
-.cta-band p { font-size: 16px; color: rgba(255,255,255,0.78); line-height: 1.65; max-width: 60ch; margin: 0 auto 30px; }
-.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; background: #fff; color: var(--aqua-darker); font-weight: 600; font-size: 14px; border-radius: 999px; text-decoration: none; transition: background 0.18s, transform 0.18s, box-shadow 0.18s; }
-.btn-white:hover { background: var(--aqua-tint); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,0.18); }
-.btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.btn-ghost-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; color: #fff; border: 1px solid rgba(255,255,255,0.42); font-weight: 600; font-size: 14px; border-radius: 999px; text-decoration: none; transition: background 0.18s, border-color 0.18s; }
-.btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: #fff; }
 
 /* Inline Kosovo footnote */
 .inline-footnote {
@@ -877,10 +913,9 @@ body.mtr-open { overflow: hidden; }
 
 @media (max-width: 768px) {
   .prog-hero { padding: 52px 0 36px; }
-  .section { padding: 60px 0; }
-  .cta-band { padding: 60px 0; }
+  .section { padding: 44px 0; }
 
-  .brand-mark { font-size: clamp(34px, 8vw, 48px); }
+  .brand-logo { width: min(100%, 460px); margin-bottom: 24px; }
   .prog-hero h1 { font-size: clamp(20px, 4.5vw, 28px); }
   .prog-hero .tagline { max-width: 100%; }
 
@@ -918,15 +953,15 @@ body.mtr-open { overflow: hidden; }
 /* ============================================================
    FIRST COHORT · auto-scroll participant carousel
    ============================================================ */
-.first-cohort { padding: 80px 0; background: linear-gradient(180deg, var(--surface) 0%, var(--aqua-tint-2) 100%); overflow: hidden; }
+.first-cohort { padding: 56px 0; background: linear-gradient(180deg, var(--surface) 0%, var(--forest-tint-2) 100%); overflow: hidden; }
 .first-cohort .sec-head { margin-bottom: 44px; }
 .cohort-marquee { position: relative; width: 100%; overflow: hidden; margin-bottom: 22px; padding: 8px 0; }
 .cohort-marquee::before,
 .cohort-marquee::after {
   content: ""; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
 }
-.cohort-marquee::before { left: 0; background: linear-gradient(90deg, var(--aqua-tint-2) 0%, rgba(242,251,249,0) 100%); }
-.cohort-marquee::after  { right: 0; background: linear-gradient(270deg, var(--aqua-tint-2) 0%, rgba(242,251,249,0) 100%); }
+.cohort-marquee::before { left: 0; background: linear-gradient(90deg, var(--forest-tint-2) 0%, rgba(242,248,246,0) 100%); }
+.cohort-marquee::after  { right: 0; background: linear-gradient(270deg, var(--forest-tint-2) 0%, rgba(242,248,246,0) 100%); }
 .cohort-marquee-track {
   display: flex; gap: 16px; width: max-content;
   animation: cohort-scroll-left 60s linear infinite;
@@ -945,27 +980,27 @@ body.mtr-open { overflow: hidden; }
   display: flex; flex-direction: column; align-items: center; text-align: center;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
-.participant-card:hover { transform: translateY(-3px); border-color: var(--aqua-border); box-shadow: 0 10px 22px rgba(0,97,140,0.10); }
+.participant-card:hover { transform: translateY(-3px); border-color: var(--forest-border); box-shadow: 0 10px 22px rgba(28,94,83,0.10); }
 .participant-photo {
   position: relative;
   width: 76px; height: 76px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 14px;
   color: #fff; font-weight: 700; font-size: 22px; letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--aqua-deep) 0%, var(--aqua) 100%);
+  background: linear-gradient(135deg, var(--forest-deep) 0%, var(--forest) 100%);
   overflow: hidden; flex-shrink: 0;
 }
-.participant-card:nth-child(3n) .participant-photo { background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 100%); color: var(--navy); }
-.participant-card:nth-child(5n) .participant-photo { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-700) 100%); }
-.participant-card:nth-child(7n) .participant-photo { background: linear-gradient(135deg, var(--aqua) 0%, var(--gold) 100%); color: var(--navy); }
+.participant-card:nth-child(3n) .participant-photo { background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 100%); color: var(--forest-darker); }
+.participant-card:nth-child(5n) .participant-photo { background: linear-gradient(135deg, var(--forest) 0%, var(--forest-bright) 100%); }
+.participant-card:nth-child(7n) .participant-photo { background: linear-gradient(135deg, var(--forest) 0%, var(--gold) 100%); color: var(--forest-darker); }
 .participant-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .participant-photo svg { width: 32px; height: 32px; color: rgba(255,255,255,0.85); }
-.participant-card:nth-child(3n) .participant-photo svg { color: rgba(15,32,68,0.55); }
+.participant-card:nth-child(3n) .participant-photo svg { color: rgba(12,80,70,0.55); }
 .participant-name { font-size: 14.5px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 4px; letter-spacing: -0.005em; }
 .participant-org  { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; }
 .cohort-footnote { text-align: center; font-size: 12.5px; color: var(--muted); margin-top: 18px; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 @media (max-width: 768px) {
-  .first-cohort { padding: 60px 0; }
+  .first-cohort { padding: 44px 0; }
   .participant-card { flex: 0 0 180px; padding: 18px 14px 16px; }
   .participant-photo { width: 64px; height: 64px; font-size: 18px; }
   .cohort-marquee::before, .cohort-marquee::after { width: 40px; }
@@ -981,7 +1016,7 @@ body.mtr-open { overflow: hidden; }
 .partner-block--featured .partner-block-label { font-size: 11px; letter-spacing: 0.16em; margin-bottom: 12px; }
 .partner-block--featured .partner-block-name { font-size: 19px; line-height: 1.2; margin-bottom: 10px; }
 .partner-block--featured .partner-block-desc { font-size: 13.5px; line-height: 1.65; margin-bottom: 14px; }
-.partner-block-role { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--aqua-deep); padding-top: 12px; border-top: 1px dashed var(--aqua-border); }
+.partner-block-role { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--forest-deep); padding-top: 12px; border-top: 1px dashed var(--forest-border); }
 .partner-block--featured.is-gold .partner-block-role { color: var(--gold-deep); border-top-color: var(--gold-border); }
 .partner-block--logo { display: flex; align-items: center; justify-content: center; padding: 32px; min-height: 200px; background: transparent; border: none; box-shadow: none; }
 .partner-block--logo.is-gold { background: transparent; border: none; }
@@ -1033,10 +1068,10 @@ body.mtr-open { overflow: hidden; }
       </div>
     </div>
 
-    <div class="brand-mark" aria-label="WBF Regional Academy">
-      <span class="we">WBF</span><span class="be">Regional Academy</span>
-    </div>
-    <div class="brand-tagline">On Dialogue and Culture of Cooperation</div>
+    <img class="brand-logo"
+         src="/assets/images/regional-academy/academy-logo-white.svg"
+         alt="WBF Regional Academy. On Dialogue and Culture of Cooperation"
+         width="9420" height="1798">
 
     <h1>A 7-day learning journey for junior professionals and emerging leaders from across the Western Balkans.</h1>
     <p class="tagline">An initiative of the <strong>Western Balkans Fund</strong>, supported by the <strong>Open Society Foundation Western Balkans</strong>, the WBF Regional Academy combines thematic lectures, interactive workshops, dialogue sessions, and site visits to equip a new generation with the skills, networks, and mindset needed to advance dialogue, cooperation, and reconciliation across the WB6.</p>
@@ -1078,7 +1113,7 @@ body.mtr-open { overflow: hidden; }
      OVERVIEW
      ============================================================ -->
 <section class="section" id="overview">
-  <div class="container-narrow">
+  <div class="container">
     <div class="sec-head">
       <div class="overline">About the Academy</div>
       <h2>Why the <span class="gold-accent">Regional Academy</span>, and why now</h2>
@@ -1109,61 +1144,58 @@ body.mtr-open { overflow: hidden; }
 </section>
 
 <!-- ============================================================
-     PILLARS · five thematic
+     PILLARS · five thematic strands, one per programme day
+     ------------------------------------------------------------
+     These mirror the agenda exactly: one card per thematic day
+     (Days 2-6), in week order. Each links to #day-N, which the
+     Programme script reads to open that day's tab. If a strand in
+     the agenda changes, change the matching card here too.
      ============================================================ -->
 <section class="section section-tint" id="pillars">
-  <div class="container-narrow">
+  <div class="container">
     <div class="sec-head">
       <div class="overline">Thematic Pillars</div>
-      <h2>Five threads that run through the week</h2>
-      <p>The full programme is structured around five interconnected thematic pillars. Every lecture, session, and site visit is anchored in at least one of them.</p>
+      <h2>Five threads, one for each day</h2>
+      <p>Between arrival and the closing day, every day of the Academy is built around a single thematic strand, with its lectures, keynotes and interactive sessions all anchored in the same theme. Choose a pillar to open that day in the programme.</p>
     </div>
 
     <div class="pillars-grid">
-      <div class="pillar-card">
-        <div class="pillar-num">PILLAR 01</div>
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
-        </div>
-        <div class="pillar-title">Democratic Citizenship &amp; Governance</div>
-        <div class="pillar-desc">Core principles and skills for effective leadership, including accountability, transparency, and citizen participation, and how to engage with institutions and decision-making.</div>
-      </div>
 
-      <div class="pillar-card">
-        <div class="pillar-num">PILLAR 02</div>
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg>
-        </div>
-        <div class="pillar-title">Gender Equality &amp; Inclusive Leadership</div>
-        <div class="pillar-desc">Structural and cultural barriers to equal participation, and the tools to advance gender-responsive leadership and women's inclusion in peacebuilding.</div>
-      </div>
+      <a class="pillar-card" href="#day-2">
+        <span class="pillar-num">01</span>
+        <div class="pillar-title">Culture of Cooperation &amp; European Integration</div>
+        <div class="pillar-desc">The politics of regional cooperation in the Western Balkans and the region&rsquo;s progress toward EU integration, and how joint action across the WB6 builds the trust that accession requires.</div>
+        <span class="pillar-link">Day 2 in the programme</span>
+      </a>
 
-      <div class="pillar-card">
-        <div class="pillar-num">PILLAR 03</div>
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
-        </div>
-        <div class="pillar-title">Freedom of Expression &amp; Democratic Participation</div>
-        <div class="pillar-desc">The role of free expression in democratic societies, challenges to media freedom and civic space, and how to advocate for and protect these rights.</div>
-      </div>
+      <a class="pillar-card" href="#day-3">
+        <span class="pillar-num">02</span>
+        <div class="pillar-title">Democracy, Citizenship &amp; European Future</div>
+        <div class="pillar-desc">Democracy in practice, covering citizens, participation and European futures, alongside regional economic integration as preparation for the EU Single Market, drawing on the CEFTA experience.</div>
+        <span class="pillar-link">Day 3 in the programme</span>
+      </a>
 
-      <div class="pillar-card">
-        <div class="pillar-num">PILLAR 04</div>
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
-        </div>
-        <div class="pillar-title">Regional Cooperation &amp; Peacebuilding</div>
-        <div class="pillar-desc">Interdependencies across WB6 Contracting Parties and joint regional solutions that strengthen trust, social cohesion, reconciliation, and joint development.</div>
-      </div>
+      <a class="pillar-card" href="#day-4">
+        <span class="pillar-num">03</span>
+        <div class="pillar-title">Leadership for Social Impact</div>
+        <div class="pillar-desc">Values-based leadership grounded in human rights, democratic resilience and emerging leadership for social impact, with practical work on diplomatic etiquette, dialogue and negotiation.</div>
+        <span class="pillar-link">Day 4 in the programme</span>
+      </a>
 
-      <div class="pillar-card">
-        <div class="pillar-num">PILLAR 05</div>
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="pillar-title">Intercultural Understanding &amp; Cooperation Culture</div>
-        <div class="pillar-desc">Both theoretical frameworks and practical case studies: analysing regional dynamics while developing inclusive, actionable solutions together.</div>
-      </div>
+      <a class="pillar-card" href="#day-5">
+        <span class="pillar-num">04</span>
+        <div class="pillar-title">Media, Communication &amp; Freedom of Expression</div>
+        <div class="pillar-desc">Media ecosystems and freedom of expression in the regional context, and the disinformation, media literacy and responsible communication skills leaders need to navigate them.</div>
+        <span class="pillar-link">Day 5 in the programme</span>
+      </a>
+
+      <a class="pillar-card" href="#day-6">
+        <span class="pillar-num">05</span>
+        <div class="pillar-title">Women, Inclusion &amp; Gender-Responsive Leadership</div>
+        <div class="pillar-desc">Inclusion as a foundation of democratic governance and regional cooperation, gender-responsive leadership in practice, and the work of challenging gender norms in leadership and decision-making.</div>
+        <span class="pillar-link">Day 6 in the programme</span>
+      </a>
+
     </div>
   </div>
 </section>
@@ -1287,7 +1319,7 @@ body.mtr-open { overflow: hidden; }
         <ul class="prog-rows">
           <li class="prog-row">
             <div class="prog-time">09:00&ndash;10:30</div>
-            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>Regional Economic Integration as Preparation for the EU Single Market &mdash; The CEFTA Experience</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>Regional Economic Integration as Preparation for the EU Single Market: The CEFTA Experience</div>
             <div class="prog-people">Ms. Pranvera Kastrati</div>
           </li>
           <li class="prog-row is-break">
@@ -1297,7 +1329,7 @@ body.mtr-open { overflow: hidden; }
           </li>
           <li class="prog-row">
             <div class="prog-time">11:00&ndash;13:00</div>
-            <div class="prog-title"><span class="prog-kind">Lecture 3</span><br>Democracy in Practice &mdash; Citizens, Participation and European Futures</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 3</span><br>Democracy in Practice: Citizens, Participation and European Futures</div>
             <div class="prog-people">Mr. Endri Shabani</div>
           </li>
           <li class="prog-row is-break">
@@ -1312,12 +1344,12 @@ body.mtr-open { overflow: hidden; }
           </li>
           <li class="prog-row is-parallel">
             <div class="prog-time">14:30&ndash;16:00</div>
-            <div class="prog-title"><span class="prog-kind">Interactive Session</span><span class="prog-flag">Parallel</span><br>Co-creation Lab &mdash; How to Design a Policy Brief &amp; Initiative Sprint</div>
-            <div class="prog-people">Ms. Danijela Jocimovi&cacute;</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><span class="prog-flag">Parallel</span><br>Co-creation Lab: How to Design a Policy Brief &amp; Initiative Sprint</div>
+            <div class="prog-people">Ms. Danijela Ja&cacute;imovi&cacute;</div>
           </li>
           <li class="prog-row">
             <div class="prog-time">18:00&ndash;19:30</div>
-            <div class="prog-title"><span class="prog-kind">Dialogue Session</span><br>Protecting Rights, Promoting Dialogue, Acting &mdash; Emerging Leaders in Freedom of Religion or Belief at Cumberland Lodge</div>
+            <div class="prog-title"><span class="prog-kind">Dialogue Session</span><br>Protecting Rights, Promoting Dialogue, Acting: Emerging Leaders in Freedom of Religion or Belief at Cumberland Lodge</div>
             <div class="prog-people">Ms. Marika Djolai</div>
           </li>
           <li class="prog-row is-break">
@@ -1338,7 +1370,7 @@ body.mtr-open { overflow: hidden; }
           <li class="prog-row">
             <div class="prog-time">09:00&ndash;11:00</div>
             <div class="prog-title"><span class="prog-kind">Lecture 4</span><br>Values-Based Leadership and Human Rights</div>
-            <div class="prog-people">Ms. Remzije Istrefi</div>
+            <div class="prog-people"></div>
           </li>
           <li class="prog-row is-break">
             <div class="prog-time">11:00&ndash;11:30</div>
@@ -1367,7 +1399,7 @@ body.mtr-open { overflow: hidden; }
           </li>
           <li class="prog-row is-break">
             <div class="prog-time">19:30&ndash;21:00</div>
-            <div class="prog-title">Dinner in Tirana &mdash; Piramida</div>
+            <div class="prog-title">Dinner in Tirana, Piramida</div>
             <div class="prog-people"></div>
           </li>
         </ul>
@@ -1402,7 +1434,7 @@ body.mtr-open { overflow: hidden; }
           </li>
           <li class="prog-row">
             <div class="prog-time">15:30&ndash;17:00</div>
-            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>Regional Cooperation Seen from Representatives of the Ministries of Foreign Affairs &mdash; The WBF Case</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>Regional Cooperation Seen from Representatives of the Ministries of Foreign Affairs: The WBF Case</div>
             <div class="prog-people">Andrej, Mihajlo, Vana &amp; Ilir</div>
           </li>
           <li class="prog-row">
@@ -1468,7 +1500,7 @@ body.mtr-open { overflow: hidden; }
           <li class="prog-row">
             <div class="prog-time">09:00&ndash;11:00</div>
             <div class="prog-title"><span class="prog-kind">Interactive Session</span><br>Presentation of Regional Actions and Policy Ideas &amp; Closing Reflections</div>
-            <div class="prog-people">WBF</div>
+            <div class="prog-people"></div>
           </li>
           <li class="prog-row">
             <div class="prog-time">13:00&ndash;15:00</div>
@@ -1499,12 +1531,12 @@ body.mtr-open { overflow: hidden; }
           <span class="rhythm-time">Morning</span>
           <span class="rhythm-label">Thematic Lectures</span>
         </button>
-        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="1" style="--rc:var(--aqua);--rc-deep:var(--aqua-deep);--rc-tint:var(--aqua-tint)">
+        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="1" style="--rc:var(--forest);--rc-deep:var(--forest-deep);--rc-tint:var(--forest-tint)">
           <span class="rhythm-node"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="13" rx="1.5"/><path d="M12 16v4"/><path d="M8 20h8"/><polyline points="7,12 10,9 12.5,11.5 17,7"/></svg></span>
           <span class="rhythm-time">Afternoon</span>
           <span class="rhythm-label">Interactive Sessions</span>
         </button>
-        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="2" style="--rc:var(--aqua);--rc-deep:var(--aqua-deep);--rc-tint:var(--aqua-tint)">
+        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="2" style="--rc:var(--forest);--rc-deep:var(--forest-deep);--rc-tint:var(--forest-tint)">
           <span class="rhythm-node"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
           <span class="rhythm-time">Evening</span>
           <span class="rhythm-label">Dialogue Sessions</span>
@@ -1522,10 +1554,10 @@ body.mtr-open { overflow: hidden; }
           <div>
             <span class="rhythm-panel-time">Morning</span>
             <h3>Thematic Lectures</h3>
-            <p>Expert-led morning sessions on the six thematic modules, structured as opening → presentation → break → interactive discussion → participatory closing.</p>
+            <p>Expert-led morning sessions on the five thematic strands, structured as opening → presentation → break → interactive discussion → participatory closing.</p>
           </div>
         </div>
-        <div class="rhythm-panel" role="tabpanel" data-r="1" style="--rc:var(--aqua);--rc-deep:var(--aqua-deep);--rc-tint:var(--aqua-tint)">
+        <div class="rhythm-panel" role="tabpanel" data-r="1" style="--rc:var(--forest);--rc-deep:var(--forest-deep);--rc-tint:var(--forest-tint)">
           <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="13" rx="1.5"/><path d="M12 16v4"/><path d="M8 20h8"/><polyline points="7,12 10,9 12.5,11.5 17,7"/></svg></div>
           <div>
             <span class="rhythm-panel-time">Afternoon</span>
@@ -1538,7 +1570,7 @@ body.mtr-open { overflow: hidden; }
             </ul>
           </div>
         </div>
-        <div class="rhythm-panel" role="tabpanel" data-r="2" style="--rc:var(--aqua);--rc-deep:var(--aqua-deep);--rc-tint:var(--aqua-tint)">
+        <div class="rhythm-panel" role="tabpanel" data-r="2" style="--rc:var(--forest);--rc-deep:var(--forest-deep);--rc-tint:var(--forest-tint)">
           <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
           <div>
             <span class="rhythm-panel-time">Evening</span>
@@ -1601,8 +1633,8 @@ body.mtr-open { overflow: hidden; }
         <div class="faculty-body">
           <span class="faculty-role-tag">Lecturer</span>
           <div class="faculty-name">Subject-matter Experts</div>
-          <div class="faculty-status">Six per edition · one per module</div>
-          <p class="faculty-desc">Senior academics and practitioners who anchor each thematic module with conceptual depth, regional case studies, and structured analytical frameworks.</p>
+          <div class="faculty-status">Nine lectures · across the five strands</div>
+          <p class="faculty-desc">Senior academics and practitioners who anchor each thematic strand with conceptual depth, regional case studies, and structured analytical frameworks.</p>
         </div>
       </div>
 
@@ -1615,7 +1647,7 @@ body.mtr-open { overflow: hidden; }
         <div class="faculty-body">
           <span class="faculty-role-tag">Facilitator</span>
           <div class="faculty-name">Dialogue Practitioners</div>
-          <div class="faculty-status">Five per edition · workshops &amp; sessions</div>
+          <div class="faculty-status">Interactive &amp; dialogue sessions · daily</div>
           <p class="faculty-desc">Experienced intercultural dialogue and negotiation practitioners who guide the interactive sessions, role-plays, and difficult-conversation workshops.</p>
         </div>
       </div>
@@ -1624,7 +1656,7 @@ body.mtr-open { overflow: hidden; }
            mentoring detail held in #mentor-data below. -->
       <div class="faculty-card is-clickable" data-mentor-open role="button" tabindex="0"
            aria-haspopup="dialog"
-           aria-label="Pre and Post Mentors — read about the pre-Academy online mentoring">
+           aria-label="Pre and Post Mentors: read about the pre-Academy online mentoring">
         <div class="faculty-photo">
           <div class="faculty-silhouette">
             <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -1648,7 +1680,7 @@ body.mtr-open { overflow: hidden; }
         <div class="faculty-body">
           <span class="faculty-role-tag">Keynote</span>
           <div class="faculty-name">Regional Voices</div>
-          <div class="faculty-status">Four per edition · daily keynote</div>
+          <div class="faculty-status">Three keynotes · CEFTA, RCC and the MFAs</div>
           <p class="faculty-desc">Senior political leaders, accomplished professionals, and emerging young leaders who join fireside conversations to share lived experiences of leadership across the region.</p>
         </div>
       </div>
@@ -1661,7 +1693,7 @@ body.mtr-open { overflow: hidden; }
          faculty card above. That card opens #mentorModal and the script
          at the foot of the page copies this block into it, using the
          data-track / data-name attributes as the modal's eyebrow and
-         title. Nothing here renders on the page — edit the copy here.
+         title. Nothing here renders on the page, edit the copy here.
          ------------------------------------------------------------ -->
     <div id="mentor-data" hidden data-track="Before Tirana" data-name="Pre-Academy online mentoring">
 
@@ -1767,19 +1799,19 @@ body.mtr-open { overflow: hidden; }
         <h4>Heritage Values <span class="gold-accent">Framework</span></h4>
         <p>At each site, participants assess and discuss the different values represented, recognising that different communities assign different meanings to heritage, and that this diversity of perspectives is itself an important learning outcome.</p>
         <div class="value-cloud">
-          <span class="value-tag is-aqua">Historical</span>
+          <span class="value-tag is-sage">Historical</span>
           <span class="value-tag">Archaeological</span>
-          <span class="value-tag is-aqua">Architectural</span>
+          <span class="value-tag is-sage">Architectural</span>
           <span class="value-tag">Aesthetic</span>
-          <span class="value-tag is-aqua">Sense of Place</span>
+          <span class="value-tag is-sage">Sense of Place</span>
           <span class="value-tag">Spiritual</span>
-          <span class="value-tag is-aqua">Community</span>
+          <span class="value-tag is-sage">Community</span>
           <span class="value-tag">Recreational</span>
-          <span class="value-tag is-aqua">Ecological</span>
+          <span class="value-tag is-sage">Ecological</span>
           <span class="value-tag">Political</span>
-          <span class="value-tag is-aqua">Identity</span>
+          <span class="value-tag is-sage">Identity</span>
           <span class="value-tag">Associative</span>
-          <span class="value-tag is-aqua">Economic</span>
+          <span class="value-tag is-sage">Economic</span>
           <span class="value-tag">Educational</span>
         </div>
       </div>
@@ -1809,24 +1841,6 @@ body.mtr-open { overflow: hidden; }
       </div>
 
       <p class="partners-thanks">The Academy is organised by the Western Balkans Fund with the support of the Open Society Foundation Western Balkans.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     CTA · subscribe for next edition
-     ============================================================ -->
-<section class="cta-band" id="subscribe">
-  <div class="cta-inner">
-    <div class="cta-overline">Future Editions</div>
-    <h2>Be the first to know when the next call opens</h2>
-    <p>Applications for the inaugural cohort have closed. If you are a junior professional from the Western Balkans interested in joining a future edition of the Regional Academy, subscribe to updates and we will notify you the moment the next call is published.</p>
-    <div class="cta-btns">
-      <a class="btn-white" href="/contact.html">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Subscribe to updates
-      </a>
-      <a class="btn-ghost-white" href="/our-programs.html">All WBF programmes →</a>
     </div>
   </div>
 </section>
@@ -1902,15 +1916,26 @@ body.mtr-open { overflow: hidden; }
     });
   });
 
-  /* Deep-link a single day: regional-academy.html#day-3 */
-  const m = (location.hash || '').match(/^#day-([1-7])$/);
-  if (m) select(m[1], false);
+  /* Deep-link a single day: regional-academy.html#day-3.
+     Also fires when a Thematic Pillar card is clicked, since those
+     link to #day-N; #day-N is not an element id, so nothing scrolls
+     on its own and we bring the programme into view here. */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fromHash() {
+    const m = (location.hash || '').match(/^#day-([1-7])$/);
+    if (!m) return;
+    select(m[1], false);
+    const section = document.getElementById('programme');
+    if (section) section.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
 })();
 </script>
 <script>
 /* Pre-Academy mentoring modal.
-   Opened by the "Pre & Post Mentors" faculty card. The content —
-   standfirst plus both mentor profiles — comes from the hidden
+   Opened by the "Pre & Post Mentors" faculty card. The content,
+   standfirst plus both mentor profiles, comes from the hidden
    #mentor-data store, with its data-track / data-name attributes
    supplying the modal eyebrow and title. */
 (function () {
