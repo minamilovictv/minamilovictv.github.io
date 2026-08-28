@@ -856,21 +856,34 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .score-mark em { position: absolute; left: 8px; top: -2px; font-style: normal; font-size: 10.5px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 
 /* Key underneath, cross-linked with the bar on hover */
-.score-key { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
-.skey { display: flex; align-items: center; gap: 10px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
-.skey-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
-.skey[data-sec="a"] .skey-dot { background: var(--move); }
-.skey[data-sec="b"] .skey-dot { background: var(--move-orange); }
-.skey[data-sec="c"] .skey-dot { background: #2f9e6b; }
-.skey-txt { flex: 1; font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
-.skey-txt b { color: var(--ink); font-weight: 800; margin-right: 5px; }
-.skey-pts { font-size: 14px; font-weight: 800; white-space: nowrap; }
+.score-key { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.skey {
+  display: flex; align-items: center; gap: 13px;
+  padding: 14px 15px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--surface);
+  transition: border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+/* Letter badge carries the same gradient as its slice of the bar */
+.skey-badge {
+  flex-shrink: 0; width: 30px; height: 30px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13.5px; font-weight: 800; color: #fff;
+  transition: transform .2s ease;
+}
+.skey[data-sec="a"] .skey-badge { background: linear-gradient(180deg, var(--move) 0%, var(--move-deep) 100%); }
+.skey[data-sec="b"] .skey-badge { background: linear-gradient(180deg, var(--move-orange) 0%, #b85d1c 100%); }
+.skey[data-sec="c"] .skey-badge { background: linear-gradient(180deg, #2f9e6b 0%, #1d6b41 100%); }
+.skey:hover .skey-badge { transform: scale(1.08) rotate(-4deg); }
+.skey-txt { flex: 1; font-size: 12.8px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+.skey-pts { display: flex; align-items: baseline; gap: 4px; white-space: nowrap; font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.skey-pts em { font-style: normal; font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
 .skey[data-sec="a"] .skey-pts { color: var(--move-deep); }
 .skey[data-sec="b"] .skey-pts { color: #b85d1c; }
 .skey[data-sec="c"] .skey-pts { color: #1d6b41; }
-.skey:hover { transform: translateY(-2px); }
-.skey[data-sec="a"]:hover { border-color: var(--move-border); background: var(--move-tint); }
-.skey[data-sec="b"]:hover { border-color: rgba(224,123,42,0.42); background: var(--move-orange-tint); }
+.skey:hover { transform: translateY(-3px); }
+.skey[data-sec="a"]:hover { border-color: var(--move-border); background: var(--move-tint); box-shadow: 0 8px 20px rgba(14,140,132,0.12); }
+.skey[data-sec="b"]:hover { border-color: rgba(224,123,42,0.42); background: var(--move-orange-tint); box-shadow: 0 8px 20px rgba(224,123,42,0.14); }
+.skey[data-sec="c"]:hover { border-color: rgba(47,158,107,0.42); background: #e8f6ee; box-shadow: 0 8px 20px rgba(47,158,107,0.13); }
 .skey[data-sec="c"]:hover { border-color: rgba(47,158,107,0.42); background: #e8f6ee; }
 
 .score-panel:has(.skey[data-sec="a"]:hover) .sseg-b,
@@ -883,7 +896,6 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .score-panel:has(.sseg-b:hover) .skey[data-sec="b"] { border-color: rgba(224,123,42,0.42); background: var(--move-orange-tint); }
 .score-panel:has(.sseg-c:hover) .skey[data-sec="c"] { border-color: rgba(47,158,107,0.42); background: #e8f6ee; }
 
-.score-note { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
 
 @media (max-width: 760px) {
   .score-key { grid-template-columns: 1fr; gap: 8px; }
@@ -1912,23 +1924,21 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
       <div class="score-key">
         <div class="skey" data-sec="a">
-          <span class="skey-dot"></span>
-          <span class="skey-txt"><b>A</b>Mobility description and coherence</span>
-          <span class="skey-pts">25</span>
+          <span class="skey-badge">A</span>
+          <span class="skey-txt">Mobility description and coherence</span>
+          <span class="skey-pts">25<em>pts</em></span>
         </div>
         <div class="skey" data-sec="b">
-          <span class="skey-dot"></span>
-          <span class="skey-txt"><b>B</b>Regional relevance and call objective</span>
-          <span class="skey-pts">60</span>
+          <span class="skey-badge">B</span>
+          <span class="skey-txt">Regional relevance and call objective</span>
+          <span class="skey-pts">60<em>pts</em></span>
         </div>
         <div class="skey" data-sec="c">
-          <span class="skey-dot"></span>
-          <span class="skey-txt"><b>C</b>Operational: financial planning and visibility</span>
-          <span class="skey-pts">15</span>
+          <span class="skey-badge">C</span>
+          <span class="skey-txt">Operational: financial planning and visibility</span>
+          <span class="skey-pts">15<em>pts</em></span>
         </div>
       </div>
-
-      <p class="score-note">Section B carries most of the weight: regional relevance, contribution to MOVE, personal growth and expected impact, sustainability and follow-up, and the introduction of new practices. Applications scoring under 55 points are not recommended to the Evaluation Panel.</p>
     </div>
 
     <div class="xcut" data-reveal>
