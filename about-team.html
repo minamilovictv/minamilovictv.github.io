@@ -102,7 +102,7 @@
   /* ============================================================
      TEAM SECTION
      ============================================================ */
-  .team-section { padding: 44px 0 88px; background: #fff; }
+  .team-section { padding: 44px 0 56px; background: #fff; }
 
   
   
@@ -271,6 +271,66 @@
   @media (max-width: 420px) {
     .members-grid { grid-template-columns: 1fr; }
   }
+
+  /* ============================================================
+     ALUMNI · acknowledgement of former colleagues
+     ============================================================
+     A plain closing band, not a card inside a band. The copy sits
+     straight on the tint at the same 88ch measure as the intro. */
+  .alumni {
+    background: var(--surface-alt);
+    border-top: 1px solid var(--line);
+    padding: 44px 0 48px;
+  }
+  .alumni-overline {
+    font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.16em; color: var(--navy); margin-bottom: 10px;
+  }
+  .alumni h2 {
+    font-family: var(--font-display); font-size: var(--text-2xl);
+    font-weight: 700; color: var(--ink); letter-spacing: -0.02em;
+    margin-bottom: 16px; line-height: 1.2;
+  }
+  .alumni p {
+    font-size: var(--text-md); color: var(--ink-soft);
+    line-height: 1.75; margin-bottom: 12px; max-width: 88ch;
+    text-align: justify;
+  }
+  .alumni p:last-of-type { margin-bottom: 0; }
+  .alumni-lead-in { margin-top: 18px; font-weight: 600; color: var(--ink); }
+  .alumni-names {
+    list-style: none; margin: 16px 0 0; max-width: 88ch;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 16px;
+  }
+  .alumni-names li {
+    font-size: var(--text-md); font-weight: 600; color: var(--ink);
+    padding: 10px 14px;
+    background: #fff; border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+  }
+  .alumni-names li span {
+    display: block; margin-top: 2px;
+    font-size: var(--text-sm); font-weight: 400; color: var(--muted);
+  }
+  /* Hyphenation is off site-wide (css/site-chrome.css), so justifying a narrow
+     measure can only stretch the word gaps. Below 600px both of this page's
+     justified blocks drop under 60 characters, so they go ragged-right. */
+  @media (max-width: 600px) {
+    .team-intro p,
+    .alumni p { text-align: left; }
+  }
+  /* Until the names are supplied, the lead-in would leave a colon pointing at
+     nothing, so it hides along with the empty list. */
+  .alumni:has(.alumni-names:empty) .alumni-lead-in,
+  .alumni-names:empty { display: none; }
+  /* With the lead-in hidden, the paragraph before it becomes the last visible
+     one, so it is the one that must drop its bottom margin. */
+  .alumni:has(.alumni-names:empty) p:nth-last-of-type(2) { margin-bottom: 0; }
+
+  @media (max-width: 768px) {
+    .alumni { padding: 34px 0 38px; }
+    .alumni-names { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -324,6 +384,28 @@
   </div>
 </section>
 
+<!-- ============================================================
+     ALUMNI · acknowledgement of former colleagues
+     ------------------------------------------------------------
+     To list the former colleagues, add one <li> per person inside
+     .alumni-names, in this shape:
+       <li>Name Surname<span>Role they held</span></li>
+     The <span> is optional. While the list is empty both it and the
+     "we acknowledge..." lead-in stay hidden, so the card never shows
+     a colon pointing at nothing.
+     ============================================================ -->
+<section class="alumni" id="alumni">
+  <div class="container">
+    <div class="alumni-overline">With appreciation</div>
+    <h2>Part of Our Journey</h2>
+    <p>The Western Balkans Fund recognises the valuable contribution of colleagues who have been part of our team throughout the Fund&rsquo;s development.</p>
+    <p>Through their dedication, expertise, and commitment to regional cooperation, they have contributed to strengthening the institution and advancing its mission of bringing people and organisations across the Western Balkans closer together.</p>
+    <p>We are grateful for the role they have played in WBF&rsquo;s journey and for the professional legacy they leave as part of our institutional community.</p>
+    <p class="alumni-lead-in">With appreciation, we acknowledge the contributions of our former colleagues:</p>
+    <ul class="alumni-names"></ul>
+  </div>
+</section>
+
 
 <!-- ============================================================
      SCRIPT — CSV CMS, DEPARTMENT GROUPING
@@ -347,8 +429,7 @@
     'Leadership',
     'WBF Secretariat',
     'WBF/EU Joint Action',
-    'Finance Department',
-    'Communication Department'
+    'Finance Department'
   ];
 
   const SAMPLE_DATA = [
@@ -503,6 +584,21 @@
       status: 'published'
     },
     {
+      id: 'klevis-gjoni',
+      fullName: 'Klevis Gjoni',
+      title: '',
+      role: 'Public Relations Officer',
+      department: 'WBF Secretariat',
+      country: '',
+      email: 'klevis.gjoni@westernbalkansfund.org',
+      linkedin: '',
+      phone: '',
+      languages: '',
+      photo: '',
+      bio: '',
+      status: 'published'
+    },
+    {
       id: 'orgeta-buna',
       fullName: 'Orgeta Buna',
       title: '',
@@ -540,21 +636,6 @@
       department: 'Finance Department',
       country: '',
       email: 'matilda.dama@westernbalkansfund.org',
-      linkedin: '',
-      phone: '',
-      languages: '',
-      photo: '',
-      bio: '',
-      status: 'published'
-    },
-    {
-      id: 'klevis-gjoni',
-      fullName: 'Klevis Gjoni',
-      title: '',
-      role: 'Public Relations Officer',
-      department: 'Communication Department',
-      country: '',
-      email: 'klevis.gjoni@westernbalkansfund.org',
       linkedin: '',
       phone: '',
       languages: '',
