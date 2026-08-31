@@ -377,12 +377,12 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
 .sec-head { margin-bottom: 40px; }
 .sec-head.center { text-align: center; }
-/* Berlin Process provenance — third plate in the About stats row, so it shares
-   the stat cards' width, height and left rail */
+/* Berlin Process provenance — last plate in the About sidebar, sharing the
+   stat cards' width and left rail */
 .bp-badge {
   position: relative;
-  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 14px;
-  padding: 22px 32px 22px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 30px 18px 24px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-left: 3px solid var(--gefund);
@@ -401,7 +401,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   line-height: 1.4; color: var(--faint); transition: color .25s ease;
 }
 .bp-badge:hover .bp-badge-kicker { color: var(--gefund); }
-.bp-badge-mark { display: block; height: 46px; width: auto; flex-shrink: 0; }
+.bp-badge-mark { display: block; height: 40px; width: auto; flex-shrink: 0; }
 .bp-badge-ext {
   position: absolute; top: 12px; right: 12px;
   width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2;
@@ -427,14 +427,14 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 /* ============================================================
    ABOUT — two-column with stats
    ============================================================ */
-.about-text { max-width: 74ch; }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 56px; align-items: start; }
 .about-text p { font-size: 16px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
 .about-text p:last-child { margin-bottom: 0; }
 .about-text strong { color: var(--ink); font-weight: 600; }
 
-/* Two headline figures + the provenance plate, three across under the prose */
-.about-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 34px; align-items: stretch; }
-#main .about-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.55; margin-top: 12px; max-width: 78ch; text-align: left; }
+/* Supporting plates, stacked in the narrower right column */
+.about-stats { display: flex; flex-direction: column; gap: 16px; }
+#main .about-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.55; margin-top: 20px; margin-bottom: 0; text-align: left; }
 .stat-card {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -906,7 +906,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
    ============================================================ */
 @media (max-width: 1024px) {
   .container, .container-narrow, .prog-hero-inner { padding-left: 24px; padding-right: 24px; }
-  .about-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .about-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
   .elig-grid { grid-template-columns: repeat(2, 1fr); }
   .partnership-callout { grid-template-columns: 1fr; gap: 24px; }
   .funding-grid { grid-template-columns: 1fr; }
@@ -1511,35 +1512,37 @@ body.gef-modal-lock { overflow: hidden; }
       <div class="overline">01 / About the Programme</div>
       <h2>A regional fund for <em>gender equality</em>.</h2>
     </div>
-    <div class="about-text">
-      <p>The Western Balkans Fund (WBF), established by the six WB Ministries of Foreign Affairs, has earmarked <strong>15% of its core budget for gender equality initiatives</strong>. This commitment was formalised at the 2025 Western Balkans Leaders' Summit in London.</p>
-      <p>The Gender Equality Fund (GEFund) is the dedicated mechanism delivering that commitment. It is co-funded by the <strong>European Union</strong> (under EU Civil Society Facility &amp; Media Programme, IPA III) and the <strong>Swiss Agency for Development and Cooperation</strong> (under "Fostering Inclusive Partnerships in the Western Balkans 2026–2029").</p>
-      <p>This first open call advances women's empowerment across the Western Balkans through regional civil society cooperation, advocacy, and innovative initiatives addressing social, economic, digital, environmental, and security challenges.</p>
-    </div>
+    <!-- Prose carries the section; the three plates are supporting detail, so
+         they sit in a narrower column beside it. -->
+    <div class="about-grid">
+      <div class="about-text">
+        <p>The Western Balkans Fund (WBF), established by the six WB Ministries of Foreign Affairs, has earmarked <strong>15% of its core budget for gender equality initiatives</strong>. This commitment was formalised at the 2025 Western Balkans Leaders' Summit in London.</p>
+        <p>The Gender Equality Fund (GEFund) is the dedicated mechanism delivering that commitment. It is co-funded by the <strong>European Union</strong> (under EU Civil Society Facility &amp; Media Programme, IPA III) and the <strong>Swiss Agency for Development and Cooperation</strong> (under "Fostering Inclusive Partnerships in the Western Balkans 2026–2029").</p>
+        <p>This first open call advances women's empowerment across the Western Balkans through regional civil society cooperation, advocacy, and innovative initiatives addressing social, economic, digital, environmental, and security challenges.</p>
+        <p class="about-disclaimer">* This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
+      </div>
 
-    <!-- Two headline figures and the provenance mark share one row, so all
-         three read as equal-weight plates rather than a stacked column. -->
-    <div class="about-stats">
-      <div class="stat-card">
-        <div class="stat-num">6</div>
-        <div class="stat-label">Contracting Parties across the Western Balkans</div>
-        <div class="stat-note">Albania · Bosnia and Herzegovina · Kosovo* · Montenegro · North Macedonia · Serbia</div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Contracting Parties across the Western Balkans</div>
+          <div class="stat-note">Albania · Bosnia and Herzegovina · Kosovo* · Montenegro · North Macedonia · Serbia</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">15%</div>
+          <div class="stat-label">Of WBF core budget earmarked for gender equality</div>
+          <div class="stat-note">Formalised at the 2025 Western Balkans Leaders' Summit in London.</div>
+        </div>
+        <!-- Provenance mark; the logo carries the name, the kicker only
+             supplies the verb. -->
+        <a class="bp-badge" href="https://www.berlinprocess.de/" target="_blank" rel="noopener"
+           aria-label="Born from the Berlin Process — berlinprocess.de (opens in a new tab)">
+          <span class="bp-badge-kicker">Born from the</span>
+          <img class="bp-badge-mark" src="/assets/images/berlin-process/berlin-process-logo.png" alt="Berlin Process" loading="lazy" decoding="async" width="1000" height="546">
+          <svg class="bp-badge-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
       </div>
-      <div class="stat-card">
-        <div class="stat-num">15%</div>
-        <div class="stat-label">Of WBF core budget earmarked for gender equality</div>
-        <div class="stat-note">Formalised at the 2025 Western Balkans Leaders' Summit in London.</div>
-      </div>
-      <!-- Provenance mark; the logo carries the name, the kicker only
-           supplies the verb. -->
-      <a class="bp-badge" href="https://www.berlinprocess.de/" target="_blank" rel="noopener"
-         aria-label="Born from the Berlin Process — berlinprocess.de (opens in a new tab)">
-        <span class="bp-badge-kicker">Born from the</span>
-        <img class="bp-badge-mark" src="/assets/images/berlin-process/berlin-process-logo.png" alt="Berlin Process" loading="lazy" decoding="async" width="1000" height="546">
-        <svg class="bp-badge-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      </a>
     </div>
-    <p class="about-disclaimer">* This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
   </div>
 </section>
 
