@@ -1116,11 +1116,13 @@
 
   /* ---- Effects on the Presidency card ----
      The card is the page's centrepiece for the year, so it rises into place
-     when it is first reached, lifts under the pointer, carries a slow gold
-     drift across the banner and a single sweep of light when entered. The
-     reveal rules sit before the hover rule deliberately: they share its
-     specificity, so the hover lift only wins by coming later. Everything
-     here stands still for anyone who has asked for reduced motion. */
+     when it is first reached and lifts under the pointer. Nothing animates
+     over the red itself: a translucent layer that moves or fades on top of
+     the banner shows its own rectangular edge, which reads as a seam and
+     splits the red into two shades. The reveal rules sit before the hover
+     rule deliberately: they share its specificity, so the lift only wins by
+     coming later. Everything here stands still for anyone who has asked for
+     reduced motion. */
   .pres.is-armed { opacity: 0; transform: translateY(26px); }
   .pres.is-in {
     opacity: 1; transform: none;
@@ -1130,27 +1132,6 @@
   .pres:hover {
     transform: translateY(-4px);
     box-shadow: 0 26px 60px rgba(122,22,15,0.20), 0 0 0 1px rgba(192,138,46,0.38);
-  }
-  /* The gold cast already on the banner, given a slow rise and fall. It
-     brightens rather than moves: shifting a translucent layer over the red
-     puts its rectangular edge inside the card, where the compositor renders
-     it as a visible seam and the banner reads as two shades of red. */
-  .pres-banner::after { animation: pres-drift 15s ease-in-out infinite alternate; }
-  @keyframes pres-drift {
-    from { opacity: 0.55; }
-    to   { opacity: 1; }
-  }
-  /* one pass of light across the red, on entering the card */
-  .pres-banner::before {
-    content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%;
-    background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.14) 50%, transparent 100%);
-    transform: skewX(-14deg); opacity: 0; pointer-events: none;
-  }
-  .pres:hover .pres-banner::before { animation: pres-sweep 1.15s ease-out; }
-  @keyframes pres-sweep {
-    0%   { opacity: 0; left: -60%; }
-    18%  { opacity: 1; }
-    100% { opacity: 0; left: 115%; }
   }
   .pres-value { transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1); }
   .pres-value:hover { border-left-color: #fff; transform: translateX(3px); }
@@ -1162,7 +1143,6 @@
     .pres, .pres-value, .pres-agenda-list li, .pres-agenda-n { transition: none; }
     .pres:hover, .pres-value:hover, .pres-agenda-list li:hover,
     .pres-agenda-list li:hover .pres-agenda-n { transform: none; }
-    .pres-banner::after, .pres:hover .pres-banner::before { animation: none; }
   }
 
   /* Chairmanship modal */
