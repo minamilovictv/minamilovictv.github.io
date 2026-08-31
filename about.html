@@ -84,10 +84,8 @@
     font-weight: 700; color: #fff; line-height: 1.1;
     letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch;
   }
-  .page-hero p {
-    font-size: var(--text-base); color: rgba(255,255,255,0.7);
-    line-height: 1.65; max-width: 62ch;
-  }
+  /* Nothing follows the headline now, so its bottom margin would be dead. */
+  .page-hero h1:last-child { margin-bottom: 0; }
 
   /* ============================================================
      SECTION SHARED
@@ -1741,7 +1739,6 @@
     </nav>
     <div class="page-hero-overline">About</div>
     <h1>Western Balkans Fund</h1>
-    <p>An international organisation dedicated to regional cooperation, people-to-people connectivity, and the European integration of the Western Balkans.</p>
   </div>
 </section>
 
