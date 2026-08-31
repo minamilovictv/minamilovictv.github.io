@@ -1114,6 +1114,54 @@
     .pres-agenda-list { grid-template-columns: 1fr; gap: 18px; }
   }
 
+  /* ---- Effects on the Presidency card ----
+     The card is the page's centrepiece for the year, so it rises into place
+     when it is first reached, lifts under the pointer, carries a slow gold
+     drift across the banner and a single sweep of light when entered. The
+     reveal rules sit before the hover rule deliberately: they share its
+     specificity, so the hover lift only wins by coming later. Everything
+     here stands still for anyone who has asked for reduced motion. */
+  .pres.is-armed { opacity: 0; transform: translateY(26px); }
+  .pres.is-in {
+    opacity: 1; transform: none;
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  .pres { transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease; }
+  .pres:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 60px rgba(122,22,15,0.20), 0 0 0 1px rgba(192,138,46,0.38);
+  }
+  /* the gold cast already on the banner, given a slow drift */
+  .pres-banner::after { animation: pres-drift 15s ease-in-out infinite alternate; }
+  @keyframes pres-drift {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-3.5%, 2.5%, 0); }
+  }
+  /* one pass of light across the red, on entering the card */
+  .pres-banner::before {
+    content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%;
+    background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.14) 50%, transparent 100%);
+    transform: skewX(-14deg); opacity: 0; pointer-events: none;
+  }
+  .pres:hover .pres-banner::before { animation: pres-sweep 1.15s ease-out; }
+  @keyframes pres-sweep {
+    0%   { opacity: 0; left: -60%; }
+    18%  { opacity: 1; }
+    100% { opacity: 0; left: 115%; }
+  }
+  .pres-value { transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+  .pres-value:hover { border-left-color: #fff; transform: translateX(3px); }
+  .pres-agenda-list li { transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+  .pres-agenda-list li:hover { transform: translateY(-3px); }
+  .pres-agenda-n { transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+  .pres-agenda-list li:hover .pres-agenda-n { opacity: 0.85; transform: scale(1.08); }
+  @media (prefers-reduced-motion: reduce) {
+    .pres, .pres-value, .pres-agenda-list li, .pres-agenda-n { transition: none; }
+    .pres:hover, .pres-value:hover, .pres-agenda-list li:hover,
+    .pres-agenda-list li:hover .pres-agenda-n { transform: none; }
+    .pres-banner::after, .pres:hover .pres-banner::before { animation: none; }
+  }
+
   /* Chairmanship modal */
   .cm-overlay {
     position: fixed; inset: 0;
@@ -2698,6 +2746,26 @@
   </div>
 </section>
 
+
+<!-- The Presidency card rises into place the first time it is reached. The
+     timeout is a safety net: if anything stops the observer, the card is
+     shown anyway rather than left invisible. -->
+<script>
+(function () {
+  var card = document.querySelector('#chairmanship .pres');
+  if (!card || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function show() { card.classList.remove('is-armed'); card.classList.add('is-in'); }
+  card.classList.add('is-armed');
+  var io = new IntersectionObserver(function (entries) {
+    if (!entries.some(function (e) { return e.isIntersecting; })) return;
+    show();
+    io.disconnect();
+  }, { threshold: 0.15 });
+  io.observe(card);
+  setTimeout(show, 2500);
+})();
+</script>
 <!-- Chairmanship modal (shared) -->
 <div class="cm-overlay" id="cm-overlay" hidden>
   <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="cm-title"></div>
