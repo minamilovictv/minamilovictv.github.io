@@ -93,11 +93,6 @@
     border-radius: 16px; border: 1px solid var(--line); box-shadow: var(--shadow-2);
     background: linear-gradient(135deg, var(--surface-alt), #eef2f8);
   }
-  .carousel .img-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--faint); text-align: center; padding: 24px; }
-  .carousel .img-ph svg { width: 46px; height: 46px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; }
-  .carousel .img-ph span { font-size: var(--text-sm); font-weight: 600; }
-  .carousel .img-ph code { display: block; margin-top: 4px; font-size: 11px; font-weight: 500; opacity: 0.85; }
-  .carousel.has-photos .img-ph { display: none; }
   .carousel-track { position: absolute; inset: 0; }
   .carousel-track img {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
@@ -203,7 +198,7 @@
   .ed-text { min-width: 0; }
   .ed-text p { max-width: 80ch; }
 
-  /* photo column — drop files in and the placeholder frame under each one disappears */
+  /* photo column: three Flickr-hosted stills per session */
   .ed-gallery { display: flex; flex-direction: column; gap: 14px; }
   .ed-photo {
     position: relative; margin: 0; aspect-ratio: 3 / 2; overflow: hidden;
@@ -212,10 +207,6 @@
   }
   .ed-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
   .ed-photo:hover img { transform: scale(1.05); }
-  .ed-photo .img-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--faint); text-align: center; padding: 16px; }
-  .ed-photo .img-ph svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; }
-  .ed-photo .img-ph span { font-size: var(--text-sm); font-weight: 600; }
-  .ed-photo .img-ph code { display: block; margin-top: 3px; font-size: 10.5px; font-weight: 500; opacity: 0.85; word-break: break-all; }
   @keyframes ed-in { from { opacity: 0; } to { opacity: 1; } }
   /* staggered reveal of the panel's contents each time it opens */
   .ed-panel.is-active .ed-panel-icon { animation: ed-icon 0.55s cubic-bezier(0.22,0.61,0.36,1) both; }
@@ -339,20 +330,15 @@
       </p>
     </div>
 
-      <!-- Auto-rotating photo carousel. Slides live in /assets/images/rds/intro/ as
-           1.jpg … 5.jpg; any file that is missing removes itself and the carousel
-           adjusts, falling back to the empty frame when none of them exist. -->
+      <!-- Auto-rotating photo carousel. Slides are hotlinked from the WBF Flickr
+           account, one from each of the four sessions; an image that fails to load
+           removes itself and the carousel adjusts to the ones that remain. -->
       <figure class="carousel" id="intro-carousel" aria-roledescription="carousel" aria-label="Photos from Regional Dialogue Sessions">
-        <div class="img-ph" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Add photos<code>/assets/images/rds/intro/1.jpg … 5.jpg</code></span>
-        </div>
         <div class="carousel-track">
-          <img src="/assets/images/rds/intro/1.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
-          <img src="/assets/images/rds/intro/2.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
-          <img src="/assets/images/rds/intro/3.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
-          <img src="/assets/images/rds/intro/4.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
-          <img src="/assets/images/rds/intro/5.jpg" alt="Participants at a Western Balkans Fund dialogue event" onerror="this.remove()">
+          <img src="https://live.staticflickr.com/65535/55498223117_fe463f10fd_c.jpg" srcset="https://live.staticflickr.com/65535/55498223117_fe463f10fd_c.jpg 800w, https://live.staticflickr.com/65535/55498223117_fe463f10fd_b.jpg 1024w" sizes="(max-width: 860px) 92vw, 45vw" alt="Participants at the RNDS on Education and Scientific Exchange, Skopje" decoding="async" onerror="this.remove()">
+          <img src="https://live.staticflickr.com/65535/55499230701_3b23889b0d_c.jpg" srcset="https://live.staticflickr.com/65535/55499230701_3b23889b0d_c.jpg 800w, https://live.staticflickr.com/65535/55499230701_3b23889b0d_b.jpg 1024w" sizes="(max-width: 860px) 92vw, 45vw" alt="Participants at the RNDS on Cultural Cooperation, Belgrade" decoding="async" onerror="this.remove()">
+          <img src="https://live.staticflickr.com/65535/55499584000_b7a473293e_c.jpg" srcset="https://live.staticflickr.com/65535/55499584000_b7a473293e_c.jpg 800w, https://live.staticflickr.com/65535/55499584000_b7a473293e_b.jpg 1024w" sizes="(max-width: 860px) 92vw, 45vw" alt="Participants at the RNDS on Sustainable Development, Podgorica" decoding="async" onerror="this.remove()">
+          <img src="https://live.staticflickr.com/65535/55499221851_0ea0830bff_c.jpg" srcset="https://live.staticflickr.com/65535/55499221851_0ea0830bff_c.jpg 800w, https://live.staticflickr.com/65535/55499221851_0ea0830bff_b.jpg 1024w" sizes="(max-width: 860px) 92vw, 45vw" alt="Participants at the RNDS on Regional Cooperation, Prishtina" decoding="async" onerror="this.remove()">
         </div>
         <button type="button" class="carousel-nav is-prev" aria-label="Previous photo">
           <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15,18 9,12 15,6"/></svg>
@@ -503,25 +489,13 @@
             </div>
             <div class="ed-gallery">
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/skopje-2024/1.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/skopje-2024/1.jpg" alt="RNDS on Education and Scientific Exchange, Skopje" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499225746_0e2feabe3d_c.jpg" srcset="https://live.staticflickr.com/65535/55499225746_0e2feabe3d_c.jpg 800w, https://live.staticflickr.com/65535/55499225746_0e2feabe3d_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Education and Scientific Exchange, Skopje, photo 1 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/skopje-2024/2.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/skopje-2024/2.jpg" alt="RNDS on Education and Scientific Exchange, Skopje" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499608855_610b311eb0_c.jpg" srcset="https://live.staticflickr.com/65535/55499608855_610b311eb0_c.jpg 800w, https://live.staticflickr.com/65535/55499608855_610b311eb0_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Education and Scientific Exchange, Skopje, photo 2 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/skopje-2024/3.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/skopje-2024/3.jpg" alt="RNDS on Education and Scientific Exchange, Skopje" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499327488_3367198e00_c.jpg" srcset="https://live.staticflickr.com/65535/55499327488_3367198e00_c.jpg 800w, https://live.staticflickr.com/65535/55499327488_3367198e00_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Education and Scientific Exchange, Skopje, photo 3 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
             </div>
           </div>
@@ -543,25 +517,13 @@
             </div>
             <div class="ed-gallery">
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/belgrade-2024/1.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/belgrade-2024/1.jpg" alt="RNDS on Cultural Cooperation, Belgrade" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499230701_3b23889b0d_c.jpg" srcset="https://live.staticflickr.com/65535/55499230701_3b23889b0d_c.jpg 800w, https://live.staticflickr.com/65535/55499230701_3b23889b0d_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Cultural Cooperation, Belgrade, photo 1 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/belgrade-2024/2.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/belgrade-2024/2.jpg" alt="RNDS on Cultural Cooperation, Belgrade" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499611345_3a596ea392_c.jpg" srcset="https://live.staticflickr.com/65535/55499611345_3a596ea392_c.jpg 800w, https://live.staticflickr.com/65535/55499611345_3a596ea392_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Cultural Cooperation, Belgrade, photo 2 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/belgrade-2024/3.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/belgrade-2024/3.jpg" alt="RNDS on Cultural Cooperation, Belgrade" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499394654_f6ca606f68_c.jpg" srcset="https://live.staticflickr.com/65535/55499394654_f6ca606f68_c.jpg 800w, https://live.staticflickr.com/65535/55499394654_f6ca606f68_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Cultural Cooperation, Belgrade, photo 3 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
             </div>
           </div>
@@ -583,25 +545,13 @@
             </div>
             <div class="ed-gallery">
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/podgorica-2025/1.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/podgorica-2025/1.jpg" alt="RNDS on Sustainable Development, Podgorica" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499584000_b7a473293e_c.jpg" srcset="https://live.staticflickr.com/65535/55499584000_b7a473293e_c.jpg 800w, https://live.staticflickr.com/65535/55499584000_b7a473293e_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Sustainable Development, Podgorica, photo 1 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/podgorica-2025/2.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/podgorica-2025/2.jpg" alt="RNDS on Sustainable Development, Podgorica" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499367304_cc7c5d331b_c.jpg" srcset="https://live.staticflickr.com/65535/55499367304_cc7c5d331b_c.jpg 800w, https://live.staticflickr.com/65535/55499367304_cc7c5d331b_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Sustainable Development, Podgorica, photo 2 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/podgorica-2025/3.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/podgorica-2025/3.jpg" alt="RNDS on Sustainable Development, Podgorica" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55498201327_84895f2404_c.jpg" srcset="https://live.staticflickr.com/65535/55498201327_84895f2404_c.jpg 800w, https://live.staticflickr.com/65535/55498201327_84895f2404_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Sustainable Development, Podgorica, photo 3 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
             </div>
           </div>
@@ -623,25 +573,13 @@
             </div>
             <div class="ed-gallery">
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/prishtina-2025/1.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/prishtina-2025/1.jpg" alt="RNDS on Regional Cooperation, Prishtina" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499320948_b880a1de32_c.jpg" srcset="https://live.staticflickr.com/65535/55499320948_b880a1de32_c.jpg 800w, https://live.staticflickr.com/65535/55499320948_b880a1de32_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Regional Cooperation, Prishtina, photo 1 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/prishtina-2025/2.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/prishtina-2025/2.jpg" alt="RNDS on Regional Cooperation, Prishtina" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55498219137_1f30938884_c.jpg" srcset="https://live.staticflickr.com/65535/55498219137_1f30938884_c.jpg 800w, https://live.staticflickr.com/65535/55498219137_1f30938884_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Regional Cooperation, Prishtina, photo 2 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
               <figure class="ed-photo">
-                <div class="img-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Add photo<code>rds/prishtina-2025/3.jpg</code></span>
-                </div>
-                <img src="/assets/images/rds/prishtina-2025/3.jpg" alt="RNDS on Regional Cooperation, Prishtina" loading="lazy" onerror="this.remove()">
+                <img src="https://live.staticflickr.com/65535/55499601960_6f0cf2bcb7_c.jpg" srcset="https://live.staticflickr.com/65535/55499601960_6f0cf2bcb7_c.jpg 800w, https://live.staticflickr.com/65535/55499601960_6f0cf2bcb7_b.jpg 1024w" sizes="(max-width: 640px) 88vw, (max-width: 1100px) 30vw, 340px" alt="RNDS on Regional Cooperation, Prishtina, photo 3 of 3" loading="lazy" decoding="async" onerror="this.remove()">
               </figure>
             </div>
           </div>
