@@ -1030,6 +1030,13 @@
   .pres-btn:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
   .pres-btn.is-primary { background: #fff; color: var(--mne-red-deep); border-color: #fff; }
   .pres-btn.is-primary:hover { background: var(--mne-gold-light); color: var(--mne-red-deep); }
+  /* The Chair's remarks carry the Presidency gold, so the two buttons read as
+     a pair of doors into the same story rather than a primary and a spare. */
+  .pres-btn.is-gold {
+    background: var(--mne-gold-light); border-color: var(--mne-gold-light);
+    color: var(--mne-red-deep); font-weight: 700;
+  }
+  .pres-btn.is-gold:hover { background: #f7e6bd; border-color: #f7e6bd; color: var(--mne-red-deep); }
   .pres-btn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
   /* ---- Values, on the banner ---- */
@@ -1136,7 +1143,7 @@
   /* The modals belong to the Presidency card, so the banner carries its red
      rather than the site navy. Tokens are redeclared here because .pres does
      not enclose the modal, which is a direct child of body. */
-  .cm-overlay { --mne-red: #b01e12; --mne-red-deep: #7a160f; --mne-gold-light: #f0d9a0; }
+  .cm-overlay { --mne-red: #b01e12; --mne-red-deep: #7a160f; --mne-red-ink: #a01b10; --mne-gold: #c08a2e; --mne-gold-deep: #96681b; --mne-gold-light: #f0d9a0; }
   .cm-banner {
     background: linear-gradient(135deg, var(--mne-red) 0%, var(--mne-red-deep) 100%);
     padding: 40px 44px;
@@ -1167,6 +1174,52 @@
      stretch the word gaps. Below 600px the modal drops under 60 characters. */
   @media (max-width: 600px) { .cm-content p { text-align: left; } }
   .cm-content p:last-child { margin-bottom: 0; }
+
+  /* THE CHAIR'S REMARKS
+     A speech does not read as one long justified column, so the address, the
+     three priorities and the closing each carry their own treatment. The
+     wording is the Minister's and is reproduced exactly; only its shape on
+     the page is ours. */
+  .cm-content .speech p { text-align: left; }
+  .cm-content .speech-open {
+    margin-bottom: 24px; padding: 20px 24px;
+    background: linear-gradient(135deg, #fdf7ea 0%, #faf0dc 100%);
+    border-left: 3px solid var(--mne-gold);
+    border-radius: 0 10px 10px 0;
+  }
+  .cm-content .speech-open p {
+    margin-bottom: 0; line-height: 2;
+    font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.015em;
+    color: var(--mne-red-deep);
+  }
+  .cm-content .speech-lead { font-size: calc(var(--text-md) + 1px); color: var(--ink); }
+  .cm-content .speech-lead::first-letter {
+    float: left; margin: 6px 12px 0 0;
+    font-family: var(--font-display); font-size: 3.2em; line-height: 0.82;
+    font-weight: 700; color: var(--mne-red);
+  }
+  /* the two passages the speech turns on, lifted out of the run of text */
+  .cm-content .speech-mark {
+    margin: 26px 0; padding: 20px 24px;
+    background: #fdf4f3; border-left: 3px solid var(--mne-red);
+    border-radius: 0 10px 10px 0;
+    font-size: calc(var(--text-md) + 1px); font-weight: 600;
+    color: var(--mne-red-deep);
+  }
+  .cm-content .speech-priority {
+    margin-bottom: 12px; padding: 2px 0 2px 18px;
+    border-left: 2px solid var(--mne-gold-light);
+  }
+  .cm-content .speech-priority .speech-n { color: var(--mne-gold-deep); font-weight: 700; }
+  .cm-content .speech-close {
+    margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700;
+    color: var(--mne-red-ink);
+  }
+  @media (max-width: 600px) {
+    .cm-content .speech-open, .cm-content .speech-mark { padding: 16px 18px; }
+    .cm-content .speech-lead::first-letter { font-size: 2.8em; }
+  }
 
   /* Presidency modal photo gallery (shared across modals) */
   .cm-gallery {
@@ -1209,7 +1262,8 @@
     position: absolute;
     bottom: 12px; left: 50%;
     transform: translateX(-50%);
-    display: flex; gap: 7px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 7px;
+    max-width: 78%;
     z-index: 3;
   }
   .cm-gdot {
@@ -2560,7 +2614,7 @@
               Celebrating the Presidency
               <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
             </button>
-            <button type="button" class="pres-btn chair-btn" data-cm="remarks">
+            <button type="button" class="pres-btn is-gold chair-btn" data-cm="remarks">
               Remarks of the Chair
               <svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
             </button>
@@ -2956,8 +3010,11 @@
   <article data-key="remarks"
            data-sub="Chairmanship in Office · 2026"
            data-title="H.E. Minister Ibrahimović, Remarks at the Montenegro 2026 Presidency Event">
+    <div class="speech">
+    <div class="speech-open">
     <p>Excellencies<br>Esteemed Mr. Murra<br>Distinguished representatives of the Swiss Confederation, Japan and the International Visegrad Fund<br>Members of the Committee of Senior Officials of the Western Balkans Fund<br>Dear partners and friends<br>Ladies and Gentlemen,</p>
-    <p>It is a great honor and pleasure to welcome you today to the official opening of Montenegro’s 2026 Presidency of the Western Balkans Fund.</p>
+    </div>
+    <p class="speech-lead">It is a great honor and pleasure to welcome you today to the official opening of Montenegro’s 2026 Presidency of the Western Balkans Fund.</p>
     <p>Since 2006, Montenegro has established itself as a credible actor in the region, persistently committed to encouraging political dialogue, fostering good-neighborly relations, and contributing to the prosperity of the region.</p>
     <p>We actively advance these principles through membership in numerous regional initiatives and mechanisms.</p>
     <p>This year, 2026, marking the anniversary of the restoration of our independence, symbolizes maturity, responsibility, and the confirmation of international trust.</p>
@@ -2965,31 +3022,32 @@
     <p>Our European path is clear, steady, and unwavering. Montenegro stands at the EU’s doorstep, reinforcing our position as a frontrunner in the accession process.</p>
     <p>This is reflected in the responsibilities we assume this year: the Presidency of the Berlin Process, the Chairmanship of the Committee of Ministers of the Council of Europe, the Governing Board of the Regional Youth Cooperation Office, and the hosting of the EU–Western Balkans Summit.</p>
     <p>In this context, assuming the Presidency of the Western Balkans Fund represents both an honor and a responsibility.</p>
-    <p>The Fund is a unique regional initiative because it is truly ours. It belongs to the region, but above all to its people. It proves that regional cooperation is not merely declarative, but practical, connecting civil society, academia, cultural actors, and young people across borders.</p>
+    <p class="speech-mark">The Fund is a unique regional initiative because it is truly ours. It belongs to the region, but above all to its people. It proves that regional cooperation is not merely declarative, but practical, connecting civil society, academia, cultural actors, and young people across borders.</p>
     <p>The Fund builds trust where it was once fragile. It encourages dialogue where divisions once prevailed. It invests in people, who remain the most durable foundation of long-term prosperity and stability.</p>
     <p>Esteemed guests, our vision for the region is clear: a Western Balkans rooted in European values, mutual respect, and shared responsibility.</p>
     <p>Unity does not mean uniformity. On the contrary, the strength of our region lies in its diversity—in the richness of languages, cultures, and traditions, which should serve as a foundation for cooperation, not division.</p>
     <p>Montenegro’s Presidency will focus on delivering concrete results, enhancing visibility, and reinforcing a shared sense of ownership of the Fund. We envision the Fund as a recognized platform of trust, a bridge toward the European Union, and an example of successful regional cooperation.</p>
     <p>Montenegro approaches this Presidency with responsibility, ambition, and clearly defined priorities.</p>
-    <p>First, to deepen regional cooperation and strengthen mutual trust through inclusive and visible projects that connect our societies.</p>
-    <p>Second, to enhance capacities, ensuring that applicants and grant beneficiaries across the region are empowered to deliver projects with sustainable and measurable impact.</p>
-    <p>Third, to further position the Fund within the European and international framework through stronger partnerships with donors and greater visibility within the broader European institutional architecture.</p>
+    <p class="speech-priority"><span class="speech-n">First,</span> to deepen regional cooperation and strengthen mutual trust through inclusive and visible projects that connect our societies.</p>
+    <p class="speech-priority"><span class="speech-n">Second,</span> to enhance capacities, ensuring that applicants and grant beneficiaries across the region are empowered to deliver projects with sustainable and measurable impact.</p>
+    <p class="speech-priority"><span class="speech-n">Third,</span> to further position the Fund within the European and international framework through stronger partnerships with donors and greater visibility within the broader European institutional architecture.</p>
     <p>Therefore, allow me to extend special appreciation to the Swiss Confederation, Japan, and the International Visegrad Fund for your consistent and principled support. Your partnership is not only financial assistance; it is an expression of confidence in regional cooperation and in the European future of the Western Balkans.</p>
     <p>During our Presidency, we will work to broaden the circle of partners and strengthen the Fund’s long-term sustainability.</p>
     <p>Honorable members of the Committee of Senior Officials, your expertise and regional perspective remain essential to the stability and continuity of the Fund’s work. We look forward to your close cooperation throughout this year.</p>
     <p>Dear friends, the strength of a region is not measured by its differences, but by its ability to transform them into an advantage. That is precisely the mission of the Western Balkans Fund.</p>
     <p>Let us make this year one of consolidation and ambition. Let us further strengthen mutual trust. Let us empower projects that connect our citizens. And let us demonstrate together that regional cooperation is not only a political necessity, but a strategic value.</p>
-    <p>Together, let us build a stronger Fund, a more connected region, and a Western Balkans anchored in the European family.</p>
-    <p>Thank you.</p>
+    <p class="speech-mark">Together, let us build a stronger Fund, a more connected region, and a Western Balkans anchored in the European family.</p>
+    <p class="speech-close">Thank you.</p>
+    </div>
   </article>
 
 </div>
 
 <!-- ============================================================
      PRESIDENCY MODAL SCRIPT
-     Add more photos by appending to the GALLERY array below,the
-     same images render in every modal, with arrows/dots appearing
-     automatically once there is more than one.
+     Each modal gets its own gallery, keyed by the data-key of its
+     article above; add photos by appending to that list in GALLERIES.
+     Arrows and dots appear automatically once there is more than one.
      ============================================================ -->
 <script>
 (function () {
@@ -2998,24 +3056,68 @@
   var dataRoot = document.getElementById('cm-data');
   if (!overlay || !modal || !dataRoot) return;
 
-  /* Shared gallery,same picture(s) as the Presidency card.
-     Add more { src, alt } entries here as photos become available. */
-  var GALLERY = [
-    { src: '/assets/images/chairmanship/montenegro-2026-01.jpg', alt: 'Montenegro, WBF Presidency 2026 (1)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-02.jpg', alt: 'Montenegro, WBF Presidency 2026 (2)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-03.jpg', alt: 'Montenegro, WBF Presidency 2026 (3)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-04.jpg', alt: 'Montenegro, WBF Presidency 2026 (4)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-05.jpg', alt: 'Montenegro, WBF Presidency 2026 (5)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-06.jpg', alt: 'Montenegro, WBF Presidency 2026 (6)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-07.jpg', alt: 'Montenegro, WBF Presidency 2026 (7)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-09.jpg', alt: 'Montenegro, WBF Presidency 2026 (8)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-10.jpg', alt: 'Montenegro, WBF Presidency 2026 (9)' },
-    { src: '/assets/images/chairmanship/montenegro-2026-08.jpg', alt: 'Montenegro, WBF Presidency 2026 (8)' }
-  ];
+  /* Builds a Flickr-hosted slide, served at two widths so the 900px
+     frame stays sharp without sending the large file to phones. */
+  function flickr(id, alt) {
+    var base = 'https://live.staticflickr.com/65535/' + id;
+    return { src: base + '_c.jpg', srcset: base + '_c.jpg 800w, ' + base + '_b.jpg 1024w', alt: alt };
+  }
 
-  function galleryHTML() {
-    var slides = GALLERY.map(function (g) {
-      return '<div class="cm-gslide"><img src="' + g.src + '" alt="' + g.alt + '" ' +
+  var GALLERIES = {
+    /* The Presidency event, the full album from the WBF Flickr account:
+       https://www.flickr.com/photos/204725264@N07/albums/72177720335381736 */
+    celebration: [
+      flickr('55499596855_12096676e3', 'Celebrating the 2026 Montenegrin Presidency of the WBF (1)'),
+      flickr('55499315358_b9fe64ecee', 'Celebrating the 2026 Montenegrin Presidency of the WBF (2)'),
+      flickr('55498213532_b211c0377c', 'Celebrating the 2026 Montenegrin Presidency of the WBF (3)'),
+      flickr('55499379639_97dfd7a7c4', 'Celebrating the 2026 Montenegrin Presidency of the WBF (4)'),
+      flickr('55499315348_f84647d238', 'Celebrating the 2026 Montenegrin Presidency of the WBF (5)'),
+      flickr('55499379734_8e227fa1a0', 'Celebrating the 2026 Montenegrin Presidency of the WBF (6)'),
+      flickr('55499596465_0163cf2f1d', 'Celebrating the 2026 Montenegrin Presidency of the WBF (7)'),
+      flickr('55499596535_16bda94144', 'Celebrating the 2026 Montenegrin Presidency of the WBF (8)'),
+      flickr('55499379919_c7bf4e7aa6', 'Celebrating the 2026 Montenegrin Presidency of the WBF (9)'),
+      flickr('55499315598_0abb41f55b', 'Celebrating the 2026 Montenegrin Presidency of the WBF (10)'),
+      flickr('55498213672_ce7d8d48f4', 'Celebrating the 2026 Montenegrin Presidency of the WBF (11)'),
+      flickr('55499596500_81ccf26d5a', 'Celebrating the 2026 Montenegrin Presidency of the WBF (12)'),
+      flickr('55499379794_0f96744951', 'Celebrating the 2026 Montenegrin Presidency of the WBF (13)'),
+      flickr('55498213717_bc1ee44b56', 'Celebrating the 2026 Montenegrin Presidency of the WBF (14)'),
+      flickr('55499596635_b701830375', 'Celebrating the 2026 Montenegrin Presidency of the WBF (15)'),
+      flickr('55499596655_e8473055a2', 'Celebrating the 2026 Montenegrin Presidency of the WBF (16)'),
+      flickr('55499379909_ecfe7e29ba', 'Celebrating the 2026 Montenegrin Presidency of the WBF (17)'),
+      flickr('55498213767_254ae5660b', 'Celebrating the 2026 Montenegrin Presidency of the WBF (18)'),
+      flickr('55499596695_54a371b82f', 'Celebrating the 2026 Montenegrin Presidency of the WBF (19)'),
+      flickr('55498213912_7b15a19cb6', 'Celebrating the 2026 Montenegrin Presidency of the WBF (20)'),
+      flickr('55499315628_6fb4c09209', 'Celebrating the 2026 Montenegrin Presidency of the WBF (21)'),
+      flickr('55498213852_dc44ca16e8', 'Celebrating the 2026 Montenegrin Presidency of the WBF (22)'),
+      flickr('55499596730_cb2bc10b7f', 'Celebrating the 2026 Montenegrin Presidency of the WBF (23)'),
+      flickr('55499379979_c9141dfe57', 'Celebrating the 2026 Montenegrin Presidency of the WBF (24)'),
+      flickr('55499380069_5c8c294e90', 'Celebrating the 2026 Montenegrin Presidency of the WBF (25)'),
+      flickr('55499380224_8f0957cd20', 'Celebrating the 2026 Montenegrin Presidency of the WBF (26)')
+    ],
+    /* The Minister's remarks, from the WBF Flickr account. */
+    remarks: [
+      flickr('55499596465_0163cf2f1d', 'H.E. Minister Ervin Ibrahimovic at the Montenegro 2026 Presidency event (1)'),
+      flickr('55499596535_16bda94144', 'H.E. Minister Ervin Ibrahimovic at the Montenegro 2026 Presidency event (2)'),
+      flickr('55499379919_c7bf4e7aa6', 'H.E. Minister Ervin Ibrahimovic at the Montenegro 2026 Presidency event (3)'),
+      flickr('55499315598_0abb41f55b', 'H.E. Minister Ervin Ibrahimovic at the Montenegro 2026 Presidency event (4)'),
+      flickr('55499596500_81ccf26d5a', 'H.E. Minister Ervin Ibrahimovic at the Montenegro 2026 Presidency event (5)'),
+      flickr('55499596855_12096676e3', 'H.E. Minister Ervin Ibrahimovic at the Montenegro 2026 Presidency event (6)')
+    ]
+  };
+
+  /* whichever list the open modal is showing; set by galleryHTML() */
+  var GALLERY = GALLERIES.celebration;
+
+  function galleryHTML(key) {
+    GALLERY = GALLERIES[key] || GALLERIES.celebration;
+    var slides = GALLERY.map(function (g, i) {
+      /* only the opening frame loads straight away; the rest wait for
+         hydrate(), so a 26-photo album is not downloaded all at once */
+      var s  = i === 0 ? 'src' : 'data-src';
+      var ss = i === 0 ? 'srcset' : 'data-srcset';
+      return '<div class="cm-gslide"><img ' + s + '="' + g.src + '"' +
+             (g.srcset ? ' ' + ss + '="' + g.srcset + '" sizes="(max-width: 940px) 100vw, 900px"' : '') +
+             ' alt="' + g.alt + '" ' +
              'onerror="this.style.display=\'none\'"></div>';
     }).join('');
     var dots = GALLERY.map(function (_, i) {
@@ -3036,14 +3138,26 @@
     var track = g.querySelector('.cm-gtrack');
     var dots  = Array.prototype.slice.call(g.querySelectorAll('.cm-gdot'));
     var idx = 0;
+    /* give a slide its real src once it is the one on screen, or next in line */
+    function hydrate(i) {
+      var slide = track.children[((i % GALLERY.length) + GALLERY.length) % GALLERY.length];
+      var img = slide ? slide.querySelector('img[data-src]') : null;
+      if (!img) return;
+      if (img.getAttribute('data-srcset')) img.setAttribute('srcset', img.getAttribute('data-srcset'));
+      img.setAttribute('src', img.getAttribute('data-src'));
+      img.removeAttribute('data-src');
+      img.removeAttribute('data-srcset');
+    }
     function go(i) {
       idx = ((i % GALLERY.length) + GALLERY.length) % GALLERY.length;
+      hydrate(idx - 1); hydrate(idx); hydrate(idx + 1);
       track.style.transform = 'translateX(' + (-idx * 100) + '%)';
       dots.forEach(function (d, j) { d.classList.toggle('active', j === idx); });
     }
     g.querySelector('.cm-gprev').addEventListener('click', function () { go(idx - 1); });
     g.querySelector('.cm-gnext').addEventListener('click', function () { go(idx + 1); });
     dots.forEach(function (d) { d.addEventListener('click', function () { go(parseInt(d.getAttribute('data-i'), 10)); }); });
+    go(0);
   }
 
   function open(key) {
@@ -3053,7 +3167,7 @@
       '<button type="button" class="cm-close" aria-label="Close">' +
         '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>' +
       '</button>' +
-      galleryHTML() +
+      galleryHTML(key) +
       '<div class="cm-banner"><div class="cm-sub">' + (src.getAttribute('data-sub') || '') + '</div><h3 id="cm-title">' + (src.getAttribute('data-title') || '') + '</h3></div>' +
       '<div class="cm-content">' + src.innerHTML + '</div>';
     overlay.hidden = false;
