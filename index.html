@@ -1131,11 +1131,14 @@
     transform: translateY(-4px);
     box-shadow: 0 26px 60px rgba(122,22,15,0.20), 0 0 0 1px rgba(192,138,46,0.38);
   }
-  /* the gold cast already on the banner, given a slow drift */
+  /* The gold cast already on the banner, given a slow rise and fall. It
+     brightens rather than moves: shifting a translucent layer over the red
+     puts its rectangular edge inside the card, where the compositor renders
+     it as a visible seam and the banner reads as two shades of red. */
   .pres-banner::after { animation: pres-drift 15s ease-in-out infinite alternate; }
   @keyframes pres-drift {
-    from { transform: translate3d(0, 0, 0); }
-    to   { transform: translate3d(-3.5%, 2.5%, 0); }
+    from { opacity: 0.55; }
+    to   { opacity: 1; }
   }
   /* one pass of light across the red, on entering the card */
   .pres-banner::before {
