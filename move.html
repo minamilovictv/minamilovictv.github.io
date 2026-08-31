@@ -168,6 +168,21 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .sec-head .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--move); margin-bottom: 12px; }
 .sec-head h2 { font-size: clamp(24px, 3.2vw, 36px); font-weight: 800; color: var(--ink); margin-bottom: 14px; letter-spacing: -0.025em; line-height: 1.15; }
 .sec-head p { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+/* Pill badge for a section overline, matching the "Move to" band */
+.sec-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  margin-bottom: 15px;
+  padding: 8px 17px 8px 15px; border-radius: 999px;
+  font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--move-deep);
+  background: linear-gradient(120deg, var(--move-tint), var(--move-orange-tint));
+  border: 1px solid var(--move-border);
+}
+.sec-badge::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  background: var(--move-orange); box-shadow: 0 0 0 4px rgba(224,123,42,0.18);
+  animation: badgeGlow 2.4s ease-in-out infinite;
+}
 
 /* ============================================================
    ABOUT
@@ -193,10 +208,9 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   margin-bottom: 0;
 }
 .inline-footnote strong { font-style: normal; color: var(--ink-soft); font-weight: 600; }
-
-/* ---- "MOVE is for" — persona showcase -------------------- */
-.persona-block { margin-top: 56px; }
-.persona-head { text-align: center; margin-bottom: 30px; }
+/* ---- "Move to" statement band ---------------------------- */
+.persona-block { margin-top: 52px; }
+.persona-head { text-align: center; margin-bottom: 0; }
 .persona-head .persona-eyebrow {
   display: inline-flex; align-items: center; gap: 9px;
   font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em;
@@ -448,7 +462,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 /* ============================================================
    AREAS OF INTERVENTION
    ============================================================ */
-.ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; perspective: 1600px; }
+.ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; perspective: 1600px; }
 
 .ia-card {
   --ic: var(--move);
@@ -458,7 +472,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 18px;
-  padding: 0 0 26px;
+  padding: 0 0 30px;
   display: flex; flex-direction: column;
   overflow: hidden;
   transform-style: preserve-3d;
@@ -477,7 +491,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 /* Angled gradient header band — the "new shape" */
 .ia-head {
   position: relative;
-  padding: 26px 26px 40px;
+  padding: 30px 30px 46px;
   background:
     radial-gradient(120% 140% at 85% -20%, color-mix(in srgb, var(--ic) 30%, transparent), transparent 60%),
     linear-gradient(135deg, var(--ic-deep), var(--ic));
@@ -506,7 +520,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .ia-num {
   position: absolute; top: 2px; right: 16px;
   font-family: var(--font-display); font-weight: 800;
-  font-size: 92px; line-height: 1;
+  font-size: 104px; line-height: 1;
   color: rgba(255,255,255,0.14);
   letter-spacing: -0.04em; pointer-events: none;
   transition: transform .5s cubic-bezier(.2,.7,.2,1), color .4s ease;
@@ -516,7 +530,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 /* Floating icon disc */
 .ia-icon {
   position: relative; z-index: 1;
-  width: 56px; height: 56px; border-radius: 16px;
+  width: 62px; height: 62px; border-radius: 18px;
   background: rgba(255,255,255,0.16);
   border: 1px solid rgba(255,255,255,0.28);
   backdrop-filter: blur(4px);
@@ -528,13 +542,14 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .ia-icon svg { width: 28px; height: 28px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .ia-card:hover .ia-icon { transform: rotate(-6deg) scale(1.1); background: rgba(255,255,255,0.26); }
 
-.ia-body { padding: 0 26px; margin-top: 20px; position: relative; z-index: 1; }
-.ia-title { font-size: 19px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.02em; }
-.ia-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 18px; }
+.ia-body { padding: 0 30px; margin-top: 24px; position: relative; z-index: 1; }
+.ia-title { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 11px; letter-spacing: -0.02em; }
+.ia-desc { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 20px; }
 
 /* Examples become interactive chips */
 .ia-examples { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
 .ia-examples li {
+  font-size: 12.8px; font-weight: 600; line-height: 1.35;
   font-size: 12px; font-weight: 600; line-height: 1.35;
   color: var(--ic-deep);
   background: var(--ic-tint);
@@ -1398,7 +1413,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   <div class="prog-hero-inner">
 
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/index.html">Home</a><span>›</span><a href="/our-programs.html">Our Programs</a><span>›</span>MOVE Grants
+      <a href="/index.html">Home</a><span>›</span><a href="/our-programs.html">Our Programmes</a><span>›</span>MOVE Grants
     </nav>
 
     <div class="status-pill">
@@ -1407,7 +1422,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
     </div>
 
     <h1>MOVE Grants<span class="h1-sub">Individual Mobility Across the Western Balkans</span></h1>
-    <p class="tagline">Short-term, people-to-people funding for researchers, students, professors, journalists, PhD candidates, actors, artists, musicians, and activists to engage in cross-border cooperation, connect with peers, and bring new knowledge and added value back home.</p>
+    <p class="tagline">Short-term mobility funding for individual artists, cultural professionals, scholars, journalists, youth workers, CSO activists, and other changemakers, to engage in regional cooperation, connect with peers, and knowledge sharing.</p>
     <p class="footnote">Call 7 is open. Applications are submitted online through the WBF Online Grant Management System (OGMS).</p>
 
     <div class="hero-ctas">
@@ -1451,59 +1466,17 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   <div class="container-narrow">
     <div class="sec-head" data-reveal>
       <div class="overline">About the Programme</div>
-      <h2>People-to-people connections at the heart of regional cooperation</h2>
+      <h2>People-to-people links at the heart of regional cooperation</h2>
     </div>
     <div class="about-text" data-reveal>
-      <p>MOVE Grants are the dedicated individual mobility mechanism of the Western Balkans Fund. The programme is built around the individual changemaker: a researcher, journalist, artist, student or activist who wants to cross a border, learn something, collaborate, and bring it back home.</p>
-      <p>Unlike WBF's larger calls for organisational proposals, MOVE rests on the belief that direct, in-person exchange (academic, artistic, professional) is irreplaceable for building trust across the Western Balkans. A researcher visiting a lab in another country, a journalist attending a regional media forum, an activist participating in a residency: these are the connections that accumulate into something larger.</p>
-      <p>Each MOVE grantee commits to an agreed structured mobility activity with a formal host institution/organization in another Contracting Party of the Western Balkans Fund. After the visit, they share their experience in their networks, on social media and through WBF's platforms, becoming ambassadors for regional cooperation.</p>
+      <p>MOVE Grants is a dedicated grant-making mechanism designed to support mobility, exchange, and people-to-people cooperation across the region. The scheme is built on WBF's belief that direct, in-person interactions whether through academic exchange, artistic collaboration, and/or professional mobility are vital to building trust, understanding, and shared values across the Western Balkans.</p>
+      <p>Each MOVE grantee commits to an agreed structured mobility activity with a formal host institution/organisation in another Contracting Party of the Western Balkans Fund. After the visit, they share their experience within their networks, on social media and through WBF's platforms, becoming ambassadors for regional cooperation.</p>
       <p>The programme funds short-term, individual mobility within the WB6: Albania, Bosnia and Herzegovina, Kosovo*, Montenegro, North Macedonia and Serbia. Full eligibility rules, grant amounts and the submission deadline for Call 7 are set out in the call package on OGMS.</p>
 
       <!-- Kosovo footnote — placed contextually next to the WB6 mention -->
       <p class="inline-footnote">
         <strong>*</strong>This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.
       </p>
-    </div>
-
-    <!-- MOVE is for — persona showcase -->
-    <div class="persona-block">
-      <div class="persona-head" data-reveal>
-        <span class="persona-eyebrow">MOVE is for</span>
-        <h3>Individuals with a reason to cross a border</h3>
-      </div>
-
-      <div class="persona-grid" data-tilt data-stagger>
-        <div class="persona-card" data-reveal style="--i:0">
-          <span class="persona-num">01</span>
-          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-          <div class="persona-label">Researchers &amp; Academics</div>
-          <div class="persona-desc">Study exchanges, field research, conference presentations, joint publications</div>
-        </div>
-        <div class="persona-card" data-reveal style="--i:1">
-          <span class="persona-num">02</span>
-          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9h4"/><path d="M10 6h8v4h-8z"/><path d="M18 14h-8"/><path d="M15 18h-5"/></svg></div>
-          <div class="persona-label">Journalists</div>
-          <div class="persona-desc">Reporting trips, regional media forums, editorial exchange</div>
-        </div>
-        <div class="persona-card" data-reveal style="--i:2">
-          <span class="persona-num">03</span>
-          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-          <div class="persona-label">Artists &amp; Cultural Professionals</div>
-          <div class="persona-desc">Residencies, joint productions, festivals, cultural documentation</div>
-        </div>
-        <div class="persona-card" data-reveal style="--i:3">
-          <span class="persona-num">04</span>
-          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <div class="persona-label">CSO Activists &amp; Youth Workers</div>
-          <div class="persona-desc">Capacity exchanges, regional advocacy events, peer learning</div>
-        </div>
-        <div class="persona-card" data-reveal style="--i:4">
-          <span class="persona-num">05</span>
-          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-          <div class="persona-label">Students</div>
-          <div class="persona-desc">Currently enrolled at any higher education institution in the WB6</div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1638,7 +1611,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
           </div>
           <h3 class="grantee-name">Stefan Živković</h3>
           <p class="grantee-project"><strong>Strengthening the rare-disease alliances of the Western Balkans.</strong> Mobility visits and 13 stakeholder interviews connected rare-disease alliances and patient organisations in Bosnia and Herzegovina, Croatia and North Macedonia, sharing good practices on access to therapies, patient advocacy and organisational sustainability.</p>
-          <blockquote class="grantee-quote">By connecting rare disease organizations across the Western Balkans, we can turn shared challenges into shared solutions — building a stronger, united voice for rare disease communities.</blockquote>
+          <blockquote class="grantee-quote">By connecting rare disease organisations across the Western Balkans, we can turn shared challenges into shared solutions — building a stronger, united voice for rare disease communities.</blockquote>
         </div>
       </article>
 
@@ -1656,7 +1629,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 <section class="section section-alt" id="areas">
   <div class="container-narrow">
     <div class="sec-head" data-reveal>
-      <div class="overline">Areas of Intervention</div>
+      <div class="sec-badge">Areas of Intervention</div>
       <h2>Three areas. Many forms of mobility.</h2>
       <p>MOVE supports mobility initiatives in three broad areas of intervention. These have been consistent across past calls and are expected to remain the orientation of the programme going forward.</p>
     </div>
@@ -1689,7 +1662,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
         </div>
         <div class="ia-body">
           <div class="ia-title">Education &amp; Scientific Exchange</div>
-          <div class="ia-desc">Supporting capacity building, academic and professional mobility, joint research and scientific collaboration across the WB6.</div>
+          <div class="ia-desc">Supporting capacity building, academic and professional mobility, joint research and scientific collaboration.</div>
           <ul class="ia-examples">
             <li>University &amp; lab exchanges</li>
             <li>Workshops &amp; seminars</li>
@@ -1743,7 +1716,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
         <span class="req-callout-badge">Mandatory</span>
         <h3>Every mobility starts with a written invitation</h3>
         <p>A MOVE application has to rest on a formal partnership with a <strong>host institution in another Contracting Party</strong>. The partnership is what confirms your mobility is grounded in a structured, mutually agreed framework rather than a self-organised trip.</p>
-        <p>You prove it with an <strong>official invitation letter from the host institution</strong>, stating the dates, the programme and the reason you are being invited. A confirmed registration, acceptance or enrolment letter for a course, programme or workshop they organise works too. <strong>Without this document the application is rejected at the eligibility check</strong>, before it is ever scored.</p>
+        <p>You prove it with an <strong>official invitation letter from the host institution</strong>, stating the dates, the programme and the reason you are being invited. A confirmed registration, acceptance or enrolment letter for a course, programme or workshop they organise works too. <strong>Without this document the application is rejected at the eligibility check.</strong></p>
       </div>
     </div>
 
@@ -1787,7 +1760,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <div class="fund-fig" data-reveal style="--i:1">
         <div class="fund-fig-key">Co-financing</div>
         <div class="fund-fig-val">Up to 100%</div>
-        <div class="fund-fig-note">WBF can cover the full eligible cost of the action. Cost-sharing is allowed but not required.</div>
+        <div class="fund-fig-note">WBF can cover the full eligible cost of the action.</div>
       </div>
       <div class="fund-fig" data-reveal style="--i:2">
         <div class="fund-fig-key">Implementation</div>
@@ -1904,7 +1877,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       </div>
       <div class="eval-node" data-reveal style="--i:3">
         <span class="eval-dot">4</span>
-        <h4>Verification</h4>
+        <h4>Verification &amp; Negotiation</h4>
         <p>Supporting documents checked</p>
       </div>
     </div>
@@ -1943,14 +1916,12 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
     <div class="xcut" data-reveal>
       <h3>Cross-cutting priorities</h3>
-      <p>These are not decorative. <strong>Mainstreaming cross-cutting issues is scored</strong> as part of Section B. Applications that integrate one or more of them meaningfully do better.</p>
+      <p><strong>Mainstreaming cross-cutting issues is scored</strong> as part of Section B. Applications that integrate one or more of them meaningfully do better.</p>
       <div class="xcut-chips">
         <span class="xcut-chip">Gender equality</span>
-        <span class="xcut-chip">Human rights</span>
-        <span class="xcut-chip">Inclusion of minorities &amp; vulnerable groups</span>
+        <span class="xcut-chip">Human rights, inclusion of minorities and vulnerable groups</span>
         <span class="xcut-chip">Environmental sustainability &amp; climate action</span>
-        <span class="xcut-chip">Democracy &amp; rule of law</span>
-        <span class="xcut-chip">Digitalisation &amp; innovation</span>
+        <span class="xcut-chip">Democracy and rule of law, digitalisation and innovation</span>
         <span class="xcut-chip">Youth engagement</span>
       </div>
     </div>
@@ -1965,7 +1936,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
     <div class="sec-head" data-reveal>
       <div class="overline">Six calls in motion</div>
       <h2>What MOVE has set in motion</h2>
-      <p>Across six funding calls, MOVE has backed individual changemakers to cross a border and bring something back. The figures below count grants awarded and the journeys they created between the six capitals of the Western Balkans.</p>
+      <p>Across six funding calls, MOVE has backed individual changemakers to move across the region and bring something back home. The figures below count grants awarded and the journeys they created between the WB6.</p>
     </div>
 
     <!-- 1. Count-up band -->
@@ -1992,7 +1963,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
       <div class="stat-panel" data-reveal>
         <h3><span class="dot"></span> Where grantees came from</h3>
-        <div class="panel-note">Participation stays remarkably even across all six capitals.</div>
+        <div class="panel-note">Participation stays remarkably even across WB6.</div>
         <div class="leaderboard" id="leaderboard" aria-hidden="true"></div>
       </div>
     </div>
@@ -2179,7 +2150,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
     var svg = document.createElementNS(svgNS, 'svg');
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', 'Network of MOVE mobility journeys between the six Western Balkans capitals');
+    svg.setAttribute('aria-label', 'Network of MOVE mobility journeys between the six Western Balkans Contracting Parties');
 
     var gEdges = document.createElementNS(svgNS, 'g');
     var gNodes = document.createElementNS(svgNS, 'g');
@@ -2290,7 +2261,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       var top = sorted.slice(0, 3).map(function (h) { return cp(h) + ' (' + d[h] + ')'; }).join(', ');
       readout.innerHTML =
         '<div class="ro-city" style="color:' + COLORS[city] + '">' + cp(city) + '</div>' +
-        '<div class="ro-line">' + outTotal(city) + ' journeys sent to ' + sorted.length + ' contracting parties</div>' +
+        '<div class="ro-line">' + outTotal(city) + ' journeys sent to ' + sorted.length + ' Contracting Parties</div>' +
         '<div class="ro-line">Top hosts: ' + top + '</div>';
     }
   }
