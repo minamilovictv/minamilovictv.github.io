@@ -673,15 +673,15 @@
       </div>
     </section>
 
-    <!-- Visegrad Fellowship cohort highlights — shown in place of the (unpublished)
+    <!-- WB6-V4 Fellowship cohort highlights — shown in place of the (unpublished)
          grantee explorer when the Visegrad programme is selected. Data-driven,
          cohort-switchable stats + mobility Sankey + discipline donut + observations,
          ported from the Visegrad programme page with an added "All cohorts" tab. -->
-    <section class="section highlights" id="visegrad-highlights" aria-label="Visegrad Fellowship cohort highlights" hidden>
+    <section class="section highlights" id="visegrad-highlights" aria-label="WB6-V4 Fellowship cohort highlights" hidden>
       <div class="container highlights-inner">
         <div class="sec-head">
           <div class="overline" id="hl-overline">All cohorts · At a glance</div>
-          <h2>Visegrád Fellowship cohorts</h2>
+          <h2>WB6-V4 Fellowship cohorts</h2>
           <p id="hl-intro">A combined snapshot across the fellowship calls.</p>
         </div>
 
@@ -831,12 +831,12 @@
           when: 'No deadline · rolling basis'
         },
         {
-          id: 'visegrad', index: '06', short: 'Visegrad Fellowship', name: 'Visegrad Fellowship', calls: 3, privateNames: true,
+          id: 'visegrad', index: '06', short: 'WB6-V4 Fellowship', name: 'WB6-V4 Fellowship', calls: 3, privateNames: true,
           accent: '#B5892E', soft: 'rgba(181,137,46,.14)', gradient: 'linear-gradient(135deg, #08213b 0%, #0F3250 50%, #1D5C9E 100%)',
-          aliases: ['visegrad', 'visegrad fellowship'],
+          aliases: ['visegrad', 'visegrad fellowship', 'wb6-v4', 'wb6-v4 fellowship'],
           description: 'Connecting Western Balkans researchers and professionals with Visegrad institutions through knowledge exchange.',
           empty: 'Individual names are not published. Explore anonymised cohort information, research themes and programme outputs instead.',
-          cardTitle: 'Western Balkans–Visegrad Fellowship', who: 'individual', type: 'grant',
+          cardTitle: 'WB6-V4 Fellowship', who: 'individual', type: 'grant',
           badge: 'Winners Announced', badgeClass: 'winners', grantNum: 'Fellowship', grantSub: 'mobility grant',
           cardDesc: 'Short-term academic mobility between the Western Balkans and the Visegrad Group, enabling PhD candidates and doctoral holders to research, teach, or study at host institutions.',
           when: 'With the International Visegrad Fund'
@@ -1168,7 +1168,7 @@
       function renderList() {
         renderFilters();
 
-        // Visegrad Fellowship stays anonymised — show its cohort widget, not a name list.
+        // WB6-V4 Fellowship stays anonymised — show its cohort widget, not a name list.
         if (STATE.programme === 'visegrad') { toggleVisegradHighlights(true); return; }
         toggleVisegradHighlights(false);
 
@@ -1517,7 +1517,7 @@
     })();
   </script>
 
-  <!-- Visegrad Fellowship cohort highlights — data-driven, cohort-switchable stats,
+  <!-- WB6-V4 Fellowship cohort highlights — data-driven, cohort-switchable stats,
        donut, observations & Sankey (ported from the Visegrad page) + an "All cohorts"
        tab that aggregates the three calls. Revealed when the Visegrad programme is chosen. -->
   <script>
@@ -1538,7 +1538,7 @@
         overline: '2024 Call · At a glance',
         intro: 'A snapshot of the 2024 selection round: the disciplines awarded, the regions exchanged, and the academic weeks supported across both regions.',
         sankeySub: '41 fellowships · 2024', pieSub: 'Share of 41', obsSub: '2024 cycle',
-        disclaimer: 'Figures derived from the official list of approved Western Balkans–Visegrad Fellowships for the 2024 call.',
+        disclaimer: 'Figures derived from the official list of approved WB6-V4 Fellowships for the 2024 call.',
         stats: [
           {num:'41', label:'Approved fellowships', accent:true},
           {num:'10', label:'Contracting Parties represented'},
@@ -1567,7 +1567,7 @@
         overline: '2025 Call · At a glance',
         intro: 'A snapshot of the 2025 selection round: the disciplines awarded, the regions exchanged, and the academic weeks supported across both regions.',
         sankeySub: '44 fellowships · 2025', pieSub: 'Share of 44', obsSub: '2025 cycle',
-        disclaimer: 'Figures derived from the official list of approved Western Balkans–Visegrad Fellowships for the 2025 call.',
+        disclaimer: 'Figures derived from the official list of approved WB6-V4 Fellowships for the 2025 call.',
         stats: [
           {num:'44', label:'Approved fellowships', accent:true},
           {num:'10', label:'Contracting Parties represented'},
@@ -1596,7 +1596,7 @@
         overline: '2026 Call · At a glance',
         intro: 'A snapshot of the 2026 selection round: the disciplines awarded, the regions exchanged, and the academic weeks now in motion across both regions.',
         sankeySub: '51 fellowships · 2026', pieSub: 'Share of 51', obsSub: '2026 cycle',
-        disclaimer: 'Figures derived from the official list of approved Western Balkans–Visegrad Fellowships for the 2026 call.',
+        disclaimer: 'Figures derived from the official list of approved WB6-V4 Fellowships for the 2026 call.',
         stats: [
           {num:'51', label:'Approved fellowships', accent:true},
           {num:'10', label:'Contracting Parties represented'},
