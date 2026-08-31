@@ -381,8 +381,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
    stat cards' width and left rail */
 .bp-badge {
   position: relative;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  padding: 18px 30px 18px 24px;
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 14px;
+  padding: 22px 30px 22px 24px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-left: 3px solid var(--gefund);
@@ -401,7 +401,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   line-height: 1.4; color: var(--faint); transition: color .25s ease;
 }
 .bp-badge:hover .bp-badge-kicker { color: var(--gefund); }
-.bp-badge-mark { display: block; height: 40px; width: auto; flex-shrink: 0; }
+.bp-badge-mark { display: block; height: 48px; width: auto; flex-shrink: 0; }
 .bp-badge-ext {
   position: absolute; top: 12px; right: 12px;
   width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2;
@@ -432,8 +432,10 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .about-text p:last-child { margin-bottom: 0; }
 .about-text strong { color: var(--ink); font-weight: 600; }
 
-/* Supporting plates, stacked in the narrower right column */
-.about-stats { display: flex; flex-direction: column; gap: 16px; }
+/* Supporting plates, stacked in the narrower right column.
+   grid-auto-rows: 1fr keeps all three the same size — the provenance plate
+   has the least content and would otherwise sit half the height of the rest. */
+.about-stats { display: grid; grid-auto-rows: 1fr; gap: 16px; }
 #main .about-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.55; margin-top: 20px; margin-bottom: 0; text-align: left; }
 .stat-card {
   background: var(--surface);
@@ -1317,6 +1319,195 @@ body.gef-modal-lock { overflow: hidden; }
 </section>
 
 <!-- ============================================================
+     PRIORITY AREAS — 03
+     ============================================================ -->
+<section class="section" id="priorities">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">03 / Priority Areas</div>
+      <h2>Six priorities. <em>One ambition.</em></h2>
+      <p>Applicants must indicate the priority area their project addresses. Projects at the intersection of multiple priorities are encouraged.</p>
+    </div>
+
+    <!-- Rail of six tabs on the left drives a single detail panel on the right.
+         Below 980px the rail becomes a horizontal, scroll-snapping pill strip. -->
+    <div class="prio-explorer">
+
+      <div class="prio-rail-wrap">
+        <div class="prio-rail" role="tablist" aria-label="GEFund priority areas">
+          <button class="prio-tab is-active" role="tab" id="prio-tab-1" aria-controls="prio-panel-1" aria-selected="true" tabindex="0" data-prio="1">
+            <span class="prio-tab-num">01</span>
+            <span class="prio-tab-name">Empowerment of Women in Economic &amp; Public Life</span>
+            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+          </button>
+          <button class="prio-tab" role="tab" id="prio-tab-2" aria-controls="prio-panel-2" aria-selected="false" tabindex="-1" data-prio="2">
+            <span class="prio-tab-num">02</span>
+            <span class="prio-tab-name">Gender Equality &amp; Protection from Violence</span>
+            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+          </button>
+          <button class="prio-tab" role="tab" id="prio-tab-3" aria-controls="prio-panel-3" aria-selected="false" tabindex="-1" data-prio="3">
+            <span class="prio-tab-num">03</span>
+            <span class="prio-tab-name">Gender Equality in the Digital Space</span>
+            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+          </button>
+          <button class="prio-tab" role="tab" id="prio-tab-4" aria-controls="prio-panel-4" aria-selected="false" tabindex="-1" data-prio="4">
+            <span class="prio-tab-num">04</span>
+            <span class="prio-tab-name">Gender Equality &amp; Environmental Conservation</span>
+            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+          </button>
+          <button class="prio-tab" role="tab" id="prio-tab-5" aria-controls="prio-panel-5" aria-selected="false" tabindex="-1" data-prio="5">
+            <span class="prio-tab-num">05</span>
+            <span class="prio-tab-name">Countering Anti-Gender Backlash</span>
+            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+          </button>
+          <button class="prio-tab" role="tab" id="prio-tab-6" aria-controls="prio-panel-6" aria-selected="false" tabindex="-1" data-prio="6">
+            <span class="prio-tab-num">06</span>
+            <span class="prio-tab-name">Gender Equality, Peace &amp; Security</span>
+            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+          </button>
+        </div>
+        <p class="prio-hint">Select a priority to read the results the Fund expects it to deliver.</p>
+      </div>
+
+      <div class="prio-stage">
+
+        <!-- 01 -->
+        <div class="prio-panel is-active" role="tabpanel" id="prio-panel-1" aria-labelledby="prio-tab-1" tabindex="0" data-prio="1">
+          <div class="prio-panel-inner">
+            <div class="prio-panel-head">
+              <div class="prio-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><line x1="2" y1="13" x2="22" y2="13"/></svg>
+              </div>
+              <div>
+                <div class="prio-eyebrow">Priority 01 <span>/ 06</span></div>
+                <h3 class="prio-title">Empowerment of Women in Economic &amp; Public Life</h3>
+              </div>
+            </div>
+            <div class="prio-tags"><span>Economic empowerment</span><span>Decision-making</span><span>Unpaid work</span><span>Care economy</span></div>
+            <h4 class="prio-sub">Expected results</h4>
+            <ul class="prio-results">
+              <li>Advanced women&rsquo;s economic empowerment and participation in decision-making</li>
+              <li>Improved recognition of women&rsquo;s paid and unpaid work</li>
+              <li>Strengthened advocacy for gender-responsive economic policies and care economy investment</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 02 -->
+        <div class="prio-panel" role="tabpanel" id="prio-panel-2" aria-labelledby="prio-tab-2" tabindex="0" data-prio="2">
+          <div class="prio-panel-inner">
+            <div class="prio-panel-head">
+              <div class="prio-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg>
+              </div>
+              <div>
+                <div class="prio-eyebrow">Priority 02 <span>/ 06</span></div>
+                <h3 class="prio-title">Gender Equality &amp; Protection from Violence</h3>
+              </div>
+            </div>
+            <div class="prio-tags"><span>Violence against women and girls</span><span>Survivor services</span><span>Sustainable funding</span></div>
+            <h4 class="prio-sub">Expected results</h4>
+            <ul class="prio-results">
+              <li>Strengthened regional cooperation in addressing violence against women and girls</li>
+              <li>Improved support mechanisms and services for survivors of violence</li>
+              <li>Increased policy attention to sustainable funding for protection services</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 03 -->
+        <div class="prio-panel" role="tabpanel" id="prio-panel-3" aria-labelledby="prio-tab-3" tabindex="0" data-prio="3">
+          <div class="prio-panel-inner">
+            <div class="prio-panel-head">
+              <div class="prio-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+              </div>
+              <div>
+                <div class="prio-eyebrow">Priority 03 <span>/ 06</span></div>
+                <h3 class="prio-title">Gender Equality in the Digital Space</h3>
+              </div>
+            </div>
+            <div class="prio-tags"><span>Digital technologies &amp; AI</span><span>STEM</span><span>Inclusive digital policy</span></div>
+            <h4 class="prio-sub">Expected results</h4>
+            <ul class="prio-results">
+              <li>Increased awareness of gender inequalities in digital technologies and AI</li>
+              <li>Strengthened participation of women and girls in STEM and digital innovation</li>
+              <li>Enhanced civil society engagement in shaping inclusive digital policies</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 04 -->
+        <div class="prio-panel" role="tabpanel" id="prio-panel-4" aria-labelledby="prio-tab-4" tabindex="0" data-prio="4">
+          <div class="prio-panel-inner">
+            <div class="prio-panel-head">
+              <div class="prio-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+              </div>
+              <div>
+                <div class="prio-eyebrow">Priority 04 <span>/ 06</span></div>
+                <h3 class="prio-title">Gender Equality &amp; Environmental Conservation</h3>
+              </div>
+            </div>
+            <div class="prio-tags"><span>Climate resilience</span><span>Disaster response</span><span>Youth &amp; CSO cooperation</span></div>
+            <h4 class="prio-sub">Expected results</h4>
+            <ul class="prio-results">
+              <li>Increased integration of gender perspectives in environmental and disaster-response policies</li>
+              <li>Strengthened cooperation between CSOs, youth and environmental actors</li>
+              <li>Improved community resilience through gender-responsive climate approaches</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 05 -->
+        <div class="prio-panel" role="tabpanel" id="prio-panel-5" aria-labelledby="prio-tab-5" tabindex="0" data-prio="5">
+          <div class="prio-panel-inner">
+            <div class="prio-panel-head">
+              <div class="prio-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><line x1="15.6" y1="8" x2="8.6" y2="15"/></svg>
+              </div>
+              <div>
+                <div class="prio-eyebrow">Priority 05 <span>/ 06</span></div>
+                <h3 class="prio-title">Countering Anti-Gender Backlash</h3>
+              </div>
+            </div>
+            <div class="prio-tags"><span>Anti-gender narratives</span><span>Disinformation</span><span>Civic resilience</span></div>
+            <h4 class="prio-sub">Expected results</h4>
+            <ul class="prio-results">
+              <li>Strengthened regional cooperation in addressing anti-gender narratives and disinformation</li>
+              <li>Increased civic awareness and resilience to gender-based misinformation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 06 -->
+        <div class="prio-panel" role="tabpanel" id="prio-panel-6" aria-labelledby="prio-tab-6" tabindex="0" data-prio="6">
+          <div class="prio-panel-inner">
+            <div class="prio-panel-head">
+              <div class="prio-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div>
+                <div class="prio-eyebrow">Priority 06 <span>/ 06</span></div>
+                <h3 class="prio-title">Gender Equality, Peace &amp; Security</h3>
+              </div>
+            </div>
+            <div class="prio-tags"><span>Peacebuilding</span><span>Women &amp; youth participation</span><span>Migration &amp; trafficking</span></div>
+            <h4 class="prio-sub">Expected results</h4>
+            <ul class="prio-results">
+              <li>Stronger CSO engagement in peacebuilding and security policy discussions</li>
+              <li>Greater participation of women and youth in peace and security processes</li>
+              <li>Increased awareness of gender dimensions in migration, trafficking and humanitarian protection</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      AWARDED PROJECTS — Call 1 winners
 
      Final award data, approved by the WBF Committee of Senior Officials.
@@ -1325,7 +1516,7 @@ body.gef-modal-lock { overflow: hidden; }
 
      Per card:
        .winner-tag       priority area (title attr = the full name used
-                         in the Priority Areas section below)
+                         in the Priority Areas section above)
        .winner-cps       one .cp-chip per Contracting Party, lead first
        .winner-summary   the project's overall objective
        .consortium-row.lead  lead applicant — contract signatory with WBF
@@ -1607,198 +1798,9 @@ body.gef-modal-lock { overflow: hidden; }
 </section>
 
 <!-- ============================================================
-     PRIORITY AREAS — 03
-     ============================================================ -->
-<section class="section" id="priorities">
-  <div class="container-narrow">
-    <div class="sec-head">
-      <div class="overline">03 / Priority Areas</div>
-      <h2>Six priorities. <em>One ambition.</em></h2>
-      <p>Applicants must indicate the priority area their project addresses. Projects at the intersection of multiple priorities are encouraged.</p>
-    </div>
-
-    <!-- Rail of six tabs on the left drives a single detail panel on the right.
-         Below 980px the rail becomes a horizontal, scroll-snapping pill strip. -->
-    <div class="prio-explorer">
-
-      <div class="prio-rail-wrap">
-        <div class="prio-rail" role="tablist" aria-label="GEFund priority areas">
-          <button class="prio-tab is-active" role="tab" id="prio-tab-1" aria-controls="prio-panel-1" aria-selected="true" tabindex="0" data-prio="1">
-            <span class="prio-tab-num">01</span>
-            <span class="prio-tab-name">Empowerment of Women in Economic &amp; Public Life</span>
-            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
-          </button>
-          <button class="prio-tab" role="tab" id="prio-tab-2" aria-controls="prio-panel-2" aria-selected="false" tabindex="-1" data-prio="2">
-            <span class="prio-tab-num">02</span>
-            <span class="prio-tab-name">Gender Equality &amp; Protection from Violence</span>
-            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
-          </button>
-          <button class="prio-tab" role="tab" id="prio-tab-3" aria-controls="prio-panel-3" aria-selected="false" tabindex="-1" data-prio="3">
-            <span class="prio-tab-num">03</span>
-            <span class="prio-tab-name">Gender Equality in the Digital Space</span>
-            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
-          </button>
-          <button class="prio-tab" role="tab" id="prio-tab-4" aria-controls="prio-panel-4" aria-selected="false" tabindex="-1" data-prio="4">
-            <span class="prio-tab-num">04</span>
-            <span class="prio-tab-name">Gender Equality &amp; Environmental Conservation</span>
-            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
-          </button>
-          <button class="prio-tab" role="tab" id="prio-tab-5" aria-controls="prio-panel-5" aria-selected="false" tabindex="-1" data-prio="5">
-            <span class="prio-tab-num">05</span>
-            <span class="prio-tab-name">Countering Anti-Gender Backlash</span>
-            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
-          </button>
-          <button class="prio-tab" role="tab" id="prio-tab-6" aria-controls="prio-panel-6" aria-selected="false" tabindex="-1" data-prio="6">
-            <span class="prio-tab-num">06</span>
-            <span class="prio-tab-name">Gender Equality, Peace &amp; Security</span>
-            <svg class="prio-tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
-          </button>
-        </div>
-        <p class="prio-hint">Select a priority to read the results the Fund expects it to deliver.</p>
-      </div>
-
-      <div class="prio-stage">
-
-        <!-- 01 -->
-        <div class="prio-panel is-active" role="tabpanel" id="prio-panel-1" aria-labelledby="prio-tab-1" tabindex="0" data-prio="1">
-          <div class="prio-panel-inner">
-            <div class="prio-panel-head">
-              <div class="prio-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><line x1="2" y1="13" x2="22" y2="13"/></svg>
-              </div>
-              <div>
-                <div class="prio-eyebrow">Priority 01 <span>/ 06</span></div>
-                <h3 class="prio-title">Empowerment of Women in Economic &amp; Public Life</h3>
-              </div>
-            </div>
-            <div class="prio-tags"><span>Economic empowerment</span><span>Decision-making</span><span>Unpaid work</span><span>Care economy</span></div>
-            <h4 class="prio-sub">Expected results</h4>
-            <ul class="prio-results">
-              <li>Advanced women&rsquo;s economic empowerment and participation in decision-making</li>
-              <li>Improved recognition of women&rsquo;s paid and unpaid work</li>
-              <li>Strengthened advocacy for gender-responsive economic policies and care economy investment</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 02 -->
-        <div class="prio-panel" role="tabpanel" id="prio-panel-2" aria-labelledby="prio-tab-2" tabindex="0" data-prio="2">
-          <div class="prio-panel-inner">
-            <div class="prio-panel-head">
-              <div class="prio-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg>
-              </div>
-              <div>
-                <div class="prio-eyebrow">Priority 02 <span>/ 06</span></div>
-                <h3 class="prio-title">Gender Equality &amp; Protection from Violence</h3>
-              </div>
-            </div>
-            <div class="prio-tags"><span>Violence against women and girls</span><span>Survivor services</span><span>Sustainable funding</span></div>
-            <h4 class="prio-sub">Expected results</h4>
-            <ul class="prio-results">
-              <li>Strengthened regional cooperation in addressing violence against women and girls</li>
-              <li>Improved support mechanisms and services for survivors of violence</li>
-              <li>Increased policy attention to sustainable funding for protection services</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 03 -->
-        <div class="prio-panel" role="tabpanel" id="prio-panel-3" aria-labelledby="prio-tab-3" tabindex="0" data-prio="3">
-          <div class="prio-panel-inner">
-            <div class="prio-panel-head">
-              <div class="prio-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
-              </div>
-              <div>
-                <div class="prio-eyebrow">Priority 03 <span>/ 06</span></div>
-                <h3 class="prio-title">Gender Equality in the Digital Space</h3>
-              </div>
-            </div>
-            <div class="prio-tags"><span>Digital technologies &amp; AI</span><span>STEM</span><span>Inclusive digital policy</span></div>
-            <h4 class="prio-sub">Expected results</h4>
-            <ul class="prio-results">
-              <li>Increased awareness of gender inequalities in digital technologies and AI</li>
-              <li>Strengthened participation of women and girls in STEM and digital innovation</li>
-              <li>Enhanced civil society engagement in shaping inclusive digital policies</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 04 -->
-        <div class="prio-panel" role="tabpanel" id="prio-panel-4" aria-labelledby="prio-tab-4" tabindex="0" data-prio="4">
-          <div class="prio-panel-inner">
-            <div class="prio-panel-head">
-              <div class="prio-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-              </div>
-              <div>
-                <div class="prio-eyebrow">Priority 04 <span>/ 06</span></div>
-                <h3 class="prio-title">Gender Equality &amp; Environmental Conservation</h3>
-              </div>
-            </div>
-            <div class="prio-tags"><span>Climate resilience</span><span>Disaster response</span><span>Youth &amp; CSO cooperation</span></div>
-            <h4 class="prio-sub">Expected results</h4>
-            <ul class="prio-results">
-              <li>Increased integration of gender perspectives in environmental and disaster-response policies</li>
-              <li>Strengthened cooperation between CSOs, youth and environmental actors</li>
-              <li>Improved community resilience through gender-responsive climate approaches</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 05 -->
-        <div class="prio-panel" role="tabpanel" id="prio-panel-5" aria-labelledby="prio-tab-5" tabindex="0" data-prio="5">
-          <div class="prio-panel-inner">
-            <div class="prio-panel-head">
-              <div class="prio-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><line x1="15.6" y1="8" x2="8.6" y2="15"/></svg>
-              </div>
-              <div>
-                <div class="prio-eyebrow">Priority 05 <span>/ 06</span></div>
-                <h3 class="prio-title">Countering Anti-Gender Backlash</h3>
-              </div>
-            </div>
-            <div class="prio-tags"><span>Anti-gender narratives</span><span>Disinformation</span><span>Civic resilience</span></div>
-            <h4 class="prio-sub">Expected results</h4>
-            <ul class="prio-results">
-              <li>Strengthened regional cooperation in addressing anti-gender narratives and disinformation</li>
-              <li>Increased civic awareness and resilience to gender-based misinformation</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 06 -->
-        <div class="prio-panel" role="tabpanel" id="prio-panel-6" aria-labelledby="prio-tab-6" tabindex="0" data-prio="6">
-          <div class="prio-panel-inner">
-            <div class="prio-panel-head">
-              <div class="prio-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </div>
-              <div>
-                <div class="prio-eyebrow">Priority 06 <span>/ 06</span></div>
-                <h3 class="prio-title">Gender Equality, Peace &amp; Security</h3>
-              </div>
-            </div>
-            <div class="prio-tags"><span>Peacebuilding</span><span>Women &amp; youth participation</span><span>Migration &amp; trafficking</span></div>
-            <h4 class="prio-sub">Expected results</h4>
-            <ul class="prio-results">
-              <li>Stronger CSO engagement in peacebuilding and security policy discussions</li>
-              <li>Greater participation of women and youth in peace and security processes</li>
-              <li>Increased awareness of gender dimensions in migration, trafficking and humanitarian protection</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      FINANCING — 04
      ============================================================ -->
-<section class="section section-alt" id="funding">
+<section class="section" id="funding">
   <div class="container-narrow">
     <div class="sec-head">
       <div class="overline">04 / Financing</div>
