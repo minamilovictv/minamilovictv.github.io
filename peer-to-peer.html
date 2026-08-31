@@ -83,6 +83,28 @@
   .journey-num { width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; box-shadow: 0 6px 16px rgba(15,32,68,0.18); }
   .journey-card h3 { font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; color: var(--ink); text-align: center; margin-bottom: 10px; }
   .journey-card p { font-size: var(--text-sm); color: var(--muted); line-height: 1.65; text-align: center; }
+  .journey-meta { display: flex; flex-direction: column; align-items: center; gap: 5px; margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); }
+  .jm-status { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 999px; }
+  .jm-status.is-done { background: rgba(14,140,132,0.12); color: var(--teal-deep); }
+  .jm-status.is-live { background: rgba(43,125,224,0.13); color: #1a5cc0; }
+  .jm-status.is-next { background: var(--surface-alt); color: var(--muted); }
+  .jm-line { font-size: var(--text-xs); color: var(--muted); font-weight: 600; text-align: center; }
+
+  /* EIGHT AREAS — the shared themes of every study visit */
+  .areas-head { max-width: 760px; margin: 56px auto 26px; text-align: center; }
+  .areas-head h3 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--ink); line-height: 1.25; margin-bottom: 10px; }
+  .areas-head p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.7; }
+  .areas-grid { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .area-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px 20px 20px; box-shadow: var(--shadow-1); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+  .area-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: #cbd5e1; }
+  .area-num { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(43,125,224,0.12); color: var(--p2p-blue); font-family: var(--font-display); font-weight: 700; font-size: 13px; margin-bottom: 12px; }
+  .area-card h4 { font-family: var(--font-display); font-size: var(--text-md); font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 8px; }
+  .area-card p { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; }
+
+  /* KOSOVO FOOTNOTE */
+  .fn-star { color: var(--p2p-blue); font-weight: 700; }
+  .inline-fn { max-width: 760px; margin-top: 24px; padding: 8px 12px; background: #fff; border-left: 2px solid var(--line); border-radius: 0 6px 6px 0; font-size: 10.5px; font-style: italic; color: var(--faint); line-height: 1.5; }
+  .inline-fn strong { font-style: normal; color: var(--ink-soft); font-weight: 600; }
 
   /* FEATURE CARDS — focus areas (premium, per-card accent) */
   .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -176,6 +198,7 @@
     .glance-grid { grid-template-columns: repeat(3, 1fr); }
     .org-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery { grid-template-columns: repeat(2, 1fr); }
+    .areas-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
     .section { padding: 56px 0; }
@@ -183,6 +206,7 @@
     .journey { grid-template-columns: 1fr; }
     .glance-grid { grid-template-columns: 1fr; }
     .org-grid { grid-template-columns: 1fr; }
+    .areas-grid { grid-template-columns: 1fr; }
     .glance-stat .num { font-size: 44px; }
   }
 
@@ -366,7 +390,7 @@
     <div class="page-hero-overline">Flagship Capacity-Building Programme</div>
     <h1 class="page-hero-logo"><img src="/assets/images/p2p/p2p-logo-white.svg" alt="Peer to Peer" width="520" height="99"></h1>
     <p class="subtitle">Strengthening Civil Society through Regional Learning and European Partnerships</p>
-    <p class="lead">Peer to Peer is a regional capacity-building programme implemented by the Western Balkans Fund to strengthen civil society organisations across the Western Balkans. Through expert-led learning, peer exchange, study visits to European organisations and local knowledge sharing, the programme equips civil society leaders with practical skills, stronger partnerships and new approaches to creating sustainable impact.</p>
+    <p class="lead">Peer to Peer connects civil society organisations across the Western Balkans with their counterparts in the European Union. Implemented by the Western Balkans Fund and funded by Germany's Federal Foreign Office, the programme brings together 12 organisations from all six Contracting Parties for a full cycle of exchange and capacity building: expert-led training in monitoring and evaluation, strategic communication and countering misinformation, followed by mentoring, study visits with EU peer organisations and local trainings that pass the knowledge on across the region.</p>
   </div>
 </section>
 
@@ -383,7 +407,7 @@
         </div>
         <div class="prose">
           <p>Civil society organisations across the Western Balkans operate in an increasingly complex environment shaped by evolving funding landscapes, growing public expectations and rapidly changing information ecosystems. Building resilient organisations today requires more than technical expertise. It requires strong governance, effective communication, evidence-based decision making and the ability to respond to misinformation while maintaining public trust.</p>
-          <p>Peer to Peer was created to address these challenges by connecting organisations across the region with experienced European partners, creating opportunities to learn from one another and strengthen the civil society sector together.</p>
+          <p>Peer to Peer gives participating organisations the space to address these challenges together, connecting with peers, field experts and counterparts in the European Union, and taking the time to reflect, reshape and reimpact.</p>
         </div>
       </div>
       <figure class="split-media">
@@ -401,29 +425,51 @@
 <section class="section section--alt">
   <div class="container">
     <div class="sec-head is-center">
-      <div class="overline">How the Programme Works</div>
+      <div class="overline">One programme, four connected formats</div>
       <h2>A Journey of Learning and Collaboration</h2>
+    </div>
+    <div class="prose" style="max-width:820px;margin:-18px auto 40px;">
+      <p style="text-align:center;">The Peer to Peer journey combines intensive expert training, one-to-one mentoring and first-hand exchange with European civil society organisations. From the residential training to the EU study visits, each step builds the skills organisations need, knowledge they then carry home and share with peers through their own local trainings.</p>
     </div>
     <div class="journey">
       <div class="journey-card">
         <div class="journey-num">1</div>
         <h3>Residential Training</h3>
         <p>An intensive residential learning experience combines expert sessions, practical workshops and peer exchange focused on today's most important organisational challenges.</p>
+        <div class="journey-meta">
+          <span class="jm-status is-done">completed</span>
+          <span class="jm-line">Belgrade</span>
+          <span class="jm-line">14 to 20 June 2026</span>
+        </div>
       </div>
       <div class="journey-card">
         <div class="journey-num">2</div>
         <h3>Online Mentoring</h3>
         <p>Expert mentoring supports participants as they transform new knowledge into practical action within their own organisations.</p>
+        <div class="journey-meta">
+          <span class="jm-status is-done">completed</span>
+          <span class="jm-line">Online</span>
+          <span class="jm-line">July to August 2026</span>
+        </div>
       </div>
       <div class="journey-card">
         <div class="journey-num">3</div>
-        <h3>Study Visits</h3>
+        <h3>EU Study Visits</h3>
         <p>Participants visit experienced European civil society organisations to exchange knowledge, observe good practices and establish long-term partnerships.</p>
+        <div class="journey-meta">
+          <span class="jm-status is-live">ongoing</span>
+          <span class="jm-line">European Union</span>
+          <span class="jm-line">September to November 2026</span>
+        </div>
       </div>
       <div class="journey-card">
         <div class="journey-num">4</div>
         <h3>Local Knowledge Sharing</h3>
         <p>Participants deliver local training activities that transfer knowledge to their national civil society communities, multiplying the programme's impact across the region.</p>
+        <div class="journey-meta">
+          <span class="jm-status is-next">upcoming</span>
+          <span class="jm-line">Across the WB6</span>
+        </div>
       </div>
     </div>
   </div>
@@ -469,11 +515,11 @@
 <section class="section section--alt">
   <div class="container-narrow">
     <div class="sec-head">
-      <div class="overline">Residential Training</div>
+      <div class="overline">1. Residential Training</div>
       <h2>Learning Together</h2>
     </div>
     <div class="prose">
-      <p>The residential training represents the first part of the programme, bringing together participants from across the Western Balkans for several days of collaborative learning, expert-led workshops and regional networking. Beyond technical knowledge, it creates lasting professional relationships and encourages future cross-border cooperation.</p>
+      <p>The residential training took place in Belgrade from 14 to 20 June 2026. It was the first part of the programme, bringing together twelve organisations and 24 participants from across the Western Balkans for a full week of collaborative learning and expert-led workshops. Beyond technical knowledge, it helped create lasting professional relationships and encouraged future cross-border cooperation.</p>
     </div>
 
     <div class="media-wrap">
@@ -491,17 +537,31 @@
   </div>
 </section>
 
-<!-- EUROPEAN PARTNERSHIPS -->
+<!-- ONLINE MENTORING -->
 <section class="section">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">2. Online Mentoring</div>
+      <h2>A Tailor-Made Approach</h2>
+    </div>
+    <div class="prose">
+      <p>After the residential training in Belgrade, Peer to Peer participants spent the summer putting that learning into practice. Working one-to-one with the programme's three expert trainers, they translated what they had learned into tools built specifically for their own organisations: clear theories of change backed by concrete performance indicators, strategic communication plans tailored to their key stakeholders, and resilience plans to navigate an evolving information landscape.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EUROPEAN PARTNERSHIPS -->
+<section class="section section--alt">
   <div class="container">
     <div class="split split--reverse">
       <div>
         <div class="sec-head">
-          <div class="overline">European Partnerships</div>
+          <div class="overline">3. EU Study Visits</div>
           <h2>Connecting the Western Balkans with Europe</h2>
         </div>
         <div class="prose">
           <p>Peer to Peer creates lasting partnerships between civil society organisations from the Western Balkans and their counterparts across the European Union. Through study visits and direct exchange, participants gain first-hand insight into successful organisational models, innovative approaches and sustainable practices while establishing networks that continue beyond the programme itself.</p>
+          <p>The exchange runs both ways. The visiting organisation gains fresh perspective and practical tools, while the host organisation sees its own practices through a peer's eyes. Beyond the visit itself, it is often the beginning of a lasting partnership.</p>
         </div>
       </div>
       <figure class="split-media">
@@ -512,11 +572,26 @@
         <img src="/assets/images/p2p/european-partnerships.jpg" alt="Western Balkans and European Union partners meeting during a study visit" onerror="this.remove()">
       </figure>
     </div>
+
+    <div class="areas-head">
+      <h3>Eight areas of operational excellence</h3>
+      <p>Every study visit is structured around the same eight themes, from stakeholder engagement to governance and accountability, giving both organisations a shared language for comparing how they work.</p>
+    </div>
+    <ol class="areas-grid">
+      <li class="area-card"><span class="area-num">1</span><h4>Constituents &amp; Stakeholder Centricity</h4><p>How do you keep the people you serve at the centre of every decision?</p></li>
+      <li class="area-card"><span class="area-num">2</span><h4>Strategic Alliances &amp; Joint Ventures</h4><p>What makes a partnership actually deliver value for both sides?</p></li>
+      <li class="area-card"><span class="area-num">3</span><h4>Positioning &amp; Thought Leadership</h4><p>How do you drive change, not just react to it?</p></li>
+      <li class="area-card"><span class="area-num">4</span><h4>Transparency &amp; Stakeholder Relations</h4><p>How do you build trust through open communication?</p></li>
+      <li class="area-card"><span class="area-num">5</span><h4>Talent Management &amp; Leadership Development</h4><p>How do you build and grow your team?</p></li>
+      <li class="area-card"><span class="area-num">6</span><h4>Financial Stewardship</h4><p>How do you make every euro count?</p></li>
+      <li class="area-card"><span class="area-num">7</span><h4>Constituent Feedback &amp; Agile Iteration</h4><p>How fast do you turn feedback into action?</p></li>
+      <li class="area-card"><span class="area-num">8</span><h4>Governance &amp; Accountability</h4><p>Who is steering the ship, and how are they held accountable?</p></li>
+    </ol>
   </div>
 </section>
 
 <!-- PROGRAMME AT A GLANCE -->
-<section class="section section--alt">
+<section class="section">
   <div class="container">
     <div class="sec-head is-center">
       <div class="overline">Programme at a Glance</div>
@@ -552,7 +627,7 @@
 </section>
 
 <!-- PARTICIPATING ORGANISATIONS -->
-<section class="section">
+<section class="section section--alt">
   <div class="container">
     <div class="sec-head is-center">
       <div class="overline">First Edition</div>
@@ -574,7 +649,7 @@
         </ul>
       </div>
       <div class="org-country">
-        <div class="org-country-head"><h3>Kosovo*</h3></div>
+        <div class="org-country-head"><h3>Kosovo<sup class="fn-star">*</sup></h3></div>
         <ul class="org-list">
           <li><a href="https://kcsfoundation.org/en/" target="_blank" rel="noopener">Kosovo Civil Society Foundation (KCSF)</a></li>
           <li><a href="https://thefoundationhouse.org/" target="_blank" rel="noopener">The Foundation House</a></li>
@@ -602,6 +677,7 @@
         </ul>
       </div>
     </div>
+    <p class="inline-fn"><strong>*</strong>This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
   </div>
 </section>
 
