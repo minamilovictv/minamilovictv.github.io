@@ -310,6 +310,13 @@
     .mandate-section .quick-grid { grid-template-columns: 1fr; }
     /* 6 thumbs across is too narrow on a phone — reflow to two rows of 3. */
     .wbf-gallery-thumbs { grid-template-columns: repeat(3, 1fr); }
+    /* The frame keeps its proportions on a phone; only the moulding and
+       mount narrow, so it still reads as the object on the wall. */
+    .wbf-frame { padding: 13px; }
+    .wbf-frame::after { inset: 13px; }
+    .wbf-frame-mat { padding: 18px 15px 15px; gap: 16px; }
+    .wbf-frame-docs { gap: 10px; }
+    .wbf-frame-opening::before { font-size: 9px; letter-spacing: 0.06em; padding: 8px; }
   }
 
   .facts-grid {
@@ -777,6 +784,84 @@
   .ben-card.is-wide { grid-column: 1 / -1; }
 
   /* ============================================================
+     ESTABLISHMENT FRAME
+     ============================================================
+     A recreation of the framed original hanging in the Secretariat:
+     the ministerial photograph above, the two signed pages of the
+     Agreement below, cut into a single mat. The moulding is WBF navy
+     rather than the wood of the original. */
+  .wbf-frame {
+    position: relative;
+    margin: 0;
+    padding: 20px;                       /* the moulding itself */
+    border-radius: 4px;
+    /* Light falls from the top-left, so that edge of the moulding is the
+       brightest and the opposite one the deepest. */
+    background: linear-gradient(145deg,
+      #3a72c4 0%, #1d4ea6 18%, #16337a 42%,
+      #0f2044 62%, #17398f 84%, #2f66b5 100%);
+    box-shadow:
+      0 26px 60px rgba(15,32,68,0.34),
+      0 6px 16px rgba(15,32,68,0.22),
+      inset 0 2px 0 rgba(255,255,255,0.30),
+      inset 0 -2px 0 rgba(0,0,0,0.34);
+  }
+  /* Glass: one soft diagonal reflection across the whole picture. */
+  .wbf-frame::after {
+    content: "";
+    position: absolute; inset: 20px;
+    background: linear-gradient(112deg,
+      rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.07) 26%,
+      rgba(255,255,255,0) 46%);
+    pointer-events: none;
+  }
+  .wbf-frame-mat {
+    position: relative;
+    display: flex; flex-direction: column; gap: 26px;
+    padding: 32px 28px 28px;
+    background: #f3ece0;                 /* ivory mount board */
+    /* The bright hairline is the fillet between moulding and mount. */
+    box-shadow:
+      0 0 0 2px rgba(255,255,255,0.55),
+      inset 0 0 0 1px rgba(120,100,70,0.16),
+      inset 0 4px 14px rgba(90,70,40,0.10);
+  }
+  /* Each opening is cut through the mount: bevelled edge, shadow inside. */
+  .wbf-frame-opening {
+    position: relative;
+    overflow: hidden;
+    background: #e9e1d2;
+    box-shadow:
+      0 0 0 1px rgba(120,100,70,0.34),
+      inset 0 2px 7px rgba(80,60,30,0.30);
+  }
+  /* The label stands in until its image is in place, so an empty opening
+     reads as a waiting mount rather than a broken picture. */
+  .wbf-frame-opening::before {
+    content: attr(data-label);
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: 14px; text-align: center;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; line-height: 1.5;
+    color: rgba(96,76,44,0.5);
+  }
+  .wbf-frame-opening img {
+    position: relative; z-index: 1;
+    display: block; width: 100%; height: 100%;
+  }
+  /* 4:3, the ratio of the photograph itself, so cover has nothing to trim
+     and the ministers keep their feet. */
+  .wbf-frame-photo { aspect-ratio: 4 / 3; }
+  .wbf-frame-photo img { object-fit: cover; }
+  .wbf-frame-docs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  /* A4 openings; the scans sit on white paper and are never cropped. */
+  .wbf-frame-docs .wbf-frame-opening { aspect-ratio: 1 / 1.414; }
+  .wbf-frame-docs img { object-fit: contain; background: #fff; }
+  /* Centre the frame against the taller text column, as the gallery was. */
+  .split-col:has(.wbf-frame) { align-self: center; }
+
+  /* ============================================================
      ABOUT TABS
      ============================================================ */
   .at-strip { padding: 40px 0 0; background: #fff; }
@@ -829,7 +914,7 @@
     background: var(--gradient-hero);
     color: #fff;
   }
-  /* Single full-width track: the mission card is the only one here now. */
+  /* Single full-width track: each navy strip carries one card. */
   .mv-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1776,8 +1861,8 @@
 
 <!-- ============================================================
      MISSION STATEMENT — wide navy strip between the mandate and the
-     areas of intervention. Values used to sit beside it; it now runs
-     full width on its own.
+     areas of intervention. Values used to sit beside it and now has its
+     own strip further down, above the tab bar.
      ============================================================ -->
 <section class="section mv">
   <div class="container">
@@ -2005,6 +2090,22 @@
 </section>
 
 <!-- ============================================================
+     VALUES STATEMENT — the same navy strip as Our Mission, sitting
+     directly above the tab bar.
+     ============================================================ -->
+<section class="section mv">
+  <div class="container">
+    <div class="mv-grid">
+      <div class="mv-card">
+        <div class="overline">Values</div>
+        <div class="mv-divider"></div>
+        <p>The Western Balkans Fund operates in full alignment with the vision of its founding members, supporting the principles of reconciliation, regional solidarity, and the shared European future of all Contracting Parties. Our work is guided by cooperation, inclusiveness, transparency, and mutual respect.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      ABOUT TABS — one bar, four panels
      The history, milestones, Berlin Process and partners sections used
      to run one after another, reachable from three buttons up in the
@@ -2037,25 +2138,34 @@
   <div class="container">
     <!-- Row 2: Gallery (left) | WBF Establishment (right) -->
     <div class="split-grid mandate-row mandate-row-2">
-      <!-- LEFT: 6-image gallery -->
-      <!-- To use your images: save them as /assets/images/wbf-establishment/wbf-01.jpg through wbf-06.jpg,
-           or just edit the src="" of each <img> below. Cards show numbered placeholders until images load. -->
+      <!-- LEFT: the framed original from the Secretariat, recreated
+           To swap the artwork, replace these three files:
+             frame-ministers.png      the ministerial photograph (landscape)
+             frame-agreement-p1.png   Agreement, Articles 1-5
+             frame-agreement-p2.png   Agreement, Articles 6-7 and signatures
+           Each opening shows its label until its image is in place. -->
       <div class="split-col">
-        <div class="wbf-gallery" id="wbf-gallery">
-          <div class="wbf-gallery-main">
-            <img id="wbf-gallery-main-img" src="/assets/images/wbf-establishment/wbf-01.jpg" alt="WBF establishment — image 1">
-            <button type="button" class="wbf-gallery-nav prev" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,6 9,12 15,18"/></svg></button>
-            <button type="button" class="wbf-gallery-nav next" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,6 15,12 9,18"/></svg></button>
+        <figure class="wbf-frame">
+          <div class="wbf-frame-mat">
+            <div class="wbf-frame-opening wbf-frame-photo" data-label="Ministerial photograph">
+              <img src="/assets/images/wbf-establishment/frame-ministers.png"
+                   alt="Ministers of Foreign Affairs of the Western Balkans Six at the signing of the Agreement, Prague, 13 November 2015"
+                   loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="wbf-frame-docs">
+              <div class="wbf-frame-opening" data-label="Agreement &middot; Articles 1&ndash;5">
+                <img src="/assets/images/wbf-establishment/frame-agreement-p1.png"
+                     alt="First page of the Agreement concerning the establishment of the Western Balkans Fund, Articles 1 to 5"
+                     loading="lazy" onerror="this.remove()">
+              </div>
+              <div class="wbf-frame-opening" data-label="Agreement &middot; signatures">
+                <img src="/assets/images/wbf-establishment/frame-agreement-p2.png"
+                     alt="Second page of the Agreement, Articles 6 and 7 with the signatures of the six Contracting Parties"
+                     loading="lazy" onerror="this.remove()">
+              </div>
+            </div>
           </div>
-          <div class="wbf-gallery-thumbs">
-            <button type="button" class="wbf-gallery-thumb is-active" data-src="/assets/images/wbf-establishment/wbf-01.jpg" data-alt="WBF establishment — image 1" aria-label="Show image 1"><img src="/assets/images/wbf-establishment/wbf-01.jpg" alt="" onerror="this.style.display='none'"></button>
-            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-02.jpg" data-alt="WBF establishment — image 2" aria-label="Show image 2"><img src="/assets/images/wbf-establishment/wbf-02.jpg" alt="" onerror="this.style.display='none'"></button>
-            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-03.jpg" data-alt="WBF establishment — image 3" aria-label="Show image 3"><img src="/assets/images/wbf-establishment/wbf-03.jpg" alt="" onerror="this.style.display='none'"></button>
-            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-04.jpg" data-alt="WBF establishment — image 4" aria-label="Show image 4"><img src="/assets/images/wbf-establishment/wbf-04.jpg" alt="" onerror="this.style.display='none'"></button>
-            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-05.jpg" data-alt="WBF establishment — image 5" aria-label="Show image 5"><img src="/assets/images/wbf-establishment/wbf-05.jpg" alt="" onerror="this.style.display='none'"></button>
-            <button type="button" class="wbf-gallery-thumb" data-src="/assets/images/wbf-establishment/wbf-06.jpg" data-alt="WBF establishment — image 6" aria-label="Show image 6"><img src="/assets/images/wbf-establishment/wbf-06.jpg" alt="" onerror="this.style.display='none'"></button>
-          </div>
-        </div>
+        </figure>
       </div>
       <script>
       (function(){
