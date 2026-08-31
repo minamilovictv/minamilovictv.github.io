@@ -1005,6 +1005,19 @@
     text-transform: uppercase; letter-spacing: 0.12em;
     color: var(--mne-gold-light);
   }
+  /* The eyebrow is the Presidency's nameplate, so it carries a slow gold
+     glow rather than sitting flat against the banner. */
+  .pres-eyebrow {
+    text-shadow: 0 0 12px rgba(240,217,160,0.45);
+    animation: pres-glow 3.6s ease-in-out infinite;
+  }
+  @keyframes pres-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(240,217,160,0.16); border-color: rgba(240,217,160,0.45); }
+    50%      { box-shadow: 0 0 22px rgba(240,217,160,0.5);  border-color: rgba(240,217,160,0.95); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pres-eyebrow { animation: none; box-shadow: 0 0 16px rgba(240,217,160,0.3); }
+  }
   .pres-title {
     font-family: var(--font-display);
     font-size: clamp(23px, 2.5vw, 32px); font-weight: 800;
@@ -1176,11 +1189,10 @@
   .cm-content p:last-child { margin-bottom: 0; }
 
   /* THE CHAIR'S REMARKS
-     A speech does not read as one long justified column, so the address, the
-     three priorities and the closing each carry their own treatment. The
+     The address, the three priorities and the closing each carry their own
+     treatment, over the justified column the modal keeps throughout. The
      wording is the Minister's and is reproduced exactly; only its shape on
      the page is ours. */
-  .cm-content .speech p { text-align: left; }
   .cm-content .speech-open {
     margin-bottom: 24px; padding: 20px 24px;
     background: linear-gradient(135deg, #fdf7ea 0%, #faf0dc 100%);
@@ -1188,15 +1200,13 @@
     border-radius: 0 10px 10px 0;
   }
   .cm-content .speech-open p {
-    margin-bottom: 0; line-height: 2;
+    margin-bottom: 0; line-height: 2; text-align: left;
     font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.015em;
     color: var(--mne-red-deep);
   }
-  .cm-content .speech-lead { font-size: calc(var(--text-md) + 1px); color: var(--ink); }
-  .cm-content .speech-lead::first-letter {
-    float: left; margin: 6px 12px 0 0;
-    font-family: var(--font-display); font-size: 3.2em; line-height: 0.82;
-    font-weight: 700; color: var(--mne-red);
+  .cm-content .speech-lead {
+    font-size: calc(var(--text-md) + 3px); font-weight: 500;
+    line-height: 1.72; color: var(--ink);
   }
   /* the two passages the speech turns on, lifted out of the run of text */
   .cm-content .speech-mark {
@@ -1218,8 +1228,31 @@
   }
   @media (max-width: 600px) {
     .cm-content .speech-open, .cm-content .speech-mark { padding: 16px 18px; }
-    .cm-content .speech-lead::first-letter { font-size: 2.8em; }
   }
+
+
+  /* THE PRESIDENCY NEWS
+     The same vocabulary as the remarks: the dateline opens it, what the
+     Minister and the Executive Director actually said is lifted out of the
+     narrative, and the two agreements sit in their own panel. The wording is
+     unchanged. */
+  .cm-content .news-lead {
+    font-size: calc(var(--text-md) + 2px); font-weight: 500;
+    line-height: 1.72; color: var(--ink);
+  }
+  .cm-content .news-dateline { font-weight: 700; color: var(--mne-red-ink); }
+  .cm-content .news-quote { color: var(--mne-red-deep); font-weight: 600; }
+  .cm-content .news-fact {
+    margin: 24px 0; padding: 18px 22px;
+    background: linear-gradient(135deg, #fdf7ea 0%, #faf0dc 100%);
+    border-left: 3px solid var(--mne-gold);
+    border-radius: 0 10px 10px 0;
+  }
+  .cm-content .news-close {
+    margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line);
+    font-weight: 600; color: var(--mne-red-ink);
+  }
+  @media (max-width: 600px) { .cm-content .news-fact { padding: 16px 18px; } }
 
   /* Presidency modal photo gallery (shared across modals) */
   .cm-gallery {
@@ -1229,7 +1262,8 @@
        slicing ~15.5% off the height of every one, so the frame matches the
        photos and nothing is cropped. */
     aspect-ratio: 3 / 2;
-    background: linear-gradient(135deg, var(--navy-900), var(--navy));
+    /* the frame behind a photo that has not arrived yet, in the Presidency red */
+    background: linear-gradient(135deg, var(--mne-red) 0%, var(--mne-red-deep) 100%);
     overflow: hidden;
   }
   .cm-gtrack {
@@ -2998,13 +3032,15 @@
   <article data-key="celebration"
            data-sub="News · Podgorica, 20 February 2026"
            data-title="Celebrating the Montenegro Presidency of the WBF 2026">
-    <p>Podgorica, 20 February 2026 – The Ministry of Foreign Affairs of Montenegro hosted a special event today at the Hilton Podgorica Crna Gora to mark Podgorica’s Presidency of the Western Balkans Fund (WBF) in 2026.</p>
+    <div class="news">
+    <p class="news-lead"><span class="news-dateline">Podgorica, 20 February 2026</span> – The Ministry of Foreign Affairs of Montenegro hosted a special event today at the Hilton Podgorica Crna Gora to mark Podgorica’s Presidency of the Western Balkans Fund (WBF) in 2026.</p>
     <p>The event focused on the key priorities set by the Ministry for the year ahead, including further diversification of the grant portfolio, institutional strengthening, and enhancing the status and visibility of the WBF.</p>
-    <p>Welcoming ambassadors, international donors, partners, and representatives of the media, Minister of Foreign Affairs H.E. Ervin Ibrahimović emphasized the importance of regional cooperation for Montenegro. “Assuming the Presidency of the Western Balkans Fund represents both an honor and a responsibility. The Fund is a unique regional initiative because it is truly ours. It belongs to the region, but above all to its people. It proves that regional cooperation is not merely declarative, but practical, connecting civil society, academia, cultural actors, and young people across borders”, Minister Ibrahimović underlined.</p>
+    <p>Welcoming ambassadors, international donors, partners, and representatives of the media, Minister of Foreign Affairs H.E. Ervin Ibrahimović emphasized the importance of regional cooperation for Montenegro. <span class="news-quote">“Assuming the Presidency of the Western Balkans Fund represents both an honor and a responsibility. The Fund is a unique regional initiative because it is truly ours. It belongs to the region, but above all to its people. It proves that regional cooperation is not merely declarative, but practical, connecting civil society, academia, cultural actors, and young people across borders”</span>, Minister Ibrahimović underlined.</p>
     <p>He also stressed the historic significance of this Presidency, which coincides with several important milestones for Montenegro, including the 20th anniversary of the restoration of independence, Montenegro’s Presidency of the Berlin Process, the Chairmanship of the Committee of Ministers of the Council of Europe, and the EU–Western Balkans Summit to be hosted in Podgorica in June.</p>
-    <p>Leading the WBF delegation, Executive Director Dr. Gjergj Murra expressed gratitude to the Ministries of Foreign Affairs of the region and key partners, including the European Union, the Swiss Government, the Government of Japan, and the International Visegrad Fund for their continued support. “Consider WBF as an example of what the WB6 can achieve when it puts needs before differences,” the Executive Director stated.</p>
-    <p>During the event, the WBF signed two cooperation agreements. The first, with the Swiss Confederation, extends cooperation with the Fund until 2029 and secures approximately one million Swiss francs in funding. The second, with the Federal Ministry for Economic Cooperation and Development, marks the beginning of a new strategic partnership.</p>
-    <p>The event concluded with an award ceremony recognizing five newly selected projects under the Sixth Call for Proposals of the WBF Move Grants.</p>
+    <p>Leading the WBF delegation, Executive Director Dr. Gjergj Murra expressed gratitude to the Ministries of Foreign Affairs of the region and key partners, including the European Union, the Swiss Government, the Government of Japan, and the International Visegrad Fund for their continued support. <span class="news-quote">“Consider WBF as an example of what the WB6 can achieve when it puts needs before differences,”</span> the Executive Director stated.</p>
+    <p class="news-fact">During the event, the WBF signed two cooperation agreements. The first, with the Swiss Confederation, extends cooperation with the Fund until 2029 and secures approximately one million Swiss francs in funding. The second, with the Federal Ministry for Economic Cooperation and Development, marks the beginning of a new strategic partnership.</p>
+    <p class="news-close">The event concluded with an award ceremony recognizing five newly selected projects under the Sixth Call for Proposals of the WBF Move Grants.</p>
+    </div>
   </article>
 
   <article data-key="remarks"
