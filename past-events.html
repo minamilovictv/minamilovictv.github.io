@@ -53,7 +53,8 @@
   .page-hero-overline { position: relative; display: inline-block; font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--adv-light); margin-bottom: 16px; }
   .page-hero-overline::after { content: ""; position: absolute; left: 0; bottom: -6px; height: 2px; width: 100%; background: linear-gradient(90deg, var(--adv-light), transparent); }
   .page-hero h1 { font-family: var(--font-display); font-size: var(--text-hero); font-weight: 700; color: #fff; line-height: 1.08; margin-bottom: 14px; max-width: 18ch; }
-  .page-hero p.lead { font-size: var(--text-base); color: rgba(255,255,255,0.75); line-height: 1.7; max-width: 68ch; }
+  /* Nothing follows the headline now, so the gap under it would be dead space. */
+  .page-hero h1:last-child { margin-bottom: 0; }
 
   /* SECTIONS */
   .section { padding: 64px 0 84px; }
@@ -295,7 +296,6 @@
     </nav>
     <div class="page-hero-overline">Advocacy &amp; Networking</div>
     <h1>WBF Advocacy &amp; Networking Events</h1>
-    <p class="lead">A curated archive of the conferences, forums, dialogue sessions and networking moments convened by the Western Balkans Fund across the six Contracting Parties. Browse by year to revisit what was discussed, who took part and what came next.</p>
   </div>
 </section>
 

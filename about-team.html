@@ -51,7 +51,7 @@
     position: relative;
     background: var(--gradient-hero);
     overflow: hidden;
-    padding: 72px 0 64px;
+    padding: 72px 0 44px;
   }
   .page-hero::after {
     content: ""; position: absolute; top: -120px; right: -80px;
@@ -70,6 +70,9 @@
     font-size: var(--text-hero);
     font-weight: 700; color: #fff; line-height: 1.1;
     letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch;
+  }
+  .page-hero h1:last-child {
+    margin-bottom: 0;
   }
   .page-hero p {
     font-size: var(--text-base); color: rgba(255,255,255,0.7);
@@ -90,7 +93,7 @@
   /* ============================================================
      TEAM INTRO
      ============================================================ */
-  .team-intro { background: #fff; padding: 56px 0 8px; }
+  .team-intro { background: #fff; padding: 32px 0 8px; }
   .team-intro p {
     font-size: var(--text-lg);
     line-height: 1.75;
@@ -262,8 +265,8 @@
     .members-grid { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 768px) {
-    .page-hero { padding: 56px 0 48px; }
-    .team-intro { padding-top: 40px; }
+    .page-hero { padding: 56px 0 34px; }
+    .team-intro { padding-top: 26px; }
     .team-intro p { font-size: var(--text-md); }
     
     .members-grid { grid-template-columns: repeat(2, 1fr); }
