@@ -730,24 +730,6 @@
   
   
 
-  /* ============================================================
-     SUBSCRIBE CTA
-     ============================================================ */
-  .subscribe { background: var(--grad-dark); padding: 80px 0; color: #fff; position: relative; overflow: hidden; }
-  .subscribe::before { content: ""; position: absolute; top: -100px; right: -60px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(74,163,240,0.30) 0%, transparent 70%); pointer-events: none; }
-  .subscribe-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; text-align: center; padding: 0 40px; }
-  .subscribe-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--accent); }
-  .subscribe-icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .subscribe .overline { font-family: var(--font-display); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 14px; }
-  .subscribe h2 { font-size: clamp(24px, 2.8vw, 30px); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
-  .subscribe p { font-size: 15.5px; color: rgba(255,255,255,0.75); line-height: 1.65; max-width: 60ch; margin: 0 auto 28px; }
-  .subscribe-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; background: #fff; color: var(--ggi); font-family: var(--font-display); font-weight: 600; font-size: 14px; border-radius: var(--radius-pill); text-decoration: none; transition: background 0.15s, box-shadow 0.15s; }
-  .btn-white:hover { background: var(--light); box-shadow: var(--shadow-sm); }
-  .btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  
-  
-
   @media (prefers-reduced-motion: reduce) {
     .eval-row, .cross-cutting .cc-chip, .eval-threshold { opacity: 1 !important; transform: none !important; transition: none; }
     .thr-icon, .eval-threshold::before, .eval-fill::after { animation: none !important; }
@@ -760,7 +742,7 @@
     text-align: justify;
     text-align-last: left;
   }
-  .sec-head.center p, .subscribe-inner p, .center p {
+  .sec-head.center p, .center p {
     text-align: center;
     text-align-last: center;
   }
@@ -995,7 +977,7 @@
         Check Eligibility
         <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
       </a>
-      <a class="btn-ghost" href="#call-9-interest">
+      <a class="btn-ghost" href="/contact.html">
         Get notified for Call No. 9
         <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </a>
@@ -1477,25 +1459,6 @@
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     CALL NO. 9 INTEREST CTA  (kept for those interested in next call)
-     ============================================================ -->
-<section class="subscribe" id="call-9-interest">
-  <div class="subscribe-inner">
-    <div class="subscribe-icon">
-      <svg viewBox="0 0 24 24"><path d="M22 17h-3.8a2 2 0 0 0-1.7 1l-1 1.5a2 2 0 0 1-1.7 1H10.2a2 2 0 0 1-1.7-1L7.5 18a2 2 0 0 0-1.7-1H2"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-    </div>
-    <div class="overline">Notify Me</div>
-    <h2>Be the first to know when Call No. 9 opens</h2>
-    <div class="subscribe-btns">
-      <a class="btn-white" href="/contact.html">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Subscribe to updates
-      </a>
     </div>
   </div>
 </section>
