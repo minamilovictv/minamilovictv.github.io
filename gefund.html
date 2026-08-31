@@ -178,10 +178,18 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   margin-bottom: 44px;
 }
 /* Program logo shown beside the hero title */
-.hero-title-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-bottom: 20px; }
-.hero-title-row h1 { margin-bottom: 0; }
-.hero-logo { height: 76px; width: auto; flex-shrink: 0; }
-@media (max-width: 760px) { .hero-logo { height: 56px; } }
+/* Programme mark, parked in the hero's top-right corner. Absolute so it never
+   competes with the title for horizontal space. */
+.hero-logo {
+  position: absolute; top: 56px; right: 40px; z-index: 3;
+  height: 76px; width: auto;
+  pointer-events: none;
+}
+@media (max-width: 1024px) { .hero-logo { right: 24px; top: 48px; height: 62px; } }
+/* Below the tablet breakpoint the title wraps under it — back to the flow */
+@media (max-width: 760px) {
+  .hero-logo { position: static; display: block; height: 52px; margin-bottom: 20px; }
+}
 .prog-hero h1 {
   font-size: clamp(30px, 4.2vw, 52px);
   font-weight: 800; color: var(--navy); line-height: 1.06;
@@ -244,61 +252,9 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 /* Fallback text if images not present */
 
 
-/* ============================================================
-   QUICK FACTS — 3 boxes (Eligibility · Requirements · Timeline)
-   ============================================================ */
-.quickfacts { margin-top: -64px; position: relative; z-index: 5; padding-bottom: 8px; }
-.qf-grid {
-  max-width: 1400px; margin: 0 auto; padding: 0 40px;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-}
-.qf-card {
-  --accent: var(--gefund);
-  --accent-tint: var(--gefund-tint);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--accent);
-  border-radius: 12px; padding: 26px 26px 22px;
-  box-shadow: 0 16px 40px rgba(15,32,68,0.12);
-  display: flex; flex-direction: column;
-}
-.qf-card.is-violet  { --accent: #8A2BE2; --accent-tint: #f5eeff; }
-.qf-card.is-rose    { --accent: #C2185B; --accent-tint: #fde9f2; }
-.qf-card.is-indigo  { --accent: #5A2DFF; --accent-tint: #eeeaff; }
-
-.qf-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-.qf-ico {
-  width: 40px; height: 40px; border-radius: 9px; flex-shrink: 0;
-  background: var(--accent-tint); color: var(--accent);
-  display: flex; align-items: center; justify-content: center;
-}
-.qf-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-.qf-title  { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.2; }
-.qf-kicker { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 2px; }
-.qf-list { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; }
-.qf-list li { display: flex; align-items: flex-start; gap: 10px; font-size: var(--text-sm); color: var(--ink-soft); line-height: 1.5; }
-.qf-list li svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.qf-list li strong { color: var(--ink); font-weight: 600; }
-
-/* timeline */
-.qf-tl { list-style: none; display: flex; flex-direction: column; flex: 1; }
-.qf-tl li { position: relative; padding: 0 0 16px 22px; }
-.qf-tl li:last-child { padding-bottom: 0; }
-.qf-tl li::before { content: ""; position: absolute; left: 3px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
-.qf-tl li::after  { content: ""; position: absolute; left: 7px; top: 13px; bottom: 0; width: 1.5px; background: var(--line); }
-.qf-tl li:last-child::after { display: none; }
-.qf-tl li.is-now::before { box-shadow: 0 0 0 4px var(--accent-tint); }
-.qf-tl li.is-done::before { background: var(--faint); }
-.qf-tl-date  { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; }
-.qf-tl li.is-done .qf-tl-date { color: var(--faint); }
-.qf-tl-label { font-size: 13px; color: var(--ink-soft); line-height: 1.4; margin-top: 1px; }
-/* Result milestone — the award announcement stays lit, not greyed out like the other past dates */
-.qf-tl li.is-result::before { background: #0F9D58; box-shadow: 0 0 0 4px rgba(16,153,86,0.16); }
-.qf-tl li.is-result .qf-tl-date  { color: #0B6E3F; }
-.qf-tl li.is-result .qf-tl-label { color: var(--ink); font-weight: 600; }
-
-.qf-foot { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
-.qf-link { display: inline-flex; align-items: center; gap: 5px; font-size: var(--text-sm); font-weight: 600; color: var(--accent); text-decoration: none; }
+/* Inline arrow link — the quick-facts cards it was written for are gone,
+   the partnership callout still uses it */
+.qf-link { display: inline-flex; align-items: center; gap: 5px; font-size: var(--text-sm); font-weight: 600; color: var(--gefund); text-decoration: none; }
 .qf-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
 .qf-link:hover svg { transform: translateX(3px); }
 
@@ -421,47 +377,41 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
 .sec-head { margin-bottom: 40px; }
 .sec-head.center { text-align: center; }
-/* heading on the left, a provenance badge parked on the right */
-.sec-head-split { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-.sec-head-split .sec-head-main { flex: 1 1 380px; min-width: 0; }
-.sec-head-split h2 { margin-bottom: 0; }
-
-/* Berlin Process provenance badge */
+/* Berlin Process provenance — third plate in the About stats row, so it shares
+   the stat cards' width, height and left rail */
 .bp-badge {
-  flex: 0 0 auto;
   position: relative;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 9px;
-  padding: 15px 40px 15px 19px;
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 14px;
+  padding: 22px 32px 22px 24px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-left: 3px solid var(--gefund);
+  border-radius: 12px;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(16,24,40,0.04);
   transition: border-color .25s ease, box-shadow .3s ease, transform .3s cubic-bezier(.2,.8,.2,1);
 }
 .bp-badge:hover {
-  border-color: var(--gefund-border);
+  border-color: var(--gefund-border); border-left-color: var(--gefund);
   box-shadow: 0 14px 32px rgba(138,43,226,0.13);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
 }
 .bp-badge:focus-visible { outline: 2px solid var(--gefund); outline-offset: 3px; }
 .bp-badge-kicker {
-  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.17em;
-  color: var(--faint); transition: color .25s ease;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em;
+  line-height: 1.4; color: var(--faint); transition: color .25s ease;
 }
 .bp-badge:hover .bp-badge-kicker { color: var(--gefund); }
-.bp-badge-mark { display: block; height: 42px; width: auto; }
+.bp-badge-mark { display: block; height: 46px; width: auto; flex-shrink: 0; }
 .bp-badge-ext {
-  position: absolute; top: 13px; right: 14px;
+  position: absolute; top: 12px; right: 12px;
   width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2;
   stroke-linecap: round; stroke-linejoin: round;
   color: var(--faint); opacity: .55;
   transition: opacity .25s ease, color .25s ease, transform .3s ease;
 }
 .bp-badge:hover .bp-badge-ext { opacity: 1; color: var(--gefund); transform: translate(1px, -1px); }
-@media (max-width: 700px) {
-  .sec-head-split { gap: 22px; }
-  .bp-badge { padding: 13px 36px 13px 16px; }
+@media (max-width: 560px) {
+  .bp-badge { padding: 16px 30px 16px 20px; }
   .bp-badge-mark { height: 34px; }
 }
 .sec-head .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gefund); margin-bottom: 12px; }
@@ -477,12 +427,14 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 /* ============================================================
    ABOUT — two-column with stats
    ============================================================ */
-.about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: flex-start; }
+.about-text { max-width: 74ch; }
 .about-text p { font-size: 16px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
 .about-text p:last-child { margin-bottom: 0; }
 .about-text strong { color: var(--ink); font-weight: 600; }
 
-.about-stats { display: flex; flex-direction: column; gap: 16px; }
+/* Two headline figures + the provenance plate, three across under the prose */
+.about-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 34px; align-items: stretch; }
+#main .about-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.55; margin-top: 12px; max-width: 78ch; text-align: left; }
 .stat-card {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -938,13 +890,9 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 /* ============================================================
    CARD HOVER EFFECTS — cohesive lift + elevation across cards
    ============================================================ */
-.qf-card, .stat-card, .fund-card {
+.stat-card, .fund-card {
   transition: transform 0.28s cubic-bezier(.2,.7,.3,1), box-shadow 0.28s ease, border-color 0.2s ease;
 }
-/* Quick-facts cards: lift + deeper elevation, and a little pop on the icon */
-.qf-card:hover { transform: translateY(-6px); box-shadow: 0 28px 55px rgba(15,32,68,0.20); }
-.qf-ico { transition: transform 0.28s cubic-bezier(.2,.7,.3,1); }
-.qf-card:hover .qf-ico { transform: scale(1.08); }
 /* About stat cards: gentle lift */
 .stat-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(15,32,68,0.12); }
 /* (Eligibility cards have their own richer treatment — see WHO CAN APPLY block) */
@@ -957,10 +905,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px) {
-  .container, .container-narrow, .prog-hero-inner, .qf-grid { padding-left: 24px; padding-right: 24px; }
-  .quickfacts { margin-top: -56px; }
-  .qf-grid { grid-template-columns: 1fr; gap: 16px; }
-  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .container, .container-narrow, .prog-hero-inner { padding-left: 24px; padding-right: 24px; }
+  .about-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .elig-grid { grid-template-columns: repeat(2, 1fr); }
   .partnership-callout { grid-template-columns: 1fr; gap: 24px; }
   .funding-grid { grid-template-columns: 1fr; }
@@ -975,6 +921,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   .faq-list { grid-template-columns: 1fr; }
   .meta-facts { gap: 24px; }
   .elig-grid { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: minmax(0, 1fr); }
   
   
   .tl-row { grid-template-columns: 1fr; gap: 4px; border-left: 2px solid rgba(255,255,255,0.12); padding-left: 16px; border-bottom: none; padding-bottom: 20px; margin-left: 12px; }
@@ -1277,13 +1224,13 @@ body.gef-modal-lock { overflow: hidden; }
       <span class="status-pill-text">Call 1 — Winners Announced</span>
     </div>
 
+    <!-- Programme mark sits in the hero's top-right corner, clear of the title -->
+    <img class="hero-logo" src="/assets/images/gefund/gefund-logo.svg" alt="Gender Equality Fund (GEFund)"
+         onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=this.src.replace(/\.svg$/,'.png');}else{this.remove();}">
+
     <div class="hero-layout">
       <div>
-        <div class="hero-title-row">
-          <img class="hero-logo" src="/assets/images/gefund/gefund-logo.svg" alt="Gender Equality Fund (GEFund)"
-               onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=this.src.replace(/\.svg$/,'.png');}else{this.remove();}">
-          <h1>Advancing <em>gender equality</em><br>in the Western Balkans.</h1>
-        </div>
+        <h1>Advancing <em>gender equality</em><br>in the Western Balkans.</h1>
         <p class="tagline">The Western Balkans Gender Equality Fund (GEFund) is WBF's dedicated mechanism for advancing women's empowerment across the region — co-funded by the European Union and the Swiss Agency for Development and Cooperation.</p>
         <p class="footnote">Call 1 closed 10 June 2026 with <strong>269 applications</strong> from <strong>785 organisations</strong>.</p>
         <div class="hero-ctas">
@@ -1291,7 +1238,7 @@ body.gef-modal-lock { overflow: hidden; }
             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/></svg>
             See the six awarded projects
           </a>
-          <a class="btn-ghost" href="#facts">
+          <a class="btn-ghost" href="#about">
             <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
             Programme at a glance
           </a>
@@ -1320,78 +1267,6 @@ body.gef-modal-lock { overflow: hidden; }
         <div class="meta-fact-key">Co-funded by</div>
         <div class="meta-fact-value">EU IPA III · SDC</div>
       </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================================
-     QUICK FACTS
-     ============================================================ -->
-<section class="quickfacts" id="facts" aria-label="At a glance">
-  <div class="qf-grid">
-
-    <!-- Eligibility -->
-    <div class="qf-card is-violet">
-      <div class="qf-head">
-        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div>
-          <div class="qf-kicker">Who can apply</div>
-          <div class="qf-title">Eligibility</div>
-        </div>
-      </div>
-      <ul class="qf-list">
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Civil society organisations &amp; NGOs</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Educational institutions &amp; universities</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Culture &amp; sports associations</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Business associations</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Media associations</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Registered non-profit in one of the WB6</span></li>
-      </ul>
-      <div class="qf-foot">
-        <a class="qf-link" href="#who-can-apply">Full eligibility criteria <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
-      </div>
-    </div>
-
-    <!-- Core Requirements -->
-    <div class="qf-card is-rose">
-      <div class="qf-head">
-        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-        <div>
-          <div class="qf-kicker">What counts</div>
-          <div class="qf-title">Core Requirements</div>
-        </div>
-      </div>
-      <ul class="qf-list">
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Min. 3 Contracting Parties</strong> — Lead + 2 partners from different Contracting Parties</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Duration 8–12 months</strong>, starting from contract signature</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Co-financing ≥ 10%</strong> of total eligible costs</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Gender equality</strong> as the <em>main objective</em> (DAC marker score 2)</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>HR costs capped at 25%</strong> of grant; indirect costs ≤ 7%</span></li>
-      </ul>
-      <div class="qf-foot">
-        <a class="qf-link" href="#funding">Financing details <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
-      </div>
-    </div>
-
-    <!-- Timeline -->
-    <div class="qf-card is-indigo">
-      <div class="qf-head">
-        <div class="qf-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
-        <div>
-          <div class="qf-kicker">Call 1 — 2026</div>
-          <div class="qf-title">Key Dates</div>
-        </div>
-      </div>
-      <ul class="qf-tl">
-        <li class="is-done"><div class="qf-tl-date">13–26 May 2026</div><div class="qf-tl-label">Information sessions &amp; partner matchmaking</div></li>
-        <li class="is-done"><div class="qf-tl-date">10 June 2026</div><div class="qf-tl-label">Application deadline closed</div></li>
-        <li class="is-done"><div class="qf-tl-date">June – July 2026</div><div class="qf-tl-label">Evaluation &amp; Panel review</div></li>
-        <li class="is-result"><div class="qf-tl-date">7 August 2026</div><div class="qf-tl-label">Six projects awarded</div></li>
-        <li class="is-now"><div class="qf-tl-date">August 2026</div><div class="qf-tl-label">Contract signing</div></li>
-        <li><div class="qf-tl-date">September 2026</div><div class="qf-tl-label">Earliest project start</div></li>
-        <li><div class="qf-tl-date">2026/2027</div><div class="qf-tl-label">Call 2 — date TBC</div></li>
-      </ul>
     </div>
 
   </div>
@@ -1632,13 +1507,31 @@ body.gef-modal-lock { overflow: hidden; }
      ============================================================ -->
 <section class="section" id="about">
   <div class="container-narrow">
-    <!-- Heading left, Berlin Process provenance as a badge on the right — the
-         logo already carries the name, so the kicker only supplies the verb. -->
-    <div class="sec-head sec-head-split">
-      <div class="sec-head-main">
-        <div class="overline">01 / About the Programme</div>
-        <h2>A regional fund for <em>gender equality</em>.</h2>
+    <div class="sec-head">
+      <div class="overline">01 / About the Programme</div>
+      <h2>A regional fund for <em>gender equality</em>.</h2>
+    </div>
+    <div class="about-text">
+      <p>The Western Balkans Fund (WBF), established by the six WB Ministries of Foreign Affairs, has earmarked <strong>15% of its core budget for gender equality initiatives</strong>. This commitment was formalised at the 2025 Western Balkans Leaders' Summit in London.</p>
+      <p>The Gender Equality Fund (GEFund) is the dedicated mechanism delivering that commitment. It is co-funded by the <strong>European Union</strong> (under EU Civil Society Facility &amp; Media Programme, IPA III) and the <strong>Swiss Agency for Development and Cooperation</strong> (under "Fostering Inclusive Partnerships in the Western Balkans 2026–2029").</p>
+      <p>This first open call advances women's empowerment across the Western Balkans through regional civil society cooperation, advocacy, and innovative initiatives addressing social, economic, digital, environmental, and security challenges.</p>
+    </div>
+
+    <!-- Two headline figures and the provenance mark share one row, so all
+         three read as equal-weight plates rather than a stacked column. -->
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Contracting Parties across the Western Balkans</div>
+        <div class="stat-note">Albania · Bosnia and Herzegovina · Kosovo* · Montenegro · North Macedonia · Serbia</div>
       </div>
+      <div class="stat-card">
+        <div class="stat-num">15%</div>
+        <div class="stat-label">Of WBF core budget earmarked for gender equality</div>
+        <div class="stat-note">Formalised at the 2025 Western Balkans Leaders' Summit in London.</div>
+      </div>
+      <!-- Provenance mark; the logo carries the name, the kicker only
+           supplies the verb. -->
       <a class="bp-badge" href="https://www.berlinprocess.de/" target="_blank" rel="noopener"
          aria-label="Born from the Berlin Process — berlinprocess.de (opens in a new tab)">
         <span class="bp-badge-kicker">Born from the</span>
@@ -1646,25 +1539,7 @@ body.gef-modal-lock { overflow: hidden; }
         <svg class="bp-badge-ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
     </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>The Western Balkans Fund (WBF), established by the six WB Ministries of Foreign Affairs, has earmarked <strong>15% of its core budget for gender equality initiatives</strong>. This commitment was formalised at the 2025 Western Balkans Leaders' Summit in London.</p>
-        <p>The Gender Equality Fund (GEFund) is the dedicated mechanism delivering that commitment. It is co-funded by the <strong>European Union</strong> (under EU Civil Society Facility &amp; Media Programme, IPA III) and the <strong>Swiss Agency for Development and Cooperation</strong> (under "Fostering Inclusive Partnerships in the Western Balkans 2026–2029").</p>
-        <p>This first open call advances women's empowerment across the Western Balkans through regional civil society cooperation, advocacy, and innovative initiatives addressing social, economic, digital, environmental, and security challenges.</p>
-      </div>
-      <div class="about-stats">
-        <div class="stat-card">
-          <div class="stat-num">6</div>
-          <div class="stat-label">Contracting Parties across the Western Balkans</div>
-          <div class="stat-note">Albania · Bosnia and Herzegovina · Kosovo* · Montenegro · North Macedonia · Serbia</div>
-          <div class="stat-note" style="margin-top:6px">* This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">15%</div>
-          <div class="stat-label">Of WBF core budget earmarked for gender equality</div>
-        </div>
-      </div>
-    </div>
+    <p class="about-disclaimer">* This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
   </div>
 </section>
 
@@ -1874,7 +1749,7 @@ body.gef-modal-lock { overflow: hidden; }
           <div class="prio-panel-inner">
             <div class="prio-panel-head">
               <div class="prio-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.6 5.4a9 9 0 0 1 0 13.2"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><line x1="15.6" y1="8" x2="8.6" y2="15"/></svg>
               </div>
               <div>
                 <div class="prio-eyebrow">Priority 05 <span>/ 06</span></div>
@@ -1966,15 +1841,15 @@ body.gef-modal-lock { overflow: hidden; }
     <!-- Reverse chronological: what's next sits at the top, the opening
          information sessions close the list. -->
     <div class="timeline-list">
-      <div class="tl-row">
-        <div class="tl-date">September 2026</div>
-        <div class="tl-event">Earliest project implementation start</div>
-        <div class="tl-time">Implementation</div>
-      </div>
       <div class="tl-row active">
-        <div class="tl-date">August 2026</div>
-        <div class="tl-event"><em>Contract signing</em> — with the six awarded consortia</div>
+        <div class="tl-date">September 2026</div>
+        <div class="tl-event"><em>Project implementation</em> — the six awarded projects begin</div>
         <div class="tl-time is-amber"><span class="tl-live"></span>Current stage</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">August 2026</div>
+        <div class="tl-event">Contract signing — with the six awarded consortia</div>
+        <div class="tl-time is-done">Completed</div>
       </div>
       <div class="tl-row is-result">
         <div class="tl-date">7 August 2026</div>
