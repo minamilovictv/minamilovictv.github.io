@@ -769,6 +769,59 @@
     transform: translateY(-2px);
   }
 
+  /* ---- Individuals: a wide card closing the grid ----------------
+     MOVE and the WB6-V4 Fellowship fund people, not organisations, so
+     this category does not belong in the three-across organisation
+     rhythm. Spanning the full row also keeps the grid free of the empty
+     cells a seventh card would leave. */
+  .ben-card.is-wide { grid-column: 1 / -1; }
+
+  /* ============================================================
+     ABOUT TABS
+     ============================================================ */
+  .at-strip { padding: 40px 0 0; background: #fff; }
+  /* One row that never wraps. On desktop the four tabs share the width
+     equally; below the tablet break they keep their natural size and the
+     row scrolls sideways instead of squeezing the labels. */
+  .at-bar {
+    display: flex; flex-wrap: nowrap; gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+  }
+  .at-bar::-webkit-scrollbar { display: none; }
+  .at-tab {
+    flex: 1 1 0; min-width: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    white-space: nowrap;
+    padding: 20px 24px;
+    background: var(--surface-alt);
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    font-family: inherit; font-size: var(--text-lg); font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink-soft); cursor: pointer;
+    transition: background 0.22s ease, color 0.22s ease,
+                border-color 0.22s ease, box-shadow 0.22s ease,
+                transform 0.22s ease;
+  }
+  .at-tab:hover {
+    background: #fff;
+    border-color: var(--navy);
+    color: var(--navy);
+    transform: translateY(-2px);
+  }
+  .at-tab.is-active {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-900) 100%);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 12px 26px rgba(15,32,68,0.26);
+  }
+  .at-tab.is-active:hover { transform: none; }
+  .at-tab:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
+  /* A panel is a full section; hiding it must beat the section display rule. */
+  .at-panel[hidden] { display: none !important; }
+
   /* ============================================================
      MISSION & VALUES STATEMENTS
      ============================================================ */
@@ -776,9 +829,10 @@
     background: var(--gradient-hero);
     color: #fff;
   }
+  /* Single full-width track: the mission card is the only one here now. */
   .mv-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 24px;
   }
   .mv-card {
@@ -1228,7 +1282,6 @@
   @media (max-width: 1024px) {
     .container, .page-hero-inner { padding-left: 24px; padding-right: 24px; }
     .ben-grid { grid-template-columns: repeat(2, 1fr); }
-    .mv-grid { grid-template-columns: 1fr; }
     .obj-grid { grid-template-columns: repeat(2, 1fr); }
     .gp-grid { grid-template-columns: repeat(2, 1fr); }
     .cc-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1247,6 +1300,11 @@
     .gp-grid { grid-template-columns: 1fr; }
     .cc-grid { grid-template-columns: repeat(2, 1fr); }
     .mv-card { padding: 28px 22px; }
+    .at-strip { padding-top: 28px; }
+    /* grow-but-never-shrink: they fill the row when it is wide enough and
+       keep their natural width and scroll when it is not. Equal shares
+       would crush the labels at phone widths. */
+    .at-tab { flex: 1 0 auto; padding: 15px 20px; font-size: var(--text-md); }
     .mandate-section .split-col p,
     #wbf-establishment .split-col p,
     .gp-desc { text-align: left; hyphens: none; }
@@ -1477,7 +1535,6 @@
   }
   .bp-caption { font-size: var(--text-sm); color: var(--muted); line-height: 1.55; }
 
-  .bp-cta { text-align: center; margin-top: 40px; }
 
   /* ---- Responsive ---- */
   @media (max-width: 1024px) {
@@ -1658,7 +1715,7 @@
         <div class="overline">The Fund</div>
         <h2 class="mandate-heading">Who we are</h2>
         <p>The Western Balkans Fund (WBF) is an intergovernmental organisation based in Tirana, Albania, established by the governments of Albania, Bosnia and Herzegovina, Kosovo*, Montenegro, North Macedonia and Serbia. Conceived as a fully regionally owned and all-inclusive initiative, the Fund stands as a tangible expression of a renewed spirit of cooperation in the Western Balkans, a mechanism created by the region, for the region, to bring its people, institutions and communities closer together.</p>
-        <p>WBF is the first home-grown regional mechanism that boost cooperation through grants for civil society organisations and other stakeholders in the Western Balkans Six. Its founding reflects a shared conviction that lasting reconciliation and a common European future are built not only between governments, but between citizens, civil-society organisations and communities working side by side on concrete, cross-border projects.</p>
+        <p>WBF is the first home-grown regional mechanism that boosts cooperation through grants for civil society organisations and other stakeholders in the Western Balkans Six. Its founding reflects a shared conviction that lasting reconciliation and a common European future are built not only between governments, but between citizens, civil-society organisations and communities working side by side on concrete, cross-border projects.</p>
         <p class="mandate-footnote">*This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
       </div>
 
@@ -1708,23 +1765,29 @@
             Our Programmes
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
           </a>
-          <a href="#wbf-establishment" class="btn-outline">
-            History of WBF
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 15.5,14"/></svg>
-          </a>
-          <a href="#milestones-section" class="btn-outline">
-            Key Milestones
-            <svg viewBox="0 0 24 24"><line x1="5" y1="21" x2="5" y2="3.5"/><path d="M5 4.5h12l-2.4 3.6L17 11.7H5z"/></svg>
-          </a>
-          <a href="#berlin-process" class="btn-outline">
-            Berlin Process
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.5 2.4 3.8 5.5 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.5-3.8-9S9.5 5.4 12 3z"/></svg>
-          </a>
         </div>
       </div>
     </div>
 
 
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MISSION STATEMENT — wide navy strip between the mandate and the
+     areas of intervention. Values used to sit beside it; it now runs
+     full width on its own.
+     ============================================================ -->
+<section class="section mv">
+  <div class="container">
+    <div class="mv-grid">
+      <div class="mv-card">
+        <div class="overline">Our Mission</div>
+        <div class="mv-divider"></div>
+        <p>The Western Balkans Fund is dedicated to promoting reconciliation, strengthening regional cooperation, and fostering closer ties among the Contracting Parties of the Western Balkans. Through its initiatives, the Fund contributes to building trust, dialogue, and sustainable partnerships across the region.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1865,6 +1928,21 @@
           <span class="ben-tag">Other Eligible Institutions</span>
         </div>
       </div>
+      <div class="ben-card is-wide">
+        <div class="ben-head">
+          <div class="ben-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="ben-title">Individuals</div>
+        </div>
+        <div class="ben-tags">
+          <span class="ben-tag">Doctoral Students &amp; PhD Holders</span>
+          <span class="ben-tag">Researchers &amp; Academics</span>
+          <span class="ben-tag">Artists</span>
+          <span class="ben-tag">Cultural Professionals</span>
+          <span class="ben-tag">Journalists</span>
+          <span class="ben-tag">Youth Workers</span>
+          <span class="ben-tag">CSO Activists</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1927,21 +2005,27 @@
 </section>
 
 <!-- ============================================================
-     MISSION & VALUES STATEMENTS
+     ABOUT TABS — one bar, four panels
+     The history, milestones, Berlin Process and partners sections used
+     to run one after another, reachable from three buttons up in the
+     mandate block. They are the same sections; only one is shown at a
+     time and the bar below selects it.
      ============================================================ -->
-<section class="section mv">
+<section class="at-strip">
   <div class="container">
-    <div class="mv-grid">
-      <div class="mv-card">
-        <div class="overline">Our Mission</div>
-        <div class="mv-divider"></div>
-        <p>The Western Balkans Fund is dedicated to promoting reconciliation, strengthening regional cooperation, and fostering closer ties among the Contracting Parties of the Western Balkans. Through its initiatives, the Fund contributes to building trust, dialogue, and sustainable partnerships across the region.</p>
-      </div>
-      <div class="mv-card">
-        <div class="overline">Values</div>
-        <div class="mv-divider"></div>
-        <p>The Western Balkans Fund operates in full alignment with the vision of its founding members, supporting the principles of reconciliation, regional solidarity, and the shared European future of all Contracting Parties. Our work is guided by cooperation, inclusiveness, transparency, and mutual respect.</p>
-      </div>
+    <div class="at-bar" id="at-bar" role="tablist" aria-label="More about the Fund">
+      <button type="button" class="at-tab is-active" id="at-tab-history" role="tab" data-panel="wbf-establishment" aria-controls="wbf-establishment" aria-selected="true">
+        History of WBF
+      </button>
+      <button type="button" class="at-tab" id="at-tab-milestones" role="tab" data-panel="milestones-section" aria-controls="milestones-section" aria-selected="false" tabindex="-1">
+        Key Milestones
+      </button>
+      <button type="button" class="at-tab" id="at-tab-berlin" role="tab" data-panel="berlin-process" aria-controls="berlin-process" aria-selected="false" tabindex="-1">
+        Berlin Process
+      </button>
+      <button type="button" class="at-tab" id="at-tab-partners" role="tab" data-panel="partners" aria-controls="partners" aria-selected="false" tabindex="-1">
+        Partners
+      </button>
     </div>
   </div>
 </section>
@@ -1949,7 +2033,7 @@
 <!-- ============================================================
      WBF ESTABLISHMENT (gallery + history)
      ============================================================ -->
-<section class="section" id="wbf-establishment">
+<section class="section at-panel" id="wbf-establishment" role="tabpanel" aria-labelledby="at-tab-history">
   <div class="container">
     <!-- Row 2: Gallery (left) | WBF Establishment (right) -->
     <div class="split-grid mandate-row mandate-row-2">
@@ -2021,7 +2105,7 @@
 <!-- ============================================================
      KEY MILESTONES — horizontal gallery
      ============================================================ -->
-<section class="section milestones-section" id="milestones-section">
+<section class="section milestones-section at-panel" id="milestones-section" role="tabpanel" aria-labelledby="at-tab-milestones" hidden>
   <div class="container">
     <div class="sec-head">
       <div class="overline">History</div>
@@ -2374,7 +2458,7 @@
      is waiting for, so the layout never breaks. Different names
      are fine — just edit the src="" and the <code> hint.
      ============================================================ -->
-<section class="section bp-section" id="berlin-process">
+<section class="section bp-section at-panel" id="berlin-process" role="tabpanel" aria-labelledby="at-tab-berlin" hidden>
   <div class="container">
     <div class="sec-head center no-rule">
       <div class="overline">WBF and the Berlin Process</div>
@@ -2530,20 +2614,13 @@
       </li>
 
     </ol>
-
-    <div class="bp-cta">
-      <a href="/gefund.html" class="btn-primary">
-        Western Balkans Gender Equality Fund
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
-      </a>
-    </div>
   </div>
 </section>
 
 <!-- ============================================================
      PARTNERS
      ============================================================ -->
-<section class="section section-alt">
+<section class="section section-alt at-panel" id="partners" role="tabpanel" aria-labelledby="at-tab-partners" hidden>
   <div class="container">
     <div class="sec-head center no-rule">
       <div class="overline">Partners</div>
@@ -2656,6 +2733,66 @@
 
 
 
+
+<!-- ============================================================
+     SCRIPT — About tabs
+     Deep links still work: /about.html#berlin-process opens that tab.
+     ============================================================ -->
+<script>
+(function () {
+  var bar = document.getElementById('at-bar');
+  if (!bar) return;
+
+  var tabs = Array.prototype.slice.call(bar.querySelectorAll('.at-tab'));
+  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('data-panel')); });
+  if (tabs.length === 0) return;
+
+  function show(id, moveFocus) {
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-panel') === id;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if (on && moveFocus) t.focus();
+    });
+    panels.forEach(function (p) { if (p) p.hidden = p.id !== id; });
+    // The panel was display:none, so anything that sizes itself from the
+    // layout (carousel, year rail, scroll-reveal) gets a chance to recompute.
+    window.dispatchEvent(new Event('resize'));
+  }
+
+  bar.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('.at-tab') : null;
+    if (btn) show(btn.getAttribute('data-panel'), false);
+  });
+
+  // Left/Right/Home/End move between tabs, as expected of a tablist.
+  bar.addEventListener('keydown', function (e) {
+    var i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    var n = null;
+    if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') n = 0;
+    else if (e.key === 'End') n = tabs.length - 1;
+    if (n === null) return;
+    e.preventDefault();
+    show(tabs[n].getAttribute('data-panel'), true);
+  });
+
+  function fromHash() {
+    var h = (location.hash || '').replace('#', '');
+    if (!h) return false;
+    var match = panels.filter(function (p) { return p && p.id === h; })[0];
+    if (!match) return false;
+    show(h, false);
+    return true;
+  }
+
+  window.addEventListener('hashchange', fromHash);
+  if (!fromHash()) show(tabs[0].getAttribute('data-panel'), false);
+})();
+</script>
 
 <!-- ============================================================
      SCRIPT — Key Milestones (year rail)
