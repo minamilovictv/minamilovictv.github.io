@@ -944,22 +944,6 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .hl-disclaimer a:hover { text-decoration: underline; }
 
 /* ============================================================
-   CTA / NOTIFY
-   ============================================================ */
-.subscribe { background: linear-gradient(135deg, #08213b 0%, #0F3250 60%, #1D5C9E 100%); padding: 72px 0; color: #fff; position: relative; overflow: hidden; }
-.subscribe::before { content: ""; position: absolute; top: -100px; right: -60px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(74,140,220,0.22) 0%, transparent 70%); pointer-events: none; }
-.subscribe-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; text-align: center; padding: 0 40px; }
-.subscribe .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #7db8ec; margin-bottom: 12px; }
-.subscribe h2 { font-size: clamp(24px, 2.8vw, 30px); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
-.subscribe p { font-size: var(--text-md); color: rgba(255,255,255,0.72); line-height: 1.65; max-width: 60ch; margin: 0 auto 28px; }
-.subscribe-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: #fff; color: var(--viseg-deep); font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background 0.15s; }
-.btn-white:hover { background: #e8f1fb; }
-.btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.btn-ghost-white { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; color: #fff; border: 1px solid rgba(255,255,255,0.35); font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background 0.15s, border-color 0.15s; }
-.btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.65); }
-
-/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px) {
@@ -994,7 +978,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 /* Justify all paragraph text */
 p { text-align: justify; }
 /* Keep intentionally centered paragraphs centered */
-.sec-head.center p, .subscribe p { text-align: center; }
+.sec-head.center p { text-align: center; }
 </style>
 </head>
 <body>
@@ -1428,24 +1412,6 @@ p { text-align: justify; }
       Figures derived from the official list of approved Western Balkans–Visegrad Fellowships for the 2026 call.
     </p>
 
-  </div>
-</section>
-
-<!-- ============================================================
-     CTA / NOTIFY
-     ============================================================ -->
-<section class="subscribe">
-  <div class="subscribe-inner">
-    <div class="overline">Next call — April 2027</div>
-    <h2>Don't miss the next fellowship call</h2>
-    <p>The 2026 call has now concluded and 51 fellowships have been approved. The next call opens in April 2027. Subscribe to WBF updates and we'll remind you when applications open — or sign up for reminders directly on the International Visegrad Fund's programme page.</p>
-    <div class="subscribe-btns">
-      <a class="btn-white" href="/contact.html">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-        Subscribe to WBF updates
-      </a>
-      <a class="btn-ghost-white" href="/our-programs.html">All WBF programmes →</a>
-    </div>
   </div>
 </section>
 
