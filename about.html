@@ -1451,7 +1451,10 @@
   }
 
   /* ---- Intro prose + year chips ---- */
-  .bp-intro { max-width: 78ch; margin: 0 auto; }
+  /* The intro runs the full container so its single paragraph sits on two
+     lines; the chips below stay centred, so only the prose widens. */
+  .bp-intro { max-width: none; margin: 0 auto; }
+  .bp-intro .prose-block { max-width: none; }
   .bp-intro p { font-size: var(--text-base); }
 
   .bp-chips {
@@ -2529,8 +2532,8 @@
         <li class="ms-card">
           <article class="ms-card-inner">
             <p class="ms-card-date">September 2026</p>
-            <h3 class="ms-card-title">First We-Be Regional Academy</h3>
-            <p class="ms-card-desc">Together with the Open Society Foundations &ndash; Western Balkans (OSF-WB), WBF launches a residential academy for emerging leaders on dialogue and a culture of cooperation.</p>
+            <h3 class="ms-card-title">WBF Regional Academy on Dialogue &amp; Culture of Cooperation</h3>
+            <p class="ms-card-desc">A 7-day residential learning journey for junior professionals and emerging leaders from across the WB6, an initiative of the Western Balkans Fund, supported by the Open Society Foundation Western Balkans, equipping a new generation to advance dialogue, cooperation and reconciliation.</p>
           </article>
         </li>
       </ol>
@@ -2590,8 +2593,7 @@
     <!-- Intro prose + jump chips -->
     <div class="bp-intro">
       <div class="prose-block">
-        <p>The Western Balkans Fund has been <strong>directly linked</strong> with the regional cooperation, reconciliation, and people-to-people connectivity agenda of the <strong>Berlin Process</strong>.</p>
-        <p>This connection goes back to the early years of the Berlin Process. <strong>Three important milestones</strong> have marked this road.</p>
+        <p>The Western Balkans Fund has been <strong>directly linked</strong> with the regional cooperation, reconciliation, and people-to-people connectivity agenda of the <strong>Berlin Process</strong>. This connection goes back to the early years of the Berlin Process. <strong>Three important milestones</strong> have marked this road.</p>
       </div>
       <ul class="bp-chips">
         <li><a class="bp-chip" href="#bp-london" data-delay="1"><span class="bp-chip-year">2025</span><span class="bp-chip-place">London</span></a></li>
