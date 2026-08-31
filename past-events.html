@@ -62,6 +62,14 @@
   .sec-head .overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--adv); margin-bottom: 14px; }
   .sec-head h2 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--ink); line-height: 1.18; }
   .sec-head p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.65; max-width: 64ch; margin-top: 14px; }
+  /* No heading above it here, so the gap that separated them is dead. */
+  .sec-head p:first-child { margin-top: 0; }
+  /* The intro runs the full container so it sits on three lines rather than
+     a narrow eight-line block. */
+  .sec-head-wide { max-width: none; }
+  /* 18px over four lines rather than 16px over three: three lines at this
+     width means about 170 characters a line, which is a tiring measure. */
+  .sec-head-wide p { max-width: none; font-size: 18px; text-align: justify; text-align-last: left; }
 
 
   /* YEAR TABS — single row, reverse chronological */
@@ -259,6 +267,8 @@
     .car-nav.prev { left: 8px; } .car-nav.next { right: 8px; }
   }
   @media (max-width: 680px) {
+    /* Justified text opens rivers of white in a narrow column. */
+    .sec-head-wide p { text-align: left; }
     .page-hero { padding: 56px 0 48px; }
     .section { padding: 48px 0 64px; }
     .yeartab { font-size: var(--text-md); padding: 10px 15px 11px; }
@@ -304,10 +314,8 @@
 <section class="section">
   <div class="container">
 
-    <div class="sec-head">
-      <div class="overline">Title</div>
-      <h2>Title title</h2>
-      <p>Placeholder paragraph — explain here that this programme of advocacy and networking events is organised in cooperation with the Japanese partner. Replace with the final copy before launch.</p>
+    <div class="sec-head sec-head-wide">
+      <p>Building on its experience on regional cooperation and dialogue events, the Western Balkans Fund has become a recognized, visible and active promotor of civil society actors across the Western Balkans. Together with its selected partners, the Fund hosts events, in order to focus on critical issues affecting regional cooperation, dialogue, and reconciliation. These themed and WBF-facilitated events involve relevant stakeholders not only from the region and European Union, but also from all over the world.</p>
     </div>
 
     <!-- ============================================================
