@@ -1490,17 +1490,9 @@
     color: var(--ink); line-height: 1.25;
   }
 
-  .bp-step-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
-    gap: 36px; align-items: start;
-  }
-  /* zig-zag: photos sit on the left for the middle milestone.
-     The tracks swap too, so the text always keeps the wider column. */
-  .bp-step:nth-child(even) .bp-step-grid {
-    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-  }
-  .bp-step:nth-child(even) .bp-media { order: -1; }
+  /* Text-only milestones — the photo column is gone, so the prose runs on
+     its own with a measure that stays readable at full section width. */
+  .bp-step-body .bp-text { max-width: 76ch; }
 
   .bp-text p {
     font-size: var(--text-md); color: var(--ink-soft); line-height: 1.85;
@@ -1548,41 +1540,8 @@
     letter-spacing: 0.12em; color: var(--muted);
   }
 
-  /* ---- Photo column ---- */
-  .bp-media { display: flex; flex-direction: column; gap: 12px; }
-  .bp-media-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .bp-frame {
-    position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden;
-    background: linear-gradient(135deg, #e9eef5 0%, #d3dce8 100%);
-    box-shadow: 0 10px 26px rgba(15,32,68,0.10);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-  }
-  .bp-frame:not(.has-img) { box-shadow: none; border: 1px dashed #b9c6da; }
-  .bp-frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.22,0.61,0.36,1); }
-  .bp-frame.has-img:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(15,32,68,0.18); }
-  .bp-frame.has-img:hover img { transform: scale(1.05); }
-  /* empty-slot hint — disappears the moment a photo loads */
-  .bp-frame-hint {
-    position: absolute; inset: 0; padding: 0 14px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
-    text-align: center; color: var(--muted);
-    font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-  }
-  .bp-frame.has-img .bp-frame-hint { display: none; }
-  .bp-frame-hint svg { width: 26px; height: 26px; fill: none; stroke: #94a3b8; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .bp-frame-hint code {
-    font-size: 10px; font-weight: 600; text-transform: none; letter-spacing: 0;
-    color: var(--faint); word-break: break-all;
-  }
-  .bp-caption { font-size: var(--text-sm); color: var(--muted); line-height: 1.55; }
-
 
   /* ---- Responsive ---- */
-  @media (max-width: 1024px) {
-    .bp-step-grid,
-    .bp-step:nth-child(even) .bp-step-grid { grid-template-columns: 1fr; gap: 26px; }
-    .bp-step:nth-child(even) .bp-media { order: 0; }
-  }
   @media (max-width: 900px) {
     .bp-step { padding-left: 0; padding-bottom: 40px; }
     .bp-step::before { display: none; }
@@ -1714,7 +1673,7 @@
     .mv-card, .mv-card::before, .btn-primary svg { transition: none; }
     .mv-card:hover::before { left: -120%; }
     .bp-hl { background-size: 100% 100%; transition: none; }
-    .bp-chip, .bp-node, .bp-node::after, .bp-frame, .bp-frame img { transition: none; }
+    .bp-chip, .bp-node, .bp-node::after { transition: none; }
     .bp-lockup-link { transition: none; }
     .bp-lockup-link:hover { transform: none; }
   }
@@ -2549,7 +2508,7 @@
         </div>
 
 
-        <div class="bp-step-grid">
+        <div class="bp-step-body">
           <div class="bp-text">
             <p class="bp-lede">The most recent milestone came in 2025 and represented perhaps the <strong>strongest recognition of WBF</strong> within the Berlin Process to date.</p>
             <p>On <strong>22 October 2025</strong>, the Western Balkans Fund <span class="bp-hl">participated for the first time in a Berlin Process Leaders&rsquo; Summit</span>, hosted by the United Kingdom in London.</p>
@@ -2563,24 +2522,6 @@
             <p>The decision formed part of a wider commitment to integrate gender equality throughout the Berlin Process agenda, recognising it as an <strong>enabler and accelerator</strong> of regional priorities and linking women&rsquo;s empowerment with more secure, stable, and prosperous societies.</p>
             <p>Building upon the London Conclusions, WBF established the <a href="/gefund.html"><strong>Western Balkans Gender Equality Fund</strong></a>, a dedicated regional mechanism supporting civil society cooperation, advocacy, and initiatives advancing women&rsquo;s empowerment and gender equality. The <strong>first Open Call was launched on 5 May 2026</strong>, translating the political commitment adopted within the Berlin Process into direct support for organisations and communities across the Western Balkans.</p>
           </div>
-
-          <div class="bp-media">
-            <figure class="bp-frame">
-              <img src="/assets/images/berlin-process/london-2025-01.jpg" alt="Western Balkans Fund at the Berlin Process Leaders&rsquo; Summit, London, October 2025" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-              <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>Photo<code>london-2025-01.jpg</code></span>
-            </figure>
-            <div class="bp-media-row">
-              <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/london-2025-02.jpg" alt="Berlin Process Leaders&rsquo; Summit session, London, October 2025" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>london-2025-02.jpg</code></span>
-              </figure>
-              <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/london-2025-03.jpg" alt="Gender equality commitment announced at the London Summit, October 2025" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>london-2025-03.jpg</code></span>
-              </figure>
-            </div>
-            <p class="bp-caption">Berlin Process Leaders&rsquo; Summit &mdash; London, 22 October 2025.</p>
-          </div>
         </div>
       </li>
 
@@ -2593,7 +2534,7 @@
         </div>
 
 
-        <div class="bp-step-grid">
+        <div class="bp-step-body">
           <div class="bp-text">
             <p class="bp-lede">One year after Pozna&#324;, WBF was <strong>formally acknowledged in the Chair&rsquo;s Conclusions</strong> of the Sofia Summit, held on <strong>9&ndash;10 November 2020</strong> under the joint Bulgarian and North Macedonian chairmanship of the Berlin Process.</p>
             <p>In addressing the future of the Process, the Joint Chairmanship stated:</p>
@@ -2604,24 +2545,6 @@
             </blockquote>
 
             <p>This acknowledgement carried particular significance for the Fund. <span class="bp-hl">For the first time in the conclusions of a Berlin Process Leaders&rsquo; Summit</span>, the Fund was explicitly recognised among the regional organisations contributing to the fulfilment of the Berlin Process mission and priorities, alongside established regional actors such as the <strong>Regional Cooperation Council</strong>, <strong>CEFTA</strong>, the <strong>Transport Community</strong>, and <strong>RYCO</strong>.</p>
-          </div>
-
-          <div class="bp-media">
-            <figure class="bp-frame">
-              <img src="/assets/images/berlin-process/sofia-2020-01.jpg" alt="Western Balkans Summit of the Berlin Process, Sofia, November 2020" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-              <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>Photo<code>sofia-2020-01.jpg</code></span>
-            </figure>
-            <div class="bp-media-row">
-              <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/sofia-2020-02.jpg" alt="Joint Bulgarian and North Macedonian chairmanship of the Berlin Process, Sofia 2020" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>sofia-2020-02.jpg</code></span>
-              </figure>
-              <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/sofia-2020-03.jpg" alt="Sofia Summit session, November 2020" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>sofia-2020-03.jpg</code></span>
-              </figure>
-            </div>
-            <p class="bp-caption">Western Balkans Summit of the Berlin Process &mdash; Sofia, 9&ndash;10 November 2020.</p>
           </div>
         </div>
       </li>
@@ -2635,28 +2558,10 @@
         </div>
 
 
-        <div class="bp-step-grid">
+        <div class="bp-step-body">
           <div class="bp-text">
             <p class="bp-lede">The earliest of the three milestones came under the <strong>Polish Presidency</strong> of the Berlin Process.</p>
             <p>On <strong>5 July 2019</strong>, Pozna&#324; hosted the <strong>sixth Western Balkans Summit</strong> of the Berlin Process. <span class="bp-hl">For the first time, the Western Balkans Fund was invited to participate in Berlin Process activities</span>, recognising the value of its contribution to regional cooperation, reconciliation, and people-to-people contacts. WBF also had its own <strong>exhibition booth</strong> at the accompanying fair, presenting its mission, grant-making activities, and regional impact.</p>
-          </div>
-
-          <div class="bp-media">
-            <figure class="bp-frame">
-              <img src="/assets/images/berlin-process/poznan-2019-01.jpg" alt="Western Balkans Fund at the sixth Western Balkans Summit, Pozna&#324;, July 2019" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-              <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>Photo<code>poznan-2019-01.jpg</code></span>
-            </figure>
-            <div class="bp-media-row">
-              <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/poznan-2019-02.jpg" alt="WBF exhibition booth at the Pozna&#324; Summit fair, July 2019" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>poznan-2019-02.jpg</code></span>
-              </figure>
-              <figure class="bp-frame">
-                <img src="/assets/images/berlin-process/poznan-2019-03.jpg" alt="Delegates at the sixth Western Balkans Summit, Pozna&#324;, July 2019" loading="lazy" onload="this.parentElement.classList.add('has-img')" onerror="this.remove()">
-                <span class="bp-frame-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-2h8.4l1.1 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg><code>poznan-2019-03.jpg</code></span>
-              </figure>
-            </div>
-            <p class="bp-caption">Sixth Western Balkans Summit of the Berlin Process &mdash; Pozna&#324;, 5 July 2019.</p>
           </div>
         </div>
       </li>
