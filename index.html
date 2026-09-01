@@ -430,47 +430,51 @@
   .about-text .btn-dark svg { transition: transform 0.15s; }
   .about-text .btn-dark:hover svg { transform: translateX(3px); }
 
-  /* ---- Right column: photo carousel ----------------------------
-     Same cc-* vocabulary as the Chairmanship carousel further down,
-     scoped to this section. Slides are static markup so the photos and
-     their alt text survive without JS — the script only adds the arrows,
-     dots and autoplay. */
-  .about-carousel {
-    position: relative;
+  /* ---- Right column: static photo mosaic ------------------------
+     A 4x4 grid with every tile placed by hand, so the shapes interlock
+     with no holes and no reflow. Nothing moves — it is a picture, not a
+     carousel. */
+  .about-collage {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    aspect-ratio: 1 / 1;
+  }
+  .about-collage figure {
+    margin: 0;
     overflow: hidden;
-    border-radius: 16px;
-    aspect-ratio: 4 / 3;
+    border-radius: 12px;
     background: var(--surface-alt);
-    box-shadow: var(--shadow-2);
+    box-shadow: var(--shadow-1);
   }
-  .about-carousel .cc-track {
-    display: flex; height: 100%;
-    transition: transform 0.6s cubic-bezier(.16,.84,.44,1);
-  }
-  .about-carousel .cc-slide { flex: 0 0 100%; height: 100%; margin: 0; }
-  .about-carousel .cc-slide img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .about-carousel .cc-btn {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer;
-    background: rgba(15,32,68,0.42); color: #fff;
-    display: flex; align-items: center; justify-content: center; z-index: 2;
-    transition: background 0.2s ease, opacity 0.2s ease; opacity: 0.85;
-  }
-  .about-carousel:hover .cc-btn { opacity: 1; }
-  .about-carousel .cc-btn:hover { background: rgba(15,32,68,0.72); }
-  .about-carousel .cc-btn:focus-visible { opacity: 1; outline: 2px solid #fff; outline-offset: 2px; }
-  .about-carousel .cc-prev { left: 14px; }
-  .about-carousel .cc-next { right: 14px; }
-  .about-carousel .cc-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  .about-carousel .cc-dots { position: absolute; bottom: 14px; left: 0; right: 0; display: flex; justify-content: center; gap: 7px; z-index: 2; }
-  .about-carousel .cc-dot { width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: rgba(255,255,255,0.5); transition: background 0.2s ease, transform 0.2s ease; }
-  .about-carousel .cc-dot.active { background: #fff; transform: scale(1.25); }
-  @media (prefers-reduced-motion: reduce) {
-    .about-carousel .cc-track { transition: none; }
+  .about-collage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* r1: t1 t1 t2 t2 · r2: t1 t1 t3 t4 · r3: t6 t6 t3 t5 · r4: t7 t7 t8 t8 */
+  .about-collage .ac-t1 { grid-column: 1 / 3; grid-row: 1 / 3; }
+  .about-collage .ac-t2 { grid-column: 3 / 5; grid-row: 1; }
+  .about-collage .ac-t3 { grid-column: 3;     grid-row: 2 / 4; }
+  .about-collage .ac-t4 { grid-column: 4;     grid-row: 2; }
+  .about-collage .ac-t5 { grid-column: 4;     grid-row: 3; }
+  .about-collage .ac-t6 { grid-column: 1 / 3; grid-row: 3; }
+  .about-collage .ac-t7 { grid-column: 1 / 3; grid-row: 4; }
+  .about-collage .ac-t8 { grid-column: 3 / 5; grid-row: 4; }
+
+  /* Narrow screens: two columns, the wide shot banners the top and bottom */
+  @media (max-width: 640px) {
+    .about-collage {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      aspect-ratio: 2 / 3;
+      gap: 8px;
+    }
+    .about-collage .ac-t1 { grid-column: 1 / 3; grid-row: 1; }
+    .about-collage .ac-t2 { grid-column: 1;     grid-row: 2; }
+    .about-collage .ac-t3 { grid-column: 2;     grid-row: 2; }
+    .about-collage .ac-t4 { grid-column: 1;     grid-row: 3; }
+    .about-collage .ac-t5 { grid-column: 2;     grid-row: 3; }
+    .about-collage .ac-t6 { grid-column: 1;     grid-row: 4; }
+    .about-collage .ac-t7 { grid-column: 2;     grid-row: 4; }
+    .about-collage .ac-t8 { grid-column: 1 / 3; grid-row: 5; }
   }
 
   /* ============================================================
@@ -1997,128 +2001,25 @@
         </a>
       </div>
 
-      <!-- Photo carousel. Slides are static so they survive without JS;
-           add or remove a figure and the arrows, dots and autoplay follow.
-           Photos are existing repo assets — swap a src to change one. -->
-      <div class="about-carousel" id="about-carousel"
-           role="region" aria-roledescription="carousel"
-           aria-label="The Western Balkans Fund at work">
-        <div class="cc-track">
-          <figure class="cc-slide">
-            <img src="/assets/images/wbf-establishment/wbf-04.jpg"
-                 alt="Foreign ministers of the six Contracting Parties at the WBF Ministerial Conference in Sarajevo"
-                 loading="eager" decoding="async">
-          </figure>
-          <figure class="cc-slide">
-            <img src="/assets/images/ggi/ggi-about-1.jpg"
-                 alt="Awarding ceremony for the Grants for Grassroots Initiatives in Tirana"
-                 loading="lazy" decoding="async">
-          </figure>
-          <figure class="cc-slide">
-            <img src="/assets/images/p2p/residential-1.jpg"
-                 alt="A participant in discussion during a WBF residential training"
-                 loading="lazy" decoding="async">
-          </figure>
-          <figure class="cc-slide">
-            <img src="/assets/images/wbf-establishment/wbf-01.jpg"
-                 alt="Signing ceremony establishing the Western Balkans Fund"
-                 loading="lazy" decoding="async">
-          </figure>
-          <figure class="cc-slide">
-            <img src="/assets/images/p2p/why-peer-to-peer.jpg"
-                 alt="Facilitated session during a WBF peer-to-peer capacity building workshop"
-                 loading="lazy" decoding="async">
-          </figure>
-          <figure class="cc-slide">
-            <img src="/assets/images/milestones/milestone-03.jpg"
-                 alt="Delegates at a Western Balkans Fund call for proposals launch in Skopje"
-                 loading="lazy" decoding="async">
-          </figure>
-        </div>
+      <!-- Static photo mosaic. Tiles are placed explicitly on a 4x4 grid so
+           they interlock with no holes, and each photo sits in a tile that
+           roughly matches its own aspect ratio (the portrait shot takes the
+           tall slot, the 16:9 shot the wide banner). Decorative as a set —
+           the tiles carry empty alt and the container carries the label. -->
+      <div class="about-collage" role="img" aria-label="The Western Balkans Fund at work across the region">
+        <figure class="ac-t1"><img src="https://live.staticflickr.com/65535/55366320670_6d961e020e_b.jpg" alt="" loading="eager" decoding="async" width="1024" height="768"></figure>
+        <figure class="ac-t2"><img src="https://live.staticflickr.com/65535/55366131563_07cbd375ba_h.jpg" alt="" loading="lazy" decoding="async" width="1600" height="901"></figure>
+        <figure class="ac-t3"><img src="https://live.staticflickr.com/65535/55366008646_a3a0993784.jpg" alt="" loading="lazy" decoding="async" width="375" height="500"></figure>
+        <figure class="ac-t4"><img src="https://live.staticflickr.com/65535/55365117857_45f498080e_z.jpg" alt="" loading="lazy" decoding="async" width="640" height="640"></figure>
+        <figure class="ac-t5"><img src="https://live.staticflickr.com/65535/55365117852_8887361462_z.jpg" alt="" loading="lazy" decoding="async" width="640" height="640"></figure>
+        <figure class="ac-t6"><img src="https://live.staticflickr.com/65535/55365985656_c82110884f_c.jpg" alt="" loading="lazy" decoding="async" width="799" height="533"></figure>
+        <figure class="ac-t7"><img src="https://live.staticflickr.com/65535/55366436929_8307646397_z.jpg" alt="" loading="lazy" decoding="async" width="640" height="427"></figure>
+        <figure class="ac-t8"><img src="https://live.staticflickr.com/65535/55366268908_a87f26ffd9_z.jpg" alt="" loading="lazy" decoding="async" width="640" height="517"></figure>
       </div>
     </div>
   </div>
 </section>
 
-<!-- About photo carousel -->
-<script>
-(function () {
-  var root = document.getElementById('about-carousel');
-  if (!root) return;
-  var track = root.querySelector('.cc-track');
-  var slides = track ? Array.prototype.slice.call(track.querySelectorAll('.cc-slide')) : [];
-  if (slides.length <= 1) return;
-
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var count = slides.length, idx = 0, dots = [];
-
-  /* Every slide past the first is lazy and stays clipped by overflow:hidden,
-     so it would not start fetching until it is already sliding in. Warm the
-     neighbours instead, and advancing never lands on a blank frame. */
-  function warm(i) {
-    var img = slides[(i + count) % count].querySelector('img');
-    if (!img || img.getAttribute('data-warm')) return;
-    img.setAttribute('data-warm', '1');
-    var pre = new Image();
-    pre.src = img.currentSrc || img.src;
-  }
-
-  function go(i) {
-    idx = (i + count) % count;
-    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
-    dots.forEach(function (d, di) { d.classList.toggle('active', di === idx); });
-    warm(idx + 1);
-    warm(idx - 1);
-  }
-
-  var prev = document.createElement('button');
-  prev.type = 'button'; prev.className = 'cc-btn cc-prev'; prev.setAttribute('aria-label', 'Previous photo');
-  prev.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="15,6 9,12 15,18"/></svg>';
-  var next = document.createElement('button');
-  next.type = 'button'; next.className = 'cc-btn cc-next'; next.setAttribute('aria-label', 'Next photo');
-  next.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg>';
-
-  var timer = null;
-  function stop() { if (timer) { clearInterval(timer); timer = null; } }
-  function play() { if (reduce) return; stop(); timer = setInterval(function () { go(idx + 1); }, 4500); }
-  function rest() { stop(); play(); }
-
-  prev.addEventListener('click', function () { go(idx - 1); rest(); });
-  next.addEventListener('click', function () { go(idx + 1); rest(); });
-  root.appendChild(prev); root.appendChild(next);
-
-  var dotsWrap = document.createElement('div'); dotsWrap.className = 'cc-dots';
-  slides.forEach(function (_, i) {
-    var d = document.createElement('button');
-    d.type = 'button'; d.className = 'cc-dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', 'Go to photo ' + (i + 1));
-    d.addEventListener('click', function () { go(i); rest(); });
-    dotsWrap.appendChild(d); dots.push(d);
-  });
-  root.appendChild(dotsWrap);
-
-  /* manual slide,touch swipe + mouse drag */
-  var startX = null;
-  function swipeStart(x) { startX = x; stop(); }
-  function swipeEnd(x) {
-    if (startX === null) return;
-    var dx = x - startX;
-    startX = null;
-    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
-    play();
-  }
-  root.addEventListener('touchstart', function (e) { swipeStart(e.changedTouches[0].clientX); }, { passive: true });
-  root.addEventListener('touchend',   function (e) { swipeEnd(e.changedTouches[0].clientX); }, { passive: true });
-  root.addEventListener('mousedown', function (e) { swipeStart(e.clientX); });
-  root.addEventListener('mouseup',   function (e) { swipeEnd(e.clientX); });
-  root.addEventListener('dragstart', function (e) { e.preventDefault(); });
-
-  root.addEventListener('mouseenter', stop);
-  root.addEventListener('mouseleave', play);
-  warm(1);
-  play();
-})();
-</script>
 
 <!-- ============================================================
      PROGRAMS OVERVIEW
@@ -2150,40 +2051,6 @@
     </div>
 
     <div class="pf-grid" id="pf-grid">
-
-      <a href="/move.html" class="pf-card" data-who="individual" data-type="grant">
-        <div class="pf-card-top">
-          <span class="pf-badge soon">Coming Soon</span>
-          <div class="pf-grant"><div class="pf-grant-num">People</div><div class="pf-grant-sub">to people</div></div>
-        </div>
-        <h3 class="pf-card-title">MOVE Grants</h3>
-        <div class="pf-tags">
-          <span class="pf-tag who-individual"><svg viewBox="0 0 14 14"><circle cx="7" cy="4.3" r="2.1"/><path d="M3 12a4 4 0 0 1 8 0"/></svg>Individuals</span>
-          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
-        </div>
-        <p class="pf-card-desc">Short-term, people-to-people funding for researchers, students, professors, journalists, artists and activists to cross borders, connect with peers, and bring value back home.</p>
-        <div class="pf-card-foot">
-          <span class="pf-when">For individuals · next call TBC</span>
-          <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
-        </div>
-      </a>
-
-      <a href="/visegrad-fellowship.html" class="pf-card" data-who="individual" data-type="grant">
-        <div class="pf-card-top">
-          <span class="pf-badge winners">Winners Announced</span>
-          <div class="pf-grant"><div class="pf-grant-num">Fellowship</div><div class="pf-grant-sub">mobility grant</div></div>
-        </div>
-        <h3 class="pf-card-title">WB6-V4 Fellowship</h3>
-        <div class="pf-tags">
-          <span class="pf-tag who-individual"><svg viewBox="0 0 14 14"><circle cx="7" cy="4.3" r="2.1"/><path d="M3 12a4 4 0 0 1 8 0"/></svg>Individuals</span>
-          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
-        </div>
-        <p class="pf-card-desc">Short-term academic mobility between the Western Balkans and the Visegrad Group, enabling PhD candidates and doctoral holders to research, teach, or study at host institutions.</p>
-        <div class="pf-card-foot">
-          <span class="pf-when">With the International Visegrad Fund</span>
-          <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
-        </div>
-      </a>
 
       <a href="/ggi.html" class="pf-card" data-who="org" data-type="grant">
         <div class="pf-card-top">
@@ -2219,6 +2086,23 @@
         </div>
       </a>
 
+      <a href="/erc.html" class="pf-card" data-who="org" data-type="grant">
+        <div class="pf-card-top">
+          <span class="pf-badge soon">Coming Soon</span>
+          <div class="pf-grant"><div class="pf-grant-num">€25,000</div><div class="pf-grant-sub">max grant</div></div>
+        </div>
+        <h3 class="pf-card-title">Empowering Regional Cooperation (ERC)</h3>
+        <div class="pf-tags">
+          <span class="pf-tag who-org"><svg viewBox="0 0 14 14"><path d="M2.5 12.5V2.5h6v10M8.5 5.5h3v7M4.5 4.8h2M4.5 6.8h2M4.5 8.8h2"/></svg>Organisations</span>
+          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
+        </div>
+        <p class="pf-card-desc">Larger EU co-funded grants that strengthen civil society partnerships and collaborative initiatives across the Western Balkans, promoting democracy and sustainable development.</p>
+        <div class="pf-card-foot">
+          <span class="pf-when">Opening Autumn 2026</span>
+          <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
+        </div>
+      </a>
+
       <a href="/matching.html" class="pf-card" data-who="org" data-type="grant">
         <div class="pf-card-top">
           <span class="pf-badge open">Always Open</span>
@@ -2236,19 +2120,36 @@
         </div>
       </a>
 
-      <a href="/erc.html" class="pf-card" data-who="org" data-type="grant">
+      <a href="/move.html" class="pf-card" data-who="individual" data-type="grant">
         <div class="pf-card-top">
           <span class="pf-badge soon">Coming Soon</span>
-          <div class="pf-grant"><div class="pf-grant-num">€25,000</div><div class="pf-grant-sub">max grant</div></div>
+          <div class="pf-grant"><div class="pf-grant-num">People</div><div class="pf-grant-sub">to people</div></div>
         </div>
-        <h3 class="pf-card-title">Empowering Regional Cooperation (ERC)</h3>
+        <h3 class="pf-card-title">MOVE Grants</h3>
         <div class="pf-tags">
-          <span class="pf-tag who-org"><svg viewBox="0 0 14 14"><path d="M2.5 12.5V2.5h6v10M8.5 5.5h3v7M4.5 4.8h2M4.5 6.8h2M4.5 8.8h2"/></svg>Organisations</span>
+          <span class="pf-tag who-individual"><svg viewBox="0 0 14 14"><circle cx="7" cy="4.3" r="2.1"/><path d="M3 12a4 4 0 0 1 8 0"/></svg>Individuals</span>
           <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
         </div>
-        <p class="pf-card-desc">Larger EU co-funded grants that strengthen civil society partnerships and collaborative initiatives across the Western Balkans, promoting democracy and sustainable development.</p>
+        <p class="pf-card-desc">Short-term, people-to-people funding for researchers, students, professors, journalists, artists and activists to cross borders, connect with peers, and bring value back home.</p>
         <div class="pf-card-foot">
-          <span class="pf-when">Opening Autumn 2026</span>
+          <span class="pf-when">For individuals · next call TBC</span>
+          <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
+        </div>
+      </a>
+
+      <a href="/visegrad-fellowship.html" class="pf-card" data-who="individual" data-type="grant">
+        <div class="pf-card-top">
+          <span class="pf-badge winners">Winners Announced</span>
+          <div class="pf-grant"><div class="pf-grant-num">Fellowship</div><div class="pf-grant-sub">mobility grant</div></div>
+        </div>
+        <h3 class="pf-card-title">WB6-V4 Fellowship</h3>
+        <div class="pf-tags">
+          <span class="pf-tag who-individual"><svg viewBox="0 0 14 14"><circle cx="7" cy="4.3" r="2.1"/><path d="M3 12a4 4 0 0 1 8 0"/></svg>Individuals</span>
+          <span class="pf-tag type-grant"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M9.2 5.1a2.7 2.7 0 1 0 0 3.8M4.8 6.4h3.2M4.8 7.8h3.2"/></svg>Grant</span>
+        </div>
+        <p class="pf-card-desc">Short-term academic mobility between the Western Balkans and the Visegrad Group, enabling PhD candidates and doctoral holders to research, teach, or study at host institutions.</p>
+        <div class="pf-card-foot">
+          <span class="pf-when">With the International Visegrad Fund</span>
           <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
         </div>
       </a>
@@ -2286,7 +2187,6 @@
           <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
         </div>
       </a>
-
     </div>
   </div>
 </section>
