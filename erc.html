@@ -162,6 +162,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
    SECTION SHARED
    ============================================================ */
 .section { padding: 68px 0; }
+/* A section element still lays out when hidden unless this wins. */
+[hidden] { display: none !important; }
 
 .sec-head { text-align: center; max-width: 760px; margin: 0 auto 44px; }
 .sec-head .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--erc); margin-bottom: 12px; }
@@ -306,7 +308,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
     <p class="tagline">Implemented under the EU/WBF Joint Action "Support to the Promotion of Civil Society Regional Actions in the Western Balkans (Phase II)".</p>
 
     <div class="hero-ctas">
-      <a class="btn-primary" href="#grantees">
+      <!-- HIDDEN FOR NOW: jumps to the hidden grantees section. -->
+      <a class="btn-primary" href="#grantees" hidden>
         <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
         Meet the grantees
       </a>
@@ -332,7 +335,10 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
      Cards + flags come from the GRANTEES array in the script below.
      Photo carousels auto-discover images from assets/images/erc/<slug>/.
      ============================================================ -->
-<section class="section section-grantees" id="grantees">
+<!-- HIDDEN FOR NOW: remove the hidden attribute here and on the hero CTA
+     below to bring the previous-call showcase back. Markup, data and the
+     carousel script are all left intact. -->
+<section class="section section-grantees" id="grantees" hidden>
   <div class="container">
     <div class="sec-head">
       <div class="overline">Previous Call</div>
@@ -351,7 +357,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   <div class="subscribe-inner">
     <div class="overline">Stay Informed</div>
     <h2>Be ready for the next ERC call</h2>
-    <p>The next ERC Call for Proposals opens in September 2026, when full guidelines will be published here. Subscribe to WBF updates and build your consortium early using the WBF Partnership Platform.</p>
+    <p>The next ERC Call for Proposals opens in September 2026, when full guidelines will be published here.</p>
     <div class="subscribe-btns">
       <a class="btn-white" href="https://wbfpartnership.com/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
