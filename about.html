@@ -1131,6 +1131,15 @@
     transform: scale(1.3);
   }
 
+  /* Five logos on one row. At the default 240px box and 40px column gap they
+     need 1360px but the slide offers 1174px, so both the boxes and the gutter
+     between them tighten. Below 900px the rules underneath take over and the
+     row wraps as before. */
+  @media (min-width: 901px) {
+    .lc-slide[aria-label="Partners"] .lc-logos { column-gap: 24px; }
+    .lc-slide[aria-label="Partners"] .lc-logo  { width: 210px; }
+  }
+
   /* Responsive: shrink logos + grow band as rows wrap */
   @media (max-width: 900px) {
     /* Grow to fit content so wrapped logo rows are never clipped. */
@@ -1141,7 +1150,7 @@
     .lc-logos { gap: 20px 32px; }
   }
   @media (max-width: 600px) {
-    /* Let the carousel grow to fit the taller "Other Partners" slide
+    /* Let the carousel grow to fit the taller "Strategic Partners" slide
        (7 logos) instead of clipping the bottom rows with a fixed height. */
     .lc-carousel { height: auto; }
     .lc-track { height: auto; align-items: stretch; }
@@ -2617,7 +2626,7 @@
     <!-- BELOW BOTH COLUMNS: full-width partner logo carousel
          Save SVG logos in /assets/images/partners/ with these filenames:
            Slide 1 — Strategic Partners: partner-eu.svg, partner-sdc.svg, partner-japan.svg, partner-germany.svg, partner-visegrad.svg, partner-osf.svg
-           Slide 2 — Other Partners:   partner-rcc.svg, partner-ryco.svg, partner-aics.svg, partner-cei.svg, partner-respa.svg
+           Slide 2 — Partners:         partner-rcc.svg, partner-ryco.svg, partner-aics.svg, partner-cei.svg, partner-respa.svg
          Different filenames are fine — just edit the src="" values. -->
     <div class="partner-logos-band">
       <div class="lc-carousel lc-carousel-wide" id="lc-carousel" role="region" aria-roledescription="carousel" aria-label="Partner logos">
@@ -2648,9 +2657,9 @@
             </div>
           </div>
 
-          <!-- Slide 2: Other Partners -->
-          <div class="lc-slide" role="group" aria-roledescription="slide" aria-label="Other Partners">
-            <div class="lc-slide-label">Other Partners</div>
+          <!-- Slide 2: Partners -->
+          <div class="lc-slide" role="group" aria-roledescription="slide" aria-label="Partners">
+            <div class="lc-slide-label">Partners</div>
             <div class="lc-logos">
               <div class="lc-logo" data-name="Regional Cooperation Council">
                 <img src="/assets/images/partners/partner-rcc.svg" alt="Regional Cooperation Council" onload="this.parentElement.classList.add('has-logo')" onerror="this.style.display='none'">
