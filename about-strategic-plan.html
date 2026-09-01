@@ -261,12 +261,6 @@
     padding: 28px 26px; overflow: hidden;
     transition: transform 0.28s cubic-bezier(.16,.8,.3,1), box-shadow 0.28s, border-color 0.28s;
   }
-  /* big ghosted number watermark */
-  .lesson-card::after {
-    content: attr(data-n); position: absolute; right: 12px; bottom: -26px; z-index: 0; pointer-events: none;
-    font-family: var(--font-display); font-size: 104px; font-weight: 800; line-height: 1;
-    color: var(--pa-tint); transition: color 0.3s, transform 0.3s;
-  }
   /* gradient top bar that draws in on hover */
   .lesson-card::before {
     content: ""; position: absolute; left: 0; top: 0; height: 4px; width: 100%; z-index: 2;
@@ -274,7 +268,6 @@
   }
   .lesson-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(15,32,68,0.15); border-color: var(--pa); }
   .lesson-card:hover::before { transform: scaleX(1); }
-  .lesson-card:hover::after { color: #dbe7fc; transform: translateY(-6px) rotate(-4deg); }
   .lesson-card > * { position: relative; z-index: 1; }
   .lesson-n {
     display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px;
@@ -585,27 +578,27 @@
     </div>
 
     <div class="lessons-grid">
-      <div class="lesson-card reveal" data-n="01">
+      <div class="lesson-card reveal">
         <div class="lesson-n">01</div>
         <div class="lesson-t">Integration delivers better value</div>
         <div class="lesson-d">Grants achieve far more when paired with tailored technical support, mentoring and coaching, strengthening both projects and the organisations behind them.</div>
       </div>
-      <div class="lesson-card reveal" style="--d:70ms" data-n="02">
+      <div class="lesson-card reveal" style="--d:70ms">
         <div class="lesson-n">02</div>
         <div class="lesson-t">Partnership is a continuous win-win</div>
         <div class="lesson-d">Working with complementary agencies lets the Fund offer a more holistic package of support and raises visibility for grantees and the WBF alike.</div>
       </div>
-      <div class="lesson-card reveal" style="--d:140ms" data-n="03">
+      <div class="lesson-card reveal" style="--d:140ms">
         <div class="lesson-n">03</div>
         <div class="lesson-t">Convening multiplies impact</div>
         <div class="lesson-d">Bringing grantees together to celebrate, learn and network sustains the value of the Fund's investment well beyond a single project's lifecycle.</div>
       </div>
-      <div class="lesson-card reveal" style="--d:70ms" data-n="04">
+      <div class="lesson-card reveal" style="--d:70ms">
         <div class="lesson-n">04</div>
         <div class="lesson-t">Longer-term funding drives real change</div>
         <div class="lesson-d">Measurable impact is best achieved through extended relationships where impact is designed into both the project and the ongoing technical support.</div>
       </div>
-      <div class="lesson-card reveal" style="--d:140ms" data-n="05">
+      <div class="lesson-card reveal" style="--d:140ms">
         <div class="lesson-n">05</div>
         <div class="lesson-t">Champions are everywhere</div>
         <div class="lesson-d">Small, grassroots and rural organisations can be as committed as large city groups. The Fund keeps its promise to these "hard-to-fund" champions.</div>

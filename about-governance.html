@@ -149,6 +149,27 @@
     padding: 24px; text-decoration: none; color: inherit; display: block; overflow: hidden;
     transition: box-shadow .25s, transform .25s, border-color .25s;
   }
+  /* The cards and the panel they control are one unit, so the full 88px
+     of section padding either side of that seam reads as a gap between
+     unrelated blocks. 176px becomes 56px. */
+  .section.structure { padding-bottom: 28px; }
+  .body-panel { padding-top: 28px; }
+
+  /* ---- Governing-body panels -------------------------------------
+     Hovering (or tapping, or tabbing to) a flow card swaps the body
+     description below it, so one panel shows instead of four stacked
+     down the page. The panels are only collapsed once the script runs,
+     so without JS all four stay visible and the cards still jump to
+     them by anchor. */
+  .body-panel[hidden] { display: none !important; }
+  .flow-card.is-active {
+    border-color: var(--gv-blue);
+    box-shadow: 0 18px 38px rgba(15,32,68,0.14);
+  }
+  .flow-card.is-active::before { transform: scaleX(1); }
+  .flow-card.is-active .flow-icon { background: var(--gv-blue); color: #fff; }
+  .flow-card.is-active .flow-title { color: var(--gv-blue); }
+
   /* animated top accent bar */
   .flow-card::before {
     content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -164,7 +185,8 @@
   .flow-card:hover { box-shadow: 0 18px 38px rgba(15,32,68,0.14); transform: translateY(-5px); border-color: var(--gv-blue-soft); }
   .flow-card:hover::before { transform: scaleX(1); }
   .flow-card:hover::after { left: 120%; }
-  .flow-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  /* Only the icon sits here now that the numbers are gone. */
+  .flow-card-top { display: flex; align-items: center; margin-bottom: 16px; }
   .flow-icon {
     width: 46px; height: 46px; background: var(--gv-blue-deep); border-radius: 8px;
     display: flex; align-items: center; justify-content: center; color: var(--gv-blue-soft);
@@ -172,8 +194,6 @@
   }
   .flow-card:hover .flow-icon { transform: rotate(-6deg) scale(1.06); background: var(--gv-blue); color: #fff; }
   .flow-icon svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .flow-num { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--line); line-height: 1; transition: color .3s; }
-  .flow-card:hover .flow-num { color: var(--gv-blue-soft); }
   .flow-title { font-size: var(--text-md); font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 4px; }
   .flow-card:hover .flow-title { color: var(--gv-blue); }
   .flow-role { font-size: var(--text-sm); color: var(--gv-blue-700); font-weight: 500; }
@@ -328,6 +348,8 @@
   @media (max-width: 768px) {
     .page-hero { padding: 64px 0 56px; }
     .section { padding: 60px 0; }
+    .section.structure { padding-bottom: 20px; }
+    .body-panel { padding-top: 20px; }
     .flow-grid { grid-template-columns: 1fr; }
     .resp-list.two-col { grid-template-columns: 1fr; }
     .principle-grid { grid-template-columns: 1fr; }
@@ -371,7 +393,7 @@
 <!-- ============================================================
      STRUCTURE OVERVIEW
      ============================================================ -->
-<section class="section">
+<section class="section structure">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-overline">Structure</div>
@@ -385,7 +407,6 @@
           <div class="flow-icon">
             <svg viewBox="0 0 24 24"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
           </div>
-          <span class="flow-num">01</span>
         </div>
         <div class="flow-title">Conference of Ministers of Foreign Affairs</div>
         <div class="flow-role">Supreme decision-making body</div>
@@ -397,7 +418,6 @@
           <div class="flow-icon">
             <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <span class="flow-num">02</span>
         </div>
         <div class="flow-title">Council of Senior Officials</div>
         <div class="flow-role">Strategic oversight &amp; policy</div>
@@ -409,7 +429,6 @@
           <div class="flow-icon">
             <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17,11 19,13 23,9"/></svg>
           </div>
-          <span class="flow-num">03</span>
         </div>
         <div class="flow-title">Executive Director</div>
         <div class="flow-role">Leadership &amp; implementation</div>
@@ -421,7 +440,6 @@
           <div class="flow-icon">
             <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
           </div>
-          <span class="flow-num">04</span>
         </div>
         <div class="flow-title">Secretariat</div>
         <div class="flow-role">The operational backbone</div>
@@ -433,7 +451,7 @@
 <!-- ============================================================
      BODY 1: CONFERENCE OF MINISTERS
      ============================================================ -->
-<section class="section section-alt body-section" id="ministers">
+<section class="section section-alt body-section body-panel" id="ministers">
   <div class="container">
     <div class="body-grid">
       <div class="body-text-col reveal-l">
@@ -464,7 +482,7 @@
 <!-- ============================================================
      BODY 2: COUNCIL OF SENIOR OFFICIALS (image left)
      ============================================================ -->
-<section class="section body-section" id="council">
+<section class="section body-section body-panel" id="council">
   <div class="container">
     <div class="body-grid">
       <div class="body-text-col reveal-r">
@@ -495,7 +513,7 @@
 <!-- ============================================================
      BODY 3: EXECUTIVE DIRECTOR
      ============================================================ -->
-<section class="section section-alt body-section" id="director">
+<section class="section section-alt body-section body-panel" id="director">
   <div class="container">
     <div class="body-grid">
       <div class="body-text-col reveal-l">
@@ -529,7 +547,7 @@
 <!-- ============================================================
      BODY 4: SECRETARIAT (image left)
      ============================================================ -->
-<section class="section body-section" id="secretariat">
+<section class="section body-section body-panel" id="secretariat">
   <div class="container">
     <div class="body-grid">
       <div class="body-text-col reveal-r">
@@ -738,6 +756,55 @@
 
     revealEls.forEach(function (el) { io.observe(el); });
   }
+})();
+</script>
+
+/* ============================================================
+   SCRIPT — Governing-body panel switcher
+   The four flow cards select which body description shows below.
+   Hover drives it on a mouse; tap and keyboard focus do the same, so
+   it is not hover-only. Collapsing happens here rather than in the
+   markup, so with JS off all four panels remain on the page.
+   ============================================================ */
+<script>
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.flow-grid .flow-card'));
+  if (!cards.length) return;
+
+  var panels = cards.map(function (c) {
+    var href = c.getAttribute('href') || '';
+    return href.charAt(0) === '#' ? document.getElementById(href.slice(1)) : null;
+  });
+  // If any card has no panel, leave the page exactly as authored.
+  if (panels.some(function (p) { return !p; })) return;
+
+  function show(i) {
+    cards.forEach(function (c, j) { c.classList.toggle('is-active', j === i); });
+    panels.forEach(function (p, j) { p.hidden = j !== i; });
+    // A panel that was display:none never crossed the viewport, so its
+    // scroll-reveal never fired. Reveal it directly or it stays at opacity 0.
+    panels[i].querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(function (el) {
+      el.style.transitionDelay = '0ms';
+      el.classList.add('in');
+    });
+  }
+
+  cards.forEach(function (c, i) {
+    c.addEventListener('mouseenter', function () { show(i); });
+    c.addEventListener('focus', function () { show(i); });
+    c.addEventListener('click', function (e) { e.preventDefault(); show(i); });
+  });
+
+  // Open on the panel named in the URL, else the first.
+  var hash = (location.hash || '').slice(1);
+  var start = panels.findIndex(function (p) { return p.id === hash; });
+  show(start > -1 ? start : 0);
+
+  window.addEventListener('hashchange', function () {
+    var h = (location.hash || '').slice(1);
+    var n = panels.findIndex(function (p) { return p.id === h; });
+    if (n > -1) show(n);
+  });
 })();
 </script>
 
