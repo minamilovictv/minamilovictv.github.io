@@ -95,6 +95,17 @@
   .panel-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: var(--text-sm); color: var(--muted); margin-bottom: 20px; }
   .panel-meta span { display: inline-flex; align-items: center; gap: 6px; }
   .panel-meta svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  /* Organiser logos, top-right of a year panel, level with its title block. */
+  .panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; }
+  .panel-head-text { min-width: 0; }
+  .panel-head-text > *:last-child { margin-bottom: 0; }
+  .panel-logos { flex-shrink: 0; display: flex; align-items: center; gap: 22px; padding-top: 6px; }
+  .panel-logos img { width: auto; display: block; }
+  /* Sized apart, not to a shared height: the WBF lockup is 2.3:1 while the
+     Japan mark is near-square, so matching their heights makes the Japan one
+     look much the smaller of the two. */
+  .panel-logos .pl-wbf   { height: 52px; }
+  .panel-logos .pl-japan { height: 66px; }
   .panel-prose { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.8; max-width: 72ch; text-align: justify; text-justify: inter-word; hyphens: none; }
   .panel-prose p { margin-bottom: 14px; } .panel-prose p:last-child { margin-bottom: 0; }
   .panel-prose h4 { font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; color: var(--ink); margin: 22px 0 8px; }
@@ -267,6 +278,11 @@
     .car-nav.prev { left: 8px; } .car-nav.next { right: 8px; }
   }
   @media (max-width: 680px) {
+    /* Stack the logos under the title rather than squeezing the heading. */
+    .panel-head { flex-direction: column; gap: 16px; }
+    .panel-logos { padding-top: 0; gap: 18px; }
+    .panel-logos .pl-wbf   { height: 40px; }
+    .panel-logos .pl-japan { height: 50px; }
     /* Justified text opens rivers of white in a narrow column. */
     .sec-head-wide p { text-align: left; }
     .page-hero { padding: 56px 0 48px; }
@@ -355,11 +371,20 @@
 
     <section class="yearpanel" id="panel-2026" role="tabpanel" aria-labelledby="tab-2026" tabindex="0">
 
-      <div class="panel-kicker">Western Balkans Diaspora</div>
-      <h3>#LeadBalkans Conference</h3>
-      <div class="panel-meta">
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>February 2026</span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tirana, Albania</span>
+      <div class="panel-head">
+        <div class="panel-head-text">
+        <div class="panel-kicker">Western Balkans Diaspora</div>
+        <h3>#LeadBalkans Conference</h3>
+        <div class="panel-meta">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>February 2026</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tirana, Albania</span>
+        </div>
+        </div>
+        <!-- Organisers. Repeat this block in each year panel that needs it. -->
+        <div class="panel-logos">
+          <img class="pl-wbf" src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
+          <img class="pl-japan" src="/assets/images/partners/partner-japan.svg" alt="Government of Japan">
+        </div>
       </div>
 
       <div class="panel-split">
@@ -596,11 +621,19 @@
 
     <section class="yearpanel" id="panel-2025" role="tabpanel" aria-labelledby="tab-2025" tabindex="0" hidden>
 
-      <div class="panel-kicker">Local Government &amp; Regional Cooperation</div>
-      <h3>SYNERGY Conference</h3>
-      <div class="panel-meta">
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>5&ndash;7 March 2025</span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Hotel Maritim Plaza, Tirana, Albania</span>
+      <div class="panel-head">
+        <div class="panel-head-text">
+        <div class="panel-kicker">Local Government &amp; Regional Cooperation</div>
+        <h3>SYNERGY Conference</h3>
+        <div class="panel-meta">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>5&ndash;7 March 2025</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Hotel Maritim Plaza, Tirana, Albania</span>
+        </div>
+        </div>
+        <div class="panel-logos">
+          <img class="pl-wbf" src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
+          <img class="pl-japan" src="/assets/images/partners/partner-japan.svg" alt="Government of Japan">
+        </div>
       </div>
 
       <div class="panel-split">
@@ -867,11 +900,19 @@
 
     <section class="yearpanel" id="panel-veritycon" role="tabpanel" aria-labelledby="tab-veritycon" tabindex="0" hidden>
 
-      <div class="panel-kicker">Freedom of Expression &amp; Disinformation</div>
-      <h3>VerityCon23: Navigating the Disinformation Era</h3>
-      <div class="panel-meta">
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>14&ndash;16 November 2023</span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tirana, Albania</span>
+      <div class="panel-head">
+        <div class="panel-head-text">
+        <div class="panel-kicker">Freedom of Expression &amp; Disinformation</div>
+        <h3>VerityCon23: Navigating the Disinformation Era</h3>
+        <div class="panel-meta">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>14&ndash;16 November 2023</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tirana, Albania</span>
+        </div>
+        </div>
+        <div class="panel-logos">
+          <img class="pl-wbf" src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
+          <img class="pl-japan" src="/assets/images/partners/partner-japan.svg" alt="Government of Japan">
+        </div>
       </div>
 
       <div class="panel-split">
@@ -1099,11 +1140,19 @@
 
     <section class="yearpanel" id="panel-unstoppable" role="tabpanel" aria-labelledby="tab-unstoppable" tabindex="0" hidden>
 
-      <div class="panel-kicker">Gender Equality &amp; Women&rsquo;s Leadership</div>
-      <h3>UNSTOPPABLE International Conference</h3>
-      <div class="panel-meta">
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>20&ndash;23 February 2023</span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tirana, Albania</span>
+      <div class="panel-head">
+        <div class="panel-head-text">
+        <div class="panel-kicker">Gender Equality &amp; Women&rsquo;s Leadership</div>
+        <h3>UNSTOPPABLE International Conference</h3>
+        <div class="panel-meta">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>20&ndash;23 February 2023</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tirana, Albania</span>
+        </div>
+        </div>
+        <div class="panel-logos">
+          <img class="pl-wbf" src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
+          <img class="pl-japan" src="/assets/images/partners/partner-japan.svg" alt="Government of Japan">
+        </div>
       </div>
 
       <div class="panel-split">
