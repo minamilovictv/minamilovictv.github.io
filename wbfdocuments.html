@@ -556,28 +556,7 @@
     </nav>
     <div class="page-hero-overline">About</div>
     <h1>WBF Publications &amp; Resources</h1>
-    <p>Browse the Western Balkans Fund's publications and institutional documents — including annual reports, strategic documents and, in time, our newsletter archive. In line with the Fund's commitment to transparency and accountability, all documents below are available for download.</p>
-  </div>
-</section>
-
-<!-- ============================================================
-     PREVIEW-ONLY NOTICE  —  DELETE THIS BLOCK BEFORE LAUNCH
-     The report PDFs are excluded from the repository (265 MB, and one
-     file exceeds GitHub's 100 MB limit), so every download link on this
-     page will 404 on the preview host. Remove this <section> once the
-     PDFs are served from their final location.
-     ============================================================ -->
-<section style="background:var(--amber-tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="container" style="padding:16px 0;display:flex;gap:12px;align-items:flex-start">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"
-         stroke-linecap="round" aria-hidden="true" style="flex:none;margin-top:2px">
-      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-    </svg>
-    <p style="margin:0;color:var(--ink-soft);font-size:.94rem;line-height:1.5">
-      <strong style="color:var(--ink)">Internal preview:</strong> the documents below are listed correctly, but the
-      PDF files themselves are not published to this preview site. Download buttons and page thumbnails will not
-      work here — that is expected and not a fault to report. Everything else on the page reflects the final build.
-    </p>
+    <p>Browse the Western Balkans Fund's publications and institutional documents including annual reports, strategic documents and, in time, our newsletter archive. In line with the Fund's commitment to transparency and accountability, all documents below are available for download.</p>
   </div>
 </section>
 
@@ -692,11 +671,11 @@
      rows are added to documents.csv (category: newsletter).
      ────────────────────────────────────────────────────────── */
   const SECTIONS = [
-    { key: 'annual-report', title: 'Annual Reports',      blurb: "Yearly accounts of the Fund's activities, programmes, grants disbursed and impact.", cats: ['annual-report'] },
-    { key: 'strategy',      title: 'Strategic Documents', blurb: 'Multi-year strategic plans and development frameworks guiding the Fund.',            cats: ['strategy'] },
-    { key: 'newsletter',    title: 'Newsletter Archive',  blurb: 'Past editions of the Western Balkans Fund newsletter.',                             cats: ['newsletter'], featured: 4, overflowNoun: 'editions' },
     { key: 'founding',      title: 'Founding & Legal',    blurb: 'The establishment agreement and the ministerial statements underpinning the Fund.', cats: ['founding'] },
-    { key: 'joint-action',  title: 'Joint Action',        blurb: 'EU–WBF Joint Action reports on the regional grant schemes.',                        cats: ['joint-action'] },
+    { key: 'strategy',      title: 'Strategic Documents', blurb: 'Multi-year strategic plans and development frameworks guiding the Fund.',            cats: ['strategy'] },
+    { key: 'annual-report', title: 'Annual Reports',      blurb: "Yearly accounts of the Fund's activities, programmes, grants disbursed and impact.", cats: ['annual-report'] },
+    { key: 'newsletter',    title: 'Newsletter Archive',  blurb: 'Past editions of the Western Balkans Fund newsletter.',                             cats: ['newsletter'], featured: 4, overflowNoun: 'editions' },
+    { key: 'joint-action',  title: 'EU–WBF Joint Action', blurb: 'EU–WBF Joint Action reports on the regional grant schemes.',                        cats: ['joint-action'] },
     { key: 'other',         title: 'Other Documents',     blurb: 'Governance texts, policies, financial statements, audits, guidelines and forms.',   cats: ['governance', 'policy', 'guidelines', 'financial-statement', 'audit-report', 'other'] }
   ];
 
