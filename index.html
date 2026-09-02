@@ -2781,7 +2781,7 @@
   var CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSOzfTVArPvCpsEUjBoCbiHHZIO2phMIPSFkNDe5v-69ktrRjW62Rr6KvC93Umcmy5of3rVxTFi-NPS/pub?output=csv';
   var LIMIT = 3;
   var TYPE_LABELS = { 'conference':'Conference','workshop':'Workshop','webinar':'Webinar','info-session':'Info Session','networking':'Networking','awards':'Awards','training':'Training' };
-  var COUNTRY = { AL:'Albania', BA:'Bosnia and Herzegovina', XK:'Kosovo*', MK:'North Macedonia', ME:'Montenegro', RS:'Serbia' };
+  var COUNTRY = { AL:'Albania', BA:'Bosnia and Herzegovina', XK:'Kosovo', MK:'North Macedonia', ME:'Montenegro', RS:'Serbia' };
 
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
   function normType(t){ var k=String(t||'').trim().toLowerCase().replace(/\s+/g,'-'); return TYPE_LABELS[k]?k:'info-session'; }

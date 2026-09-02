@@ -420,7 +420,10 @@
     .hl-pie-chart.focus .hl-pie-seg { opacity: 0.28; }
     .hl-pie-chart.focus .hl-pie-seg.hot { opacity: 1; stroke-width: 5; }
 
-    .hl-disclaimer { font-size: 12px; color: rgba(255,255,255,0.42); line-height: 1.6; margin-top: 28px; text-align: center; }
+    /* Kosovo designation note: the country tags are data-driven, so the note
+     names Kosovo itself rather than hanging off a repeated asterisk. */
+  .cp-designation-note { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 22px; }
+  .hl-disclaimer { font-size: 12px; color: rgba(255,255,255,0.42); line-height: 1.6; margin-top: 28px; text-align: center; }
 
     /* Scroll-reveal */
     .highlights.hl-animate .hl-stat, .highlights.hl-animate .hl-card { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s ease; }
@@ -669,6 +672,7 @@
           </div>
           <div class="result-summary" id="result-summary" aria-live="polite"></div>
           <div class="grantee-list" id="grantee-list"></div>
+          <p class="cp-designation-note">Kosovo: this designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
         </div>
       </div>
     </section>
@@ -765,7 +769,7 @@
       const COUNTRY_LABELS = {
         AL: { name: 'Albania', flag: '🇦🇱' },
         BA: { name: 'Bosnia and Herzegovina', flag: '🇧🇦' },
-        XK: { name: 'Kosovo*', flag: '🇽🇰' },
+        XK: { name: 'Kosovo', flag: '🇽🇰' },
         MK: { name: 'North Macedonia', flag: '🇲🇰' },
         ME: { name: 'Montenegro', flag: '🇲🇪' },
         RS: { name: 'Serbia', flag: '🇷🇸' }
@@ -1527,7 +1531,7 @@
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* ---- Shared reference data ---- */
-    var NAME = {AL:'Albania',BA:'Bosnia & Herz.',XK:'Kosovo*',ME:'Montenegro',MK:'North Macedonia',RS:'Serbia',CZ:'Czechia',HU:'Hungary',PL:'Poland',SK:'Slovakia'};
+    var NAME = {AL:'Albania',BA:'Bosnia & Herz.',XK:'Kosovo',ME:'Montenegro',MK:'North Macedonia',RS:'Serbia',CZ:'Czechia',HU:'Hungary',PL:'Poland',SK:'Slovakia'};
     var WB   = {AL:1,BA:1,XK:1,ME:1,MK:1,RS:1};
     var PIE_COLORS = ['#7db8ec','#f0c87a','#4a8cdc','#e0a53f','#a9d6ea','#c2841c'];
     var OTHER_COLOR = '#5a6b82';
