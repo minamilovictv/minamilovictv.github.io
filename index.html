@@ -266,8 +266,10 @@
   /* ============================================================
      SECTION SHARED
      ============================================================ */
-  .section { padding: 88px 0; }
-  .section-sm { padding: 64px 0; }
+  /* 88/64 put 176px between most sections, which read as holes rather than
+     breathing room. 48/40 lands the seams at 88-96px. */
+  .section { padding: 48px 0; }
+  .section-sm { padding: 40px 0; }
 
   .overline {
     font-size: var(--text-xs);
@@ -1762,7 +1764,7 @@
   @media (max-width: 768px) {
     .nav-items { display: none; }
     .btn-partners { display: none; }
-    .section { padding: 56px 0; }
+    .section { padding: 40px 0; }
     .chair { padding-bottom: 28px; }
     .partnership { padding-top: 28px; }
     .academy-body { padding: 36px 26px; }
