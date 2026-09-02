@@ -173,6 +173,12 @@
   .panel-rail { position: sticky; top: 20px; max-height: calc(100vh - 40px); overflow-y: auto; scrollbar-width: thin; }
   .rail-title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 5px; }
   .rail-sub { font-size: var(--text-sm); color: var(--muted); line-height: 1.55; margin-bottom: 14px; }
+  /* SOLO — a year whose programme has not arrived yet. Holds the same reading
+     measure as the article column of .panel-split, so its stats, prose and
+     callouts line up with the years that do have a rail. */
+  .panel-solo { max-width: 880px; margin-top: 6px; }
+  .panel-solo > *:first-child { margin-top: 0; }
+  .panel-solo .panel-lead, .panel-solo .panel-prose, .panel-solo .panel-quote, .panel-solo .panel-callout { max-width: none; }
 
   /* AGENDA — collapsible day-by-day programme, sized for the rail */
   .agenda { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; box-shadow: var(--shadow-1); }
@@ -331,7 +337,7 @@
   <div class="container">
 
     <div class="sec-head sec-head-wide">
-      <p>Building on its experience on regional cooperation and dialogue events, the Western Balkans Fund has become a recognized, visible and active promotor of civil society actors across the Western Balkans. Together with its selected partners, the Fund hosts events, in order to focus on critical issues affecting regional cooperation, dialogue, and reconciliation. These themed and WBF-facilitated events involve relevant stakeholders not only from the region and European Union, but also from all over the world.</p>
+      <p>Building on its experience on regional cooperation and dialogue events, the Western Balkans Fund has become a recognized, visible and active promotor of civil society actors across the Western Balkans. Together with its longstanding partners, the Ministry of Foreign Affairs of Japan and the Embassy of Japan in Tirana, the Western Balkans Fund hosts events addressing critical issues related to regional cooperation, dialogue, and reconciliation. These themed and WBF-facilitated events involve relevant stakeholders not only from the region and European Union, but also from all over the world.</p>
     </div>
 
     <!-- ============================================================
@@ -347,9 +353,8 @@
       <button type="button" class="yeartab" role="tab" id="tab-2025" aria-controls="panel-2025" data-slug="2025" aria-selected="false" tabindex="-1"><span class="ty">2025</span><span class="tn">SYNERGY</span></button>
       <button type="button" class="yeartab" role="tab" id="tab-veritycon" aria-controls="panel-veritycon" data-slug="2023-veritycon" aria-selected="false" tabindex="-1"><span class="ty">2023</span><span class="tn">VerityCon23</span></button>
       <button type="button" class="yeartab" role="tab" id="tab-unstoppable" aria-controls="panel-unstoppable" data-slug="2023-unstoppable" aria-selected="false" tabindex="-1"><span class="ty">2023</span><span class="tn">UNSTOPPABLE</span></button>
-      <button type="button" class="yeartab" role="tab" id="tab-2022" aria-controls="panel-2022" data-slug="2022" aria-selected="false" tabindex="-1"><span class="ty">2022</span></button>
-      <button type="button" class="yeartab" role="tab" id="tab-2021" aria-controls="panel-2021" data-slug="2021" aria-selected="false" tabindex="-1"><span class="ty">2021</span></button>
-      <button type="button" class="yeartab" role="tab" id="tab-2020" aria-controls="panel-2020" data-slug="2020" aria-selected="false" tabindex="-1"><span class="ty">2020</span></button>
+      <button type="button" class="yeartab" role="tab" id="tab-2022" aria-controls="panel-2022" data-slug="2022" aria-selected="false" tabindex="-1"><span class="ty">2022</span><span class="tn">FIRE</span></button>
+      <button type="button" class="yeartab" role="tab" id="tab-2020" aria-controls="panel-2020" data-slug="2020" aria-selected="false" tabindex="-1"><span class="ty">2020</span><span class="tn">CSO Summit</span></button>
     </div>
 
     <!-- ============================================================
@@ -1403,15 +1408,374 @@
     </section>
 
     <section class="yearpanel" id="panel-2022" role="tabpanel" aria-labelledby="tab-2022" tabindex="0" hidden>
-      <div class="slot"><strong>2022</strong><p>Awaiting the conference name, text and photos for this year.</p></div>
-    </section>
 
-    <section class="yearpanel" id="panel-2021" role="tabpanel" aria-labelledby="tab-2021" tabindex="0" hidden>
-      <div class="slot"><strong>2021</strong><p>Awaiting the conference name, text and photos for this year.</p></div>
+      <div class="panel-head">
+        <div class="panel-head-text">
+        <div class="panel-kicker">Freedom of Expression &amp; Hate Speech</div>
+        <h3>FIRE: Promoting a Culture of Tolerance and Mutual Respect</h3>
+        <div class="panel-meta">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>1&ndash;3 March 2022</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Hotel Tirana International, Tirana, Albania</span>
+        </div>
+        </div>
+        <div class="panel-logos">
+          <img class="pl-wbf" src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
+          <img class="pl-japan" src="/assets/images/partners/partner-japan.svg" alt="Government of Japan">
+        </div>
+      </div>
+
+      <div class="panel-split">
+      <div class="panel-main">
+
+      <p class="panel-lead reveal">Held in Tirana from 1 to 3 March 2022, FIRE was an <strong>inter-regional conference</strong> dedicated to freedom of expression and to the response to hate speech and defamation across the Western Balkans and the Visegrad region.</p>
+
+      <!-- IN NUMBERS — data-n / data-suffix drive the count-up -->
+      <div class="panel-stats">
+        <div class="panel-stat reveal"><div class="n" data-n="3">3</div><div class="l">days</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="7">7</div><div class="l">panel discussions</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="43">43</div><div class="l">panellists from both regions</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="84">84</div><div class="l">participants on site</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="3302">3302</div><div class="l">followed the sessions online</div></div>
+      </div>
+
+      <div class="panel-prose reveal">
+        <p>Organised by the Western Balkans Fund with the support of the Ministry of Foreign Affairs of Japan and the International Visegrad Fund, the conference brought together <strong>media professionals, government representatives, think tanks, civil society organisations, self-regulatory bodies and judicial institutions</strong> from the Western Balkans, the Visegrad countries and European Union member states.</p>
+        <p>The conference was built around a clear idea: hate speech is widely condemned, but it is <strong>still loosely defined</strong>. Offensive language targeting ethnic, religious and sexual minorities, migrants and other groups is a widespread phenomenon in the region, yet there is little consistency in how it is described, measured or addressed. Without a shared frame of reference, responses to it remain short sighted and fragmented.</p>
+        <p>For the Western Balkans, this carries particular weight. In societies still affected by unresolved divisions, <strong>hate speech and defamation weaken social cohesion, narrow public debate and hold back regional cooperation</strong>. At the same time, any response has to protect freedom of expression itself, which necessarily covers speech that offends, shocks or disturbs.</p>
+      </div>
+
+      <div class="panel-callout light reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6"/></svg></div>
+        <div>
+          <div class="k">Overall goal</div>
+          <p>To promote freedom of expression as a fundamental human right and to introduce legal mechanisms addressing hate speech and defamation in the Western Balkans and the Visegrad regions.</p>
+          <div class="k">Specific objective</div>
+          <p>To create an ecosystem that encourages open dialogue among stakeholders addressing all forms of hate speech and defamation.</p>
+        </div>
+      </div>
+
+      <div class="panel-prose reveal">
+        <p>The programme was organised around <strong>three working spaces</strong>, each designed for a different kind of conversation. The <strong>Joint Space</strong> opened and closed the conference and was open to every participant on site and online. The <strong>Dynamic Space</strong> was built as a plenary that gave equal weight to those in the room and those joining remotely, so that travel and health restrictions did not decide who could take part. The <strong>Fixed Space</strong> was a roundtable for a registered specialist audience, held under the Chatham House Rule, where panellists sat among participants and worked directly on recommendations.</p>
+
+        <h4>A spectrum, not a single category</h4>
+        <p>A recurring conclusion across the panels was that <strong>hate speech cannot be treated as one uniform offence</strong>. Participants distinguished between:</p>
+        <ul>
+          <li>expression that is severe enough to carry criminal liability;</li>
+          <li>expression that falls below that threshold but is subject to civil or administrative liability;</li>
+          <li>expression that carries no legal liability but still causes prejudice and harm, and has to be addressed through non-legal means such as education, media literacy, self-regulation and public debate.</li>
+        </ul>
+        <p><strong>Across the seven panels</strong>, participants examined hate speech in political communication, online hate speech and cyber bullying among young people, sexist hate speech against women, the risks of defamation and the misuse of litigation against journalists, the work of media regulators and self-regulatory bodies, and the effect of hate speech on regional cooperation.</p>
+      </div>
+
+      <div class="panel-callout reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div>
+          <div class="k">Key message</div>
+          <p>Responses to hate speech have to be <strong>proportionate to the harm they address</strong>. Legal instruments are necessary but insufficient on their own, and measures that are too broad risk becoming a tool for silencing opposition. As speakers put it during the opening session, the task is to minimise compulsion and maximise persuasion.</p>
+        </div>
+      </div>
+
+      <div class="panel-prose reveal">
+        <h4>Outcome</h4>
+        <p>The conference produced a set of <strong>recommendations and conclusions</strong> addressed to governments, media regulators, self-regulatory bodies, civil society organisations, the donor community and academia, and presented in a final report. The recommendations were framed to support both the protection of freedom of expression and the reduction of hate speech and defamation in public discourse.</p>
+        <p>FIRE also widened the circle of people working on this agenda. Around <strong>87 per cent of participants were attending a Western Balkans Fund event for the first time</strong>, and 93 per cent considered the topics highly important for the region. Beyond the room, the visibility campaign around the conference reached more than 55,000 people on social media and drew a further 2,700 visitors to the Fund&rsquo;s website.</p>
+        <p>More importantly, the conference established the Western Balkans Fund as <strong>a convener on freedom of expression</strong> and connected media organisations, institutions and associations that had not previously worked together across borders. That network carried directly into the Fund&rsquo;s later work on the same agenda, including UNSTOPPABLE in 2023 and VerityCon23 later that year.</p>
+      </div>
+
+      </div><!-- /.panel-main -->
+
+      <aside class="panel-rail">
+        <h4 class="rail-title">Programme</h4>
+        <p class="rail-sub">Seven panels across three days at Hotel Tirana International, in three working spaces. Open a day to see its sessions, moderators and panellists.</p>
+        <div class="agenda">
+
+          <details class="agenda-day" open>
+            <summary><span class="daytag">Day 1</span>1 March</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-time">14:00&ndash;16:00</div>
+                <div class="agenda-body">
+                  <h5>Arrival and registration of participants</h5>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">19:00&ndash;19:45</div>
+                <div class="agenda-body">
+                  <h5>Welcoming remarks and opening ceremony</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Room Classic</div>
+                  <div class="agenda-mod">Moderated by <strong>Edlira Gjoni</strong></div>
+                  <ul class="agenda-people">
+                    <li>Lindita Nikolla <span>&middot; Speaker of the Assembly of Albania</span></li>
+                    <li>Gjergj Murra <span>&middot; Executive Director, Western Balkans Fund</span></li>
+                    <li>Suzana Bo&scaron;kovi&cacute;-Prodanovi&cacute; <span>&middot; Assistant Minister of Foreign Affairs of Serbia, Chairmanship-in-Office of the WBF</span></li>
+                    <li>Takada Mitsuyuki <span>&middot; Ambassador of Japan to Albania</span></li>
+                    <li>Karel Urban <span>&middot; Ambassador of the Czech Republic to Albania</span></li>
+                    <li>Edlira Gjoni and Jeton Mehmeti <span>&middot; conference experts, orientation and preliminary remarks</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">20:00</div>
+                <div class="agenda-body">
+                  <h5>Welcoming reception</h5>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+          <details class="agenda-day">
+            <summary><span class="daytag">Day 2</span>2 March</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-time">09:00&ndash;10:00</div>
+                <div class="agenda-body">
+                  <h5>Registration of participants per working space</h5>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">10:00&ndash;11:30<span class="agenda-tag">Joint Space</span></div>
+                <div class="agenda-body">
+                  <h5>Hate speech in political discourse</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Room Balsha</div>
+                  <div class="agenda-mod">Moderated by <strong>Norbert &Scaron;inkovi&cacute;</strong></div>
+                  <ul class="agenda-people">
+                    <li>Erion Veliaj <span>&middot; Mayor of Tirana</span></li>
+                    <li>Nikola Dimitrov <span>&middot; former Minister of Foreign Affairs of North Macedonia</span></li>
+                    <li>Sabina &Cacute;udi&cacute; <span>&middot; Member of the House of Representatives, Bosnia and Herzegovina</span></li>
+                    <li>Uran Ismaili <span>&middot; former Minister of Health of Kosovo</span></li>
+                    <li>Igor Bandovi&cacute; <span>&middot; Belgrade Centre for Security Policy</span></li>
+                    <li>Karolina Zbytniewska <span>&middot; Editor in Chief, EURACTIV Poland</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">12:00&ndash;13:30<span class="agenda-tag">Dynamic Space</span></div>
+                <div class="agenda-body">
+                  <h5>Hate speech and cyber bullying as a global (anti)culture?</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Room Balsha</div>
+                  <div class="agenda-mod">Moderated by <strong>Kristina Gad&zcaron;e</strong></div>
+                  <ul class="agenda-people">
+                    <li>Milena Vu&ccaron;eli&cacute; <span>&middot; American Corner, Podgorica</span></li>
+                    <li>Ledion Krisafi <span>&middot; Tirana Center for Journalism Excellence</span></li>
+                    <li>Darko Sokovi&cacute; <span>&middot; Managing Partner, Propulsion</span></li>
+                    <li>Ksenija Vukmirovi&cacute; <span>&middot; Western Balkans Fund</span></li>
+                    <li>Kaltrina Ajeti <span>&middot; Kosovar Institute for Media and Communication</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">12:00&ndash;13:30<span class="agenda-tag">Fixed Space</span></div>
+                <div class="agenda-body">
+                  <h5>The risks of defamation and ways to deal with it</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Room Abret</div>
+                  <div class="agenda-mod">Moderated by <strong>Sanja Todorovi&cacute;</strong></div>
+                  <ul class="agenda-people">
+                    <li>Aleksander Cipa <span>&middot; Head of the Union of Journalists of Albania</span></li>
+                    <li>Flutura Kusari <span>&middot; Legal adviser, European Centre for Press and Media Freedom</span></li>
+                    <li>Scott Griffen <span>&middot; Deputy Director, International Press Institute, online</span></li>
+                    <li>Biljana Nasteska Kalanoska <span>&middot; Association of Journalists of Macedonia</span></li>
+                    <li>Haris &Cacute;utahija <span>&middot; Foreign Policy Initiative, Sarajevo</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">14:45&ndash;16:15<span class="agenda-tag">Dynamic Space</span></div>
+                <div class="agenda-body">
+                  <h5>Hate speech as a potential disturbance to social cohesion</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Room Balsha</div>
+                  <div class="agenda-mod">Moderated by <strong>Fitore Rexhepi</strong></div>
+                  <ul class="agenda-people">
+                    <li>Nid&zcaron;ara Ahmeta&scaron;evi&cacute; <span>&middot; journalist, Sarajevo</span></li>
+                    <li>Shejla Fidani <span>&middot; Roma Integration Action, Regional Cooperation Council</span></li>
+                    <li>Leon Malazogu <span>&middot; former Ambassador</span></li>
+                    <li>Veronika Bundzikova <span>&middot; Masaryk University, Brno</span></li>
+                    <li>Nikola Burazer <span>&middot; European Western Balkans</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">14:45&ndash;16:15<span class="agenda-tag">Fixed Space</span></div>
+                <div class="agenda-body">
+                  <h5>Legal mechanisms for countering hate speech</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Room Abret</div>
+                  <div class="agenda-mod">Moderated by <strong>Tanja Tomi&cacute;</strong></div>
+                  <ul class="agenda-people">
+                    <li>Ur&scaron;ka Umek <span>&middot; Head of Media Unit, Council of Europe</span></li>
+                    <li>Sun&ccaron;ica Baki&cacute; <span>&middot; Agency for Electronic Media, Montenegro</span></li>
+                    <li>Davor Marko <span>&middot; Thomson Foundation</span></li>
+                    <li>Arben Muka <span>&middot; Programme Director, Audiovisual Media Authority, Albania</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">16:30&ndash;18:00<span class="agenda-tag">Joint Space</span></div>
+                <div class="agenda-body">
+                  <h5>Hate speech against women: dismantling sexism and misogyny</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Room Balsha</div>
+                  <div class="agenda-mod">Moderated by <strong>Milena Sto&scaron;i&cacute;</strong></div>
+                  <ul class="agenda-people">
+                    <li>Maja Rai&ccaron;evi&cacute; <span>&middot; Women&rsquo;s Rights Center, Podgorica</span></li>
+                    <li>Besa Luci <span>&middot; Kosovo 2.0</span></li>
+                    <li>Jiri Nemec <span>&middot; Masaryk University, Brno</span></li>
+                    <li>Amila &Zcaron;dralovi&cacute; <span>&middot; University of Sarajevo</span></li>
+                    <li>Fatjona Mejdini <span>&middot; Global Initiative against Transnational Organized Crime</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">19:00&ndash;21:00</div>
+                <div class="agenda-body">
+                  <h5>Conference dinner</h5>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+          <details class="agenda-day">
+            <summary><span class="daytag">Day 3</span>3 March</summary>
+            <div class="agenda-list">
+
+              <div class="agenda-item">
+                <div class="agenda-time">10:00&ndash;11:30<span class="agenda-tag">Joint Space</span></div>
+                <div class="agenda-body">
+                  <h5>How does hate speech affect regional cooperation?</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Room Balsha</div>
+                  <div class="agenda-mod">Moderated by <strong>Endrit Shabani</strong></div>
+                  <ul class="agenda-people">
+                    <li>Ivan Vejvoda <span>&middot; Institute for Human Sciences, Vienna</span></li>
+                    <li>Besnik Tahiri <span>&middot; Member of the Assembly of Kosovo</span></li>
+                    <li>Alba Cela <span>&middot; Albanian Institute for International Studies</span></li>
+                    <li>Elena Cherniavska <span>&middot; Office of the OSCE Representative on Freedom of the Media</span></li>
+                    <li>Milo&scaron; Prica <span>&middot; Ambassador at Large, Ministry of Foreign Affairs of Bosnia and Herzegovina</span></li>
+                    <li>Peter Grk <span>&middot; Secretary General, Bled Strategic Forum</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">11:30&ndash;12:30</div>
+                <div class="agenda-body">
+                  <h5>Presentation of findings and concluding remarks</h5>
+                  <div class="agenda-place"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Room Balsha</div>
+                  <ul class="agenda-people">
+                    <li>Dafina Beqiri <span>&middot; Senior Programme Manager, Western Balkans Fund</span></li>
+                    <li>Edlira Gjoni <span>&middot; conference expert</span></li>
+                    <li>Jeton Mehmeti <span>&middot; conference expert</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="agenda-item">
+                <div class="agenda-time">12:30&ndash;14:00</div>
+                <div class="agenda-body">
+                  <h5>Lunch and departure of participants</h5>
+                </div>
+              </div>
+
+            </div>
+          </details>
+
+        </div>
+      </aside>
+
+      </div><!-- /.panel-split -->
+
+      <!-- PHOTO CAROUSEL -->
+      <div class="gallery-head">
+        <h4>In pictures</h4>
+        <a class="album-link" href="https://www.flickr.com/photos/204725264@N07/albums/72177720335422311" target="_blank" rel="noopener">View the full album on Flickr
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+        </a>
+      </div>
+      <div class="carousel" data-album="2022"></div>
+
     </section>
 
     <section class="yearpanel" id="panel-2020" role="tabpanel" aria-labelledby="tab-2020" tabindex="0" hidden>
-      <div class="slot"><strong>2020</strong><p>Awaiting the conference name, text and photos for this year.</p></div>
+
+      <div class="panel-head">
+        <div class="panel-head-text">
+        <div class="panel-kicker">Civil Society &amp; Regional Cooperation</div>
+        <h3>1st Western Balkans Civil Society Summit</h3>
+        <div class="panel-meta">
+          <!-- Dates read off the conference backdrop in the Flickr album ("TIRANA 27-29 FEBRUARY 2020"),
+               not from the supplied text. Worth confirming against the original news item. -->
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>27&ndash;29 February 2020</span>
+          <!-- TO CONFIRM: venue. Only the city is known; add the hotel or conference centre when it turns up. -->
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tirana, Albania</span>
+        </div>
+        </div>
+        <div class="panel-logos">
+          <img class="pl-wbf" src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
+          <img class="pl-japan" src="/assets/images/partners/partner-japan.svg" alt="Government of Japan">
+        </div>
+      </div>
+
+      <!-- SOLO LAYOUT — no programme rail yet. When the agenda arrives, swap
+           .panel-solo for the split used by the other years:
+             <div class="panel-split"><div class="panel-main"> … </div>
+             <aside class="panel-rail"> … </aside></div> -->
+      <div class="panel-solo">
+
+      <p class="panel-lead reveal">Held in Tirana over three working days, the first Western Balkans Civil Society Summit brought together <strong>more than 100 civil society representatives</strong> from across the region to discuss the future of the sector and its role in strengthening regional cooperation.</p>
+
+      <!-- IN NUMBERS — data-n / data-suffix drive the count-up -->
+      <div class="panel-stats">
+        <div class="panel-stat reveal"><div class="n" data-n="3">3</div><div class="l">days</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="100" data-suffix="+">100+</div><div class="l">civil society representatives</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="4">4</div><div class="l">working groups</div></div>
+        <div class="panel-stat reveal"><div class="n" data-n="1" data-suffix="st">1st</div><div class="l">edition of the Summit</div></div>
+      </div>
+
+      <div class="panel-prose reveal">
+        <p>Organised by the Western Balkans Fund with the support of the Ministry of Foreign Affairs of Japan, the Summit was <strong>the first gathering of its kind convened by the Fund</strong> and an important milestone in the regional cooperation process. Preparations began months in advance, and participants were selected through a rigorous process that brought experienced practitioners from every part of the region into the room.</p>
+        <p>The Summit was built around a clear idea: civil society organisations across the Western Balkans <strong>work on the same problems, often in isolation from one another</strong>. Bringing them together with the institutions that shape their operating environment allows challenges and achievements to be examined side by side, and turns individual experience into shared regional knowledge.</p>
+        <p>Across the three days, panels brought together senior government representatives, international and regional organisations and civil society leaders to examine the obstacles the sector faces and the results it has achieved so far.</p>
+
+        <h4>Opening and panels</h4>
+        <p>The Summit was greeted by <strong>Seiichiro Taguchi</strong>, Director of the Central and South-Eastern Europe Division at the Ministry of Foreign Affairs of Japan. Opening remarks were also delivered by Nenad Koprivica, Director General at the Ministry of Sports and Youth of Montenegro, Zoran Popov, Secretary of State at the Ministry of Foreign Affairs of North Macedonia, Mimi Kodheli, Chair of the Foreign Affairs Committee of the Assembly of the Republic of Albania, and Andor F. D&aacute;vid, Executive Director of the International Visegrad Fund.</p>
+        <p>Regional and international organisations were represented in the panel discussions by Fatos Mustafa, Deputy Secretary General of RYCO, Juliana Hoxha, Executive Director of Partners Albania, Bojana Dujkovi&cacute;, Board Member of EUROCLIO in Bosnia and Herzegovina, Uranik Begu, Executive Director of the Innovation Centre Kosovo, and Irina Ljubi&cacute;, Executive Director of the Jelena &Scaron;anti&cacute; Foundation. They were joined by Jelica Mini&cacute;, Vice President of the European Movement in Serbia, Bardhyl Jashari, Executive Director of the Metamorphosis Foundation, Mirela Rajkovi&cacute;, Executive Director of SEEYN, and Igor Milo&scaron;evi&cacute;, Programme Manager at ADP ZID in Montenegro.</p>
+
+        <h4>Working groups</h4>
+        <p>The second day was given over entirely to the participants. <strong>Four working groups</strong> met to develop recommendations for the governments of the Contracting Parties, organised around priority areas for the Fund: education and scientific exchanges, cultural cooperation, sustainable development, and a dedicated group for think tanks. Each group produced its own set of recommendations, which were presented directly to government representatives and published afterwards.</p>
+      </div>
+
+      <div class="panel-callout reveal">
+        <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="k">Outcome</div>
+          <p>The recommendations were received by Oltion Rrumbullaku, Deputy Minister of Education, Sports and Youth of Albania, Almir &Scaron;ahovi&cacute;, Assistant Minister and Ambassador at the Ministry of Foreign Affairs of Bosnia and Herzegovina, Pavle Jankovi&cacute;, Head of the Department for Regional Initiatives at the Ministry of Foreign Affairs of Serbia, Sokol Dedja, Deputy Minister for Europe and Foreign Affairs of Albania, and Makoto Ito, Ambassador of Japan to Albania. They committed to <strong>a more supportive approach from their governments</strong> and to working with the Western Balkans Fund to strengthen regional cooperation.</p>
+        </div>
+      </div>
+
+      <div class="panel-prose reveal">
+        <p>The Summit established <strong>a format the Fund has returned to since</strong>. It demonstrated that civil society organisations in the Western Balkans are not only implementers of projects, but partners in shaping the regional agenda, and that a structured exchange between them and their governments produces commitments that outlast the event itself.</p>
+      </div>
+
+      </div><!-- /.panel-solo -->
+
+      <!-- PHOTO CAROUSEL -->
+      <div class="gallery-head">
+        <h4>In pictures</h4>
+        <a class="album-link" href="https://www.flickr.com/photos/204725264@N07/albums/72177720335422171" target="_blank" rel="noopener">View the full album on Flickr
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+        </a>
+      </div>
+      <div class="carousel" data-album="2020"></div>
+
     </section>
 
     <p class="status-note">*This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
@@ -1558,6 +1922,29 @@
         '55441237602 2252fd950b', '55442204736 3ddd22ef06', '55442597145 68186c0ffd',
         '55442204701 768bdc5491', '55442326008 d023da8c72', '55442597095 9d4c6a1dab',
         '55442204631 99fdb73da7', '55442597090 b73579c802', '55442204641 df43717fab'
+      ]
+    },
+    '2022': {
+      user: '204725264@N07',
+      album: '72177720335422311',
+      label: 'FIRE Conference, Tirana 2022',
+      photos: [
+        '55504101916 84ab8e74da', '55504481360 2818aff2fb', '55503100942 fae492a3e7',
+        '55504101921 09ea22412f', '55504261154 3574344698', '55504481370 49d03512b4',
+        '55504261229 9923626e53', '55503101012 d41161a5ac', '55504101981 d6a1364beb',
+        '55504261194 3f82bf3dd2', '55504202193 3d52d40366', '55503100957 b1a7a1c131',
+        '55504261234 e7c42d3a90', '55504202253 165a0b6097'
+      ]
+    },
+    '2020': {
+      user: '204725264@N07',
+      album: '72177720335422171',
+      label: '1st Western Balkans Civil Society Summit, Tirana 2020',
+      photos: [
+        '55503094942 ca1000767b', '55504195988 031b4e3797', '55504254734 6aa4fa5f79',
+        '55504254739 43020d1756', '55504095511 047a585580', '55504475300 faa6dff6f1',
+        '55504095551 dc7ca80780', '55504475310 78a767ba88', '55503094952 068591f604',
+        '55504475305 6560c5c578', '55504254759 26e472c4eb'
       ]
     }
   };
