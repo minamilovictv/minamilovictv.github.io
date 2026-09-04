@@ -1129,7 +1129,8 @@ body.mtr-open { overflow: hidden; }
       <a href="/index.html">Home</a><span>›</span><a href="/our-programs.html">Our Programmes</a><span>›</span>WBF Regional Academy
     </nav>
 
-    <div class="hero-pills">
+    <!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. Delete the style attribute to bring the dates back. -->
+    <div class="hero-pills" style="display:none">
       <div class="status-pill">
         <span class="status-pill-dot"></span>
         <span class="status-pill-text">13–19 September 2026 · Tirana, Albania</span>
@@ -1145,7 +1146,8 @@ body.mtr-open { overflow: hidden; }
     <p class="tagline">An initiative of the <strong>Western Balkans Fund</strong>, supported by the <strong>Open Society Foundation Western Balkans</strong>, the WBF Regional Academy combines thematic lectures, interactive workshops, dialogue sessions, and site visits to equip a new generation with the skills, networks, and mindset needed to advance dialogue, cooperation, and reconciliation across the WB6.</p>
 
     <div class="hero-ctas">
-      <a class="btn-primary" href="#programme">
+      <!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. Points at the hidden Programme section. -->
+      <a class="btn-primary" href="#programme" style="display:none">
         Explore the Programme
         <svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
       </a>
@@ -1230,40 +1232,35 @@ body.mtr-open { overflow: hidden; }
 
     <div class="pillars-grid">
 
-      <a class="pillar-card" href="#day-2">
+      <a class="pillar-card" href="#pillars" data-day-link="2">
         <span class="pillar-num">01</span>
         <div class="pillar-title">Culture of Cooperation &amp; European Integration</div>
         <div class="pillar-desc">The politics of regional cooperation in the Western Balkans and the region&rsquo;s progress toward EU integration, and how joint action across the WB6 builds the trust that accession requires.</div>
-        <span class="pillar-link">Day 2 in the programme</span>
-      </a>
+              </a>
 
-      <a class="pillar-card" href="#day-3">
+      <a class="pillar-card" href="#pillars" data-day-link="3">
         <span class="pillar-num">02</span>
         <div class="pillar-title">Democracy, Citizenship &amp; European Future</div>
         <div class="pillar-desc">Democracy in practice, covering citizens, participation and European futures, alongside regional economic integration as preparation for the EU Single Market, drawing on the CEFTA experience.</div>
-        <span class="pillar-link">Day 3 in the programme</span>
-      </a>
+              </a>
 
-      <a class="pillar-card" href="#day-4">
+      <a class="pillar-card" href="#pillars" data-day-link="4">
         <span class="pillar-num">03</span>
         <div class="pillar-title">Leadership for Social Impact</div>
         <div class="pillar-desc">Values-based leadership grounded in human rights, democratic resilience and emerging leadership for social impact, with practical work on diplomatic etiquette, dialogue and negotiation.</div>
-        <span class="pillar-link">Day 4 in the programme</span>
-      </a>
+              </a>
 
-      <a class="pillar-card" href="#day-5">
+      <a class="pillar-card" href="#pillars" data-day-link="5">
         <span class="pillar-num">04</span>
         <div class="pillar-title">Media, Communication &amp; Freedom of Expression</div>
         <div class="pillar-desc">Media ecosystems and freedom of expression in the regional context, and the disinformation, media literacy and responsible communication skills leaders need to navigate them.</div>
-        <span class="pillar-link">Day 5 in the programme</span>
-      </a>
+              </a>
 
-      <a class="pillar-card" href="#day-6">
+      <a class="pillar-card" href="#pillars" data-day-link="6">
         <span class="pillar-num">05</span>
         <div class="pillar-title">Women, Inclusion &amp; Gender-Responsive Leadership</div>
         <div class="pillar-desc">Inclusion as a foundation of democratic governance and regional cooperation, gender-responsive leadership in practice, and the work of challenging gender norms in leadership and decision-making.</div>
-        <span class="pillar-link">Day 6 in the programme</span>
-      </a>
+              </a>
 
     </div>
   </div>
@@ -1279,7 +1276,8 @@ body.mtr-open { overflow: hidden; }
      breaks use .is-break; the two concurrent Tuesday sessions use
      .is-parallel.
      ============================================================ -->
-<section class="section" id="programme">
+<!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. Delete the style attribute to bring the day-by-day programme back. -->
+<section class="section" id="programme" style="display:none">
   <div class="container">
     <div class="sec-head">
       <div class="overline">Tirana &middot; 13&ndash;19 September 2026</div>
@@ -1722,9 +1720,10 @@ body.mtr-open { overflow: hidden; }
 
       <!-- Clickable: opens #mentorModal with the pre-Academy online
            mentoring detail held in #mentor-data below. -->
-      <div class="faculty-card is-clickable" data-mentor-open role="button" tabindex="0"
-           aria-haspopup="dialog"
-           aria-label="Pre and Post Mentors: read about the pre-Academy online mentoring">
+      <!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. The card stays; the modal trigger (is-clickable,
+           data-mentor-open, role/tabindex/aria-haspopup) is removed until the
+           mentor detail is confirmed. Restore those attributes to reopen it. -->
+      <div class="faculty-card">
         <div class="faculty-photo">
           <div class="faculty-silhouette">
             <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -1735,7 +1734,6 @@ body.mtr-open { overflow: hidden; }
           <div class="faculty-name">Pre &amp; Post Mentors</div>
           <div class="faculty-status">Ongoing · before, during &amp; after</div>
           <p class="faculty-desc">Senior mentors who accompany participants from pre-arrival preparation through post-Academy initiative development, in line with WBF mentorship guidelines.</p>
-          <span class="faculty-more">Meet the mentors</span>
         </div>
       </div>
 
