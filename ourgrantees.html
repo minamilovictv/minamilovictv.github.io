@@ -430,9 +430,9 @@
 
     /* Kosovo designation note: the country tags are data-driven, so the note
      names Kosovo itself rather than hanging off a repeated asterisk. */
-  /* Inset to match the grantee rows above (22px), so the first letter clears
-     the panel's rounded corner instead of sitting on the edge. */
-  .cp-designation-note { font-size: 12px; color: var(--ink-soft); line-height: 1.6; margin-top: 22px; padding: 0 22px 4px; }
+  /* Sits on the dark band below the panel, not inside it — light grey so it
+     is legible against the navy without competing with the content above. */
+  .cp-designation-note { font-size: 12px; color: rgba(255,255,255,0.68); line-height: 1.6; margin-top: 18px; }
   .hl-disclaimer { font-size: 12px; color: rgba(255,255,255,0.42); line-height: 1.6; margin-top: 28px; text-align: center; }
 
     /* Scroll-reveal */
@@ -682,8 +682,8 @@
           </div>
           <div class="result-summary" id="result-summary" aria-live="polite"></div>
           <div class="grantee-list" id="grantee-list"></div>
-          <p class="cp-designation-note">Kosovo: this designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
         </div>
+        <p class="cp-designation-note">Kosovo: this designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
       </div>
     </section>
 
