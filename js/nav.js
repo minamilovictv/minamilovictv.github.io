@@ -144,6 +144,18 @@
     nb.querySelectorAll('[data-page-key]').forEach(function (el) {
       if (el.getAttribute('data-page-key') === here) el.setAttribute('aria-current', 'page');
     });
+
+    /* ── 5. The rest of the shared chrome ──────────────────────
+       Every page loads nav.js once the navbar markup is in place,
+       so it is also where the other site-wide controls are pulled
+       in — no page needs its own script tags for them. */
+    ['/js/site-search.js', '/js/back-to-top.js'].forEach(function (src) {
+      if (document.querySelector('script[src="' + src + '"]')) return;
+      var s = document.createElement('script');
+      s.src = src;
+      s.defer = true;
+      document.body.appendChild(s);
+    });
   }
 
   if (document.readyState === 'loading') {

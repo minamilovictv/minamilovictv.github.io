@@ -141,3 +141,118 @@
 .btn-apply { padding: 8px 11px; }
 .btn-apply svg { display: none; }
 }
+
+/* ============================================================
+   GLOBAL SEARCH  (button in the header, panel from js/site-search.js)
+   ============================================================
+   Deliberately quiet: an outlined icon button that matches the
+   header's other controls, and a panel that reads as a document
+   index rather than a command palette. */
+  .nav-search {
+    display: flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px;
+    background: none; border: 1px solid var(--line);
+    border-radius: 6px; color: var(--navy);
+    cursor: pointer; padding: 0; flex-shrink: 0;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+  .nav-search:hover, .nav-search:focus-visible { background: var(--navy); border-color: var(--navy); color: #fff; outline: none; }
+  .nav-search svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+  body.wbf-search-open { overflow: hidden; }
+
+  .wbf-search { position: fixed; inset: 0; z-index: 1200; }
+  .wbf-search-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    opacity: 0; transition: opacity 0.16s ease;
+  }
+  .wbf-search.is-open .wbf-search-backdrop { opacity: 1; }
+
+  .wbf-search-panel {
+    position: relative;
+    max-width: 720px; margin: 84px auto 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 24px 60px rgba(15, 32, 68, 0.28);
+    overflow: hidden;
+    opacity: 0; transform: translateY(-8px);
+    transition: opacity 0.16s ease, transform 0.16s ease;
+  }
+  .wbf-search.is-open .wbf-search-panel { opacity: 1; transform: translateY(0); }
+
+  .wbf-search-bar { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .wbf-search-bar-icon { width: 19px; height: 19px; flex-shrink: 0; fill: none; stroke: #94a3b8; stroke-width: 2; stroke-linecap: round; }
+  .wbf-search-input {
+    flex: 1; min-width: 0;
+    border: 0; outline: none; background: none;
+    font-family: inherit; font-size: 17px; color: var(--ink, #0f172a);
+    padding: 4px 0;
+  }
+  .wbf-search-input::placeholder { color: #9aa5b8; }
+  .wbf-search-input::-webkit-search-cancel-button { display: none; }
+  .wbf-search-close {
+    display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; flex-shrink: 0;
+    background: none; border: 0; border-radius: 6px;
+    color: #64748b; cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wbf-search-close:hover { background: #f1f5f9; color: var(--navy); }
+  .wbf-search-close svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+  .wbf-search-body { max-height: min(60vh, 520px); overflow-y: auto; }
+  .wbf-search-status { font-size: 13.5px; color: #6b7789; margin: 0; padding: 18px 20px; line-height: 1.5; }
+
+  .wbf-search-results { list-style: none; margin: 0; padding: 6px 0 10px; }
+  .wbf-search-group {
+    font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+    color: #94a3b8; padding: 12px 20px 6px;
+  }
+  .wbf-search-item a {
+    display: block; padding: 9px 20px; text-decoration: none; color: inherit;
+    border-left: 2px solid transparent;
+  }
+  .wbf-search-item.is-active a { background: #f4f7fb; border-left-color: var(--navy); }
+  .wbf-search-title { display: block; font-size: 15px; font-weight: 600; color: var(--navy); line-height: 1.35; }
+  .wbf-search-meta  { display: block; font-size: 11.5px; color: #94a3b8; margin-top: 2px; }
+  .wbf-search-snip  { display: block; font-size: 13px; color: #64748b; line-height: 1.5; margin-top: 3px; }
+  .wbf-search mark { background: #fef3c7; color: inherit; padding: 0 1px; border-radius: 2px; }
+
+  @media (max-width: 680px) {
+    .wbf-search-panel { margin: 0; max-width: none; height: 100%; border-radius: 0; border: 0; }
+    .wbf-search-body { max-height: calc(100% - 60px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wbf-search-backdrop, .wbf-search-panel { transition: none; }
+  }
+
+/* ============================================================
+   BACK TO TOP  (js/back-to-top.js)
+   ============================================================
+   Sits in the bottom-right corner, in the same navy as the header
+   buttons. Hidden near the top of the page, and it lifts above the
+   footer rather than sitting on top of it. */
+  .wbf-top {
+    position: fixed; right: 24px; bottom: 24px; z-index: 900;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--navy); color: #fff;
+    border: 1px solid var(--navy); border-radius: 8px;
+    cursor: pointer; padding: 0;
+    box-shadow: 0 8px 22px rgba(15, 32, 68, 0.28);
+    opacity: 0; visibility: hidden; transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s, background 0.2s ease, bottom 0.25s ease;
+  }
+  .wbf-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+  .wbf-top:hover, .wbf-top:focus-visible { background: var(--navy-900, #0f2044); outline: none; }
+  .wbf-top:focus-visible { box-shadow: 0 0 0 3px rgba(51, 114, 227, 0.45); }
+  .wbf-top svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  @media (max-width: 680px) {
+    .wbf-top { right: 16px; bottom: 16px; width: 40px; height: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wbf-top { transition: opacity 0.2s ease, visibility 0.2s; }
+  }

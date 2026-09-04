@@ -280,6 +280,32 @@
     };
   }
 
+  /* Events. events.html has its own richer parser for the same sheet;
+     this normaliser exists so other pages (today: the global search)
+     can read events without repeating the URL. Keep the URL below in
+     step with the one in events.html and index.html. */
+  const EVENTS_SHEET_CSV =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuA6RB0kC00qvfUU3kU-EMybJGoW-2OuL5DluaHBDyBlcTlK2RVJ3fQhf6wq02hlrG1iQen7jtzCJs/pub?output=csv';
+
+  function normalizeEvents(rawRows) {
+    return rawRows
+      .map(row => ({
+        id:          (row.id || '').trim(),
+        title:       (row.title || '').trim(),
+        type:        (row.type || '').trim(),
+        mode:        (row.mode || '').trim(),
+        startDate:   (row.startDate || '').trim(),
+        endDate:     (row.endDate || '').trim(),
+        city:        (row.city || '').trim(),
+        venue:       (row.venue || '').trim(),
+        programme:   (row.programme || '').trim(),
+        summary:     (row.summary || '').trim(),
+        description: (row.description || '').trim(),
+        status:      (row.status || '').trim().toLowerCase()
+      }))
+      .filter(e => e.id && e.title && e.status !== 'draft');
+  }
+
   function normalizeNews(rawRows) {
     return rawRows
       .map(mapNewsRow)
@@ -513,4 +539,6 @@
     loader: loadNewsCards,
     extras: { hydrate: hydrateNews }
   });
+
+  registerFeed('events', EVENTS_SHEET_CSV, normalizeEvents);
 })();

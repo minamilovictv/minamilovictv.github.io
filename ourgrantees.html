@@ -1515,6 +1515,16 @@
         await loadData();
         renderPortfolio();
         renderList();
+        openFromUrl();
+      }
+
+      /* ?project=ID opens that grant straight away — used by the global
+         site search, and it makes a single project linkable. */
+      function openFromUrl() {
+        const id = new URL(window.location).searchParams.get('project');
+        if (!id) return;
+        const item = STATE.items.find(p => String(p.id) === String(id));
+        if (item) openGrantModal(item, null);
       }
 
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
