@@ -145,6 +145,14 @@
     .pf-badge.eval    { background: rgba(45,190,210,0.18); color: #7fdde8; border: 1px solid rgba(45,190,210,0.40); }
     .pf-badge.active  { background: rgba(60,200,130,0.18); color: #74e2a6; border: 1px solid rgba(60,200,130,0.40); }
     .pf-badge.closed  { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.62); border: 1px solid rgba(255,255,255,0.14); }
+    /* An open call — green with the live dot, matching the homepage grid. */
+    .pf-badge.opencall { display: inline-flex; align-items: center; gap: 6px; background: rgba(60,200,130,0.22); color: #7ceaad; border: 1px solid rgba(74,222,128,0.55); }
+    .pf-badge.opencall::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #4ade80; animation: pulseDotGreen 1.8s ease-out infinite; }
+    @keyframes pulseDotGreen { 0% { box-shadow: 0 0 0 0 rgba(74,222,128,0.65); } 70% { box-shadow: 0 0 0 9px rgba(74,222,128,0); } 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); } }
+    /* The card for whichever call is taking applications right now. */
+    .pf-card.glow { background: linear-gradient(160deg, #0d3b2a 0%, #14532d 100%); border-color: rgba(74,222,128,0.45); box-shadow: 0 12px 30px -10px rgba(45,190,120,0.45); }
+    .pf-card.glow::before { transform: scaleX(1); background: linear-gradient(90deg, #22c55e, #7ceaad); }
+    .pf-card.glow:hover { border-color: rgba(74,222,128,0.75); box-shadow: 0 20px 44px -12px rgba(45,190,120,0.55); }
     @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(147,184,247,0.55); } 70% { box-shadow: 0 0 0 10px rgba(147,184,247,0); } 100% { box-shadow: 0 0 0 0 rgba(147,184,247,0); } }
 
     .pf-grant     { text-align: right; flex-shrink: 0; }
@@ -179,7 +187,7 @@
     @media (prefers-reduced-motion: reduce) {
       .pf-grid .pf-card { animation: none; transition: none; }
       .pf-card::before, .pf-arrow { transition: none; }
-      .pf-badge.open::before { animation: none; }
+      .pf-badge.open::before, .pf-badge.opencall::before { animation: none; }
     }
 
     /* EXPLORER */
@@ -758,7 +766,7 @@
     (function () {
       'use strict';
 
-      const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSXEM2dwrd6xDUwLOP8MU0lOKfOZ5WnotA0TxuIJ9PGhPb-SHl27aYV1eri45mOOTLlWpwJd0yNE0tG/pub?output=csv';
+      const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTTxr9vnfZWXwU51K1a4DhGj6LGBe9Z8mwCPjDN9zL7MWT0RGi49qPJWkd6FnaXxr6THh0gFkPrt1NC/pub?output=csv';
 
       /* SAMPLE_DATA below is illustrative placeholder content for local development
          only. It must NEVER reach real visitors: in production a feed failure shows
@@ -788,7 +796,7 @@
           cardTitle: 'Grants for Grassroots Initiatives (GGI)', who: 'org', type: 'grant',
           badge: 'Winners Announced', badgeClass: 'winners', grantNum: '€15,000', grantSub: 'max grant',
           cardDesc: 'Supports young, emerging CSOs and grassroots organisations to contribute to regional cooperation, reconciliation, democratic governance and EU integration across the WB6.',
-          when: 'Call No. 8 · results published'
+          when: 'Under implementation'
         },
         {
           id: 'gefund', index: '02', short: 'GEFund', name: 'Gender Equality Fund', calls: 1,
@@ -808,9 +816,9 @@
           description: 'A focused funding opportunity supporting regional cooperation through a dedicated call.',
           empty: 'No ERC grantees match the current filters.',
           cardTitle: 'ERC Empowering Regional Cooperation', who: 'org', type: 'grant',
-          badge: 'Coming Soon', badgeClass: 'soon', grantNum: '€30,000', grantSub: 'max grant',
+          badge: 'Coming Soon', badgeClass: 'soon', grantNum: '€25,000', grantSub: 'max grant',
           cardDesc: 'Larger EU co-funded grants that strengthen civil society partnerships and collaborative initiatives across the Western Balkans, promoting democracy and sustainable development.',
-          when: 'Opening Autumn 2026'
+          when: 'Opens on 23 September'
         },
         {
           id: 'move', index: '04', short: 'MOVE', name: 'MOVE', calls: 6,
@@ -819,9 +827,10 @@
           description: 'Enabling individual and professional mobility, exchange and learning across the region.',
           empty: 'No MOVE grantees match the selected call and filters.',
           cardTitle: 'MOVE Grants', who: 'individual', type: 'grant',
-          badge: 'Coming Soon', badgeClass: 'soon', grantNum: 'People', grantSub: 'to people',
+          glow: true,
+          badge: 'Open Call', badgeClass: 'opencall', grantNum: 'People', grantSub: 'to people',
           cardDesc: 'Short-term, people-to-people funding for researchers, students, professors, journalists, artists and activists to cross borders, connect with peers, and bring value back home.',
-          when: 'For individuals · next call TBC'
+          when: 'Deadline 5 October · 12:59 CET'
         },
         {
           id: 'matching', index: '05', short: 'Matching Grants', name: 'Matching Grants', calls: 1,
@@ -1022,7 +1031,7 @@
         const host = $('#portfolio-list');
         host.innerHTML = PROGRAMMES.map(programme => {
           const selected = STATE.programme === programme.id;
-          return '<button type="button" class="pf-card' + (selected ? ' is-selected' : '') + '" data-programme="' + programme.id + '" aria-pressed="' + selected + '">' +
+          return '<button type="button" class="pf-card' + (selected ? ' is-selected' : '') + (programme.glow ? ' glow' : '') + '" data-programme="' + programme.id + '" aria-pressed="' + selected + '">' +
             '<span class="pf-card-top">' +
               '<span class="pf-badge ' + programme.badgeClass + '">' + esc(programme.badge) + '</span>' +
               '<span class="pf-grant"><span class="pf-grant-num">' + esc(programme.grantNum) + '</span><span class="pf-grant-sub">' + esc(programme.grantSub) + '</span></span>' +
