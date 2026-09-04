@@ -147,6 +147,60 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .btn-ghost:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.7); }
 .btn-ghost svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+/* The hero splits while a call is open: copy on the left, the guidelines
+   themselves on the right, so the document is the thing you see. */
+.hero-top { display: grid; grid-template-columns: minmax(0, 1fr) 268px; gap: 56px; align-items: start; }
+.hero-doc { display: flex; flex-direction: column; gap: 14px; animation: heroFadeUp .7s ease both .55s; }
+.hero-doc-cover {
+  position: relative; display: block; border-radius: 10px; overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 22px 46px rgba(0,0,0,0.34);
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
+}
+.hero-doc-cover img { display: block; width: 100%; height: auto; }
+.hero-doc-cover:hover { transform: translateY(-4px); box-shadow: 0 30px 58px rgba(0,0,0,0.42); }
+.hero-doc-tag {
+  position: absolute; left: 10px; bottom: 10px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 10px; border-radius: 6px;
+  background: rgba(3,26,24,0.82); backdrop-filter: blur(4px);
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #fff;
+}
+.hero-doc .btn-doc {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 18px; border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff; font-size: 13.5px; font-weight: 600; text-decoration: none;
+  transition: background .2s ease, border-color .2s ease;
+}
+.hero-doc .btn-doc:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.62); }
+.hero-doc .btn-doc svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Below the split, the document becomes a single tappable row rather than a
+   shrunken card — the cover stays a recognisable thumbnail, the label does
+   the work, and the whole panel is one large touch target. */
+@media (max-width: 900px) {
+  .hero-top { grid-template-columns: 1fr; gap: 26px; }
+  .hero-doc {
+    flex-direction: row; align-items: center; gap: 14px;
+    max-width: 460px; padding: 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .hero-doc-cover { flex: 0 0 56px; border-radius: 6px; box-shadow: none; }
+  .hero-doc-cover:hover { transform: none; box-shadow: none; }
+  .hero-doc-tag { display: none; }
+  .hero-doc .btn-doc {
+    flex: 1; justify-content: flex-start;
+    background: none; border: 0; padding: 0;
+    font-size: 14.5px; font-weight: 600;
+  }
+  .hero-doc .btn-doc:hover { background: none; }
+}
 .meta-facts {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1416,6 +1470,9 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <a href="/index.html">Home</a><span>›</span><a href="/our-programs.html">Our Programmes</a><span>›</span>MOVE Grants
     </nav>
 
+    <div class="hero-top">
+    <div class="hero-copy">
+
     <div class="status-pill">
       <span class="status-pill-dot"></span>
       <span class="status-pill-text">Open call</span>
@@ -1430,15 +1487,26 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
         <svg viewBox="0 0 24 24"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
         Apply here
       </a>
-      <a class="btn-ghost" href="/assets/documents/guidelines_for_applications_move_7thcall.pdf" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-        Guidelines for applicants
-      </a>
       <a class="btn-ghost" href="#grantees">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
         Meet past grantees
       </a>
     </div>
+
+    </div><!-- /.hero-copy -->
+
+    <aside class="hero-doc">
+      <a class="hero-doc-cover" href="/assets/documents/guidelines_for_applications_move_7thcall.pdf" target="_blank" rel="noopener" aria-label="Open the Call 7 Guidelines for Applicants (PDF, opens in a new tab)">
+        <img src="/assets/images/move/call7-guidelines-cover.webp" alt="First page of the MOVE Call 7 Guidelines for Applicants" width="560" height="725" loading="eager" decoding="async">
+        <span class="hero-doc-tag">PDF &middot; 15 pages</span>
+      </a>
+      <a class="btn-doc" href="/assets/documents/guidelines_for_applications_move_7thcall.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        Guidelines for applicants
+      </a>
+    </aside>
+
+    </div><!-- /.hero-top -->
 
     <div class="meta-facts">
       <div>

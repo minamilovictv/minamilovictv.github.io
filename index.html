@@ -330,8 +330,37 @@
     display: grid;
     grid-template-columns: 1.05fr 1fr;
     gap: 64px;
-    align-items: center;
+    align-items: start;
   }
+
+  /* Open-call note under the intro — the one thing on this page with a
+     deadline attached, so it sits in the reading column rather than the grid. */
+  .call-note {
+    display: flex; align-items: center; gap: 16px;
+    max-width: 540px; margin-top: 30px;
+    padding: 15px 18px;
+    background: linear-gradient(135deg, #f1fbf5, #fbfefc);
+    border: 1px solid #c5e9d5; border-left: 3px solid #22c55e;
+    border-radius: 12px; text-decoration: none;
+    transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .call-note:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -14px rgba(34,197,94,0.55); border-color: #9bdcb6; }
+  .call-note-badge {
+    display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+    padding: 5px 10px; border-radius: 999px;
+    background: rgba(34,197,94,0.14); border: 1px solid rgba(34,197,94,0.42);
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #15803d;
+  }
+  .call-note-badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #22c55e; animation: pulseDotGreen 1.8s ease-out infinite; }
+  .call-note-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .call-note-body strong { font-size: var(--text-md); font-weight: 700; color: var(--navy); line-height: 1.35; }
+  .call-note-meta { font-size: var(--text-sm); color: var(--muted); }
+  .call-note-arrow { margin-left: auto; flex-shrink: 0; color: #15803d; transition: transform .2s ease; }
+  .call-note:hover .call-note-arrow { transform: translateX(3px); }
+  .call-note-arrow svg { width: 16px; height: 16px; display: block; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  @media (prefers-reduced-motion: reduce) { .call-note-badge::before { animation: none; } }
+  @media (max-width: 600px) { .call-note { flex-wrap: wrap; gap: 12px; } .call-note-arrow { margin-left: 0; } }
 
   /* Eyebrow */
   .about-eyebrow {
@@ -662,6 +691,25 @@
   .pf-card.featured { background: linear-gradient(135deg, rgba(51,114,227,0.34), rgba(51,114,227,0.12)); border-color: rgba(147,184,247,0.55); box-shadow: 0 12px 30px rgba(51,114,227,0.28); }
   .pf-card.featured::before { transform: scaleX(1); }
 
+  /* The one call taking applications right now — lifted out of the grid with a
+     green cast and a slow breathing glow, so the eye lands on it first. */
+  .pf-card.glow {
+    background: linear-gradient(135deg, rgba(60,200,130,0.20), rgba(60,200,130,0.05));
+    border-color: rgba(74,222,128,0.50);
+    animation: cardGlow 3.6s ease-in-out infinite;
+  }
+  .pf-card.glow::before { transform: scaleX(1); background: linear-gradient(90deg, #22c55e, #7ceaad); }
+  .pf-card.glow:hover { background: linear-gradient(135deg, rgba(60,200,130,0.28), rgba(60,200,130,0.09)); border-color: rgba(74,222,128,0.75); box-shadow: 0 20px 46px -10px rgba(45,190,120,0.55); }
+  .pf-card.glow .pf-grant-num { background: linear-gradient(120deg, #fff, #9ef0c2); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  @keyframes cardGlow {
+    0%, 100% { box-shadow: 0 10px 26px -8px rgba(45,190,120,0.30); }
+    50%      { box-shadow: 0 14px 40px -6px rgba(45,190,120,0.58); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pf-card.glow { animation: none; box-shadow: 0 12px 32px -8px rgba(45,190,120,0.40); }
+    .pf-badge.opencall::before { animation: none; }
+  }
+
   .pf-card-top {
     display: flex;
     align-items: flex-start;
@@ -685,7 +733,11 @@
   .pf-badge.eval    { background: rgba(45,190,210,0.18); color: #7fdde8; border: 1px solid rgba(45,190,210,0.40); }
   .pf-badge.active  { background: rgba(60,200,130,0.18); color: #74e2a6; border: 1px solid rgba(60,200,130,0.40); }
   .pf-badge.closed  { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.62); border: 1px solid rgba(255,255,255,0.14); }
+  /* A call that is open right now: green, with the live dot the blue badge uses. */
+  .pf-badge.opencall { display: inline-flex; align-items: center; gap: 6px; background: rgba(60,200,130,0.22); color: #7ceaad; border: 1px solid rgba(74,222,128,0.55); }
+  .pf-badge.opencall::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #4ade80; animation: pulseDotGreen 1.8s ease-out infinite; }
   @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(147,184,247,0.55); } 70% { box-shadow: 0 0 0 10px rgba(147,184,247,0); } 100% { box-shadow: 0 0 0 0 rgba(147,184,247,0); } }
+  @keyframes pulseDotGreen { 0% { box-shadow: 0 0 0 0 rgba(74,222,128,0.65); } 70% { box-shadow: 0 0 0 9px rgba(74,222,128,0); } 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); } }
 
   .pf-grant     { text-align: right; flex-shrink: 0; }
   .pf-grant-num { font-family: var(--font-display); font-size: var(--text-md); font-weight: 800; line-height: 1.1;
@@ -1970,6 +2022,15 @@
           Learn About WBF
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
         </a>
+
+        <a class="call-note" href="/move.html">
+          <span class="call-note-badge">Open call</span>
+          <span class="call-note-body">
+            <strong>MOVE Grants: Call 7 is open for applications</strong>
+            <span class="call-note-meta">Deadline 5 October 2026, 12:59 CET</span>
+          </span>
+          <span class="call-note-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+        </a>
       </div>
 
       <!-- Static photo mosaic. Tiles are placed explicitly on a 4x4 grid so
@@ -2091,9 +2152,9 @@
         </div>
       </a>
 
-      <a href="/move.html" class="pf-card" data-who="individual" data-type="grant">
+      <a href="/move.html" class="pf-card glow" data-who="individual" data-type="grant">
         <div class="pf-card-top">
-          <span class="pf-badge soon">Coming Soon</span>
+          <span class="pf-badge opencall">Open Call</span>
           <div class="pf-grant"><div class="pf-grant-num">People</div><div class="pf-grant-sub">to people</div></div>
         </div>
         <h3 class="pf-card-title">MOVE Grants</h3>
@@ -2103,7 +2164,7 @@
         </div>
         <p class="pf-card-desc">Short-term, people-to-people funding for researchers, students, professors, journalists, artists and activists to cross borders, connect with peers, and bring value back home.</p>
         <div class="pf-card-foot">
-          <span class="pf-when">Opens on 4 September</span>
+          <span class="pf-when">Deadline 5 October &middot; 12:59 CET</span>
           <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
         </div>
       </a>
