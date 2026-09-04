@@ -31,10 +31,10 @@
 <link rel="stylesheet" href="/css/site-chrome.css">
 <style>
   /* ============================================================
-     DESIGN TOKENS  â  reusable across all WBF programme pages
+     DESIGN TOKENS  —  reusable across all WBF programme pages
      ============================================================ */
   :root {
-    /* Core brandkit palette â GGI programme identity.
+    /* Core brandkit palette — GGI programme identity.
        --navy intentionally NOT redefined here: it falls through to the
        global brand navy var(--navy) from tokens.css so the shared navbar
        and footer render in standard brand colour. GGI page content uses
@@ -47,11 +47,11 @@
     --light:       #DCEEFF;
 
     /* Intervention-area aliases (kept so legacy classes still work) */
-    --amber:       var(--ggi);     /* IA1 â Cultural cooperation */
+    --amber:       var(--ggi);     /* IA1 — Cultural cooperation */
     --amber-tint:  #E8EEFB;
-    --teal:        var(--blue);     /* IA2 â Education & scientific exchanges */
+    --teal:        var(--blue);     /* IA2 — Education & scientific exchanges */
     --teal-tint:   var(--light);
-    --green:       var(--accent);   /* IA3 â Sustainable development */
+    --green:       var(--accent);   /* IA3 — Sustainable development */
     --green-tint:  #E9F4FF;
 
     /* Neutral ink + surface */
@@ -173,7 +173,7 @@
   .sec-head.center p { margin-left: auto; margin-right: auto; }
 
   /* ============================================================
-     QUICK FACTS  â  Eligibility Â· Core Requirements Â· Call Cycle
+     QUICK FACTS  —  Eligibility · Core Requirements · Call Cycle
      ============================================================ */
   .quickfacts { margin-top: -64px; position: relative; z-index: 5; padding-bottom: 8px; }
   .qf-grid {
@@ -267,7 +267,7 @@
   .about-text p:last-child { margin-bottom: 0; }
   .about-text strong { color: var(--ink); font-weight: 600; }
 
-  /* About â two pictures replacing the region card */
+  /* About — two pictures replacing the region card */
   .about-media { display: flex; flex-direction: column; gap: 16px; }
   .about-photo {
     position: relative; margin: 0; border-radius: 16px; overflow: hidden;
@@ -297,7 +297,7 @@
   .coverage-row .name { font-weight: 500; }
 
   /* ============================================================
-     INTERVENTION AREAS  (3 â per the guidelines)
+     INTERVENTION AREAS  (3 — per the guidelines)
      ============================================================ */
   .ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .ia-card {
@@ -468,7 +468,7 @@
   .cofin-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
 
   /* ============================================================
-     FUNDING & DURATION â elevated cards + donut
+     FUNDING & DURATION — elevated cards + donut
      ============================================================ */
   #funding .panel {
     position: relative; isolation: isolate; overflow: hidden;
@@ -532,7 +532,7 @@
   #funding .fund-row:first-child .v { color: var(--ggi); font-size: 20px; }
 
   /* ============================================================
-     HOW TO APPLY  â  steps
+     HOW TO APPLY  —  steps
      ============================================================ */
   
   
@@ -644,7 +644,7 @@
   /* Right column stack: cross-cutting card + threshold beneath it */
   .eval-side { display: flex; flex-direction: column; gap: 16px; }
 
-  /* Minimum threshold â animated callout below cross-cutting */
+  /* Minimum threshold — animated callout below cross-cutting */
   .eval-threshold {
     display: flex; align-items: flex-start; gap: 15px;
     padding: 18px 22px; border-radius: 14px;
@@ -751,7 +751,7 @@
   }
 
   /* ============================================================
-     PROJECT MODAL  (shared â winners + stories)
+     PROJECT MODAL  (shared — winners + stories)
      ============================================================ */
 
   /* ============================================================
@@ -852,7 +852,7 @@
       "@type": "WebPage",
       "@id": "https://westernbalkansfund.org/ggi/#webpage",
       "url": "https://westernbalkansfund.org/ggi/",
-      "name": "âºâºGGI",
+      "name": "Grants for Grassroots Initiatives",
       "description": "Grants for Grassroots Initiatives (GGI): the Western Balkans Fund's annual grant scheme for civil society regional cooperation across the WB6, funded by the EU.",
       "isPartOf": { "@id": "https://westernbalkansfund.org/#website" },
       "about": { "@id": "https://westernbalkansfund.org/#organization" },
@@ -864,7 +864,7 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://westernbalkansfund.org/" },
         { "@type": "ListItem", "position": 2, "name": "Our Programmes", "item": "https://westernbalkansfund.org/our-programs/" },
-        { "@type": "ListItem", "position": 3, "name": "âºâºGGI", "item": "https://westernbalkansfund.org/ggi/" }
+        { "@type": "ListItem", "position": 3, "name": "GGI", "item": "https://westernbalkansfund.org/ggi/" }
       ]
     }
   ]
@@ -876,7 +876,7 @@
 
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<!-- NAVBAR (unchanged â loads from master) -->
+<!-- NAVBAR (unchanged — loads from master) -->
 <div id="navbar-placeholder"></div>
 <script>
   fetch('/components/_MASTER_navbar.html')
@@ -892,7 +892,7 @@
 <section class="prog-hero">
   <div class="prog-hero-inner">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a><span>âº</span><a href="/our-programs/">Our Programmes</a><span>âº</span>GGI
+      <a href="/">Home</a><span>›</span><a href="/our-programs/">Our Programmes</a><span>›</span>GGI
     </nav>
 
     <div class="status-row">
@@ -923,7 +923,7 @@
     <div class="meta-facts">
       <div>
         <div class="meta-fact-key">Maximum Grant</div>
-        <div class="meta-fact-value">â¬15,000</div>
+        <div class="meta-fact-value">€15,000</div>
       </div>
       <div>
         <div class="meta-fact-key">Partnership</div>
@@ -931,7 +931,7 @@
       </div>
       <div>
         <div class="meta-fact-key">Duration</div>
-        <div class="meta-fact-value">3â6 months</div>
+        <div class="meta-fact-value">3–6 months</div>
       </div>
       <div>
         <div class="meta-fact-key">Co-financing</div>
@@ -946,12 +946,12 @@
 </section>
 
 <!-- ============================================================
-     QUICK FACTS â Eligibility Â· Core Requirements Â· Call Cycle
+     QUICK FACTS — Eligibility · Core Requirements · Call Cycle
      ============================================================ -->
 <section class="quickfacts" aria-label="At a glance">
   <div class="qf-grid">
 
-    <!-- Box 1 â Who can apply -->
+    <!-- Box 1 — Who can apply -->
     <div class="qf-card is-teal">
       <div class="qf-head">
         <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -970,7 +970,7 @@
       </div>
     </div>
 
-    <!-- Box 2 â Core Requirements -->
+    <!-- Box 2 — Core Requirements -->
     <div class="qf-card is-amber">
       <div class="qf-head">
         <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
@@ -981,8 +981,8 @@
       </div>
       <ul class="qf-list">
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Minimum 3 Contracting Parties</strong>: Lead Applicant plus at least 2 Project Partners from different CPs</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Duration 3â6 months</strong>, including the 30-day reporting period</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Co-financing â¥ 20%</strong>: the grant covers up to 80% of eligible costs</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Duration 3–6 months</strong>, including the 30-day reporting period</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Co-financing ≥ 20%</strong>: the grant covers up to 80% of eligible costs</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>At least 3 cross-cutting issues</strong> mainstreamed</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Submission via OGMS</strong> only, in English <a class="ogms-pill" href="https://wbfportal.org/applicants/page/index.html?id_call=17" target="_blank" rel="noopener">OGMS <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></a></span></li>
       </ul>
@@ -991,7 +991,7 @@
       </div>
     </div>
 
-    <!-- Box 3 â Annual Call Cycle (generic, not call-specific) -->
+    <!-- Box 3 — Annual Call Cycle (generic, not call-specific) -->
     <div class="qf-card is-green">
       <div class="qf-head">
         <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/><polyline points="21 3 21 9 15 9"/></svg></div>
@@ -1006,7 +1006,7 @@
         <li><div class="qf-tl-date">Submission</div><div class="qf-tl-label">Applications submitted online by the deadline</div></li>
         <li><div class="qf-tl-date">Evaluation</div><div class="qf-tl-label">Eligibility checks and evaluation process</div></li>
         <li><div class="qf-tl-date">Award</div><div class="qf-tl-label">Winners published; grant contracts signed</div></li>
-        <li><div class="qf-tl-date">Implementation</div><div class="qf-tl-label">3â6 months of project activities &amp; reporting</div></li>
+        <li><div class="qf-tl-date">Implementation</div><div class="qf-tl-label">3–6 months of project activities &amp; reporting</div></li>
       </ul>
     </div>
 
@@ -1014,7 +1014,7 @@
 </section>
 
 <!-- ============================================================
-     ABOUT â what the programme is
+     ABOUT — what the programme is
      ============================================================ -->
 <section class="section" id="about">
   <div class="container-narrow">
@@ -1042,7 +1042,7 @@
 </section>
 
 <!-- ============================================================
-     INTERVENTION AREAS â three, per the guidelines
+     INTERVENTION AREAS — three, per the guidelines
      ============================================================ -->
 <section class="section section-alt">
   <div class="container-narrow">
@@ -1107,7 +1107,7 @@
 
     <div class="panel-grid">
 
-      <!-- Eligible organisations â entity boxes -->
+      <!-- Eligible organisations — entity boxes -->
       <div class="panel is-teal elig-panel">
         <div class="panel-head">
           <div class="ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -1149,13 +1149,13 @@
         </div>
       </div>
 
-      <!-- Partnership requirements â diagram + numbered rules -->
+      <!-- Partnership requirements — diagram + numbered rules -->
       <div class="panel is-amber partner-panel">
         <div class="panel-head">
           <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="11" r="3"/><circle cx="7" cy="17" r="3"/><line x1="11" y1="7" x2="14" y2="11"/><line x1="15" y1="14" x2="9" y2="16"/></svg></div>
           <h3>Partnership requirements</h3>
         </div>
-        <p class="panel-sub">Partnership is mandatory â its structure is what makes a project genuinely regional.</p>
+        <p class="panel-sub">Partnership is mandatory — its structure is what makes a project genuinely regional.</p>
 
         <!-- structure diagram -->
         <div class="partner-diagram" aria-hidden="true">
@@ -1175,7 +1175,7 @@
 
         <div class="req-callout">
           <div class="req-callout-head"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Applications per organisation</div>
-          <p>An organisation may submit <strong>multiple applications</strong> (as Lead or Partner), but may receive <strong>only one grant as Lead and one as Partner</strong> â the highest-scoring application is taken in each case.</p>
+          <p>An organisation may submit <strong>multiple applications</strong> (as Lead or Partner), but may receive <strong>only one grant as Lead and one as Partner</strong> — the highest-scoring application is taken in each case.</p>
         </div>
       </div>
 
@@ -1203,10 +1203,10 @@
           <h3>Grant size &amp; co-financing</h3>
         </div>
 
-        <div class="fund-row"><span class="k">Maximum grant per project</span><span class="v">â¬15,000</span></div>
+        <div class="fund-row"><span class="k">Maximum grant per project</span><span class="v">€15,000</span></div>
         <div class="fund-row"><span class="k">WBF grant covers up to</span><span class="v">80%<small>of total eligible costs</small></span></div>
-        <div class="fund-row"><span class="k">Co-financing required</span><span class="v">â¥ 20%<small>of total eligible costs</small></span></div>
-        <div class="fund-row"><span class="k">Duration</span><span class="v">3â6 months<small>incl. 30-day reporting</small></span></div>
+        <div class="fund-row"><span class="k">Co-financing required</span><span class="v">≥ 20%<small>of total eligible costs</small></span></div>
+        <div class="fund-row"><span class="k">Duration</span><span class="v">3–6 months<small>incl. 30-day reporting</small></span></div>
 
         <div class="cofin-split" id="cofin-split" aria-hidden="true">
           <div class="cofin-meter">
@@ -1214,14 +1214,14 @@
             <div class="seg cof"><span class="seg-pct">20%</span></div>
           </div>
           <div class="cofin-legend">
-            <span><span class="dot" style="background:var(--ggi)"></span>WBF grant â up to 80%</span>
-            <span><span class="dot" style="background:var(--accent)"></span>Co-financing â min. 20%</span>
+            <span><span class="dot" style="background:var(--ggi)"></span>WBF grant — up to 80%</span>
+            <span><span class="dot" style="background:var(--accent)"></span>Co-financing — min. 20%</span>
           </div>
         </div>
 
         <div class="panel-divider">Worked example</div>
         <p style="font-size:13px;color:var(--ink-soft);line-height:1.6;background:var(--surface-alt);padding:12px 14px;border-radius:7px;border:1px solid var(--line)">
-          A project requesting the maximum <strong>â¬15,000</strong> grant needs at least <strong>â¬3,750</strong> in co-financing, for a total budget of <strong>â¬18,750</strong>.
+          A project requesting the maximum <strong>€15,000</strong> grant needs at least <strong>€3,750</strong> in co-financing, for a total budget of <strong>€18,750</strong>.
         </p>
       </div>
 
@@ -1234,10 +1234,10 @@
         <p class="panel-sub">All costs must be necessary for the project, incurred during the implementation period, and properly justified in the budget.</p>
 
         <ul class="check-list">
-          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>The Total Costs for Human resources</strong>(WBF + Co-financing) â gross salaries, social charges. Capped at <strong>30% of Amount Granted by WBF</strong></span></li>
-          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Travel, accommodation and board</strong> â accommodation and board up to â¬100/night; personal vehicle at â¬0.30/km if justified</span></li>
-          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Other direct costs</strong> â venue rental, equipment, services, supplies for the action</span></li>
-          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Indirect costs</strong> â flat-rate, capped at <strong>7% of total direct eligible costs</strong></span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>The Total Costs for Human resources</strong>(WBF + Co-financing) — gross salaries, social charges. Capped at <strong>30% of Amount Granted by WBF</strong></span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Travel, accommodation and board</strong> — accommodation and board up to €100/night; personal vehicle at €0.30/km if justified</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Other direct costs</strong> — venue rental, equipment, services, supplies for the action</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Indirect costs</strong> — flat-rate, capped at <strong>7% of total direct eligible costs</strong></span></li>
         </ul>
       </div>
 
@@ -1246,7 +1246,7 @@
 </section>
 
 <!-- ============================================================
-     HOW TO APPLY  â  4 steps
+     HOW TO APPLY  —  4 steps
      ============================================================ -->
 <section class="section" id="apply">
   <div class="container-narrow">
@@ -1405,7 +1405,7 @@
      ============================================================ -->
 
 <!-- ============================================================
-     DATA LAYER  â  CSV-driven winners + news + stories
+     DATA LAYER  —  CSV-driven winners + news + stories
      Update the URLs below to point to the published Google Sheets CSV.
      ============================================================ -->
 <script>
@@ -1413,7 +1413,7 @@
   'use strict';
 
   /* ============================================================
-     CONFIG  â  swap these URLs with the published Google Sheets CSVs
+     CONFIG  —  swap these URLs with the published Google Sheets CSVs
      ============================================================ */
   var CONFIG = {
     // Sheet must have columns: programme, date, title, excerpt, image, url
@@ -1424,16 +1424,16 @@
 
 
   /* ============================================================
-     CP â flag lookup
+     CP → flag lookup
      ============================================================ */
   var CP_FLAGS = {
-    'Albania':                'ð¦ð±',
-    'Bosnia and Herzegovina': 'ð§ð¦',
-    'Kosovo*':                'ð½ð°',
-    'Kosovo':                 'ð½ð°',
-    'North Macedonia':        'ð²ð°',
-    'Montenegro':             'ð²ðª',
-    'Serbia':                 'ð·ð¸'
+    'Albania':                '🇦🇱',
+    'Bosnia and Herzegovina': '🇧🇦',
+    'Kosovo*':                '🇽🇰',
+    'Kosovo':                 '🇽🇰',
+    'North Macedonia':        '🇲🇰',
+    'Montenegro':             '🇲🇪',
+    'Serbia':                 '🇷🇸'
   };
 
   /* ============================================================
@@ -1606,7 +1606,7 @@
 
 </main>
 
-<!-- FOOTER (unchanged â loads from master) -->
+<!-- FOOTER (unchanged — loads from master) -->
 <div id="footer-placeholder"></div>
 <script>
   fetch('/components/_MASTER_footer.html')
