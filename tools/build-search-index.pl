@@ -71,6 +71,31 @@ sub squeeze {
   return $s;
 }
 
+# Removes an element and everything inside it, matching nesting so a wrapper
+# containing others of the same tag is cut at the right place. Used for
+# content that is hidden on the page: a reader cannot see it, so a search
+# result must not quote it.
+sub drop_hidden {
+  my ($html) = @_;
+  while ($html =~ /<(section|div|article|aside|p|span|a)\b[^>]*style\s*=\s*"[^"]*display\s*:\s*none[^"]*"[^>]*>/i) {
+    my $tag   = lc $1;
+    my $start = $-[0];
+    my $pos   = $+[0];
+    my $depth = 1;
+    while ($depth > 0 && $html =~ /<(\/?)$tag\b[^>]*>/gi) {
+      last if pos($html) <= $pos && $-[0] < $pos;
+      next if $-[0] < $pos;
+      $depth += $1 ? -1 : 1;
+      $pos = $+[0];
+      last if $depth == 0;
+    }
+    # Unbalanced markup: cut to the end rather than looping forever.
+    $pos = length($html) if $depth > 0;
+    substr($html, $start, $pos - $start) = ' ';
+  }
+  return $html;
+}
+
 sub strip_tags {
   my ($s) = @_;
   $s =~ s/<[^>]*>/ /gs;
@@ -105,6 +130,7 @@ for my $file (@pages) {
   $html =~ s/<style\b.*?<\/style>//gsi;
   $html =~ s/<svg\b.*?<\/svg>//gsi;
   $html =~ s/<noscript\b.*?<\/noscript>//gsi;
+  $html = drop_hidden($html);
 
   my ($title) = $html =~ /<title[^>]*>(.*?)<\/title>/si;
   $title = squeeze($title || $file);

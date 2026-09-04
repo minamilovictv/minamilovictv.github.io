@@ -30,10 +30,10 @@
 <link rel="stylesheet" href="/css/site-chrome.css">
 <style>
   /* ============================================================
-     DESIGN TOKENS  —  reusable across all WBF programme pages
+     DESIGN TOKENS  â  reusable across all WBF programme pages
      ============================================================ */
   :root {
-    /* Core brandkit palette — GGI programme identity.
+    /* Core brandkit palette â GGI programme identity.
        --navy intentionally NOT redefined here: it falls through to the
        global brand navy var(--navy) from tokens.css so the shared navbar
        and footer render in standard brand colour. GGI page content uses
@@ -46,11 +46,11 @@
     --light:       #DCEEFF;
 
     /* Intervention-area aliases (kept so legacy classes still work) */
-    --amber:       var(--ggi);     /* IA1 — Cultural cooperation */
+    --amber:       var(--ggi);     /* IA1 â Cultural cooperation */
     --amber-tint:  #E8EEFB;
-    --teal:        var(--blue);     /* IA2 — Education & scientific exchanges */
+    --teal:        var(--blue);     /* IA2 â Education & scientific exchanges */
     --teal-tint:   var(--light);
-    --green:       var(--accent);   /* IA3 — Sustainable development */
+    --green:       var(--accent);   /* IA3 â Sustainable development */
     --green-tint:  #E9F4FF;
 
     /* Neutral ink + surface */
@@ -172,7 +172,7 @@
   .sec-head.center p { margin-left: auto; margin-right: auto; }
 
   /* ============================================================
-     QUICK FACTS  —  Eligibility · Core Requirements · Call Cycle
+     QUICK FACTS  â  Eligibility Â· Core Requirements Â· Call Cycle
      ============================================================ */
   .quickfacts { margin-top: -64px; position: relative; z-index: 5; padding-bottom: 8px; }
   .qf-grid {
@@ -266,7 +266,7 @@
   .about-text p:last-child { margin-bottom: 0; }
   .about-text strong { color: var(--ink); font-weight: 600; }
 
-  /* About — two pictures replacing the region card */
+  /* About â two pictures replacing the region card */
   .about-media { display: flex; flex-direction: column; gap: 16px; }
   .about-photo {
     position: relative; margin: 0; border-radius: 16px; overflow: hidden;
@@ -296,7 +296,7 @@
   .coverage-row .name { font-weight: 500; }
 
   /* ============================================================
-     INTERVENTION AREAS  (3 — per the guidelines)
+     INTERVENTION AREAS  (3 â per the guidelines)
      ============================================================ */
   .ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .ia-card {
@@ -467,7 +467,7 @@
   .cofin-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
 
   /* ============================================================
-     FUNDING & DURATION — elevated cards + donut
+     FUNDING & DURATION â elevated cards + donut
      ============================================================ */
   #funding .panel {
     position: relative; isolation: isolate; overflow: hidden;
@@ -531,7 +531,7 @@
   #funding .fund-row:first-child .v { color: var(--ggi); font-size: 20px; }
 
   /* ============================================================
-     HOW TO APPLY  —  steps
+     HOW TO APPLY  â  steps
      ============================================================ */
   
   
@@ -643,7 +643,7 @@
   /* Right column stack: cross-cutting card + threshold beneath it */
   .eval-side { display: flex; flex-direction: column; gap: 16px; }
 
-  /* Minimum threshold — animated callout below cross-cutting */
+  /* Minimum threshold â animated callout below cross-cutting */
   .eval-threshold {
     display: flex; align-items: flex-start; gap: 15px;
     padding: 18px 22px; border-radius: 14px;
@@ -740,7 +740,7 @@
   /* ============================================================
      Justified body copy across content sections
      ============================================================ */
-  .section p, .container-narrow p, .container p, .modal-body p, .modal-lead {
+  .section p, .container-narrow p, .container p {
     text-align: justify;
     text-align-last: left;
   }
@@ -750,103 +750,8 @@
   }
 
   /* ============================================================
-     PROJECT MODAL  (shared — winners + stories)
+     PROJECT MODAL  (shared â winners + stories)
      ============================================================ */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 2000;
-    background: rgba(15,32,68,0.65);
-    display: none; align-items: center; justify-content: center;
-    padding: 24px;
-    backdrop-filter: blur(3px);
-  }
-  .modal-overlay.is-open { display: flex; }
-  .modal-box {
-    background: #fff; border-radius: 14px;
-    max-width: 720px; width: 100%;
-    max-height: 88vh; overflow-y: auto;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-    position: relative;
-    animation: modalIn 0.22s ease;
-  }
-  @keyframes modalIn {
-    from { opacity: 0; transform: translateY(20px) scale(0.98); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  .modal-close {
-    position: absolute; top: 14px; right: 14px;
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--surface-alt); border: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: background 0.15s;
-  }
-  .modal-close:hover { background: var(--line-soft); }
-  .modal-close svg { width: 16px; height: 16px; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .modal-head {
-    padding: 28px 32px 20px;
-    border-bottom: 1px solid var(--line-soft);
-  }
-  .modal-meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-  .modal-meta-tag {
-    font-size: 10.5px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    padding: 4px 10px; border-radius: 999px;
-  }
-  .modal-meta-tag.pn { color: var(--ggi); background: #eef2f8; }
-  .modal-meta-tag.area { color: var(--amber); background: var(--amber-tint); }
-  .modal-meta-tag.area.area-edu { color: var(--teal); background: var(--teal-tint); }
-  .modal-meta-tag.area.area-sd { color: var(--green); background: var(--green-tint); }
-  .modal-meta-tag.cp { color: var(--ink-soft); background: var(--surface-alt); border: 1px solid var(--line); }
-  .modal-title {
-    font-size: 22px; font-weight: 700; color: var(--ink);
-    line-height: 1.25; letter-spacing: -0.015em;
-    margin-bottom: 12px;
-  }
-  .modal-lead {
-    font-size: 13.5px; color: var(--ink-soft); line-height: 1.55;
-  }
-  .modal-lead strong { color: var(--ink); }
-  .modal-body { padding: 24px 32px 32px; }
-  .modal-section { margin-bottom: 22px; }
-  .modal-section:last-child { margin-bottom: 0; }
-  .modal-section h4 {
-    font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.14em;
-    color: var(--ggi); margin-bottom: 8px;
-  }
-  .modal-section p {
-    font-size: 14px; color: var(--ink-soft); line-height: 1.65;
-  }
-  .modal-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-    margin-bottom: 22px;
-  }
-  .modal-stat {
-    padding: 12px 14px; background: var(--surface-alt);
-    border: 1px solid var(--line); border-radius: 8px;
-  }
-  .modal-stat-label {
-    font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--faint); margin-bottom: 4px;
-  }
-  .modal-stat-value { font-size: 14px; font-weight: 700; color: var(--ink); }
-
-  /* ============================================================
-     GRANTEES STORIES
-     ============================================================ */
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 
   /* ============================================================
      NEWS CARDS  (top 6 GGI news, CSV-driven)
@@ -933,8 +838,6 @@
     
     
     .cc-grid { grid-template-columns: 1fr; }
-    .modal-grid { grid-template-columns: 1fr; }
-    .modal-head, .modal-body { padding-left: 22px; padding-right: 22px; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -945,7 +848,7 @@
 
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<!-- NAVBAR (unchanged — loads from master) -->
+<!-- NAVBAR (unchanged â loads from master) -->
 <div id="navbar-placeholder"></div>
 <script>
   fetch('/components/_MASTER_navbar.html')
@@ -961,7 +864,7 @@
 <section class="prog-hero">
   <div class="prog-hero-inner">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/index.html">Home</a><span>›</span><a href="/our-programs.html">Our Programmes</a><span>›</span>GGI
+      <a href="/index.html">Home</a><span>âº</span><a href="/our-programs.html">Our Programmes</a><span>âº</span>GGI
     </nav>
 
     <div class="status-row">
@@ -992,7 +895,7 @@
     <div class="meta-facts">
       <div>
         <div class="meta-fact-key">Maximum Grant</div>
-        <div class="meta-fact-value">€15,000</div>
+        <div class="meta-fact-value">â¬15,000</div>
       </div>
       <div>
         <div class="meta-fact-key">Partnership</div>
@@ -1000,7 +903,7 @@
       </div>
       <div>
         <div class="meta-fact-key">Duration</div>
-        <div class="meta-fact-value">3–6 months</div>
+        <div class="meta-fact-value">3â6 months</div>
       </div>
       <div>
         <div class="meta-fact-key">Co-financing</div>
@@ -1015,12 +918,12 @@
 </section>
 
 <!-- ============================================================
-     QUICK FACTS — Eligibility · Core Requirements · Call Cycle
+     QUICK FACTS â Eligibility Â· Core Requirements Â· Call Cycle
      ============================================================ -->
 <section class="quickfacts" aria-label="At a glance">
   <div class="qf-grid">
 
-    <!-- Box 1 — Who can apply -->
+    <!-- Box 1 â Who can apply -->
     <div class="qf-card is-teal">
       <div class="qf-head">
         <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -1039,7 +942,7 @@
       </div>
     </div>
 
-    <!-- Box 2 — Core Requirements -->
+    <!-- Box 2 â Core Requirements -->
     <div class="qf-card is-amber">
       <div class="qf-head">
         <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
@@ -1050,8 +953,8 @@
       </div>
       <ul class="qf-list">
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Minimum 3 Contracting Parties</strong>: Lead Applicant plus at least 2 Project Partners from different CPs</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Duration 3–6 months</strong>, including the 30-day reporting period</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Co-financing ≥ 20%</strong>: the grant covers up to 80% of eligible costs</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Duration 3â6 months</strong>, including the 30-day reporting period</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Co-financing â¥ 20%</strong>: the grant covers up to 80% of eligible costs</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>At least 3 cross-cutting issues</strong> mainstreamed</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Submission via OGMS</strong> only, in English <a class="ogms-pill" href="https://wbfportal.org/applicants/page/index.html?id_call=17" target="_blank" rel="noopener">OGMS <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></a></span></li>
       </ul>
@@ -1060,7 +963,7 @@
       </div>
     </div>
 
-    <!-- Box 3 — Annual Call Cycle (generic, not call-specific) -->
+    <!-- Box 3 â Annual Call Cycle (generic, not call-specific) -->
     <div class="qf-card is-green">
       <div class="qf-head">
         <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/><polyline points="21 3 21 9 15 9"/></svg></div>
@@ -1075,7 +978,7 @@
         <li><div class="qf-tl-date">Submission</div><div class="qf-tl-label">Applications submitted online by the deadline</div></li>
         <li><div class="qf-tl-date">Evaluation</div><div class="qf-tl-label">Eligibility checks and evaluation process</div></li>
         <li><div class="qf-tl-date">Award</div><div class="qf-tl-label">Winners published; grant contracts signed</div></li>
-        <li><div class="qf-tl-date">Implementation</div><div class="qf-tl-label">3–6 months of project activities &amp; reporting</div></li>
+        <li><div class="qf-tl-date">Implementation</div><div class="qf-tl-label">3â6 months of project activities &amp; reporting</div></li>
       </ul>
     </div>
 
@@ -1083,7 +986,7 @@
 </section>
 
 <!-- ============================================================
-     ABOUT — what the programme is
+     ABOUT â what the programme is
      ============================================================ -->
 <section class="section" id="about">
   <div class="container-narrow">
@@ -1111,7 +1014,7 @@
 </section>
 
 <!-- ============================================================
-     INTERVENTION AREAS — three, per the guidelines
+     INTERVENTION AREAS â three, per the guidelines
      ============================================================ -->
 <section class="section section-alt">
   <div class="container-narrow">
@@ -1176,7 +1079,7 @@
 
     <div class="panel-grid">
 
-      <!-- Eligible organisations — entity boxes -->
+      <!-- Eligible organisations â entity boxes -->
       <div class="panel is-teal elig-panel">
         <div class="panel-head">
           <div class="ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -1218,13 +1121,13 @@
         </div>
       </div>
 
-      <!-- Partnership requirements — diagram + numbered rules -->
+      <!-- Partnership requirements â diagram + numbered rules -->
       <div class="panel is-amber partner-panel">
         <div class="panel-head">
           <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="11" r="3"/><circle cx="7" cy="17" r="3"/><line x1="11" y1="7" x2="14" y2="11"/><line x1="15" y1="14" x2="9" y2="16"/></svg></div>
           <h3>Partnership requirements</h3>
         </div>
-        <p class="panel-sub">Partnership is mandatory — its structure is what makes a project genuinely regional.</p>
+        <p class="panel-sub">Partnership is mandatory â its structure is what makes a project genuinely regional.</p>
 
         <!-- structure diagram -->
         <div class="partner-diagram" aria-hidden="true">
@@ -1244,7 +1147,7 @@
 
         <div class="req-callout">
           <div class="req-callout-head"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Applications per organisation</div>
-          <p>An organisation may submit <strong>multiple applications</strong> (as Lead or Partner), but may receive <strong>only one grant as Lead and one as Partner</strong> — the highest-scoring application is taken in each case.</p>
+          <p>An organisation may submit <strong>multiple applications</strong> (as Lead or Partner), but may receive <strong>only one grant as Lead and one as Partner</strong> â the highest-scoring application is taken in each case.</p>
         </div>
       </div>
 
@@ -1272,10 +1175,10 @@
           <h3>Grant size &amp; co-financing</h3>
         </div>
 
-        <div class="fund-row"><span class="k">Maximum grant per project</span><span class="v">€15,000</span></div>
+        <div class="fund-row"><span class="k">Maximum grant per project</span><span class="v">â¬15,000</span></div>
         <div class="fund-row"><span class="k">WBF grant covers up to</span><span class="v">80%<small>of total eligible costs</small></span></div>
-        <div class="fund-row"><span class="k">Co-financing required</span><span class="v">≥ 20%<small>of total eligible costs</small></span></div>
-        <div class="fund-row"><span class="k">Duration</span><span class="v">3–6 months<small>incl. 30-day reporting</small></span></div>
+        <div class="fund-row"><span class="k">Co-financing required</span><span class="v">â¥ 20%<small>of total eligible costs</small></span></div>
+        <div class="fund-row"><span class="k">Duration</span><span class="v">3â6 months<small>incl. 30-day reporting</small></span></div>
 
         <div class="cofin-split" id="cofin-split" aria-hidden="true">
           <div class="cofin-meter">
@@ -1283,14 +1186,14 @@
             <div class="seg cof"><span class="seg-pct">20%</span></div>
           </div>
           <div class="cofin-legend">
-            <span><span class="dot" style="background:var(--ggi)"></span>WBF grant — up to 80%</span>
-            <span><span class="dot" style="background:var(--accent)"></span>Co-financing — min. 20%</span>
+            <span><span class="dot" style="background:var(--ggi)"></span>WBF grant â up to 80%</span>
+            <span><span class="dot" style="background:var(--accent)"></span>Co-financing â min. 20%</span>
           </div>
         </div>
 
         <div class="panel-divider">Worked example</div>
         <p style="font-size:13px;color:var(--ink-soft);line-height:1.6;background:var(--surface-alt);padding:12px 14px;border-radius:7px;border:1px solid var(--line)">
-          A project requesting the maximum <strong>€15,000</strong> grant needs at least <strong>€3,750</strong> in co-financing, for a total budget of <strong>€18,750</strong>.
+          A project requesting the maximum <strong>â¬15,000</strong> grant needs at least <strong>â¬3,750</strong> in co-financing, for a total budget of <strong>â¬18,750</strong>.
         </p>
       </div>
 
@@ -1303,10 +1206,10 @@
         <p class="panel-sub">All costs must be necessary for the project, incurred during the implementation period, and properly justified in the budget.</p>
 
         <ul class="check-list">
-          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>The Total Costs for Human resources</strong>(WBF + Co-financing) — gross salaries, social charges. Capped at <strong>30% of Amount Granted by WBF</strong></span></li>
-          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Travel, accommodation and board</strong> — accommodation and board up to €100/night; personal vehicle at €0.30/km if justified</span></li>
-          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Other direct costs</strong> — venue rental, equipment, services, supplies for the action</span></li>
-          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Indirect costs</strong> — flat-rate, capped at <strong>7% of total direct eligible costs</strong></span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>The Total Costs for Human resources</strong>(WBF + Co-financing) â gross salaries, social charges. Capped at <strong>30% of Amount Granted by WBF</strong></span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Travel, accommodation and board</strong> â accommodation and board up to â¬100/night; personal vehicle at â¬0.30/km if justified</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Other direct costs</strong> â venue rental, equipment, services, supplies for the action</span></li>
+          <li class="yes"><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Indirect costs</strong> â flat-rate, capped at <strong>7% of total direct eligible costs</strong></span></li>
         </ul>
       </div>
 
@@ -1315,7 +1218,7 @@
 </section>
 
 <!-- ============================================================
-     HOW TO APPLY  —  4 steps
+     HOW TO APPLY  â  4 steps
      ============================================================ -->
 <section class="section" id="apply">
   <div class="container-narrow">
@@ -1472,36 +1375,9 @@
 <!-- ============================================================
      PROJECT MODAL  (shared template)
      ============================================================ -->
-<div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
-  <div class="modal-box">
-    <button class="modal-close" type="button" aria-label="Close" id="modal-close-btn">
-      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <div class="modal-head">
-      <div class="modal-meta-row" id="modal-meta-row"></div>
-      <h3 class="modal-title" id="modal-title-el">Project title</h3>
-      <p class="modal-lead" id="modal-lead-el"></p>
-    </div>
-    <div class="modal-body">
-      <div class="modal-grid" id="modal-grid-el"></div>
-      <div class="modal-section" id="modal-summary-section">
-        <h4>Project summary</h4>
-        <p id="modal-summary-el"></p>
-      </div>
-      <div class="modal-section" id="modal-objectives-section">
-        <h4>Objectives</h4>
-        <p id="modal-objectives-el"></p>
-      </div>
-      <div class="modal-section" id="modal-activities-section">
-        <h4>Key activities</h4>
-        <p id="modal-activities-el"></p>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ============================================================
-     DATA LAYER  —  CSV-driven winners + news + stories
+     DATA LAYER  â  CSV-driven winners + news + stories
      Update the URLs below to point to the published Google Sheets CSV.
      ============================================================ -->
 <script>
@@ -1509,7 +1385,7 @@
   'use strict';
 
   /* ============================================================
-     CONFIG  —  swap these URLs with the published Google Sheets CSVs
+     CONFIG  â  swap these URLs with the published Google Sheets CSVs
      ============================================================ */
   var CONFIG = {
     // Sheet must have columns: programme, date, title, excerpt, image, url
@@ -1518,69 +1394,18 @@
     newsProgrammeTag: 'GGI'
   };
 
-  /* ============================================================
-     STATIC STORY CONTENT  (3 grantees stories, one per area)
-     Replace placeholder text once stories are finalised.
-     ============================================================ */
-  var STORIES = {
-    culture: {
-      pn:    '[PN]',
-      area:  'Cultural Cooperation',
-      areaClass: 'area',
-      title: '[Story title placeholder, Cultural Cooperation]',
-      lead:  '<strong>Lead Applicant:</strong> [Organisation name], [Contracting Party]',
-      stats: [
-        { label: 'Grant', value: '€15,000' },
-        { label: 'Duration', value: '6 months' },
-        { label: 'Call', value: 'No. X' }
-      ],
-      summary:    '[Story summary placeholder. Describe the regional challenge the project addressed.]',
-      objectives: '[Objectives placeholder. What did the team set out to achieve?]',
-      activities: '[Activities placeholder. What did the team actually do, and what was the outcome on the ground?]'
-    },
-    edu: {
-      pn:    '[PN]',
-      area:  'Education & Scientific Exchanges',
-      areaClass: 'area area-edu',
-      title: '[Story title placeholder, Education & Scientific Exchanges]',
-      lead:  '<strong>Lead Applicant:</strong> [Organisation name], [Contracting Party]',
-      stats: [
-        { label: 'Grant', value: '€15,000' },
-        { label: 'Duration', value: '6 months' },
-        { label: 'Call', value: 'No. X' }
-      ],
-      summary:    '[Story summary placeholder.]',
-      objectives: '[Objectives placeholder.]',
-      activities: '[Activities placeholder.]'
-    },
-    sd: {
-      pn:    '[PN]',
-      area:  'Sustainable Development',
-      areaClass: 'area area-sd',
-      title: '[Story title placeholder, Sustainable Development]',
-      lead:  '<strong>Lead Applicant:</strong> [Organisation name], [Contracting Party]',
-      stats: [
-        { label: 'Grant', value: '€15,000' },
-        { label: 'Duration', value: '6 months' },
-        { label: 'Call', value: 'No. X' }
-      ],
-      summary:    '[Story summary placeholder.]',
-      objectives: '[Objectives placeholder.]',
-      activities: '[Activities placeholder.]'
-    }
-  };
 
   /* ============================================================
-     CP → flag lookup
+     CP â flag lookup
      ============================================================ */
   var CP_FLAGS = {
-    'Albania':                '🇦🇱',
-    'Bosnia and Herzegovina': '🇧🇦',
-    'Kosovo*':                '🇽🇰',
-    'Kosovo':                 '🇽🇰',
-    'North Macedonia':        '🇲🇰',
-    'Montenegro':             '🇲🇪',
-    'Serbia':                 '🇷🇸'
+    'Albania':                'ð¦ð±',
+    'Bosnia and Herzegovina': 'ð§ð¦',
+    'Kosovo*':                'ð½ð°',
+    'Kosovo':                 'ð½ð°',
+    'North Macedonia':        'ð²ð°',
+    'Montenegro':             'ð²ðª',
+    'Serbia':                 'ð·ð¸'
   };
 
   /* ============================================================
@@ -1695,57 +1520,7 @@
   }
 
   /* ============================================================
-     MODAL  —  grantee stories
-     ============================================================ */
-  function openModal() {
-    document.getElementById('project-modal').classList.add('is-open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    document.getElementById('project-modal').classList.remove('is-open');
-    document.body.style.overflow = '';
-  }
-
-  function setModalHeadings(a, b, c) {
-    var s = document.querySelector('#modal-summary-section h4');
-    var o = document.querySelector('#modal-objectives-section h4');
-    var k = document.querySelector('#modal-activities-section h4');
-    if (s) s.textContent = a;
-    if (o) o.textContent = b;
-    if (k) k.textContent = c;
-  }
-
-  function openStoryModal(key) {
-    var s = STORIES[key];
-    if (!s) return;
-    var metaHtml = '<span class="modal-meta-tag pn">' + escapeHtml(s.pn) + '</span>' +
-                   '<span class="modal-meta-tag ' + s.areaClass + '">' + escapeHtml(s.area) + '</span>';
-    document.getElementById('modal-meta-row').innerHTML = metaHtml;
-    document.getElementById('modal-title-el').textContent = s.title;
-    document.getElementById('modal-lead-el').innerHTML = s.lead;
-    document.getElementById('modal-grid-el').innerHTML = s.stats.map(function (st) {
-      return '<div class="modal-stat"><div class="modal-stat-label">' + escapeHtml(st.label) + '</div><div class="modal-stat-value">' + escapeHtml(st.value) + '</div></div>';
-    }).join('');
-    setModalHeadings('Project summary', 'Objectives', 'Key activities');
-    document.getElementById('modal-activities-section').style.display = '';
-    document.getElementById('modal-summary-el').textContent    = s.summary;
-    document.getElementById('modal-objectives-el').textContent = s.objectives;
-    document.getElementById('modal-activities-el').textContent = s.activities;
-    openModal();
-  }
-
-  function wireModalClose() {
-    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-    document.getElementById('project-modal').addEventListener('click', function (e) {
-      if (e.target === this) closeModal();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeModal();
-    });
-  }
-
-  /* ============================================================
-     NEWS  —  load CSV, filter to GGI, take top 6
+     NEWS — load CSV, filter to GGI, take top 6
      ============================================================ */
   function loadNews() {
     var grid = document.getElementById('ggi-news-grid');
@@ -1796,7 +1571,6 @@
      INIT
      ============================================================ */
   document.addEventListener('DOMContentLoaded', function () {
-    wireModalClose();
     initEvalEffects();
   });
 })();
@@ -1804,7 +1578,7 @@
 
 </main>
 
-<!-- FOOTER (unchanged — loads from master) -->
+<!-- FOOTER (unchanged â loads from master) -->
 <div id="footer-placeholder"></div>
 <script>
   fetch('/components/_MASTER_footer.html')
