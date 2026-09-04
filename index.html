@@ -786,33 +786,25 @@
   /* ============================================================
      IMPACT STATS
      ============================================================ */
-  .impact { background: #fff; padding-top: 24px; }
+  .impact { background: #fff; padding: 16px 0 36px; }
 
-  .impact-header { text-align: center; margin-bottom: 48px; }
+  .impact-header { text-align: center; margin-bottom: 30px; }
   .impact-header .overline {
     display: inline-block;
     font-family: var(--font-display);
-    font-size: clamp(30px, 4.6vw, 54px);
+    font-size: clamp(26px, 3.2vw, 40px);
     font-weight: 800;
     text-transform: none;
     letter-spacing: -0.015em;
     line-height: 1.04;
-    margin-bottom: 14px;
-    background: linear-gradient(100deg, #0f2044 0%, #173D8F 36%, #3372e3 60%, #6aa2f7 80%, #173D8F 100%);
-    background-size: 220% auto;
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-    animation: glanceShine 7s linear infinite;
+    margin-bottom: 10px;
+    color: var(--ink, #0f172a);
   }
   .impact-header .overline::after {
-    content: ""; display: block; width: 66px; height: 4px; margin: 16px auto 0;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #dba91c, #f2cf6b);
-    box-shadow: 0 4px 14px rgba(219,169,28,0.4);
+    content: ""; display: block; width: 48px; height: 3px; margin: 12px auto 0;
+    border-radius: 999px; background: #dba91c;
   }
-  @keyframes glanceShine { to { background-position: 220% center; } }
-  @media (prefers-reduced-motion: reduce) { .impact-header .overline { animation: none; } }
-  .impact-header h2 { font-size: var(--text-lg); font-weight: 600; color: var(--muted); letter-spacing: 0; margin-bottom: 16px; }
+  .impact-header h2 { font-size: var(--text-lg); font-weight: 600; color: var(--muted); letter-spacing: 0; margin-bottom: 0; }
   .impact-header p { font-size: var(--text-base); color: var(--muted); max-width: 50ch; margin: 0 auto; line-height: 1.65; }
 
   .impact { position: relative; overflow: hidden; }
@@ -826,148 +818,95 @@
      FLAGSHIP,WBF Regional Academy
      ============================================================ */
   .academy { background: #fff; }
-  .glance-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; align-items: stretch; }
-  .academy-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 22px;
-    background: linear-gradient(150deg, #0c5046 0%, #1c5e53 55%, #326a61 100%);
-    box-shadow: 0 26px 62px rgba(12,80,70,0.32);
-  }
-  .academy-head { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-  .academy-card::after {
-    content: ""; position: absolute; bottom: -160px; left: -120px; width: 380px; height: 380px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(164,190,186,0.28) 0%, transparent 70%); pointer-events: none;
-  }
-  .academy-body { position: relative; z-index: 2; padding: 44px 46px; }
-  .academy-wbf { height: 40px; width: auto; opacity: 0.98; flex-shrink: 0; }
-  .academy-actions { display: flex; align-items: center; justify-content: space-between; gap: 18px 24px; flex-wrap: wrap; }
-  .academy-support { display: flex; align-items: center; gap: 11px; }
-  .academy-support-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.72); }
-  .academy-support-logo {
-    display: inline-flex; align-items: center;
-    background: #fff; border-radius: 9px; padding: 8px 13px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
-  }
-  .academy-support-logo img { height: 30px; width: auto; display: block; }
-  .academy-flag {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.13em; color: #0c5046;
-    background: linear-gradient(90deg, #e4c48e, #e0a738); padding: 6px 14px; border-radius: 999px;
-  }
-  .academy-flag svg { width: 13px; height: 13px; }
-  .academy-kicker {
-    font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 800; line-height: 1.08; margin-bottom: 6px;
-    background: linear-gradient(90deg, #e4c48e, #e0a738); -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .academy-title { font-size: var(--text-md); font-weight: 600; color: rgba(255,255,255,0.82); letter-spacing: 0.01em; line-height: 1.35; margin-bottom: 18px; }
-  .academy-lead { font-size: var(--text-base); color: rgba(255,255,255,0.76); line-height: 1.7; margin-bottom: 26px; max-width: 56ch; }
-  .academy-lead strong { color: #fff; font-weight: 600; }
-
-  .academy-facts { display: grid; grid-template-columns: repeat(2, max-content); gap: 16px 48px; margin-bottom: 24px; }
-  .academy-fact { display: flex; flex-direction: column; gap: 3px; }
-  .af-key { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #c3d6d2; }
-  .af-val { font-size: var(--text-md); font-weight: 600; color: #fff; }
-
-  .academy-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
-  .academy-tag {
-    font-size: var(--text-xs); color: rgba(255,255,255,0.85);
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(164,190,186,0.32);
-    padding: 5px 12px; border-radius: 999px;
-  }
-  .academy-btn {
-    display: inline-flex; align-items: center; gap: 9px;
-    padding: 13px 26px; border-radius: 999px;
-    background: linear-gradient(90deg, #e4c48e, #e0a738); color: #0c5046;
-    font-size: var(--text-sm); font-weight: 800; text-decoration: none;
-    box-shadow: 0 12px 28px rgba(224,167,56,0.32);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-  }
-  .academy-btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s ease; }
-  .academy-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 38px rgba(224,167,56,0.44); filter: brightness(1.05); }
-  .academy-btn:hover svg { transform: translateX(4px); }
-
-  /* 2026 programme accordion (right column of the flagship card) */
-  .academy-highlights {
-    position: relative; z-index: 2;
-    display: flex; flex-direction: column; gap: 18px;
-    padding: 30px 26px;
-    background: linear-gradient(160deg, #ffffff 0%, #F2F8F6 100%);
-    border: 1px solid #DCE9E5;
-    border-radius: 22px;
-    box-shadow: 0 20px 50px rgba(12,80,70,0.12);
-  }
-  /* vertical accordion of horizontal programme cards; unified light theme,
-     each programme's page-gradient used only on the number, side bar and CTA */
-  .prog-acc { display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 440px; }
-
-  .prog-c {
+  /* Two headline cards of equal weight, then one row of four equal tiles.
+     Every card is the same light card; the only colour is each programme's
+     own logo and a hairline accent, so nothing competes for attention. */
+  .glance-feats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; align-items: stretch; margin-bottom: 18px; }
+  .feat-card {
     position: relative; overflow: hidden;
-    flex: 1 1 0; min-height: 64px;
-    display: flex; flex-direction: column; justify-content: center;
-    border-radius: 14px;
-    border: 1px solid #e3edf8;
-    background: linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
-    text-decoration: none; color: inherit;
-    transition: box-shadow .3s ease, border-color .3s ease;
+    display: flex; flex-direction: column;
+    background: #fff; border: 1px solid #e6ecf5; border-radius: 18px;
+    padding: 22px 26px;
+    box-shadow: 0 1px 2px rgba(15,32,68,0.04), 0 12px 26px -20px rgba(15,32,68,0.30);
+    transition: border-color .25s ease, box-shadow .25s ease;
   }
-  .prog-c::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 4px; background: var(--g); z-index: 2; }
-  /* focused card sizes to its own content; the others grow to fill — no dead space.
-     Open state is driven by JS (.prog-c--open), not :hover, to avoid reflow flicker. */
-  .prog-c--open { flex: 0 0 auto; justify-content: flex-start; box-shadow: 0 16px 34px -14px rgba(15,32,68,.22); border-color: var(--pc-soft); }
+  .feat-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--fc); }
+  .feat-card:hover { border-color: #d8e2f1; box-shadow: 0 2px 4px rgba(15,32,68,0.05), 0 20px 40px -22px rgba(15,32,68,0.42); }
+  .feat-academy { --fc: #0c5046; --fc-soft: #e7f0ed; --fc-ink: #0c5046; }
+  .feat-gef { --fc: #8A2BE2; --fc-soft: #f5edfd; --fc-ink: #6b21a8; }
 
-  /* always-visible header row (horizontal) */
-  .pc-head { display: flex; align-items: center; gap: 14px; min-height: 62px; padding: 0 16px 0 22px; flex-shrink: 0; }
-  .pc-num {
-    font: 800 34px/1 var(--font-display); letter-spacing: -.035em; flex-shrink: 0;
-    background: var(--g); -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
+  .feat-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; min-height: 40px; }
+  .feat-logo { width: auto; display: block; }
+  .feat-academy .feat-logo { height: 44px; }
+  .feat-gef .feat-logo { height: 28px; }
+  .feat-chip {
+    flex-shrink: 0;
+    font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--fc-ink); background: var(--fc-soft); border: 1px solid var(--fc-soft);
+    padding: 4px 10px; border-radius: 999px; white-space: nowrap;
   }
-  .pc-name { font-size: 16.5px; font-weight: 800; color: var(--navy, #173D8F); line-height: 1.16; letter-spacing: -.01em; }
-  .pc-logo { height: 27px; width: auto; display: block; }
-  .pc-chev { margin-left: auto; flex-shrink: 0; color: var(--pc); transition: transform .4s ease; }
-  .pc-chev svg { width: 18px; height: 18px; display: block; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-  .prog-c--open .pc-chev { transform: rotate(90deg); }
+  .feat-lead { font-size: 15px; line-height: 1.55; color: var(--ink-soft, #3c4863); margin-bottom: 12px; }
+  .feat-lead strong { color: var(--navy, #173D8F); font-weight: 700; }
 
-  /* revealed body — collapses to zero height so the header can center */
-  .pc-body {
-    display: flex; flex-direction: column; gap: 14px;
-    padding: 0 22px; max-height: 0; opacity: 0; overflow: hidden;
-    transition: max-height .5s cubic-bezier(.22,.61,.36,1), opacity .35s ease, padding .5s ease;
+  .feat-facts { display: flex; flex-wrap: wrap; gap: 7px 24px; margin-bottom: 10px; }
+  .feat-fact { display: flex; align-items: baseline; gap: 8px; }
+  .ff-key { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #94a0b5; }
+  .ff-val { font-size: 13.5px; font-weight: 700; color: var(--navy, #173D8F); }
+
+  .feat-meta {
+    font-size: 12.5px; color: #8b97ad; line-height: 1.55;
+    padding-top: 10px; margin-bottom: 14px; border-top: 1px solid #eef2f8;
   }
-  .prog-c--open .pc-body { max-height: 360px; opacity: 1; padding: 6px 22px 24px; }
-  .pc-lead { display: flex; align-items: center; gap: 13px; }
-  .pc-lead-num {
-    font: 800 58px/.82 var(--font-display); letter-spacing: -.04em; flex-shrink: 0;
-    background: var(--g); -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-  }
-  .pc-lead-unit { font-size: 14.5px; font-weight: 700; color: var(--navy, #173D8F); line-height: 1.3; }
-  .pc-text { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-soft, #3c4863); }
-  .pc-text b { font-weight: 800; color: var(--pc); }
-  .pc-cta {
-    align-self: flex-start; margin-top: 4px;
+  /* Pinned to the bottom so both cards close on the same line. */
+  .feat-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px 20px; flex-wrap: wrap; }
+  .feat-btn {
     display: inline-flex; align-items: center; gap: 9px;
-    padding: 12px 21px; border-radius: 999px;
-    background: var(--g); color: #fff;
-    font-size: 14px; font-weight: 800; letter-spacing: .01em;
-    box-shadow: 0 11px 22px -9px var(--pc-shadow);
-    transition: gap .2s ease, box-shadow .2s ease;
+    padding: 9px 18px; border-radius: 999px;
+    background: var(--fc); color: #fff;
+    font-size: 13.5px; font-weight: 700; text-decoration: none;
+    transition: filter .2s ease;
   }
-  .prog-c--open .pc-cta { gap: 13px; box-shadow: 0 15px 28px -9px var(--pc-shadow); }
-  .pc-cta svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .feat-btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s ease; }
+  .feat-btn:hover { filter: brightness(1.12); }
+  .feat-btn:hover svg { transform: translateX(3px); }
+  .feat-support { display: flex; align-items: center; gap: 10px; }
+  .feat-support-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #9aa5b8; }
+  .feat-support img { height: 26px; width: auto; display: block; }
 
-  /* per-programme accents = each programme page's own gradient */
-  .prog-c.gef   { --g: linear-gradient(90deg, #5A2DFF 0%, #3F6DFF 26%, #8A2BE2 54%, #C2185B 82%, #FF1A1A 100%); --pc: #8A2BE2; --pc-soft: #d8b4fe; --pc-shadow: rgba(138,43,226,.6); }
-  .prog-c.ggi   { --g: linear-gradient(120deg, #173D8F 0%, #2567D8 60%, #4AA3F0 100%); --pc: #2567D8; --pc-soft: #aacbf5; --pc-shadow: rgba(37,103,216,.6); }
-  .prog-c.move  { --g: linear-gradient(120deg, #0E8C84 0%, #076b64 100%); --pc: #0E8C84; --pc-soft: #8fcfc9; --pc-shadow: rgba(14,140,132,.6); }
-  .prog-c.viseg { --g: linear-gradient(120deg, #08213b 0%, #0F3250 48%, #1D5C9E 100%); --pc: #1D5C9E; --pc-soft: #a8c8e8; --pc-shadow: rgba(29,92,158,.6); }
+  /* Four supporting programmes, identical treatment — the figure is the
+     identity, since none of them has a mark of its own. */
+  .glance-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .gtile {
+    display: flex; flex-direction: column;
+    background: #fff; border: 1px solid #e6ecf5; border-radius: 14px;
+    padding: 16px 18px 14px; text-decoration: none; color: inherit;
+    box-shadow: 0 1px 2px rgba(15,32,68,0.04), 0 10px 20px -18px rgba(15,32,68,0.26);
+    transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+  }
+  .gtile:hover { border-color: #cfdcf0; box-shadow: 0 2px 4px rgba(15,32,68,0.05), 0 18px 32px -20px rgba(15,32,68,0.45); transform: translateY(-2px); }
+  .gt-name { font-size: 14.5px; font-weight: 700; color: var(--navy, #173D8F); line-height: 1.25; margin-bottom: 7px; }
+  .gt-text { font-size: 13px; line-height: 1.55; color: var(--muted, #6b7789); margin: 0; }
+  /* The figure reads inside the sentence rather than above it, so the tiles
+     stay grammatical and a programme without a headline number still fits. */
+  .gt-fig { font-family: var(--font-display); font-size: 18px; font-weight: 800; letter-spacing: -.02em; color: var(--navy, #173D8F); }
+  .gt-more {
+    margin-top: auto; padding-top: 11px;
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--navy, #173D8F);
+    transition: gap .2s ease;
+  }
+  .gtile:hover .gt-more { gap: 11px; }
+  .gt-more svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 
+  @media (max-width: 1024px) {
+    .glance-tiles { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 600px) {
-    .prog-acc { min-height: 0; }
-    .prog-c { flex: 0 0 auto; justify-content: flex-start; }
-    .pc-body { max-height: none; opacity: 1; padding: 6px 22px 24px; }
-    .pc-chev { display: none; }
+    .feat-card { padding: 24px 22px; }
+    .feat-head { flex-wrap: wrap; gap: 12px; }
+    .glance-tiles { grid-template-columns: 1fr; }
+  }
   }
 
   /* ============================================================
@@ -1751,7 +1690,7 @@
     .hero-inner { --hero-pb: 40px; padding: 48px 24px var(--hero-pb); }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .pf-grid { grid-template-columns: repeat(2, 1fr); }
-    .glance-grid { grid-template-columns: 1fr; gap: 20px; }
+    .glance-feats { grid-template-columns: 1fr; gap: 18px; }
     .partnership-card { grid-template-columns: 1fr; }
     .partnership-text { padding: 40px 24px; }
     .partnership-visual { min-height: 320px; }
@@ -1767,10 +1706,7 @@
     .section { padding: 40px 0; }
     .chair { padding-bottom: 28px; }
     .partnership { padding-top: 28px; }
-    .academy-body { padding: 36px 26px; }
-    .academy-wbf { height: 34px; }
-    .academy-actions { flex-direction: column; align-items: flex-start; gap: 22px; }
-    .academy-facts { grid-template-columns: 1fr 1fr; }
+    .feat-foot { flex-direction: column; align-items: flex-start; gap: 18px; }
     .news-grid { grid-template-columns: 1fr; }
     .partners-row { flex-direction: column; }
     .partner-link { border-right: none; border-bottom: 1px solid var(--line); width: 100%; text-align: center; }
@@ -2458,143 +2394,86 @@
       <h2 class="section-title">A milestone year across the programmes</h2>
     </div>
 
-    <div class="glance-grid">
+    <!-- Two headline items of the year, side by side and equally weighted -->
+    <div class="glance-feats">
 
-      <div class="academy-card">
-      <div class="academy-body">
-        <div class="academy-head">
-          <img class="academy-wbf" src="/assets/img/wbf-logo-white.svg" alt="Western Balkans Fund" onerror="this.style.display='none'">
-          <span class="academy-flag">
-            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,9 22,9.3 16.5,14 18.5,21 12,17 5.5,21 7.5,14 2,9.3 9,9"/></svg>
-            Flagship Initiative
-          </span>
+      <article class="feat-card feat-academy">
+        <div class="feat-head">
+          <img class="feat-logo" src="/assets/images/regional-academy/academy-logo.svg" alt="WBF Regional Academy on Dialogue &amp; Culture of Cooperation">
+          <span class="feat-chip">Flagship initiative</span>
         </div>
-        <div class="academy-kicker">WBF Regional Academy</div>
-        <h2 class="academy-title">On Dialogue &amp; Culture of Cooperation</h2>
-        <p class="academy-lead">A <strong>7-day residential learning journey</strong> for junior professionals and emerging leaders from across the WB6, an initiative of the <strong>Western Balkans Fund</strong>, supported by the <strong>Open Society Foundation Western Balkans</strong>, equipping a new generation to advance dialogue, cooperation and reconciliation.</p>
-
-        <div class="academy-facts">
-          <div class="academy-fact"><span class="af-key">When</span><span class="af-val">13–19 Sept 2026</span></div>
-          <div class="academy-fact"><span class="af-key">Where</span><span class="af-val">Tirana, Albania</span></div>
-          <div class="academy-fact"><span class="af-key">Format</span><span class="af-val">In-person · residential</span></div>
+        <p class="feat-lead">A <strong>7-day residential learning journey</strong> for junior professionals and emerging leaders from across the WB6, an initiative of the Western Balkans Fund, supported by the Open Society Foundation Western Balkans, equipping a new generation to advance dialogue, cooperation and reconciliation.</p>
+        <div class="feat-facts">
+          <div class="feat-fact"><span class="ff-key">When</span><span class="ff-val">13&ndash;19 Sept 2026</span></div>
+          <div class="feat-fact"><span class="ff-key">Where</span><span class="ff-val">Tirana, Albania</span></div>
+          <div class="feat-fact"><span class="ff-key">Format</span><span class="ff-val">In-person &middot; residential</span></div>
         </div>
-
-        <div class="academy-tags">
-          <span class="academy-tag">Thematic lectures</span>
-          <span class="academy-tag">Interactive workshops</span>
-          <span class="academy-tag">Dialogue sessions</span>
-          <span class="academy-tag">Site visits</span>
-          <span class="academy-tag">5 thematic pillars</span>
-        </div>
-
-        <div class="academy-actions">
-          <a href="/regional-academy.html" class="academy-btn">
+        <p class="feat-meta">Thematic lectures &middot; Interactive workshops &middot; Dialogue sessions &middot; Site visits &middot; 5 thematic pillars</p>
+        <div class="feat-foot">
+          <a href="/regional-academy.html" class="feat-btn">
             Discover the Academy
             <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
           </a>
-          <div class="academy-support">
-            <span class="academy-support-label">Supported by</span>
-            <span class="academy-support-logo"><img src="/assets/images/partners/partner-osf.svg" alt="Open Society Foundation Western Balkans"></span>
-          </div>
+          <span class="feat-support">
+            <span class="feat-support-label">Supported by</span>
+            <img src="/assets/images/partners/partner-osf.svg" alt="Open Society Foundation Western Balkans">
+          </span>
         </div>
-      </div>
-      </div>
+      </article>
 
-      <div class="academy-highlights">
-        <div class="prog-acc">
-
-          <a class="prog-c gef prog-c--open" href="/gefund.html" aria-label="Gender Equality Fund — first Call for Proposals received 269 applications">
-            <span class="pc-head">
-              <img class="pc-logo" src="/assets/images/gefund/gefund-logo.png" alt="GEFund — Western Balkans Gender Equality Fund" onerror="this.style.display='none'">
-              <span class="pc-chev"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
-            </span>
-            <span class="pc-body">
-              <span class="pc-lead"><span class="pc-lead-num">269</span><span class="pc-lead-unit">applications to the<br>first Call for Proposals</span></span>
-              <span class="pc-text">The Western Balkans Fund has earmarked <b>15%</b> of its core budget for gender-equality initiatives.</span>
-              <span class="pc-cta">Discover GEFund <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-            </span>
-          </a>
-
-          <a class="prog-c ggi" href="/ggi.html" aria-label="Grants for Grassroots Initiatives — 24 projects funded under the 8th Call">
-            <span class="pc-head">
-              <span class="pc-num">24</span>
-              <span class="pc-name">Grants for Grassroots Initiatives</span>
-              <span class="pc-chev"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
-            </span>
-            <span class="pc-body">
-              <span class="pc-text">Through its <b>8th Call</b>, WBF awarded funding to <b>24 projects</b> under the annual GGI grant scheme — supporting young and emerging CSOs and grassroots organisations to actively contribute to regional cooperation.</span>
-              <span class="pc-cta">Explore GGI <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-            </span>
-          </a>
-
-          <a class="prog-c move" href="/move.html" aria-label="MOVE Grant — 29 changemakers supported to travel across the WB6">
-            <span class="pc-head">
-              <span class="pc-num">29</span>
-              <span class="pc-name">MOVE Grant</span>
-              <span class="pc-chev"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
-            </span>
-            <span class="pc-body">
-              <span class="pc-text">Through the MOVE Grant, WBF supported <b>29 changemakers</b> to travel across the WB6 region — exchanging knowledge, building partnerships, and bringing new ideas back to their communities.</span>
-              <span class="pc-cta">Explore MOVE <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-            </span>
-          </a>
-
-          <a class="prog-c viseg" href="/visegrad-fellowship.html" aria-label="WB6-V4 Fellowships — 51 fellows awarded academic exchanges">
-            <span class="pc-head">
-              <span class="pc-num">51</span>
-              <span class="pc-name">WB6-V4 Fellowships</span>
-              <span class="pc-chev"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
-            </span>
-            <span class="pc-body">
-              <span class="pc-text">Through the WB6-V4 Fellowships, WBF and the Visegrad Fund awarded <b>51 fellows</b> the opportunity to undertake academic exchanges between the WB6 and V4 regions.</span>
-              <span class="pc-cta">Explore the Fellowship <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-            </span>
-          </a>
-
+      <article class="feat-card feat-gef">
+        <div class="feat-head">
+          <img class="feat-logo" src="/assets/images/gefund/gefund-logo.png" alt="GEFund — Western Balkans Gender Equality Fund" onerror="this.style.display='none'">
+          <span class="feat-chip">First Call &middot; 2026</span>
         </div>
-      </div>
+        <p class="feat-lead">The Western Balkans Fund has earmarked <strong>15% of its core budget</strong> for gender-equality initiatives, funding regional partnerships that advance gender equality across the Western Balkans.</p>
+        <div class="feat-facts">
+          <div class="feat-fact"><span class="ff-key">Applications</span><span class="ff-val">269</span></div>
+          <div class="feat-fact"><span class="ff-key">Awarded</span><span class="ff-val">6 consortia</span></div>
+          <div class="feat-fact"><span class="ff-key">Partners</span><span class="ff-val">785 organisations</span></div>
+        </div>
+        <p class="feat-meta">One project per Contracting Party &middot; Assessed with the OECD DAC Gender Equality Marker &middot; Externally evaluated with Swisspeace</p>
+        <div class="feat-foot">
+          <a href="/gefund.html" class="feat-btn">
+            Discover GEFund
+            <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- The rest of the year, one tile per programme -->
+    <div class="glance-tiles">
+
+      <a class="gtile" href="/past-events.html?year=2026">
+        <span class="gt-name">#LeadBalkans Conference</span>
+        <p class="gt-text">Organised by the Fund in Tirana, bringing diaspora and community leaders together over three days and six panels.</p>
+        <span class="gt-more">Explore <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+      </a>
+
+      <a class="gtile" href="/ggi.html">
+        <span class="gt-name">Grants for Grassroots Initiatives</span>
+        <p class="gt-text"><span class="gt-fig">24</span> projects funded under the 8th Call of the annual GGI grant scheme.</p>
+        <span class="gt-more">Explore <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+      </a>
+
+      <a class="gtile" href="/move.html">
+        <span class="gt-name">MOVE Grant</span>
+        <p class="gt-text"><span class="gt-fig">29</span> changemakers supported to travel and exchange across the WB6.</p>
+        <span class="gt-more">Explore <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+      </a>
+
+      <a class="gtile" href="/visegrad-fellowship.html">
+        <span class="gt-name">WB6-V4 Fellowships</span>
+        <p class="gt-text"><span class="gt-fig">51</span> fellows awarded academic exchanges between the WB6 and V4 regions.</p>
+        <span class="gt-more">Explore <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+      </a>
 
     </div>
 
   </div>
 </section>
-
-<!-- Programme accordion: hover-to-open, debounced so reflow can't cause flicker -->
-<script>
-(function () {
-  var acc = document.querySelector('.prog-acc');
-  if (!acc) return;
-  var cards = Array.prototype.slice.call(acc.querySelectorAll('.prog-c'));
-  if (!cards.length) return;
-  var defaultCard = acc.querySelector('.prog-c--open') || cards[0];
-  var timer = null, hasFine = false;
-
-  // only enable hover-to-open for devices with a fine pointer (mouse)
-  try { hasFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches; } catch (e) { hasFine = true; }
-  if (!hasFine) return;
-
-  function open(card) {
-    if (!card || card.classList.contains('prog-c--open')) return;
-    cards.forEach(function (c) { c.classList.toggle('prog-c--open', c === card); });
-  }
-
-  // A card opens only after the pointer has rested on it for ~120ms. The timer is
-  // shared and cleared on every mouseenter, so the transient mouseenters fired while
-  // the layout reflows keep resetting it — no card switches until the pointer settles.
-  cards.forEach(function (card) {
-    card.addEventListener('mouseenter', function () {
-      clearTimeout(timer);
-      timer = setTimeout(function () { open(card); }, 120);
-    });
-  });
-
-  // leaving the whole strip settles back to the default focus
-  acc.addEventListener('mouseleave', function () {
-    clearTimeout(timer);
-    timer = setTimeout(function () { open(defaultCard); }, 160);
-  });
-})();
-</script>
 
 <!-- ============================================================
      CHAIRMANSHIP IN OFFICE,Montenegro 2026
