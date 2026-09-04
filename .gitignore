@@ -19,12 +19,20 @@ Thumbs.db
 *.zip
 
 # Documents ship with the site — the depository links straight at them.
-# These few are still too heavy to serve comfortably and are waiting to be
-# compressed; add them back (delete the line) once they are. Committing a
-# large PDF now and replacing it later leaves BOTH copies in git history
-# forever, so it is worth compressing first.
-assets/documents/annual-report-2019.pdf
-assets/documents/annual-report-2020.pdf
+# Only the ones still waiting to be compressed are listed here. Delete a
+# line the moment its file is small enough and the depository picks it up.
+# Committing a large PDF now and replacing it later leaves BOTH copies in
+# git history forever, so it is worth compressing first.
+#
+# Sizes as of 4 September 2026, largest first:
+#   annual-report-2021 ................. 67.7 MB
+#   annual-report-2022 ................. 24.4 MB
+#   eu-wbf-joint-action-2024-2025 ...... 16.7 MB
+#   annual-report-2024-2025 ............ 14.6 MB
+#   eu-wbf-joint-action-second-call .... 9.8 MB
+#
+# Everything else in assets/documents/ is published. For reference, the
+# largest file already shipping is annual-report-2020 at 5.0 MB.
 assets/documents/annual-report-2021.pdf
 assets/documents/annual-report-2022.pdf
 assets/documents/annual-report-2024-2025.pdf

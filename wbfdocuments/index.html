@@ -677,7 +677,7 @@
      rows are added to documents.csv (category: newsletter).
      ────────────────────────────────────────────────────────── */
   const SECTIONS = [
-    { key: 'founding',      title: 'Founding & Legal',    blurb: 'The establishment agreement and the ministerial statements underpinning the Fund.', cats: ['founding'] },
+    { key: 'founding',      title: 'Founding & Legal',    blurb: 'The establishment agreement and the ministerial statements underpinning the Fund.', cats: ['founding'], order: 'asc' },
     { key: 'strategy',      title: 'Strategic Documents', blurb: 'Multi-year strategic plans and development frameworks guiding the Fund.',            cats: ['strategy'] },
     { key: 'annual-report', title: 'Annual Reports',      blurb: "Yearly accounts of the Fund's activities, programmes, grants disbursed and impact.", cats: ['annual-report'] },
     { key: 'audit-report',  title: 'Audit Reports',       blurb: "Independent external audits of the Fund's accounts and financial information.",      cats: ['audit-report'] },
@@ -1030,6 +1030,15 @@
     root.innerHTML = SECTIONS.map(sec => {
       const all = bySection[sec.key];
       if (!all || !all.length) return '';
+
+      /* Founding documents read as a sequence, not as a feed: the
+         establishment agreement first, then the ministerial statements
+         that followed from it. A section opts into that with order:'asc'.
+         The sort is stable, so documents sharing a year keep the order
+         they have in documents.csv. */
+      if (sec.order === 'asc') {
+        all.sort((a, b) => (parseInt(a.year, 10) || 0) - (parseInt(b.year, 10) || 0));
+      }
 
       const head =
         '<div class="doc-section-head">' +
