@@ -246,20 +246,15 @@
   }
   .program-card:hover .card-title { color: var(--navy-900); }
 
-  /* Descriptions vary from one line to a full paragraph. In a narrow column
-     that swings the card heights wildly, so the summary is clamped to four
-     lines here — the full text still lives on each programme page. The markup
-     is untouched, so removing the clamp restores the copy in full. */
+  /* Summaries run in full. Card heights vary as a result, but a clamp
+     cut sentences off mid-clause, which read as a fault rather than a
+     precis. .card-explore stays pinned to the bottom regardless. */
   .card-desc {
     font-size: var(--text-sm);
     color: var(--ink-soft);
     line-height: 1.6;
     margin-bottom: 16px;
     flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   .card-explore {
@@ -331,8 +326,6 @@
        for a title and a summary to sit comfortably. */
     .col-body .program-card { flex: 1 1 100%; }
     .prog-col { padding: 24px 18px 20px; }
-    /* Vertical space is no longer scarce, so let the summaries run in full. */
-    .card-desc { -webkit-line-clamp: initial; display: block; overflow: visible; }
   }
 </style>
 </head>

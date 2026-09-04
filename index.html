@@ -777,16 +777,15 @@
   .pf-tag.who-individual { background: rgba(245,180,60,0.15);  color: #f3c778; border: 1px solid rgba(245,180,60,0.34); }
   .pf-tag.type-grant     { background: rgba(51,114,227,0.20);  color: #a9c6f7; border: 1px solid rgba(51,114,227,0.40); }
   .pf-tag.type-capacity  { background: rgba(60,200,130,0.16);  color: #7fe0ac; border: 1px solid rgba(60,200,130,0.36); }
+  /* Summaries run in full — they are short, and a clamped one cut a
+     sentence off mid-clause. Cards in a row stretch to the tallest,
+     and .pf-card-foot stays pinned to the bottom either way. */
   .pf-card-desc {
     font-size: var(--text-sm);
     color: rgba(255,255,255,0.70);
     line-height: 1.55;
     margin-bottom: 12px;
     flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   .pf-card-foot {
