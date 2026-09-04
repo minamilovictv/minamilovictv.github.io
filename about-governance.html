@@ -117,13 +117,13 @@
   @keyframes shine { to { background-position: 200% center; } }
   .page-hero p {
     font-size: var(--text-lg); color: rgba(255,255,255,0.74);
-    line-height: 1.65; max-width: 62ch;
+    line-height: 1.65; max-width: 1010px;
   }
 
   /* ============================================================
      SECTION SHARED
      ============================================================ */
-  .section { padding: 88px 0; position: relative; }
+  .section { padding: 56px 0; position: relative; }
   .section-alt { background: var(--surface-alt); }
 
   .section-header { text-align: center; margin-bottom: 56px; }
@@ -152,8 +152,8 @@
   /* The cards and the panel they control are one unit, so the full 88px
      of section padding either side of that seam reads as a gap between
      unrelated blocks. 176px becomes 56px. */
-  .section.structure { padding-bottom: 28px; }
-  .body-panel { padding-top: 28px; }
+  .section.structure { padding-bottom: 22px; }
+  .body-panel { padding-top: 22px; }
 
   /* ---- Governing-body panels -------------------------------------
      Hovering (or tapping, or tabbing to) a flow card swaps the body
@@ -349,7 +349,7 @@
   }
   @media (max-width: 768px) {
     .page-hero { padding: 64px 0 56px; }
-    .section { padding: 60px 0; }
+    .section { padding: 42px 0; }
     .section.structure { padding-bottom: 20px; }
     .body-panel { padding-top: 20px; }
     .flow-grid { grid-template-columns: 1fr; }

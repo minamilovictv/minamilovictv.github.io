@@ -236,9 +236,16 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
 
 /* Meta facts row */
-.meta-facts { display: flex; flex-wrap: wrap; gap: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
+.meta-facts { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 30px 36px; padding-top: 28px; border-top: 1px solid var(--line); }
 .meta-fact-key { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); margin-bottom: 6px; }
 .meta-fact-value { font-size: 16px; font-weight: 600; color: var(--navy); }
+/* Funder marks, sized optically rather than to one common height: the SDC
+   lockup carries four language lines and needs more room than the others. */
+.mf-logos { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 2px; }
+.mf-logos img { display: block; width: auto; }
+.mf-sdc { height: 46px; }
+.mf-eu  { height: 30px; mix-blend-mode: multiply; }
+.mf-wbf { height: 32px; }
 
 /* ============================================================
    FUNDED-BY STRIP
@@ -381,8 +388,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
    stat cards' width and left rail */
 .bp-badge {
   position: relative;
-  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 14px;
-  padding: 22px 30px 22px 24px;
+  display: flex; flex-direction: row; align-items: center; gap: 18px;
+  padding: 14px 30px 14px 22px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-left: 3px solid var(--gefund);
@@ -401,7 +408,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   line-height: 1.4; color: var(--faint); transition: color .25s ease;
 }
 .bp-badge:hover .bp-badge-kicker { color: var(--gefund); }
-.bp-badge-mark { display: block; height: 48px; width: auto; flex-shrink: 0; }
+.bp-badge-mark { display: block; height: 34px; width: auto; flex-shrink: 0; }
 .bp-badge-ext {
   position: absolute; top: 12px; right: 12px;
   width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2;
@@ -432,11 +439,12 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .about-text p:last-child { margin-bottom: 0; }
 .about-text strong { color: var(--ink); font-weight: 600; }
 
-/* Supporting plates, stacked in the narrower right column.
-   grid-auto-rows: 1fr keeps all three the same size — the provenance plate
-   has the least content and would otherwise sit half the height of the rest. */
-.about-stats { display: grid; grid-auto-rows: 1fr; gap: 16px; }
-#main .about-disclaimer { font-size: 11px; color: var(--faint); line-height: 1.55; margin-top: 20px; margin-bottom: 0; text-align: left; }
+/* Supporting plates, stacked in the narrower right column. Each sizes to its
+   own content, so the provenance mark stays a compact lockup and the column
+   finishes level with the prose beside it. */
+.about-stats { display: grid; align-content: start; gap: 14px; }
+/* Spans the grid so it sits under both columns, not in a phantom second row. */
+#main .about-disclaimer { grid-column: 1 / -1; font-size: 11px; color: var(--faint); line-height: 1.55; margin-top: 4px; margin-bottom: 0; text-align: left; }
 .stat-card {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -445,7 +453,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
   padding: 22px 24px;
 }
 .stat-num {
-  font-size: 48px; font-weight: 800; line-height: 1;
+  font-size: 40px; font-weight: 800; line-height: 1;
   letter-spacing: -0.03em; margin-bottom: 8px;
   background: var(--gef-gradient);
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -530,19 +538,33 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 }
 
 /* Partnership callout */
+/* Dark plate: the partnership rule is the one hard requirement in the call,
+   so it carries the weight of a solid block rather than a tinted card. */
 .partnership-callout {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-  background: var(--gefund-tint);
-  border: 1px solid var(--gefund-border);
-  border-radius: 14px;
-  padding: 32px 36px;
+  display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 60px;
+  background: #100e1a;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 24px;
+  padding: 48px 56px;
 }
-.partnership-callout h3 { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.25; }
+.partnership-callout h3 { font-size: clamp(24px, 2.4vw, 31px); font-weight: 700; color: #fff; line-height: 1.2; }
 .partnership-callout h3 em { font-style: italic; background: var(--gef-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.partnership-callout p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.65; margin-top: 12px; }
-.partnership-callout ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.partnership-callout ul li { display: flex; align-items: flex-start; gap: 10px; font-size: var(--text-sm); color: var(--ink-soft); line-height: 1.5; }
-.partnership-callout ul li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gefund); flex-shrink: 0; margin-top: 7px; }
+.partnership-callout p { font-size: var(--text-md); color: rgba(255,255,255,0.62); line-height: 1.7; margin-top: 14px; }
+/* Rows rather than bullets, each ruled off, so the four conditions read as a
+   checklist against the statement on the left. */
+.partnership-callout ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.partnership-callout ul li {
+  display: flex; align-items: flex-start; gap: 13px;
+  font-size: var(--text-md); color: rgba(255,255,255,0.86); line-height: 1.5;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.partnership-callout ul li:first-child { padding-top: 0; }
+.partnership-callout ul li::before {
+  content: "\2192"; width: auto; height: auto; border-radius: 0; background: none;
+  color: #FF4D4D; font-weight: 700; line-height: 1.5; margin-top: 0; flex-shrink: 0;
+}
+.partnership-callout .qf-link { color: #C08BFF; }
 
 /* ============================================================
    PRIORITY AREAS — tab rail + detail stage
@@ -909,7 +931,9 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 @media (max-width: 1024px) {
   .container, .container-narrow, .prog-hero-inner { padding-left: 24px; padding-right: 24px; }
   .about-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-  .about-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+  /* Stacked layout: the provenance mark runs full width above the two plates. */
+  .about-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
+  .about-stats .bp-badge { grid-column: 1 / -1; }
   .elig-grid { grid-template-columns: repeat(2, 1fr); }
   .partnership-callout { grid-template-columns: 1fr; gap: 24px; }
   .funding-grid { grid-template-columns: 1fr; }
@@ -1268,7 +1292,11 @@ body.gef-modal-lock { overflow: hidden; }
       </div>
       <div>
         <div class="meta-fact-key">Co-funded by</div>
-        <div class="meta-fact-value">SDC · EU IPA III · WBF</div>
+        <div class="mf-logos">
+          <img class="mf-sdc" src="/assets/images/gefund/swiss-logo-trim.svg" alt="Swiss Agency for Development and Cooperation SDC" loading="lazy" decoding="async">
+          <img class="mf-eu" src="/assets/images/gefund/eu-logo.webp" alt="Co-funded by the European Union" loading="lazy" decoding="async">
+          <img class="mf-wbf" src="/assets/images/gefund/wbf-logo-trim.svg" alt="Western Balkans Fund" loading="lazy" decoding="async">
+        </div>
       </div>
     </div>
 
@@ -1783,12 +1811,12 @@ body.gef-modal-lock { overflow: hidden; }
       <div>
         <ul>
           <li>Minimum 3 different WBF Contracting Parties represented</li>
-          <li>One (1) Lead Applicant — the contract signatory with WBF</li>
+          <li>One (1) Lead Applicant, the contract signatory with WBF</li>
           <li>At least two (2) Project Partners from different WB6 CPs</li>
           <li>Optional Associated Partners (no direct WBF funding)</li>
         </ul>
         <div style="margin-top:20px">
-          <a href="https://wbfpartnership.com/" target="_blank" rel="noopener" class="qf-link" style="color:#8A2BE2">
+          <a href="https://wbfpartnership.com/" target="_blank" rel="noopener" class="qf-link">
             Find partners on the WBF Platform <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
           </a>
         </div>
