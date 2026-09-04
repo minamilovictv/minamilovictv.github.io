@@ -430,7 +430,9 @@
 
     /* Kosovo designation note: the country tags are data-driven, so the note
      names Kosovo itself rather than hanging off a repeated asterisk. */
-  .cp-designation-note { font-size: 12px; color: var(--ink-soft); line-height: 1.6; margin-top: 22px; }
+  /* Inset to match the grantee rows above (22px), so the first letter clears
+     the panel's rounded corner instead of sitting on the edge. */
+  .cp-designation-note { font-size: 12px; color: var(--ink-soft); line-height: 1.6; margin-top: 22px; padding: 0 22px 4px; }
   .hl-disclaimer { font-size: 12px; color: rgba(255,255,255,0.42); line-height: 1.6; margin-top: 28px; text-align: center; }
 
     /* Scroll-reveal */
