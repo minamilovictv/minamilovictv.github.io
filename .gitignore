@@ -24,20 +24,10 @@ Thumbs.db
 # Committing a large PDF now and replacing it later leaves BOTH copies in
 # git history forever, so it is worth compressing first.
 #
-# Sizes as of 4 September 2026, largest first:
-#   annual-report-2021 ................. 67.7 MB
-#   annual-report-2022 ................. 24.4 MB
-#   eu-wbf-joint-action-2024-2025 ...... 16.7 MB
-#   annual-report-2024-2025 ............ 14.6 MB
-#   eu-wbf-joint-action-second-call .... 9.8 MB
-#
-# Everything else in assets/documents/ is published. For reference, the
-# largest file already shipping is annual-report-2020 at 5.0 MB.
-assets/documents/annual-report-2021.pdf
-assets/documents/annual-report-2022.pdf
-assets/documents/annual-report-2024-2025.pdf
+# One left, at 16.7 MB. Everything else in assets/documents/ is now
+# published; the largest already shipping is annual-report-2021 at
+# 10.5 MB, so that is the bar this one needs to clear.
 assets/documents/eu-wbf-joint-action-report-2024-2025.pdf
-assets/documents/eu-wbf-joint-action-report-second-call-2023.pdf
 
 # Internal QA audit — working notes, not part of the published site.
 audit/
