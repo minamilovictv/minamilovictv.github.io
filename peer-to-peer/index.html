@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peer to Peer — Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/peer-to-peer/">
+<meta name="description" content="Peer to Peer is a capacity-building programme strengthening Western Balkans civil society through expert-led learning, peer exchange and EU partnerships.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Peer to Peer — Western Balkans Fund">
+<meta property="og:description" content="Peer to Peer is a capacity-building programme strengthening Western Balkans civil society through expert-led learning, peer exchange and EU partnerships.">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+  :root { --p2p-blue: #2B7DE0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1e2e; background: #fff; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; } a { color: inherit; } button, input { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+
+  /* HERO */
+  .page-hero { position: relative; background: var(--gradient-hero); overflow: hidden; padding: 80px 0 72px; }
+  .page-hero::after { content: ""; position: absolute; top: -120px; right: -80px; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%); pointer-events: none; }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: var(--text-sm); color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; } .breadcrumb a:hover { color: #fff; } .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #3372e3; margin-bottom: 16px; }
+  .page-hero h1 { font-family: var(--font-display); font-size: var(--text-hero); font-weight: 700; color: #fff; line-height: 1.08; margin-bottom: 14px; max-width: 16ch; }
+  .page-hero-logo { margin-bottom: 22px; }
+  .page-hero-logo img { width: clamp(280px, 44vw, 520px); height: auto; }
+  .page-hero .subtitle { font-size: var(--text-lg); color: rgba(255,255,255,0.92); font-weight: 500; line-height: 1.4; margin-bottom: 20px; max-width: none; white-space: nowrap; }
+  .page-hero p.lead { font-size: var(--text-base); color: rgba(255,255,255,0.72); line-height: 1.7; max-width: 66%; }
+  @media (max-width: 820px) { .page-hero .subtitle { white-space: normal; } .page-hero p.lead { max-width: 100%; } }
+
+  /* SECTIONS */
+  .section { padding: 76px 0; }
+  .section--alt { background: var(--surface-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  .sec-head { max-width: 760px; margin-bottom: 40px; }
+  .sec-head.is-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .sec-head .overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #3372e3; margin-bottom: 14px; }
+  .sec-head h2 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--ink); line-height: 1.18; margin-bottom: 6px; }
+
+  .prose p { font-size: var(--text-base); color: var(--ink-soft); line-height: 1.8; max-width: 72ch; margin-bottom: 18px; text-align: justify; }
+  .prose p:last-child { margin-bottom: 0; }
+  .sec-head.is-center + .prose p { margin-left: auto; margin-right: auto; text-align: center; }
+
+  /* SPLIT — section text beside an image */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
+  .split .sec-head { max-width: none; margin-bottom: 18px; }
+  .split .prose p { max-width: none; }
+  .split--reverse .split-media { order: -1; }
+  .split-media { position: relative; aspect-ratio: 4 / 3; margin: 0; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg, var(--surface-alt), #eef2f8); border: 1px solid var(--line); box-shadow: var(--shadow-2); }
+  .split-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .split-media .ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--faint); text-align: center; padding: 24px; }
+  .split-media .ph svg { width: 46px; height: 46px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; }
+  .split-media .ph span { font-size: var(--text-sm); font-weight: 600; }
+  .split-media .ph code { display: block; margin-top: 4px; font-size: 11px; font-weight: 500; opacity: 0.85; }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 30px; } .split--reverse .split-media { order: 0; } }
+
+  /* JOURNEY — 4 connected steps */
+  .journey { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; }
+  .journey::before { content: ""; position: absolute; top: 34px; left: 12%; right: 12%; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px); z-index: 0; }
+  .journey-card { position: relative; z-index: 1; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px 22px; box-shadow: var(--shadow-1); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+  .journey-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); border-color: #cbd5e1; }
+  .journey-num { width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; box-shadow: 0 6px 16px rgba(15,32,68,0.18); }
+  .journey-card h3 { font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; color: var(--ink); text-align: center; margin-bottom: 10px; }
+  .journey-card p { font-size: var(--text-sm); color: var(--muted); line-height: 1.65; text-align: center; }
+  .journey-meta { display: flex; flex-direction: column; align-items: center; gap: 5px; margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); }
+  .jm-status { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 999px; }
+  .jm-status.is-done { background: rgba(14,140,132,0.12); color: var(--teal-deep); }
+  .jm-status.is-live { background: rgba(43,125,224,0.13); color: #1a5cc0; }
+  .jm-status.is-next { background: var(--surface-alt); color: var(--muted); }
+  .jm-line { font-size: var(--text-xs); color: var(--muted); font-weight: 600; text-align: center; }
+
+  /* EIGHT AREAS — the shared themes of every study visit */
+  .areas-head { max-width: 760px; margin: 56px auto 26px; text-align: center; }
+  .areas-head h3 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--ink); line-height: 1.25; margin-bottom: 10px; }
+  .areas-head p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.7; }
+  .areas-grid { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .area-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px 20px 20px; box-shadow: var(--shadow-1); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+  .area-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: #cbd5e1; }
+  .area-num { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(43,125,224,0.12); color: var(--p2p-blue); font-family: var(--font-display); font-weight: 700; font-size: 13px; margin-bottom: 12px; }
+  .area-card h4 { font-family: var(--font-display); font-size: var(--text-md); font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 8px; }
+  .area-card p { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; }
+
+  /* KOSOVO FOOTNOTE */
+  .fn-star { color: var(--p2p-blue); font-weight: 700; }
+  .inline-fn { max-width: 760px; margin-top: 24px; padding: 8px 12px; background: #fff; border-left: 2px solid var(--line); border-radius: 0 6px 6px 0; font-size: 12px; font-style: italic; color: var(--ink-soft); line-height: 1.55; }
+  .inline-fn strong { font-style: normal; color: var(--ink-soft); font-weight: 600; }
+
+  /* FEATURE CARDS — focus areas (premium, per-card accent) */
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature-card {
+    --c: var(--p2p-blue); --c-deep: #1a5cc0; --c-glow: rgba(43,125,224,0.32);
+    position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #ffffff, #fbfcff);
+    border: 1px solid var(--line); border-radius: 18px;
+    padding: 34px 30px 32px; box-shadow: var(--shadow-1);
+  }
+  .feature-grid > .feature-card:nth-child(2) { --c: var(--teal);  --c-deep: var(--teal-deep); --c-glow: rgba(14,140,132,0.32); }
+  .feature-grid > .feature-card:nth-child(3) { --c: var(--amber); --c-deep: #8a5b00;         --c-glow: rgba(194,132,28,0.34); }
+  .feature-num {
+    position: absolute; top: -8px; right: 14px; z-index: 0;
+    font-family: var(--font-display); font-weight: 800; font-size: 104px; line-height: 1;
+    letter-spacing: -0.05em; color: var(--c); opacity: 0.09;
+    pointer-events: none; user-select: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .feature-icon {
+    position: relative; width: 60px; height: 60px; border-radius: 16px;
+    background: linear-gradient(140deg, var(--c), var(--c-deep)); color: #fff;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 22px;
+    box-shadow: 0 12px 26px -8px var(--c-glow);
+  }
+  .feature-icon::after { content: ""; position: absolute; inset: 0; border-radius: 16px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.4); }
+  .feature-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .feature-card h3 {
+    position: relative; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700;
+    color: var(--ink); line-height: 1.28; margin-bottom: 14px; padding-bottom: 14px;
+  }
+  .feature-card h3::after { content: ""; position: absolute; left: 0; bottom: 0; width: 38px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--c), var(--c-deep)); transition: width 0.45s cubic-bezier(0.22,1,0.36,1); }
+  .feature-card p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.7; }
+
+  /* VIDEO + GALLERY */
+  .media-wrap { margin-top: 40px; }
+  .video-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: var(--gradient-hero); box-shadow: var(--shadow-3); display: flex; align-items: center; justify-content: center; }
+  .video-frame::before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 46px, rgba(255,255,255,0.02) 46px, rgba(255,255,255,0.02) 47px), repeating-linear-gradient(90deg, transparent, transparent 46px, rgba(255,255,255,0.02) 46px, rgba(255,255,255,0.02) 47px); }
+  .video-frame iframe, .video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  
+  
+  
+  .video-frame:hover .video-play .btn { background: rgba(94,234,212,0.28); transform: scale(1.05); }
+  
+
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 14px; }
+  .gallery-item { position: relative; overflow: hidden; aspect-ratio: 4 / 3; border-radius: 10px; background: linear-gradient(135deg, var(--surface-alt), #eef2f8); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--faint); }
+  .gallery-item svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.7; }
+  .gallery-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* AT A GLANCE — animated stats */
+  .glance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .glance-stat { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 32px 26px; text-align: center; box-shadow: var(--shadow-1); }
+  .glance-stat .num { font-family: var(--font-display); font-size: 52px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 10px; letter-spacing: -0.02em; }
+  .glance-stat .label { font-size: var(--text-md); font-weight: 600; color: var(--ink); }
+  .glance-stat.is-qual { background: var(--navy); border-color: var(--navy-900); }
+  .glance-stat.is-qual .q-icon { width: 46px; height: 46px; border-radius: 11px; background: rgba(43,125,224,0.24); color: #8fbeff; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .glance-stat.is-qual .q-icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .glance-stat.is-qual .label { color: #fff; }
+
+  /* PARTICIPATING ORGANISATIONS */
+  .org-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .org-country { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 26px 24px; box-shadow: var(--shadow-1); }
+  .org-country-head { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .org-country-head h3 { font-family: var(--font-display); font-size: var(--text-base); font-weight: 700; color: var(--ink); line-height: 1.25; }
+  .org-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .org-list li { display: flex; align-items: flex-start; gap: 10px; font-size: var(--text-md); line-height: 1.5; }
+  .org-list li::before { content: ""; flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--p2p-blue); margin-top: 7px; }
+  .org-list a { color: var(--p2p-blue); font-weight: 700; text-decoration: none; transition: text-decoration-color 0.15s; }
+  .org-list a:hover, .org-list a:focus-visible { text-decoration: underline; }
+
+  /* IMPACT CLOSER */
+  .impact-closer { background: var(--gradient-hero); position: relative; overflow: hidden; padding: 76px 0; }
+  .impact-closer::after { content: ""; position: absolute; bottom: -140px; left: -80px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(94,234,212,0.18) 0%, transparent 70%); pointer-events: none; }
+  .impact-closer .sec-head { position: relative; z-index: 2; }
+  .impact-closer .overline { color: #3372e3; }
+  .impact-closer h2 { color: #fff; }
+  .impact-closer .prose p { color: rgba(255,255,255,0.82); }
+
+  /* injected shared */
+  .skip-link { position:absolute; left:-999px; top:0; z-index:9999; background:var(--navy); color:#fff; padding:8px 16px; font-size:var(--text-sm); font-weight:600; text-decoration:none; }
+  .skip-link:focus { left:0; }
+  .ph { background:#fff8e6; border:1px solid #f0d48a; border-left:4px solid var(--amber); border-radius:0 8px 8px 0; padding:14px 18px; margin:18px 0 0; font-size:var(--text-sm); color:#6b5518; max-width:760px; }
+  .ph strong { display:block; color:#8a5b00; font-size:var(--text-xs); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:5px; }
+
+  @media (max-width: 1024px) {
+    .container, .container-narrow, .page-hero-inner { padding-left: 24px; padding-right: 24px; }
+    .journey { grid-template-columns: repeat(2, 1fr); }
+    .journey::before { display: none; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .glance-grid { grid-template-columns: repeat(3, 1fr); }
+    .org-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .areas-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .section { padding: 56px 0; }
+    .page-hero { padding: 56px 0 48px; }
+    .journey { grid-template-columns: 1fr; }
+    .glance-grid { grid-template-columns: 1fr; }
+    .org-grid { grid-template-columns: 1fr; }
+    .areas-grid { grid-template-columns: 1fr; }
+    .glance-stat .num { font-size: 44px; }
+  }
+
+  /* ============================================================
+     INTERACTIVE EFFECTS LAYER
+     All motion is gated behind (prefers-reduced-motion: no-preference)
+     ============================================================ */
+
+  /* --- HERO: live connection network + aurora --- */
+  .page-hero { padding-bottom: 76px; }
+  #hero-net {
+    position: absolute; inset: 0; z-index: 1;
+    width: 100%; height: 100%; display: block;
+    opacity: 0; transition: opacity 1.2s ease;
+    pointer-events: none;
+  }
+  #hero-net.ready { opacity: 1; }
+  .page-hero::before {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      radial-gradient(600px 300px at 15% 120%, rgba(51,114,227,0.22), transparent 60%),
+      radial-gradient(520px 300px at 90% -10%, rgba(94,234,212,0.10), transparent 60%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .page-hero::before { animation: heroAurora 14s ease-in-out infinite alternate; }
+  }
+  @keyframes heroAurora {
+    0%   { transform: translate3d(0,0,0) scale(1); opacity: 0.9; }
+    100% { transform: translate3d(-24px,18px,0) scale(1.12); opacity: 1; }
+  }
+  .page-hero-overline { position: relative; display: inline-block; }
+  .page-hero-overline::after {
+    content: ""; position: absolute; left: 0; bottom: -6px; height: 2px; width: 100%;
+    background: linear-gradient(90deg, #3372e3, transparent);
+  }
+
+  /* --- SPLIT media: parallax float + sheen on hover --- */
+  .split-media { transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease; will-change: transform; }
+  .split-media::after {
+    content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.35) 48%, transparent 60%);
+    transform: translateX(-120%); transition: transform 0.9s ease;
+  }
+  .split-media:hover { transform: translateY(-6px); box-shadow: var(--shadow-4); }
+  .split-media:hover::after { transform: translateX(120%); }
+  .split-media img { transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+  .split-media:hover img { transform: scale(1.06); }
+
+  /* --- JOURNEY: flowing connector + interactive numbers --- */
+  .journey::after {
+    content: ""; position: absolute; top: 33px; left: 12%; right: 12%; height: 3px; z-index: 0;
+    background: linear-gradient(90deg, transparent, var(--p2p-blue), #5eead4, var(--p2p-blue), transparent);
+    background-size: 220% 100%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .journey::after { animation: journeyFlow 3.5s linear infinite; }
+  }
+  @keyframes journeyFlow { to { background-position: -220% 0; } }
+  .journey-num { transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.35s ease, box-shadow 0.35s ease; position: relative; }
+  .journey-num::after {
+    content: ""; position: absolute; inset: -6px; border-radius: 50%;
+    border: 2px solid var(--p2p-blue); opacity: 0; transform: scale(0.8);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .journey-card:hover .journey-num { transform: scale(1.12) rotate(-6deg); background: var(--p2p-blue); box-shadow: 0 10px 24px rgba(43,125,224,0.4); }
+  .journey-card:hover .journey-num::after { opacity: 1; transform: scale(1.15); }
+  .journey-card { overflow: hidden; }
+  .journey-card::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(135deg, rgba(43,125,224,0.06), rgba(94,234,212,0.06));
+    opacity: 0; transition: opacity 0.35s ease;
+  }
+  .journey-card:hover::before { opacity: 1; }
+  .journey-card:hover { border-color: var(--p2p-blue); }
+
+  /* --- FEATURE CARDS: 3D tilt + colored spotlight + accent bar --- */
+  .feature-card {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    will-change: transform;
+  }
+  .feature-card::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 0%), var(--c-glow), transparent 60%);
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .feature-card::after {
+    content: ""; position: absolute; left: 0; top: 0; height: 4px; width: 100%; z-index: 3;
+    background: linear-gradient(90deg, var(--c), var(--c-deep));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
+  }
+  .feature-card > :not(.feature-num) { position: relative; z-index: 1; }
+  .feature-num { z-index: 0; }
+  .feature-card:hover { border-color: color-mix(in srgb, var(--c) 45%, var(--line)); box-shadow: 0 26px 52px -18px var(--c-glow); }
+  .feature-card:hover::before { opacity: 1; }
+  .feature-card:hover::after { transform: scaleX(1); }
+  .feature-card:hover .feature-num { opacity: 0.17; transform: translateY(-2px) scale(1.05); }
+  .feature-card:hover h3::after { width: 66px; }
+  .feature-icon { transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease; }
+  .feature-card:hover .feature-icon { transform: translateY(-4px) rotate(-6deg) scale(1.07); box-shadow: 0 20px 36px -8px var(--c-glow); }
+
+  /* --- VIDEO frame: pulsing halo on play button --- */
+  @media (prefers-reduced-motion: no-preference) {
+    .video-frame:not(:hover) .video-play .btn { animation: playPulse 2.6s ease-in-out infinite; }
+  }
+  @keyframes playPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(94,234,212,0.35); }
+    50%      { box-shadow: 0 0 0 16px rgba(94,234,212,0); }
+  }
+
+  /* --- GALLERY: zoom + caption reveal + stagger --- */
+  .gallery-item { cursor: pointer; }
+  .gallery-item img { transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+  .gallery-item::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(to top, rgba(15,32,68,0.55), transparent 55%);
+    opacity: 0; transition: opacity 0.4s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.1); }
+  .gallery-item:hover::after { opacity: 1; }
+  .gallery-item:hover { border-color: var(--p2p-blue); }
+
+  /* --- STATS: hover lift + top accent + shimmer number --- */
+  .glance-stat { position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .glance-stat::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--p2p-blue), #5eeade);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease;
+  }
+  .glance-stat:hover { transform: translateY(-6px); box-shadow: var(--shadow-3); }
+  .glance-stat:hover::before { transform: scaleX(1); }
+  .glance-stat .num { position: relative; display: inline-block; }
+  .glance-stat.is-qual .q-icon { transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+  .glance-stat.is-qual:hover .q-icon { transform: translateY(-3px) scale(1.12) rotate(6deg); }
+
+  /* --- ORG CARDS: hover lift, animated bullets, header accent --- */
+  .org-country { position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+  .org-country::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(var(--p2p-blue), #5eeade);
+    transform: scaleY(0); transform-origin: top; transition: transform 0.4s ease;
+  }
+  .org-country:hover { transform: translateY(-5px); box-shadow: var(--shadow-3); border-color: var(--p2p-blue); }
+  .org-country:hover::before { transform: scaleY(1); }
+  .org-list li { transition: transform 0.25s ease; }
+  .org-list li:hover { transform: translateX(5px); }
+  .org-list li::before { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .org-list li:hover::before { transform: scale(1.5); box-shadow: 0 0 0 4px rgba(43,125,224,0.15); }
+
+  /* --- IMPACT CLOSER: animated aurora --- */
+  .impact-closer::before {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(500px 260px at 85% 110%, rgba(51,114,227,0.20), transparent 60%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .impact-closer::before { animation: heroAurora 16s ease-in-out infinite alternate; }
+  }
+  .impact-closer .container-narrow { position: relative; z-index: 2; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<!-- HERO -->
+<section class="page-hero">
+  <canvas id="hero-net" aria-hidden="true"></canvas>
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span>Peer to Peer
+    </nav>
+    <div class="page-hero-overline">Flagship Capacity-Building Programme</div>
+    <h1 class="page-hero-logo"><img src="/assets/images/p2p/p2p-logo-white.svg" alt="Peer to Peer" width="520" height="99"></h1>
+    <p class="subtitle">Strengthening Civil Society through Regional Learning and European Partnerships</p>
+    <p class="lead">Peer to Peer connects civil society organisations across the Western Balkans with their counterparts in the European Union. Implemented by the Western Balkans Fund and funded by Germany's Federal Foreign Office, the programme brings together 12 organisations from all six Contracting Parties for a full cycle of exchange and capacity building: expert-led training in monitoring and evaluation, strategic communication and countering misinformation, followed by mentoring, study visits with EU peer organisations and local trainings that pass the knowledge on across the region.</p>
+  </div>
+</section>
+
+<main id="main">
+
+<!-- WHY THE PROGRAMME MATTERS -->
+<section class="section">
+  <div class="container">
+    <div class="split">
+      <div>
+        <div class="sec-head">
+          <div class="overline">Why Peer to Peer</div>
+          <h2>Why the Programme Matters</h2>
+        </div>
+        <div class="prose">
+          <p>Civil society organisations across the Western Balkans operate in an increasingly complex environment shaped by evolving funding landscapes, growing public expectations and rapidly changing information ecosystems. Building resilient organisations today requires more than technical expertise. It requires strong governance, effective communication, evidence-based decision making and the ability to respond to misinformation while maintaining public trust.</p>
+          <p>Peer to Peer gives participating organisations the space to address these challenges together, connecting with peers, field experts and counterparts in the European Union, and taking the time to reflect, reshape and reimpact.</p>
+        </div>
+      </div>
+      <figure class="split-media">
+        <div class="ph" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add image<code>why-peer-to-peer.jpg</code></span>
+        </div>
+        <img src="/assets/images/p2p/why-peer-to-peer.jpg" alt="Civil society organisations collaborating across the Western Balkans" onerror="this.remove()">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- HOW THE PROGRAMME WORKS -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="sec-head is-center">
+      <div class="overline">One programme, four connected formats</div>
+      <h2>A Journey of Learning and Collaboration</h2>
+    </div>
+    <div class="prose" style="max-width:820px;margin:-18px auto 40px;">
+      <p style="text-align:center;">The Peer to Peer journey combines intensive expert training, one-to-one mentoring and first-hand exchange with European civil society organisations. From the residential training to the EU study visits, each step builds the skills organisations need, knowledge they then carry home and share with peers through their own local trainings.</p>
+    </div>
+    <div class="journey">
+      <div class="journey-card">
+        <div class="journey-num">1</div>
+        <h3>Residential Training</h3>
+        <p>An intensive residential learning experience combines expert sessions, practical workshops and peer exchange focused on today's most important organisational challenges.</p>
+        <div class="journey-meta">
+          <span class="jm-status is-done">completed</span>
+          <span class="jm-line">Belgrade</span>
+          <span class="jm-line">14 to 20 June 2026</span>
+        </div>
+      </div>
+      <div class="journey-card">
+        <div class="journey-num">2</div>
+        <h3>Online Mentoring</h3>
+        <p>Expert mentoring supports participants as they transform new knowledge into practical action within their own organisations.</p>
+        <div class="journey-meta">
+          <span class="jm-status is-done">completed</span>
+          <span class="jm-line">Online</span>
+          <span class="jm-line">July to August 2026</span>
+        </div>
+      </div>
+      <div class="journey-card">
+        <div class="journey-num">3</div>
+        <h3>EU Study Visits</h3>
+        <p>Participants visit experienced European civil society organisations to exchange knowledge, observe good practices and establish long-term partnerships.</p>
+        <div class="journey-meta">
+          <span class="jm-status is-live">ongoing</span>
+          <span class="jm-line">European Union</span>
+          <span class="jm-line">September to November 2026</span>
+        </div>
+      </div>
+      <div class="journey-card">
+        <div class="journey-num">4</div>
+        <h3>Local Knowledge Sharing</h3>
+        <p>Participants deliver local training activities that transfer knowledge to their national civil society communities, multiplying the programme's impact across the region.</p>
+        <div class="journey-meta">
+          <span class="jm-status is-next">upcoming</span>
+          <span class="jm-line">Across the WB6</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME FOCUS -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head is-center">
+      <div class="overline">Programme Focus</div>
+      <h2>Core Learning Areas</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-num" aria-hidden="true">01</span>
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>
+        </div>
+        <h3>Monitoring, Evaluation and Learning</h3>
+        <p>Develop practical systems for measuring results, improving organisational performance and demonstrating long-term impact.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-num" aria-hidden="true">02</span>
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h3>Strategic Communication</h3>
+        <p>Strengthen organisational storytelling, public engagement and communication strategies that build trust and visibility.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-num" aria-hidden="true">03</span>
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Fighting Misinformation</h3>
+        <p>Develop practical skills for identifying misinformation, strengthening information resilience and promoting evidence-based public communication.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESIDENTIAL TRAINING -->
+<section class="section section--alt">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">1. Residential Training</div>
+      <h2>Learning Together</h2>
+    </div>
+    <div class="prose">
+      <p>The residential training took place in Belgrade from 14 to 20 June 2026. It was the first part of the programme, bringing together twelve organisations and 24 participants from across the Western Balkans for a full week of collaborative learning and expert-led workshops. Beyond technical knowledge, it helped create lasting professional relationships and encouraged future cross-border cooperation.</p>
+    </div>
+
+    <div class="media-wrap">
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/KseEcNVLLBA" title="Peer to Peer programme video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+
+      <div class="gallery" aria-label="Programme photo gallery">
+        <div class="gallery-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><img src="/assets/images/p2p/residential-1.jpg" alt="Peer to Peer residential training" loading="lazy" onerror="this.remove()"></div>
+        <div class="gallery-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><img src="/assets/images/p2p/residential-2.jpg" alt="Peer to Peer residential training" loading="lazy" onerror="this.remove()"></div>
+        <div class="gallery-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><img src="/assets/images/p2p/residential-3.jpg" alt="Peer to Peer residential training" loading="lazy" onerror="this.remove()"></div>
+        <div class="gallery-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><img src="/assets/images/p2p/residential-4.jpg" alt="Peer to Peer residential training" loading="lazy" onerror="this.remove()"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONLINE MENTORING -->
+<section class="section">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">2. Online Mentoring</div>
+      <h2>A Tailor-Made Approach</h2>
+    </div>
+    <div class="prose">
+      <p>After the residential training in Belgrade, Peer to Peer participants spent the summer putting that learning into practice. Working one-to-one with the programme's three expert trainers, they translated what they had learned into tools built specifically for their own organisations: clear theories of change backed by concrete performance indicators, strategic communication plans tailored to their key stakeholders, and resilience plans to navigate an evolving information landscape.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EUROPEAN PARTNERSHIPS -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="split split--reverse">
+      <div>
+        <div class="sec-head">
+          <div class="overline">3. EU Study Visits</div>
+          <h2>Connecting the Western Balkans with Europe</h2>
+        </div>
+        <div class="prose">
+          <p>Peer to Peer creates lasting partnerships between civil society organisations from the Western Balkans and their counterparts across the European Union. Through study visits and direct exchange, participants gain first-hand insight into successful organisational models, innovative approaches and sustainable practices while establishing networks that continue beyond the programme itself.</p>
+          <p>The exchange runs both ways. The visiting organisation gains fresh perspective and practical tools, while the host organisation sees its own practices through a peer's eyes. Beyond the visit itself, it is often the beginning of a lasting partnership.</p>
+        </div>
+      </div>
+      <figure class="split-media">
+        <div class="ph" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add image<code>european-partnerships.jpg</code></span>
+        </div>
+        <img src="/assets/images/p2p/european-partnerships.jpg" alt="Western Balkans and European Union partners meeting during a study visit" onerror="this.remove()">
+      </figure>
+    </div>
+
+    <div class="areas-head">
+      <h3>Eight areas of operational excellence</h3>
+      <p>Every study visit is structured around the same eight themes, from stakeholder engagement to governance and accountability, giving both organisations a shared language for comparing how they work.</p>
+    </div>
+    <ol class="areas-grid">
+      <li class="area-card"><span class="area-num">1</span><h4>Constituents &amp; Stakeholder Centricity</h4><p>How do you keep the people you serve at the centre of every decision?</p></li>
+      <li class="area-card"><span class="area-num">2</span><h4>Strategic Alliances &amp; Joint Ventures</h4><p>What makes a partnership actually deliver value for both sides?</p></li>
+      <li class="area-card"><span class="area-num">3</span><h4>Positioning &amp; Thought Leadership</h4><p>How do you drive change, not just react to it?</p></li>
+      <li class="area-card"><span class="area-num">4</span><h4>Transparency &amp; Stakeholder Relations</h4><p>How do you build trust through open communication?</p></li>
+      <li class="area-card"><span class="area-num">5</span><h4>Talent Management &amp; Leadership Development</h4><p>How do you build and grow your team?</p></li>
+      <li class="area-card"><span class="area-num">6</span><h4>Financial Stewardship</h4><p>How do you make every euro count?</p></li>
+      <li class="area-card"><span class="area-num">7</span><h4>Constituent Feedback &amp; Agile Iteration</h4><p>How fast do you turn feedback into action?</p></li>
+      <li class="area-card"><span class="area-num">8</span><h4>Governance &amp; Accountability</h4><p>Who is steering the ship, and how are they held accountable?</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- PROGRAMME AT A GLANCE -->
+<section class="section">
+  <div class="container">
+    <div class="sec-head is-center">
+      <div class="overline">Programme at a Glance</div>
+      <h2>A Regional Effort</h2>
+    </div>
+    <div class="glance-grid">
+      <div class="glance-stat">
+        <div class="num" data-target="12">0</div>
+        <div class="label">Selected Organisations</div>
+      </div>
+      <div class="glance-stat">
+        <div class="num" data-target="24">0</div>
+        <div class="label">Participants</div>
+      </div>
+      <div class="glance-stat">
+        <div class="num" data-target="6">0</div>
+        <div class="label">Western Balkans Contracting Parties</div>
+      </div>
+      <div class="glance-stat is-qual">
+        <div class="q-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="label">Expert-led Capacity Building</div>
+      </div>
+      <div class="glance-stat is-qual">
+        <div class="q-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="label">Study Visits to EU Organisations</div>
+      </div>
+      <div class="glance-stat is-qual">
+        <div class="q-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="label">Local Knowledge Transfer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTICIPATING ORGANISATIONS -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="sec-head is-center">
+      <div class="overline">First Edition</div>
+      <h2>Participating Organisations</h2>
+    </div>
+    <div class="org-grid">
+      <div class="org-country">
+        <div class="org-country-head"><h3>Albania</h3></div>
+        <ul class="org-list">
+          <li><a href="https://ahc.org.al/en/" target="_blank" rel="noopener">Albanian Helsinki Committee</a></li>
+          <li><a href="https://ecoalbania.org/en/" target="_blank" rel="noopener">EcoAlbania</a></li>
+        </ul>
+      </div>
+      <div class="org-country">
+        <div class="org-country-head"><h3>Bosnia and Herzegovina</h3></div>
+        <ul class="org-list">
+          <li><a href="https://civilnodrustvo.ba/en/" target="_blank" rel="noopener">Centre for Promotion of Civil Society (CPCD)</a></li>
+          <li><a href="https://www.sensusmostar.com/" target="_blank" rel="noopener">Sensus</a></li>
+        </ul>
+      </div>
+      <div class="org-country">
+        <div class="org-country-head"><h3>Kosovo<sup class="fn-star">*</sup></h3></div>
+        <ul class="org-list">
+          <li><a href="https://kcsfoundation.org/en/" target="_blank" rel="noopener">Kosovo Civil Society Foundation (KCSF)</a></li>
+          <li><a href="https://thefoundationhouse.org/" target="_blank" rel="noopener">The Foundation House</a></li>
+        </ul>
+      </div>
+      <div class="org-country">
+        <div class="org-country-head"><h3>Montenegro</h3></div>
+        <ul class="org-list">
+          <li><a href="https://crnvo.me/en/" target="_blank" rel="noopener">Centre for Development of NGOs (CRNVO)</a></li>
+          <li><a href="https://wrc.org.me/en/" target="_blank" rel="noopener">Women's Rights Center Montenegro</a></li>
+        </ul>
+      </div>
+      <div class="org-country">
+        <div class="org-country-head"><h3>North Macedonia</h3></div>
+        <ul class="org-list">
+          <li><a href="https://metamorphosis.org.mk/en/" target="_blank" rel="noopener">Metamorphosis Foundation</a></li>
+          <li><a href="https://birc.mk/" target="_blank" rel="noopener">Balkan Institute for Regional Cooperation (BIRC)</a></li>
+        </ul>
+      </div>
+      <div class="org-country">
+        <div class="org-country-head"><h3>Serbia</h3></div>
+        <ul class="org-list">
+          <li><a href="https://gradjanske.org/en/" target="_blank" rel="noopener">Civic Initiatives</a></li>
+          <li><a href="https://koms.rs/en/" target="_blank" rel="noopener">National Youth Council of Serbia (KOMS)</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="inline-fn"><strong>*</strong>This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
+  </div>
+</section>
+
+<!-- PROGRAMME IMPACT -->
+<section class="impact-closer">
+  <div class="container-narrow">
+    <div class="sec-head is-center">
+      <div class="overline">Programme Impact</div>
+      <h2>Building Stronger Civil Society Across the Region</h2>
+    </div>
+    <div class="prose" style="text-align:center;">
+      <p>Peer to Peer strengthens civil society by investing in people, organisations and regional cooperation. Through shared learning, European partnerships and knowledge transfer, the programme contributes to stronger organisational capacities, improved communication, better monitoring and learning practices, increased resilience against misinformation and a more connected civil society community across the Western Balkans.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+<!-- Interactive effects · hero network, feature-card tilt + spotlight -->
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Feature cards: 3D tilt + cursor spotlight ---------- */
+  (function () {
+    if (reduced || matchMedia('(hover: none)').matches) return;
+    document.querySelectorAll('.feature-card').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--mx', (px * 100) + '%');
+        card.style.setProperty('--my', (py * 100) + '%');
+        var rx = (0.5 - py) * 8, ry = (px - 0.5) * 8;
+        card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px)';
+      });
+      card.addEventListener('mouseleave', function () { card.style.transform = ''; });
+    });
+  })();
+
+  /* ---------- Hero: live peer-to-peer connection network ---------- */
+  (function () {
+    var canvas = document.getElementById('hero-net');
+    if (!canvas) return;
+    var hero = canvas.closest('.page-hero');
+    var ctx = canvas.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var nodes = [], W = 0, H = 0, raf = null, mouse = { x: -999, y: -999 };
+    var LINK = 150; // px link distance
+
+    function size() {
+      var r = hero.getBoundingClientRect();
+      W = r.width; H = r.height;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var count = Math.max(26, Math.min(64, Math.round(W * H / 22000)));
+      nodes = [];
+      for (var i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * W, y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+          r: 1.4 + Math.random() * 1.8
+        });
+      }
+    }
+
+    function step() {
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+        // gentle mouse attraction
+        var dxm = mouse.x - n.x, dym = mouse.y - n.y;
+        var dm = Math.hypot(dxm, dym);
+        if (dm < 180 && dm > 0.1) { n.x += dxm / dm * 0.5; n.y += dym / dm * 0.5; }
+      }
+      // links
+      for (var a = 0; a < nodes.length; a++) {
+        for (var b = a + 1; b < nodes.length; b++) {
+          var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
+          var d = Math.hypot(dx, dy);
+          if (d < LINK) {
+            var al = (1 - d / LINK) * 0.5;
+            ctx.strokeStyle = 'rgba(120,170,240,' + al.toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(nodes[a].x, nodes[a].y); ctx.lineTo(nodes[b].x, nodes[b].y); ctx.stroke();
+          }
+        }
+      }
+      // nodes
+      for (var k = 0; k < nodes.length; k++) {
+        var p = nodes[k];
+        var near = Math.hypot(mouse.x - p.x, mouse.y - p.y) < 130;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = near ? 'rgba(94,234,212,0.95)' : 'rgba(150,190,245,0.7)';
+        ctx.fill();
+      }
+      raf = requestAnimationFrame(step);
+    }
+
+    function start() { if (!raf) { canvas.classList.add('ready'); step(); } }
+    function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+
+    if (reduced) {
+      // draw one static frame
+      size(); ctx.clearRect(0, 0, W, H);
+      for (var a2 = 0; a2 < nodes.length; a2++) {
+        for (var b2 = a2 + 1; b2 < nodes.length; b2++) {
+          var d2 = Math.hypot(nodes[a2].x - nodes[b2].x, nodes[a2].y - nodes[b2].y);
+          if (d2 < LINK) { ctx.strokeStyle = 'rgba(120,170,240,' + ((1 - d2 / LINK) * 0.4).toFixed(3) + ')'; ctx.beginPath(); ctx.moveTo(nodes[a2].x, nodes[a2].y); ctx.lineTo(nodes[b2].x, nodes[b2].y); ctx.stroke(); }
+        }
+      }
+      nodes.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(150,190,245,0.7)'; ctx.fill(); });
+      canvas.classList.add('ready');
+      return;
+    }
+
+    size(); start();
+
+    hero.addEventListener('mousemove', function (e) {
+      var r = hero.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    });
+    hero.addEventListener('mouseleave', function () { mouse.x = -999; mouse.y = -999; });
+
+    var rt;
+    window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(size, 200); });
+    // Pause when hero scrolled out of view
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+      }, { threshold: 0 }).observe(hero);
+    }
+  })();
+})();
+</script>
+
+<!-- Animated counters · IntersectionObserver, respects reduced-motion -->
+<script>
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function animate(el) {
+      var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+      if (reduced) { el.textContent = target; return; }
+      var duration = 1400, start = performance.now();
+      function tick(now) {
+        var p = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    var obs = new IntersectionObserver(function (entries, o) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { animate(e.target); o.unobserve(e.target); }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.num[data-target]').forEach(function (el) { obs.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

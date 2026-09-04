@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers — Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/about-careers/">
+<meta name="description" content="Join the Western Balkans Fund Secretariat in Tirana — open positions, internships and consultancy opportunities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Careers — Western Balkans Fund">
+<meta property="og:description" content="Join the Western Balkans Fund Secretariat in Tirana — open positions, internships and consultancy opportunities.">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button, input { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  
+
+  /* ============================================================
+     PAGE HERO
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: var(--gradient-hero);
+    overflow: hidden;
+    padding: 72px 0 64px;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: var(--text-sm); color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 700; color: #fff; line-height: 1.1;
+    letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch;
+  }
+  .page-hero p {
+    font-size: var(--text-base); color: rgba(255,255,255,0.7);
+    line-height: 1.65; max-width: 62ch;
+  }
+
+  /* ============================================================
+     WHY JOIN STRIP
+     ============================================================ */
+  .why {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 56px 0;
+  }
+  .why-header { text-align: center; margin-bottom: 36px; }
+  .why-header .overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--navy); margin-bottom: 10px; }
+  .why-header h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .why-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .why-icon {
+    width: 40px; height: 40px;
+    background: #eef2f8;
+    color: var(--navy);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .why-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .why-title { font-size: var(--text-md); font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .why-desc { font-size: var(--text-sm); color: var(--muted); line-height: 1.55; }
+
+  /* ============================================================
+     OPEN POSITIONS
+     ============================================================ */
+  .positions { padding: 72px 0 64px; background: var(--surface-alt); }
+
+  .positions-head {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .positions-head h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .positions-head .overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--navy); margin-bottom: 8px; }
+  .positions-head p { color: var(--muted); font-size: var(--text-md); max-width: 56ch; }
+
+  .filter-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .chip:hover { border-color: var(--navy); color: var(--navy); }
+  .chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .chip-count { display: inline-block; margin-left: 6px; font-size: 10px; color: var(--faint); font-weight: 600; }
+  .chip.active .chip-count { color: rgba(255,255,255,0.6); }
+
+  .results-meta {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .results-meta strong { color: var(--ink); font-weight: 600; }
+
+  .jobs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .job-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px 32px;
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .job-card:hover {
+    box-shadow: 0 12px 28px rgba(15,32,68,0.08);
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+  }
+  .job-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .job-type {
+    background: #eef2f8;
+    color: var(--navy);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 11px;
+    border-radius: 999px;
+  }
+  .job-type.consultant { background: #ede9fe; color: #5b21b6; }
+  .job-type.internship { background: #d1faf3; color: #0d6e62; }
+  .job-type.part-time  { background: #fef3c7; color: #92400e; }
+  .job-meta-item { display: inline-flex; align-items: center; gap: 5px; }
+  .job-meta-item svg { width: 13px; height: 13px; opacity: 0.7; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .job-meta-item.deadline-soon { color: #b45309; font-weight: 600; }
+
+  .job-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .job-summary {
+    font-size: var(--text-md);
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .job-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .job-apply {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 6px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .job-apply:hover { background: var(--navy-900); }
+  .job-apply svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .job-details {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    color: var(--navy);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #fff;
+    transition: border-color 0.15s;
+    cursor: pointer;
+  }
+  .job-details:hover { border-color: var(--navy); }
+
+  /* No jobs state */
+  .no-jobs {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 56px 40px;
+    text-align: center;
+  }
+  .no-jobs-icon {
+    width: 64px; height: 64px;
+    background: #eef2f8;
+    color: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+  }
+  .no-jobs-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .no-jobs h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .no-jobs p {
+    font-size: var(--text-md);
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .no-jobs .mail {
+    color: var(--navy);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--navy);
+  }
+  .no-jobs .mail:hover { color: var(--navy-900); border-bottom-color: var(--navy-900); }
+
+  /* ============================================================
+     MODAL (job details)
+     ============================================================ */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(15,23,42,0.75);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    overflow-y: auto;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  body.modal-open { overflow: hidden; }
+  .modal {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 760px;
+    width: 100%;
+    margin: auto;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.25s;
+    position: relative;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    transition: background 0.15s, color 0.15s;
+  }
+  .modal-close:hover { background: #fff; color: var(--ink); }
+
+  .modal-body { padding: 44px; }
+  .modal-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; font-size: var(--text-sm); color: var(--muted); }
+  .modal-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .modal-summary {
+    font-size: var(--text-md);
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .modal-desc {
+    font-size: var(--text-md);
+    color: #334155;
+    line-height: 1.75;
+  }
+  .modal-desc p { margin-bottom: 14px; }
+  .modal-desc h3 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--ink);
+    margin: 22px 0 10px;
+  }
+  .modal-desc ul, .modal-desc ol { padding-left: 22px; margin-bottom: 14px; }
+  .modal-desc li { margin-bottom: 6px; }
+  .modal-desc strong { color: var(--ink); font-weight: 600; }
+  .modal-desc a { color: var(--navy); text-decoration: underline; }
+  .modal-actions {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .container-narrow, .page-hero-inner, .positions-head, .results-meta, .jobs-list { padding-left: 24px; padding-right: 24px; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .positions-head { flex-direction: column; align-items: flex-start; }
+    .modal-body { padding: 28px; }
+  }
+  @media (max-width: 768px) {
+    .page-hero { padding: 56px 0 48px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .job-card { padding: 22px; }
+    .modal-overlay { padding: 0; }
+    .modal { border-radius: 0; min-height: 100vh; }
+    .modal-body { padding: 24px 20px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<main id="main">
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span><a href="/about/">About</a><span>›</span>Careers
+    </nav>
+    <div class="page-hero-overline">About</div>
+    <h1>Careers</h1>
+    <p>Join our team and help build a more connected Western Balkans. The WBF Secretariat is based in Tirana, with colleagues from across the region working in a multilingual, mission-driven environment.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY JOIN
+     ============================================================ -->
+<section class="why">
+  <div class="container">
+    <div class="why-header">
+      <div class="overline">Why join WBF</div>
+      <h2>Mission-driven work at a regional scale</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div>
+          <div class="why-title">Regional Mission</div>
+          <div class="why-desc">Work on cross-border cooperation projects spanning all six Contracting Parties.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="why-title">Diverse Regional Team</div>
+          <div class="why-desc">Colleagues from across the Western Balkans bringing diverse perspectives to every project.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div>
+          <div class="why-title">Growth &amp; Learning</div>
+          <div class="why-desc">Training, conferences and exposure to EU institutions, donors and regional networks.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OPEN POSITIONS
+     ============================================================ -->
+<section class="positions">
+  <div class="positions-head">
+    <div>
+      <div class="overline">Open Positions</div>
+      <h2 id="positions-title">Current Vacancies</h2>
+      <p>Browse the open positions, internships and consultancies below. Click "View details" to read the full description before applying.</p>
+    </div>
+    <div class="filter-chips" id="type-filters" role="group" aria-label="Filter by job type">
+      <button class="chip active" data-type="all">All</button>
+      <!-- Type chips injected dynamically by JS -->
+    </div>
+  </div>
+
+  <div class="results-meta" id="results-meta" aria-live="polite"></div>
+
+  <div class="jobs-list" id="jobs-list" aria-live="polite">
+    <div class="no-jobs">
+      <div class="no-jobs-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 7h-3V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM9 5h6v2H9V5z"/></svg>
+      </div>
+      <h3>Loading positions…</h3>
+      <p>Hold on a moment while we fetch the latest vacancies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- ============================================================
+     SCRIPT — CSV CMS, FILTERS, MODAL
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ──────────────────────────────────────────────────────────
+     CONFIG
+     Set CSV_URL to your published Google Sheet CSV.
+     Columns: id, title, type, location, department, deadline,
+              salaryRange, summary, description, applicationUrl,
+              applicationEmail, postedDate, status
+     Type values: full-time, part-time, consultant, internship
+     status: published (or draft to hide)
+     If the sheet is empty, the page shows a friendly
+     "no positions" panel.
+     ────────────────────────────────────────────────────────── */
+  const CSV_URL = '';
+
+  const TYPE_LABELS = {
+    'full-time':  'Full-time',
+    'part-time':  'Part-time',
+    'consultant': 'Consultant',
+    'internship': 'Internship'
+  };
+  const TYPE_ORDER = ['full-time', 'part-time', 'consultant', 'internship'];
+
+  // Empty by default — shows the "no positions" state. Add to your
+  // Google Sheet to populate. Sample data shown only if you uncomment.
+  const SAMPLE_DATA = [];
+
+  const STATE = { items: [], type: 'all' };
+
+  /* ──────────────────────────────────────────────────────────
+     UTILITIES
+     ────────────────────────────────────────────────────────── */
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.from((c || document).querySelectorAll(s)); }
+  function escapeHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+  function escapeAttr(s) { return escapeHtml(s); }
+  function normalizeType(t) {
+    const k = String(t || '').trim().toLowerCase().replace(/\s+/g, '-');
+    return TYPE_LABELS[k] ? k : k;
+  }
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  function daysUntil(iso) {
+    if (!iso) return null;
+    const d = new Date(iso);
+    if (isNaN(d)) return null;
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    return Math.ceil((d - today) / (1000 * 60 * 60 * 24));
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     CSV PARSER
+     ────────────────────────────────────────────────────────── */
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQuotes) {
+        if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else { inQuotes = false; } }
+        else { field += c; }
+      } else {
+        if (c === '"') inQuotes = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c === '\r') {/*skip*/}
+        else field += c;
+      }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    if (!rows.length) return [];
+    const headers = rows[0].map(h => h.trim());
+    return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = (r[i] || '').trim());
+      return obj;
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     DATA
+     ────────────────────────────────────────────────────────── */
+  async function loadData() {
+    if (!CSV_URL) { STATE.items = SAMPLE_DATA.slice(); return; }
+    try {
+      const res = await fetch(CSV_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      STATE.items = parseCSV(await res.text())
+        .filter(i => (i.status || 'published').toLowerCase() !== 'draft');
+    } catch (err) {
+      console.warn('CSV load failed, using sample data:', err);
+      STATE.items = SAMPLE_DATA.slice();
+    }
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     FILTERS
+     ────────────────────────────────────────────────────────── */
+  function buildTypeFilters() {
+    const wrap = $('#type-filters');
+    $$('button[data-type]:not([data-type="all"])', wrap).forEach(b => b.remove());
+    const counts = {};
+    STATE.items.forEach(i => {
+      const k = normalizeType(i.type);
+      counts[k] = (counts[k] || 0) + 1;
+    });
+    TYPE_ORDER.forEach(t => {
+      if (!counts[t]) return;
+      const btn = document.createElement('button');
+      btn.className = 'chip';
+      btn.dataset.type = t;
+      btn.innerHTML = escapeHtml(TYPE_LABELS[t]) + ' <span class="chip-count">' + counts[t] + '</span>';
+      wrap.appendChild(btn);
+    });
+  }
+
+  function getFiltered() {
+    return STATE.items
+      .filter(i => STATE.type === 'all' ? true : normalizeType(i.type) === STATE.type)
+      .sort((a, b) => {
+        const ad = new Date(a.deadline || a.postedDate || 0).getTime();
+        const bd = new Date(b.deadline || b.postedDate || 0).getTime();
+        return ad - bd; // soonest deadline first
+      });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     RENDER
+     ────────────────────────────────────────────────────────── */
+  function renderCard(job) {
+    const type = normalizeType(job.type);
+    const typeLabel = TYPE_LABELS[type] || job.type || '';
+    const days = daysUntil(job.deadline);
+    const deadlineSoon = days != null && days <= 14 && days >= 0;
+    const deadlineLabel = job.deadline
+      ? (days != null && days < 0 ? 'Closed: ' : 'Deadline: ') + formatDate(job.deadline)
+      : '';
+
+    const apply = job.applicationUrl
+      ? '<a class="job-apply" href="' + escapeAttr(job.applicationUrl) + '" target="_blank" rel="noopener">Apply now <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>'
+      : (job.applicationEmail
+          ? '<a class="job-apply" href="mailto:' + escapeAttr(job.applicationEmail) + '?subject=' + escapeAttr('Application: ' + (job.title || '')) + '">Apply via email <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>'
+          : '');
+
+    return (
+      '<article class="job-card" data-id="' + escapeAttr(job.id) + '">' +
+        '<div class="job-meta">' +
+          (typeLabel ? '<span class="job-type ' + escapeAttr(type) + '">' + escapeHtml(typeLabel) + '</span>' : '') +
+          (job.location ? '<span class="job-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' + escapeHtml(job.location) + '</span>' : '') +
+          (job.department ? '<span class="job-meta-item"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>' + escapeHtml(job.department) + '</span>' : '') +
+          (deadlineLabel ? '<span class="job-meta-item' + (deadlineSoon ? ' deadline-soon' : '') + '"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' + escapeHtml(deadlineLabel) + (deadlineSoon ? ' · ' + days + ' days left' : '') + '</span>' : '') +
+        '</div>' +
+        '<h3 class="job-title">' + escapeHtml(job.title) + '</h3>' +
+        (job.summary ? '<p class="job-summary">' + escapeHtml(job.summary) + '</p>' : '') +
+        '<div class="job-actions">' +
+          apply +
+          (job.description ? '<button type="button" class="job-details" data-open>View details</button>' : '') +
+        '</div>' +
+      '</article>'
+    );
+  }
+
+  function renderNoJobs() {
+    const root = $('#jobs-list');
+    root.innerHTML =
+      '<div class="no-jobs">' +
+        '<div class="no-jobs-icon">' +
+          '<svg viewBox="0 0 24 24"><path d="M20 7h-3V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM9 5h6v2H9V5z"/></svg>' +
+        '</div>' +
+        '<h3>No open positions at the moment</h3>' +
+        '<p>Check back regularly.</p>' +
+      '</div>';
+    $('#results-meta').innerHTML = '';
+  }
+
+  function render() {
+    const list = getFiltered();
+    const root = $('#jobs-list');
+    const meta = $('#results-meta');
+
+    if (!STATE.items.length) { renderNoJobs(); return; }
+
+    meta.innerHTML = '<strong>' + list.length + '</strong> ' +
+      (list.length === 1 ? 'open position' : 'open positions') +
+      (STATE.type !== 'all' ? ' matching your filter' : '');
+
+    if (!list.length) {
+      root.innerHTML =
+        '<div class="no-jobs">' +
+          '<div class="no-jobs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>' +
+          '<h3>No positions match this filter</h3>' +
+          '<p>Try a different position type, or browse all open positions.</p>' +
+        '</div>';
+      return;
+    }
+
+    root.innerHTML = list.map(renderCard).join('');
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     MODAL
+     ────────────────────────────────────────────────────────── */
+  const Modal = (function () {
+    const overlay = $('#modal');
+    const content = $('#modal-content');
+
+    function open(job) {
+      const type = normalizeType(job.type);
+      const typeLabel = TYPE_LABELS[type] || job.type || '';
+      const deadlineLabel = job.deadline ? 'Deadline: ' + formatDate(job.deadline) : '';
+      const apply = job.applicationUrl
+        ? '<a class="job-apply" href="' + escapeAttr(job.applicationUrl) + '" target="_blank" rel="noopener">Apply now <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>'
+        : (job.applicationEmail
+            ? '<a class="job-apply" href="mailto:' + escapeAttr(job.applicationEmail) + '?subject=' + escapeAttr('Application: ' + (job.title || '')) + '">Apply via email <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>'
+            : '');
+
+      content.innerHTML =
+        '<button type="button" class="modal-close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg></button>' +
+        '<div class="modal-body">' +
+          '<div class="modal-meta">' +
+            (typeLabel ? '<span class="job-type ' + escapeAttr(type) + '">' + escapeHtml(typeLabel) + '</span>' : '') +
+            (job.location ? '<span class="job-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' + escapeHtml(job.location) + '</span>' : '') +
+            (deadlineLabel ? '<span class="job-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' + escapeHtml(deadlineLabel) + '</span>' : '') +
+          '</div>' +
+          '<h2 id="modal-title" class="modal-title">' + escapeHtml(job.title) + '</h2>' +
+          (job.summary ? '<p class="modal-summary">' + escapeHtml(job.summary) + '</p>' : '') +
+          '<div class="modal-desc">' + (job.description || '') + '</div>' +
+          (apply ? '<div class="modal-actions">' + apply + '</div>' : '') +
+        '</div>';
+
+      overlay.hidden = false;
+      requestAnimationFrame(() => overlay.classList.add('open'));
+      document.body.classList.add('modal-open');
+
+      const url = new URL(window.location);
+      if (url.searchParams.get('job') !== job.id) {
+        url.searchParams.set('job', job.id);
+        history.pushState({ job: job.id }, '', url);
+      }
+
+      content.querySelector('.modal-close').addEventListener('click', () => close(true));
+      content.querySelector('.modal-close').focus();
+    }
+
+    function close(updateHistory) {
+      overlay.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      setTimeout(() => { overlay.hidden = true; content.innerHTML = ''; }, 200);
+      if (updateHistory !== false) {
+        const url = new URL(window.location);
+        if (url.searchParams.has('job')) {
+          url.searchParams.delete('job');
+          history.pushState({}, '', url);
+        }
+      }
+    }
+
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(true); });
+    document.addEventListener('keydown', (e) => { if (overlay.hidden) return; if (e.key === 'Escape') close(true); });
+    return { open, close };
+  })();
+
+  /* ──────────────────────────────────────────────────────────
+     EVENTS
+     ────────────────────────────────────────────────────────── */
+  function bindFilters() {
+    $('#type-filters').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-type]'); if (!btn) return;
+      STATE.type = btn.dataset.type;
+      $$('#type-filters button').forEach(b => b.classList.toggle('active', b === btn));
+      render();
+    });
+  }
+
+  function bindJobClicks() {
+    $('#jobs-list').addEventListener('click', (e) => {
+      const detail = e.target.closest('button[data-open]');
+      if (!detail) return;
+      const card = e.target.closest('.job-card');
+      if (!card) return;
+      const job = STATE.items.find(j => String(j.id) === String(card.dataset.id));
+      if (job) Modal.open(job);
+    });
+  }
+
+  function bindHistory() {
+    window.addEventListener('popstate', () => {
+      const id = new URL(window.location).searchParams.get('job');
+      if (id) {
+        const j = STATE.items.find(x => String(x.id) === String(id));
+        if (j) Modal.open(j);
+      } else { Modal.close(false); }
+    });
+  }
+
+  function maybeOpenFromUrl() {
+    const id = new URL(window.location).searchParams.get('job');
+    if (!id) return;
+    const j = STATE.items.find(x => String(x.id) === String(id));
+    if (j) Modal.open(j);
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     INIT
+     ────────────────────────────────────────────────────────── */
+  async function init() {
+    bindFilters();
+    bindJobClicks();
+    bindHistory();
+    try {
+      await loadData();
+      // Hide type filter row when no items
+      if (!STATE.items.length) $('#type-filters').style.display = 'none';
+      buildTypeFilters();
+      render();
+      maybeOpenFromUrl();
+    } catch (err) {
+      console.error(err);
+      renderNoJobs();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</main>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+</body>
+</html>

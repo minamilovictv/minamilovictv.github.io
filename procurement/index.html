@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procurement | Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/procurement/">
+<meta name="description" content="Open tenders, calls for quotations and procurement notices of the Western Balkans Fund, with dossiers, deadlines and submission details.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:title" content="Procurement | Western Balkans Fund">
+<meta property="og:description" content="Open tenders, calls for quotations and procurement notices of the Western Balkans Fund.">
+<meta property="og:url" content="https://westernbalkansfund.org/procurement/">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--ink); background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============================================================
+     PAGE HERO
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: var(--gradient-hero);
+    overflow: hidden;
+    padding: 72px 0 64px;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 700; color: #fff; line-height: 1.1;
+    letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch;
+  }
+  .page-hero p {
+    font-size: var(--text-base); color: rgba(255,255,255,0.7);
+    line-height: 1.65; max-width: 62ch;
+  }
+
+  /* ============================================================
+     FILTER BAR
+     ============================================================ */
+  .filters-wrap { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 72px; z-index: 20; }
+  .filters-inner {
+    max-width: 1400px; margin: 0 auto; padding: 20px 40px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .filter-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--faint); flex-shrink: 0;
+  }
+  .chip {
+    background: var(--line-soft); border: 1px solid transparent; color: var(--ink-soft);
+    font-size: var(--text-sm); font-weight: 500; padding: 6px 14px;
+    border-radius: var(--radius-pill); cursor: pointer; white-space: nowrap;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .chip:hover { background: var(--line); color: var(--navy); }
+  .chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .chip-count { display: inline-block; margin-left: 6px; font-size: 10px; color: var(--faint); font-weight: 600; }
+  .chip.active .chip-count { color: rgba(255,255,255,0.6); }
+  .filter-search { position: relative; margin-left: auto; flex: 0 1 300px; min-width: 200px; }
+  .filter-search svg {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    width: 15px; height: 15px; fill: none; stroke: var(--faint);
+    stroke-width: 2; stroke-linecap: round; pointer-events: none;
+  }
+  .filter-search input {
+    width: 100%; padding: 9px 12px 9px 34px;
+    border: 1px solid var(--line); border-radius: var(--radius-md);
+    font-family: inherit; font-size: var(--text-sm); color: var(--ink);
+    background: #fff; transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .filter-search input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(23,61,143,0.10); }
+
+  .results-meta {
+    max-width: 1400px; margin: 0 auto; padding: 22px 40px 0;
+    font-size: var(--text-sm); color: var(--muted);
+  }
+
+  /* ============================================================
+     TENDER LIST
+     ============================================================ */
+  .tenders-section { padding: 26px 0 72px; }
+  .tender-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .tender {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px 28px;
+    align-items: start;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-lg);
+    padding: 24px 26px;
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .tender:hover { box-shadow: var(--shadow-2); transform: translateY(-2px); }
+  .tender.is-closed { border-left-color: var(--line); background: var(--surface-alt); }
+  .tender.is-closed .tender-title { color: var(--ink-soft); }
+
+  .tender-meta {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .tender-ref {
+    font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .tender-type {
+    font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: var(--radius-pill);
+    background: var(--accent-tint); color: var(--navy);
+  }
+  .badge {
+    font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 3px 10px; border-radius: var(--radius-pill);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .badge.is-open      { background: var(--teal-tint);  color: var(--teal-deep); }
+  .badge.is-closing   { background: var(--amber-tint); color: var(--amber); }
+  .badge.is-closed    { background: var(--line-soft);  color: var(--muted); }
+  .badge.is-awarded   { background: var(--green-tint); color: var(--green); }
+  .badge.is-cancelled { background: var(--line-soft);  color: var(--muted); }
+
+  .tender-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl); font-weight: 700; color: var(--ink);
+    line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 8px;
+    text-wrap: balance;
+  }
+  .tender-summary { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.65; max-width: 76ch; }
+
+  .tender-dates {
+    display: flex; gap: 26px; flex-wrap: wrap;
+    margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line);
+  }
+  .tender-date-key {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--faint); margin-bottom: 3px;
+  }
+  .tender-date-val { font-size: var(--text-sm); font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .tender-date-val.is-urgent { color: var(--amber); }
+
+  .tender-actions { display: flex; flex-direction: column; gap: 8px; align-items: stretch; min-width: 190px; }
+  .btn-doc, .btn-doc-ghost {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 11px 18px; border-radius: var(--radius-pill);
+    font-size: var(--text-sm); font-weight: 600; text-decoration: none;
+    white-space: nowrap; border: 1px solid transparent;
+    transition: background 0.16s, border-color 0.16s, color 0.16s;
+  }
+  .btn-doc { background: var(--navy); color: #fff; }
+  .btn-doc:hover { background: var(--navy-900); }
+  .btn-doc-ghost { background: #fff; border-color: var(--line); color: var(--ink-soft); }
+  .btn-doc-ghost:hover { border-color: var(--navy); color: var(--navy); }
+  .btn-doc svg, .btn-doc-ghost svg {
+    width: 15px; height: 15px; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none;
+  }
+
+  /* ============================================================
+     EMPTY STATE
+     ============================================================ */
+  .empty {
+    text-align: center; padding: 64px 32px;
+    border: 1px dashed var(--line); border-radius: var(--radius-lg);
+    background: var(--surface-alt);
+  }
+  .empty svg {
+    width: 40px; height: 40px; margin: 0 auto 18px; display: block;
+    fill: none; stroke: var(--faint); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .empty h2 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+  .empty p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.7; max-width: 56ch; margin: 0 auto; }
+
+  /* ============================================================
+     HOW TO SUBMIT
+     ============================================================ */
+  .submit-band { background: var(--surface-alt); border-top: 1px solid var(--line); padding: 56px 0; }
+  .submit-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
+  .submit-band h2 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--ink); letter-spacing: -0.015em; margin-bottom: 14px; }
+  .submit-band p { font-size: var(--text-md); color: var(--ink-soft); line-height: 1.75; margin-bottom: 14px; }
+  .submit-band p:last-child { margin-bottom: 0; }
+  .submit-steps { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .submit-steps li { display: flex; gap: 13px; align-items: flex-start; font-size: var(--text-md); color: var(--ink-soft); line-height: 1.6; }
+  .submit-steps .step-n {
+    width: 24px; height: 24px; border-radius: 50%; flex: none;
+    background: var(--navy); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--text-xs); font-weight: 700; margin-top: 1px;
+  }
+  .submit-contact {
+    margin-top: 22px; padding: 18px 20px;
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md);
+  }
+  .submit-contact-key { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); margin-bottom: 6px; }
+  .submit-contact a { color: var(--navy); font-weight: 600; text-decoration: none; font-size: var(--text-md); }
+  .submit-contact a:hover { text-decoration: underline; }
+
+  /* ============================================================
+     SKELETON (shown while the CSV loads)
+     ============================================================ */
+  .sk { background: linear-gradient(90deg, var(--line-soft) 25%, var(--line) 37%, var(--line-soft) 63%); background-size: 400% 100%; border-radius: 6px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sk { animation: sk-shimmer 1.4s ease infinite; }
+  }
+  @keyframes sk-shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+  .sk-row { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px 26px; display: flex; flex-direction: column; gap: 11px; }
+  .sk-line { height: 12px; }
+  .sk-line.short { width: 22%; }
+  .sk-line.title { height: 20px; width: 62%; }
+  .sk-line.body  { width: 88%; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 900px) {
+    .submit-grid { grid-template-columns: 1fr; gap: 34px; }
+    .tender { grid-template-columns: 1fr; }
+    .tender-actions { min-width: 0; flex-direction: row; flex-wrap: wrap; }
+    .btn-doc, .btn-doc-ghost { flex: 1 1 auto; }
+  }
+  @media (max-width: 768px) {
+    .page-hero { padding: 52px 0 46px; }
+    .container, .page-hero-inner, .filters-inner, .results-meta { padding-left: 24px; padding-right: 24px; }
+    .filters-wrap { position: static; }
+    .submit-band { padding: 44px 0; }
+  }
+  @media (max-width: 480px) {
+    .container, .page-hero-inner, .filters-inner, .results-meta { padding-left: 18px; padding-right: 18px; }
+    .tender { padding: 20px 18px; }
+    .tender-dates { gap: 18px; }
+    .filter-search { margin-left: 0; flex-basis: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<main id="main">
+
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span><a href="/about/">About</a><span>›</span>Procurement
+    </nav>
+    <div class="page-hero-overline">About</div>
+    <h1>Procurement</h1>
+    <p>Tenders, calls for quotations and procurement notices issued by the Western Balkans Fund. Every notice is published here with its full dossier and submission deadline, so suppliers across the Contracting Parties can compete on equal terms.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FILTER BAR
+     ============================================================ -->
+<div class="filters-wrap" role="region" aria-label="Filter procurement notices">
+  <div class="filters-inner">
+    <div class="filter-label">Show</div>
+    <div id="status-filters" role="group" aria-label="Filter by status" style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="chip active" data-status="all" type="button">All</button>
+      <!-- Status chips injected dynamically -->
+    </div>
+    <div class="filter-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search-input" type="search" placeholder="Search notices…" aria-label="Search procurement notices">
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     RESULTS
+     ============================================================ -->
+<div class="results-meta" id="results-meta" aria-live="polite"></div>
+
+<section class="tenders-section">
+  <div class="container">
+    <div id="tenders-root" aria-live="polite">
+      <div class="tender-list">
+        <div class="sk-row"><div class="sk sk-line short"></div><div class="sk sk-line title"></div><div class="sk sk-line body"></div></div>
+        <div class="sk-row"><div class="sk sk-line short"></div><div class="sk sk-line title"></div><div class="sk sk-line body"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW TO SUBMIT
+     ============================================================ -->
+<section class="submit-band">
+  <div class="container">
+    <div class="submit-grid">
+      <div>
+        <h2>How to submit an offer</h2>
+        <p>Each notice above links to its own dossier, which sets out the technical specification, the evaluation criteria and the documents an offer must contain. Where the dossier and this page differ, the dossier governs.</p>
+        <p>Offers received after the stated deadline are not evaluated. Deadlines are given in Central European Time.</p>
+        <div class="submit-contact">
+          <div class="submit-contact-key">Questions about a notice</div>
+          <a href="mailto:info@westernbalkansfund.org">info@westernbalkansfund.org</a>
+        </div>
+      </div>
+      <div>
+        <ol class="submit-steps">
+          <li><span class="step-n">1</span><span>Download the dossier for the notice you are bidding on and read the eligibility and evaluation criteria in full.</span></li>
+          <li><span class="step-n">2</span><span>Send any clarification questions to the address opposite, quoting the reference number, well before the deadline.</span></li>
+          <li><span class="step-n">3</span><span>Prepare your offer in the format the dossier requires, including every supporting document it lists.</span></li>
+          <li><span class="step-n">4</span><span>Submit before the deadline shown on the notice, by the method the dossier specifies.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ──────────────────────────────────────────────────────────
+     DATA SOURCE
+
+     Notices are read from a CSV so they can be published without
+     touching this file. Two options, same as the other CSV pages:
+
+       · Local file (default):  /assets/procurement/procurement.csv
+         Edit the CSV, commit, push.
+       · Google Sheet:  File → Share → Publish to web → CSV, then
+         paste that URL into CSV_URL below.
+
+     Columns (header row must match exactly):
+       id          slug, unique, used for the deep link  (?notice=id)
+       reference   tender reference, e.g. WBF/2026/RFQ-004
+       title       notice title
+       type        goods | services | works | consultancy
+       status      open | closed | awarded | cancelled
+                   (leave blank to derive it from the deadline)
+       published   YYYY-MM-DD
+       deadline    YYYY-MM-DD or YYYY-MM-DD HH:MM
+       summary     one or two sentences of plain description
+       fileUrl     dossier filename inside /assets/procurement/,
+                   or a full https:// URL
+       resultUrl   optional award notice / result document
+     ────────────────────────────────────────────────────────── */
+  const DOC_BASE = '/assets/procurement/';
+  const CSV_URL  = DOC_BASE + 'procurement.csv';
+
+  /* No sample notices on purpose: a procurement page must never show a
+     tender that does not exist. When the CSV is empty or unreachable the
+     page shows its empty state instead. */
+  const SAMPLE_DATA = [];
+
+  const STATUS_META = {
+    open:      { label: 'Open',      cls: 'is-open' },
+    closing:   { label: 'Closing soon', cls: 'is-closing' },
+    closed:    { label: 'Closed',    cls: 'is-closed' },
+    awarded:   { label: 'Awarded',   cls: 'is-awarded' },
+    cancelled: { label: 'Cancelled', cls: 'is-cancelled' }
+  };
+  /* Chips, in the order they appear in the filter bar. */
+  const FILTERS = ['open', 'closed', 'awarded', 'cancelled'];
+
+  const STATE = { items: [], status: 'all', q: '' };
+
+  /* ──────────────────────────────────────────────────────────
+     HELPERS
+     ────────────────────────────────────────────────────────── */
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.from((c || document).querySelectorAll(s)); }
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  /* Only allow document links we generate or that are plainly http(s), so a
+     stray CSV value cannot inject a javascript: URL into an href. */
+  function resolveDocUrl(u) {
+    const v = String(u || '').trim();
+    if (!v) return '';
+    if (/^https?:\/\//i.test(v)) return v;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(v)) return '';
+    return DOC_BASE + v.replace(/^\/+/, '');
+  }
+
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQuotes) {
+        if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else { inQuotes = false; } }
+        else { field += c; }
+      } else {
+        if (c === '"') inQuotes = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c === '\r') { /* skip */ }
+        else field += c;
+      }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    if (!rows.length) return [];
+    const headers = rows[0].map(h => h.trim());
+    return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = (r[i] || '').trim());
+      return obj;
+    });
+  }
+
+  async function loadData() {
+    if (!CSV_URL) { STATE.items = SAMPLE_DATA.slice(); return; }
+    try {
+      const res = await fetch(CSV_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      STATE.items = parseCSV(await res.text());
+    } catch (err) {
+      console.warn('Procurement CSV load failed, showing empty state:', err);
+      STATE.items = SAMPLE_DATA.slice();
+    }
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     DATES AND STATUS
+
+     A notice whose deadline has passed is shown as closed even if the
+     CSV still says "open", so a stale row can never invite an offer that
+     can no longer be accepted.
+     ────────────────────────────────────────────────────────── */
+  function parseDate(s) {
+    const v = String(s || '').trim();
+    if (!v) return null;
+    const m = v.match(/^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}):(\d{2}))?$/);
+    if (!m) return null;
+    const d = new Date(+m[1], +m[2] - 1, +m[3], m[4] ? +m[4] : 23, m[5] ? +m[5] : 59);
+    return isNaN(d) ? null : d;
+  }
+
+  function fmtDate(d) {
+    if (!d) return '';
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
+
+  function daysLeft(d) {
+    if (!d) return null;
+    return Math.ceil((d - new Date()) / 86400000);
+  }
+
+  function effectiveStatus(item) {
+    const raw = String(item.status || '').trim().toLowerCase();
+    if (raw === 'awarded' || raw === 'cancelled') return raw;
+    const dl = parseDate(item.deadline);
+    if (dl && dl < new Date()) return 'closed';
+    if (raw === 'closed') return 'closed';
+    return 'open';
+  }
+
+  /* Visual badge is finer grained than the filter status: an open notice
+     inside its final week reads as "closing soon". */
+  function badgeFor(item) {
+    const st = effectiveStatus(item);
+    if (st !== 'open') return STATUS_META[st];
+    const left = daysLeft(parseDate(item.deadline));
+    if (left !== null && left <= 7) return STATUS_META.closing;
+    return STATUS_META.open;
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     FILTERS
+     ────────────────────────────────────────────────────────── */
+  function statusCounts() {
+    const counts = {};
+    STATE.items.forEach(i => {
+      const s = effectiveStatus(i);
+      counts[s] = (counts[s] || 0) + 1;
+    });
+    return counts;
+  }
+
+  function buildStatusFilters() {
+    const wrap = $('#status-filters');
+    const counts = statusCounts();
+    const all = STATE.items.length;
+    let html = '<button class="chip' + (STATE.status === 'all' ? ' active' : '') +
+               '" data-status="all" type="button">All<span class="chip-count">' + all + '</span></button>';
+    FILTERS.forEach(s => {
+      if (!counts[s]) return;
+      html += '<button class="chip' + (STATE.status === s ? ' active' : '') +
+              '" data-status="' + s + '" type="button">' + STATUS_META[s].label +
+              '<span class="chip-count">' + counts[s] + '</span></button>';
+    });
+    wrap.innerHTML = html;
+    $$('.chip', wrap).forEach(btn => {
+      btn.addEventListener('click', () => {
+        STATE.status = btn.dataset.status;
+        buildStatusFilters();
+        render();
+      });
+    });
+  }
+
+  function getFiltered() {
+    const q = STATE.q.trim().toLowerCase();
+    return STATE.items.filter(i => {
+      if (STATE.status !== 'all' && effectiveStatus(i) !== STATE.status) return false;
+      if (!q) return true;
+      return [i.title, i.reference, i.summary, i.type].join(' ').toLowerCase().indexOf(q) !== -1;
+    }).sort((a, b) => {
+      /* Open notices first, then by soonest deadline; closed ones most recent first. */
+      const ao = effectiveStatus(a) === 'open', bo = effectiveStatus(b) === 'open';
+      if (ao !== bo) return ao ? -1 : 1;
+      const ad = parseDate(a.deadline), bd = parseDate(b.deadline);
+      if (!ad && !bd) return 0;
+      if (!ad) return 1;
+      if (!bd) return -1;
+      return ao ? ad - bd : bd - ad;
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     RENDER
+     ────────────────────────────────────────────────────────── */
+  function renderTender(r) {
+    const st       = effectiveStatus(r);
+    const badge    = badgeFor(r);
+    const dl       = parseDate(r.deadline);
+    const pub      = parseDate(r.published);
+    const left     = daysLeft(dl);
+    const urgent   = st === 'open' && left !== null && left <= 7;
+    const docUrl   = resolveDocUrl(r.fileUrl);
+    const resUrl   = resolveDocUrl(r.resultUrl);
+    const type     = String(r.type || '').trim();
+
+    let dates = '';
+    if (pub) dates += '<div><div class="tender-date-key">Published</div><div class="tender-date-val">' + fmtDate(pub) + '</div></div>';
+    if (dl) {
+      dates += '<div><div class="tender-date-key">' + (st === 'open' ? 'Deadline' : 'Closed') + '</div>' +
+               '<div class="tender-date-val' + (urgent ? ' is-urgent' : '') + '">' + fmtDate(dl) +
+               (urgent ? ' · ' + (left <= 0 ? 'today' : left + (left === 1 ? ' day left' : ' days left')) : '') +
+               '</div></div>';
+    }
+
+    let actions = '';
+    if (docUrl) {
+      actions += '<a class="btn-doc" href="' + escapeHtml(docUrl) + '" target="_blank" rel="noopener">' +
+        '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' +
+        'Download dossier</a>';
+    }
+    if (resUrl) {
+      actions += '<a class="btn-doc-ghost" href="' + escapeHtml(resUrl) + '" target="_blank" rel="noopener">' +
+        '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>' +
+        'Award notice</a>';
+    }
+
+    return '<article class="tender' + (st === 'open' ? '' : ' is-closed') + '" id="' + escapeHtml(r.id || '') + '">' +
+      '<div>' +
+        '<div class="tender-meta">' +
+          (r.reference ? '<span class="tender-ref">' + escapeHtml(r.reference) + '</span>' : '') +
+          (type ? '<span class="tender-type">' + escapeHtml(type) + '</span>' : '') +
+          '<span class="badge ' + badge.cls + '">' + badge.label + '</span>' +
+        '</div>' +
+        '<h2 class="tender-title">' + escapeHtml(r.title || 'Untitled notice') + '</h2>' +
+        (r.summary ? '<p class="tender-summary">' + escapeHtml(r.summary) + '</p>' : '') +
+        (dates ? '<div class="tender-dates">' + dates + '</div>' : '') +
+      '</div>' +
+      (actions ? '<div class="tender-actions">' + actions + '</div>' : '') +
+    '</article>';
+  }
+
+  function emptyState() {
+    const filtering = STATE.status !== 'all' || STATE.q.trim();
+    const title = filtering ? 'No notices match your filter' : 'No open tenders at the moment';
+    const body  = filtering
+      ? 'Try clearing the search box or choosing a different status.'
+      : 'The Western Balkans Fund has no procurement notices open for offers right now. New tenders and calls for quotations are published on this page as soon as they are issued.';
+    return '<div class="empty">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>' +
+      '<h2>' + title + '</h2><p>' + body + '</p></div>';
+  }
+
+  function render() {
+    const items = getFiltered();
+    const root = $('#tenders-root');
+    const meta = $('#results-meta');
+
+    if (!items.length) { root.innerHTML = emptyState(); meta.textContent = ''; return; }
+
+    meta.textContent = items.length === 1 ? '1 notice' : items.length + ' notices';
+    root.innerHTML = '<div class="tender-list">' + items.map(renderTender).join('') + '</div>';
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     INIT
+     ────────────────────────────────────────────────────────── */
+  async function init() {
+    await loadData();
+    buildStatusFilters();
+    render();
+
+    const search = $('#search-input');
+    let t = null;
+    search.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(() => { STATE.q = search.value; render(); }, 140);
+    });
+
+    /* ?notice=<id> scrolls straight to one notice, for linking from an email. */
+    const want = new URLSearchParams(location.search).get('notice');
+    if (want) {
+      const el = document.getElementById(want);
+      if (el) el.scrollIntoView({ block: 'center' });
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
+</body>
+</html>

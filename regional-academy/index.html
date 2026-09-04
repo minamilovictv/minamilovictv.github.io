@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regional Academy for Cooperation | Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/regional-academy/">
+<meta name="description" content="The WBF Regional Academy prepares junior professionals and emerging leaders from across the WB6 to advance dialogue and a culture of regional cooperation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Regional Academy for Cooperation | Western Balkans Fund">
+<meta property="og:description" content="The WBF Regional Academy prepares junior professionals and emerging leaders from across the WB6 to advance dialogue and a culture of regional cooperation.">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+
+/* ============================================================
+   DESIGN TOKENS · Academy palette (forest green + gold) + WBF navy
+   Colours come straight from the Academy logo: the tile ramp runs
+   #0c5046 → #a4beba, the accent golds are #e0a738 / #e4c48e.
+   ============================================================ */
+:root {
+  /* Academy primary · forest green (logo tile ramp) */
+  --forest:        #326a61;   /* mid green · accents, dots, borders */
+  --forest-bright: #58857d;   /* lightest gradient stop */
+  --forest-deep:   #1c5e53;   /* readable on white */
+  --forest-darker: #0c5046;   /* logo core green · darkest */
+  --forest-tint:   #E3EDEA;
+  --forest-tint-2: #F2F8F6;
+  --forest-border: #BACFCA;
+  --sage:          #a4beba;   /* lightest logo tile */
+
+  /* Academy highlight · gold (logo) */
+  --gold:        #e0a738;
+  --gold-light:  #e4c48e;   /* logo light gold */
+  --gold-deep:   #8a661c;   /* readable on white */
+  --gold-tint:   #FAF2E3;
+  --gold-border: #EBD3AA;
+
+  /* WBF navy · structural */
+
+  /* Neutrals */
+  --surface:    #ffffff;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+/* Anchor jumps (nav links, the #day-N pillar links) land below the
+   sticky 72px navbar instead of underneath it. scroll-padding on the
+   scroll container covers both native jumps and scrollIntoView. */
+html { scroll-padding-top: 90px; }
+body { font-family: var(--font); color: var(--ink); background: #fff; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font-family: inherit; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
+
+::selection { background: var(--forest); color: #fff; }
+
+/* Justified body paragraphs */
+.overview-text p,
+.cohort-text p,
+.heritage-text > p { text-align: justify; }
+
+/* Hyphenation is disabled site-wide (see css/site-chrome.css), so justifying
+   a narrow measure has nowhere to give except the word gaps. Below ~600px the
+   column drops under 60 characters and that shows up as rivers of white, so
+   these paragraphs fall back to ragged-right on phones. */
+@media (max-width: 600px) {
+  .overview-text p,
+  .cohort-text p,
+  .heritage-text > p,
+  .mtr-body p,
+  .pillars-intro p { text-align: left; }
+}
+
+/* Mobile navigation (hamburger + drawer) is provided by js/nav.js,
+   consistent with every other page, no page-local mobile-nav CSS. */
+
+/* ============================================================
+   HERO · Academy forest-green gradient with warm gold accent
+   ============================================================ */
+.prog-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--forest-darker) 0%, var(--forest-deep) 35%, var(--forest) 70%, var(--forest-bright) 100%);
+  overflow: hidden;
+  padding: 64px 0 48px;
+  color: #fff;
+}
+.hero-orb { position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(224,167,56,0.28) 0%, transparent 70%); top: -160px; right: -140px; filter: blur(10px); pointer-events: none; }
+.hero-orb-2 { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(164,190,186,0.40) 0%, transparent 70%); bottom: -120px; left: -80px; filter: blur(12px); pointer-events: none; }
+
+.prog-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+.breadcrumb { font-size: 12.5px; color: rgba(255,255,255,0.65); margin-bottom: 26px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: none; }
+.breadcrumb a:hover { color: #fff; }
+.breadcrumb span { color: rgba(255,255,255,0.45); }
+
+.hero-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+  background: rgba(224,167,56,0.16);
+  border: 1px solid rgba(224,167,56,0.42);
+  color: var(--gold-light);
+}
+.status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(224,167,56,0.22); }
+.status-pill.is-amber {
+  background: rgba(245,158,11,0.18);
+  border-color: rgba(245,158,11,0.42);
+  color: #f6dd93;
+}
+.status-pill.is-amber .status-pill-dot { background: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,0.22); }
+.status-pill-text { text-transform: uppercase; font-size: 11.5px; }
+
+/* The Academy lockup (mark + name + tagline) ships as one SVG, so the hero
+   carries the artwork rather than typeset text. academy-logo-white.svg is the
+   supplied dark-background version with its opaque artboard rect removed and the
+   wordmark group scaled 1.649x so the name+tagline block matches the mark's
+   height (the supplied lockup sets it at 61%, which read as lopsided), so
+   it sits transparently on the hero gradient. */
+.brand-logo {
+  display: block;
+  width: clamp(320px, 46vw, 620px);   /* artwork is 5.24:1 */
+  height: auto;
+  margin: 0 0 30px;
+}
+.prog-hero h1 {
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.022em;
+  line-height: 1.22;
+  margin-bottom: 22px;
+  max-width: 52ch;
+  text-wrap: balance;
+}
+.prog-hero .tagline {
+  font-size: clamp(15px, 1.55vw, 17.5px);
+  color: rgba(255,255,255,0.86);
+  line-height: 1.6;
+  max-width: 92ch;
+  margin-bottom: 36px;
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
+.btn-primary, .btn-ghost, .btn-gold {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 22px; border-radius: 999px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none; transition: background 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  border: 1px solid transparent;
+  font-family: inherit; cursor: pointer;
+}
+.btn-primary { background: #fff; color: var(--forest-darker); }
+.btn-primary:hover { background: var(--forest-tint); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+.btn-primary svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-gold { background: var(--gold); color: var(--forest-darker); }
+.btn-gold:hover { background: var(--gold-deep); color: #fff; transform: translateY(-1px); box-shadow: 0 8px 18px rgba(224,167,56,0.25); }
+.btn-gold svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.42); }
+.btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: #fff; }
+.btn-ghost svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.meta-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px 32px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  max-width: 920px;
+}
+.meta-fact-key { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+.meta-fact-value { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.2; }
+.meta-fact-value .gold-accent { color: var(--gold); }
+
+/* ============================================================
+   GENERIC SECTION
+   ============================================================ */
+.section { padding: 56px 0; }
+.section-alt { background: var(--surface-alt); }
+.section-tint { background: linear-gradient(180deg, var(--surface) 0%, var(--forest-tint-2) 100%); }
+.sec-head { text-align: center; max-width: 760px; margin: 0 auto 52px; }
+.sec-head.left { text-align: left; margin-left: 0; }
+.sec-head .overline { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--forest-deep); margin-bottom: 14px; padding: 4px 12px; background: var(--forest-tint); border-radius: 999px; }
+.sec-head h2 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.025em; line-height: 1.15; }
+.sec-head h2 .gold-accent { color: var(--gold-deep); }
+.sec-head p { font-size: 16.5px; color: var(--ink-soft); line-height: 1.65; }
+/* A section head with no intro paragraph must not keep the heading's bottom
+   margin on top of the head's own 52px. */
+.sec-head h2:last-child { margin-bottom: 0; }
+/* Section intros that run to more than one paragraph need the gap. */
+.sec-head p + p { margin-top: 14px; }
+
+/* ============================================================
+   OVERVIEW · what & why
+   ============================================================ */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: stretch;   /* card fills the row so both columns end level */
+}
+.overview-text p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 16px; }
+.overview-text p:last-child { margin-bottom: 0; }
+.overview-text strong { color: var(--ink); font-weight: 700; }
+.overview-text em { color: var(--forest-deep); font-style: normal; font-weight: 600; }
+
+.distinguishing-card {
+  display: flex; flex-direction: column;
+  background: linear-gradient(160deg, var(--forest-tint) 0%, #fff 100%);
+  border: 1px solid var(--forest-border);
+  border-radius: 16px;
+  padding: 32px 30px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s ease, border-color .3s ease;
+}
+.distinguishing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 46px rgba(12,80,70,0.13);
+  border-color: var(--gold-border);
+}
+.distinguishing-card::before {
+  content: ""; position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,167,56,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .distinguishing-card::before { animation: dc-drift 9s ease-in-out infinite; }
+}
+@keyframes dc-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-16px, 14px) scale(1.12); }
+}
+.distinguishing-card .dc-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold-deep); margin-bottom: 12px; position: relative; }
+.distinguishing-card h3 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 18px; letter-spacing: -0.02em; line-height: 1.25; position: relative; }
+.distinguishing-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; position: relative; flex: 1; justify-content: space-between; }
+.distinguishing-card li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; transition: transform .2s ease; }
+.distinguishing-card li:hover { transform: translateX(4px); }
+.distinguishing-card li .dot {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--gold); color: var(--forest-darker);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+  flex-shrink: 0; margin-top: 1px;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.distinguishing-card li:hover .dot { transform: scale(1.18); box-shadow: 0 0 0 4px rgba(224,167,56,0.22); }
+
+/* The pillars intro is a sentence-length statement plus two dense paragraphs,
+   not the short title the shared .sec-head sizing assumes. At the common h2
+   size it set as three 38px lines and overpowered the cards beneath it, so
+   here the heading drops to statement size on a wider measure, and the body
+   is held to a readable measure inside it. */
+.pillars-intro { max-width: 1180px; }
+.pillars-intro h2 {
+  font-size: clamp(21px, 2.2vw, 28px);
+  font-weight: 700;
+  line-height: 1.34;
+  letter-spacing: -0.012em;
+  margin-bottom: 20px;
+}
+.pillars-intro p {
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+
+/* ============================================================
+   PILLARS · five thematic pillars, one per programme day
+   ============================================================
+   Each card mirrors one thematic strand of the agenda (Days 2-6)
+   and links to that day's tab via #day-N, which the Programme
+   script picks up on hashchange.
+   ============================================================ */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.pillar-card {
+  /* Per-card accent. Days 3 and 5 (the even cards) run gold, the rest forest. */
+  --pc:      var(--forest);
+  --pc-deep: var(--forest-deep);
+  --pc-tint: var(--forest-tint);
+  display: flex; flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--pc);
+  border-radius: 14px;
+  padding: 22px 22px 20px;
+  text-decoration: none;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  position: relative; overflow: hidden;
+}
+.pillar-card:nth-child(2n) {
+  --pc:      var(--gold);
+  --pc-deep: var(--gold-deep);
+  --pc-tint: var(--gold-tint);
+}
+.pillar-card:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(28,94,83,0.16); border-color: var(--forest-border); }
+.pillar-card:focus-visible { outline: 2px solid var(--forest-deep); outline-offset: 3px; }
+
+/* Oversized ghost numeral heading each card. */
+.pillar-num {
+  display: block;
+  font-size: 30px; font-weight: 800; line-height: 1;
+  color: var(--pc); opacity: 0.28; letter-spacing: -0.04em;
+  margin-bottom: 18px;
+}
+.pillar-card:nth-child(2n) .pillar-num { opacity: 0.42; }
+
+/* Title is the card's anchor now that the icons are gone: a short accent rule
+   sits under it and sweeps the full width as the card is hovered, while the
+   text itself warms from ink to the card's own accent. */
+.pillar-title {
+  position: relative;
+  font-size: 17px; font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  line-height: 1.28; letter-spacing: -0.018em;
+  text-wrap: balance;
+  transition: color 0.25s ease;
+}
+.pillar-title::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 28px; height: 2px; border-radius: 2px;
+  background: var(--pc);
+  transition: width 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.pillar-card:hover .pillar-title,
+.pillar-card:focus-visible .pillar-title { color: var(--pc-deep); }
+.pillar-card:hover .pillar-title::after,
+.pillar-card:focus-visible .pillar-title::after { width: 100%; }
+
+.pillar-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+.pillar-link {
+  margin-top: auto; padding-top: 16px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; color: var(--pc-deep);
+}
+.pillar-link::after { content: "\2192"; transition: transform 0.2s; }
+.pillar-card:hover .pillar-link::after { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar-title::after { transition: none; }
+}
+
+@media (max-width: 1200px) {
+  .pillars-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================================
+   PROGRAMME · 7-day agenda, one panel per day
+   ============================================================
+   Day tabs switch the visible .prog-panel. Each panel is a
+   timetable of .prog-row items (time · session · people).
+   Row modifiers: .is-break (meals/coffee, muted) and
+   .is-parallel (the two concurrent Tuesday sessions).
+   ============================================================ */
+.prog-tabs {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px; margin-bottom: 36px;
+}
+.prog-tab {
+  flex: 0 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  min-width: 112px; padding: 11px 16px;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; cursor: pointer; font-family: inherit; text-align: center;
+  transition: background 0.18s, border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+}
+.prog-tab:hover { border-color: var(--forest); background: var(--forest-tint-2); transform: translateY(-2px); }
+.prog-tab:focus-visible { outline: 2px solid var(--forest-deep); outline-offset: 3px; }
+.prog-tab-num { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+.prog-tab-date { font-size: 14.5px; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; line-height: 1.15; }
+.prog-tab[aria-selected="true"] {
+  background: var(--forest-deep); border-color: var(--forest-deep);
+  box-shadow: 0 8px 20px rgba(28,94,83,0.22);
+}
+.prog-tab[aria-selected="true"]:hover { transform: none; background: var(--forest-deep); }
+.prog-tab[aria-selected="true"] .prog-tab-num { color: rgba(255,255,255,0.70); }
+.prog-tab[aria-selected="true"] .prog-tab-date { color: #fff; }
+/* Arrival and closing days carry the gold accent, as the finale card did. */
+.prog-tab.is-bookend[aria-selected="true"] { background: var(--gold-deep); border-color: var(--gold-deep); box-shadow: 0 8px 20px rgba(138,102,28,0.24); }
+.prog-tab.is-bookend[aria-selected="true"]:hover { background: var(--gold-deep); }
+.prog-tab.is-bookend:hover { border-color: var(--gold); background: var(--gold-tint); }
+
+.prog-panels { max-width: 1080px; margin: 0 auto; }
+.prog-panel { display: none; }
+.prog-panel.is-active { display: block; animation: prog-in 0.24s ease; }
+@keyframes prog-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.prog-day-head {
+  padding-bottom: 16px; margin-bottom: 6px;
+  border-bottom: 2px solid var(--forest-tint);
+}
+.prog-day-date { font-size: 12.5px; font-weight: 700; color: var(--forest-deep); letter-spacing: 0.04em; margin-bottom: 7px; }
+.prog-day-strand {
+  font-size: clamp(15px, 2.1vw, 20px); font-weight: 800; color: var(--ink);
+  letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; margin: 0;
+}
+
+.prog-rows { list-style: none; margin: 0; padding: 0; }
+.prog-row {
+  display: grid; grid-template-columns: 124px 1fr 232px;
+  gap: 6px 24px; align-items: center;
+  padding: 16px 10px; border-bottom: 1px solid var(--line);
+}
+.prog-row:last-child { border-bottom: 0; }
+.prog-row.is-break { background: var(--forest-tint-2); border-radius: 8px; border-bottom-color: transparent; padding-top: 11px; padding-bottom: 11px; }
+.prog-time { font-size: 13.5px; font-weight: 700; color: var(--forest-deep); font-variant-numeric: tabular-nums; white-space: nowrap; padding-top: 1px; }
+.prog-row.is-break .prog-time { color: var(--muted); font-weight: 600; }
+.prog-title { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.45; }
+.prog-row.is-break .prog-title { font-size: 14px; font-weight: 500; color: var(--ink-soft); }
+.prog-people { font-size: 14.5px; font-weight: 700; color: var(--ink); line-height: 1.45; letter-spacing: -0.01em; text-align: right; }
+
+.prog-kind {
+  display: inline-block; margin-bottom: 7px; vertical-align: middle;
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 3px 9px; border-radius: 999px;
+  background: var(--forest-tint); color: var(--forest-deep);
+}
+.prog-kind.is-keynote { background: var(--gold-tint); color: var(--gold-deep); }
+.prog-kind.is-visit   { background: var(--gold-tint); color: var(--gold-deep); }
+.prog-flag {
+  display: inline-block; margin: 0 0 7px 6px; vertical-align: middle;
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 2px 8px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--forest-border); color: var(--forest-deep);
+}
+/* Concurrent sessions read as one bracketed pair. */
+.prog-row.is-parallel { border-left: 3px solid var(--forest-border); border-bottom-color: transparent; padding-left: 14px; }
+.prog-row.is-parallel + .prog-row.is-parallel { border-bottom-color: var(--line); }
+
+@media (max-width: 900px) {
+  .prog-row { grid-template-columns: 108px 1fr; }
+  .prog-people { grid-column: 2; padding-top: 2px; text-align: left; }
+}
+@media (max-width: 560px) {
+  .prog-tab { min-width: 0; flex: 1 1 88px; padding: 9px 10px; }
+  .prog-tab-date { font-size: 13px; }
+  .prog-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 8px; }
+  .prog-people { grid-column: 1; text-align: left; }
+  .prog-row.is-parallel { padding-left: 12px; }
+  /* 9.5px uppercase is below the legible minimum on a phone. */
+  .prog-kind, .prog-flag { font-size: 11px; padding: 3px 10px; }
+}
+
+/* ============================================================
+   PRE-ACADEMY MENTORING · modal opened by the Mentor faculty card
+   ============================================================
+   The "Pre & Post Mentors" card in the Faculty grid carries
+   .is-clickable and opens #mentorModal; the copy itself lives in
+   the hidden #mentor-data store inside that section, so it stays
+   in the markup rather than in JavaScript.
+   ============================================================ */
+.faculty-card.is-clickable { cursor: pointer; border-color: var(--forest-border); }
+.faculty-card.is-clickable:hover { border-color: var(--forest); box-shadow: 0 16px 32px rgba(28,94,83,0.16); }
+.faculty-card.is-clickable:focus-visible { outline: 2px solid var(--forest-deep); outline-offset: 3px; }
+.faculty-more {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 14px;
+  font-size: 12.5px; font-weight: 700; color: var(--forest-deep);
+}
+.faculty-more::after { content: "\2192"; transition: transform 0.2s; }
+.faculty-card.is-clickable:hover .faculty-more::after { transform: translateX(3px); }
+
+/* Modal */
+.mtr-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: flex-start; justify-content: center; padding: 6vh 20px; }
+.mtr-modal[hidden] { display: none; }
+.mtr-backdrop { position: absolute; inset: 0; background: rgba(7,40,35,0.55); backdrop-filter: blur(3px); animation: mtr-fade 0.2s ease; }
+@keyframes mtr-fade { from { opacity: 0; } to { opacity: 1; } }
+.mtr-dialog {
+  position: relative; z-index: 1;
+  width: min(720px, 100%); max-height: 88vh; overflow-y: auto;
+  background: var(--surface); border-radius: 18px;
+  padding: 34px 38px 36px; box-shadow: 0 30px 70px rgba(0,0,0,0.28);
+  animation: mtr-rise 0.22s ease;
+}
+@keyframes mtr-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.mtr-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: 50%; background: var(--surface);
+  color: var(--ink-soft); cursor: pointer; transition: background 0.18s, color 0.18s;
+}
+.mtr-close:hover { background: var(--forest); border-color: var(--forest); color: #fff; }
+.mtr-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--forest-deep); margin-bottom: 10px; }
+.mtr-title { font-size: clamp(21px, 2.6vw, 27px); font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.2; margin: 0 32px 20px 0; }
+.mtr-body p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 15px; text-align: justify; }
+.mtr-body p:last-child { margin-bottom: 0; }
+/* Standfirst above the two mentor profiles. */
+.mtr-body .mtr-lede { font-size: 15.5px; color: var(--ink); line-height: 1.7; text-align: left; margin-bottom: 4px; }
+/* One profile per mentor, divided by a hairline. */
+.mtr-person { margin-top: 26px; padding-top: 26px; border-top: 1px solid var(--line); }
+.mtr-person-track {
+  display: inline-block; margin-bottom: 8px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+  padding: 4px 11px; border-radius: 999px;
+  background: var(--forest-tint); color: var(--forest-deep);
+}
+.mtr-person-track.is-gold { background: var(--gold-tint); color: var(--gold-deep); }
+.mtr-person-name { font-size: 20px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 14px; }
+.mtr-body .mtr-scope {
+  margin-top: 22px; padding: 18px 20px;
+  background: var(--forest-tint-2); border-left: 3px solid var(--forest);
+  border-radius: 0 10px 10px 0;
+}
+.mtr-body .mtr-scope p { margin: 0; color: var(--ink); text-align: left; }
+.mtr-body .mtr-scope h4 { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--forest-deep); margin-bottom: 8px; }
+body.mtr-open { overflow: hidden; }
+
+@media (max-width: 760px) {
+  .mtr-dialog { padding: 30px 22px 30px; }
+  .mtr-body p,
+  .pillars-intro p { text-align: left; }
+}
+
+/* ============================================================
+   METHODOLOGY · four-track approach
+   ============================================================ */
+/* Interactive "one day" rhythm timeline (dawn -> dusk rail + expandable detail)
+
+   The whole strip runs on the Academy green. The rail and its stops invert to
+   light, but the detail panel stays a white card, so none of its body copy,
+   chips or icon needed re-colouring. The two tracks that were forest accented
+   switch to sage in the markup, because forest on forest would not read. */
+#methodology {
+  position: relative; overflow: hidden;
+  padding-top: 52px; padding-bottom: 52px;
+  background: linear-gradient(160deg, var(--forest-darker) 0%, var(--forest-deep) 55%, var(--forest-darker) 100%);
+}
+#methodology::before {
+  content: ""; position: absolute; top: -140px; right: -90px;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,167,56,0.16) 0%, transparent 70%);
+  pointer-events: none;
+}
+#methodology > .container-narrow { position: relative; z-index: 1; }
+#methodology .sec-head { margin-bottom: 24px; }
+/* Pale gold rather than --gold-light: on the translucent pill over green the
+   logo gold only reaches 3.7:1 at 11px. */
+#methodology .sec-head .overline { color: #f2e0bd; background: rgba(224,167,56,0.16); }
+#methodology .sec-head h2 { color: #fff; }
+.rhythm-rail {
+  position: relative;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  margin: 6px 0 30px;
+}
+.rhythm-rail::before {
+  content: ""; position: absolute; left: 12%; right: 12%; top: 28px; height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--sage) 55%, rgba(255,255,255,0.4) 100%);
+  border-radius: 999px; z-index: 0;
+}
+.rhythm-stop {
+  position: relative; z-index: 1;
+  background: none; border: 0; cursor: pointer; font-family: inherit;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 0 6px; text-align: center;
+}
+.rhythm-node {
+  position: relative;
+  width: 58px; height: 58px; border-radius: 50%;
+  /* Opaque: a translucent fill let the rail line show straight through the
+     circle. The forest base under the white veil keeps the frosted look while
+     blocking it. */
+  background: linear-gradient(rgba(255,255,255,0.12), rgba(255,255,255,0.12)),
+              linear-gradient(160deg, var(--forest-darker) 0%, var(--forest-deep) 100%);
+  border: 2px solid rgba(255,255,255,0.28);
+  display: flex; align-items: center; justify-content: center; color: #fff;
+  transition: transform .32s cubic-bezier(.22,.61,.36,1), border-color .3s, background .3s, color .3s, box-shadow .3s;
+}
+/* pulsing ring on the active node */
+.rhythm-stop.is-active .rhythm-node::after {
+  content: ""; position: absolute; inset: -5px; border-radius: 50%;
+  border: 2px solid var(--rc); pointer-events: none;
+  animation: node-pulse 1.9s ease-out infinite;
+}
+@keyframes node-pulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.4); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .rhythm-stop.is-active .rhythm-node::after { animation: none; opacity: 0; } }
+.rhythm-node svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.rhythm-time { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,0.75); transition: color .25s; }
+.rhythm-label { font-size: 13.5px; font-weight: 800; color: #fff; letter-spacing: -.01em; transition: color .25s; }
+.rhythm-stop:hover .rhythm-node { transform: translateY(-3px) scale(1.05); border-color: var(--rc);
+  background: linear-gradient(rgba(255,255,255,0.22), rgba(255,255,255,0.22)),
+              linear-gradient(160deg, var(--forest-darker) 0%, var(--forest-deep) 100%); }
+/* Solid accent fill on the active node: a gradient down to --rc-deep would
+   sink into the green background on the sage tracks. */
+.rhythm-stop.is-active .rhythm-node {
+  background: var(--rc);
+  border-color: transparent; color: var(--forest-darker); transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.30);
+}
+/* White, not --rc: gold and sage both land near 3.3:1 on the green at 11px.
+   The active track is already signalled by the filled node. */
+.rhythm-stop.is-active .rhythm-time { color: #fff; }
+
+.rhythm-stage { position: relative; }
+.rhythm-panel {
+  display: none;
+  grid-template-columns: auto 1fr; gap: 26px; align-items: start;
+  background: var(--surface); border: 1px solid var(--line);
+  border-top: 3px solid var(--rc); border-radius: 16px; padding: 30px 32px;
+}
+.rhythm-panel.is-active { display: grid; animation: rhythm-in .35s ease both; }
+@keyframes rhythm-in { from { opacity: 0; } to { opacity: 1; } }
+/* staggered reveal of the panel's contents each time it opens */
+.rhythm-panel.is-active .rhythm-panel-icon { animation: rp-icon .55s cubic-bezier(.22,.61,.36,1) both; }
+.rhythm-panel.is-active .rhythm-panel-time { animation: rp-up .4s ease .04s both; }
+.rhythm-panel.is-active h3 { animation: rp-up .45s ease .09s both; }
+.rhythm-panel.is-active p { animation: rp-up .45s ease .15s both; }
+.rhythm-panel.is-active .rhythm-ex li { animation: rp-up .45s ease both; }
+.rhythm-panel.is-active .rhythm-ex li:nth-child(1) { animation-delay: .21s; }
+.rhythm-panel.is-active .rhythm-ex li:nth-child(2) { animation-delay: .29s; }
+.rhythm-panel.is-active .rhythm-ex li:nth-child(3) { animation-delay: .37s; }
+@keyframes rp-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes rp-icon { from { opacity: 0; transform: scale(.55) rotate(-14deg); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .rhythm-panel.is-active .rhythm-panel-icon,
+  .rhythm-panel.is-active .rhythm-panel-time,
+  .rhythm-panel.is-active h3,
+  .rhythm-panel.is-active p,
+  .rhythm-panel.is-active .rhythm-ex li { animation: none; }
+}
+.rhythm-panel-icon {
+  width: 62px; height: 62px; border-radius: 16px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--rc) 0%, var(--rc-deep) 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.rhythm-panel-icon svg { width: 28px; height: 28px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.rhythm-panel-time { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--rc-deep); display: block; margin-bottom: 6px; }
+.rhythm-panel h3 { font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -.02em; }
+.rhythm-panel p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 16px; max-width: 70ch; }
+.rhythm-ex { list-style: none; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.rhythm-ex li { font-size: 12.5px; color: var(--ink-soft); background: var(--rc-tint); border: 1px solid color-mix(in srgb, var(--rc) 24%, transparent); border-radius: 999px; padding: 6px 14px; transition: transform .2s ease; }
+.rhythm-ex li:hover { transform: translateX(4px); }
+@media (max-width: 720px) {
+  .rhythm-label { display: none; }
+  .rhythm-panel { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   FACULTY · role-based profile cards
+   ============================================================ */
+.faculty-intro {
+  max-width: 720px; margin: 0 auto 44px;
+  text-align: center;
+  padding: 22px 28px;
+  background: var(--gold-tint);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  font-size: 14px; color: #6b551f; line-height: 1.65;
+}
+.faculty-intro strong { color: #4a3913; font-weight: 700; }
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.faculty-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.faculty-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
+.faculty-photo {
+  height: 180px;
+  background: linear-gradient(135deg, var(--forest-deep) 0%, var(--forest) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.faculty-card:nth-child(2) .faculty-photo { background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 100%); }
+.faculty-card:nth-child(3) .faculty-photo { background: linear-gradient(135deg, var(--forest) 0%, var(--forest-bright) 100%); }
+.faculty-card:nth-child(4) .faculty-photo { background: linear-gradient(135deg, var(--forest) 0%, var(--gold) 100%); }
+.faculty-photo::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(255,255,255,0.10) 0%, transparent 50%);
+  pointer-events: none;
+}
+.faculty-silhouette {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+}
+.faculty-silhouette svg { width: 38px; height: 38px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.faculty-body { padding: 20px 22px 22px; }
+.faculty-role-tag {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 999px;
+  background: var(--forest-tint); color: var(--forest-deep);
+  margin-bottom: 10px;
+}
+.faculty-card:nth-child(2) .faculty-role-tag { background: var(--gold-tint); color: var(--gold-deep); }
+.faculty-card:nth-child(4) .faculty-role-tag { background: var(--gold-tint); color: var(--gold-deep); }
+.faculty-name { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+.faculty-status { font-size: 12.5px; color: var(--muted); font-style: italic; margin-bottom: 14px; }
+.faculty-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ============================================================
+   COHORT · first cohort representation
+   ============================================================ */
+#cohort { padding-top: 44px; padding-bottom: 44px; }
+.cohort-wrap {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.cohort-wrap--single { grid-template-columns: 1fr; max-width: 820px; margin: 0 auto; }
+.cohort-text h3 { font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.02em; }
+.cohort-text p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
+.cohort-profile { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cohort-profile-item {
+  position: relative;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  padding: 22px 20px 20px;
+  /* Resting state is the logo gold, kept as a tint so the ink stays readable;
+     a solid #e0a738 drops the description text to 3.5:1. */
+  background: linear-gradient(158deg, var(--gold-tint) 0%, #fffdf6 100%);
+  border: 1px solid var(--gold-border);
+  border-radius: 14px;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform .3s cubic-bezier(.22,.61,.36,1),
+              box-shadow .3s ease, border-color .3s ease;
+}
+/* The green is painted as its own layer that wipes up over the gold, rather
+   than swapping background-color, which cannot be animated between gradients.
+   Negative z-index inside the isolated card sits above the gold and below the
+   text, so the copy stays legible throughout the wipe. */
+.cohort-profile-item::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(158deg, var(--forest-deep) 0%, var(--forest-darker) 100%);
+  opacity: 0; transform: translateY(26%);
+  transition: opacity .32s ease, transform .44s cubic-bezier(.22,.61,.36,1);
+}
+.cohort-profile-item:hover::after,
+.cohort-profile-item:focus-within::after { opacity: 1; transform: translateY(0); }
+
+/* Gold rule drawn along the top edge as the card is entered. */
+.cohort-profile-item::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform .34s ease, background .3s ease;
+  z-index: 1;
+}
+.cohort-profile-item:hover::before,
+.cohort-profile-item:focus-within::before { transform: scaleX(1); background: var(--gold-light); }
+
+.cohort-profile-item:hover,
+.cohort-profile-item:focus-within {
+  transform: translateY(-5px);
+  border-color: var(--forest-darker);
+  box-shadow: 0 18px 38px rgba(12,80,70,0.26);
+}
+
+.cohort-profile-item svg {
+  width: 20px; height: 20px; padding: 10px; box-sizing: content-box;
+  fill: none; stroke: var(--forest-darker); stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  background: var(--gold); border-radius: 12px; flex-shrink: 0; margin: 0;
+  transition: transform .34s cubic-bezier(.22,.61,.36,1),
+              background .3s ease, box-shadow .3s ease;
+}
+.cohort-profile-item:hover svg,
+.cohort-profile-item:focus-within svg {
+  transform: rotate(-8deg) scale(1.1);
+  background: var(--gold-light);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.30);
+}
+
+.cohort-profile-item strong {
+  font-size: 14.5px; color: var(--ink); font-weight: 800;
+  display: block; margin-bottom: 4px; letter-spacing: -.01em;
+  transition: color .26s ease;
+}
+.cohort-profile-item span {
+  font-size: 13px; color: var(--ink-soft); line-height: 1.55;
+  transition: color .26s ease;
+}
+.cohort-profile-item:hover strong,
+.cohort-profile-item:focus-within strong { color: #fff; }
+.cohort-profile-item:hover span,
+.cohort-profile-item:focus-within span { color: rgba(255,255,255,0.85); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cohort-profile-item,
+  .cohort-profile-item::after,
+  .cohort-profile-item::before,
+  .cohort-profile-item svg { transition-duration: .01ms; }
+  .cohort-profile-item::after { transform: none; }
+  .cohort-profile-item:hover { transform: none; }
+}
+@media (max-width: 520px) { .cohort-profile { grid-template-columns: 1fr; } }
+
+/* Country chips */
+.regions-visual {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 32px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.regions-visual::before {
+  content: ""; position: absolute; top: -60px; right: -60px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(164,190,186,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.regions-visual h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--forest-deep); margin-bottom: 22px; position: relative; }
+.country-chips {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  position: relative;
+}
+.country-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 999px;
+  background: var(--forest-tint);
+  border: 1px solid var(--forest-border);
+  font-size: 13.5px; font-weight: 600;
+  color: var(--forest-darker);
+  transition: transform 0.2s, background 0.2s;
+  cursor: default;
+}
+.country-chip:hover { background: var(--forest); color: #fff; transform: translateY(-2px); }
+.country-chip .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--forest); flex-shrink: 0; }
+.country-chip:hover .chip-dot { background: #fff; }
+.regions-note { font-size: 12px; color: var(--muted); margin-top: 22px; line-height: 1.55; font-style: italic; position: relative; }
+
+/* ============================================================
+   SITE VISITS · Heritage Day Sept 19
+   ============================================================ */
+.heritage-wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: start; }
+.heritage-text h3 { font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 14px; letter-spacing: -0.02em; }
+.heritage-day-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px; border-radius: 999px;
+  background: var(--gold-tint); color: var(--gold-deep);
+  border: 1px solid var(--gold-border);
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.heritage-text > p { font-size: 15px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 24px; }
+
+.heritage-stops { display: flex; flex-direction: column; gap: 14px; }
+.heritage-stop {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.heritage-stop:hover { border-color: var(--forest); transform: translateX(3px); }
+.heritage-time {
+  flex-shrink: 0;
+  width: 92px;
+  font-size: 12.5px; font-weight: 700;
+  color: var(--forest-deep);
+  letter-spacing: 0.03em;
+}
+.heritage-stop-body strong { font-size: 14px; color: var(--ink); font-weight: 700; display: block; margin-bottom: 4px; }
+.heritage-stop-body span { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+.heritage-values {
+  background: linear-gradient(160deg, var(--forest-deep) 0%, var(--forest-darker) 100%);
+  border-radius: 18px;
+  padding: 32px 30px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.heritage-values::before {
+  content: ""; position: absolute; bottom: -60px; right: -60px;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,167,56,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.heritage-values h4 { font-size: 18px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.015em; }
+.heritage-values .gold-accent { color: var(--gold); }
+.heritage-values > p { font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.6; margin-bottom: 20px; }
+.value-cloud { display: flex; flex-wrap: wrap; gap: 8px; position: relative; }
+.value-tag {
+  display: inline-block;
+  padding: 7px 13px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.88);
+  cursor: default;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.value-tag:hover { background: var(--gold); color: var(--forest-darker); border-color: var(--gold); transform: translateY(-2px); }
+.value-tag.is-sage { background: rgba(164,190,186,0.18); border-color: rgba(164,190,186,0.40); color: #d3e3df; }
+.value-tag.is-sage:hover { background: var(--sage); color: var(--forest-darker); border-color: var(--sage); }
+
+/* ============================================================
+   PARTNERS · closing credit strip
+   ============================================================
+   One credit line over the two logos, sitting straight on the page
+   background. This replaced a white card that reserved 200px per
+   logo, where half the section's height was empty.
+   ============================================================ */
+.partners-strip {
+  background: var(--surface-alt);
+  border-top: 1px solid var(--line);
+  padding: 30px 0 34px;
+}
+.partners-thanks {
+  text-align: center; font-size: 13.5px; color: var(--ink-soft);
+  line-height: 1.6; font-style: italic; margin: 0 0 18px;
+}
+.partners-logos {
+  display: flex; align-items: center; justify-content: center;
+  gap: 52px; flex-wrap: wrap;
+}
+.partners-logos img { display: block; width: auto; max-width: 100%; }
+/* Per-logo heights: optically balanced so the wide, heavy WBF mark and the
+   compact OSF wordmark read as the same visual size. */
+.partners-logos img[src*="wbf-logo"]    { height: 52px; }
+.partners-logos img[src*="partner-osf"] { height: 64px; }
+@media (max-width: 560px) {
+  .partners-logos { gap: 30px; }
+  .partners-logos img[src*="wbf-logo"]    { height: 42px; }
+  .partners-logos img[src*="partner-osf"] { height: 52px; }
+}
+
+/* Inline Kosovo footnote */
+.inline-footnote {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  font-style: italic;
+  padding: 10px 14px;
+  background: var(--surface-alt);
+  border-left: 3px solid var(--line);
+  border-radius: 0 6px 6px 0;
+  margin-top: 8px;
+}
+.inline-footnote strong { font-style: normal; color: var(--ink-soft); font-weight: 600; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1200px) {
+  .prog-hero-inner { padding: 0 32px; }
+  .pillars-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .pillars-grid > .pillar-card:nth-child(n+4) { grid-column: auto; }
+}
+
+@media (max-width: 1024px) {
+  .container, .container-narrow { padding: 0 24px; }
+  .prog-hero-inner { padding: 0 24px; }
+
+  .meta-facts { grid-template-columns: repeat(2, 1fr); gap: 18px 28px; }
+
+  .overview-grid { grid-template-columns: 1fr; gap: 36px; }
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .method-grid { grid-template-columns: repeat(2, 1fr); }
+  .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+  .cohort-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .heritage-wrap { grid-template-columns: 1fr; gap: 36px; }
+
+
+}
+
+@media (max-width: 768px) {
+  .prog-hero { padding: 52px 0 36px; }
+  .section { padding: 44px 0; }
+
+  .brand-logo { width: min(100%, 460px); margin-bottom: 24px; }
+  .prog-hero h1 { font-size: clamp(20px, 4.5vw, 28px); }
+  .prog-hero .tagline { max-width: 100%; }
+
+  .hero-ctas { flex-direction: column; align-items: stretch; }
+  .hero-ctas .btn-primary, .hero-ctas .btn-ghost, .hero-ctas .btn-gold { justify-content: center; }
+
+  .meta-facts { grid-template-columns: repeat(2, 1fr); gap: 16px 24px; }
+
+  .pillars-grid { grid-template-columns: 1fr; }
+  .method-grid { grid-template-columns: 1fr; }
+  .faculty-grid { grid-template-columns: 1fr; }
+
+
+  .heritage-stop { flex-direction: column; gap: 6px; }
+  .heritage-time { width: auto; }
+
+}
+
+@media (max-width: 480px) {
+  .container, .container-narrow, .prog-hero-inner { padding: 0 18px; }
+
+  .prog-hero { padding: 44px 0 64px; }
+  .section { padding: 52px 0; }
+  .meta-facts { grid-template-columns: 1fr; gap: 14px; }
+
+  .sec-head { margin-bottom: 36px; }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ============================================================
+   FIRST COHORT · auto-scroll participant carousel
+   ============================================================ */
+.first-cohort { padding: 56px 0; background: linear-gradient(180deg, var(--surface) 0%, var(--forest-tint-2) 100%); overflow: hidden; }
+.first-cohort .sec-head { margin-bottom: 44px; }
+.cohort-marquee { position: relative; width: 100%; overflow: hidden; margin-bottom: 22px; padding: 8px 0; }
+.cohort-marquee::before,
+.cohort-marquee::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+}
+.cohort-marquee::before { left: 0; background: linear-gradient(90deg, var(--forest-tint-2) 0%, rgba(242,248,246,0) 100%); }
+.cohort-marquee::after  { right: 0; background: linear-gradient(270deg, var(--forest-tint-2) 0%, rgba(242,248,246,0) 100%); }
+.cohort-marquee-track {
+  display: flex; gap: 16px; width: max-content;
+  animation: cohort-scroll-left 60s linear infinite;
+  will-change: transform;
+}
+.cohort-marquee-track.is-reverse { animation-name: cohort-scroll-right; animation-duration: 75s; }
+.cohort-marquee:hover .cohort-marquee-track { animation-play-state: paused; }
+@keyframes cohort-scroll-left  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes cohort-scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.participant-card {
+  flex: 0 0 220px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 18px 18px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.participant-card:hover { transform: translateY(-3px); border-color: var(--forest-border); box-shadow: 0 10px 22px rgba(28,94,83,0.10); }
+.participant-photo {
+  position: relative;
+  width: 76px; height: 76px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+  color: #fff; font-weight: 700; font-size: 22px; letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--forest-deep) 0%, var(--forest) 100%);
+  overflow: hidden; flex-shrink: 0;
+}
+.participant-card:nth-child(3n) .participant-photo { background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 100%); color: var(--forest-darker); }
+.participant-card:nth-child(5n) .participant-photo { background: linear-gradient(135deg, var(--forest) 0%, var(--forest-bright) 100%); }
+.participant-card:nth-child(7n) .participant-photo { background: linear-gradient(135deg, var(--forest) 0%, var(--gold) 100%); color: var(--forest-darker); }
+.participant-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.participant-photo svg { width: 32px; height: 32px; color: rgba(255,255,255,0.85); }
+.participant-card:nth-child(3n) .participant-photo svg { color: rgba(12,80,70,0.55); }
+.participant-name { font-size: 14.5px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 4px; letter-spacing: -0.005em; }
+.participant-org  { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; }
+.cohort-footnote { text-align: center; font-size: 12.5px; color: var(--muted); margin-top: 18px; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+@media (max-width: 768px) {
+  .first-cohort { padding: 44px 0; }
+  .participant-card { flex: 0 0 180px; padding: 18px 14px 16px; }
+  .participant-photo { width: 64px; height: 64px; font-size: 18px; }
+  .cohort-marquee::before, .cohort-marquee::after { width: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cohort-marquee-track { animation: none !important; }
+  .cohort-marquee { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="prog-hero">
+  <div class="hero-orb"></div>
+  <div class="hero-orb-2"></div>
+  <div class="prog-hero-inner">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span><a href="/our-programs/">Our Programmes</a><span>›</span>WBF Regional Academy
+    </nav>
+
+    <!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. Delete the style attribute to bring the dates back. -->
+    <div class="hero-pills" style="display:none">
+      <div class="status-pill">
+        <span class="status-pill-dot"></span>
+        <span class="status-pill-text">13–19 September 2026 · Tirana, Albania</span>
+      </div>
+    </div>
+
+    <img class="brand-logo"
+         src="/assets/images/regional-academy/academy-logo-white.svg"
+         alt="WBF Regional Academy. On Dialogue and Culture of Cooperation"
+         width="9420" height="1798">
+
+    <h1>A 7-day learning journey for junior professionals and emerging leaders from across the Western Balkans.</h1>
+    <p class="tagline">An initiative of the <strong>Western Balkans Fund</strong>, supported by the <strong>Open Society Foundation Western Balkans</strong>, the WBF Regional Academy combines thematic lectures, interactive workshops, dialogue sessions, and site visits to equip a new generation with the skills, networks, and mindset needed to advance dialogue, cooperation, and reconciliation across the WB6.</p>
+
+    <div class="hero-ctas">
+      <!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. Points at the hidden Programme section. -->
+      <a class="btn-primary" href="#programme" style="display:none">
+        Explore the Programme
+        <svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
+      </a>
+      <a class="btn-gold" href="#pillars">
+        Thematic Pillars
+        <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
+      </a>
+    </div>
+
+    <div class="meta-facts">
+      <div>
+        <div class="meta-fact-key">Duration</div>
+        <div class="meta-fact-value">One week</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Cohort</div>
+        <div class="meta-fact-value">WB6 Junior Professionals</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Host City</div>
+        <div class="meta-fact-value">Tirana, Albania</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Format</div>
+        <div class="meta-fact-value" style="font-size:14.5px;line-height:1.35">Residential in-person academy, supported by pre- and post-academy online mentoring</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="container">
+    <div class="sec-head">
+      <div class="overline">About the Academy</div>
+      <h2>Why the <span class="gold-accent">Regional Academy</span>, and why now</h2>
+      <p>The Western Balkans remains one of the regions with the greatest need for a new culture of cooperation grounded in dialogue, trust-building, and intercultural understanding. The Regional Academy responds directly to that need.</p>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-text">
+        <p>Despite ongoing reforms and international support, the region continues to face structural, institutional, and socio-political challenges that limit democratic development, social cohesion, and lasting peace. Public discourse is still shaped by historical divisions, national narratives, and mutual mistrust, while citizens, and particularly young people, women, and minority communities, remain underrepresented in decision-making.</p>
+        <p>Emerging professionals often lack structured platforms to <em>practice dialogue</em>, exchange across differences, and engage in joint problem-solving. The Regional Academy was designed to fill that gap through joint learning, peer exchange, mentoring, and experiential engagement.</p>
+        <p>Although non-formal education programmes and leadership academies have increased significantly across the region, the WBF Regional Academy is distinguished by its <strong>integrated, practice-oriented, and regionally embedded design</strong>. Unlike traditional approaches that prioritise individual leadership development, the Academy places dialogue and cooperation at its core: it bridges critical reflection with experiential engagement so participants simultaneously learn, apply, and co-create solutions in real time.</p>
+        <p>Leadership, in this context, is understood not as a title or a position, but as a natural outcome of those who have genuinely learned to listen, cooperate, and through dialogue build trust across differences.</p>
+      </div>
+
+      <div class="distinguishing-card">
+        <div class="dc-overline">What makes the Academy different</div>
+        <h3>An academy you experience, not just attend</h3>
+        <ul>
+          <li><span class="dot">1</span><span><strong>Dialogue at the core:</strong> not as a topic to study, but as a daily practice that runs through every lecture, workshop, and evening session.</span></li>
+          <li><span class="dot">2</span><span><strong>Maximum 30% lecture time.</strong> The rest is interactive workshops, dialogue sessions, site visits, and co-creation labs.</span></li>
+          <li><span class="dot">3</span><span><strong>Tangible final products:</strong> group policy briefs, regional initiative concepts, and articles for the annual publication, not just certificates.</span></li>
+          <li><span class="dot">4</span><span><strong>Pre and post mentorship.</strong> The programme starts before arrival and continues well after; it does not end with a closing ceremony.</span></li>
+          <li><span class="dot">5</span><span><strong>Difficult conversations on the table.</strong> Memory, identity, and regional tensions are engaged with directly, in a safe and facilitated environment.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PILLARS · five thematic strands, one per programme day
+     ------------------------------------------------------------
+     These mirror the agenda exactly: one card per thematic day
+     (Days 2-6), in week order. Each links to #day-N, which the
+     Programme script reads to open that day's tab. If a strand in
+     the agenda changes, change the matching card here too.
+     ============================================================ -->
+<section class="section section-tint" id="pillars">
+  <div class="container">
+    <div class="sec-head pillars-intro">
+      <div class="overline">Thematic Pillars</div>
+      <h2>Designed based on the <span class="gold-accent">Charter on Education for Democratic Citizenship and Human Rights Education</span></h2>
+      <p>Through a comprehensive programme of peer learning, mentoring sessions, workshops, field experiences, and networking opportunities, the Academy will equip participants with the knowledge, skills, and professional networks required to act as future regional cooperation champions.</p>
+      <p>Directly contributing to the promotion of good-neighbourly relations and regional cooperation; fostering democratic values, inclusion, and dialogue; strengthening people-to-people connections; and supporting long-term peace and reconciliation efforts across the Western Balkans.</p>
+    </div>
+
+    <div class="pillars-grid">
+
+      <a class="pillar-card" href="#pillars" data-day-link="2">
+        <span class="pillar-num">01</span>
+        <div class="pillar-title">Culture of Cooperation &amp; European Integration</div>
+        <div class="pillar-desc">The politics of regional cooperation in the Western Balkans and the region&rsquo;s progress toward EU integration, and how joint action across the WB6 builds the trust that accession requires.</div>
+              </a>
+
+      <a class="pillar-card" href="#pillars" data-day-link="3">
+        <span class="pillar-num">02</span>
+        <div class="pillar-title">Democracy, Citizenship &amp; European Future</div>
+        <div class="pillar-desc">Democracy in practice, covering citizens, participation and European futures, alongside regional economic integration as preparation for the EU Single Market, drawing on the CEFTA experience.</div>
+              </a>
+
+      <a class="pillar-card" href="#pillars" data-day-link="4">
+        <span class="pillar-num">03</span>
+        <div class="pillar-title">Leadership for Social Impact</div>
+        <div class="pillar-desc">Values-based leadership grounded in human rights, democratic resilience and emerging leadership for social impact, with practical work on diplomatic etiquette, dialogue and negotiation.</div>
+              </a>
+
+      <a class="pillar-card" href="#pillars" data-day-link="5">
+        <span class="pillar-num">04</span>
+        <div class="pillar-title">Media, Communication &amp; Freedom of Expression</div>
+        <div class="pillar-desc">Media ecosystems and freedom of expression in the regional context, and the disinformation, media literacy and responsible communication skills leaders need to navigate them.</div>
+              </a>
+
+      <a class="pillar-card" href="#pillars" data-day-link="6">
+        <span class="pillar-num">05</span>
+        <div class="pillar-title">Women, Inclusion &amp; Gender-Responsive Leadership</div>
+        <div class="pillar-desc">Inclusion as a foundation of democratic governance and regional cooperation, gender-responsive leadership in practice, and the work of challenging gender norms in leadership and decision-making.</div>
+              </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROGRAMME · full 7-day agenda
+     ------------------------------------------------------------
+     Tab buttons switch .prog-panel visibility (JS at the foot of
+     the page). To edit a day, edit its panel: each session is one
+     li.prog-row with a time, a title (optionally led by a
+     .prog-kind badge) and a .prog-people column. Meals and coffee
+     breaks use .is-break; the two concurrent Tuesday sessions use
+     .is-parallel.
+     ============================================================ -->
+<!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. Delete the style attribute to bring the day-by-day programme back. -->
+<section class="section" id="programme" style="display:none">
+  <div class="container">
+    <div class="sec-head">
+      <div class="overline">Tirana &middot; 13&ndash;19 September 2026</div>
+      <h2>The Programme</h2>
+    </div>
+
+    <div class="prog-tabs" role="tablist" aria-label="Programme days">
+      <button class="prog-tab is-bookend" role="tab" type="button" id="progtab-1" aria-controls="progpanel-1" aria-selected="true"  data-day="1"><span class="prog-tab-num">Day 1</span><span class="prog-tab-date">Sun 13</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-2" aria-controls="progpanel-2" aria-selected="false" data-day="2"><span class="prog-tab-num">Day 2</span><span class="prog-tab-date">Mon 14</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-3" aria-controls="progpanel-3" aria-selected="false" data-day="3"><span class="prog-tab-num">Day 3</span><span class="prog-tab-date">Tue 15</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-4" aria-controls="progpanel-4" aria-selected="false" data-day="4"><span class="prog-tab-num">Day 4</span><span class="prog-tab-date">Wed 16</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-5" aria-controls="progpanel-5" aria-selected="false" data-day="5"><span class="prog-tab-num">Day 5</span><span class="prog-tab-date">Thu 17</span></button>
+      <button class="prog-tab"            role="tab" type="button" id="progtab-6" aria-controls="progpanel-6" aria-selected="false" data-day="6"><span class="prog-tab-num">Day 6</span><span class="prog-tab-date">Fri 18</span></button>
+      <button class="prog-tab is-bookend" role="tab" type="button" id="progtab-7" aria-controls="progpanel-7" aria-selected="false" data-day="7"><span class="prog-tab-num">Day 7</span><span class="prog-tab-date">Sat 19</span></button>
+    </div>
+
+    <div class="prog-panels">
+
+      <!-- ---------- Day 1 · Sunday 13 September ---------- -->
+      <div class="prog-panel is-active" role="tabpanel" id="progpanel-1" aria-labelledby="progtab-1" tabindex="0">
+        <div class="prog-day-head">
+          <div class="prog-day-date">Sunday, 13 September 2026</div>
+          <h3 class="prog-day-strand">Arrival &amp; Welcome</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">10:00&ndash;16:00</div>
+            <div class="prog-title">Arrival of Participants &amp; Check-in</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">14:00&ndash;16:00</div>
+            <div class="prog-title">Lunch</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">17:00&ndash;18:00</div>
+            <div class="prog-title"><span class="prog-kind">Icebreaker</span><br>Informal Welcome, Participant Introductions &amp; Icebreaker: Intra-Regional Mapping</div>
+            <div class="prog-people">Ira Topalli, Dafina Beqiri &amp; Uro&scaron; &Ccaron;itakovi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:00&ndash;21:00</div>
+            <div class="prog-title">Networking Dinner</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 2 · Monday 14 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-2" aria-labelledby="progtab-2" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Monday, 14 September 2026</div>
+          <h3 class="prog-day-strand">Culture of Cooperation and European Integration</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;09:30</div>
+            <div class="prog-title">Welcoming Remarks</div>
+            <div class="prog-people">Dr. Gjergj Murra, WBF<br>Mr. Andi Dobrushi, OSF WB</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">09:30&ndash;11:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 1</span><br>Western Balkans and the Politics of Regional Cooperation</div>
+            <div class="prog-people">Ms. Majlinda Bregu</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">11:00&ndash;11:30</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:30&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 2</span><br>Regional Progress toward EU Integration</div>
+            <div class="prog-people">Mr. Dane Taleski</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><br>Shaping the Regional Future in the Western Balkans</div>
+            <div class="prog-people">Mr. Ramadan Ilazi</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">18:00&ndash;20:00</div>
+            <div class="prog-title"><span class="prog-kind">Dialogue Session</span><br>Public Relations, Public Speaking and Strategic Communication for Leaders</div>
+            <div class="prog-people">Mr. Klevis Gjoni &amp; Mr. Thanas Goga</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:00&ndash;21:00</div>
+            <div class="prog-title">Dinner</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 3 · Tuesday 15 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-3" aria-labelledby="progtab-3" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Tuesday, 15 September 2026</div>
+          <h3 class="prog-day-strand">Democracy, Citizenship &amp; European Future</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;10:30</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>Regional Economic Integration as Preparation for the EU Single Market: The CEFTA Experience</div>
+            <div class="prog-people">Ms. Pranvera Kastrati</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">10:30&ndash;11:00</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:00&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 3</span><br>Democracy in Practice: Citizens, Participation and European Futures</div>
+            <div class="prog-people">Mr. Endri Shabani</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row is-parallel">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><span class="prog-flag">Parallel</span><br>Practicing Project Cycle Management</div>
+            <div class="prog-people">Ms. Valbona Dedja &amp; Ms. Dafina Beqiri</div>
+          </li>
+          <li class="prog-row is-parallel">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><span class="prog-flag">Parallel</span><br>Co-creation Lab: How to Design a Policy Brief &amp; Initiative Sprint</div>
+            <div class="prog-people">Ms. Danijela Ja&cacute;imovi&cacute;</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">18:00&ndash;19:30</div>
+            <div class="prog-title"><span class="prog-kind">Dialogue Session</span><br>Protecting Rights, Promoting Dialogue, Acting: Emerging Leaders in Freedom of Religion or Belief at Cumberland Lodge</div>
+            <div class="prog-people">Ms. Marika Djolai</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:30&ndash;21:00</div>
+            <div class="prog-title">Dinner</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 4 · Wednesday 16 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-4" aria-labelledby="progtab-4" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Wednesday, 16 September 2026</div>
+          <h3 class="prog-day-strand">Leadership for Social Impact</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;11:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 4</span><br>Values-Based Leadership and Human Rights</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">11:00&ndash;11:30</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:30&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 5</span><br>Democratic Resilience and Emerging Leadership for Social Impact</div>
+            <div class="prog-people">Ms. Larisa Halilovi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><br>Diplomatic Etiquette, Dialogue and Negotiation</div>
+            <div class="prog-people">Mr. Idriz Konjari &amp; Mr. Valter Ibrahimi</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">17:00&ndash;19:00</div>
+            <div class="prog-title"><span class="prog-kind is-visit">Site Visit</span><br>Bunk&rsquo;Art 2</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:30&ndash;21:00</div>
+            <div class="prog-title">Dinner in Tirana, Piramida</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 5 · Thursday 17 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-5" aria-labelledby="progtab-5" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Thursday, 17 September 2026</div>
+          <h3 class="prog-day-strand">Media, Communication and Freedom of Expression</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;11:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 6</span><br>Role of Media, Media Ecosystems and Freedom of Expression in the Regional Context</div>
+            <div class="prog-people">Mr. Bojan Vrani&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">11:00&ndash;11:30</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:30&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 7</span><br>Disinformation, Media Literacy and Responsible Communication</div>
+            <div class="prog-people">Mr. Norbert &Scaron;inkovi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">15:30&ndash;17:00</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>Regional Cooperation Seen from Representatives of the Ministries of Foreign Affairs: The WBF Case</div>
+            <div class="prog-people">Andrej, Mihajlo, Vana &amp; Ilir</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">19:00&ndash;21:00</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Ceremony</span><br>Closing Reception &amp; Award Ceremony</div>
+            <div class="prog-people">WBF</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 6 · Friday 18 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-6" aria-labelledby="progtab-6" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Friday, 18 September 2026</div>
+          <h3 class="prog-day-strand">Women, Inclusion and Gender-Responsive Leadership in Regional Cooperation</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;10:30</div>
+            <div class="prog-title"><span class="prog-kind is-keynote">Keynote</span><br>The RCC&rsquo;s Role in Promoting Regional Integration</div>
+            <div class="prog-people">Mr. Pavle Jankovi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">10:30&ndash;11:00</div>
+            <div class="prog-title">Coffee Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">11:00&ndash;13:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 8</span><br>Inclusion as a Foundation of Democratic Governance and Regional Cooperation</div>
+            <div class="prog-people">Ms. Maja Rai&ccaron;evi&cacute;</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">13:00&ndash;14:30</div>
+            <div class="prog-title">Lunch Break</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">14:30&ndash;16:00</div>
+            <div class="prog-title"><span class="prog-kind">Lecture 9</span><br>Gender-Responsive Leadership in Practice</div>
+            <div class="prog-people">Ms. Shk&euml;ndije Himaj</div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">17:00&ndash;18:30</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><br>Challenging Gender Norms in Leadership and Decision-Making</div>
+            <div class="prog-people">Ms. Ira Topalli</div>
+          </li>
+          <li class="prog-row is-break">
+            <div class="prog-time">19:00&ndash;21:00</div>
+            <div class="prog-title">Dinner</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- Day 7 · Saturday 19 September ---------- -->
+      <div class="prog-panel" role="tabpanel" id="progpanel-7" aria-labelledby="progtab-7" tabindex="0" hidden>
+        <div class="prog-day-head">
+          <div class="prog-day-date">Saturday, 19 September 2026</div>
+          <h3 class="prog-day-strand">Reflection &amp; Closing</h3>
+        </div>
+        <ul class="prog-rows">
+          <li class="prog-row">
+            <div class="prog-time">09:00&ndash;11:00</div>
+            <div class="prog-title"><span class="prog-kind">Interactive Session</span><br>Presentation of Regional Actions and Policy Ideas &amp; Closing Reflections</div>
+            <div class="prog-people"></div>
+          </li>
+          <li class="prog-row">
+            <div class="prog-time">13:00&ndash;15:00</div>
+            <div class="prog-title">Departure of Participants</div>
+            <div class="prog-people"></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     METHODOLOGY · four tracks
+     ============================================================ -->
+<section class="section" id="methodology">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Methodology</div>
+      <h2>Four learning tracks, one daily rhythm</h2>
+    </div>
+
+    <div class="rhythm" id="rhythm">
+      <div class="rhythm-rail" role="tablist" aria-label="Daily learning tracks">
+        <button type="button" class="rhythm-stop is-active" role="tab" aria-selected="true" data-r="0" style="--rc:var(--gold);--rc-deep:var(--gold-deep);--rc-tint:var(--gold-tint)">
+          <span class="rhythm-node"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="rhythm-time">Morning</span>
+          <span class="rhythm-label">Thematic Lectures</span>
+        </button>
+        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="1" style="--rc:var(--sage);--rc-deep:var(--forest-deep);--rc-tint:var(--forest-tint)">
+          <span class="rhythm-node"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="13" rx="1.5"/><path d="M12 16v4"/><path d="M8 20h8"/><polyline points="7,12 10,9 12.5,11.5 17,7"/></svg></span>
+          <span class="rhythm-time">Afternoon</span>
+          <span class="rhythm-label">Interactive Sessions</span>
+        </button>
+        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="2" style="--rc:var(--sage);--rc-deep:var(--forest-deep);--rc-tint:var(--forest-tint)">
+          <span class="rhythm-node"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+          <span class="rhythm-time">Evening</span>
+          <span class="rhythm-label">Dialogue Sessions</span>
+        </button>
+        <button type="button" class="rhythm-stop" role="tab" aria-selected="false" data-r="3" style="--rc:var(--gold);--rc-deep:var(--gold-deep);--rc-tint:var(--gold-tint)">
+          <span class="rhythm-node"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
+          <span class="rhythm-time">Field day</span>
+          <span class="rhythm-label">Site Visits</span>
+        </button>
+      </div>
+
+      <div class="rhythm-stage">
+        <div class="rhythm-panel is-active" role="tabpanel" data-r="0" style="--rc:var(--gold);--rc-deep:var(--gold-deep);--rc-tint:var(--gold-tint)">
+          <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div>
+            <span class="rhythm-panel-time">Morning</span>
+            <h3>Thematic Lectures</h3>
+            <p>Expert-led morning sessions on the five thematic strands, structured as opening → presentation → break → interactive discussion → participatory closing.</p>
+          </div>
+        </div>
+        <div class="rhythm-panel" role="tabpanel" data-r="1" style="--rc:var(--sage);--rc-deep:var(--forest-deep);--rc-tint:var(--forest-tint)">
+          <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="13" rx="1.5"/><path d="M12 16v4"/><path d="M8 20h8"/><polyline points="7,12 10,9 12.5,11.5 17,7"/></svg></div>
+          <div>
+            <span class="rhythm-panel-time">Afternoon</span>
+            <h3>Interactive Sessions</h3>
+            <p>Afternoon workshops in flexible, mixed-CP groups. Highly participatory, non-formal education methods linked directly to the morning's themes.</p>
+            <ul class="rhythm-ex">
+              <li>Role-plays and simulations</li>
+              <li>Case study analysis &amp; problem-solving</li>
+              <li>Co-creation lab: policy brief &amp; initiative sprint</li>
+            </ul>
+          </div>
+        </div>
+        <div class="rhythm-panel" role="tabpanel" data-r="2" style="--rc:var(--sage);--rc-deep:var(--forest-deep);--rc-tint:var(--forest-tint)">
+          <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+          <div>
+            <span class="rhythm-panel-time">Evening</span>
+            <h3>Dialogue Sessions</h3>
+            <p>Evening sessions in informal settings such as terraces, gardens, and lounges that shift the atmosphere from classroom to community. Unstructured by design, facilitated lightly.</p>
+            <ul class="rhythm-ex">
+              <li>Fireside leadership conversations</li>
+              <li>Photography as dialogue</li>
+            </ul>
+          </div>
+        </div>
+        <div class="rhythm-panel" role="tabpanel" data-r="3" style="--rc:var(--gold);--rc-deep:var(--gold-deep);--rc-tint:var(--gold-tint)">
+          <div class="rhythm-panel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+          <div>
+            <span class="rhythm-panel-time">Field day</span>
+            <h3>Site Visits</h3>
+            <p>Heritage day combining classroom learning with experiential engagement, reflection, and dialogue across different dimensions of cultural memory and identity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var r = document.getElementById('rhythm');
+      if (!r) return;
+      var stops = [].slice.call(r.querySelectorAll('.rhythm-stop'));
+      var panels = [].slice.call(r.querySelectorAll('.rhythm-panel'));
+      function show(i){
+        stops.forEach(function(s){ var on = s.dataset.r === String(i); s.classList.toggle('is-active', on); s.setAttribute('aria-selected', on ? 'true' : 'false'); });
+        panels.forEach(function(p){ p.classList.toggle('is-active', p.dataset.r === String(i)); });
+      }
+      stops.forEach(function(s){
+        s.addEventListener('click', function(){ show(s.dataset.r); });
+        s.addEventListener('mouseenter', function(){ show(s.dataset.r); });
+      });
+    })();
+    </script>
+  </div>
+</section>
+
+<!-- ============================================================
+     FACULTY · role-based
+     ============================================================ -->
+<section class="section section-alt" id="faculty">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Faculty &amp; Facilitators</div>
+      <h2>The people who make the room come alive</h2>
+    </div>
+
+    <div class="faculty-grid">
+
+      <div class="faculty-card">
+        <div class="faculty-photo">
+          <div class="faculty-silhouette">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><circle cx="12" cy="10" r="2"/></svg>
+          </div>
+        </div>
+        <div class="faculty-body">
+          <span class="faculty-role-tag">Lecturer</span>
+          <div class="faculty-name">Subject-matter Experts</div>
+          <div class="faculty-status">Nine lectures · across the five strands</div>
+          <p class="faculty-desc">Senior academics and practitioners who anchor each thematic strand with conceptual depth, regional case studies, and structured analytical frameworks.</p>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-photo">
+          <div class="faculty-silhouette">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><polyline points="16,11 18,13 22,9"/></svg>
+          </div>
+        </div>
+        <div class="faculty-body">
+          <span class="faculty-role-tag">Facilitator</span>
+          <div class="faculty-name">Dialogue Practitioners</div>
+          <div class="faculty-status">Interactive &amp; dialogue sessions · daily</div>
+          <p class="faculty-desc">Experienced intercultural dialogue and negotiation practitioners who guide the interactive sessions, role-plays, and difficult-conversation workshops.</p>
+        </div>
+      </div>
+
+      <!-- Clickable: opens #mentorModal with the pre-Academy online
+           mentoring detail held in #mentor-data below. -->
+      <!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. The card stays; the modal trigger (is-clickable,
+           data-mentor-open, role/tabindex/aria-haspopup) is removed until the
+           mentor detail is confirmed. Restore those attributes to reopen it. -->
+      <div class="faculty-card">
+        <div class="faculty-photo">
+          <div class="faculty-silhouette">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+        </div>
+        <div class="faculty-body">
+          <span class="faculty-role-tag">Mentor</span>
+          <div class="faculty-name">Pre &amp; Post Mentors</div>
+          <div class="faculty-status">Ongoing · before, during &amp; after</div>
+          <p class="faculty-desc">Senior mentors who accompany participants from pre-arrival preparation through post-Academy initiative development, in line with WBF mentorship guidelines.</p>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-photo">
+          <div class="faculty-silhouette">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+          </div>
+        </div>
+        <div class="faculty-body">
+          <span class="faculty-role-tag">Keynote</span>
+          <div class="faculty-name">Regional Voices</div>
+          <div class="faculty-status">Three keynotes · CEFTA, RCC and the MFAs</div>
+          <p class="faculty-desc">Senior political leaders, accomplished professionals, and emerging young leaders who join fireside conversations to share lived experiences of leadership across the region.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ------------------------------------------------------------
+         PRE-ACADEMY MENTORING · content for the "Pre & Post Mentors"
+         faculty card above. That card opens #mentorModal and the script
+         at the foot of the page copies this block into it, using the
+         data-track / data-name attributes as the modal's eyebrow and
+         title. Nothing here renders on the page, edit the copy here.
+         ------------------------------------------------------------ -->
+    <div id="mentor-data" hidden data-track="Before Tirana" data-name="Pre-Academy online mentoring">
+
+      <p class="mtr-lede">The Academy starts before arrival. Ahead of the week in Tirana, participants join online mentoring sessions in two tracks, each led by a practitioner who continues to work with the cohort on site.</p>
+
+      <div class="mtr-person">
+        <div class="mtr-person-track">Strategic Communication</div>
+        <div class="mtr-person-name">Ms. Eldisa Zhebo</div>
+        <p>The Strategic Communication component of the WBF Regional Academy is led by <strong>Ms. Eldisa Zhebo</strong>, a professional in lifelong guidance, career development, training, and organisational capacity building, with extensive experience working with public institutions and professionals in Albania.</p>
+        <p>Since 2021, she has served as a <strong>National Expert in Lifelong Guidance and Career Development for CEDEFOP</strong> (European Centre for the Development of Vocational Training), contributing to the development of career guidance systems and professional development initiatives.</p>
+        <p>Her experience also includes public administration reform and institutional capacity development. She supported the <strong>Albanian School of Public Administration (ASPA)</strong> in piloting an enhanced digital Training Needs Assessment tool across municipalities, including training delivery, stakeholder coordination, analysis of findings, and the development of strategic recommendations.</p>
+        <p>As <strong>Capacity Development Manager</strong> at the Institute for Change and Leadership in Albania (ICLA), she has managed and contributed to professional learning programmes in leadership, public administration, change management, strategic thinking, management, career development, and sustainable development.</p>
+        <div class="mtr-scope">
+          <h4>Within the WBF Regional Academy</h4>
+          <p>Her mentoring will focus on strategic communication, audience analysis, message development, and the effective communication of ideas and initiatives.</p>
+        </div>
+      </div>
+
+      <div class="mtr-person">
+        <div class="mtr-person-track is-gold">Leadership</div>
+        <div class="mtr-person-name">Ms. Elma Demir</div>
+        <p>The Leadership component of the WBF Regional Academy is led by <strong>Ms. Elma Demir</strong>, a professor, researcher, project manager, and social innovation practitioner with experience across the Western Balkans, Europe, and the United States in leadership, organisational change, participatory development, research, and multi-stakeholder cooperation.</p>
+        <p>She completed her doctoral studies in <strong>Management Sciences at Paris-Saclay University</strong> and is currently pursuing an MIT MicroMasters in Data, Economics, and Design of Policy. She also holds an M.A. in Globalization Studies from Dartmouth College and a B.A. in Political Science from the University of Sarajevo.</p>
+        <p>Elma is the <strong>Co-founder and Director of the Association for Research and Social Innovation ADT</strong> in Sarajevo, where she develops and leads initiatives related to social innovation, environmental sustainability, organisational learning, and community development. Her work incorporates strategic planning, design thinking, participatory research, foresight, impact evaluation, and multi-stakeholder engagement.</p>
+        <p>Her professional experience also includes European research and innovation programmes. She has worked as a Researcher and Project Manager at <strong>Institut Mines-T&eacute;l&eacute;com Business School</strong> in Paris and as a Researcher and Evaluator for <strong>Technopolis Group</strong>, contributing to assessments of research and science ecosystems across the Western Balkans. Through her work with <strong>Goldsmiths, University of London</strong>, she coordinated international projects related to gender justice and conducted interdisciplinary research on social development and post-conflict transformation.</p>
+        <div class="mtr-scope">
+          <h4>Within the WBF Regional Academy</h4>
+          <p>Her mentoring will focus on self-awareness, collaborative leadership, strategic thinking, organisational learning, and leading change in complex and diverse environments.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COHORT · first cohort
+     ============================================================ -->
+<section class="section" id="cohort">
+  <div class="container">
+    <div class="cohort-wrap">
+      <div class="cohort-text">
+        <div class="sec-head left" style="margin: 0 0 20px;">
+          <div class="overline">The Cohort</div>
+          <h2>Who the Academy is built for?</h2>
+        </div>
+        <p>The Regional Academy is designed for junior professionals and emerging leaders from across the WB6: people who are eager to grow beyond their national context, build lasting regional relationships, and develop practical dialogue and cooperation skills that are recognised across the region.</p>
+        <p>The cohort is deliberately mixed. Lawyers and activists work alongside artists and journalists. Civil servants exchange with entrepreneurs and researchers. Diversity is not an add-on; it is the precondition for the kind of dialogue the Academy is designed to enable.</p>
+      </div>
+
+      <div class="cohort-profile">
+        <div class="cohort-profile-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+            <div>
+              <strong>Junior professionals</strong>
+              <span>Citizens of one of the WB6 Contracting Parties, early-to-mid career.</span>
+            </div>
+          </div>
+          <div class="cohort-profile-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <div>
+              <strong>Mixed disciplines</strong>
+              <span>Activists, artists, journalists, lawyers, civil servants, researchers, entrepreneurs.</span>
+            </div>
+          </div>
+          <div class="cohort-profile-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+            <div>
+              <strong>Regional outlook</strong>
+              <span>Eager to think beyond their national context and build lasting cross-border relationships.</span>
+            </div>
+          </div>
+          <div class="cohort-profile-item">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+            <div>
+              <strong>Action-oriented</strong>
+              <span>Ready to commit to pre, during, and post-Academy work, including a group policy brief or initiative.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     HERITAGE DAY
+     ============================================================ -->
+<section class="section section-tint" id="heritage">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Heritage visits</div>
+      <h2>The field-learning day that ties everything together</h2>
+      <p>One full day outside the classroom, combining visits to sites that represent different historical periods and dimensions of identity, memory, and social transformation.</p>
+    </div>
+
+    <div class="heritage-wrap">
+      <div class="heritage-text">
+        <h3>A day of heritage, memory, and reflection</h3>
+        <p>Participants take part in a full-day heritage visit that combines guided site visits, structured reflection, and informal intercultural exchange. The day is designed as an extended learning exercise rather than a touristic activity: participants receive a background pack with historical context and guiding questions before departure, and facilitators lead reflection sessions throughout the day that connect what is seen on site with the Academy's themes of leadership, democracy, peacebuilding, and regional cooperation. The day concludes with a shared meal and a group reflection on what the experience has revealed about memory, identity, and cooperation across the region.</p>
+      </div>
+
+      <div class="heritage-values">
+        <h4>Heritage Values <span class="gold-accent">Framework</span></h4>
+        <p>At each site, participants assess and discuss the different values represented, recognising that different communities assign different meanings to heritage, and that this diversity of perspectives is itself an important learning outcome.</p>
+        <div class="value-cloud">
+          <span class="value-tag is-sage">Historical</span>
+          <span class="value-tag">Archaeological</span>
+          <span class="value-tag is-sage">Architectural</span>
+          <span class="value-tag">Aesthetic</span>
+          <span class="value-tag is-sage">Sense of Place</span>
+          <span class="value-tag">Spiritual</span>
+          <span class="value-tag is-sage">Community</span>
+          <span class="value-tag">Recreational</span>
+          <span class="value-tag is-sage">Ecological</span>
+          <span class="value-tag">Political</span>
+          <span class="value-tag is-sage">Identity</span>
+          <span class="value-tag">Associative</span>
+          <span class="value-tag is-sage">Economic</span>
+          <span class="value-tag">Educational</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PARTNERS · closing credit strip
+     ============================================================ -->
+<section class="partners-strip" id="partners">
+  <div class="container">
+    <p class="partners-thanks">The Academy is organised by the Western Balkans Fund with the support of the Open Society Foundation Western Balkans.</p>
+    <div class="partners-logos">
+      <img src="/assets/img/wbf-logo.svg" alt="Western Balkans Fund">
+      <a href="https://osfwb.org/" target="_blank" rel="noopener">
+        <img src="/assets/images/partners/partner-osf.svg" alt="Open Society Foundation Western Balkans">
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     MENTOR MODAL · full bio for the pre-Academy mentoring cards
+     ============================================================ -->
+<div class="mtr-modal" id="mentorModal" role="dialog" aria-modal="true" aria-labelledby="mentorModalTitle" hidden>
+  <div class="mtr-backdrop" data-close></div>
+  <div class="mtr-dialog" role="document">
+    <button class="mtr-close" type="button" aria-label="Close" data-close>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="mtr-eyebrow" id="mentorModalEyebrow"></div>
+    <h2 class="mtr-title" id="mentorModalTitle"></h2>
+    <div class="mtr-body" id="mentorModalBody"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+<script>
+/* Programme · day tabs.
+   Shows one .prog-panel at a time. Arrow keys move between tabs
+   (roving tabindex), matching the ARIA tabs pattern. */
+(function () {
+  const tabs = Array.from(document.querySelectorAll('.prog-tab'));
+  const panels = Array.from(document.querySelectorAll('.prog-panel'));
+  if (!tabs.length || !panels.length) return;
+
+  function select(day, moveFocus) {
+    tabs.forEach(t => {
+      const on = t.getAttribute('data-day') === day;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if (on && moveFocus) t.focus();
+    });
+    panels.forEach(p => {
+      const on = p.id === 'progpanel-' + day;
+      p.classList.toggle('is-active', on);
+      p.hidden = !on;
+    });
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
+    tab.addEventListener('click', () => select(tab.getAttribute('data-day'), false));
+    tab.addEventListener('keydown', e => {
+      let next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (!next) return;
+      e.preventDefault();
+      select(next.getAttribute('data-day'), true);
+    });
+  });
+
+  /* Deep-link a single day: regional-academy.html#day-3.
+     Also fires when a Thematic Pillar card is clicked, since those
+     link to #day-N; #day-N is not an element id, so nothing scrolls
+     on its own and we bring the programme into view here. */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fromHash() {
+    const m = (location.hash || '').match(/^#day-([1-7])$/);
+    if (!m) return;
+    select(m[1], false);
+    const section = document.getElementById('programme');
+    if (section) section.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+})();
+</script>
+<script>
+/* Pre-Academy mentoring modal.
+   Opened by the "Pre & Post Mentors" faculty card. The content,
+   standfirst plus both mentor profiles, comes from the hidden
+   #mentor-data store, with its data-track / data-name attributes
+   supplying the modal eyebrow and title. */
+(function () {
+  const modal = document.getElementById('mentorModal');
+  const store = document.getElementById('mentor-data');
+  if (!modal || !store) return;
+  const eyebrowEl = document.getElementById('mentorModalEyebrow');
+  const titleEl = document.getElementById('mentorModalTitle');
+  const bodyEl = document.getElementById('mentorModalBody');
+  const closeBtn = modal.querySelector('.mtr-close');
+  let lastFocused = null;
+
+  function openModal() {
+    eyebrowEl.textContent = store.getAttribute('data-track') || '';
+    titleEl.textContent = store.getAttribute('data-name') || '';
+    bodyEl.innerHTML = store.innerHTML;
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('mtr-open');
+    modal.querySelector('.mtr-dialog').scrollTop = 0;
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove('mtr-open');
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-mentor-open]').forEach(card => {
+    card.addEventListener('click', openModal);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        openModal();
+      }
+    });
+  });
+
+  modal.addEventListener('click', e => {
+    if (e.target.closest('[data-close]')) closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+})();
+</script>
+</body>
+</html>

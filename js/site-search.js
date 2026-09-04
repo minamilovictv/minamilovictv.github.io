@@ -137,7 +137,7 @@
         return {
           title: n.title,
           type: isCall ? 'Call' : 'News',
-          url: '/news.html?article=' + encodeURIComponent(n.id),
+          url: '/news/?article=' + encodeURIComponent(n.id),
           desc: n.excerpt || '',
           heads: [n.programme || ''],
           text: (n.excerpt || '') + ' ' + (n.programme || ''),
@@ -156,7 +156,7 @@
         return {
           title: e.title,
           type: 'Event',
-          url: '/events.html?event=' + encodeURIComponent(e.id),
+          url: '/events/?event=' + encodeURIComponent(e.id),
           desc: e.summary || '',
           heads: [e.city || '', e.venue || '', e.programme || ''],
           text: [e.summary, e.description, e.city, e.venue, e.programme].join(' '),
@@ -183,7 +183,7 @@
     return loadCsv(DOCS_CSV, function (d) {
       if (!d.title) return null;
       if (d.status && String(d.status).toLowerCase() === 'draft') return null;
-      var href = d.fileUrl ? DOC_BASE + d.fileUrl : (d.externalUrl || '/wbfdocuments.html');
+      var href = d.fileUrl ? DOC_BASE + d.fileUrl : (d.externalUrl || '/wbfdocuments/');
       return {
         title: d.title,
         type: 'Document',
@@ -202,7 +202,7 @@
       return {
         title: p.title,
         type: 'Project',
-        url: '/ourgrantees.html?project=' + encodeURIComponent(p.id || ''),
+        url: '/ourgrantees/?project=' + encodeURIComponent(p.id || ''),
         desc: p.shortDescription || '',
         heads: [p.programme || '', p.implementingOrganization || ''],
         text: [p.shortDescription, p.fullDescription, p.programme,

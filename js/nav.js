@@ -139,8 +139,11 @@
     });
 
     /* ── 4. Mark the current page (aria-current) ───────────── */
-    var here = (location.pathname.split('/').pop() || 'index.html').replace('.html', '');
-    if (here === '') here = 'index';
+    /* Pages are served as folders (/about/), so the key is the last path
+       segment with the trailing slash removed. The root is "home". */
+    var path = location.pathname.replace(/\/+$/, '');
+    var here = path.split('/').pop().replace(/\.html$/, '');
+    if (here === '' || here === 'index') here = 'home';
     nb.querySelectorAll('[data-page-key]').forEach(function (el) {
       if (el.getAttribute('data-page-key') === here) el.setAttribute('aria-current', 'page');
     });

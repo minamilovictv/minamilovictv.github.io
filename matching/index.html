@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matching Grants · Co-financing | Western Balkans Fund</title>
+<link rel="canonical" href="https://westernbalkansfund.org/matching/">
+<meta name="description" content="WBF Matching Grants co-fund small, short-term regional projects, up to 50% of eligible costs, max €10,000, in partnership with another donor. Rolling basis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Favicons / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Matching Grants · Co-financing | Western Balkans Fund">
+<meta property="og:description" content="WBF Matching Grants co-fund small, short-term regional projects, up to 50% of eligible costs, max €10,000, in partnership with another donor. Rolling basis.">
+<meta property="og:site_name" content="Western Balkans Fund">
+<meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Western Balkans Fund">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/site-chrome.css">
+<style>
+
+/* ============================================================
+   MATCHING GRANTS — page tokens
+   Indigo co-financing identity (WBF share) paired with copper
+   (the co-funding donor share). The "50/50 match" is the motif.
+   ============================================================ */
+:root {
+  --mg:        #4F46E5;   /* Indigo — primary accent (WBF share) */
+  --mg-deep:   #3730A3;
+  --mg-strong: #4338CA;   /* AA-safe on white text */
+  --mg-tint:   #ECEDFB;
+  --mg-border: #C7CAF3;
+  --mg-partner:      #C77D3A;   /* Copper — co-funding donor share */
+  --mg-partner-deep: #8f5220;
+  --mg-partner-tint: #f7ece1;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: #1a1e2e; background: #fff; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button, input { font-family: inherit; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
+
+.skip-link { position:absolute; left:-999px; top:0; z-index:9999; background:var(--navy); color:#fff; padding:8px 16px; font-size:13px; font-weight:600; text-decoration:none; }
+.skip-link:focus { left:0; }
+
+/* ============================================================
+   MOTION ENGINE — scroll reveals + keyframes (shared with MOVE)
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal].reveal-scale { transform: translateY(26px) scale(.96); }
+[data-reveal].reveal-scale.is-visible { transform: none; }
+[data-stagger] > * { transition-delay: calc(var(--i, 0) * 90ms); }
+
+@keyframes floatOrb { from { transform: translate(0,0) scale(1); } to { transform: translate(-26px,-22px) scale(1.08); } }
+@keyframes heroFadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@keyframes gridPan { from { background-position: 0 0; } to { background-position: 46px 46px; } }
+@keyframes sheen { to { transform: translateX(220%) skewX(-18deg); } }
+@keyframes spinHalo { to { transform: rotate(360deg); } }
+@keyframes floatIcon { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes badgeGlow { 0%,100% { box-shadow: 0 0 0 4px rgba(199,125,58,0.28); } 50% { box-shadow: 0 0 0 8px rgba(199,125,58,0.05); } }
+@keyframes coinShine { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(180deg); } }
+
+/* ============================================================
+   PROGRAM HERO — navy field, warm gold atmosphere
+   ============================================================ */
+.prog-hero {
+  position: relative;
+  background: linear-gradient(135deg, #17153F 0%, #2A2789 52%, #3F2711 100%);
+  overflow: hidden;
+  padding: 64px 0 92px;
+}
+.hero-orb-1 { position: absolute; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(199,125,58,0.30) 0%, transparent 70%); top: -130px; right: -120px; filter: blur(8px); pointer-events: none; animation: floatOrb 14s ease-in-out infinite alternate; }
+.hero-orb-2 { position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(79,70,229,0.5) 0%, transparent 70%); bottom: -150px; left: -110px; filter: blur(10px); pointer-events: none; animation: floatOrb 17s ease-in-out infinite alternate-reverse; }
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+  background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 72% 32%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 70% at 72% 32%, #000 0%, transparent 75%);
+  animation: gridPan 22s linear infinite;
+}
+.prog-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; color: #fff; }
+
+.breadcrumb { font-size: 12.5px; color: rgba(255,255,255,0.55); margin-bottom: 24px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
+.breadcrumb a:hover { color: #fff; }
+.breadcrumb span { color: rgba(255,255,255,0.4); }
+
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
+  background: rgba(199,125,58,0.16); border: 1px solid rgba(199,125,58,0.44); border-radius: 999px;
+  font-size: 12px; font-weight: 600; color: #E9C6A3; letter-spacing: 0.04em; margin-bottom: 22px;
+}
+.status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: #C77D3A; animation: badgeGlow 2.4s ease-in-out infinite; }
+.status-pill-text { text-transform: uppercase; font-size: 11.5px; }
+
+.prog-hero h1 { font-size: clamp(26px, 4.6vw, 54px); font-weight: 800; color: #fff; letter-spacing: -0.028em; line-height: 1.06; margin-bottom: 22px; text-wrap: balance; }
+.prog-hero h1 .accent { color: #E9C6A3; }
+.prog-hero .tagline { font-size: clamp(15px, 1.7vw, 19px); color: rgba(255,255,255,0.82); line-height: 1.55; max-width: 62ch; margin-bottom: 14px; }
+.prog-hero .footnote { font-size: 13px; color: rgba(255,255,255,0.55); max-width: 62ch; margin-bottom: 32px; }
+
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+.btn-primary, .btn-ghost {
+  display: inline-flex; align-items: center; gap: 9px; padding: 13px 22px; border-radius: 6px;
+  font-size: 14px; font-weight: 600; text-decoration: none; transition: background .15s, border-color .15s, color .15s; border: 1px solid transparent;
+}
+.btn-primary { background: var(--mg-strong); color: #fff; position: relative; overflow: hidden; }
+.btn-primary:hover { background: var(--mg-deep); }
+.btn-primary::after { content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); transform: skewX(-18deg); pointer-events: none; }
+.btn-primary:hover::after { animation: sheen .7s ease; }
+.btn-primary svg, .btn-ghost svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s ease; }
+.btn-primary:hover svg, .btn-ghost:hover svg { transform: translateX(3px); }
+.btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.35); }
+.btn-ghost:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.7); }
+
+
+/* Hero entrance cascade */
+.prog-hero .breadcrumb { animation: heroFadeUp .6s ease both .05s; }
+.prog-hero .status-pill { animation: heroFadeUp .6s ease both .15s; }
+.prog-hero h1 { animation: heroFadeUp .7s ease both .25s; }
+.prog-hero .tagline { animation: heroFadeUp .7s ease both .35s; }
+.prog-hero .footnote { animation: heroFadeUp .7s ease both .42s; }
+.prog-hero .hero-ctas { animation: heroFadeUp .7s ease both .5s; }
+
+/* ============================================================
+   GENERIC SECTION
+   ============================================================ */
+.section { padding: 56px 0; }
+.section-alt { background: var(--surface-alt); }
+.sec-head { text-align: center; max-width: 760px; margin: 0 auto 40px; }
+.sec-head .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mg-deep); margin-bottom: 12px; }
+.sec-head h2 { font-size: clamp(24px, 3.2vw, 36px); font-weight: 800; color: var(--ink); margin-bottom: 14px; letter-spacing: -0.025em; line-height: 1.15; }
+.sec-head p { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+.about-text { max-width: 820px; margin: 0 auto; }
+.about-text p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
+.about-text p:last-child { margin-bottom: 0; }
+.about-text strong { color: var(--ink); font-weight: 700; }
+
+/* ============================================================
+   CO-FINANCING CALCULATOR — the interactive centrepiece
+   ============================================================ */
+.section-calc { background: linear-gradient(180deg, #fff 0%, var(--mg-tint) 100%); }
+.calc {
+  max-width: 880px; margin: 0 auto;
+  background: #fff; border: 1px solid var(--line); border-radius: 20px;
+  box-shadow: 0 24px 60px -30px rgba(15,32,68,0.32);
+  padding: 34px 36px 38px; position: relative; overflow: hidden;
+}
+.calc::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, var(--mg) 0%, var(--mg) 50%, var(--mg-partner) 50%, var(--mg-partner) 100%); }
+.calc-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 6px; }
+.calc-top .k { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px; }
+.calc-cost { font-size: clamp(30px, 5vw, 44px); font-weight: 800; color: var(--ink); letter-spacing: -0.03em; line-height: 1; }
+.calc-cost .cur { color: var(--mg-deep); }
+.calc-hint-cap {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; color: var(--mg-deep);
+  background: var(--mg-tint); border: 1px solid var(--mg-border); padding: 6px 12px; border-radius: 999px;
+  opacity: 0; transform: translateY(4px); transition: opacity .3s ease, transform .3s ease; pointer-events: none;
+}
+.calc.is-capped .calc-hint-cap { opacity: 1; transform: none; }
+
+.calc-range {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 12px; border-radius: 999px; margin: 22px 0 12px;
+  background: linear-gradient(to right, var(--mg) 0%, var(--mg-deep) var(--fill,47%), #d5deea var(--fill,47%), #c4d0e0 100%);
+  border: 1px solid #c4d0e0; cursor: pointer; outline: none;
+  box-shadow: inset 0 1px 3px rgba(15,32,68,0.12);
+}
+@keyframes dragPulse {
+  0%, 100% { box-shadow: 0 4px 12px rgba(79,70,229,0.45), 0 0 0 0 rgba(79,70,229,0.40); }
+  50%      { box-shadow: 0 4px 12px rgba(79,70,229,0.45), 0 0 0 12px rgba(79,70,229,0); }
+}
+.calc-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--mg); border: 4px solid #fff; cursor: grab; transition: transform .15s ease; animation: dragPulse 2s ease-in-out infinite; }
+.calc-range::-webkit-slider-thumb:hover { transform: scale(1.08); }
+.calc-range::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.14); animation: none; }
+.calc-range::-moz-range-thumb { width: 28px; height: 28px; border-radius: 50%; background: var(--mg); border: 4px solid #fff; cursor: grab; animation: dragPulse 2s ease-in-out infinite; }
+.calc-range:focus-visible { box-shadow: inset 0 1px 3px rgba(15,32,68,0.12), 0 0 0 4px rgba(79,70,229,0.28); }
+
+.calc-drag-hint { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 0 24px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mg-deep); }
+.calc-drag-hint svg { width: 16px; height: 16px; fill: none; stroke: var(--mg); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.calc-drag-hint svg:first-child { animation: nudgeL 1.6s ease-in-out infinite; }
+.calc-drag-hint svg:last-child { animation: nudgeR 1.6s ease-in-out infinite; }
+@keyframes nudgeL { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-3px); } }
+@keyframes nudgeR { 0%,100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+
+.calc-track { display: flex; height: 58px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+.calc-seg { display: flex; flex-direction: column; justify-content: center; padding: 0 18px; color: #fff; overflow: hidden; white-space: nowrap; transition: width .5s cubic-bezier(.2,.7,.2,1); }
+.calc-seg.wbf { background: linear-gradient(135deg, var(--mg) 0%, var(--mg-deep) 100%); }
+.calc-seg.partner { background: linear-gradient(135deg, var(--mg-partner) 0%, var(--mg-partner-deep) 100%); align-items: flex-end; text-align: right; }
+.calc-seg .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.85; }
+.calc-seg .amt { font-size: 16px; font-weight: 800; letter-spacing: -0.01em; }
+
+.calc-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+.calc-leg { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+.calc-leg .dot { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
+.calc-leg.wbf .dot { background: var(--mg); }
+.calc-leg.partner .dot { background: var(--mg-partner); }
+.calc-leg .name { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+.calc-leg .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.calc-leg .big { font-size: 24px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; margin-top: 10px; }
+.calc-leg .pct { font-size: 12px; font-weight: 600; color: var(--muted); }
+.calc-foot { margin-top: 22px; font-size: 12.5px; color: var(--muted); line-height: 1.6; text-align: center; }
+.calc-foot strong { color: var(--ink-soft); font-weight: 700; }
+
+/* ============================================================
+   KEY FEATURES — animated figures
+   ============================================================ */
+.stat-band { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.stat-cell { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 26px 22px; text-align: center; position: relative; overflow: hidden; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.stat-cell:hover { transform: translateY(-6px); border-color: var(--mg-border); box-shadow: 0 20px 44px -24px rgba(79,70,229,0.5); }
+.stat-cell .icon { width: 44px; height: 44px; border-radius: 12px; background: var(--mg-tint); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+.stat-cell .icon svg { width: 22px; height: 22px; fill: none; stroke: var(--mg-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.stat-num { font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: var(--mg-deep); letter-spacing: -0.03em; line-height: 1; }
+.stat-cell .label { font-size: 13px; font-weight: 700; color: var(--ink); margin-top: 10px; }
+.stat-cell .sub { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+
+/* Hero quick-stats — three short cards straddling the navy hero (GGI-style) */
+.hero-quickstats { position: relative; z-index: 5; margin-top: -70px; padding: 0 40px 8px; }
+.hero-quickstats .stat-band { max-width: 1400px; margin: 0 auto; }
+.hero-quickstats .stat-cell { border-top: 3px solid var(--mg); box-shadow: 0 26px 54px -26px rgba(15,32,68,0.55); }
+
+/* ============================================================
+   PRIORITY AREAS — shaped cards (shared with MOVE ia-card)
+   ============================================================ */
+.ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; perspective: 1600px; }
+.ia-card {
+  --ic: var(--mg); --ic-deep: var(--mg-deep); --ic-tint: var(--mg-tint);
+  position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  padding: 0 0 26px; display: flex; flex-direction: column; overflow: hidden; transform-style: preserve-3d;
+  transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease, border-color .4s ease;
+}
+.ia-card:nth-child(2) { --ic: #C77D3A; --ic-deep: #8f5220; --ic-tint: #f7ece1; }
+.ia-card:nth-child(3) { --ic: #3E5C76; --ic-deep: #2A4258; --ic-tint: #eef2f7; }
+.ia-card:hover { transform: translateY(-10px); border-color: color-mix(in srgb, var(--ic) 45%, transparent); box-shadow: 0 30px 60px -24px color-mix(in srgb, var(--ic) 70%, transparent); }
+.ia-head { position: relative; padding: 26px 26px 40px; background: radial-gradient(120% 140% at 85% -20%, color-mix(in srgb, var(--ic) 30%, transparent), transparent 60%), linear-gradient(135deg, var(--ic-deep), var(--ic)); clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%); overflow: hidden; }
+.ia-head::before { content: ""; position: absolute; inset: 0; opacity: .5; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px); background-size: 26px 26px; -webkit-mask-image: radial-gradient(ellipse 90% 80% at 80% 10%, #000, transparent 70%); mask-image: radial-gradient(ellipse 90% 80% at 80% 10%, #000, transparent 70%); }
+.ia-head::after { content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); transform: skewX(-18deg); pointer-events: none; }
+.ia-card:hover .ia-head::after { animation: sheen 1s ease; }
+.ia-num { position: absolute; top: 2px; right: 16px; font-weight: 800; font-size: 92px; line-height: 1; color: rgba(255,255,255,0.14); letter-spacing: -0.04em; pointer-events: none; transition: transform .5s cubic-bezier(.2,.7,.2,1), color .4s ease; }
+.ia-card:hover .ia-num { transform: translateY(4px) scale(1.06); color: rgba(255,255,255,0.22); }
+.ia-icon { position: relative; z-index: 1; width: 56px; height: 56px; border-radius: 16px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.28); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -8px rgba(0,0,0,0.35); animation: floatIcon 5s ease-in-out infinite; transition: transform .45s cubic-bezier(.34,1.56,.64,1), background .3s ease; }
+.ia-icon svg { width: 28px; height: 28px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ia-card:hover .ia-icon { transform: rotate(-6deg) scale(1.1); background: rgba(255,255,255,0.26); }
+.ia-body { padding: 0 26px; margin-top: 20px; position: relative; z-index: 1; }
+.ia-title { font-size: 19px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.02em; }
+.ia-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 18px; }
+.ia-examples { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.ia-examples li { font-size: 12px; font-weight: 600; line-height: 1.35; color: var(--ic-deep); background: var(--ic-tint); border: 1px solid color-mix(in srgb, var(--ic) 22%, transparent); padding: 7px 12px; border-radius: 999px; display: inline-flex; align-items: center; gap: 7px; cursor: default; transition: transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.ia-examples li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ic); flex-shrink: 0; transition: background .25s ease, transform .25s ease; }
+.ia-examples li:hover { transform: translateY(-3px); background: var(--ic); color: #fff; border-color: var(--ic); box-shadow: 0 8px 18px -6px color-mix(in srgb, var(--ic) 70%, transparent); }
+.ia-examples li:hover::before { background: #fff; transform: scale(1.3); }
+
+.crosscut { max-width: 880px; margin: 32px auto 0; display: flex; align-items: center; gap: 16px; padding: 18px 22px; background: var(--surface-alt); border: 1px solid var(--line); border-radius: 12px; }
+.crosscut .cc-icon { flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px; background: var(--mg-tint); display: flex; align-items: center; justify-content: center; }
+.crosscut .cc-icon svg { width: 20px; height: 20px; fill: none; stroke: var(--mg-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.crosscut p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.crosscut strong { color: var(--ink); font-weight: 700; }
+
+/* ============================================================
+   ELIGIBILITY — applicant chips + requirements + ineligible
+   ============================================================ */
+.elig-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: start; }
+.applicant-types { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.atype { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid var(--line); border-radius: 12px; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.atype:hover { transform: translateY(-3px); border-color: var(--mg-border); box-shadow: 0 12px 26px -18px rgba(79,70,229,0.6); }
+.atype .ai { flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; background: var(--mg-tint); display: flex; align-items: center; justify-content: center; }
+.atype .ai svg { width: 19px; height: 19px; fill: none; stroke: var(--mg-deep); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.atype .an { font-size: 13.5px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+
+.req-card { background: var(--mg-partner-tint); border: 1px solid #ecd6c1; border-radius: 16px; padding: 24px 26px; }
+.req-card h3 { font-size: 15px; font-weight: 800; color: var(--mg-partner-deep); margin-bottom: 14px; }
+.req-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.req-list li { display: flex; gap: 11px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+.req-list li svg { flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px; fill: none; stroke: var(--mg-partner); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.req-list li strong { color: var(--ink); font-weight: 700; }
+
+/* ============================================================
+   STRONG PROJECT — checklist tiles
+   ============================================================ */
+.check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.check-tile { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px 22px 62px; transition: transform .2s ease, box-shadow .2s ease; }
+.check-tile:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgba(15,32,68,0.35); }
+.check-tile .tick { position: absolute; left: 20px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--mg) 0%, var(--mg-deep) 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 14px -4px rgba(79,70,229,0.6); }
+.check-tile .tick svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.check-tile h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.check-tile p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ============================================================
+   COSTS — eligible vs non-eligible
+   ============================================================ */
+.eligrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 880px; margin: 0 auto; }
+.eli-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; display: flex; gap: 16px; align-items: flex-start; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.eli-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--mg), var(--mg-deep)); transform: scaleY(0); transform-origin: top; transition: transform .3s ease; }
+.eli-card:hover { transform: translateY(-5px); border-color: var(--mg-border); box-shadow: 0 22px 46px -26px rgba(79,70,229,0.5); }
+.eli-card:hover::before { transform: scaleY(1); }
+.eli-ic { flex-shrink: 0; width: 50px; height: 50px; border-radius: 14px; background: var(--mg-tint); display: flex; align-items: center; justify-content: center; transition: transform .3s ease; }
+.eli-card:hover .eli-ic { transform: rotate(-6deg) scale(1.06); }
+.eli-ic svg { width: 24px; height: 24px; fill: none; stroke: var(--mg-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.eli-tx h3 { font-size: 15.5px; font-weight: 800; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+.eli-tx p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.eli-caps { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.eli-cap { font-size: 11.5px; font-weight: 700; color: var(--mg-deep); background: var(--mg-tint); border: 1px solid var(--mg-border); padding: 5px 11px; border-radius: 999px; }
+.cost-note { max-width: 680px; margin: 18px auto 0; display: flex; align-items: flex-start; gap: 11px; padding: 14px 18px; background: var(--surface-alt); border: 1px solid var(--line); border-radius: 12px; font-size: 13px; color: var(--muted); line-height: 1.6; }
+.cost-note svg { flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px; color: var(--faint); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.cost-note strong { color: var(--ink-soft); font-weight: 700; }
+
+/* ============================================================
+   PROCESS — numbered steps + remember tips
+   ============================================================ */
+.proc { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+/* connecting line behind the number nodes */
+.proc::before { content: ""; position: absolute; top: 23px; left: calc(100% / 12); right: calc(100% / 12); height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--mg-border), var(--mg) 50%, var(--mg-border)); z-index: 0; }
+.proc-step { position: relative; display: flex; flex-direction: column; align-items: center; }
+.proc-node { position: relative; z-index: 2; width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, var(--mg) 0%, var(--mg-deep) 100%); color: #fff; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 8px 18px -6px rgba(79,70,229,0.6); margin-bottom: 16px; transition: transform .3s cubic-bezier(.34,1.56,.64,1); }
+.proc-step:hover .proc-node { transform: scale(1.14) translateY(-2px); }
+.proc-card { position: relative; flex: 1; width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 16px 20px; text-align: center; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.proc-card::after { content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(79,70,229,0.14), transparent); transform: skewX(-18deg); pointer-events: none; }
+.proc-step:hover .proc-card { transform: translateY(-6px); border-color: var(--mg-border); box-shadow: 0 22px 44px -24px rgba(79,70,229,0.55); }
+.proc-step:hover .proc-card::after { animation: sheen 1s ease; }
+.proc-icon { width: 40px; height: 40px; border-radius: 11px; background: var(--mg-tint); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; transition: transform .3s ease; }
+.proc-icon svg { width: 20px; height: 20px; fill: none; stroke: var(--mg-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.proc-step:hover .proc-icon { transform: rotate(-6deg) scale(1.08); }
+.proc-card h3 { font-size: 13.5px; font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.01em; line-height: 1.3; }
+.proc-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* ============================================================
+   PREVIOUS GRANTEES — showcase (populate over time)
+   ============================================================ */
+.section-grantees { background: linear-gradient(180deg, #fff 0%, var(--surface-alt) 100%); }
+.grantees-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.grantee-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform .22s ease, box-shadow .22s ease; }
+.grantee-card:hover { transform: translateY(-5px); box-shadow: 0 22px 48px -26px rgba(15,32,68,0.4); }
+.grantee-photo { aspect-ratio: 4 / 3; position: relative; overflow: hidden; color: #fff; background: linear-gradient(135deg, var(--mg) 0%, var(--mg-deep) 100%); }
+.grantee-photo.v-copper { background: linear-gradient(135deg, #C77D3A 0%, #8f5220 100%); }
+.grantee-photo.v-navy { background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-900) 100%); }
+.grantee-photo.v-slate { background: linear-gradient(135deg, #3E5C76 0%, #2A4258 100%); }
+/* Soft highlight for gradient (no-photo) fallback cards; sits behind the carousel. */
+.grantee-photo::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle at 22% 28%, rgba(255,255,255,0.18) 0%, transparent 52%), radial-gradient(circle at 82% 74%, rgba(255,255,255,0.08) 0%, transparent 50%); pointer-events: none; z-index: 1; }
+.grantee-flag { position: absolute; top: 12px; left: 12px; z-index: 5; font-size: 12px; font-weight: 600; color: #fff; background: rgba(0,0,0,0.42); backdrop-filter: blur(6px); padding: 5px 11px; border-radius: 999px; display: inline-flex; align-items: center; gap: 7px; }
+
+/* Photo carousel — built by JS from assets/images/matching/<slug>/ */
+.gcar { position: absolute; inset: 0; z-index: 2; }
+.gcar-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s ease; }
+.gcar-slide.is-active { opacity: 1; }
+.gcar-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 34px; height: 34px; border: none; border-radius: 50%; background: rgba(0,0,0,0.42); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s ease, background .2s ease; z-index: 4; }
+.gcar-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.grantee-card:hover .gcar-btn, .gcar-btn:focus-visible { opacity: 1; }
+.gcar-btn:hover { background: rgba(0,0,0,0.7); }
+.gcar-btn:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+.gcar-prev { left: 10px; }
+.gcar-next { right: 10px; }
+.gcar-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 4; padding: 4px 8px; border-radius: 999px; background: rgba(0,0,0,0.28); }
+.gcar-dot { width: 7px; height: 7px; padding: 0; border: none; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: background .2s ease, transform .2s ease; }
+.gcar-dot.is-active { background: #fff; transform: scale(1.3); }
+@media (prefers-reduced-motion: reduce) { .gcar-slide { transition: none; } }
+.grantee-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.grantee-name { font-size: 16.5px; font-weight: 700; color: var(--ink); letter-spacing: -0.015em; line-height: 1.3; }
+.grantee-org { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; }
+.grantee-org strong { color: var(--ink); font-weight: 600; }
+
+/* ============================================================
+   CTA BAND
+   ============================================================ */
+.subscribe { background: linear-gradient(135deg, #17153F 0%, #2A2789 58%, #3F2711 100%); padding: 62px 0; color: #fff; position: relative; overflow: hidden; }
+.subscribe::before { content: ""; position: absolute; top: -100px; right: -60px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(199,125,58,0.28) 0%, transparent 70%); pointer-events: none; }
+.subscribe-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; text-align: center; padding: 0 40px; }
+.subscribe .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #E9C6A3; margin-bottom: 12px; }
+.subscribe h2 { font-size: clamp(22px, 2.8vw, 30px); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
+.subscribe p { font-size: 15.5px; color: rgba(255,255,255,0.74); line-height: 1.65; max-width: 60ch; margin: 0 auto 28px; }
+.subscribe-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; background: var(--mg); color: #fff; font-weight: 700; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background .15s; }
+.btn-white:hover { background: var(--mg-deep); }
+.btn-white svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-outline-white { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; color: #fff; border: 1px solid rgba(255,255,255,0.35); font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background .15s, border-color .15s; }
+.btn-outline-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.65); }
+.btn-outline-white svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ============================================================
+   FOOTNOTE
+   ============================================================ */
+.fn-star { color: var(--mg-deep); font-weight: 700; }
+.about-text .inline-fn { font-size: 12px; color: var(--ink-soft); line-height: 1.5; font-style: italic; text-align: left; padding: 8px 12px; background: var(--surface-alt); border-left: 2px solid var(--line); border-radius: 0 6px 6px 0; margin-top: 14px; }
+.about-text .inline-fn strong { font-style: normal; color: var(--ink-soft); font-weight: 600; }
+
+/* ============================================================
+   NARRATIVE PROSE · IMAGE PLACEHOLDERS · SEASONS · DISBURSEMENT
+   ============================================================ */
+.about-text p, .prose p { text-align: justify; }
+.about-layout { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: start; }
+.about-layout .about-text { max-width: none; margin: 0; }
+.prose { max-width: 820px; margin: 0 auto; }
+.prose p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--ink); font-weight: 700; }
+
+/* Image placeholder — swap for a real <img> when photos are ready */
+.img-ph { position: relative; border-radius: 16px; overflow: hidden; min-height: 280px; background: linear-gradient(135deg, var(--mg-tint) 0%, #eef2f8 100%); border: 1.5px dashed var(--mg-border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--mg-deep); text-align: center; padding: 24px; }
+.img-ph::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(79,70,229,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79,70,229,0.06) 1px, transparent 1px); background-size: 22px 22px; pointer-events: none; }
+.img-ph svg { width: 44px; height: 44px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: 0.7; position: relative; z-index: 1; }
+.img-ph span { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.8; position: relative; z-index: 1; }
+.img-ph.wide { min-height: 320px; }
+
+/* Grantee montage carousel — one photo per grantee, auto-rotating.
+   Built by JS into any .img-ph[data-montage]. */
+.img-ph.is-montage { border: none; background: #0b1020; padding: 0; }
+.img-ph.is-montage::after { display: none; }
+.mcar { position: absolute; inset: 0; z-index: 1; }
+.mcar-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .8s ease; }
+.mcar-slide.is-active { opacity: 1; }
+.mcar-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 34px; height: 34px; border: none; border-radius: 50%; background: rgba(0,0,0,0.42); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s ease, background .2s ease; z-index: 4; }
+.mcar-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; opacity: 1; }
+.img-ph.is-montage:hover .mcar-btn, .mcar-btn:focus-visible { opacity: 1; }
+.mcar-btn:hover { background: rgba(0,0,0,0.7); }
+.mcar-btn:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+.mcar-prev { left: 10px; }
+.mcar-next { right: 10px; }
+.mcar-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; display: flex; flex-direction: column; gap: 2px; padding: 40px 16px 14px; text-align: left; background: linear-gradient(to top, rgba(0,0,0,0.78), rgba(0,0,0,0)); color: #fff; }
+.mcar-cap .lbl { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.72; }
+.mcar-cap .nm { font-size: 15px; font-weight: 700; line-height: 1.3; text-transform: none; letter-spacing: normal; opacity: 1; }
+.mcar-dots { position: absolute; bottom: 12px; right: 14px; z-index: 4; display: flex; gap: 6px; }
+.mcar-dot { width: 7px; height: 7px; padding: 0; border: none; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: background .2s ease, transform .2s ease; }
+.mcar-dot.is-active { background: #fff; transform: scale(1.3); }
+@media (prefers-reduced-motion: reduce) { .mcar-slide { transition: none; } }
+
+/* Quarterly seasons */
+.seasons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.season-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 20px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.season-card:hover { transform: translateY(-5px); border-color: var(--mg-border); box-shadow: 0 18px 40px -22px rgba(79,70,229,0.5); }
+.season-card .s-icon { width: 40px; height: 40px; border-radius: 11px; background: var(--mg-tint); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.season-card .s-icon svg { width: 20px; height: 20px; fill: none; stroke: var(--mg-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.season-card h3 { font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.season-card p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+/* Two-instalment disbursement */
+.instalments { max-width: 820px; margin: 26px auto 0; display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: stretch; }
+.instal { border-radius: 16px; padding: 24px 26px; color: #fff; }
+.instal.one { background: linear-gradient(135deg, var(--mg) 0%, var(--mg-deep) 100%); }
+.instal.two { background: linear-gradient(135deg, var(--mg-partner) 0%, var(--mg-partner-deep) 100%); }
+.instal .pc { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.instal .t { font-size: 13.5px; font-weight: 700; margin: 8px 0 5px; }
+.instal .d { font-size: 12.5px; opacity: 0.85; line-height: 1.55; }
+.instal-arrow { display: flex; align-items: center; justify-content: center; color: var(--faint); }
+.instal-arrow svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Visibility note */
+.vis-note { max-width: 820px; margin: 30px auto 0; display: flex; align-items: flex-start; gap: 12px; padding: 16px 20px; background: var(--mg-tint); border: 1px solid var(--mg-border); border-left: 4px solid var(--mg); border-radius: 0 12px 12px 0; }
+.vis-note svg { flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; color: var(--mg-deep); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.vis-note p { font-size: 13px; color: #46427a; line-height: 1.6; text-align: justify; }
+.vis-note strong { color: var(--mg-deep); font-weight: 700; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .container, .container-narrow, .prog-hero-inner, .subscribe-inner { padding-left: 28px; padding-right: 28px; }
+  .stat-band { grid-template-columns: repeat(2, 1fr); }
+  .ia-grid { grid-template-columns: 1fr; }
+  .elig-grid { grid-template-columns: 1fr; }
+  .grantees-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-layout { grid-template-columns: 1fr; }
+  .seasons { grid-template-columns: repeat(2, 1fr); }
+  .proc { grid-template-columns: repeat(3, 1fr); row-gap: 26px; }
+  .proc::before { display: none; }
+}
+@media (max-width: 768px) {
+  .prog-hero { padding: 48px 0 64px; }
+  .hero-quickstats { margin-top: -36px; padding: 0 20px; }
+  .calc { padding: 26px 22px 30px; }
+  .calc-legend, .check-grid, .applicant-types { grid-template-columns: 1fr; }
+  .stat-band { grid-template-columns: 1fr; }
+  .grantees-grid { grid-template-columns: 1fr; }
+  .seasons { grid-template-columns: 1fr; }
+  .instalments { grid-template-columns: 1fr; }
+  .instal-arrow { transform: rotate(90deg); }
+  .proc { grid-template-columns: repeat(2, 1fr); }
+  .eligrid { grid-template-columns: 1fr; }
+  .calc-seg .lbl { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .calc-seg { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- NAVBAR -->
+<div id="navbar-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_navbar.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
+</script>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="prog-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb-1"></div>
+  <div class="hero-orb-2"></div>
+  <div class="prog-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span><a href="/our-programs/">Our Programmes</a><span>›</span>Matching Grants
+    </nav>
+
+    <div class="status-pill">
+      <span class="status-pill-dot"></span>
+      <span class="status-pill-text">Latest call under evaluation · Co-financing scheme</span>
+    </div>
+
+    <h1>Matching Grants</h1>
+    <p class="tagline">Co-financing for small, short-term regional projects that already have a second funder on board. The Western Balkans Fund matches up to 50% of eligible costs, a maximum of €10,000, to help strong regional ideas reach further.</p>
+    <p class="footnote">Designed for CSOs and other non-profit entities delivering fast, visible cooperation across the WB6 in partnership with another donor.</p>
+
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#calculator">
+        <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        See how the match works
+      </a>
+      <a class="btn-ghost" href="#eligibility">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Check if you're eligible
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Hero quick-stats — three short cards overlapping the navy hero (GGI-style) -->
+<div class="hero-quickstats">
+  <div class="stat-band" id="stats" data-reveal data-stagger>
+    <div class="stat-cell" style="--i:0">
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M17 5.2A7.5 7.5 0 1 0 17 18.8"/><line x1="3" y1="10.5" x2="14.5" y2="10.5"/><line x1="3" y1="13.5" x2="13" y2="13.5"/></svg></div>
+      <div class="stat-num" data-count="10000" data-prefix="€" data-comma>0</div>
+      <div class="label">Maximum grant</div>
+      <div class="sub">Covering up to 50% of eligible costs</div>
+    </div>
+    <div class="stat-cell" style="--i:1">
+      <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div>
+      <div class="stat-num" data-count="50" data-suffix="%">0</div>
+      <div class="label">Co-funding required</div>
+      <div class="sub">Remaining half from another donor</div>
+    </div>
+    <div class="stat-cell" style="--i:2">
+      <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <div class="stat-num"><span data-count="2">0</span>–<span data-count="4">0</span></div>
+      <div class="label">Months duration</div>
+      <div class="sub">Ready for rapid implementation</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="overline">The Matching Grant Scheme</div>
+      <h2>Supporting regional cooperation across the Western Balkans</h2>
+    </div>
+    <div class="about-layout">
+      <div class="about-text" data-reveal>
+        <p>The Western Balkans Fund's <strong>Matching Grants</strong> scheme supports small, short-term regional cooperation projects across the six WB6 Contracting Parties: Albania, Bosnia and Herzegovina, Kosovo<sup class="fn-star">*</sup>, Montenegro, North Macedonia and Serbia. Through this mechanism, the Fund co-finances initiatives led by civil society organisations and other non-profit entities, helping them grow local project ideas into genuinely regional, cross-border collaborations.</p>
+        <p>Grants do not exceed <strong>€10,000</strong> and cover up to <strong>half of a project's total eligible costs</strong>, with the remaining share required to come from another donor rather than the applicant's own resources. Funded projects run for <strong>two to four months</strong> (including the final reporting phase) and take place within the Western Balkans region itself, with only occasional exceptions for activities that promote the region on an international stage.</p>
+        <p class="inline-fn"><strong>*</strong>This designation is without prejudice to positions on status and is in line with UNSCR 1244 and the ICJ Opinion on the Kosovo declaration of independence.</p>
+      </div>
+      <div class="img-ph" data-reveal data-montage role="img" aria-label="Photos from previous grantee projects">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Grantee projects</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CO-FINANCING CALCULATOR — interactive centrepiece
+     ============================================================ -->
+<section class="section section-calc" id="calculator">
+  <div class="container-narrow">
+    <div class="sec-head" data-reveal>
+      <div class="overline">The 50 / 50 principle</div>
+      <h2>How the match works</h2>
+      <p>WBF covers up to half of your eligible costs, capped at €10,000. The remaining share must come from another donor. Move the slider to see the split for a project of any size.</p>
+    </div>
+
+    <div class="calc" id="calc" data-reveal>
+      <div class="calc-top">
+        <div>
+          <div class="k">Total eligible project cost</div>
+          <div class="calc-cost"><span class="cur">€</span><span id="calcCost">20,000</span></div>
+        </div>
+        <div class="calc-hint-cap" id="calcCap">Capped · WBF share holds at the €10,000 ceiling</div>
+      </div>
+
+      <input type="range" class="calc-range" id="calcRange" min="2000" max="40000" step="500" value="20000"
+             aria-label="Total eligible project cost" aria-valuemin="2000" aria-valuemax="40000" aria-valuenow="20000">
+
+      <div class="calc-drag-hint" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Drag to try any project size
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <div class="calc-track" role="img" aria-label="Split of project funding between WBF and your co-funding">
+        <div class="calc-seg wbf" id="segWbf" style="width:50%">
+          <span class="lbl">WBF matches</span>
+          <span class="amt" id="segWbfAmt">€10,000</span>
+        </div>
+        <div class="calc-seg partner" id="segPartner" style="width:50%">
+          <span class="lbl">Your co-funding</span>
+          <span class="amt" id="segPartnerAmt">€10,000</span>
+        </div>
+      </div>
+
+      <div class="calc-legend">
+        <div class="calc-leg wbf">
+          <div><span class="dot"></span><span class="name">WBF Matching Grant</span></div>
+          <div class="sub">Up to 50% of eligible costs · max €10,000</div>
+          <div class="big" id="legWbf">€10,000</div>
+          <div class="pct" id="legWbfPct">50% of total</div>
+        </div>
+        <div class="calc-leg partner">
+          <div><span class="dot"></span><span class="name">Co-funding from another donor</span></div>
+          <div class="sub">Secured before you apply, not from WBF</div>
+          <div class="big" id="legPartner">€10,000</div>
+          <div class="pct" id="legPartnerPct">50% of total</div>
+        </div>
+      </div>
+
+      <p class="calc-foot"><strong>Illustration only.</strong> Actual awards depend on your budget and the evaluation. Above €20,000 in eligible costs, the WBF share stays fixed at the €10,000 maximum while your co-funding covers the balance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRIORITY AREAS
+     ============================================================ -->
+<section class="section section-alt" id="areas">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="overline">Priority areas</div>
+      <h2>Where matching grants make a difference</h2>
+      <p>An eligible project must fall under at least one of the three priority areas below.</p>
+    </div>
+
+    <div class="ia-grid" data-tilt data-stagger>
+      <div class="ia-card" data-reveal style="--i:0">
+        <div class="ia-head">
+          <span class="ia-num">01</span>
+          <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        </div>
+        <div class="ia-body">
+          <div class="ia-title">Cultural cooperation</div>
+          <p class="ia-desc">Bringing communities together through shared cultural practice and creative exchange across borders.</p>
+          <ul class="ia-examples">
+            <li>Regional festivals</li>
+            <li>Heritage preservation</li>
+            <li>Artistic exchanges</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ia-card" data-reveal style="--i:1">
+        <div class="ia-head">
+          <span class="ia-num">02</span>
+          <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        </div>
+        <div class="ia-body">
+          <div class="ia-title">Education &amp; scientific exchange</div>
+          <p class="ia-desc">Advancing knowledge, skills and joint learning between institutions and communities in the region.</p>
+          <ul class="ia-examples">
+            <li>Academic events</li>
+            <li>Regional research</li>
+            <li>Capacity building</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ia-card" data-reveal style="--i:2">
+        <div class="ia-head">
+          <span class="ia-num">03</span>
+          <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/><line x1="9" y1="21" x2="15" y2="21"/><line x1="10" y1="17" x2="10" y2="21"/><line x1="14" y1="17" x2="14" y2="21"/></svg></div>
+        </div>
+        <div class="ia-body">
+          <div class="ia-title">Sustainable development</div>
+          <p class="ia-desc">Building a greener, more resilient regional economy that creates opportunity for young people.</p>
+          <ul class="ia-examples">
+            <li>Youth entrepreneurship</li>
+            <li>Tourism</li>
+            <li>Green economy</li>
+            <li>SME support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="crosscut" data-reveal>
+      <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+      <p><strong>Cross-cutting themes are rewarded.</strong> Gender, youth, inclusion, environment and EU integration are encouraged throughout, and scored during the evaluation of every proposal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ELIGIBILITY
+     ============================================================ -->
+<section class="section" id="eligibility">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="overline">Who can apply</div>
+      <h2>Eligible applicants &amp; partners</h2>
+      <p>Applicants and partners must be legal, non-profit entities based in the WB6, with prior experience in donor-funded or regional projects.</p>
+    </div>
+
+    <div class="elig-grid">
+      <div class="applicant-types" data-reveal data-stagger>
+        <div class="atype" style="--i:0"><span class="ai"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span><span class="an">CSOs &amp; NGOs</span></div>
+        <div class="atype" style="--i:1"><span class="ai"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg></span><span class="an">Public bodies</span></div>
+        <div class="atype" style="--i:2"><span class="ai"><svg viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><span class="an">Educational institutions</span></div>
+        <div class="atype" style="--i:3"><span class="ai"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><span class="an">Business associations</span></div>
+        <div class="atype" style="--i:4"><span class="ai"><svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></span><span class="an">Media associations</span></div>
+        <div class="atype" style="--i:5"><span class="ai"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 17l-6.3 4.4L8 14 2 9.4h7.6z"/></svg></span><span class="an">Cultural &amp; sports institutions</span></div>
+      </div>
+
+      <div class="req-card" data-reveal>
+        <h3>Every applicant must</h3>
+        <ul class="req-list">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>Be a <strong>legal, non-profit entity</strong> based in one of the WB6 Contracting Parties.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>Have <strong>prior experience</strong> managing donor-funded or regional projects.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>Be able to <strong>demonstrate secured co-funding</strong> for the remaining share.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>Not be currently funded or rejected under another WBF grant.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STRONG PROJECT
+     ============================================================ -->
+<section class="section section-alt" id="strong-project">
+  <div class="container-narrow">
+    <div class="sec-head" data-reveal>
+      <div class="overline">What counts as an eligible project</div>
+      <h2>What makes a strong application</h2>
+      <p>Regional cooperation sits at the heart of every application: projects must bring together partners from several WBF Contracting Parties, reflecting an insistence on substantive rather than symbolic collaboration. A competitive project meets all four criteria below.</p>
+    </div>
+    <div class="check-grid" data-reveal data-stagger>
+      <div class="check-tile" style="--i:0">
+        <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <h3>Genuine regional partnership</h3>
+        <p>Involves partners from at least two WBF Contracting Parties, with activities inside the WB6 region.</p>
+      </div>
+      <div class="check-tile" style="--i:1">
+        <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <h3>Clear, regional results</h3>
+        <p>Is regionally relevant and shows concrete, measurable results in at least one priority area.</p>
+      </div>
+      <div class="check-tile" style="--i:2">
+        <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <h3>Ready to move fast</h3>
+        <p>Can be implemented rapidly, within a project window of two to four months.</p>
+      </div>
+      <div class="check-tile" style="--i:3">
+        <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <h3>A real visibility plan</h3>
+        <p>Includes a clear plan to acknowledge and communicate WBF's support throughout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COSTS
+     ============================================================ -->
+<section class="section" id="costs">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="overline">What the grant covers</div>
+      <h2>Eligible costs</h2>
+      <p>The scheme funds the practical, activity-focused costs of running a regional project.</p>
+    </div>
+    <div class="eligrid" data-reveal data-stagger>
+      <div class="eli-card" style="--i:0">
+        <div class="eli-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="eli-tx">
+          <h3>Travel &amp; accommodation</h3>
+          <p>For the people delivering your project activities.</p>
+          <div class="eli-caps">
+            <span class="eli-cap">max €0.30 / km</span>
+            <span class="eli-cap">max €65 / night</span>
+          </div>
+        </div>
+      </div>
+      <div class="eli-card" style="--i:1">
+        <div class="eli-ic"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-5h6v5"/></svg></div>
+        <div class="eli-tx">
+          <h3>Venue rental &amp; event catering</h3>
+          <p>Spaces and catering for your events and gatherings.</p>
+        </div>
+      </div>
+      <div class="eli-card" style="--i:2">
+        <div class="eli-ic"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <div class="eli-tx">
+          <h3>Space &amp; equipment rental</h3>
+          <p>For events, training sessions and workshops.</p>
+        </div>
+      </div>
+      <div class="eli-card" style="--i:3">
+        <div class="eli-ic"><svg viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+        <div class="eli-tx">
+          <h3>Communication &amp; visibility</h3>
+          <p>Promotion, media and visibility materials.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="cost-note" data-reveal>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span><strong>Not covered:</strong> salaries &amp; human resources, external expertise &amp; consultancy, indirect costs, any expenditure incurred before the contract date, and anything of a political, religious, or luxury nature.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW TO APPLY
+     ============================================================ -->
+<section class="section section-alt" id="apply">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="overline">How to apply</div>
+      <h2>From idea to submission</h2>
+      <p>Six steps take a regional idea from first draft to a signed grant.</p>
+    </div>
+
+    <div class="proc" data-reveal data-stagger>
+      <div class="proc-step" style="--i:0">
+        <div class="proc-node">1</div>
+        <div class="proc-card">
+          <div class="proc-icon"><svg viewBox="0 0 24 24"><path d="M17 5.2A7.5 7.5 0 1 0 17 18.8"/><line x1="3" y1="10.5" x2="14.5" y2="10.5"/><line x1="3" y1="13.5" x2="13" y2="13.5"/></svg></div>
+          <h3>Secure co-funding</h3>
+          <p>Confirm another donor for the share WBF does not cover.</p>
+        </div>
+      </div>
+      <div class="proc-step" style="--i:1">
+        <div class="proc-node">2</div>
+        <div class="proc-card">
+          <div class="proc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+          <h3>Build your partnership</h3>
+          <p>At least two partners from two Contracting Parties.</p>
+        </div>
+      </div>
+      <div class="proc-step" style="--i:2">
+        <div class="proc-node">3</div>
+        <div class="proc-card">
+          <div class="proc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
+          <h3>Prepare the budget</h3>
+          <p>Clear and balanced, showing how the shares fit together.</p>
+        </div>
+      </div>
+      <div class="proc-step" style="--i:3">
+        <div class="proc-node">4</div>
+        <div class="proc-card">
+          <div class="proc-icon"><svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+          <h3>Submit as lead</h3>
+          <p>One application per organisation, with all annexes.</p>
+        </div>
+      </div>
+      <div class="proc-step" style="--i:4">
+        <div class="proc-node">5</div>
+        <div class="proc-card">
+          <div class="proc-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <h3>Implement &amp; stay visible</h3>
+          <p>Deliver in 2–4 months, acknowledging WBF throughout.</p>
+        </div>
+      </div>
+      <div class="proc-step" style="--i:5">
+        <div class="proc-node">6</div>
+        <div class="proc-card">
+          <div class="proc-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>Report within 30 days</h3>
+          <p>Submit the final report within 30 days of completion.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SEASONS, SELECTION & DISBURSEMENT
+     ============================================================ -->
+<section class="section" id="decisions" style="padding-bottom:20px;">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="overline">Seasons, selection &amp; disbursement</div>
+      <h2>How applications are reviewed and funded</h2>
+      <p>Applications are accepted on a rolling basis throughout the year, then reviewed and decided in four quarterly seasons, with each cycle's results published within a matter of weeks after its submission window closes.</p>
+    </div>
+
+    <div class="seasons" data-reveal data-stagger>
+      <div class="season-card" style="--i:0">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M6 8c0 4 3 6 6 6s6-2 6-6"/><path d="M8 14l-3 4M16 14l3 4"/></svg></div>
+        <h3>Autumn</h3>
+        <p>Submissions reviewed and decided in the autumn cycle.</p>
+      </div>
+      <div class="season-card" style="--i:1">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg></div>
+        <h3>Winter</h3>
+        <p>Submissions reviewed and decided in the winter cycle.</p>
+      </div>
+      <div class="season-card" style="--i:2">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5c0 3 5 10 5 10s5-7 5-10a5 5 0 0 0-5-5z"/><path d="M9 20h6"/></svg></div>
+        <h3>Spring</h3>
+        <p>Submissions reviewed and decided in the spring cycle.</p>
+      </div>
+      <div class="season-card" style="--i:3">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M17 7l2-2M5 19l2-2"/></svg></div>
+        <h3>Summer</h3>
+        <p>Submissions reviewed and decided in the summer cycle.</p>
+      </div>
+    </div>
+
+    <div class="instalments" data-reveal>
+      <div class="instal one">
+        <div class="pc">50%</div>
+        <div class="t">On signing the contract</div>
+        <div class="d">The first instalment is released as soon as the grant contract is signed.</div>
+      </div>
+      <div class="instal-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="instal two">
+        <div class="pc">50%</div>
+        <div class="t">After the final report</div>
+        <div class="d">The remainder follows approval of the final report, due within 30 days of the project's completion.</div>
+      </div>
+    </div>
+
+    <div class="vis-note" data-reveal>
+      <svg viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+      <p><strong>Visibility is required.</strong> Every funded project implements a visibility and communication plan that clearly acknowledges WBF's contribution, giving its logo equal prominence alongside other donors, and inviting WBF representatives to take part in project launch events.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PREVIOUS GRANTEES — showcase (populate over time)
+     ============================================================ -->
+<section class="section section-grantees" id="grantees" style="padding-top:36px;">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <div class="overline">Previous grantees</div>
+      <h2 style="white-space:nowrap;">Some projects the matching grant has supported</h2>
+    </div>
+
+    <div class="grantees-grid" data-reveal data-stagger>
+      <article class="grantee-card" style="--i:0">
+        <div class="grantee-photo" data-gallery="balkan-economic-conference">
+          <span class="grantee-flag">North Macedonia</span>
+        </div>
+        <div class="grantee-body">
+          <div class="grantee-name">Annual Balkan Economic Conference 2025</div>
+          <p class="grantee-org"><strong>Association BEF Skopje</strong></p>
+        </div>
+      </article>
+
+      <article class="grantee-card" style="--i:1">
+        <div class="grantee-photo v-copper" data-gallery="art-in-vertical-tirana">
+          <span class="grantee-flag">Albania</span>
+        </div>
+        <div class="grantee-body">
+          <div class="grantee-name">ART-IN Vertical, Regional Edition</div>
+          <p class="grantee-org"><strong>Fusion Act Centre Tirana</strong></p>
+        </div>
+      </article>
+
+      <article class="grantee-card" style="--i:2">
+        <div class="grantee-photo v-navy" data-gallery="bsc-young-leaders">
+          <span class="grantee-flag">Serbia</span>
+        </div>
+        <div class="grantee-body">
+          <div class="grantee-name">BSC Young Leaders: Clearing Pathways to Freedom</div>
+          <p class="grantee-org"><strong>Belgrade Centre for Security Policy</strong></p>
+        </div>
+      </article>
+
+      <article class="grantee-card" style="--i:3">
+        <div class="grantee-photo" data-gallery="poke-the-bubble">
+          <span class="grantee-flag">Serbia</span>
+        </div>
+        <div class="grantee-body">
+          <div class="grantee-name">Poke the Bubble: Regional Outreach Youth Work Network and Policy Dialogue</div>
+          <p class="grantee-org"><strong>Center for Youth Work</strong></p>
+        </div>
+      </article>
+
+      <article class="grantee-card" style="--i:4">
+        <div class="grantee-photo v-copper" data-gallery="regional-capacity-building">
+          <span class="grantee-flag">North Macedonia</span>
+        </div>
+        <div class="grantee-body">
+          <div class="grantee-name">Regional capacity-building for transparency and EU Alignment in state aid practices in the Western Balkans</div>
+          <p class="grantee-org"><strong>Finance Think Skopje</strong></p>
+        </div>
+      </article>
+
+      <article class="grantee-card" style="--i:5">
+        <div class="grantee-photo v-navy" data-gallery="mitrovica-jazz-days">
+          <span class="grantee-flag">Kosovo</span>
+        </div>
+        <div class="grantee-body">
+          <div class="grantee-name">Young WB6 Musicians at Mitrovica International Jazz Days (MIJD), Phase II</div>
+          <p class="grantee-org"><strong>Rona Nishliu Foundation</strong></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="grantees-cta" data-reveal style="text-align:center; margin-top:40px;">
+      <a class="btn-primary" href="/ourgrantees/">
+        See all grantees
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/components/_MASTER_footer.html')
+    .then(r => r.ok ? r.text() : '')
+    .then(html => {
+      const el = document.getElementById('footer-placeholder');
+      el.innerHTML = html;
+      el.querySelectorAll('script').forEach(s => {
+        const n = document.createElement('script');
+        n.textContent = s.textContent;
+        s.replaceWith(n);
+      });
+    });
+</script>
+
+<!-- ============================================================
+     MOTION SCRIPT — reveals + tilt
+     ============================================================ -->
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1. Scroll reveals
+  var reveals = document.querySelectorAll('[data-reveal]');
+  if (reduce || !('IntersectionObserver' in window)) {
+    Array.prototype.forEach.call(reveals, function (el) { el.classList.add('is-visible'); });
+  } else {
+    var io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    Array.prototype.forEach.call(reveals, function (el) { io.observe(el); });
+    setTimeout(function () { Array.prototype.forEach.call(reveals, function (el) { el.classList.add('is-visible'); }); }, 3000);
+  }
+
+  // 2. Pointer 3D tilt on cards
+  var finePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!reduce && finePointer) {
+    var MAX = 6;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-tilt] > *'), function (card) {
+      var raf = null;
+      function onMove(ev) {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = null;
+          var r = card.getBoundingClientRect();
+          var px = (ev.clientX - r.left) / r.width - 0.5;
+          var py = (ev.clientY - r.top) / r.height - 0.5;
+          card.style.transform = 'perspective(900px) rotateX(' + (-py * MAX).toFixed(2) + 'deg) rotateY(' + (px * MAX).toFixed(2) + 'deg) translateY(-8px)';
+        });
+      }
+      function reset() { if (raf) { cancelAnimationFrame(raf); raf = null; } card.style.transform = ''; }
+      card.addEventListener('pointermove', onMove);
+      card.addEventListener('pointerleave', reset);
+    });
+  }
+})();
+</script>
+
+<!-- ============================================================
+     COUNT-UP — key features
+     ============================================================ -->
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var section = document.getElementById('stats');
+  if (!section) return;
+
+  function fmt(el, val) {
+    var out = Math.round(val);
+    if (el.hasAttribute('data-comma')) out = out.toLocaleString('en-US');
+    return (el.getAttribute('data-prefix') || '') + out + (el.getAttribute('data-suffix') || '');
+  }
+  function runCounts() {
+    Array.prototype.forEach.call(section.querySelectorAll('[data-count]'), function (el) {
+      var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      if (reduce) { el.textContent = fmt(el, target); return; }
+      var start = null, dur = 1400;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(el, eased * target);
+        if (p < 1) requestAnimationFrame(step); else el.textContent = fmt(el, target);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  var done = false;
+  function activate() { if (done) return; done = true; runCounts(); }
+  if (reduce || !('IntersectionObserver' in window)) { activate(); }
+  else {
+    var so = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { activate(); so.disconnect(); } });
+    }, { threshold: 0.35 });
+    so.observe(section);
+    setTimeout(activate, 3500);
+  }
+})();
+</script>
+
+<!-- ============================================================
+     CO-FINANCING CALCULATOR
+     ============================================================ -->
+<script>
+(function () {
+  var range = document.getElementById('calcRange');
+  if (!range) return;
+  var CAP = 10000, RATE = 0.5;
+  var el = {
+    calc: document.getElementById('calc'),
+    cost: document.getElementById('calcCost'),
+    segWbf: document.getElementById('segWbf'),
+    segPartner: document.getElementById('segPartner'),
+    segWbfAmt: document.getElementById('segWbfAmt'),
+    segPartnerAmt: document.getElementById('segPartnerAmt'),
+    legWbf: document.getElementById('legWbf'),
+    legPartner: document.getElementById('legPartner'),
+    legWbfPct: document.getElementById('legWbfPct'),
+    legPartnerPct: document.getElementById('legPartnerPct')
+  };
+  function money(n) { return '€' + Math.round(n).toLocaleString('en-US'); }
+  function update() {
+    var total = parseInt(range.value, 10) || 0;
+    var wbf = Math.min(total * RATE, CAP);
+    var partner = total - wbf;
+    var wbfPct = total ? (wbf / total) * 100 : 50;
+    var capped = wbf >= CAP && total > CAP / RATE;
+
+    var fill = ((total - 2000) / (40000 - 2000)) * 100;
+    range.style.setProperty('--fill', fill + '%');
+
+    el.cost.textContent = total.toLocaleString('en-US');
+    el.segWbf.style.width = wbfPct + '%';
+    el.segPartner.style.width = (100 - wbfPct) + '%';
+    el.segWbfAmt.textContent = money(wbf);
+    el.segPartnerAmt.textContent = money(partner);
+    el.legWbf.textContent = money(wbf);
+    el.legPartner.textContent = money(partner);
+    el.legWbfPct.textContent = Math.round(wbfPct) + '% of total';
+    el.legPartnerPct.textContent = Math.round(100 - wbfPct) + '% of total';
+    el.calc.classList.toggle('is-capped', capped);
+    range.setAttribute('aria-valuenow', total);
+    range.setAttribute('aria-valuetext', money(total) + ' total · WBF ' + money(wbf));
+  }
+  range.addEventListener('input', update);
+  update();
+})();
+</script>
+
+<!-- ============================================================
+     GRANTEE PHOTO CAROUSELS — one per .grantee-photo[data-gallery].
+     File lists are explicit because folder naming is not uniform
+     (mixed .jpg/.png, gaps, non-padded numbers).
+     ============================================================ -->
+<script>
+(function () {
+  var BASE = '/assets/images/matching/';
+  var GALLERIES = {
+    'balkan-economic-conference': [
+      'balkan-economic-conference-01.jpg','balkan-economic-conference-02.jpg',
+      'balkan-economic-conference-03.jpg','balkan-economic-conference-04.jpg'
+    ],
+    'art-in-vertical-tirana': [
+      'art-in-vertical-tirana-01.jpg','art-in-vertical-tirana-02.jpg','art-in-vertical-tirana-03.jpg',
+      'art-in-vertical-tirana-04.jpg','art-in-vertical-tirana-05.jpg','art-in-vertical-tirana-06.jpg',
+      'art-in-vertical-tirana-07.jpg','art-in-vertical-tirana-08.jpg','art-in-vertical-tirana-09.jpg',
+      'art-in-vertical-tirana-10.jpg'
+    ],
+    'bsc-young-leaders': [
+      'bsc-young-leaders-01.jpg','bsc-young-leaders-02.jpg','bsc-young-leaders-03.jpg',
+      'bsc-young-leaders-04.jpg','bsc-young-leaders-05.jpg'
+    ],
+    'poke-the-bubble': [
+      'poke-the-bubble-01.jpg','poke-the-bubble-02.png','poke-the-bubble-03.png','poke-the-bubble-04.jpg',
+      'poke-the-bubble-05.jpg','poke-the-bubble-06.jpg','poke-the-bubble-07.jpg','poke-the-bubble-08.jpg'
+    ],
+    'regional-capacity-building': [
+      'regional-capacity-building-01.jpg','regional-capacity-building-02.jpg',
+      'regional-capacity-building-04.jpg','regional-capacity-building-05.jpg'
+    ],
+    'mitrovica-jazz-days': [
+      'mitrovica-jazz-days-1.jpg','mitrovica-jazz-days-2.jpg','mitrovica-jazz-days-3.jpg',
+      'mitrovica-jazz-days-4.jpg','mitrovica-jazz-days-5.jpg','mitrovica-jazz-days-6.jpg',
+      'mitrovica-jazz-days-7.jpg','mitrovica-jazz-days-8.jpg','mitrovica-jazz-days-9.jpg',
+      'mitrovica-jazz-days-10.jpg','mitrovica-jazz-days-11.jpg','mitrovica-jazz-days-12.jpg',
+      'mitrovica-jazz-days-13.jpg'
+    ]
+  };
+
+  var ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>';
+
+  // Collected while building the per-grantee carousels: one representative
+  // photo (the first) + project name per grantee, in card order. Used to
+  // populate the montage carousels in the .img-ph[data-montage] slots.
+  var montage = [];
+
+  Array.prototype.forEach.call(document.querySelectorAll('.grantee-photo[data-gallery]'), function (ph) {
+    var slug = ph.getAttribute('data-gallery');
+    var files = GALLERIES[slug];
+    if (!files || !files.length) return;
+    var name = (ph.parentElement.querySelector('.grantee-name') || {}).textContent || slug;
+    montage.push({ srcs: files.map(function (f) { return BASE + slug + '/' + f; }), name: name });
+
+    var car = document.createElement('div');
+    car.className = 'gcar';
+
+    files.forEach(function (f, i) {
+      var img = document.createElement('img');
+      img.className = 'gcar-slide' + (i === 0 ? ' is-active' : '');
+      img.src = BASE + slug + '/' + f;
+      img.alt = name + ' — photo ' + (i + 1);
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      car.appendChild(img);
+    });
+
+    var dots = document.createElement('div');
+    dots.className = 'gcar-dots';
+
+    var idx = 0;
+    var slides = car.querySelectorAll('.gcar-slide');
+
+    function go(n) {
+      idx = (n + slides.length) % slides.length;
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.toggle('is-active', i === idx);
+        dots.children[i].classList.toggle('is-active', i === idx);
+      }
+    }
+
+    if (files.length > 1) {
+      var prev = document.createElement('button');
+      prev.className = 'gcar-btn gcar-prev';
+      prev.type = 'button';
+      prev.setAttribute('aria-label', 'Previous photo');
+      prev.innerHTML = ARROW;
+      prev.addEventListener('click', function () { go(idx - 1); });
+
+      var next = document.createElement('button');
+      next.className = 'gcar-btn gcar-next';
+      next.type = 'button';
+      next.setAttribute('aria-label', 'Next photo');
+      next.innerHTML = ARROW;
+      next.addEventListener('click', function () { go(idx + 1); });
+
+      files.forEach(function (f, i) {
+        var d = document.createElement('button');
+        d.className = 'gcar-dot' + (i === 0 ? ' is-active' : '');
+        d.type = 'button';
+        d.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+        d.addEventListener('click', function () { go(i); });
+        dots.appendChild(d);
+      });
+
+      car.appendChild(prev);
+      car.appendChild(next);
+      car.appendChild(dots);
+    }
+
+    ph.appendChild(car);
+  });
+
+  /* ── Montage carousels — one photo per grantee, auto-rotating ──────── */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  Array.prototype.forEach.call(document.querySelectorAll('.img-ph[data-montage]'), function (ph, phIndex) {
+    if (!montage.length) return;                 // no grantee photos → keep placeholder
+    ph.innerHTML = '';                            // drop the placeholder icon/label
+    ph.classList.add('is-montage');
+
+    // Each montage slot shows a DIFFERENT photo per grantee: slot 0 uses each
+    // grantee's 1st photo, slot 1 the 2nd, slot 2 the 3rd (wrapping if a
+    // grantee has fewer photos) — so the three carousels never look alike.
+    var car = document.createElement('div');
+    car.className = 'mcar';
+    montage.forEach(function (m, i) {
+      var img = document.createElement('img');
+      img.className = 'mcar-slide' + (i === 0 ? ' is-active' : '');
+      img.src = m.srcs[phIndex % m.srcs.length];
+      img.alt = m.name;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      car.appendChild(img);
+    });
+
+    var cap = document.createElement('div');
+    cap.className = 'mcar-cap';
+    cap.innerHTML = '<span class="lbl">Grantee project</span><span class="nm"></span>';
+    var nm = cap.querySelector('.nm');
+    nm.textContent = montage[0].name;
+
+    var dots = document.createElement('div');
+    dots.className = 'mcar-dots';
+
+    var idx = 0, timer = null;
+    var slides = car.querySelectorAll('.mcar-slide');
+
+    function go(n) {
+      idx = (n + slides.length) % slides.length;
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.toggle('is-active', i === idx);
+        if (dots.children[i]) dots.children[i].classList.toggle('is-active', i === idx);
+      }
+      nm.textContent = montage[idx].name;
+    }
+    function start() { if (reduceMotion || slides.length < 2) return; timer = setInterval(function () { go(idx + 1); }, 4200); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function restart() { stop(); start(); }
+
+    if (montage.length > 1) {
+      var prev = document.createElement('button');
+      prev.type = 'button'; prev.className = 'mcar-btn mcar-prev';
+      prev.setAttribute('aria-label', 'Previous grantee'); prev.innerHTML = ARROW;
+      prev.addEventListener('click', function () { go(idx - 1); restart(); });
+
+      var next = document.createElement('button');
+      next.type = 'button'; next.className = 'mcar-btn mcar-next';
+      next.setAttribute('aria-label', 'Next grantee'); next.innerHTML = ARROW;
+      next.addEventListener('click', function () { go(idx + 1); restart(); });
+
+      montage.forEach(function (m, i) {
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'mcar-dot' + (i === 0 ? ' is-active' : '');
+        d.setAttribute('aria-label', 'Show ' + m.name);
+        d.addEventListener('click', function () { go(i); restart(); });
+        dots.appendChild(d);
+      });
+
+      car.appendChild(prev);
+      car.appendChild(next);
+    }
+
+    ph.appendChild(car);
+    ph.appendChild(cap);
+    ph.appendChild(dots);
+
+    ph.addEventListener('mouseenter', stop);
+    ph.addEventListener('mouseleave', start);
+    ph.addEventListener('focusin', stop);
+    ph.addEventListener('focusout', start);
+
+    start();
+  });
+})();
+</script>
+
+</body>
+</html>

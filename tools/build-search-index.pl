@@ -112,13 +112,17 @@ sub json_str {
   return '"' . $s . '"';
 }
 
-opendir(my $dh, $ROOT) or die "Cannot read $ROOT: $!";
-my @pages = sort grep { /\.html$/ && !$SKIP{$_} } readdir($dh);
-closedir($dh);
+
+# Pages live one per folder as index.html (clean URLs), with the home page
+# at the root. Walk both shapes.
+my @pages = sort grep { /.html$/ && !$SKIP{$_} } glob("$ROOT/*.html");
+push @pages, sort glob("$ROOT/*/index.html");
+@pages = grep { my $p = $_; $p =~ s{^.*/}{}; my $dir = ($_ =~ m{([^/]+)/index.html$}) ? "$1.html" : $p; !$SKIP{$p} && !$SKIP{$dir} } @pages;
+@pages = grep { $_ !~ m{/(assets|audit|components|css|js|tools|redirects)/} } @pages;
 
 my @records;
 for my $file (@pages) {
-  open(my $fh, '<:encoding(UTF-8)', "$ROOT/$file") or do {
+  open(my $fh, '<:encoding(UTF-8)', $file) or do {
     warn "skipping $file: $!\n"; next;
   };
   my $html = do { local $/; <$fh> };
@@ -156,11 +160,19 @@ for my $file (@pages) {
   # Enough for matching and snippets without bloating the index.
   $text = substr($text, 0, 2200) if length($text) > 2200;
 
-  my $type = $TYPE{$file} || 'Page';
+  # /about/index.html -> about ; /index.html -> index
+  my $slug = $file;
+  $slug =~ s{^\Q$ROOT\E/?}{};
+  $slug =~ s{/index\.html$}{};
+  $slug =~ s{\.html$}{};
+  my $url  = ($slug eq 'index' || $slug eq '') ? '/' : "/$slug/";
+
+  my $type = $TYPE{"$slug.html"} || 'Page';
+
 
   push @records, join('',
     '{',
-      '"url":',   json_str('/' . $file), ',',
+      '"url":',   json_str($url), ',',
       '"title":', json_str($title), ',',
       '"type":',  json_str($type), ',',
       '"desc":',  json_str($desc), ',',
