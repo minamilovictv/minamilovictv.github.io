@@ -18,11 +18,18 @@ Thumbs.db
 # Backups / archives (keep out of the repo)
 *.zip
 
-# Large PDFs — reports handled separately (compress or host externally).
-# Exceed GitHub's 100 MB per-file limit; documents.csv still tracked.
-assets/documents/*.pdf
-# …except call documents the live pages link to, which have to ship.
-!assets/documents/guidelines_for_applications_move_7thcall.pdf
+# Documents ship with the site — the depository links straight at them.
+# These few are still too heavy to serve comfortably and are waiting to be
+# compressed; add them back (delete the line) once they are. Committing a
+# large PDF now and replacing it later leaves BOTH copies in git history
+# forever, so it is worth compressing first.
+assets/documents/annual-report-2019.pdf
+assets/documents/annual-report-2020.pdf
+assets/documents/annual-report-2021.pdf
+assets/documents/annual-report-2022.pdf
+assets/documents/annual-report-2024-2025.pdf
+assets/documents/eu-wbf-joint-action-report-2024-2025.pdf
+assets/documents/eu-wbf-joint-action-report-second-call-2023.pdf
 
 # Internal QA audit — working notes, not part of the published site.
 audit/
