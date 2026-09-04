@@ -17,6 +17,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#173D8F">
 <link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
+<meta property="og:title" content="Western Balkans Fund — Building Regional Cooperation">
+<meta property="og:description" content="The Western Balkans Fund funds civil society projects across six Contracting Parties — strengthening reconciliation, EU integration and people-to-people ties.">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
 <meta property="og:image:width" content="1200">
@@ -24,7 +26,51 @@
 <meta property="og:image:alt" content="Western Balkans Fund">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
+<!-- Structured data: who the Fund is, and the site's own search endpoint.
+     Google reads this for the knowledge panel and sitelinks. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://westernbalkansfund.org/#organization",
+      "name": "Western Balkans Fund",
+      "alternateName": "WBF",
+      "url": "https://westernbalkansfund.org/",
+      "logo": "https://westernbalkansfund.org/assets/img/wbf-logo.svg",
+      "image": "https://westernbalkansfund.org/assets/img/og-default.png",
+      "description": "An intergovernmental organisation of the six Western Balkans Contracting Parties, supporting regional cooperation through grants, dialogue and technical assistance.",
+      "email": "info@westernbalkansfund.org",
+      "telephone": "+355 42 400420",
+      "foundingDate": "2015",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rruga \"Skënderbeg\" No. 8, Kati IV, Ap. 35/36",
+        "addressLocality": "Tirana",
+        "addressCountry": "AL"
+      },
+      "sameAs": [
+        "https://www.facebook.com/WesternBalkansFund/",
+        "https://www.instagram.com/westernbalkansfund/",
+        "https://www.linkedin.com/company/westernbalkansfund/",
+        "https://www.youtube.com/@westernbalkansfundwbf5212",
+        "https://www.flickr.com/photos/204725264@N07/albums/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://westernbalkansfund.org/#website",
+      "url": "https://westernbalkansfund.org/",
+      "name": "Western Balkans Fund",
+      "publisher": { "@id": "https://westernbalkansfund.org/#organization" },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
 <link rel="stylesheet" href="/css/tokens.css">
+<script src="/js/feeds.js"></script>
 <link rel="stylesheet" href="/css/site-chrome.css">
 <style>
   /* ============================================================
@@ -1959,6 +2005,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <!-- NAVBAR -->
 <div id="navbar-placeholder"></div>
 <script>
@@ -1966,6 +2014,8 @@
     .then(r => r.ok ? r.text() : '')
     .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
 </script>
+
+<main id="main">
 <!-- ============================================================
      HERO
      ============================================================ -->
@@ -2719,7 +2769,7 @@
 <script>
 (function () {
   'use strict';
-  var CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuA6RB0kC00qvfUU3kU-EMybJGoW-2OuL5DluaHBDyBlcTlK2RVJ3fQhf6wq02hlrG1iQen7jtzCJs/pub?output=csv';
+  var CSV_URL = window.WBF_FEEDS.events;
   var LIMIT = 3;
   var TYPE_LABELS = { 'conference':'Conference','workshop':'Workshop','webinar':'Webinar','info-session':'Info Session','networking':'Networking','awards':'Awards','training':'Training' };
   var COUNTRY = { AL:'Albania', BA:'Bosnia and Herzegovina', XK:'Kosovo', MK:'North Macedonia', ME:'Montenegro', RS:'Serbia' };
@@ -2936,6 +2986,8 @@
 })();
 </script>
 
+
+</main>
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>

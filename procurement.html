@@ -280,6 +280,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <!-- NAVBAR -->
 <div id="navbar-placeholder"></div>
 <script>
@@ -287,6 +289,8 @@
     .then(r => r.ok ? r.text() : '')
     .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; var s = document.createElement('script'); s.src = '/js/nav.js'; document.body.appendChild(s); });
 </script>
+
+<main id="main">
 
 <!-- ============================================================
      PAGE HERO
@@ -361,6 +365,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>

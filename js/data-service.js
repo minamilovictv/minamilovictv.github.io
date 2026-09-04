@@ -51,7 +51,9 @@
   /* ──────────────────────────────────────────────────────────
      1. CONFIG  (swap URLs here when sources change)
      ────────────────────────────────────────────────────────── */
-  const NEWS_SHEET_CSV =
+  /* Prefers the shared config in js/feeds.js when a page loads it; the
+     literal below keeps this file usable on its own. */
+  const NEWS_SHEET_CSV = (window.WBF_FEEDS && window.WBF_FEEDS.news) ||
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vRKUcHa95JJsLTiyuu_4shdv-Oyic1Z2NhTN-PlmtL3pwhPIKIwSnavVieXd4K3894vARwnIeErF5rh/pub?output=csv';
 
   /* Columns of the published sheet, in order:
@@ -284,7 +286,7 @@
      this normaliser exists so other pages (today: the global search)
      can read events without repeating the URL. Keep the URL below in
      step with the one in events.html and index.html. */
-  const EVENTS_SHEET_CSV =
+  const EVENTS_SHEET_CSV = (window.WBF_FEEDS && window.WBF_FEEDS.events) ||
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuA6RB0kC00qvfUU3kU-EMybJGoW-2OuL5DluaHBDyBlcTlK2RVJ3fQhf6wq02hlrG1iQen7jtzCJs/pub?output=csv';
 
   function normalizeEvents(rawRows) {

@@ -256,3 +256,16 @@
   @media (prefers-reduced-motion: reduce) {
     .wbf-top { transition: opacity 0.2s ease, visibility 0.2s; }
   }
+
+/* ============================================================
+   SKIP LINK  (WCAG 2.4.1 — Bypass Blocks)
+   ============================================================
+   Off-screen until focused, then anchored top-left over the header.
+   Pages that already defined their own copy simply override this. */
+  .skip-link {
+    position: absolute; left: -999px; top: 0; z-index: 9999;
+    background: var(--navy); color: #fff;
+    padding: 8px 16px; font-size: var(--text-sm); font-weight: 600;
+    text-decoration: none;
+  }
+  .skip-link:focus { left: 0; }

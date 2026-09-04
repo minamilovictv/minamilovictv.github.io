@@ -26,6 +26,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
   <link rel="stylesheet" href="/css/tokens.css">
+  <script src="/js/feeds.js"></script>
   <link rel="stylesheet" href="/css/site-chrome.css">
 
   <style>
@@ -621,6 +622,8 @@
   </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
   <!-- NAVBAR (shared WBF component) -->
   <div id="navbar-placeholder"></div>
 
@@ -768,7 +771,7 @@
     (function () {
       'use strict';
 
-      const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTTxr9vnfZWXwU51K1a4DhGj6LGBe9Z8mwCPjDN9zL7MWT0RGi49qPJWkd6FnaXxr6THh0gFkPrt1NC/pub?output=csv';
+      const CSV_URL = window.WBF_FEEDS.grantees;
 
       /* SAMPLE_DATA below is illustrative placeholder content for local development
          only. It must NEVER reach real visitors: in production a feed failure shows
