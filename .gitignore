@@ -21,6 +21,8 @@ Thumbs.db
 # Large PDFs — reports handled separately (compress or host externally).
 # Exceed GitHub's 100 MB per-file limit; documents.csv still tracked.
 assets/documents/*.pdf
+# …except call documents the live pages link to, which have to ship.
+!assets/documents/guidelines_for_applications_move_7thcall.pdf
 
 # Internal QA audit — working notes, not part of the published site.
 audit/
