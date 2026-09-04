@@ -52,7 +52,7 @@
      1. CONFIG  (swap URLs here when sources change)
      ────────────────────────────────────────────────────────── */
   const NEWS_FEED_URL =
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ13GJKPShUi8FZlRGKmj821e1YrCeLrnHJ0BDMdFmGTeVZa8iX0DKZJwQiKdHrW_gk0PApvqf3WhVl/pub?output=csv';
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vRKUcHa95JJsLTiyuu_4shdv-Oyic1Z2NhTN-PlmtL3pwhPIKIwSnavVieXd4K3894vARwnIeErF5rh/pub?output=csv';
 
   const CACHE_TTL_MS = 5 * 60 * 1000;   // 5 minutes
 
