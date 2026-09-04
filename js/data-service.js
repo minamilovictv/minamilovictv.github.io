@@ -51,8 +51,20 @@
   /* ──────────────────────────────────────────────────────────
      1. CONFIG  (swap URLs here when sources change)
      ────────────────────────────────────────────────────────── */
-  const NEWS_FEED_URL =
+  const NEWS_SHEET_CSV =
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vRKUcHa95JJsLTiyuu_4shdv-Oyic1Z2NhTN-PlmtL3pwhPIKIwSnavVieXd4K3894vARwnIeErF5rh/pub?output=csv';
+
+  /* Columns of the published sheet, in order:
+       A id · B title · C type · D programme · E date · F excerpt
+       G content · H featured · I status · J coverImage
+       K galleryImages · L galleryVideos · M attachments · N downloadUrl · O externalUrl
+
+     Column G holds the full article body and is roughly three quarters of
+     the file, so a listing asks for everything except G, and G is fetched
+     only once a reader opens an article. Google honours &range= on a
+     published CSV, so this needs nothing on the spreadsheet side. */
+  const NEWS_CARD_RANGES = ['A:F', 'H:O'];
+  const NEWS_BODY_RANGES = ['A:A', 'G:G'];
 
   const CACHE_TTL_MS = 5 * 60 * 1000;   // 5 minutes
 
@@ -303,6 +315,86 @@
   }
 
   /* ──────────────────────────────────────────────────────────
+     5b. NEWS: SPLIT LOADING
+     A listing needs every column except the body, and the body
+     is only wanted for the one article a reader opens. Both
+     halves come from the same published sheet via &range=, so
+     the spreadsheet keeps its single tab and its single URL.
+     ────────────────────────────────────────────────────────── */
+  function rangedUrl(base, range) {
+    return base + (base.indexOf('?') >= 0 ? '&' : '?') + 'range=' + encodeURIComponent(range);
+  }
+
+  /* Fetches several column ranges in parallel and stitches them back into
+     whole rows. The ranges are requested at the same moment and Google
+     returns them in sheet order, so row i of one is row i of the others. */
+  async function loadRanges(base, ranges) {
+    const parts = await Promise.all(ranges.map(r => loadRaw(rangedUrl(base, r))));
+    const rows = [];
+    const len = parts.reduce((m, p) => Math.max(m, p.length), 0);
+    for (let i = 0; i < len; i++) {
+      const row = {};
+      for (const part of parts) Object.assign(row, part[i] || {});
+      rows.push(row);
+    }
+    return rows;
+  }
+
+  /* Cards: everything but the body. Falls back to the whole sheet if the
+     ranged request fails, so a source that ignores &range= still works. */
+  async function loadNewsCards() {
+    try {
+      return await loadRanges(NEWS_SHEET_CSV, NEWS_CARD_RANGES);
+    } catch (err) {
+      console.warn('[WBFData] ranged news fetch failed, loading the whole sheet instead:', err);
+      return loadRaw(NEWS_SHEET_CSV);
+    }
+  }
+
+  /* Bodies: id + content, keyed by id. Cached for the same TTL as the
+     feed, so opening a second article costs nothing. */
+  let bodyCache = null, bodyCacheAt = 0, bodyInflight = null;
+
+  function loadNewsBodies() {
+    const now = Date.now();
+    if (bodyCache && (now - bodyCacheAt) < CACHE_TTL_MS) return Promise.resolve(bodyCache);
+    if (bodyInflight) return bodyInflight;
+
+    bodyInflight = (async () => {
+      try {
+        const rows = await loadRanges(NEWS_SHEET_CSV, NEWS_BODY_RANGES);
+        const map = new Map();
+        for (const row of rows) {
+          const id = String(row.id == null ? '' : row.id).trim();
+          if (id) map.set(id, row.content || '');
+        }
+        bodyCache = map;
+        bodyCacheAt = Date.now();
+        return map;
+      } finally {
+        bodyInflight = null;
+      }
+    })();
+
+    return bodyInflight;
+  }
+
+  /* Returns the item with its body filled in. Already-complete items pass
+     straight through, and a failed body fetch returns the item unchanged
+     so the reader still sees the excerpt rather than an error. */
+  async function hydrateNews(item) {
+    if (!item || item.content) return item;
+    try {
+      const bodies = await loadNewsBodies();
+      const content = bodies.get(String(item.id));
+      return content ? Object.assign({}, item, { content }) : item;
+    } catch (err) {
+      console.error('[WBFData] article body fetch failed:', err);
+      return item;
+    }
+  }
+
+  /* ──────────────────────────────────────────────────────────
      6. FEED REGISTRY  +  CACHE
      Each registered feed is an object:
         { url, normalizer, devFallback?,
@@ -325,7 +417,7 @@
 
     feed.inflight = (async () => {
       try {
-        const raw = await loadRaw(feed.url);
+        const raw = feed.loader ? await feed.loader() : await loadRaw(feed.url);
         const items = feed.normalizer(raw);
         feed.cache = items;
         feed.cacheAt = Date.now();
@@ -377,6 +469,11 @@
     };
   }
 
+  /* Feed-specific additions (e.g. news.hydrate) merged onto the generated API. */
+  function withExtras(api, extras) {
+    return extras ? Object.assign(api, extras) : api;
+  }
+
   function registerFeed(name, url, normalizer, opts) {
     if (!name || !url || typeof normalizer !== 'function') {
       throw new Error('registerFeed(name, url, normalizer) — invalid arguments');
@@ -386,12 +483,13 @@
       url,
       normalizer,
       devFallback: (opts && opts.devFallback) || null,
+      loader: (opts && opts.loader) || null,
       cache: null,
       cacheAt: 0,
       inflight: null
     };
     FEEDS[name] = feed;
-    window.WBFData[name] = buildFeedApi(feed);
+    window.WBFData[name] = withExtras(buildFeedApi(feed), opts && opts.extras);
     return window.WBFData[name];
   }
 
@@ -410,5 +508,9 @@
 
        WBFData._registerFeed('events', EVENTS_URL, normalizeEvents);
   */
-  registerFeed('news', NEWS_FEED_URL, normalizeNews, { devFallback: SAMPLE_NEWS });
+  registerFeed('news', NEWS_SHEET_CSV, normalizeNews, {
+    devFallback: SAMPLE_NEWS,
+    loader: loadNewsCards,
+    extras: { hydrate: hydrateNews }
+  });
 })();
