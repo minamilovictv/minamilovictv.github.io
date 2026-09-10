@@ -144,14 +144,13 @@
   .member-card {
     background: #fff;
     border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 24px 20px 22px;
-    text-align: center;
+    border-radius: 14px;
+    overflow: hidden;
+    text-align: left;
     transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
     font: inherit;
     color: inherit;
   }
@@ -165,25 +164,36 @@
     outline-offset: 2px;
   }
 
+  /* The studio portraits are all shot 4:5, so the frame keeps that format
+     instead of cropping a face into a circle. A colleague with no photo yet
+     falls back to initials in the same 4:5 block, so the grid stays even. */
   .avatar {
-    width: 96px; height: 96px;
-    border-radius: 50%;
+    width: 100%;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
     background: linear-gradient(135deg, #dbe5f1 0%, #b9c8de 100%);
-    margin-bottom: 16px;
     position: relative;
-    box-shadow: 0 0 0 2px transparent;
-    transition: box-shadow 0.2s;
   }
-  .member-card:hover .avatar { box-shadow: 0 0 0 2px #c7d4ea; }
-  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .member-card:hover .avatar img { transform: scale(1.04); }
   .avatar-initials {
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 26px;
+    font-size: 40px;
     color: var(--navy);
+  }
+  .member-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 18px 18px;
   }
 
   .member-name {
@@ -191,7 +201,8 @@
     font-weight: 600;
     color: var(--ink);
     line-height: 1.3;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
+    letter-spacing: -0.01em;
   }
   .member-card:hover .member-name { color: var(--navy); }
 
@@ -207,15 +218,8 @@
   .member-socials {
     display: flex;
     gap: 6px;
-    opacity: 0;
-    transform: translateY(4px);
-    transition: opacity 0.2s, transform 0.2s;
     margin-top: auto;
-  }
-  .member-card:hover .member-socials,
-  .member-card:focus-within .member-socials {
-    opacity: 1;
-    transform: translateY(0);
+    padding-top: 14px;
   }
   .member-social {
     width: 30px; height: 30px;
@@ -246,14 +250,15 @@
   .skeleton-card {
     background: #fff;
     border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 24px 20px;
-    display: flex; flex-direction: column; align-items: center;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    padding-bottom: 18px;
   }
   .sk { background: linear-gradient(90deg, var(--line-soft) 25%, var(--line) 50%, var(--line-soft) 75%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 4px; }
-  .sk-avatar { width: 96px; height: 96px; border-radius: 50%; margin-bottom: 16px; }
-  .sk-line { height: 10px; margin-top: 8px; width: 70%; }
-  .sk-line.short { width: 50%; }
+  .sk-avatar { width: 100%; aspect-ratio: 4 / 5; border-radius: 0; margin-bottom: 8px; }
+  .sk-line { height: 10px; margin: 8px 18px 0; width: 62%; }
+  .sk-line.short { width: 42%; }
   @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
   /* ============================================================
@@ -274,9 +279,8 @@
     
     .members-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  @media (max-width: 420px) {
-    .members-grid { grid-template-columns: 1fr; }
-  }
+  /* Portraits stay two-up on phones: one full-width card per person would
+     turn a fourteen-person page into a very long scroll. */
 
   /* ============================================================
      ALUMNI · acknowledgement of former colleagues
@@ -324,6 +328,12 @@
   @media (max-width: 600px) {
     .team-intro p,
     .alumni p { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .avatar img,
+    .member-card { transition: none; }
+    .member-card:hover .avatar img { transform: none; }
+    .member-card:hover { transform: none; }
   }
   /* Until the names are supplied, the lead-in would leave a colon pointing at
      nothing, so it hides along with the empty list. */
@@ -778,10 +788,12 @@
 
     return (
       '<div class="member-card">' +
-        '<div class="avatar">' + avatar + '</div>' +
-        '<div class="member-name">' + (p.title ? escapeHtml(p.title) + ' ' : '') + escapeHtml(p.fullName) + '</div>' +
-        '<div class="member-role">' + escapeHtml(p.role || '') + '</div>' +
-        '<div class="member-socials">' + socials + '</div>' +
+        '<div class="avatar"' + (p.photo ? '' : ' data-photo-id="' + escapeAttr(p.id) + '" data-photo-name="' + escapeAttr(p.fullName) + '"') + '>' + avatar + '</div>' +
+        '<div class="member-body">' +
+          '<div class="member-name">' + (p.title ? escapeHtml(p.title) + ' ' : '') + escapeHtml(p.fullName) + '</div>' +
+          '<div class="member-role">' + escapeHtml(p.role || '') + '</div>' +
+          '<div class="member-socials">' + socials + '</div>' +
+        '</div>' +
       '</div>'
     );
   }
@@ -802,6 +814,34 @@
     );
   }
 
+  /* ──────────────────────────────────────────────────────────
+     PHOTOS
+     Drop a headshot into /assets/images/team/ named after the
+     person's id (e.g. mina-milovic.jpg) and it replaces the
+     initials automatically - no code change needed. Any of the
+     extensions below works; with no file the initials stay.
+     ────────────────────────────────────────────────────────── */
+  const PHOTO_DIR = '/assets/images/team/';
+  const PHOTO_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
+
+  function attachPhotos() {
+    $$('.avatar[data-photo-id]').forEach(box => {
+      const id = box.getAttribute('data-photo-id');
+      const name = box.getAttribute('data-photo-name') || '';
+      if (!id) return;
+      (function tryExt(k) {
+        if (k >= PHOTO_EXTS.length) return;           // no file found -> keep initials
+        const src = PHOTO_DIR + id + '.' + PHOTO_EXTS[k];
+        const test = new Image();
+        test.onload = () => {
+          box.innerHTML = '<img src="' + escapeAttr(src) + '" alt="' + escapeAttr(name) + '" loading="lazy">';
+        };
+        test.onerror = () => tryExt(k + 1);
+        test.src = src;
+      })(0);
+    });
+  }
+
   function renderAll() {
     const root = $('#team-root');
     const groups = groupByDept(STATE.items);
@@ -817,6 +857,7 @@
       return;
     }
     root.innerHTML = groups.map(renderDept).join('');
+    attachPhotos();
   }
 
   function renderError() {
