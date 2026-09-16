@@ -382,9 +382,15 @@
 
   /* Open-call note under the intro — the one thing on this page with a
      deadline attached, so it sits in the reading column rather than the grid. */
+  /* The open calls stack under the intro. Each names who it is for in its
+     meta line, because MOVE funds individuals and ERC funds organisations,
+     and a visitor should not have to click through to find that out. */
+  .call-notes {
+    display: flex; flex-direction: column; gap: 10px;
+    max-width: 540px; margin-top: 30px;
+  }
   .call-note {
     display: flex; align-items: center; gap: 16px;
-    max-width: 540px; margin-top: 30px;
     padding: 15px 18px;
     background: linear-gradient(135deg, #f1fbf5, #fbfefc);
     border: 1px solid #c5e9d5; border-left: 3px solid #22c55e;
@@ -402,12 +408,33 @@
   .call-note-badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #22c55e; animation: pulseDotGreen 1.8s ease-out infinite; }
   .call-note-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
   .call-note-body strong { font-size: var(--text-md); font-weight: 700; color: var(--navy); line-height: 1.35; }
-  .call-note-meta { font-size: var(--text-sm); color: var(--muted); }
+  /* who the call is for, then its deadline, each on its own line so both
+     cards stay the same height whatever the length of the deadline text */
+  .call-note-meta {
+    display: flex; flex-direction: column; gap: 1px;
+    font-size: var(--text-sm); color: var(--muted);
+  }
+  .call-note-who { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; color: #15803d; }
+  .call-note-who svg { width: 13px; height: 13px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .call-note-arrow { margin-left: auto; flex-shrink: 0; color: #15803d; transition: transform .2s ease; }
   .call-note:hover .call-note-arrow { transform: translateX(3px); }
   .call-note-arrow svg { width: 16px; height: 16px; display: block; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   @media (prefers-reduced-motion: reduce) { .call-note-badge::before { animation: none; } }
-  @media (max-width: 600px) { .call-note { flex-wrap: wrap; gap: 12px; } .call-note-arrow { margin-left: 0; } }
+  /* On phones the badge takes its own row and the title gets the full width
+     beneath it, with the arrow pinned to the right. Plain wrapping left each
+     arrow wherever its title happened to end, or alone on a line of its own. */
+  @media (max-width: 600px) {
+    .call-note {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas: "badge badge" "body arrow";
+      gap: 10px 14px;
+      padding: 14px 16px;
+    }
+    .call-note-badge { grid-area: badge; justify-self: start; }
+    .call-note-body  { grid-area: body; }
+    .call-note-arrow { grid-area: arrow; margin-left: 0; align-self: center; }
+  }
 
   /* Eyebrow */
   .about-eyebrow {
@@ -2073,14 +2100,31 @@
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
         </a>
 
-        <a class="call-note" href="/move/">
-          <span class="call-note-badge">Open call</span>
-          <span class="call-note-body">
-            <strong>MOVE Grants: Call 7 is open for applications</strong>
-            <span class="call-note-meta">Deadline 5 October 2026, 12:59 CET</span>
-          </span>
-          <span class="call-note-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </a>
+        <div class="call-notes">
+          <a class="call-note" href="/move/">
+            <span class="call-note-badge">Open call</span>
+            <span class="call-note-body">
+              <strong>MOVE Grants: Call 7 is open for applications</strong>
+              <span class="call-note-meta">
+                <span class="call-note-who"><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="4.3" r="2.1"/><path d="M3 12a4 4 0 0 1 8 0"/></svg>For individuals</span>
+                <span>Deadline 5 October 2026, 12:59 CET</span>
+              </span>
+            </span>
+            <span class="call-note-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+          </a>
+
+          <a class="call-note" href="/erc/">
+            <span class="call-note-badge">Open call</span>
+            <span class="call-note-body">
+              <strong>ERC Grants: the new call is open for applications</strong>
+              <span class="call-note-meta">
+                <span class="call-note-who"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 12.5V2.5h6v10M8.5 5.5h3v7M4.5 4.8h2M4.5 6.8h2M4.5 8.8h2"/></svg>For non-profit organisations</span>
+                <span>Deadline 26 October 2026, 13:59 CET</span>
+              </span>
+            </span>
+            <span class="call-note-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
+          </a>
+        </div>
       </div>
 
       <!-- Static photo mosaic. Tiles are placed explicitly on a 4x4 grid so
@@ -2168,9 +2212,9 @@
         </div>
       </a>
 
-      <a href="/erc/" class="pf-card" data-who="org" data-type="grant">
+      <a href="/erc/" class="pf-card glow" data-who="org" data-type="grant">
         <div class="pf-card-top">
-          <span class="pf-badge soon">Coming Soon</span>
+          <span class="pf-badge opencall">Open Call</span>
           <div class="pf-grant"><div class="pf-grant-num">€25,000</div><div class="pf-grant-sub">max grant</div></div>
         </div>
         <h3 class="pf-card-title">Empowering Regional Cooperation (ERC)</h3>
@@ -2180,7 +2224,7 @@
         </div>
         <p class="pf-card-desc">Larger EU co-funded grants that strengthen civil society partnerships and collaborative initiatives across the Western Balkans, promoting democracy and sustainable development.</p>
         <div class="pf-card-foot">
-          <span class="pf-when">Opens on 23 September</span>
+          <span class="pf-when">Deadline 26 October &middot; 13:59 CET</span>
           <span class="pf-arrow"><svg viewBox="0 0 14 14"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></span>
         </div>
       </a>
