@@ -1365,14 +1365,17 @@
      BERLIN PROCESS
      ------------------------------------------------------------
      Intro prose + three-milestone timeline, newest first (London 2025,
-     Sofia 2020, Poznan 2019). Each milestone pairs justified text
-     with a photo column; an empty photo slot shows a dashed frame
-     naming the file to drop into /assets/images/berlin-process/.
+     Sofia 2020, Poznan 2019). London and Poznan pair the text with a
+     photo collage on the right, hotlinked from the WBF Flickr the same
+     way past-events does; Sofia has no photos and runs text-only.
      ============================================================ */
   .bp-section {
     --bp-head-size: 30px;   /* year and milestone title share this size */
     position: relative;
     overflow: hidden;
+    /* clip trims the glow like hidden does, but without turning the section
+       into a scroll container, so the photo collage can stay sticky */
+    overflow: clip;
     background: linear-gradient(180deg, #ffffff 0%, #f2f6fc 45%, #ffffff 100%);
   }
   .bp-section::before {
@@ -1501,9 +1504,71 @@
     color: var(--ink); line-height: 1.25;
   }
 
-  /* Text-only milestones — the photo column is gone, so the prose runs on
-     its own with a measure that stays readable at full section width. */
+  /* A milestone without photos (Sofia) runs the prose on its own, with a
+     measure that stays readable at full section width. */
   .bp-step-body .bp-text { max-width: 76ch; }
+
+  /* ---- Photo collage beside the text ---- */
+  .bp-step-body.has-photos {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+  .bp-step-body.has-photos .bp-text { max-width: none; }
+
+  /* The London text runs much longer than its photos, so the collage stays
+     in view while the reader scrolls through the quote and paragraphs. */
+  .bp-collage {
+    position: sticky; top: 100px;
+    display: grid; gap: 10px;
+  }
+  .bp-shot {
+    position: relative; overflow: hidden; margin: 0;
+    border-radius: 12px;
+    background: #e3eaf4;
+    box-shadow: 0 10px 26px rgba(15,32,68,0.12);
+  }
+  .bp-shot img {
+    width: 100%; height: 100%; display: block;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.22,0.61,0.36,1);
+  }
+  .bp-shot:hover img { transform: scale(1.05); }
+
+  /* Poznan: the text is short, so the four photos sit in a small 2x2 held
+     to exactly the height of the text. contain: size stops the photos from
+     adding any height of their own, and stretch then fills the row the text
+     sets. The narrower column keeps each cell close to the photos' 3:2. */
+  .bp-step-body.is-compact { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  .bp-collage--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    align-self: stretch;
+    contain: size;
+  }
+  .bp-collage--four .bp-shot { border-radius: 10px; box-shadow: 0 6px 16px rgba(15,32,68,0.10); }
+  .bp-collage--four .bp-shot img { position: absolute; inset: 0; }
+
+  /* London: two landscapes stacked on the left, the portrait beside them
+     running the full height of both. */
+  .bp-collage--three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bp-collage--three .bp-shot { aspect-ratio: 4 / 3; }
+  .bp-collage--three .bp-shot.is-tall { grid-column: 2; grid-row: 1 / span 2; aspect-ratio: auto; }
+  .bp-collage--three .bp-shot.is-tall img { position: absolute; inset: 0; }
+
+  /* The photos settle in one after another as the milestone scrolls into
+     view. Scoped to .reveal, which only the motion script adds, so with JS
+     off or reduced motion preferred the photos are simply there. */
+  .bp-step.reveal .bp-shot {
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,0.61,0.36,1);
+  }
+  .bp-step.reveal.in .bp-shot { opacity: 1; transform: none; }
+  .bp-step.reveal.in .bp-shot:nth-child(2) { transition-delay: 0.12s; }
+  .bp-step.reveal.in .bp-shot:nth-child(3) { transition-delay: 0.24s; }
+  .bp-step.reveal.in .bp-shot:nth-child(4) { transition-delay: 0.36s; }
 
   .bp-text p {
     font-size: var(--text-md); color: var(--ink-soft); line-height: 1.85;
@@ -1558,6 +1623,13 @@
     .bp-step::before { display: none; }
     .bp-node { position: static; margin-bottom: 16px; }
     .bp-section { --bp-head-size: 26px; }
+    /* photos drop below the text and span the full width */
+    .bp-step-body.has-photos { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .bp-collage { position: static; }
+    /* stacked, there is no text beside it to match, so the photos take
+       their own 3:2 shape again */
+    .bp-collage--four { contain: none; align-self: auto; }
+    .bp-collage--four .bp-shot { aspect-ratio: 3 / 2; }
   }
   @media (max-width: 600px) {
     .bp-text p { text-align: left; hyphens: none; }
@@ -1687,6 +1759,8 @@
     .bp-chip, .bp-node, .bp-node::after { transition: none; }
     .bp-lockup-link { transition: none; }
     .bp-lockup-link:hover { transform: none; }
+    .bp-shot img { transition: none; }
+    .bp-shot:hover img { transform: none; }
   }
 </style>
 <script type="application/ld+json">
@@ -2499,13 +2573,11 @@
 <!-- ============================================================
      BERLIN PROCESS
      ------------------------------------------------------------
-     PHOTOS: create /assets/images/berlin-process/ and drop in
-       poznan-2019-01.jpg / -02.jpg / -03.jpg
-       sofia-2020-01.jpg  / -02.jpg / -03.jpg
-       london-2025-01.jpg / -02.jpg / -03.jpg
-     A slot with no file shows a dashed frame naming the file it
-     is waiting for, so the layout never breaks. Different names
-     are fine — just edit the src="" and the <code> hint.
+     PHOTOS: London 2025 and Poznan 2019 each carry a collage to the
+     right of the text, hotlinked from the WBF Flickr. To swap a photo,
+     replace its src="" (and its alt text). Changing how many photos
+     a milestone has means changing its bp-collage--three / --four
+     class to match. Sofia 2020 has no photos, so it has no collage.
      ============================================================ -->
 <section class="section bp-section at-panel" id="berlin-process" role="tabpanel" aria-labelledby="at-tab-berlin" hidden>
   <div class="container">
@@ -2549,7 +2621,7 @@
         </div>
 
 
-        <div class="bp-step-body">
+        <div class="bp-step-body has-photos">
           <div class="bp-text">
             <p class="bp-lede">The most recent milestone came in 2025 and represented perhaps the <strong>strongest recognition of WBF</strong> within the Berlin Process to date.</p>
             <p>On <strong>22 October 2025</strong>, the Western Balkans Fund <span class="bp-hl">participated for the first time in a Berlin Process Leaders&rsquo; Summit</span>, hosted by the United Kingdom in London.</p>
@@ -2562,6 +2634,12 @@
 
             <p>The decision formed part of a wider commitment to integrate gender equality throughout the Berlin Process agenda, recognising it as an <strong>enabler and accelerator</strong> of regional priorities and linking women&rsquo;s empowerment with more secure, stable, and prosperous societies.</p>
             <p>Building upon the London Conclusions, WBF established the <a href="/gefund/"><strong>Western Balkans Gender Equality Fund</strong></a>, a dedicated regional mechanism supporting civil society cooperation, advocacy, and initiatives advancing women&rsquo;s empowerment and gender equality. The <strong>first Open Call was launched on 5 May 2026</strong>, translating the political commitment adopted within the Berlin Process into direct support for organisations and communities across the Western Balkans.</p>
+          </div>
+
+          <div class="bp-collage bp-collage--three" role="group" aria-label="Photos from the London Summit, October 2025">
+            <figure class="bp-shot"><img src="https://live.staticflickr.com/65535/55503133222_814214ce62_c.jpg" alt="Delegates in front of the Western Balkans Summit London 2025 backdrop" width="800" height="600" loading="lazy" decoding="async"></figure>
+            <figure class="bp-shot"><img src="https://live.staticflickr.com/65535/55504133536_505064911c_z.jpg" alt="Group photo of participants at the Western Balkans Summit in London, October 2025" width="640" height="512" loading="lazy" decoding="async"></figure>
+            <figure class="bp-shot is-tall"><img src="https://live.staticflickr.com/65535/55504512615_6e0bbd8839_z.jpg" alt="Participants at the London Summit venue, October 2025" width="480" height="640" loading="lazy" decoding="async"></figure>
           </div>
         </div>
       </li>
@@ -2599,10 +2677,17 @@
         </div>
 
 
-        <div class="bp-step-body">
+        <div class="bp-step-body has-photos is-compact">
           <div class="bp-text">
             <p class="bp-lede">The earliest of the three milestones came under the <strong>Polish Presidency</strong> of the Berlin Process.</p>
             <p>On <strong>5 July 2019</strong>, Pozna&#324; hosted the <strong>sixth Western Balkans Summit</strong> of the Berlin Process. <span class="bp-hl">For the first time, the Western Balkans Fund was invited to participate in Berlin Process activities</span>, recognising the value of its contribution to regional cooperation, reconciliation, and people-to-people contacts. WBF also had its own <strong>exhibition booth</strong> at the accompanying fair, presenting its mission, grant-making activities, and regional impact.</p>
+          </div>
+
+          <div class="bp-collage bp-collage--four" role="group" aria-label="Photos from the Pozna&#324; Summit, July 2019">
+            <figure class="bp-shot"><img src="https://live.staticflickr.com/65535/55504225238_7e48bf2a34_c.jpg" alt="Delegates in conversation at the Berlin Process Summit in Pozna&#324;, July 2019" width="799" height="533" loading="lazy" decoding="async"></figure>
+            <figure class="bp-shot"><img src="https://live.staticflickr.com/65535/55503124987_6a4c4b5533_c.jpg" alt="Participants together at the Berlin Process Summit fair in Pozna&#324;, July 2019" width="799" height="533" loading="lazy" decoding="async"></figure>
+            <figure class="bp-shot"><img src="https://live.staticflickr.com/65535/55504284854_81764abe51_c.jpg" alt="Two delegates in discussion at a table during the Pozna&#324; Summit, July 2019" width="799" height="533" loading="lazy" decoding="async"></figure>
+            <figure class="bp-shot"><img src="https://live.staticflickr.com/65535/55504505220_04c408f83e_c.jpg" alt="Visitors at the Western Balkans Fund exhibition booth in Pozna&#324;, July 2019" width="799" height="533" loading="lazy" decoding="async"></figure>
           </div>
         </div>
       </li>

@@ -1,36 +1,24 @@
-# Berlin Process photos
+# Berlin Process
 
-Photos for the **WBF and the Berlin Process** section on `about.html`
-(`#berlin-process`, sits directly below Partners).
+This folder holds only `berlin-process-logo.png`, used in the heading of the
+**WBF and the Berlin Process** tab on `about/index.html` (`#berlin-process`).
 
-Each of the three milestones has **three slots**: one large frame and two
-smaller ones beneath it. A slot with no file shows a dashed frame naming the
-file it is waiting for, so the page never breaks — add photos whenever they
-become available.
+## Milestone photos
 
-## Format
+The photos beside the milestone text are **not stored here**. They are
+hotlinked from the WBF Flickr account, the same way `past-events` does it:
 
-Landscape, **4:3**, at least **900 × 675 px**. JPG. The frames crop to fill,
-so keep the subject away from the very edges.
+| Milestone     | Photos | Collage                                             |
+|---------------|--------|-----------------------------------------------------|
+| London 2025   | 3      | two landscapes stacked, one portrait beside them    |
+| Sofia 2020    | none   | text only                                           |
+| Poznań 2019   | 4      | small 2x2, held to the height of the text           |
 
-## Naming
+To swap a photo, replace the `src=""` of its `<img>` in `about/index.html`
+and update its `alt` text to describe the new picture. Use Flickr's `_c`
+(800px) or `_z` (640px) size.
 
-    poznan-2019-01.jpg    large frame — the Summit itself
-    poznan-2019-02.jpg    small frame — WBF exhibition booth at the fair
-    poznan-2019-03.jpg    small frame — delegates / plenary
-
-    sofia-2020-01.jpg     large frame — the Sofia Summit
-    sofia-2020-02.jpg     small frame — joint chairmanship
-    sofia-2020-03.jpg     small frame — summit session
-
-    london-2025-01.jpg    large frame — WBF at the Leaders' Summit
-    london-2025-02.jpg    small frame — summit session
-    london-2025-03.jpg    small frame — gender equality commitment
-
-Different filenames are fine — edit the `src=""` of the `<img>` and the
-`<code>` hint next to it in `about.html`.
-
-## Alt text
-
-Every `<img>` already carries descriptive alt text naming the event, place and
-date. If you swap in a photo showing something else, update the alt text too.
+The layouts are built for these exact counts and shapes. The London one
+expects its third photo to be a portrait (`is-tall`). Adding or removing a
+photo means changing the collage's `bp-collage--three` / `bp-collage--four`
+class, so ask for the layout to be adjusted rather than just adding an `<img>`.
