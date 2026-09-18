@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WBF Regional Academy | Western Balkans Fund</title>
 <link rel="canonical" href="https://westernbalkansfund.org/regional-academy/">
-<meta name="description" content="The WBF Regional Academy prepares junior professionals and emerging leaders from across the WB6 to advance dialogue and a culture of regional cooperation.">
+<meta name="description" content="The 2026 edition of the WBF Regional Academy took place in Tirana from 13 to 19 September. Look back at the week, and follow news of the next edition.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://westernbalkansfund.org/regional-academy/">
 <meta property="og:title" content="WBF Regional Academy | Western Balkans Fund">
-<meta property="og:description" content="The WBF Regional Academy prepares junior professionals and emerging leaders from across the WB6 to advance dialogue and a culture of regional cooperation.">
+<meta property="og:description" content="The 2026 edition of the WBF Regional Academy took place in Tirana from 13 to 19 September. Look back at the week, and follow news of the next edition.">
 <meta property="og:site_name" content="Western Balkans Fund">
 <meta property="og:image" content="https://westernbalkansfund.org/assets/img/og-default.png">
 <meta property="og:image:width" content="1200">
@@ -219,6 +219,57 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
 .sec-head h2:last-child { margin-bottom: 0; }
 /* Section intros that run to more than one paragraph need the gap. */
 .sec-head p + p { margin-top: 14px; }
+
+/* ============================================================
+   2026 EDITION · facts and photo gallery
+   ============================================================ */
+.status-pill.is-done { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.4); }
+.status-pill.is-done .status-pill-dot { background: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.18); }
+
+.recap-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 32px; }
+.rf {
+  text-align: center; padding: 22px 16px 18px;
+  background: var(--surface); border: 1px solid var(--forest-border); border-radius: 14px;
+  box-shadow: 0 10px 26px rgba(12,80,70,0.06);
+  transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease;
+}
+.rf:hover { transform: translateY(-4px); box-shadow: 0 18px 34px rgba(12,80,70,0.13); }
+.rf b { display: block; font-size: 38px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--forest-deep); margin-bottom: 6px; }
+.rf span { font-size: 13.5px; color: var(--ink-soft); }
+
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.gallery a { display: block; overflow: hidden; border-radius: 14px; background: var(--forest-tint); aspect-ratio: 4 / 3; }
+.gallery a:first-child { grid-column: span 2; grid-row: span 2; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(.2,.8,.2,1); }
+.gallery a:hover img { transform: scale(1.05); }
+.gallery a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.gallery-empty {
+  grid-column: 1 / -1; padding: 34px 24px; text-align: center;
+  border: 1px dashed var(--forest-border); border-radius: 14px;
+  background: var(--forest-tint-2); color: var(--muted); font-size: 14.5px;
+}
+
+/* ============================================================
+   NEXT EDITION · one quiet line, no dates promised
+   ============================================================ */
+.next-edition { padding: 8px 0 56px; }
+.next-line {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px 20px; border-radius: 999px;
+  background: var(--forest-tint-2); border: 1px solid var(--forest-border);
+  font-size: 15px; color: var(--ink-soft); text-align: center;
+}
+.next-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: var(--gold); box-shadow: 0 0 0 4px rgba(224,167,56,0.22); }
+
+@media (max-width: 900px) {
+  .recap-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery a:first-child { grid-column: span 2; grid-row: auto; }
+}
+@media (max-width: 560px) {
+  .gallery { grid-template-columns: minmax(0, 1fr); }
+  .gallery a:first-child { grid-column: auto; }
+}
 
 /* ============================================================
    OVERVIEW · what & why
@@ -1157,11 +1208,14 @@ body.mtr-open { overflow: hidden; }
       <a href="/">Home</a><span>›</span><a href="/our-programs/">Our Programmes</a><span>›</span>WBF Regional Academy
     </nav>
 
-    <!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. Delete the style attribute to bring the dates back. -->
-    <div class="hero-pills" style="display:none">
+    <div class="hero-pills">
+      <div class="status-pill is-done">
+        <span class="status-pill-dot"></span>
+        <span class="status-pill-text">2026 edition · completed</span>
+      </div>
       <div class="status-pill">
         <span class="status-pill-dot"></span>
-        <span class="status-pill-text">13–19 September 2026 · Tirana, Albania</span>
+        <span class="status-pill-text">Tirana · 13–19 September 2026</span>
       </div>
     </div>
 
@@ -1174,10 +1228,14 @@ body.mtr-open { overflow: hidden; }
     <p class="tagline">An initiative of the <strong>Western Balkans Fund</strong>, supported by the <strong>Open Society Foundation Western Balkans</strong>, the WBF Regional Academy combines thematic lectures, interactive workshops, dialogue sessions, and site visits to equip a new generation with the skills, networks, and mindset needed to advance dialogue, cooperation, and reconciliation across the WB6.</p>
 
     <div class="hero-ctas">
-      <!-- TEMPORARILY HIDDEN (Sept 2026) — dates and programme are being confirmed. Points at the hidden Programme section. -->
+      <!-- TEMPORARILY HIDDEN (Sept 2026) — the day-by-day programme is still to be confirmed for publication. -->
       <a class="btn-primary" href="#programme" style="display:none">
         Explore the Programme
         <svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
+      </a>
+      <a class="btn-primary" href="#recap">
+        The 2026 edition
+        <svg viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,5 19,12 13,19"/></svg>
       </a>
       <a class="btn-gold" href="#pillars">
         Thematic Pillars
@@ -1204,6 +1262,35 @@ body.mtr-open { overflow: hidden; }
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ============================================================
+     2026 EDITION · recap
+     ------------------------------------------------------------
+     PHOTOS: drop them into /assets/images/regional-academy/2026/
+     named 1.jpg, 2.jpg, 3.jpg … (.jpeg/.png/.webp also work). The
+     script at the foot of the page finds them and builds the
+     gallery; until then the dashed placeholder shows.
+     ============================================================ -->
+<section class="section" id="recap">
+  <div class="container">
+    <div class="sec-head">
+      <div class="overline">The 2026 edition</div>
+      <h2>Seven days in <span class="gold-accent">Tirana</span></h2>
+      <p>The 2026 edition of the WBF Regional Academy ran from 13 to 19 September in Tirana, bringing together junior professionals and emerging leaders from across the WB6 for a week of lectures, workshops, dialogue sessions and field learning, with the support of the Open Society Foundation Western Balkans.</p>
+    </div>
+
+    <div class="recap-facts">
+      <div class="rf"><b>7</b><span>days in Tirana</span></div>
+      <div class="rf"><b>5</b><span>thematic strands</span></div>
+      <div class="rf"><b>4</b><span>learning tracks a day</span></div>
+      <div class="rf"><b>1</b><span>heritage field day</span></div>
+    </div>
+
+    <div class="gallery" id="academyGallery" data-folder="/assets/images/regional-academy/2026/">
+      <p class="gallery-empty">Photographs from the 2026 edition will appear here.</p>
+    </div>
   </div>
 </section>
 
@@ -1254,7 +1341,7 @@ body.mtr-open { overflow: hidden; }
     <div class="sec-head pillars-intro">
       <div class="overline">Thematic Pillars</div>
       <h2>Designed based on the <span class="gold-accent">Charter on Education for Democratic Citizenship and Human Rights Education</span></h2>
-      <p>Through a comprehensive programme of peer learning, mentoring sessions, workshops, field experiences, and networking opportunities, the Academy will equip participants with the knowledge, skills, and professional networks required to act as future regional cooperation champions.</p>
+      <p>Through a comprehensive programme of peer learning, mentoring sessions, workshops, field experiences, and networking opportunities, the Academy equips participants with the knowledge, skills, and professional networks required to act as future regional cooperation champions.</p>
       <p>Directly contributing to the promotion of good-neighbourly relations and regional cooperation; fostering democratic values, inclusion, and dialogue; strengthening people-to-people connections; and supporting long-term peace and reconciliation efforts across the Western Balkans.</p>
     </div>
 
@@ -1916,6 +2003,18 @@ body.mtr-open { overflow: hidden; }
 <!-- ============================================================
      PARTNERS · closing credit strip
      ============================================================ -->
+<!-- ============================================================
+     NEXT EDITION
+     ------------------------------------------------------------
+     Deliberately free of dates, host city and theme: none are
+     decided yet. Fill them in here once they are.
+     ============================================================ -->
+<section class="next-edition" id="next">
+  <div class="container-narrow">
+    <p class="next-line"><span class="next-dot" aria-hidden="true"></span>Stay tuned to the WBF website and social media channels for the announcement of the next Academy edition.</p>
+  </div>
+</section>
+
 <section class="partners-strip" id="partners">
   <div class="container">
     <p class="partners-thanks">The Academy is organised by the Western Balkans Fund with the support of the Open Society Foundation Western Balkans.</p>
@@ -1959,6 +2058,49 @@ body.mtr-open { overflow: hidden; }
         s.replaceWith(n);
       });
     });
+</script>
+
+<script>
+/* 2026 gallery · finds the photos that are there.
+   Looks for 1.jpg, 2.jpg, 3.jpg … in the folder named on the
+   container, trying each extension, and stops at the first number
+   with no file. With no photos the placeholder simply stays. */
+(function () {
+  var box = document.getElementById('academyGallery');
+  if (!box) return;
+  var folder = box.getAttribute('data-folder');
+  var EXTS = ['jpg', 'jpeg', 'JPG', 'png', 'webp'];
+  var MAX = 24;
+  var urls = [];
+
+  (function probe(i) {
+    if (i > MAX) return build();
+    (function tryExt(k) {
+      if (k >= EXTS.length) return build();        // nothing for this number: stop
+      var test = new Image();
+      test.onload = function () { urls.push(folder + i + '.' + EXTS[k]); probe(i + 1); };
+      test.onerror = function () { tryExt(k + 1); };
+      test.src = folder + i + '.' + EXTS[k];
+    })(0);
+  })(1);
+
+  function build() {
+    if (!urls.length) return;                      // keep the placeholder
+    box.innerHTML = '';
+    urls.forEach(function (src, i) {
+      var a = document.createElement('a');
+      a.href = src; a.target = '_blank'; a.rel = 'noopener';
+      a.setAttribute('aria-label', 'WBF Regional Academy 2026, photo ' + (i + 1) + ' (opens the full-size image)');
+      var img = document.createElement('img');
+      img.src = src;
+      img.alt = 'WBF Regional Academy 2026 in Tirana, photo ' + (i + 1);
+      img.loading = i < 3 ? 'eager' : 'lazy';
+      img.decoding = 'async';
+      a.appendChild(img);
+      box.appendChild(a);
+    });
+  }
+})();
 </script>
 
 <script>
