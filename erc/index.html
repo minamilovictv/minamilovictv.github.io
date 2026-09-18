@@ -860,15 +860,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 /* Eligibility checklist: title and the consequence up top, then the eleven
    checks in three labelled groups, each item ticked rather than numbered */
 .check-box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px 24px; margin-bottom: 28px; }
-.check-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 20px; margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line-soft); }
-.check-title { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
-.check-warn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 12px; border-radius: 999px;
-  background: var(--erc-tint); border: 1px solid var(--erc-border);
-  font-size: 12.5px; font-weight: 600; color: var(--erc-deep);
-}
-.check-warn svg { width: 15px; height: 15px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.check-title { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line-soft); }
 .check-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 28px; align-items: start; }
 .check-group-head { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--erc); }
 .cg-ico {
@@ -1975,10 +1967,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
     </ol>
 
     <div class="check-box">
-      <div class="check-top">
-        <h3 class="check-title">Before scoring: eligibility checklist</h3>
-        <p class="check-warn"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="7.5" x2="12" y2="12.5"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>An application that fails any of these is rejected without further evaluation.</p>
-      </div>
+      <h3 class="check-title">Before scoring: eligibility checklist</h3>
       <div class="check-groups" data-reveal>
         <div class="check-group">
           <div class="check-group-head"><span class="cg-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span>Submission</div>
