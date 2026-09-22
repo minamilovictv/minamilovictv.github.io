@@ -133,6 +133,10 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 }
 .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); color: #fff; }
 .btn-ghost svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* the info-session sign-up sits among the ghost links but has to be noticed,
+   so it keeps the pill shape with a filled, brighter treatment */
+.btn-ghost.is-accent { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.58); color: #fff; }
+.btn-ghost.is-accent:hover { background: rgba(255,255,255,0.26); border-color: #fff; }
 
 .meta-facts { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.16); }
 .meta-fact-key { font-family: var(--font-display); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
@@ -1093,6 +1097,16 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .path-card .partner-cta-arrow { width: 32px; height: 32px; }
 .path-card .partner-cta-arrow svg { width: 15px; height: 15px; }
 .path-card > .path-foot { margin-top: auto; margin-bottom: 0; font-size: 13px; color: var(--muted); line-height: 1.6; }
+/* a quieter follow-on link under a card's main button, for the detail a
+   visitor may want after they have registered */
+.path-link {
+  align-self: flex-start; margin-top: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: var(--erc); text-decoration: none;
+}
+.path-link:hover { color: var(--erc-deep); }
+.path-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s ease; }
+.path-link:hover svg { transform: translateX(3px); }
 .date-badge {
   display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
   margin-bottom: 14px; padding: 7px 12px; border-radius: 10px;
@@ -1181,6 +1195,9 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .tl-date { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.75); }
 .tl-event { font-size: 15.5px; font-weight: 500; color: rgba(255,255,255,0.92); line-height: 1.4; }
 .tl-time { justify-self: end; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.65); text-align: center; white-space: nowrap; }
+/* the info-sessions row turns its time pill into the registration link */
+.tl-time-link { text-decoration: none; transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+.tl-time-link:hover { background: #fff; border-color: #fff; color: var(--erc-deep); }
 /* the application deadline shines: bright blue, a breathing glow, a light
    sweep across it and a pulsing dot before the date */
 .tl-row.is-key {
@@ -1410,6 +1427,10 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <a class="btn-primary" href="https://wbfportal.org/applicant/login.html" target="_blank" rel="noopener">
         Apply via OGMS
         <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+      <a class="btn-ghost is-accent" href="https://docs.google.com/forms/d/e/1FAIpQLSeDBDihGL4beQ5fSTVtN1gpY4bKElyppVz_gB6u34LhX6SDgA/viewform" target="_blank" rel="noopener">
+        Register for Info Sessions
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9,15 11,17 15,13"/></svg>
       </a>
       <a class="btn-ghost" href="#eligibility">
         Check Eligibility
@@ -2147,12 +2168,13 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
           <div><div class="path-k">Step 2</div><h3>Information sessions</h3></div>
         </div>
         <span class="date-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>1 to 14 October 2026</span>
-        <p>Session details are posted and regularly updated on our Events page. Follow WBF on social media for the latest news.</p>
-        <a class="partner-cta" href="/events/">
-          <span class="partner-cta-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-          <span class="partner-cta-text"><b>See info sessions</b><small>Events page</small></span>
+        <p>Register in advance to attend an information session on the ERC Grant Scheme. Session details are posted and regularly updated on our Events page, and announced on WBF social media.</p>
+        <a class="partner-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeDBDihGL4beQ5fSTVtN1gpY4bKElyppVz_gB6u34LhX6SDgA/viewform" target="_blank" rel="noopener">
+          <span class="partner-cta-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9,15 11,17 15,13"/></svg></span>
+          <span class="partner-cta-text"><b>Register to attend</b><small>Info session registration form</small></span>
           <span class="partner-cta-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
         </a>
+        <a class="path-link" href="/events/">See the session schedule <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
       </div>
 
       <div class="path-card">
@@ -2219,7 +2241,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <li class="tl-row">
         <div class="tl-date">1 to 14 October 2026</div>
         <div class="tl-event">Information sessions across the region</div>
-        <div class="tl-time">See WBF website and social media</div>
+        <a class="tl-time tl-time-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeDBDihGL4beQ5fSTVtN1gpY4bKElyppVz_gB6u34LhX6SDgA/viewform" target="_blank" rel="noopener">Register to attend</a>
       </li>
       <li class="tl-row">
         <div class="tl-date">9 October 2026</div>
