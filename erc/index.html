@@ -239,6 +239,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 .note svg { width: 20px; height: 20px; color: var(--erc); flex-shrink: 0; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .note strong { color: var(--ink); font-weight: 700; }
 .note a { color: var(--erc); font-weight: 600; }
+.note.is-warn { background: var(--amber-tint); border-color: #e3cb96; }
+.note.is-warn svg { color: var(--amber); }
 
 /* ============================================================
    ABOUT
@@ -1421,7 +1423,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
     </div>
 
     <h1>Empowering Regional Cooperation (ERC)</h1>
-    <p class="tagline">The Western Balkans Fund&rsquo;s larger-scale regional grant scheme supports established civil society organisations working in partnership on higher-impact regional initiatives for peacebuilding, reconciliation, democratic governance and EU integration across the WB6, under the EU/WBF Joint Action (Phase III).</p>
+    <p class="tagline">ERC is specifically designed to support higher-impact, multi-partner regional initiatives led by well-established Civil Society Organisations, with a clear focus on strengthening regional cooperation, regional CSO partnership and EU aligned priorities, thereby contributing to increased trust, reconciliation and good neighborly relations in the Western Balkans.</p>
 
     <div class="hero-ctas">
       <a class="btn-primary" href="https://wbfportal.org/applicant/login.html" target="_blank" rel="noopener">
@@ -1496,7 +1498,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       </div>
       <ul class="qf-list">
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Non-profit legal entities</strong> established in a WBF Contracting Party</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>CSOs, and business, media or educational associations</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>CSOs, and associations of business, media, sports or education, etc.</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Lead applicant with <strong>3+ years</strong> of donor-funded regional projects</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>1 Lead + at least 3 Partners</strong> from 4 different Contracting Parties</span></li>
       </ul>
@@ -1517,7 +1519,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Grants of <strong>&euro;20,000 to &euro;25,000</strong> per project</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>WBF covers <strong>up to 80%</strong> of total eligible costs</span></li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>At least 20% co-financing</strong>; contributions in kind are not eligible</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Projects run for <strong>6 to 10 months</strong></span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Projects run for <strong>6 to 10 months</strong>, reporting included</span></li>
       </ul>
       <div class="qf-foot">
         <a class="qf-link" href="#budget">Financing rules <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
@@ -1559,7 +1561,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
     <div class="about-grid">
       <div class="about-text">
         <p>Empowering Regional Cooperation (ERC) is the Western Balkans Fund&rsquo;s <strong>larger-scale regional grant scheme</strong>. The 2nd Edition is implemented under Work Package 1 of the EU/WBF Joint Action, Phase III, and builds on the ERC 1st Edition piloted in 2024.</p>
-        <p>ERC supports <strong>higher-impact, multi-partner regional initiatives</strong> led by well-established civil society organisations, with a clear focus on peacebuilding, reconciliation, democratic governance and EU-aligned priorities. Projects should show potential for regional policy influence rather than local outputs alone, bring innovative approaches, and give evidence of scalable or transferable impact.</p>
+        <p>ERC funded projects should demonstrate potential for <strong>regional policy influence</strong> rather than focusing solely on local outputs. Proposals are expected to incorporate innovative approaches and provide evidence of scalable or transferable impact, and are assessed on their ability to contribute to broader regional policy, advocacy, knowledge or best practice sharing.</p>
         <p>The overall objective is to enhance the role and contribution of civil society organisations in advancing <strong>regional cooperation and the EU integration process</strong> in the Western Balkans, through stronger organisational capacities, cooperation and wider recognition of their impact.</p>
       </div>
 
@@ -1633,7 +1635,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
           <span class="ia-num" aria-hidden="true">02</span>
         </div>
         <h3 class="ia-title">Education and scientific exchanges</h3>
-        <p class="ia-desc">Supporting organisations in the promotion of education, science and active participation in democracy, through civic education programmes, workshops and public awareness campaigns.</p>
+        <p class="ia-desc">Supporting organisations in education, science and the importance of active participation in democracy, through civic education programmes, workshops and public awareness campaigns.</p>
         <div class="ia-acts">
           <div class="ia-acts-label">Indicative activities</div>
           <ul>
@@ -1651,7 +1653,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
           <span class="ia-num" aria-hidden="true">03</span>
         </div>
         <h3 class="ia-title">Sustainable development</h3>
-        <p class="ia-desc">Supporting organisations in inclusive multi-stakeholder partnerships advocating for policies that are key to social progress and reflect the economic, environmental and social sides of sustainable development.</p>
+        <p class="ia-desc">Supporting organisations in inclusive multi-stakeholder partnerships advocating for policies and developing regional initiatives that are key to social progress and reflect the economic, environmental and social sides of sustainable development.</p>
         <div class="ia-acts">
           <div class="ia-acts-label">Indicative activities</div>
           <ul>
@@ -1731,6 +1733,11 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       </div>
     </div>
 
+    <div class="note is-warn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div><strong>Who cannot apply.</strong> Profit-making companies, political parties, organisations dealing mostly or only with political or religious activities, and central government entities are not eligible under this call, neither as Lead Applicant nor as Project Partner. The same applies to central and local government entities, units and directorates, and to government-funded organisations such as museums and universities, which may take part only as associated institutions. An application that does not meet all of these requirements will not be eligible.</div>
+    </div>
+
     <div class="partnership-callout">
       <div class="partnership-lead">
         <h3>Partnership is <em>required</em></h3>
@@ -1752,7 +1759,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
 
     <div class="note">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      <div><strong>Associated institutions.</strong> State agencies, ministries, museums, universities and other public institutions can take part as associated institutions, outside the partnership. They may help carry out activities but must have no financial or other interest in the project beyond travel and subsistence directly linked to its activities. They do not sign the Partnership Agreement, and their role must be described in the application form. Including them is optional.</div>
+      <div><strong>Associated institutions.</strong> State agencies, ministries, museums, universities and other public institutions can take part as associated institutions, outside the partnership. They may help carry out activities but must have no financial or other interest in the project beyond travel and subsistence directly linked to its activities. They do not sign the Partnership Agreement, and their role is specified in the application form, though that is not required if you have not identified one. Including them is optional and is not part of the eligibility criteria.</div>
     </div>
   </div>
 </section>
@@ -1878,8 +1885,8 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
             <div><div class="fin-k">WBF Financial Regulation</div><h3>Financial principles</h3></div>
           </div>
           <ul class="fin-list" data-reveal>
-            <li><span class="fin-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span><b>Co-financing is required</b>, not from other EU or WBF funds.</span></li>
-            <li><span class="fin-ico is-no" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span><b>Double financing</b> is prohibited.</span></li>
+            <li><span class="fin-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span><b>Co-financing is required</b> from the applicant, and may not be made in kind.</span></li>
+            <li><span class="fin-ico is-no" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span><b>Double financing</b> is prohibited; costs already financed by another EU-funded action are not eligible.</span></li>
             <li><span class="fin-ico is-no" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span><b>Grants must not produce a profit</b> for beneficiaries.</span></li>
           </ul>
           <p class="fin-note">Funds are distributed in a balanced way across the Contracting Parties. WBF may not award all funds, or may cancel the call, if proposals are insufficient in quality or number.</p>
@@ -1934,6 +1941,11 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       </div>
     </div>
 
+    <div class="note is-warn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div><strong>Not covered by the grant.</strong> Costs incurred before the contract is signed; debts and debt-service charges; provisions for losses or future liabilities; profit-making activities; activities tied to political or religious agendas; costs already financed by another EU-funded action; purchase of equipment, land or buildings; currency exchange losses; credits to third parties; bonuses; customs and import duties; fines, financial penalties and litigation expenses; taxes including VAT, unless non-recoverable under national law and declared as such; individual sponsorships to attend workshops, seminars, conferences or congresses; alcohol and tobacco; and stand-alone visibility costs.</div>
+    </div>
+
   </div>
 </section>
 
@@ -1945,7 +1957,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
     <div class="sec-head">
       <div class="overline">Evaluation</div>
       <h2>How applications are assessed</h2>
-      <p>WBF Secretariat, as Contracting Authority, examines and evaluates applications with the help of external assessors. The list of recommended projects is endorsed by the WBF Governing Bodies, and funds are distributed in a balanced way across the Contracting Parties.</p>
+      <p>WBF, as Contracting Authority, examines and evaluates applications with the help of external assessors. The list of recommended projects is endorsed by the WBF Governing Bodies, and funds are distributed in a balanced way across the Contracting Parties.</p>
     </div>
 
     <ol class="eval-flow" data-reveal>
@@ -2011,7 +2023,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
           <div class="check-group-head"><span class="cg-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="2.6"/><path d="M6 10v5M18 10v5"/></svg></span>Project and budget</div>
           <ul class="check-list">
             <li>The proposal meets the eligibility criteria for funding, duration, applicants, partnership, costs and activities</li>
-            <li>The project lasts between 6 and 10 months</li>
+            <li>The project lasts between 6 and 10 months, including the 30-day reporting period</li>
             <li>The requested contribution is between &euro;20,000 and &euro;25,000</li>
             <li>The budget is completed in the requested format, in EUR</li>
           </ul>
@@ -2168,7 +2180,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
           <div><div class="path-k">Step 2</div><h3>Information sessions</h3></div>
         </div>
         <span class="date-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>1 to 14 October 2026</span>
-        <p>Register in advance to attend an information session on the ERC Grant Scheme. Session details are posted and regularly updated on our Events page, and announced on WBF social media.</p>
+        <p>Sessions are held in Belgrade, Podgorica, Prishtina, Sarajevo, Skopje and Tirana, and possibly other locations in the region. Register in advance to attend; details are posted and updated on our Events page.</p>
         <a class="partner-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeDBDihGL4beQ5fSTVtN1gpY4bKElyppVz_gB6u34LhX6SDgA/viewform" target="_blank" rel="noopener">
           <span class="partner-cta-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9,15 11,17 15,13"/></svg></span>
           <span class="partner-cta-text"><b>Register to attend</b><small>Info session registration form</small></span>
@@ -2207,7 +2219,7 @@ h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
       <div class="vis-grid" data-reveal>
         <div class="vis-item">
           <span class="vis-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
-          <div><b>Credit the EU and WBF</b><p>Make clear that the action is funded by the European Union and the Western Balkans Fund, following the 2024 Guidelines on EU visibility in External Actions.</p></div>
+          <div><b>Credit the EU and WBF</b><p>Make clear that the action is funded by the European Union and the Western Balkans Fund, following the 2022 Guidelines on EU visibility in External Actions.</p></div>
         </div>
         <div class="vis-item">
           <span class="vis-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="13" y2="13"/></svg></span>
