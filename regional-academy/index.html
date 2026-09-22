@@ -277,12 +277,6 @@ h1, h2, h3, h4 { font-family: var(--font); letter-spacing: -0.02em; }
   .collage { gap: 8px; }
 }
 
-.gallery-empty {
-  grid-column: 1 / -1; padding: 34px 24px; text-align: center;
-  border: 1px dashed var(--forest-border); border-radius: 14px;
-  background: var(--forest-tint-2); color: var(--muted); font-size: 14.5px;
-}
-
 /* ============================================================
    NEXT EDITION · one quiet line, no dates promised
    ============================================================ */
@@ -1184,12 +1178,11 @@ body.mtr-open { overflow: hidden; }
      PHOTOS: /assets/images/regional-academy/2026/highlights/
      named 1.jpg, 2.jpg … (jpeg, png and webp also work). Six fill
      the mosaic exactly: the first one runs large. Until photos are
-     added the dashed placeholder shows.
+     added the band stays empty and takes up no space.
      ============================================================ -->
 <section class="collage-band" aria-label="Impressions from the 2026 edition">
   <div class="container">
     <div class="collage" data-folder="/assets/images/regional-academy/2026/highlights/" data-layout="mosaic">
-      <p class="gallery-empty">Impressions from the week in Tirana will appear here.</p>
     </div>
   </div>
 </section>
@@ -1564,7 +1557,7 @@ body.mtr-open { overflow: hidden; }
      PHOTOS: drop them into /assets/images/regional-academy/2026/
      named 1.jpg, 2.jpg, 3.jpg … (.jpeg/.png/.webp also work). The
      script at the foot of the page finds them and builds the
-     gallery; until then the dashed placeholder shows.
+     gallery; until then the section shows no photo area at all.
      ============================================================ -->
 <section class="section" id="recap">
   <div class="container">
@@ -1582,7 +1575,6 @@ body.mtr-open { overflow: hidden; }
     </div>
 
     <div class="gallery" id="academyGallery" data-folder="/assets/images/regional-academy/2026/">
-      <p class="gallery-empty">Photographs from the 2026 edition will appear here.</p>
     </div>
   </div>
 </section>
