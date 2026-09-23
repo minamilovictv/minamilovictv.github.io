@@ -180,6 +180,91 @@
     .hero-flag { display: none; }
   }
 
+  /* ---- Open-call pills ----
+     The ERC hero's status pills, scaled up and made clickable, so the two
+     live calls and the info-session sign-up are the first thing on the page.
+     Each pill breathes a soft glow and its dot pulses; the three are
+     staggered so they read as a sequence rather than flashing in unison. */
+  .hero-calls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+  /* Solid fills, not tints: against the navy hero each pill has to carry its
+     own contrast. One deep navy is used for every label and dot, so the three
+     read as a set and each sits well above the 4.5:1 text contrast floor. */
+  .call-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 19px 11px 15px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), filter 0.25s ease;
+    animation: call-glow-white 2.6s ease-in-out infinite;
+  }
+  .call-pill:hover { transform: translateY(-2px); filter: brightness(1.07); }
+  .call-pill:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .call-pill-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: #0c2352;
+    animation: call-blink 2.6s ease-out infinite;
+  }
+  .call-pill-text {
+    font-family: var(--font-display);
+    font-size: 13.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.085em;
+    color: #0c2352;
+    white-space: nowrap;
+  }
+
+  .call-pill.is-erc  { background: #7fb2ff; }   /* strong light blue  */
+  .call-pill.is-move { background: #5fe3a4; }   /* strong light green */
+  .call-pill.is-info { background: #ffffff; }   /* strong white       */
+
+  .call-pill.is-erc  { animation-name: call-glow-blue; }
+  .call-pill.is-move { animation-name: call-glow-green; }
+  .call-pill.is-info { animation-name: call-glow-white; }
+
+  /* Stagger: pill, then its dot, so a pill and its own dot stay in phase. */
+  .hero-calls .call-pill:nth-child(2),
+  .hero-calls .call-pill:nth-child(2) .call-pill-dot { animation-delay: 0.65s; }
+  .hero-calls .call-pill:nth-child(3),
+  .hero-calls .call-pill:nth-child(3) .call-pill-dot { animation-delay: 1.3s; }
+
+  @keyframes call-glow-blue {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(127,178,255,0); }
+    50%      { box-shadow: 0 0 24px 3px rgba(127,178,255,0.8); }
+  }
+  @keyframes call-glow-green {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(95,227,164,0); }
+    50%      { box-shadow: 0 0 24px 3px rgba(95,227,164,0.8); }
+  }
+  @keyframes call-glow-white {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    50%      { box-shadow: 0 0 24px 3px rgba(255,255,255,0.8); }
+  }
+  /* The dot pulses in the label's navy, so it reads on every fill. */
+  @keyframes call-blink {
+    0%   { box-shadow: 0 0 0 0 rgba(12,35,82,0.5); }
+    70%  { box-shadow: 0 0 0 9px rgba(12,35,82,0); }
+    100% { box-shadow: 0 0 0 0 rgba(12,35,82,0); }
+  }
+
+  /* On a phone three uppercase pills would eat the screen, so tighten them. */
+  @media (max-width: 560px) {
+    .hero-calls { gap: 9px; margin-bottom: 20px; }
+    .call-pill { padding: 9px 16px 9px 13px; gap: 9px; }
+    .call-pill-text { font-size: 11.5px; letter-spacing: 0.1em; }
+    .call-pill-dot { width: 8px; height: 8px; }
+  }
+
   /* Eyebrow badge with pulsing dot */
   .hero-eyebrow {
     display: inline-flex;
@@ -298,6 +383,7 @@
     from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  .hero-calls   { animation: hero-in 0.6s ease both; }
   .hero-eyebrow { animation: hero-in 0.6s ease both; }
   .hero-text h1 { animation: hero-in 0.7s ease 0.08s both; }
   .hero-text p  { animation: hero-in 0.7s ease 0.18s both; }
@@ -305,7 +391,8 @@
   @media (prefers-reduced-motion: reduce) {
     .hero::after,
     .hero-eyebrow .dot,
-    .hero-eyebrow, .hero-text h1, .hero-text p, .hero-btns { animation: none; }
+    .call-pill, .call-pill-dot,
+    .hero-calls, .hero-eyebrow, .hero-text h1, .hero-text p, .hero-btns { animation: none; }
   }
 
   .audience-arrow { color: rgba(255,255,255,0.25); font-size: var(--text-base); transition: color 0.15s; }
@@ -2050,6 +2137,20 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
+      <div class="hero-calls">
+        <a class="call-pill is-erc" href="/erc/">
+          <span class="call-pill-dot" aria-hidden="true"></span>
+          <span class="call-pill-text">Apply for ERC</span>
+        </a>
+        <a class="call-pill is-move" href="/move/">
+          <span class="call-pill-dot" aria-hidden="true"></span>
+          <span class="call-pill-text">Apply for MOVE</span>
+        </a>
+        <a class="call-pill is-info" href="https://docs.google.com/forms/d/e/1FAIpQLSeDBDihGL4beQ5fSTVtN1gpY4bKElyppVz_gB6u34LhX6SDgA/viewform" target="_blank" rel="noopener">
+          <span class="call-pill-dot" aria-hidden="true"></span>
+          <span class="call-pill-text">Register for Info Sessions</span>
+        </a>
+      </div>
       <h1>
         Supporting <span class="grad">lasting</span><br>
         <span class="grad">cooperation</span> across<br>
